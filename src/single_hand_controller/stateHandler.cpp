@@ -17,6 +17,9 @@
 ugv_status current_state = unknown;
 ugv_status prev_state = unknown;
 
+directionToggle current_dir, prev_dir;
+speedToggle current_spd, prev_spd;
+
 int speed = 0;
 
 bool setUGV_state(ugv_status s1){   
@@ -28,11 +31,27 @@ bool setUGV_state(ugv_status s1){
     return true;
 }
 
-void increaseSpeed(){
-    speed = speed > 2 ? speed : speed + 2;
+ugv_status getUGV_state(){
+    return current_state;
+}
+
+
+bool isUGV_connected(){
+    return current_state != disconnected;
+}
+
+
+void inc_Speed(){
+    speed = speed > 2 ? speed : speed + 1;
     displaySpeed(speed);
 }
-void decreaseSpeed(){
+void dec_Speed(){
     speed = speed == 0 ? speed : speed - 1;
+    displaySpeed(speed);
+}
+
+void setNeutral(){
+    speed = 0;
+    IF_DEBUG(Serial.println("set neutral called!"));
     displaySpeed(speed);
 }

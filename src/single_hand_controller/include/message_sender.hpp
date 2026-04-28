@@ -11,19 +11,6 @@
 #include "definitions.h"
 #include "timer.hpp"
 
-/// @brief directions within hand controller
-enum directionToggle{
-    neutral,
-    forward,
-    reverse
-};
-
-/// @brief  speeds within hand controller.
-enum speedToggle{
-    low,
-    mid,
-    high
-};
 
 /**
  * pack data and write MAVLink packets to buffer.

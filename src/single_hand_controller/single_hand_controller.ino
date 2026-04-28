@@ -8,8 +8,12 @@
  * The code structure is that of a standard Arduino source file format, 
  * where the setup() function is meant to run once on startup of the microcontroller, 
  * followed by loop() function running infinitely till a reset is triggered on the microcontroller.
+ * 
+ * <h2>Changes</h2>
+ * @date 28/04/2026
+ * modularized code within void loop()
 */
-#include "include/includes.h"
+#include "include/standard_procedures.hpp"
 
 void setup(){
     setupIO();
@@ -18,72 +22,28 @@ void setup(){
     if(!initMAVLink()){
         displayError("continue without packet signing", 1);
     }
-    
-    if(!identifyControllerDrift()){
-        IF_DEBUG(Serial.println("didn't calibrate drift");)
-        displayInfo("Please leave joystick at center");
-        delay(SECONDS_MS_3);
-        clearInfo();
-        if(!identifyControllerDrift()){
-            IF_DEBUG(Serial.println("Error 0x002; Joystick cannot be calibrated correctly!");)
-            displayError("Joystick cannot be calibrated correctly!", 2);
-            while(!identifyControllerDrift()){
-                delay(SECONDS_MS_1);
-            }
-            clearError();
-        }
-    }
+
+    initiateController();
 }
 
 
 void loop(){
     
     if(heartbeat_timed_out()){
-        setUGV_state((ugv_status)disconnected);
-        
-        while(heartbeat_timed_out()){
-            IF_TESTING(checkUserInput());
-            handlePacketReceived();
-            IF_TESTING(delay(500));
-        }
-        
-
-        startTimer();
-        sendTimesyncRequest();
-        IF_DEBUG(Serial.println("Entered time sync"));
-        displayInfo("syncing ...");
-        do{
-            if(timeup(SECONDS_MS_1)){
-                sendTimesyncRequest();
-                resetTimer();
-            }
-            handlePacketReceived();
-            if(heartbeat_timed_out()){
-                clearInfo();
-                setUGV_state((ugv_status)disconnected);
-                return;
-            }
-        }while(!receivedFirstTimesync());
+        establish_connectivity();
+        time_synchronize();
     }
+
+    if(!isUGV_connected())
+        return;
+
     IF_DEBUG(Serial.println("Entered OFP"));
     
     while(true){
-        startOFPTimer();
+        run_OFP_cycle();
 
-        if(timeup(TIMESYNC_MSG_WAIT)){
-            sendTimesyncRequest();
-            resetTimer();
-        }
+        if(!isUGV_connected())
+            return;
 
-        sendManualControl();
-
-        handlePacketReceived();
-
-        if(heartbeat_timed_out()){
-            setUGV_state((ugv_status)disconnected);
-            break;
-        }
-
-        end_OFP_timer(OFP_LOOP_TIME);
     }
 }

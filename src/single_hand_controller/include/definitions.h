@@ -23,6 +23,17 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 // unique identifier placed within heartbeat packets sent from scout, used to identify scout.
 #define SCOUT_HEARTBEAT_IDENTIFIER 1191
 
+
+/**
+ * naming convention ->
+ * SECONDS => seconds
+ * US => microseconds
+ * MS => milliseconds
+ * 
+ * SECONDS_US_count => conversion of count seconds to microseconds
+ * SECONDS_MS_count => conversion of count seconds to milliseconds
+ * MS_count => count milliseconds
+ */
 #define SECONDS_US_10 10000000 /// 10 seconds to microseconds
 #define SECONDS_US_3 3000000 /// 3 seconds to microseconds
 #define SECONDS_US_2 2000000 /// 2 seconds to microseconds
@@ -32,19 +43,24 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 #define SECONDS_MS_3 3000 /// 3 seconds to milliseconds
 #define SECONDS_MS_2 2000 /// 2 seconds to milliseconds
 #define SECONDS_MS_1 1000 /// 1 seconds to milliseconds
-#define MS_20 20
-#define MS_10 10
+
+#define MS_200 200  // 200 milliseconds
+#define MS_20 20    // 20 milliseconds
+#define MS_10 10    // 10 milliseconds
+
 
 
 
 
 // all durations to be defined in microseconds
 #define HEARTBEAT_TIMEOUT       SECONDS_MS_3   // left to be in milliseconds due to limitation of micros() function that resets every 70 minutes 
-#define LONG_PRESS_DURATION     SECONDS_US_2
 #define TIMESYNC_MSG_WAIT       SECONDS_MS_10  // left to be in milliseconds due to limitation of micros() function that resets every 70 minutes 
 #define MANUAL_CONTROL_MSG_WAIT MS_10
+
 #define OFP_LOOP_TIME           MS_20 
 
+#define LONG_PRESS_DURATION     SECONDS_MS_2
+#define BUTTON_PRESS_COOLDOWN   MS_200
 
 // used in IOhandler to convert from raw thumbstick control input to normalized value that is sent to atlas
 #define XY_NORMALIZED_MAX 100
@@ -64,8 +80,26 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 #define STATE_DISARM 0
 #define STATE_ARM 1
 
-// current UGV status
-enum ugv_status{disconnected, active, standby, unknown};
+/// @brief current UGV status
+enum ugv_status{
+    disconnected, 
+    active, 
+    standby, 
+    unknown};
+
+/// @brief directions within hand controller
+enum directionToggle{
+    neutral,
+    forward,
+    reverse
+};
+
+/// @brief  speeds within hand controller.
+enum speedToggle{
+    low,
+    mid,
+    high
+};
 
 // baud rates; used in setupFunctions.h
 #define BAUD_RATE 115200

@@ -334,9 +334,9 @@ void displayInfo(String message){
   tft.setBackgroundColor(COLOR_BLACK);
 
 
-    do{
-        checkUserInput();
-    }while(user_input.arm_disarm == 0);
+    // do{
+    //     checkUserInput();
+    // }while(user_input.arm_disarm == 0);
 }
 
 void clearInfo(){
@@ -359,9 +359,22 @@ void clearError(){
   tft.fillRectangle(0, 150, 176, 200, COLOR_GRAY);
 }
 
-
+void displayDirection(bool direction){
+  static short int prevDirection = -1;
+  if(direction == prevDirection)
+    return;
+    
+  if(direction){
+    tft.drawText(55,95,"FORWARD");
+  }
+  else{
+    tft.drawText(55,95,"REVERSE");
+  }
+  prevDirection = direction;
+}
 void displayBasic(){
     tft.drawText(5, 5, "UGV STATUS:");
     tft.drawText(5, 45, "SPEED:");
     tft.drawText(5, 70, "RSSI:");
+    tft.drawText(5, 95, "DIRN:");
 }

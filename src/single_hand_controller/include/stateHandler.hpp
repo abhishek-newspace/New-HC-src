@@ -7,6 +7,9 @@
  * Handling of states within the hand controller is performed within the stateHandler.
  * 
  * currently handles states for ugv state, and speed
+ * <h2>changes</h2>
+ * renamed increaseSpeed to inc_speed due to name collision with that in buttons struct within IOhandler
+ * renamed decreaseSpeed to dec_speed due to name collision with that in buttons struct within IOhandler
  */
 #pragma once
 #include"displayHandler.hpp"
@@ -19,8 +22,22 @@
  */
 bool setUGV_state(ugv_status s1);
 
+/**
+ * returns the current UGV state
+ */
+ugv_status getUGV_state();
+
+/**
+ * check whether the UGV is connected or not
+ * \returns true when UGV is not in disconnected state.
+ */
+bool isUGV_connected();
+
 /// @brief used only within prototype version, to increase speed
-void increaseSpeed();
+void inc_Speed();
 
 /// @brief used only within prototype version, to decrease speed
-void decreaseSpeed();
+void dec_Speed();
+
+/// @brief used only within prototype version to set speed to neutral
+void setNeutral();

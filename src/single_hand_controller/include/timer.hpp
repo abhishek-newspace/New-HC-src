@@ -15,7 +15,7 @@
 void startTimer();
 
 /// @brief check whether time_ms microseconds are completed since start of timer
-/// @param time_ms microseconds since start of timer
+/// @param time_ms milliseconds since start of timer
 /// @return true when time_ms microseconds are completed since start of timer.
 bool timeup(unsigned long int time_ms);
 
