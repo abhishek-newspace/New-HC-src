@@ -1,0 +1,113 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1HOME__POSITION}{}\doxysection{mavlink\+::common\+::msg\+::HOME\+\_\+\+POSITION Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1HOME__POSITION}\index{mavlink::common::msg::HOME\_POSITION@{mavlink::common::msg::HOME\_POSITION}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1HOME__POSITION}{HOME\+\_\+\+POSITION}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+home\+\_\+position.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::HOME\+\_\+\+POSITION\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1HOME__POSITION__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::HOME\+\_\+\+POSITION\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1HOME__POSITION__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_a2f3b10075af7ea808d1ef75f7c2907c4}\label{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_a2f3b10075af7ea808d1ef75f7c2907c4}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_aaf1403f0aeec0c281e68a35153c39429}\label{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_aaf1403f0aeec0c281e68a35153c39429}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_ac75242d2119087b78d356bd40e118298}\label{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_ac75242d2119087b78d356bd40e118298}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_adc0d070e71bde8feb644b5f0ef4ebf44}\label{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_adc0d070e71bde8feb644b5f0ef4ebf44}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_aa15c78bd415cc00bacab774443201d74}\label{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_aa15c78bd415cc00bacab774443201d74}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_ae66506d7eaf0bed18e6053c22840da13}\label{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_ae66506d7eaf0bed18e6053c22840da13}} 
+int32\+\_\+t {\bfseries latitude}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_a3b7044fa8b577b93f46c1838a379b4fb}\label{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_a3b7044fa8b577b93f46c1838a379b4fb}} 
+int32\+\_\+t {\bfseries longitude}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_ad9b52a263a0c41c72172f6aa8014f36e}\label{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_ad9b52a263a0c41c72172f6aa8014f36e}} 
+int32\+\_\+t {\bfseries altitude}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_ac9aa8c57091327d7ef7962ef253b5476}\label{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_ac9aa8c57091327d7ef7962ef253b5476}} 
+float {\bfseries x}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_a28a869e9fc4edd0fa8a55d2852c5508f}\label{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_a28a869e9fc4edd0fa8a55d2852c5508f}} 
+float {\bfseries y}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_ae56ac4850ec2e39b8e693772502c85ab}\label{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_ae56ac4850ec2e39b8e693772502c85ab}} 
+float {\bfseries z}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_a378e1bb6d81417cd02566b556c72845e}\label{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_a378e1bb6d81417cd02566b556c72845e}} 
+std\+::array$<$ float, 4 $>$ {\bfseries q}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_a372c3690fa37f9c149d8615b2ea6ab8e}\label{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_a372c3690fa37f9c149d8615b2ea6ab8e}} 
+float {\bfseries approach\+\_\+x}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_a85f4754d4d61a5153766ea178bc96655}\label{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_a85f4754d4d61a5153766ea178bc96655}} 
+float {\bfseries approach\+\_\+y}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_a700455303a38adb6884d1b46a8ee3397}\label{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_a700455303a38adb6884d1b46a8ee3397}} 
+float {\bfseries approach\+\_\+z}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_a33bbb228c10c39aed8a4d459d83d54ac}\label{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_a33bbb228c10c39aed8a4d459d83d54ac}} 
+uint64\+\_\+t {\bfseries time\+\_\+usec}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_acae19bc8ea4927b921cc681fe721dcd7}\label{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_acae19bc8ea4927b921cc681fe721dcd7}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 242
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_a54275e59d854f6f541e772d30a9c2531}\label{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_a54275e59d854f6f541e772d30a9c2531}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 60
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_a530e789d477dbe640d889fb422e7dbe0}\label{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_a530e789d477dbe640d889fb422e7dbe0}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 52
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_a0178f9108750a8c6d259b9eb9b2b4938}\label{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_a0178f9108750a8c6d259b9eb9b2b4938}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 104
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_a318fe70b6dcd7eb172442edc2b8112f3}\label{structmavlink_1_1common_1_1msg_1_1HOME__POSITION_a318fe70b6dcd7eb172442edc2b8112f3}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}HOME\+\_\+\+POSITION\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1HOME__POSITION}{HOME\+\_\+\+POSITION}} message. 
+
+Contains the home position. The home position is the default position that the system will return to and land on. The position must be set automatically by the system during the takeoff, and may also be explicitly set using MAV\+\_\+\+CMD\+\_\+\+DO\+\_\+\+SET\+\_\+\+HOME. The global and local positions encode the position in the respective coordinate frames, while the q parameter encodes the orientation of the surface. Under normal conditions it describes the heading and terrain slope, which can be used by the aircraft to adjust the approach. The approach 3D vector describes the point to which the system should fly in normal flight mode and then perform a landing sequence along the vector. Note\+: this message can be requested by sending the MAV\+\_\+\+CMD\+\_\+\+REQUEST\+\_\+\+MESSAGE with param1=242 (or the deprecated MAV\+\_\+\+CMD\+\_\+\+GET\+\_\+\+HOME\+\_\+\+POSITION command). 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+home\+\_\+position.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,148 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA}{}\doxysection{mavlink\+::common\+::msg\+::LOGGING\+\_\+\+DATA Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA}\index{mavlink::common::msg::LOGGING\_DATA@{mavlink::common::msg::LOGGING\_DATA}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA}{LOGGING\+\_\+\+DATA}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+logging\+\_\+data.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::LOGGING\+\_\+\+DATA\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::LOGGING\+\_\+\+DATA\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_ae9275d6bb912a6d3fb41dafa51337b5b}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_aa4631288e10702ce281173a1461c3e41}\label{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_aa4631288e10702ce281173a1461c3e41}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_aa4631288e10702ce281173a1461c3e41}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_aa21c7f190e9851775d9b45bb1945b9a3}\label{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_aa21c7f190e9851775d9b45bb1945b9a3}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_aa21c7f190e9851775d9b45bb1945b9a3}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_a4c60a9ae77a5e4efd55f3a85d0a4bda6}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_ae73a96dc343fe79957661582b93f6408}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_a5ee7d5d8ea392757451e8928fe7d2020}\label{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_a5ee7d5d8ea392757451e8928fe7d2020}} 
+uint8\+\_\+t {\bfseries target\+\_\+system}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_a5631b2abec9e15c23d16dfa025727ce2}\label{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_a5631b2abec9e15c23d16dfa025727ce2}} 
+uint8\+\_\+t {\bfseries target\+\_\+component}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_a91982645a06fb368be312ee307735d26}\label{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_a91982645a06fb368be312ee307735d26}} 
+uint16\+\_\+t {\bfseries sequence}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_acc4c376066020cae28683e6edd65411a}\label{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_acc4c376066020cae28683e6edd65411a}} 
+uint8\+\_\+t {\bfseries length}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_abad47b99549786d4e3a86edabaf00ed7}\label{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_abad47b99549786d4e3a86edabaf00ed7}} 
+uint8\+\_\+t {\bfseries first\+\_\+message\+\_\+offset}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_a8d5c8ddb5e758a583b967e36e76fd268}\label{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_a8d5c8ddb5e758a583b967e36e76fd268}} 
+std\+::array$<$ uint8\+\_\+t, 249 $>$ {\bfseries data}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_a7ba3a6b398adaf7b4c50f37bb7ae458f}\label{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_a7ba3a6b398adaf7b4c50f37bb7ae458f}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 266
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_ac156b362eceadad9076fea1d93f28797}\label{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_ac156b362eceadad9076fea1d93f28797}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 255
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_a79eca6f430fe1c68ec3a54f2a260d294}\label{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_a79eca6f430fe1c68ec3a54f2a260d294}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 255
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_aa51945ff92e2caf71518e9876641bec8}\label{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_aa51945ff92e2caf71518e9876641bec8}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 193
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_a53523927e9f78370abd172cafdb7b566}\label{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_a53523927e9f78370abd172cafdb7b566}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}LOGGING\+\_\+\+DATA\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA}{LOGGING\+\_\+\+DATA}} message. 
+
+A message containing logged data (see also MAV\+\_\+\+CMD\+\_\+\+LOGGING\+\_\+\+START) 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_ae73a96dc343fe79957661582b93f6408}\label{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_ae73a96dc343fe79957661582b93f6408}} 
+\index{mavlink::common::msg::LOGGING\_DATA@{mavlink::common::msg::LOGGING\_DATA}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::LOGGING\_DATA@{mavlink::common::msg::LOGGING\_DATA}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+LOGGING\+\_\+\+DATA\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_ae9275d6bb912a6d3fb41dafa51337b5b}\label{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_ae9275d6bb912a6d3fb41dafa51337b5b}} 
+\index{mavlink::common::msg::LOGGING\_DATA@{mavlink::common::msg::LOGGING\_DATA}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::LOGGING\_DATA@{mavlink::common::msg::LOGGING\_DATA}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+LOGGING\+\_\+\+DATA\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_a4c60a9ae77a5e4efd55f3a85d0a4bda6}\label{structmavlink_1_1common_1_1msg_1_1LOGGING__DATA_a4c60a9ae77a5e4efd55f3a85d0a4bda6}} 
+\index{mavlink::common::msg::LOGGING\_DATA@{mavlink::common::msg::LOGGING\_DATA}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::LOGGING\_DATA@{mavlink::common::msg::LOGGING\_DATA}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+LOGGING\+\_\+\+DATA\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+logging\+\_\+data.\+hpp\end{DoxyCompactItemize}

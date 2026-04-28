@@ -1,0 +1,119 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1GPS2__RTK}{}\doxysection{mavlink\+::common\+::msg\+::GPS2\+\_\+\+RTK Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1GPS2__RTK}\index{mavlink::common::msg::GPS2\_RTK@{mavlink::common::msg::GPS2\_RTK}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1GPS2__RTK}{GPS2\+\_\+\+RTK}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+gps2\+\_\+rtk.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::GPS2\+\_\+\+RTK\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1GPS2__RTK__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::GPS2\+\_\+\+RTK\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1GPS2__RTK__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a0b151b722348cabf71f61ba0cf0dabbf}\label{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a0b151b722348cabf71f61ba0cf0dabbf}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a06260c5edcb47c706f40fc2707bc8883}\label{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a06260c5edcb47c706f40fc2707bc8883}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_abf6f5c2e0c3aa5b882fb21c648a1d5ab}\label{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_abf6f5c2e0c3aa5b882fb21c648a1d5ab}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a0bdafb1b07720bab6d33f037ac06ee71}\label{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a0bdafb1b07720bab6d33f037ac06ee71}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a7c8503f0168174c66509299448863c7e}\label{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a7c8503f0168174c66509299448863c7e}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a3e4bdda466923ce235e69cb0a999ef92}\label{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a3e4bdda466923ce235e69cb0a999ef92}} 
+uint32\+\_\+t {\bfseries time\+\_\+last\+\_\+baseline\+\_\+ms}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a027d700b7a2e64d39b5a0b45b575c568}\label{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a027d700b7a2e64d39b5a0b45b575c568}} 
+uint8\+\_\+t {\bfseries rtk\+\_\+receiver\+\_\+id}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_aad92c17129d5cd04ae3038c4a864519d}\label{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_aad92c17129d5cd04ae3038c4a864519d}} 
+uint16\+\_\+t {\bfseries wn}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a0780e2ca17958377d6dc95333212693b}\label{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a0780e2ca17958377d6dc95333212693b}} 
+uint32\+\_\+t {\bfseries tow}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a18ab84eeaf84f67b9881ba252b6b8c24}\label{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a18ab84eeaf84f67b9881ba252b6b8c24}} 
+uint8\+\_\+t {\bfseries rtk\+\_\+health}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_affa1976b6c46d1a23dddbdfea0b3019f}\label{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_affa1976b6c46d1a23dddbdfea0b3019f}} 
+uint8\+\_\+t {\bfseries rtk\+\_\+rate}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a51307f2f1436b8c48a7a2c211266844e}\label{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a51307f2f1436b8c48a7a2c211266844e}} 
+uint8\+\_\+t {\bfseries nsats}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_aa8f214bf59fecf42be3f1857cbb3e094}\label{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_aa8f214bf59fecf42be3f1857cbb3e094}} 
+uint8\+\_\+t {\bfseries baseline\+\_\+coords\+\_\+type}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a70a7d922ceca65e94dbdcdb95deeaa34}\label{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a70a7d922ceca65e94dbdcdb95deeaa34}} 
+int32\+\_\+t {\bfseries baseline\+\_\+a\+\_\+mm}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_aff9c756c6cd6ed84313c665c3d5fef7c}\label{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_aff9c756c6cd6ed84313c665c3d5fef7c}} 
+int32\+\_\+t {\bfseries baseline\+\_\+b\+\_\+mm}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_ae4b43cbc32048ff7bc45173fb0051943}\label{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_ae4b43cbc32048ff7bc45173fb0051943}} 
+int32\+\_\+t {\bfseries baseline\+\_\+c\+\_\+mm}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a6a3311228bcca8c957d8ef35a387f4da}\label{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a6a3311228bcca8c957d8ef35a387f4da}} 
+uint32\+\_\+t {\bfseries accuracy}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_af97e985f930e6a25ce3b326efc545a96}\label{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_af97e985f930e6a25ce3b326efc545a96}} 
+int32\+\_\+t {\bfseries iar\+\_\+num\+\_\+hypotheses}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a426619919f6bee67a0b789992b9f4262}\label{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a426619919f6bee67a0b789992b9f4262}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 128
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a4ef902fa10e99eb03a3905ae81b3c45f}\label{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a4ef902fa10e99eb03a3905ae81b3c45f}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 35
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_ab8f9790ade19bb6323f0d4fcdc1fcacd}\label{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_ab8f9790ade19bb6323f0d4fcdc1fcacd}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 35
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a045fa4700942529bbfb4a3761abddb4e}\label{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a045fa4700942529bbfb4a3761abddb4e}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 226
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a5f026f58d9782b07d3300db159ee2969}\label{structmavlink_1_1common_1_1msg_1_1GPS2__RTK_a5f026f58d9782b07d3300db159ee2969}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}GPS2\+\_\+\+RTK\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1GPS2__RTK}{GPS2\+\_\+\+RTK}} message. 
+
+RTK GPS data. Gives information on the relative baseline calculation the GPS is reporting 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+gps2\+\_\+rtk.\+hpp\end{DoxyCompactItemize}

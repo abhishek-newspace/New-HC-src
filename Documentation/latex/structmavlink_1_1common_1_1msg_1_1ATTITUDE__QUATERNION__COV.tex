@@ -1,0 +1,148 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV}{}\doxysection{mavlink\+::common\+::msg\+::ATTITUDE\+\_\+\+QUATERNION\+\_\+\+COV Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV}\index{mavlink::common::msg::ATTITUDE\_QUATERNION\_COV@{mavlink::common::msg::ATTITUDE\_QUATERNION\_COV}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV}{ATTITUDE\+\_\+\+QUATERNION\+\_\+\+COV}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+attitude\+\_\+quaternion\+\_\+cov.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::ATTITUDE\+\_\+\+QUATERNION\+\_\+\+COV\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::ATTITUDE\+\_\+\+QUATERNION\+\_\+\+COV\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_a10db9e582195d44ab42a8075ab2f11a7}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_a997e704ca454e5814a9a2b23547f5880}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_a997e704ca454e5814a9a2b23547f5880}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_a997e704ca454e5814a9a2b23547f5880}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_afdbc4634f568eb71db020b635500251f}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_afdbc4634f568eb71db020b635500251f}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_afdbc4634f568eb71db020b635500251f}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_a52489f00f561bbd45a95fdf2f6070d95}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_ad7abdd2f0d8d199d23c1a8938ceee457}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_a678d79f7058c067749997205a518c347}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_a678d79f7058c067749997205a518c347}} 
+uint64\+\_\+t {\bfseries time\+\_\+usec}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_a185907f999daf70b0ae4a450f6c3e92f}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_a185907f999daf70b0ae4a450f6c3e92f}} 
+std\+::array$<$ float, 4 $>$ {\bfseries q}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_a8c1ea3f253de75cf4f2001f43a2075ff}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_a8c1ea3f253de75cf4f2001f43a2075ff}} 
+float {\bfseries rollspeed}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_aa6d170346dc0e5a818db0ef3cf85b1a8}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_aa6d170346dc0e5a818db0ef3cf85b1a8}} 
+float {\bfseries pitchspeed}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_a4f38733fd91616ad2391d5acb9a3e8ce}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_a4f38733fd91616ad2391d5acb9a3e8ce}} 
+float {\bfseries yawspeed}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_aa27b6a8aa30f7b67aaa4c59a639ad5b4}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_aa27b6a8aa30f7b67aaa4c59a639ad5b4}} 
+std\+::array$<$ float, 9 $>$ {\bfseries covariance}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_ac6dced30223544f904b067ee1044cace}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_ac6dced30223544f904b067ee1044cace}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 61
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_a22396b1b15ab47d76d48fdbfd251c242}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_a22396b1b15ab47d76d48fdbfd251c242}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 72
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_a9bb0b7647fab0e867e0191c5f5bc3000}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_a9bb0b7647fab0e867e0191c5f5bc3000}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 72
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_a756cfd9e0d4449810df266d503f2c3be}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_a756cfd9e0d4449810df266d503f2c3be}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 167
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_a58266af4a3b2e7d81a845125eb705f4b}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_a58266af4a3b2e7d81a845125eb705f4b}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}ATTITUDE\+\_\+\+QUATERNION\+\_\+\+COV\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV}{ATTITUDE\+\_\+\+QUATERNION\+\_\+\+COV}} message. 
+
+The attitude in the aeronautical frame (right-\/handed, Z-\/down, X-\/front, Y-\/right), expressed as quaternion. Quaternion order is w, x, y, z and a zero rotation would be expressed as (1 0 0 0). 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_ad7abdd2f0d8d199d23c1a8938ceee457}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_ad7abdd2f0d8d199d23c1a8938ceee457}} 
+\index{mavlink::common::msg::ATTITUDE\_QUATERNION\_COV@{mavlink::common::msg::ATTITUDE\_QUATERNION\_COV}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::ATTITUDE\_QUATERNION\_COV@{mavlink::common::msg::ATTITUDE\_QUATERNION\_COV}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+ATTITUDE\+\_\+\+QUATERNION\+\_\+\+COV\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_a10db9e582195d44ab42a8075ab2f11a7}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_a10db9e582195d44ab42a8075ab2f11a7}} 
+\index{mavlink::common::msg::ATTITUDE\_QUATERNION\_COV@{mavlink::common::msg::ATTITUDE\_QUATERNION\_COV}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::ATTITUDE\_QUATERNION\_COV@{mavlink::common::msg::ATTITUDE\_QUATERNION\_COV}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+ATTITUDE\+\_\+\+QUATERNION\+\_\+\+COV\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_a52489f00f561bbd45a95fdf2f6070d95}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__COV_a52489f00f561bbd45a95fdf2f6070d95}} 
+\index{mavlink::common::msg::ATTITUDE\_QUATERNION\_COV@{mavlink::common::msg::ATTITUDE\_QUATERNION\_COV}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::ATTITUDE\_QUATERNION\_COV@{mavlink::common::msg::ATTITUDE\_QUATERNION\_COV}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+ATTITUDE\+\_\+\+QUATERNION\+\_\+\+COV\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+attitude\+\_\+quaternion\+\_\+cov.\+hpp\end{DoxyCompactItemize}

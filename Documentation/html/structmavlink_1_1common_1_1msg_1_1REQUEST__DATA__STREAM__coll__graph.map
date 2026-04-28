@@ -1,0 +1,4 @@
+<map id="mavlink::common::msg::REQUEST_DATA_STREAM" name="mavlink::common::msg::REQUEST_DATA_STREAM">
+<area shape="rect" id="node1" title="REQUEST_DATA_STREAM message." alt="" coords="5,80,199,121"/>
+<area shape="rect" id="node2" href="$structmavlink_1_1Message.html" title="MAVLink Message base class." alt="" coords="31,5,173,32"/>
+</map>

@@ -1,0 +1,92 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING}{}\doxysection{mavlink\+::common\+::msg\+::SETUP\+\_\+\+SIGNING Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING}\index{mavlink::common::msg::SETUP\_SIGNING@{mavlink::common::msg::SETUP\_SIGNING}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING}{SETUP\+\_\+\+SIGNING}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+setup\+\_\+signing.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::SETUP\+\_\+\+SIGNING\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::SETUP\+\_\+\+SIGNING\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_a953829b6c3717dae00de41bce094e949}\label{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_a953829b6c3717dae00de41bce094e949}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_abf63e89ef2562b1b4142ad386e4c65e5}\label{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_abf63e89ef2562b1b4142ad386e4c65e5}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_aaaaa77c28b4c5d4e3ff6e3c5999457a8}\label{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_aaaaa77c28b4c5d4e3ff6e3c5999457a8}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_a5f17e1707a5d5ad287b2430907000724}\label{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_a5f17e1707a5d5ad287b2430907000724}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_abcda217bec735786e20bf17b0500d20e}\label{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_abcda217bec735786e20bf17b0500d20e}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_a2deb4bc670c08992ef6f9b5474b3b6f7}\label{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_a2deb4bc670c08992ef6f9b5474b3b6f7}} 
+uint8\+\_\+t {\bfseries target\+\_\+system}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_a57727cb2802137255c5aa64b029ad77d}\label{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_a57727cb2802137255c5aa64b029ad77d}} 
+uint8\+\_\+t {\bfseries target\+\_\+component}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_a4bf3ee0206cd01af6dd6a4f2c5f94ce5}\label{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_a4bf3ee0206cd01af6dd6a4f2c5f94ce5}} 
+std\+::array$<$ uint8\+\_\+t, 32 $>$ {\bfseries secret\+\_\+key}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_a40196b807112b8ba00d4d7e5e6e38b35}\label{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_a40196b807112b8ba00d4d7e5e6e38b35}} 
+uint64\+\_\+t {\bfseries initial\+\_\+timestamp}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_abb05a151d829b0cc0c8642c92d14202e}\label{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_abb05a151d829b0cc0c8642c92d14202e}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 256
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_a131d00c320c7bfe1dbf456107eaad6bd}\label{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_a131d00c320c7bfe1dbf456107eaad6bd}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 42
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_acfe03e18a8c065b1c3fcba4780c55636}\label{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_acfe03e18a8c065b1c3fcba4780c55636}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 42
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_a346fae188c8479a42624b59231b2a46b}\label{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_a346fae188c8479a42624b59231b2a46b}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 71
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_a419ddb363f9e531dd875030c600d0606}\label{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING_a419ddb363f9e531dd875030c600d0606}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}SETUP\+\_\+\+SIGNING\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SETUP__SIGNING}{SETUP\+\_\+\+SIGNING}} message. 
+
+Setup a MAVLink2 signing key. If called with secret\+\_\+key of all zero and zero initial\+\_\+timestamp will disable signing 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+setup\+\_\+signing.\+hpp\end{DoxyCompactItemize}

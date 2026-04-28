@@ -1,0 +1,187 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT}{}\doxysection{mavlink\+::common\+::msg\+::GPS\+\_\+\+INPUT Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT}\index{mavlink::common::msg::GPS\_INPUT@{mavlink::common::msg::GPS\_INPUT}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1GPS__INPUT}{GPS\+\_\+\+INPUT}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+gps\+\_\+input.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::GPS\+\_\+\+INPUT\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1GPS__INPUT__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::GPS\+\_\+\+INPUT\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1GPS__INPUT__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a4afe1c8933d652ac505b0f8a6394f940}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a9f58f8cec842278dfa113f14301e4a77}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a9f58f8cec842278dfa113f14301e4a77}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a9f58f8cec842278dfa113f14301e4a77}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_ad5e38dc29e82348a322adedbf673a750}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_ad5e38dc29e82348a322adedbf673a750}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_ad5e38dc29e82348a322adedbf673a750}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a17f65da64f6976b4050afc51a9a7277a}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a51ae2d9fcc68a346e48a1f1915ce6e07}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_ab2d7bb221d757e4cd02f32e36e5ad533}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_ab2d7bb221d757e4cd02f32e36e5ad533}} 
+uint64\+\_\+t {\bfseries time\+\_\+usec}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_ade9bacb1ba5ef5454c758067e18c00e6}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_ade9bacb1ba5ef5454c758067e18c00e6}} 
+uint8\+\_\+t {\bfseries gps\+\_\+id}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a4d91ed7b8e32b199bfc852176d841eab}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a4d91ed7b8e32b199bfc852176d841eab}} 
+uint16\+\_\+t {\bfseries ignore\+\_\+flags}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a2b7ed418bccd30b96f352ee4c10a9e56}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a2b7ed418bccd30b96f352ee4c10a9e56}} 
+uint32\+\_\+t {\bfseries time\+\_\+week\+\_\+ms}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a1b97b044a67fa6567b9ea30335f3efc1}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a1b97b044a67fa6567b9ea30335f3efc1}} 
+uint16\+\_\+t {\bfseries time\+\_\+week}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_ae144d7e309f799868af38f2d8b5c97fd}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_ae144d7e309f799868af38f2d8b5c97fd}} 
+uint8\+\_\+t {\bfseries fix\+\_\+type}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a34a125a58fbaa20c69f3d457407bf2b6}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a34a125a58fbaa20c69f3d457407bf2b6}} 
+int32\+\_\+t {\bfseries lat}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a082775599257398d8af6d8b7f4df2cca}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a082775599257398d8af6d8b7f4df2cca}} 
+int32\+\_\+t {\bfseries lon}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_ae9409fbf1874fc117eb3adf588e5054e}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_ae9409fbf1874fc117eb3adf588e5054e}} 
+float {\bfseries alt}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_ab9a121b28800d68f4cdc86bc14053323}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_ab9a121b28800d68f4cdc86bc14053323}} 
+float {\bfseries hdop}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a4bacc9c74bc0fde1e590cd74631280b5}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a4bacc9c74bc0fde1e590cd74631280b5}} 
+float {\bfseries vdop}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a798376f22901d9f97a6bad99aef78778}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a798376f22901d9f97a6bad99aef78778}} 
+float {\bfseries vn}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a9f94cbf08453e5eb5efab2f6a4b403ef}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a9f94cbf08453e5eb5efab2f6a4b403ef}} 
+float {\bfseries ve}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_aace9352ffef951565fc12dab800abb65}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_aace9352ffef951565fc12dab800abb65}} 
+float {\bfseries vd}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a5f2d32756ac33d2f2210d54aae80994e}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a5f2d32756ac33d2f2210d54aae80994e}} 
+float {\bfseries speed\+\_\+accuracy}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_ac9e965d297f5d2e89a0c6db99f088fd3}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_ac9e965d297f5d2e89a0c6db99f088fd3}} 
+float {\bfseries horiz\+\_\+accuracy}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a7892f2d77346b50df8532d20187aa2fa}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a7892f2d77346b50df8532d20187aa2fa}} 
+float {\bfseries vert\+\_\+accuracy}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a5e197591fcd9ac6ea69c8f64efb7350c}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a5e197591fcd9ac6ea69c8f64efb7350c}} 
+uint8\+\_\+t {\bfseries satellites\+\_\+visible}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a5085a609e870d91fb153bbf2fc0e1959}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a5085a609e870d91fb153bbf2fc0e1959}} 
+uint16\+\_\+t {\bfseries yaw}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_ada604ef7307e80141013daacd2808f5d}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_ada604ef7307e80141013daacd2808f5d}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 232
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a658f95875ab85208332e0cc3d3b0cfbf}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a658f95875ab85208332e0cc3d3b0cfbf}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 65
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a4aaeeeb3ed7355b139d5ab2a9bf1d3b4}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a4aaeeeb3ed7355b139d5ab2a9bf1d3b4}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 63
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a8eda43a212e149b1eb618881f0207a3a}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a8eda43a212e149b1eb618881f0207a3a}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 151
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_ac37a803d1dade25f9533e421d6e853c6}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_ac37a803d1dade25f9533e421d6e853c6}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}GPS\+\_\+\+INPUT\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1GPS__INPUT}{GPS\+\_\+\+INPUT}} message. 
+
+GPS sensor input message. This is a raw sensor value sent by the GPS. This is NOT the global position estimate of the system. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a51ae2d9fcc68a346e48a1f1915ce6e07}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a51ae2d9fcc68a346e48a1f1915ce6e07}} 
+\index{mavlink::common::msg::GPS\_INPUT@{mavlink::common::msg::GPS\_INPUT}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::GPS\_INPUT@{mavlink::common::msg::GPS\_INPUT}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+GPS\+\_\+\+INPUT\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a4afe1c8933d652ac505b0f8a6394f940}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a4afe1c8933d652ac505b0f8a6394f940}} 
+\index{mavlink::common::msg::GPS\_INPUT@{mavlink::common::msg::GPS\_INPUT}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::GPS\_INPUT@{mavlink::common::msg::GPS\_INPUT}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+GPS\+\_\+\+INPUT\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a17f65da64f6976b4050afc51a9a7277a}\label{structmavlink_1_1common_1_1msg_1_1GPS__INPUT_a17f65da64f6976b4050afc51a9a7277a}} 
+\index{mavlink::common::msg::GPS\_INPUT@{mavlink::common::msg::GPS\_INPUT}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::GPS\_INPUT@{mavlink::common::msg::GPS\_INPUT}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+GPS\+\_\+\+INPUT\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+gps\+\_\+input.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,62 @@
+\hypertarget{stateHandler_8hpp}{}\doxysection{single\+\_\+hand\+\_\+controller/include/state\+Handler.hpp File Reference}
+\label{stateHandler_8hpp}\index{single\_hand\_controller/include/stateHandler.hpp@{single\_hand\_controller/include/stateHandler.hpp}}
+{\ttfamily \#include \char`\"{}display\+Handler.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}definitions.\+h\char`\"{}}\newline
+Include dependency graph for state\+Handler.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{stateHandler_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{stateHandler_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{stateHandler_8hpp_a03481fd31a10cf5b9848c679ec43b109}{set\+UGV\+\_\+state}} (ugv\+\_\+status s1)
+\begin{DoxyCompactList}\small\item\em set the current UGV state. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{stateHandler_8hpp_a0c2b9d9d6ea65051192f227e7176fe98}\label{stateHandler_8hpp_a0c2b9d9d6ea65051192f227e7176fe98}} 
+void \mbox{\hyperlink{stateHandler_8hpp_a0c2b9d9d6ea65051192f227e7176fe98}{increase\+Speed}} ()
+\begin{DoxyCompactList}\small\item\em used only within prototype version, to increase speed \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{stateHandler_8hpp_af3335868090f25203ea0417cf1669fdf}\label{stateHandler_8hpp_af3335868090f25203ea0417cf1669fdf}} 
+void \mbox{\hyperlink{stateHandler_8hpp_af3335868090f25203ea0417cf1669fdf}{decrease\+Speed}} ()
+\begin{DoxyCompactList}\small\item\em used only within prototype version, to decrease speed \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyAuthor}{Author}
+Nikhil Tom Jose 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+22/04/2026
+\end{DoxyDate}
+Handling of states within the hand controller is performed within the state\+Handler.
+
+currently handles states for ugv state, and speed 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{stateHandler_8hpp_a03481fd31a10cf5b9848c679ec43b109}\label{stateHandler_8hpp_a03481fd31a10cf5b9848c679ec43b109}} 
+\index{stateHandler.hpp@{stateHandler.hpp}!setUGV\_state@{setUGV\_state}}
+\index{setUGV\_state@{setUGV\_state}!stateHandler.hpp@{stateHandler.hpp}}
+\doxysubsubsection{\texorpdfstring{setUGV\_state()}{setUGV\_state()}}
+{\footnotesize\ttfamily bool set\+UGV\+\_\+state (\begin{DoxyParamCaption}\item[{ugv\+\_\+status}]{s1 }\end{DoxyParamCaption})}
+
+
+
+set the current UGV state. 
+
+\begin{DoxyReturn}{Returns}
+true when current UGV state is updated to a new value. 
+
+false when current UGV state is same as previous 
+\end{DoxyReturn}

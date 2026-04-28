@@ -1,0 +1,152 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1TIMESYNC}{}\doxysection{mavlink\+::common\+::msg\+::TIMESYNC Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1TIMESYNC}\index{mavlink::common::msg::TIMESYNC@{mavlink::common::msg::TIMESYNC}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TIMESYNC}{TIMESYNC}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+timesync.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::TIMESYNC\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1TIMESYNC__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::TIMESYNC\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1TIMESYNC__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TIMESYNC_ae098805ad897106d57b8f4fa0c815bd2}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a0e280ed87361919348d767f9c46bacf7}\label{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a0e280ed87361919348d767f9c46bacf7}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a0e280ed87361919348d767f9c46bacf7}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TIMESYNC_adbf41aa805e78f3c4ceb461640b88825}\label{structmavlink_1_1common_1_1msg_1_1TIMESYNC_adbf41aa805e78f3c4ceb461640b88825}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TIMESYNC_adbf41aa805e78f3c4ceb461640b88825}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a540bb1fc1507f73585f373dcf2594f85}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a5e4cbb51a9d507abefd3311376db72f9}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a811eb0916d37e0505dbd80ee74e972d0}\label{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a811eb0916d37e0505dbd80ee74e972d0}} 
+int64\+\_\+t {\bfseries tc1}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a0667ad7ce89246a4ca756bc02d2f3eda}\label{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a0667ad7ce89246a4ca756bc02d2f3eda}} 
+int64\+\_\+t {\bfseries ts1}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a023c5f8268113a87e3b02716aefe4082}\label{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a023c5f8268113a87e3b02716aefe4082}} 
+uint8\+\_\+t {\bfseries target\+\_\+system}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a1169c8606e2739b3030dd7d4e2f2d41a}\label{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a1169c8606e2739b3030dd7d4e2f2d41a}} 
+uint8\+\_\+t {\bfseries target\+\_\+component}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a9be1040a8298d9ba36de100e8c9fa34e}\label{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a9be1040a8298d9ba36de100e8c9fa34e}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 111
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a890196f677c53fb9764b6fea6ec0737e}\label{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a890196f677c53fb9764b6fea6ec0737e}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 18
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a59ed232e15fea3c9dbff30086bd607c4}\label{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a59ed232e15fea3c9dbff30086bd607c4}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 16
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a0745041d923ad7ad7a7353358a7fa1c8}\label{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a0745041d923ad7ad7a7353358a7fa1c8}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 34
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a626f9d81e28b19bab577464a2045e27a}\label{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a626f9d81e28b19bab577464a2045e27a}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}TIMESYNC\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TIMESYNC}{TIMESYNC}} message. 
+
+\begin{DoxyVerb} Time synchronization message.
+ The message is used for both timesync requests and responses.
+ The request is sent with `ts1=syncing component timestamp` and `tc1=0`, and may be broadcast or targeted to a specific system/component.
+ The response is sent with `ts1=syncing component timestamp` (mirror back unchanged), and `tc1=responding component timestamp`, with the `target_system` and `target_component` set to ids of the original request.
+ Systems can determine if they are receiving a request or response based on the value of `tc`.
+ If the response has `target_system==target_component==0` the remote system has not been updated to use the component IDs and cannot reliably timesync; the requester may report an error.
+ Timestamps are UNIX Epoch time or time since system boot in nanoseconds (the timestamp format can be inferred by checking for the magnitude of the number; generally it doesn't matter as only the offset is used).
+ The message sequence is repeated numerous times with results being filtered/averaged to estimate the offset.
+ See also: https://mavlink.io/en/services/timesync.html.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a5e4cbb51a9d507abefd3311376db72f9}\label{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a5e4cbb51a9d507abefd3311376db72f9}} 
+\index{mavlink::common::msg::TIMESYNC@{mavlink::common::msg::TIMESYNC}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::TIMESYNC@{mavlink::common::msg::TIMESYNC}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+TIMESYNC\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TIMESYNC_ae098805ad897106d57b8f4fa0c815bd2}\label{structmavlink_1_1common_1_1msg_1_1TIMESYNC_ae098805ad897106d57b8f4fa0c815bd2}} 
+\index{mavlink::common::msg::TIMESYNC@{mavlink::common::msg::TIMESYNC}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::TIMESYNC@{mavlink::common::msg::TIMESYNC}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+TIMESYNC\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a540bb1fc1507f73585f373dcf2594f85}\label{structmavlink_1_1common_1_1msg_1_1TIMESYNC_a540bb1fc1507f73585f373dcf2594f85}} 
+\index{mavlink::common::msg::TIMESYNC@{mavlink::common::msg::TIMESYNC}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::TIMESYNC@{mavlink::common::msg::TIMESYNC}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+TIMESYNC\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+timesync.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,4 @@
+<map id="mavlink::common::msg::VICON_POSITION_ESTIMATE" name="mavlink::common::msg::VICON_POSITION_ESTIMATE">
+<area shape="rect" id="node1" title="VICON_POSITION_ESTIMATE message." alt="" coords="5,80,217,121"/>
+<area shape="rect" id="node2" title=" " alt="" coords="41,5,182,32"/>
+</map>

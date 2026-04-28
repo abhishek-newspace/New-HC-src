@@ -1,0 +1,4 @@
+<map id="mavlink::common::msg::NAV_CONTROLLER_OUTPUT" name="mavlink::common::msg::NAV_CONTROLLER_OUTPUT">
+<area shape="rect" id="node1" title="NAV_CONTROLLER_OUTPUT message." alt="" coords="5,80,217,121"/>
+<area shape="rect" id="node2" href="$structmavlink_1_1Message.html" title="MAVLink Message base class." alt="" coords="41,5,182,32"/>
+</map>

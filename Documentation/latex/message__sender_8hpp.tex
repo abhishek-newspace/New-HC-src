@@ -1,0 +1,51 @@
+\hypertarget{message__sender_8hpp}{}\doxysection{single\+\_\+hand\+\_\+controller/include/message\+\_\+sender.hpp File Reference}
+\label{message__sender_8hpp}\index{single\_hand\_controller/include/message\_sender.hpp@{single\_hand\_controller/include/message\_sender.hpp}}
+{\ttfamily \#include \char`\"{}message\+\_\+structs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}definitions.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}timer.\+hpp\char`\"{}}\newline
+Include dependency graph for message\+\_\+sender.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{message__sender_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{message__sender_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classmessage__sender}{message\+\_\+sender}}
+\begin{DoxyCompactList}\small\item\em pack data and write MAVLink packets to buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{message__sender_8hpp_a99eced5804d2818722a6e61476fb3ff7}\label{message__sender_8hpp_a99eced5804d2818722a6e61476fb3ff7}} 
+enum \mbox{\hyperlink{message__sender_8hpp_a99eced5804d2818722a6e61476fb3ff7}{direction\+Toggle}} \{ {\bfseries neutral}
+, {\bfseries forward}
+, {\bfseries reverse}
+ \}
+\begin{DoxyCompactList}\small\item\em directions within hand controller \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{message__sender_8hpp_a2cca2977d757608930203a59d8ce4cd7}\label{message__sender_8hpp_a2cca2977d757608930203a59d8ce4cd7}} 
+enum \mbox{\hyperlink{message__sender_8hpp_a2cca2977d757608930203a59d8ce4cd7}{speed\+Toggle}} \{ {\bfseries low}
+, {\bfseries mid}
+, {\bfseries high}
+ \}
+\begin{DoxyCompactList}\small\item\em speeds within hand controller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyAuthor}{Author}
+Nikhil Tom Jose 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+22/04/2026 MAVLink messages are packed and placed into the char buffer based on input parameters required for the given message. 
+\end{DoxyDate}

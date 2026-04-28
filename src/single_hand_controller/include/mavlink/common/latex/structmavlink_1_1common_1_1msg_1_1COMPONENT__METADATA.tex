@@ -1,0 +1,100 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA}{}\doxysection{mavlink\+::common\+::msg\+::COMPONENT\+\_\+\+METADATA Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA}\index{mavlink::common::msg::COMPONENT\_METADATA@{mavlink::common::msg::COMPONENT\_METADATA}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA}{COMPONENT\+\_\+\+METADATA}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+component\+\_\+metadata.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::COMPONENT\+\_\+\+METADATA\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::COMPONENT\+\_\+\+METADATA\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_a2d5a6f19aa4bcc20338d48c1ab87ec31}\label{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_a2d5a6f19aa4bcc20338d48c1ab87ec31}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_a219900078aeca9a8d46c00d5f1555918}\label{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_a219900078aeca9a8d46c00d5f1555918}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_a6f607f8ac3c0c9713f9b6e88c2aadae8}\label{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_a6f607f8ac3c0c9713f9b6e88c2aadae8}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_a4224bf4b3da31dc41bc2b2a43c80ae82}\label{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_a4224bf4b3da31dc41bc2b2a43c80ae82}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_aa8bc25c2baa2111f619ceec518677a0d}\label{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_aa8bc25c2baa2111f619ceec518677a0d}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_a75fd4b5b32218903b670fa53878febfb}\label{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_a75fd4b5b32218903b670fa53878febfb}} 
+uint32\+\_\+t {\bfseries time\+\_\+boot\+\_\+ms}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_a262d0308dd721e50194b853397223d3f}\label{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_a262d0308dd721e50194b853397223d3f}} 
+uint32\+\_\+t {\bfseries file\+\_\+crc}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_a3993e399ca2f0ee6c436016e51c8bc2a}\label{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_a3993e399ca2f0ee6c436016e51c8bc2a}} 
+std\+::array$<$ char, 100 $>$ {\bfseries uri}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_a8a26d313cdc953f4d91a70f29f29edd6}\label{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_a8a26d313cdc953f4d91a70f29f29edd6}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 397
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_ae4b8c269dff29b2c7df639d491eb1289}\label{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_ae4b8c269dff29b2c7df639d491eb1289}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 108
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_ac515bb44ba2a1e5c95d7bdd70c3f5d27}\label{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_ac515bb44ba2a1e5c95d7bdd70c3f5d27}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 108
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_a46862c489cadfc78b98947bbbcceb51e}\label{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_a46862c489cadfc78b98947bbbcceb51e}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 182
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_a7187d79a30962542d4ba676cc3b8ae60}\label{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA_a7187d79a30962542d4ba676cc3b8ae60}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}COMPONENT\+\_\+\+METADATA\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1COMPONENT__METADATA}{COMPONENT\+\_\+\+METADATA}} message. 
+
+\begin{DoxyVerb} Component metadata message, which may be requested using MAV_CMD_REQUEST_MESSAGE.
+
+ This contains the MAVLink FTP URI and CRC for the component's general metadata file.
+ The file must be hosted on the component, and may be xz compressed.
+ The file CRC can be used for file caching.
+
+ The general metadata file can be read to get the locations of other metadata files (COMP_METADATA_TYPE) and translations, which may be hosted either on the vehicle or the internet.
+ For more information see: https://mavlink.io/en/services/component_information.html.
+
+ Note: Camera components should use CAMERA_INFORMATION instead, and autopilots may use both this message and AUTOPILOT_VERSION.
+\end{DoxyVerb}
+ 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+component\+\_\+metadata.\+hpp\end{DoxyCompactItemize}

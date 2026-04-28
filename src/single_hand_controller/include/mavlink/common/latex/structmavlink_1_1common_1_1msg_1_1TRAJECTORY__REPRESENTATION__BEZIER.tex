@@ -1,0 +1,101 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER}{}\doxysection{mavlink\+::common\+::msg\+::TRAJECTORY\+\_\+\+REPRESENTATION\+\_\+\+BEZIER Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER}\index{mavlink::common::msg::TRAJECTORY\_REPRESENTATION\_BEZIER@{mavlink::common::msg::TRAJECTORY\_REPRESENTATION\_BEZIER}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER}{TRAJECTORY\+\_\+\+REPRESENTATION\+\_\+\+BEZIER}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+trajectory\+\_\+representation\+\_\+bezier.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::TRAJECTORY\+\_\+\+REPRESENTATION\+\_\+\+BEZIER\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=255pt]{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::TRAJECTORY\+\_\+\+REPRESENTATION\+\_\+\+BEZIER\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=255pt]{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_a462bd74b4b911844909ac82dbded075f}\label{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_a462bd74b4b911844909ac82dbded075f}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_aef3ffeeaf32552ce7b04fce6490c6384}\label{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_aef3ffeeaf32552ce7b04fce6490c6384}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_add25ed280d6518b40e67c8eb9e0c8865}\label{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_add25ed280d6518b40e67c8eb9e0c8865}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_a52874bd99fec269a8d5236799d1963b9}\label{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_a52874bd99fec269a8d5236799d1963b9}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_a4fda91f20b81898695a634088fc1040a}\label{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_a4fda91f20b81898695a634088fc1040a}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_aeb2f5659b88d2debd13857c17dfe1498}\label{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_aeb2f5659b88d2debd13857c17dfe1498}} 
+uint64\+\_\+t {\bfseries time\+\_\+usec}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_a9b9323f6d48586882d4b561011db4d5d}\label{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_a9b9323f6d48586882d4b561011db4d5d}} 
+uint8\+\_\+t {\bfseries valid\+\_\+points}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_a39eac460a987d369fa7fcbedc6ef1e22}\label{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_a39eac460a987d369fa7fcbedc6ef1e22}} 
+std\+::array$<$ float, 5 $>$ {\bfseries pos\+\_\+x}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_ac70697630d694e22d0521dce45241198}\label{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_ac70697630d694e22d0521dce45241198}} 
+std\+::array$<$ float, 5 $>$ {\bfseries pos\+\_\+y}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_a78c751ca7929abbb7fc0eef53891ddbc}\label{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_a78c751ca7929abbb7fc0eef53891ddbc}} 
+std\+::array$<$ float, 5 $>$ {\bfseries pos\+\_\+z}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_a1743f2aca526fd9a7e2306ec459e80c3}\label{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_a1743f2aca526fd9a7e2306ec459e80c3}} 
+std\+::array$<$ float, 5 $>$ {\bfseries delta}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_adebd2c824e2e8a0c668cc28c9a475079}\label{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_adebd2c824e2e8a0c668cc28c9a475079}} 
+std\+::array$<$ float, 5 $>$ {\bfseries pos\+\_\+yaw}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_a22c46a656c53adfd110e37d29d9c27eb}\label{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_a22c46a656c53adfd110e37d29d9c27eb}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 333
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_a7b8cb1cba0bb5958b8fc9e7a5359eac5}\label{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_a7b8cb1cba0bb5958b8fc9e7a5359eac5}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 109
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_a315e70eac90caddae932fc3f252f6641}\label{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_a315e70eac90caddae932fc3f252f6641}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 109
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_a53f70595a1717112eaf601a18a52a617}\label{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_a53f70595a1717112eaf601a18a52a617}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 231
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_a9bcf86c9fdcbb7277b004a31f71252a7}\label{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER_a9bcf86c9fdcbb7277b004a31f71252a7}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}TRAJECTORY\+\_\+\+REPRESENTATION\+\_\+\+BEZIER\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TRAJECTORY__REPRESENTATION__BEZIER}{TRAJECTORY\+\_\+\+REPRESENTATION\+\_\+\+BEZIER}} message. 
+
+Describe a trajectory using an array of up-\/to 5 bezier control points in the local frame (MAV\+\_\+\+FRAME\+\_\+\+LOCAL\+\_\+\+NED). 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+trajectory\+\_\+representation\+\_\+bezier.\+hpp\end{DoxyCompactItemize}

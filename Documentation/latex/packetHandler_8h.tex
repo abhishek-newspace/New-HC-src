@@ -1,0 +1,83 @@
+\hypertarget{packetHandler_8h}{}\doxysection{single\+\_\+hand\+\_\+controller/include/packet\+Handler.h File Reference}
+\label{packetHandler_8h}\index{single\_hand\_controller/include/packetHandler.h@{single\_hand\_controller/include/packetHandler.h}}
+{\ttfamily \#include \char`\"{}definitions.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}message\+\_\+structs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}message\+\_\+sender.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}packet\+\_\+receiver.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}state\+Handler.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}display\+Handler.\+hpp\char`\"{}}\newline
+Include dependency graph for packet\+Handler.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{packetHandler_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{packetHandler_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{packetHandler_8h_a7750d76e906478314f8abd6e9577502c}{setup\+Signing}} ()
+\begin{DoxyCompactList}\small\item\em sets up signing for all MAVLink packets \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{packetHandler_8h_a41085b7ecb8159ad9019e28aae16b7b6}{heartbeat\+\_\+timed\+\_\+out}} ()
+\begin{DoxyCompactList}\small\item\em check whether heartbeat has not been received within HEARTBEAT\+\_\+\+TIMEOUT microseconds (3 seconds) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{packetHandler_8h_a95cc55b29587a55012586af50444c640}\label{packetHandler_8h_a95cc55b29587a55012586af50444c640}} 
+void \mbox{\hyperlink{packetHandler_8h_a95cc55b29587a55012586af50444c640}{handle\+Packet\+Received}} ()
+\begin{DoxyCompactList}\small\item\em handle any packet that is received and send to \mbox{\hyperlink{classpacket__receiver}{packet\+\_\+receiver}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{packetHandler_8h_ac9750f4d4982ebf34056cad179d402b2}\label{packetHandler_8h_ac9750f4d4982ebf34056cad179d402b2}} 
+void \mbox{\hyperlink{packetHandler_8h_ac9750f4d4982ebf34056cad179d402b2}{send\+Timesync\+Request}} ()
+\begin{DoxyCompactList}\small\item\em send a timesync request \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{packetHandler_8h_a84a9b9793add371df5defa93ce22ae11}\label{packetHandler_8h_a84a9b9793add371df5defa93ce22ae11}} 
+void \mbox{\hyperlink{packetHandler_8h_a84a9b9793add371df5defa93ce22ae11}{send\+Manual\+Control}} ()
+\begin{DoxyCompactList}\small\item\em send manual control packet \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{packetHandler_8h_aece8404fa680d108709bb7735af74ef7}\label{packetHandler_8h_aece8404fa680d108709bb7735af74ef7}} 
+void \mbox{\hyperlink{packetHandler_8h_aece8404fa680d108709bb7735af74ef7}{initiate\+Serial\+Comm}} ()
+\begin{DoxyCompactList}\small\item\em initiates serial communication with radio to send MAVLink packets; baud rate for serial communication is set in \mbox{\hyperlink{definitions_8h}{definitions.\+h}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyAuthor}{Author}
+Nikhil Tom Jose 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+22/04/2026 Handles all incoming communication over UART, from the hand controller radio 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{packetHandler_8h_a41085b7ecb8159ad9019e28aae16b7b6}\label{packetHandler_8h_a41085b7ecb8159ad9019e28aae16b7b6}} 
+\index{packetHandler.h@{packetHandler.h}!heartbeat\_timed\_out@{heartbeat\_timed\_out}}
+\index{heartbeat\_timed\_out@{heartbeat\_timed\_out}!packetHandler.h@{packetHandler.h}}
+\doxysubsubsection{\texorpdfstring{heartbeat\_timed\_out()}{heartbeat\_timed\_out()}}
+{\footnotesize\ttfamily bool heartbeat\+\_\+timed\+\_\+out (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+check whether heartbeat has not been received within HEARTBEAT\+\_\+\+TIMEOUT microseconds (3 seconds) 
+
+\begin{DoxyReturn}{Returns}
+true when timeout has occured 
+\end{DoxyReturn}
+\mbox{\Hypertarget{packetHandler_8h_a7750d76e906478314f8abd6e9577502c}\label{packetHandler_8h_a7750d76e906478314f8abd6e9577502c}} 
+\index{packetHandler.h@{packetHandler.h}!setupSigning@{setupSigning}}
+\index{setupSigning@{setupSigning}!packetHandler.h@{packetHandler.h}}
+\doxysubsubsection{\texorpdfstring{setupSigning()}{setupSigning()}}
+{\footnotesize\ttfamily bool setup\+Signing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+sets up signing for all MAVLink packets 
+
+\begin{DoxyReturn}{Returns}
+true when signing is successfully setup 
+\end{DoxyReturn}

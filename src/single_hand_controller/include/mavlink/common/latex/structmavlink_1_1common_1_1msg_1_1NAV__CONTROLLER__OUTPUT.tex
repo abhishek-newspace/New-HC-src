@@ -1,0 +1,104 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT}{}\doxysection{mavlink\+::common\+::msg\+::NAV\+\_\+\+CONTROLLER\+\_\+\+OUTPUT Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT}\index{mavlink::common::msg::NAV\_CONTROLLER\_OUTPUT@{mavlink::common::msg::NAV\_CONTROLLER\_OUTPUT}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT}{NAV\+\_\+\+CONTROLLER\+\_\+\+OUTPUT}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+nav\+\_\+controller\+\_\+output.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::NAV\+\_\+\+CONTROLLER\+\_\+\+OUTPUT\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=239pt]{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::NAV\+\_\+\+CONTROLLER\+\_\+\+OUTPUT\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=239pt]{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a1c91f3b33b4482dcc2bbbaefe06fcedf}\label{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a1c91f3b33b4482dcc2bbbaefe06fcedf}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a0ca92ac9df483c5e9771e7b258b18b88}\label{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a0ca92ac9df483c5e9771e7b258b18b88}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_affd9da2766b73bdf0b07e9577ad9f456}\label{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_affd9da2766b73bdf0b07e9577ad9f456}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a3bbbe02a9d8b6bb7eeee14a188fa1016}\label{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a3bbbe02a9d8b6bb7eeee14a188fa1016}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a51c7a78d10f6b724da0e687a14f71db3}\label{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a51c7a78d10f6b724da0e687a14f71db3}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a08503a7123b6c38a7b9897213945909c}\label{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a08503a7123b6c38a7b9897213945909c}} 
+float {\bfseries nav\+\_\+roll}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a5e094293771c5378c47227078692e959}\label{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a5e094293771c5378c47227078692e959}} 
+float {\bfseries nav\+\_\+pitch}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a169883d92613fb46545d24621a8981c0}\label{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a169883d92613fb46545d24621a8981c0}} 
+int16\+\_\+t {\bfseries nav\+\_\+bearing}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a8743d8958966d2686f9090ffadfdc252}\label{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a8743d8958966d2686f9090ffadfdc252}} 
+int16\+\_\+t {\bfseries target\+\_\+bearing}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a4e08b37441b52b9e9cc866d9daa980ea}\label{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a4e08b37441b52b9e9cc866d9daa980ea}} 
+uint16\+\_\+t {\bfseries wp\+\_\+dist}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a0956247b7b4df272b37a7de11752e755}\label{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a0956247b7b4df272b37a7de11752e755}} 
+float {\bfseries alt\+\_\+error}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_ab2ec6eae0a778b6387836f85c37d5cde}\label{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_ab2ec6eae0a778b6387836f85c37d5cde}} 
+float {\bfseries aspd\+\_\+error}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_af20ba4ecaeb79717e4eee04e847332d9}\label{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_af20ba4ecaeb79717e4eee04e847332d9}} 
+float {\bfseries xtrack\+\_\+error}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a213f8651678d03173157c7b91e370073}\label{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a213f8651678d03173157c7b91e370073}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 62
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_aed2a476cf3c23e94d33975b6ddae992a}\label{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_aed2a476cf3c23e94d33975b6ddae992a}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 26
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a897002c90e49b2b899141c007ae36c3c}\label{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a897002c90e49b2b899141c007ae36c3c}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 26
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a999a3065113d2d01d08c88a05b1162b6}\label{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_a999a3065113d2d01d08c88a05b1162b6}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 183
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_aab87eb9889191d793b6896fb4bde8451}\label{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT_aab87eb9889191d793b6896fb4bde8451}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}NAV\+\_\+\+CONTROLLER\+\_\+\+OUTPUT\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1NAV__CONTROLLER__OUTPUT}{NAV\+\_\+\+CONTROLLER\+\_\+\+OUTPUT}} message. 
+
+The state of the navigation and position controller. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+nav\+\_\+controller\+\_\+output.\+hpp\end{DoxyCompactItemize}

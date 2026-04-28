@@ -1,0 +1,142 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA}{}\doxysection{mavlink\+::common\+::msg\+::GPS\+\_\+\+INJECT\+\_\+\+DATA Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA}\index{mavlink::common::msg::GPS\_INJECT\_DATA@{mavlink::common::msg::GPS\_INJECT\_DATA}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA}{GPS\+\_\+\+INJECT\+\_\+\+DATA}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+gps\+\_\+inject\+\_\+data.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::GPS\+\_\+\+INJECT\+\_\+\+DATA\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::GPS\+\_\+\+INJECT\+\_\+\+DATA\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_ac17b2ca2a3c82d3f5bc74200e0b65680}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_afeed8630f8b6a4e4f51e0fb69bd91261}\label{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_afeed8630f8b6a4e4f51e0fb69bd91261}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_afeed8630f8b6a4e4f51e0fb69bd91261}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_a9e3f0ac9449728c2084b39c2b3d3e637}\label{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_a9e3f0ac9449728c2084b39c2b3d3e637}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_a9e3f0ac9449728c2084b39c2b3d3e637}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_a280c4a51e9c2a8d689b00050c335b71d}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_a1be3b4a955a2ecd47f843209e9887c5f}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_a21896572336b9a78a22f4ff8b78d927f}\label{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_a21896572336b9a78a22f4ff8b78d927f}} 
+uint8\+\_\+t {\bfseries target\+\_\+system}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_a8aea2db5e8a926988fcbbe73b763c9c4}\label{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_a8aea2db5e8a926988fcbbe73b763c9c4}} 
+uint8\+\_\+t {\bfseries target\+\_\+component}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_a10a9bac351b1c876ae1ff9b404fbfb87}\label{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_a10a9bac351b1c876ae1ff9b404fbfb87}} 
+uint8\+\_\+t {\bfseries len}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_a811453d67064aea79484f2e03dfdfdba}\label{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_a811453d67064aea79484f2e03dfdfdba}} 
+std\+::array$<$ uint8\+\_\+t, 110 $>$ {\bfseries data}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_af2184c8e261b9c5595ae8a0a5717e1ea}\label{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_af2184c8e261b9c5595ae8a0a5717e1ea}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 123
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_acad64cb3bed9734d5f09680bd729ead3}\label{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_acad64cb3bed9734d5f09680bd729ead3}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 113
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_a66d6503b16e338084ab7249d7ffc8d1c}\label{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_a66d6503b16e338084ab7249d7ffc8d1c}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 113
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_ac90a9c602ea8e0a84922d2d7ef039b13}\label{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_ac90a9c602ea8e0a84922d2d7ef039b13}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 250
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_a8bc4c3a26ca07ac9b67d8507139962a2}\label{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_a8bc4c3a26ca07ac9b67d8507139962a2}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}GPS\+\_\+\+INJECT\+\_\+\+DATA\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA}{GPS\+\_\+\+INJECT\+\_\+\+DATA}} message. 
+
+Data for injecting into the onboard GPS (used for DGPS) 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_a1be3b4a955a2ecd47f843209e9887c5f}\label{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_a1be3b4a955a2ecd47f843209e9887c5f}} 
+\index{mavlink::common::msg::GPS\_INJECT\_DATA@{mavlink::common::msg::GPS\_INJECT\_DATA}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::GPS\_INJECT\_DATA@{mavlink::common::msg::GPS\_INJECT\_DATA}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+GPS\+\_\+\+INJECT\+\_\+\+DATA\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_ac17b2ca2a3c82d3f5bc74200e0b65680}\label{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_ac17b2ca2a3c82d3f5bc74200e0b65680}} 
+\index{mavlink::common::msg::GPS\_INJECT\_DATA@{mavlink::common::msg::GPS\_INJECT\_DATA}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::GPS\_INJECT\_DATA@{mavlink::common::msg::GPS\_INJECT\_DATA}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+GPS\+\_\+\+INJECT\+\_\+\+DATA\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_a280c4a51e9c2a8d689b00050c335b71d}\label{structmavlink_1_1common_1_1msg_1_1GPS__INJECT__DATA_a280c4a51e9c2a8d689b00050c335b71d}} 
+\index{mavlink::common::msg::GPS\_INJECT\_DATA@{mavlink::common::msg::GPS\_INJECT\_DATA}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::GPS\_INJECT\_DATA@{mavlink::common::msg::GPS\_INJECT\_DATA}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+GPS\+\_\+\+INJECT\+\_\+\+DATA\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+gps\+\_\+inject\+\_\+data.\+hpp\end{DoxyCompactItemize}

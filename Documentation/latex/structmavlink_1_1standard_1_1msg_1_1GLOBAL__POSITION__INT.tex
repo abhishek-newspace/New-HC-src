@@ -1,0 +1,157 @@
+\hypertarget{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT}{}\doxysection{mavlink\+::standard\+::msg\+::GLOBAL\+\_\+\+POSITION\+\_\+\+INT Struct Reference}
+\label{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT}\index{mavlink::standard::msg::GLOBAL\_POSITION\_INT@{mavlink::standard::msg::GLOBAL\_POSITION\_INT}}
+
+
+\mbox{\hyperlink{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT}{GLOBAL\+\_\+\+POSITION\+\_\+\+INT}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+global\+\_\+position\+\_\+int.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::standard\+::msg\+::GLOBAL\+\_\+\+POSITION\+\_\+\+INT\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::standard\+::msg\+::GLOBAL\+\_\+\+POSITION\+\_\+\+INT\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_a6a813213c1641f64332315841cd34354}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_adb10b49d032c09a87c862e7c9070980a}\label{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_adb10b49d032c09a87c862e7c9070980a}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_adb10b49d032c09a87c862e7c9070980a}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_a0ab239162ccd699732dacd74664f7e16}\label{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_a0ab239162ccd699732dacd74664f7e16}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_a0ab239162ccd699732dacd74664f7e16}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_a438e5429d2c5f5f349cba604e2af2a9b}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_ad6e8730cebe2f892ae878ff2e6da7bd1}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_a289f2af9656eae94ccabe3b979ba6e94}\label{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_a289f2af9656eae94ccabe3b979ba6e94}} 
+uint32\+\_\+t {\bfseries time\+\_\+boot\+\_\+ms}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_aed896d380595f12314ab007f69cc32c3}\label{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_aed896d380595f12314ab007f69cc32c3}} 
+int32\+\_\+t {\bfseries lat}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_a3da8a7d061ae988fade755a863c25bed}\label{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_a3da8a7d061ae988fade755a863c25bed}} 
+int32\+\_\+t {\bfseries lon}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_ab41a0e8069d461b266c4ba35c986b229}\label{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_ab41a0e8069d461b266c4ba35c986b229}} 
+int32\+\_\+t {\bfseries alt}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_a765b9653204246b507de68b67fb1dc19}\label{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_a765b9653204246b507de68b67fb1dc19}} 
+int32\+\_\+t {\bfseries relative\+\_\+alt}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_ab2ddac48321a3ecbda08ec64ed1309f1}\label{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_ab2ddac48321a3ecbda08ec64ed1309f1}} 
+int16\+\_\+t {\bfseries vx}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_adaffe2bf975c1dc37859f598c4f43801}\label{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_adaffe2bf975c1dc37859f598c4f43801}} 
+int16\+\_\+t {\bfseries vy}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_a5b5a5d2fe5d4b22fcb0781972b5e4be2}\label{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_a5b5a5d2fe5d4b22fcb0781972b5e4be2}} 
+int16\+\_\+t {\bfseries vz}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_a8b0ea843f14c02da6c98dcebb3bd6d24}\label{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_a8b0ea843f14c02da6c98dcebb3bd6d24}} 
+uint16\+\_\+t {\bfseries hdg}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_af47e6e79b45ce98006d91cf0a6d42071}\label{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_af47e6e79b45ce98006d91cf0a6d42071}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 33
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_a2dfb35b1ff411a7dc65dc4401dc58923}\label{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_a2dfb35b1ff411a7dc65dc4401dc58923}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 28
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_a16e24b6e9e97ce2d50a737bed3152c53}\label{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_a16e24b6e9e97ce2d50a737bed3152c53}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 28
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_ab02b8b5f9a2a04d86299dcee09920585}\label{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_ab02b8b5f9a2a04d86299dcee09920585}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 104
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_ae9eb21183e599b250c2351677a8abaa2}\label{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_ae9eb21183e599b250c2351677a8abaa2}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}GLOBAL\+\_\+\+POSITION\+\_\+\+INT\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT}{GLOBAL\+\_\+\+POSITION\+\_\+\+INT}} message. 
+
+The filtered global position (e.\+g. fused GPS and accelerometers). The position is in GPS-\/frame (right-\/handed, Z-\/up). It is designed as scaled integer message since the resolution of float is not sufficient. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_ad6e8730cebe2f892ae878ff2e6da7bd1}\label{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_ad6e8730cebe2f892ae878ff2e6da7bd1}} 
+\index{mavlink::standard::msg::GLOBAL\_POSITION\_INT@{mavlink::standard::msg::GLOBAL\_POSITION\_INT}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::standard::msg::GLOBAL\_POSITION\_INT@{mavlink::standard::msg::GLOBAL\_POSITION\_INT}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::standard\+::msg\+::\+GLOBAL\+\_\+\+POSITION\+\_\+\+INT\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_a6a813213c1641f64332315841cd34354}\label{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_a6a813213c1641f64332315841cd34354}} 
+\index{mavlink::standard::msg::GLOBAL\_POSITION\_INT@{mavlink::standard::msg::GLOBAL\_POSITION\_INT}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::standard::msg::GLOBAL\_POSITION\_INT@{mavlink::standard::msg::GLOBAL\_POSITION\_INT}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::standard\+::msg\+::\+GLOBAL\+\_\+\+POSITION\+\_\+\+INT\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_a438e5429d2c5f5f349cba604e2af2a9b}\label{structmavlink_1_1standard_1_1msg_1_1GLOBAL__POSITION__INT_a438e5429d2c5f5f349cba604e2af2a9b}} 
+\index{mavlink::standard::msg::GLOBAL\_POSITION\_INT@{mavlink::standard::msg::GLOBAL\_POSITION\_INT}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::standard::msg::GLOBAL\_POSITION\_INT@{mavlink::standard::msg::GLOBAL\_POSITION\_INT}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::standard\+::msg\+::\+GLOBAL\+\_\+\+POSITION\+\_\+\+INT\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/standard/mavlink\+\_\+msg\+\_\+global\+\_\+position\+\_\+int.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,86 @@
+\hypertarget{IOhandler_8cpp}{}\doxysection{single\+\_\+hand\+\_\+controller/\+IOhandler.cpp File Reference}
+\label{IOhandler_8cpp}\index{single\_hand\_controller/IOhandler.cpp@{single\_hand\_controller/IOhandler.cpp}}
+{\ttfamily \#include \char`\"{}include/\+IOhandler.\+hpp\char`\"{}}\newline
+Include dependency graph for IOhandler.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{IOhandler_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{IOhandler_8cpp_a5cd299c57b989dca0895b21698ae404c}\label{IOhandler_8cpp_a5cd299c57b989dca0895b21698ae404c}} 
+unsigned long int {\bfseries micros} ()
+\item 
+\mbox{\Hypertarget{IOhandler_8cpp_ab0b44fb174dc890d0f13789d0a914bb7}\label{IOhandler_8cpp_ab0b44fb174dc890d0f13789d0a914bb7}} 
+bool {\bfseries digital\+Read} (int k)
+\item 
+\mbox{\Hypertarget{IOhandler_8cpp_a6a005b7bdfeeca9d1d61b38929f34c58}\label{IOhandler_8cpp_a6a005b7bdfeeca9d1d61b38929f34c58}} 
+int {\bfseries analog\+Read} (int pin)
+\item 
+void \mbox{\hyperlink{IOhandler_8cpp_a9c4aeedf63c6452e322687f5bf755a9f}{get\+XY\+\_\+raw}} (struct \mbox{\hyperlink{structthumbstickControl}{thumbstick\+Control}} $\ast$control)
+\begin{DoxyCompactList}\small\item\em get thumbstick\textquotesingle{}s raw position (0 to 1023) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{IOhandler_8cpp_aa5c60ad78017adbedcd90d1c8188299e}{get\+XY}} (struct \mbox{\hyperlink{structthumbstickControl}{thumbstick\+Control}} $\ast$control)
+\begin{DoxyCompactList}\small\item\em get thumbstick\textquotesingle{}s normalized position (-\/100 to 100) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{IOhandler_8cpp_a1dc0c60e438aa4320dea211ce0bc76ed}\label{IOhandler_8cpp_a1dc0c60e438aa4320dea211ce0bc76ed}} 
+void \mbox{\hyperlink{IOhandler_8cpp_a1dc0c60e438aa4320dea211ce0bc76ed}{check\+User\+Input}} ()
+\begin{DoxyCompactList}\small\item\em update user input \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{IOhandler_8cpp_a9569bc59ef2f48f50067beb978425274}\label{IOhandler_8cpp_a9569bc59ef2f48f50067beb978425274}} 
+struct buttons {\bfseries user\+\_\+input}
+\item 
+\mbox{\Hypertarget{IOhandler_8cpp_a9a3d3fa00b51381c583bec0c7c1f8a34}\label{IOhandler_8cpp_a9a3d3fa00b51381c583bec0c7c1f8a34}} 
+int {\bfseries drift\+\_\+x}
+\item 
+\mbox{\Hypertarget{IOhandler_8cpp_a39f65c7052743f007db89af08bc790dc}\label{IOhandler_8cpp_a39f65c7052743f007db89af08bc790dc}} 
+int {\bfseries drift\+\_\+y}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyAuthor}{Author}
+Nikhil Tom Jose 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+22/04/2026
+\end{DoxyDate}
+Part of IOhandler library Defines functions and variables used in IOhandler.\+h 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{IOhandler_8cpp_aa5c60ad78017adbedcd90d1c8188299e}\label{IOhandler_8cpp_aa5c60ad78017adbedcd90d1c8188299e}} 
+\index{IOhandler.cpp@{IOhandler.cpp}!getXY@{getXY}}
+\index{getXY@{getXY}!IOhandler.cpp@{IOhandler.cpp}}
+\doxysubsubsection{\texorpdfstring{getXY()}{getXY()}}
+{\footnotesize\ttfamily void get\+XY (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structthumbstickControl}{thumbstick\+Control}} $\ast$}]{control }\end{DoxyParamCaption})}
+
+
+
+get thumbstick\textquotesingle{}s normalized position (-\/100 to 100) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em control} & -\/$>$ the current position of the thumbstick is written into this struct \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{IOhandler_8cpp_a9c4aeedf63c6452e322687f5bf755a9f}\label{IOhandler_8cpp_a9c4aeedf63c6452e322687f5bf755a9f}} 
+\index{IOhandler.cpp@{IOhandler.cpp}!getXY\_raw@{getXY\_raw}}
+\index{getXY\_raw@{getXY\_raw}!IOhandler.cpp@{IOhandler.cpp}}
+\doxysubsubsection{\texorpdfstring{getXY\_raw()}{getXY\_raw()}}
+{\footnotesize\ttfamily void get\+XY\+\_\+raw (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structthumbstickControl}{thumbstick\+Control}} $\ast$}]{control }\end{DoxyParamCaption})}
+
+
+
+get thumbstick\textquotesingle{}s raw position (0 to 1023) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em control} & -\/$>$ the current position of the thumbstick is written into this struct \\
+\hline
+\end{DoxyParams}

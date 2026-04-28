@@ -1,0 +1,142 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1PING}{}\doxysection{mavlink\+::common\+::msg\+::PING Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1PING}\index{mavlink::common::msg::PING@{mavlink::common::msg::PING}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1PING}{PING}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+ping.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::PING\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1PING__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::PING\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1PING__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1PING_ad5d679d7cec03484dd338eee0e3d1f67}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PING_a7f76c228095a096c675478c909e1f639}\label{structmavlink_1_1common_1_1msg_1_1PING_a7f76c228095a096c675478c909e1f639}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1PING_a7f76c228095a096c675478c909e1f639}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PING_a834dda03cc5632ff886487de032156b4}\label{structmavlink_1_1common_1_1msg_1_1PING_a834dda03cc5632ff886487de032156b4}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1PING_a834dda03cc5632ff886487de032156b4}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1PING_a4db0caee485a8dafd6e09ed8e8a82174}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1PING_a4306b4f9db030d5971bba2e53312ac1e}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PING_aa0250b27353faaaa90be9d43c5c2b757}\label{structmavlink_1_1common_1_1msg_1_1PING_aa0250b27353faaaa90be9d43c5c2b757}} 
+uint64\+\_\+t {\bfseries time\+\_\+usec}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PING_a0cb485458c270c6ff704211571aaa4eb}\label{structmavlink_1_1common_1_1msg_1_1PING_a0cb485458c270c6ff704211571aaa4eb}} 
+uint32\+\_\+t {\bfseries seq}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PING_a26be319bd41228a80375cb0e64b2cb91}\label{structmavlink_1_1common_1_1msg_1_1PING_a26be319bd41228a80375cb0e64b2cb91}} 
+uint8\+\_\+t {\bfseries target\+\_\+system}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PING_acee2c438cb13067ab70a5ab93dd63daa}\label{structmavlink_1_1common_1_1msg_1_1PING_acee2c438cb13067ab70a5ab93dd63daa}} 
+uint8\+\_\+t {\bfseries target\+\_\+component}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PING_a5e06aceda5ae7a2e3e50692937ad9c2b}\label{structmavlink_1_1common_1_1msg_1_1PING_a5e06aceda5ae7a2e3e50692937ad9c2b}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 4
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PING_ab24234f2197a22ec6c59412380b2914e}\label{structmavlink_1_1common_1_1msg_1_1PING_ab24234f2197a22ec6c59412380b2914e}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 14
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PING_a3cd87f49f0dd5ad60896f2e888b8c342}\label{structmavlink_1_1common_1_1msg_1_1PING_a3cd87f49f0dd5ad60896f2e888b8c342}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 14
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PING_a2cf2f3c956819f28f53f8f0786192c5c}\label{structmavlink_1_1common_1_1msg_1_1PING_a2cf2f3c956819f28f53f8f0786192c5c}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 237
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PING_a085adfb6e2bab0a7af356bacaf54f68f}\label{structmavlink_1_1common_1_1msg_1_1PING_a085adfb6e2bab0a7af356bacaf54f68f}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}PING\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1PING}{PING}} message. 
+
+A ping message either requesting or responding to a ping. This allows to measure the system latencies, including serial port, radio modem and UDP connections. The ping microservice is documented at \href{https://mavlink.io/en/services/ping.html}{\texttt{ https\+://mavlink.\+io/en/services/ping.\+html}} 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PING_a4306b4f9db030d5971bba2e53312ac1e}\label{structmavlink_1_1common_1_1msg_1_1PING_a4306b4f9db030d5971bba2e53312ac1e}} 
+\index{mavlink::common::msg::PING@{mavlink::common::msg::PING}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::PING@{mavlink::common::msg::PING}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+PING\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PING_ad5d679d7cec03484dd338eee0e3d1f67}\label{structmavlink_1_1common_1_1msg_1_1PING_ad5d679d7cec03484dd338eee0e3d1f67}} 
+\index{mavlink::common::msg::PING@{mavlink::common::msg::PING}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::PING@{mavlink::common::msg::PING}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+PING\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PING_a4db0caee485a8dafd6e09ed8e8a82174}\label{structmavlink_1_1common_1_1msg_1_1PING_a4db0caee485a8dafd6e09ed8e8a82174}} 
+\index{mavlink::common::msg::PING@{mavlink::common::msg::PING}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::PING@{mavlink::common::msg::PING}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+PING\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+ping.\+hpp\end{DoxyCompactItemize}

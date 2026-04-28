@@ -1,0 +1,89 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1DEBUG}{}\doxysection{mavlink\+::common\+::msg\+::DEBUG Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1DEBUG}\index{mavlink::common::msg::DEBUG@{mavlink::common::msg::DEBUG}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1DEBUG}{DEBUG}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+debug.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::DEBUG\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1DEBUG__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::DEBUG\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1DEBUG__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1DEBUG_a83566c92f092a5e2751fb164100cf592}\label{structmavlink_1_1common_1_1msg_1_1DEBUG_a83566c92f092a5e2751fb164100cf592}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1DEBUG_ae372baceebd647bff354e68ab2dd70d2}\label{structmavlink_1_1common_1_1msg_1_1DEBUG_ae372baceebd647bff354e68ab2dd70d2}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1DEBUG_aad1afb61b4cdc791f8a0d0a60cd0d1c9}\label{structmavlink_1_1common_1_1msg_1_1DEBUG_aad1afb61b4cdc791f8a0d0a60cd0d1c9}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1DEBUG_ab96c30a5ff5388f3bcac60b58522f08c}\label{structmavlink_1_1common_1_1msg_1_1DEBUG_ab96c30a5ff5388f3bcac60b58522f08c}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1DEBUG_a4e53d174b1ece6bdaba615003edfed30}\label{structmavlink_1_1common_1_1msg_1_1DEBUG_a4e53d174b1ece6bdaba615003edfed30}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1DEBUG_a8a3e39a56ced61b7bbb3d690a873a06e}\label{structmavlink_1_1common_1_1msg_1_1DEBUG_a8a3e39a56ced61b7bbb3d690a873a06e}} 
+uint32\+\_\+t {\bfseries time\+\_\+boot\+\_\+ms}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1DEBUG_ac1bf73d4ede4a4ecdc82b19dead54d1e}\label{structmavlink_1_1common_1_1msg_1_1DEBUG_ac1bf73d4ede4a4ecdc82b19dead54d1e}} 
+uint8\+\_\+t {\bfseries ind}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1DEBUG_a8dfc41551e6763a941370c78c396ef73}\label{structmavlink_1_1common_1_1msg_1_1DEBUG_a8dfc41551e6763a941370c78c396ef73}} 
+float {\bfseries value}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1DEBUG_a9a38633ad4a60b189f927906f32e0e17}\label{structmavlink_1_1common_1_1msg_1_1DEBUG_a9a38633ad4a60b189f927906f32e0e17}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 254
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1DEBUG_a905aeb5f8df38af4834dd0849e6074a8}\label{structmavlink_1_1common_1_1msg_1_1DEBUG_a905aeb5f8df38af4834dd0849e6074a8}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 9
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1DEBUG_a041037f9922d0d3adb943ab82642cc71}\label{structmavlink_1_1common_1_1msg_1_1DEBUG_a041037f9922d0d3adb943ab82642cc71}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 9
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1DEBUG_a634b038f3384ba6cdc8d196273b1e6f1}\label{structmavlink_1_1common_1_1msg_1_1DEBUG_a634b038f3384ba6cdc8d196273b1e6f1}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 46
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1DEBUG_a83cee04822de566225471987ee908b6f}\label{structmavlink_1_1common_1_1msg_1_1DEBUG_a83cee04822de566225471987ee908b6f}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}DEBUG\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1DEBUG}{DEBUG}} message. 
+
+Send a debug value. The index is used to discriminate between values. These values show up in the plot of QGround\+Control as \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1DEBUG}{DEBUG}} N. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+debug.\+hpp\end{DoxyCompactItemize}

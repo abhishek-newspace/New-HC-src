@@ -1,0 +1,89 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA}{}\doxysection{mavlink\+::common\+::msg\+::GPS\+\_\+\+RTCM\+\_\+\+DATA Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA}\index{mavlink::common::msg::GPS\_RTCM\_DATA@{mavlink::common::msg::GPS\_RTCM\_DATA}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA}{GPS\+\_\+\+RTCM\+\_\+\+DATA}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+gps\+\_\+rtcm\+\_\+data.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::GPS\+\_\+\+RTCM\+\_\+\+DATA\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::GPS\+\_\+\+RTCM\+\_\+\+DATA\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_a357f54311f95388042428837db2e96c2}\label{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_a357f54311f95388042428837db2e96c2}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_a80f0cc166674f891f2e4f03253a252f2}\label{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_a80f0cc166674f891f2e4f03253a252f2}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_a9012f6e2b7888283dfd8a80229fb4fd2}\label{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_a9012f6e2b7888283dfd8a80229fb4fd2}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_afa80099b31e4a19c91ca2dc460eabf3c}\label{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_afa80099b31e4a19c91ca2dc460eabf3c}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_a7eda73ec5c0fc6ac47da93375b499f94}\label{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_a7eda73ec5c0fc6ac47da93375b499f94}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_a708b780e9a25f13cfc9c400b63b8e2b1}\label{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_a708b780e9a25f13cfc9c400b63b8e2b1}} 
+uint8\+\_\+t {\bfseries flags}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_a6bc21fd716986589d9ef1583e9bd718f}\label{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_a6bc21fd716986589d9ef1583e9bd718f}} 
+uint8\+\_\+t {\bfseries len}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_a650d1db795500bde5af3bde3355b18e7}\label{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_a650d1db795500bde5af3bde3355b18e7}} 
+std\+::array$<$ uint8\+\_\+t, 180 $>$ {\bfseries data}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_a7e1088788d4114450b736924278dd124}\label{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_a7e1088788d4114450b736924278dd124}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 233
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_a853cd8a71c6fca9f0c46b9fc847e3ca5}\label{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_a853cd8a71c6fca9f0c46b9fc847e3ca5}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 182
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_aef01e9b13e3674d904cc8c7f56888b0a}\label{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_aef01e9b13e3674d904cc8c7f56888b0a}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 182
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_a36780bcfc6eea47665ea3841256efb28}\label{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_a36780bcfc6eea47665ea3841256efb28}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 35
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_aa5eb82909cc7b8c38a4e7557b787cd82}\label{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA_aa5eb82909cc7b8c38a4e7557b787cd82}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}GPS\+\_\+\+RTCM\+\_\+\+DATA\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1GPS__RTCM__DATA}{GPS\+\_\+\+RTCM\+\_\+\+DATA}} message. 
+
+RTCM message for injecting into the onboard GPS (used for DGPS) 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+gps\+\_\+rtcm\+\_\+data.\+hpp\end{DoxyCompactItemize}

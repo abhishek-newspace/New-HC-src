@@ -1,0 +1,79 @@
+\hypertarget{IOhandler_8hpp}{}\doxysection{single\+\_\+hand\+\_\+controller/include/\+IOhandler.hpp File Reference}
+\label{IOhandler_8hpp}\index{single\_hand\_controller/include/IOhandler.hpp@{single\_hand\_controller/include/IOhandler.hpp}}
+{\ttfamily \#include \char`\"{}definitions.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}mavlink/common/mavlink.\+h\char`\"{}}\newline
+Include dependency graph for IOhandler.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{IOhandler_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{IOhandler_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structthumbstickControl}{thumbstick\+Control}}
+\begin{DoxyCompactList}\small\item\em thumbstick control is used within this library \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{IOhandler_8hpp_a1dc0c60e438aa4320dea211ce0bc76ed}\label{IOhandler_8hpp_a1dc0c60e438aa4320dea211ce0bc76ed}} 
+void \mbox{\hyperlink{IOhandler_8hpp_a1dc0c60e438aa4320dea211ce0bc76ed}{check\+User\+Input}} ()
+\begin{DoxyCompactList}\small\item\em update user input \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{IOhandler_8hpp_a9c4aeedf63c6452e322687f5bf755a9f}{get\+XY\+\_\+raw}} (struct \mbox{\hyperlink{structthumbstickControl}{thumbstick\+Control}} $\ast$control)
+\begin{DoxyCompactList}\small\item\em get thumbstick\textquotesingle{}s raw position (0 to 1023) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{IOhandler_8hpp_aa5c60ad78017adbedcd90d1c8188299e}{get\+XY}} (struct \mbox{\hyperlink{structthumbstickControl}{thumbstick\+Control}} $\ast$control)
+\begin{DoxyCompactList}\small\item\em get thumbstick\textquotesingle{}s normalized position (-\/100 to 100) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyAuthor}{Author}
+Nikhil Tom Jose 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+22/04/2026 Any interfacing with input/output pins of the microcontroller is taken care of, within this header file, except handling display output, which is done by the display\+Handler 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{IOhandler_8hpp_aa5c60ad78017adbedcd90d1c8188299e}\label{IOhandler_8hpp_aa5c60ad78017adbedcd90d1c8188299e}} 
+\index{IOhandler.hpp@{IOhandler.hpp}!getXY@{getXY}}
+\index{getXY@{getXY}!IOhandler.hpp@{IOhandler.hpp}}
+\doxysubsubsection{\texorpdfstring{getXY()}{getXY()}}
+{\footnotesize\ttfamily void get\+XY (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structthumbstickControl}{thumbstick\+Control}} $\ast$}]{control }\end{DoxyParamCaption})}
+
+
+
+get thumbstick\textquotesingle{}s normalized position (-\/100 to 100) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em control} & -\/$>$ the current position of the thumbstick is written into this struct \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{IOhandler_8hpp_a9c4aeedf63c6452e322687f5bf755a9f}\label{IOhandler_8hpp_a9c4aeedf63c6452e322687f5bf755a9f}} 
+\index{IOhandler.hpp@{IOhandler.hpp}!getXY\_raw@{getXY\_raw}}
+\index{getXY\_raw@{getXY\_raw}!IOhandler.hpp@{IOhandler.hpp}}
+\doxysubsubsection{\texorpdfstring{getXY\_raw()}{getXY\_raw()}}
+{\footnotesize\ttfamily void get\+XY\+\_\+raw (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structthumbstickControl}{thumbstick\+Control}} $\ast$}]{control }\end{DoxyParamCaption})}
+
+
+
+get thumbstick\textquotesingle{}s raw position (0 to 1023) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em control} & -\/$>$ the current position of the thumbstick is written into this struct \\
+\hline
+\end{DoxyParams}

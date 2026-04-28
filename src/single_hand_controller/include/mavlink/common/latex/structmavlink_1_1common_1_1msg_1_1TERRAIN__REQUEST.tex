@@ -1,0 +1,92 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST}{}\doxysection{mavlink\+::common\+::msg\+::TERRAIN\+\_\+\+REQUEST Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST}\index{mavlink::common::msg::TERRAIN\_REQUEST@{mavlink::common::msg::TERRAIN\_REQUEST}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST}{TERRAIN\+\_\+\+REQUEST}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+terrain\+\_\+request.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::TERRAIN\+\_\+\+REQUEST\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::TERRAIN\+\_\+\+REQUEST\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_a38ac650c11fd360213dd76bb7c032c67}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_a38ac650c11fd360213dd76bb7c032c67}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_a5af4adb1766e8dd838642691ef4c3ceb}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_a5af4adb1766e8dd838642691ef4c3ceb}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_a7a9aa81c8ea50a99cb0e6f735da348bf}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_a7a9aa81c8ea50a99cb0e6f735da348bf}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_ad25c3703bbc9f8433bd96aa0f411459e}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_ad25c3703bbc9f8433bd96aa0f411459e}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_ae5932dbc01bed85a036e5fcdb864f312}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_ae5932dbc01bed85a036e5fcdb864f312}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_a9c67b83312348e2d3dfe3c8eeefe939c}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_a9c67b83312348e2d3dfe3c8eeefe939c}} 
+int32\+\_\+t {\bfseries lat}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_a9c9cf3f5c4de330c4b25ff367b6c92c7}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_a9c9cf3f5c4de330c4b25ff367b6c92c7}} 
+int32\+\_\+t {\bfseries lon}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_ae2433ca531d08244d2bb20fb33ba9645}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_ae2433ca531d08244d2bb20fb33ba9645}} 
+uint16\+\_\+t {\bfseries grid\+\_\+spacing}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_a491e53f9221547c71f7e9e03ea8d4d61}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_a491e53f9221547c71f7e9e03ea8d4d61}} 
+uint64\+\_\+t {\bfseries mask}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_a0289b6014bf52eb47ce76c0cb110dabd}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_a0289b6014bf52eb47ce76c0cb110dabd}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 133
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_a87ad11dc9776e36dcc830a98969bb5cf}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_a87ad11dc9776e36dcc830a98969bb5cf}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 18
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_a71beb117e79ad6d5c3431a7eee95a043}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_a71beb117e79ad6d5c3431a7eee95a043}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 18
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_a540a2f01da606d22eac7798a98d21e67}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_a540a2f01da606d22eac7798a98d21e67}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 6
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_ae55747e0a19f3c8e4d2e7c0f31975b8e}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST_ae55747e0a19f3c8e4d2e7c0f31975b8e}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}TERRAIN\+\_\+\+REQUEST\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST}{TERRAIN\+\_\+\+REQUEST}} message. 
+
+Request for terrain data and terrain status. See terrain protocol docs\+: \href{https://mavlink.io/en/services/terrain.html}{\texttt{ https\+://mavlink.\+io/en/services/terrain.\+html}} 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+terrain\+\_\+request.\+hpp\end{DoxyCompactItemize}

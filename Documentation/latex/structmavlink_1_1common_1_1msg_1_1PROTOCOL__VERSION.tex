@@ -1,0 +1,145 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION}{}\doxysection{mavlink\+::common\+::msg\+::PROTOCOL\+\_\+\+VERSION Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION}\index{mavlink::common::msg::PROTOCOL\_VERSION@{mavlink::common::msg::PROTOCOL\_VERSION}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION}{PROTOCOL\+\_\+\+VERSION}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+protocol\+\_\+version.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::PROTOCOL\+\_\+\+VERSION\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::PROTOCOL\+\_\+\+VERSION\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_ac56cebbcb8818c6b7b34465fabe2a49a}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_a149e874ea4104c8f7af490489b568854}\label{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_a149e874ea4104c8f7af490489b568854}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_a149e874ea4104c8f7af490489b568854}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_a1d21227bcab7c934514b6fc39c18a11c}\label{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_a1d21227bcab7c934514b6fc39c18a11c}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_a1d21227bcab7c934514b6fc39c18a11c}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_a1714fcc5d35993de0301338f62bbb168}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_ad280d418fc1c5346d1a9ec7424d64dcb}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_a9d3aa39978fdfb7ae43fd9a29d0b6880}\label{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_a9d3aa39978fdfb7ae43fd9a29d0b6880}} 
+uint16\+\_\+t {\bfseries version}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_a4c5ce4f2bd575bbc264ee2d1b2babc90}\label{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_a4c5ce4f2bd575bbc264ee2d1b2babc90}} 
+uint16\+\_\+t {\bfseries min\+\_\+version}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_aeef5161c2820dfc3daa01571b1614425}\label{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_aeef5161c2820dfc3daa01571b1614425}} 
+uint16\+\_\+t {\bfseries max\+\_\+version}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_a0690f19267b5f66faa83faf0d1af18d2}\label{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_a0690f19267b5f66faa83faf0d1af18d2}} 
+std\+::array$<$ uint8\+\_\+t, 8 $>$ {\bfseries spec\+\_\+version\+\_\+hash}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_acb6855cc8b8dc3fef8624a6f888b77d7}\label{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_acb6855cc8b8dc3fef8624a6f888b77d7}} 
+std\+::array$<$ uint8\+\_\+t, 8 $>$ {\bfseries library\+\_\+version\+\_\+hash}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_aac36a5ffd96b42ea030e4a5e03e42b44}\label{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_aac36a5ffd96b42ea030e4a5e03e42b44}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 300
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_a87c87ba0e11fbd9858b0ad9841e7a513}\label{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_a87c87ba0e11fbd9858b0ad9841e7a513}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 22
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_a9f50a65c7bc73eded33191ad6f39ccbd}\label{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_a9f50a65c7bc73eded33191ad6f39ccbd}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 22
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_abad67fa18a048ebb79c3584095e82083}\label{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_abad67fa18a048ebb79c3584095e82083}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 217
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_add00285fb59928ef7ace1a9eee9428cd}\label{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_add00285fb59928ef7ace1a9eee9428cd}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}PROTOCOL\+\_\+\+VERSION\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION}{PROTOCOL\+\_\+\+VERSION}} message. 
+
+Version and capability of protocol version. This message can be requested with MAV\+\_\+\+CMD\+\_\+\+REQUEST\+\_\+\+MESSAGE and is used as part of the handshaking to establish which MAVLink version should be used on the network. Every node should respond to a request for \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION}{PROTOCOL\+\_\+\+VERSION}} to enable the handshaking. Library implementers should consider adding this into the default decoding state machine to allow the protocol core to respond directly. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_ad280d418fc1c5346d1a9ec7424d64dcb}\label{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_ad280d418fc1c5346d1a9ec7424d64dcb}} 
+\index{mavlink::common::msg::PROTOCOL\_VERSION@{mavlink::common::msg::PROTOCOL\_VERSION}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::PROTOCOL\_VERSION@{mavlink::common::msg::PROTOCOL\_VERSION}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+PROTOCOL\+\_\+\+VERSION\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_ac56cebbcb8818c6b7b34465fabe2a49a}\label{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_ac56cebbcb8818c6b7b34465fabe2a49a}} 
+\index{mavlink::common::msg::PROTOCOL\_VERSION@{mavlink::common::msg::PROTOCOL\_VERSION}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::PROTOCOL\_VERSION@{mavlink::common::msg::PROTOCOL\_VERSION}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+PROTOCOL\+\_\+\+VERSION\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_a1714fcc5d35993de0301338f62bbb168}\label{structmavlink_1_1common_1_1msg_1_1PROTOCOL__VERSION_a1714fcc5d35993de0301338f62bbb168}} 
+\index{mavlink::common::msg::PROTOCOL\_VERSION@{mavlink::common::msg::PROTOCOL\_VERSION}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::PROTOCOL\_VERSION@{mavlink::common::msg::PROTOCOL\_VERSION}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+PROTOCOL\+\_\+\+VERSION\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+protocol\+\_\+version.\+hpp\end{DoxyCompactItemize}

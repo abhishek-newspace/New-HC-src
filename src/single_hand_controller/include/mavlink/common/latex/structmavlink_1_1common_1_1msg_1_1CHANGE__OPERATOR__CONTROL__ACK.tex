@@ -1,0 +1,89 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK}{}\doxysection{mavlink\+::common\+::msg\+::CHANGE\+\_\+\+OPERATOR\+\_\+\+CONTROL\+\_\+\+ACK Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK}\index{mavlink::common::msg::CHANGE\_OPERATOR\_CONTROL\_ACK@{mavlink::common::msg::CHANGE\_OPERATOR\_CONTROL\_ACK}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK}{CHANGE\+\_\+\+OPERATOR\+\_\+\+CONTROL\+\_\+\+ACK}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+change\+\_\+operator\+\_\+control\+\_\+ack.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::CHANGE\+\_\+\+OPERATOR\+\_\+\+CONTROL\+\_\+\+ACK\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::CHANGE\+\_\+\+OPERATOR\+\_\+\+CONTROL\+\_\+\+ACK\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_a9edbff68234b48719eea9e602d7b5e4f}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_a9edbff68234b48719eea9e602d7b5e4f}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_a8b4f64f6157651df524036aaa9f2bd2f}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_a8b4f64f6157651df524036aaa9f2bd2f}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_ac11668db54beff1f40b5e3e44dd4b6d9}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_ac11668db54beff1f40b5e3e44dd4b6d9}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_accc3211fa908dcaa5a1a60e4655a6c38}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_accc3211fa908dcaa5a1a60e4655a6c38}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_a4aa9c3522e537f3d58397bf9abb0b37e}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_a4aa9c3522e537f3d58397bf9abb0b37e}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_a21fee7dc931e5e71ed330c07c4a7a9d6}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_a21fee7dc931e5e71ed330c07c4a7a9d6}} 
+uint8\+\_\+t {\bfseries gcs\+\_\+system\+\_\+id}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_a1cff6b561ae37309fcc433a70fac4734}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_a1cff6b561ae37309fcc433a70fac4734}} 
+uint8\+\_\+t {\bfseries control\+\_\+request}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_a91004ca7f5670407c92b13e3038b0d78}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_a91004ca7f5670407c92b13e3038b0d78}} 
+uint8\+\_\+t {\bfseries ack}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_a4f9225a8e21b501a8551d1d230d235ee}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_a4f9225a8e21b501a8551d1d230d235ee}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 6
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_a5bbd1706e23eb8ea048c1d86cfd5b9f9}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_a5bbd1706e23eb8ea048c1d86cfd5b9f9}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 3
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_ae91064cf1373e7929c66f9c3c21b6754}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_ae91064cf1373e7929c66f9c3c21b6754}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 3
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_a9c7da6436a90290552038ea0743c04e7}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_a9c7da6436a90290552038ea0743c04e7}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 104
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_ada52465b107f368410eafb20d87c877b}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK_ada52465b107f368410eafb20d87c877b}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}CHANGE\+\_\+\+OPERATOR\+\_\+\+CONTROL\+\_\+\+ACK\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__ACK}{CHANGE\+\_\+\+OPERATOR\+\_\+\+CONTROL\+\_\+\+ACK}} message. 
+
+Accept / deny control of this MAV 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+change\+\_\+operator\+\_\+control\+\_\+ack.\+hpp\end{DoxyCompactItemize}

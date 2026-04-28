@@ -1,0 +1,113 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__IMU}{}\doxysection{mavlink\+::common\+::msg\+::SCALED\+\_\+\+IMU Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1SCALED__IMU}\index{mavlink::common::msg::SCALED\_IMU@{mavlink::common::msg::SCALED\_IMU}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SCALED__IMU}{SCALED\+\_\+\+IMU}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+scaled\+\_\+imu.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::SCALED\+\_\+\+IMU\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1SCALED__IMU__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::SCALED\+\_\+\+IMU\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1SCALED__IMU__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a128da484d5b23b845d76547dc48e0fc3}\label{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a128da484d5b23b845d76547dc48e0fc3}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a6fc5ba4256c1032ea5500e5ae7a55bf0}\label{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a6fc5ba4256c1032ea5500e5ae7a55bf0}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_ae564224e08579ad66d942410a8919de8}\label{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_ae564224e08579ad66d942410a8919de8}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a6d2aa035432920ca57d9096d803bf779}\label{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a6d2aa035432920ca57d9096d803bf779}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_afaae84c1fc2e68bd27582f39b27c1f46}\label{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_afaae84c1fc2e68bd27582f39b27c1f46}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_adf65992aa8057fb20ecf0a28c9b6457b}\label{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_adf65992aa8057fb20ecf0a28c9b6457b}} 
+uint32\+\_\+t {\bfseries time\+\_\+boot\+\_\+ms}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a7e5b67435ddfadbddd35d5791b9d8d96}\label{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a7e5b67435ddfadbddd35d5791b9d8d96}} 
+int16\+\_\+t {\bfseries xacc}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a13b69f1d720f1cace90e99625b3369dc}\label{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a13b69f1d720f1cace90e99625b3369dc}} 
+int16\+\_\+t {\bfseries yacc}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a7e2bbecd3184c0dc02b92bf44408783c}\label{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a7e2bbecd3184c0dc02b92bf44408783c}} 
+int16\+\_\+t {\bfseries zacc}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a98e88d4e04573c2de14eb11c67d2c34c}\label{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a98e88d4e04573c2de14eb11c67d2c34c}} 
+int16\+\_\+t {\bfseries xgyro}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a5cc5e69ce4eff14a05779374b0cf2e89}\label{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a5cc5e69ce4eff14a05779374b0cf2e89}} 
+int16\+\_\+t {\bfseries ygyro}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a6998aa23e813e609a164e6b83a9b92ae}\label{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a6998aa23e813e609a164e6b83a9b92ae}} 
+int16\+\_\+t {\bfseries zgyro}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a21168bcc3dac012ae6fad0880c1ab417}\label{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a21168bcc3dac012ae6fad0880c1ab417}} 
+int16\+\_\+t {\bfseries xmag}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_acdc1d83bea1d5ea624818ed62d531076}\label{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_acdc1d83bea1d5ea624818ed62d531076}} 
+int16\+\_\+t {\bfseries ymag}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a698a653ddee111ef01c46df96f556c13}\label{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a698a653ddee111ef01c46df96f556c13}} 
+int16\+\_\+t {\bfseries zmag}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a7882ad3e8860d06aa228a11d8bbffe27}\label{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a7882ad3e8860d06aa228a11d8bbffe27}} 
+int16\+\_\+t {\bfseries temperature}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_af2cd181c2de8d2ce25a0bc06c9544027}\label{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_af2cd181c2de8d2ce25a0bc06c9544027}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 26
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_aceb77e9e2d34c5549f559e8c6d0eb87b}\label{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_aceb77e9e2d34c5549f559e8c6d0eb87b}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 24
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a96f7b9d4940e1d64d2a98f2abfd1f518}\label{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a96f7b9d4940e1d64d2a98f2abfd1f518}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 22
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a25e0c40d36a8957ebf5d57cfff204b8f}\label{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_a25e0c40d36a8957ebf5d57cfff204b8f}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 170
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_ab2657a5205c2dade130266b51492dfff}\label{structmavlink_1_1common_1_1msg_1_1SCALED__IMU_ab2657a5205c2dade130266b51492dfff}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}SCALED\+\_\+\+IMU\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SCALED__IMU}{SCALED\+\_\+\+IMU}} message. 
+
+The RAW IMU readings for the usual 9DOF sensor setup. This message should contain the scaled values to the described units 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+scaled\+\_\+imu.\+hpp\end{DoxyCompactItemize}

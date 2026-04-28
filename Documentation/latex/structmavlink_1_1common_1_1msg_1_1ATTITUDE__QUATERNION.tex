@@ -1,0 +1,157 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION}{}\doxysection{mavlink\+::common\+::msg\+::ATTITUDE\+\_\+\+QUATERNION Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION}\index{mavlink::common::msg::ATTITUDE\_QUATERNION@{mavlink::common::msg::ATTITUDE\_QUATERNION}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION}{ATTITUDE\+\_\+\+QUATERNION}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+attitude\+\_\+quaternion.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::ATTITUDE\+\_\+\+QUATERNION\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::ATTITUDE\+\_\+\+QUATERNION\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a83f30ecba31384d4763a49e690ee3b03}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a4ff28d900538a2ef50726073adf5be4f}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a4ff28d900538a2ef50726073adf5be4f}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a4ff28d900538a2ef50726073adf5be4f}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a44f727bf291a3541990c1c7f50553e00}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a44f727bf291a3541990c1c7f50553e00}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a44f727bf291a3541990c1c7f50553e00}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a6996bc3a8cd0bcf2763b25e8c58677f4}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_aecf2cbf249679329aed34c702ccb4aa2}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a098fb42f761da7e2b2d6077de54f897a}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a098fb42f761da7e2b2d6077de54f897a}} 
+uint32\+\_\+t {\bfseries time\+\_\+boot\+\_\+ms}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a245c2fc7064c87c222d4a6cc6ecddaa8}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a245c2fc7064c87c222d4a6cc6ecddaa8}} 
+float {\bfseries q1}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a0bd4b3f343e0535d3267779d8bbfcd8c}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a0bd4b3f343e0535d3267779d8bbfcd8c}} 
+float {\bfseries q2}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a8c1df102c2f1373eaf3a8a2525d61272}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a8c1df102c2f1373eaf3a8a2525d61272}} 
+float {\bfseries q3}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_af82c66604018fafa32559ea539cfd386}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_af82c66604018fafa32559ea539cfd386}} 
+float {\bfseries q4}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_afe0358aec4851763f1f1f01fe7bffde4}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_afe0358aec4851763f1f1f01fe7bffde4}} 
+float {\bfseries rollspeed}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a8d0a2271043c96267576a714f87e7434}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a8d0a2271043c96267576a714f87e7434}} 
+float {\bfseries pitchspeed}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a2f8873402bd0b5bf19b84019ba0cd62d}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a2f8873402bd0b5bf19b84019ba0cd62d}} 
+float {\bfseries yawspeed}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a4dd50fbe387f5d56497b2a870996f5dd}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a4dd50fbe387f5d56497b2a870996f5dd}} 
+std\+::array$<$ float, 4 $>$ {\bfseries repr\+\_\+offset\+\_\+q}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a21f22dd29146f40e0e7629914d55c10f}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a21f22dd29146f40e0e7629914d55c10f}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 31
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a4cd57d8a5e424b89876a556c6809cd2e}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a4cd57d8a5e424b89876a556c6809cd2e}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 48
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a1b9842810120dcdda675661570bb276e}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a1b9842810120dcdda675661570bb276e}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 32
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a483d1b92ea5cc8a46e160d652ead72d0}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a483d1b92ea5cc8a46e160d652ead72d0}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 246
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a1791054aeb7c0371e6ea7742a726e0b7}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a1791054aeb7c0371e6ea7742a726e0b7}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}ATTITUDE\+\_\+\+QUATERNION\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION}{ATTITUDE\+\_\+\+QUATERNION}} message. 
+
+The attitude in the aeronautical frame (right-\/handed, Z-\/down, X-\/front, Y-\/right), expressed as quaternion. Quaternion order is w, x, y, z and a zero rotation would be expressed as (1 0 0 0). 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_aecf2cbf249679329aed34c702ccb4aa2}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_aecf2cbf249679329aed34c702ccb4aa2}} 
+\index{mavlink::common::msg::ATTITUDE\_QUATERNION@{mavlink::common::msg::ATTITUDE\_QUATERNION}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::ATTITUDE\_QUATERNION@{mavlink::common::msg::ATTITUDE\_QUATERNION}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+ATTITUDE\+\_\+\+QUATERNION\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a83f30ecba31384d4763a49e690ee3b03}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a83f30ecba31384d4763a49e690ee3b03}} 
+\index{mavlink::common::msg::ATTITUDE\_QUATERNION@{mavlink::common::msg::ATTITUDE\_QUATERNION}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::ATTITUDE\_QUATERNION@{mavlink::common::msg::ATTITUDE\_QUATERNION}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+ATTITUDE\+\_\+\+QUATERNION\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a6996bc3a8cd0bcf2763b25e8c58677f4}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__QUATERNION_a6996bc3a8cd0bcf2763b25e8c58677f4}} 
+\index{mavlink::common::msg::ATTITUDE\_QUATERNION@{mavlink::common::msg::ATTITUDE\_QUATERNION}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::ATTITUDE\_QUATERNION@{mavlink::common::msg::ATTITUDE\_QUATERNION}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+ATTITUDE\+\_\+\+QUATERNION\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+attitude\+\_\+quaternion.\+hpp\end{DoxyCompactItemize}

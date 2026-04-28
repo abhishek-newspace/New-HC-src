@@ -1,0 +1,136 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS}{}\doxysection{mavlink\+::common\+::msg\+::OPEN\+\_\+\+DRONE\+\_\+\+ID\+\_\+\+ARM\+\_\+\+STATUS Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS}\index{mavlink::common::msg::OPEN\_DRONE\_ID\_ARM\_STATUS@{mavlink::common::msg::OPEN\_DRONE\_ID\_ARM\_STATUS}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS}{OPEN\+\_\+\+DRONE\+\_\+\+ID\+\_\+\+ARM\+\_\+\+STATUS}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+open\+\_\+drone\+\_\+id\+\_\+arm\+\_\+status.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::OPEN\+\_\+\+DRONE\+\_\+\+ID\+\_\+\+ARM\+\_\+\+STATUS\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=256pt]{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::OPEN\+\_\+\+DRONE\+\_\+\+ID\+\_\+\+ARM\+\_\+\+STATUS\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=256pt]{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_a9b72825dce5b603f9c8d6d7b9e96966f}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_a0da0ad51d27adc446619d0d1782b5760}\label{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_a0da0ad51d27adc446619d0d1782b5760}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_a0da0ad51d27adc446619d0d1782b5760}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_a8dc76801d25b4b9952774d542fbe94c3}\label{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_a8dc76801d25b4b9952774d542fbe94c3}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_a8dc76801d25b4b9952774d542fbe94c3}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_aa36732670c732f2955ec1115ce76ee82}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_a53837474dd4daeb75cfdc5d75a265730}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_a236c41e5670c9aed2b7b2bf10d369805}\label{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_a236c41e5670c9aed2b7b2bf10d369805}} 
+uint8\+\_\+t {\bfseries status}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_a7868331143cf3da9689fe111a1fff61d}\label{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_a7868331143cf3da9689fe111a1fff61d}} 
+std\+::array$<$ char, 50 $>$ {\bfseries error}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_a88b7dab614ec998cd5dac00cea194bc6}\label{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_a88b7dab614ec998cd5dac00cea194bc6}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 12918
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_aaaa3ce6bbd0fdd6503a5b5746a2f48b8}\label{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_aaaa3ce6bbd0fdd6503a5b5746a2f48b8}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 51
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_ab60c638b7b0636e87fe6586ad10fdc75}\label{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_ab60c638b7b0636e87fe6586ad10fdc75}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 51
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_a58e9af7c0a99a86d118c8c4731034c93}\label{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_a58e9af7c0a99a86d118c8c4731034c93}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 139
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_a97d8a84bf317d3038d6dec0ce987b26b}\label{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_a97d8a84bf317d3038d6dec0ce987b26b}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}OPEN\+\_\+\+DRONE\+\_\+\+ID\+\_\+\+ARM\+\_\+\+STATUS\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS}{OPEN\+\_\+\+DRONE\+\_\+\+ID\+\_\+\+ARM\+\_\+\+STATUS}} message. 
+
+Transmitter (remote ID system) is enabled and ready to start sending location and other required information. This is streamed by transmitter. A flight controller uses it as a condition to arm. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_a53837474dd4daeb75cfdc5d75a265730}\label{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_a53837474dd4daeb75cfdc5d75a265730}} 
+\index{mavlink::common::msg::OPEN\_DRONE\_ID\_ARM\_STATUS@{mavlink::common::msg::OPEN\_DRONE\_ID\_ARM\_STATUS}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::OPEN\_DRONE\_ID\_ARM\_STATUS@{mavlink::common::msg::OPEN\_DRONE\_ID\_ARM\_STATUS}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+OPEN\+\_\+\+DRONE\+\_\+\+ID\+\_\+\+ARM\+\_\+\+STATUS\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_a9b72825dce5b603f9c8d6d7b9e96966f}\label{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_a9b72825dce5b603f9c8d6d7b9e96966f}} 
+\index{mavlink::common::msg::OPEN\_DRONE\_ID\_ARM\_STATUS@{mavlink::common::msg::OPEN\_DRONE\_ID\_ARM\_STATUS}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::OPEN\_DRONE\_ID\_ARM\_STATUS@{mavlink::common::msg::OPEN\_DRONE\_ID\_ARM\_STATUS}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+OPEN\+\_\+\+DRONE\+\_\+\+ID\+\_\+\+ARM\+\_\+\+STATUS\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_aa36732670c732f2955ec1115ce76ee82}\label{structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS_aa36732670c732f2955ec1115ce76ee82}} 
+\index{mavlink::common::msg::OPEN\_DRONE\_ID\_ARM\_STATUS@{mavlink::common::msg::OPEN\_DRONE\_ID\_ARM\_STATUS}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::OPEN\_DRONE\_ID\_ARM\_STATUS@{mavlink::common::msg::OPEN\_DRONE\_ID\_ARM\_STATUS}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+OPEN\+\_\+\+DRONE\+\_\+\+ID\+\_\+\+ARM\+\_\+\+STATUS\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+open\+\_\+drone\+\_\+id\+\_\+arm\+\_\+status.\+hpp\end{DoxyCompactItemize}

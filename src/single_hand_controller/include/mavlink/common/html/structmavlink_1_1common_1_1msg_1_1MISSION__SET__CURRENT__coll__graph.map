@@ -1,0 +1,4 @@
+<map id="mavlink::common::msg::MISSION_SET_CURRENT" name="mavlink::common::msg::MISSION_SET_CURRENT">
+<area shape="rect" id="node1" title="MISSION_SET_CURRENT message." alt="" coords="5,80,192,121"/>
+<area shape="rect" id="node2" title=" " alt="" coords="28,5,169,32"/>
+</map>

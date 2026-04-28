@@ -1,0 +1,92 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL}{}\doxysection{mavlink\+::common\+::msg\+::FILE\+\_\+\+TRANSFER\+\_\+\+PROTOCOL Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL}\index{mavlink::common::msg::FILE\_TRANSFER\_PROTOCOL@{mavlink::common::msg::FILE\_TRANSFER\_PROTOCOL}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL}{FILE\+\_\+\+TRANSFER\+\_\+\+PROTOCOL}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+file\+\_\+transfer\+\_\+protocol.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::FILE\+\_\+\+TRANSFER\+\_\+\+PROTOCOL\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::FILE\+\_\+\+TRANSFER\+\_\+\+PROTOCOL\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_afcb6149857d277f8b0a0fb8b8b110c3d}\label{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_afcb6149857d277f8b0a0fb8b8b110c3d}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_a447185b1a2fd2846ff07d59cfdd6600f}\label{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_a447185b1a2fd2846ff07d59cfdd6600f}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_abc1a0362725bb519b4f59565938d86ea}\label{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_abc1a0362725bb519b4f59565938d86ea}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_a349a9deb8d123ee21071f5fd28d60a34}\label{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_a349a9deb8d123ee21071f5fd28d60a34}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_ab4e29fc9230afb63b7fb7d076e5a0924}\label{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_ab4e29fc9230afb63b7fb7d076e5a0924}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_a8aa6e58b90ff6510f85d4345a368eb4c}\label{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_a8aa6e58b90ff6510f85d4345a368eb4c}} 
+uint8\+\_\+t {\bfseries target\+\_\+network}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_a56d946836da7083eb437156f73af4064}\label{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_a56d946836da7083eb437156f73af4064}} 
+uint8\+\_\+t {\bfseries target\+\_\+system}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_a8d744565a6c932568e6805ca1f4efc23}\label{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_a8d744565a6c932568e6805ca1f4efc23}} 
+uint8\+\_\+t {\bfseries target\+\_\+component}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_aed89e11273c8114328ece740bff1a15b}\label{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_aed89e11273c8114328ece740bff1a15b}} 
+std\+::array$<$ uint8\+\_\+t, 251 $>$ {\bfseries payload}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_a19de50f74540008aa51a95715972b3cd}\label{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_a19de50f74540008aa51a95715972b3cd}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 110
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_a256ed5eea0e41b0300ca37d0d6ef2afd}\label{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_a256ed5eea0e41b0300ca37d0d6ef2afd}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 254
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_a19492cfa170ddfb67c58411c41275d6b}\label{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_a19492cfa170ddfb67c58411c41275d6b}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 254
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_a179352498cbed3db9a45688ac7d8e977}\label{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_a179352498cbed3db9a45688ac7d8e977}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 84
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_a7a0104915b4dc024aea4a2e03a022aef}\label{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL_a7a0104915b4dc024aea4a2e03a022aef}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}FILE\+\_\+\+TRANSFER\+\_\+\+PROTOCOL\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1FILE__TRANSFER__PROTOCOL}{FILE\+\_\+\+TRANSFER\+\_\+\+PROTOCOL}} message. 
+
+File transfer protocol message\+: \href{https://mavlink.io/en/services/ftp.html}{\texttt{ https\+://mavlink.\+io/en/services/ftp.\+html}}. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+file\+\_\+transfer\+\_\+protocol.\+hpp\end{DoxyCompactItemize}

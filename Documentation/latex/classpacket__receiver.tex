@@ -1,0 +1,111 @@
+\hypertarget{classpacket__receiver}{}\doxysection{packet\+\_\+receiver Class Reference}
+\label{classpacket__receiver}\index{packet\_receiver@{packet\_receiver}}
+
+
+Methods within this class is meant to be invoked by the packet handler class, in order to process all received packets.  
+
+
+
+
+{\ttfamily \#include $<$packet\+\_\+receiver.\+hpp$>$}
+
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classpacket__receiver_a6ecda099f6d71a7f8c49c81c5119dca6}{receive\+\_\+timesync}} (mavlink\+\_\+message\+\_\+t $\ast$msg)
+\begin{DoxyCompactList}\small\item\em process timesync message; allows for accurate time synchronization on sending/receiving further signed packets \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classpacket__receiver_ac982b70d56cde6d25c75a345d8fb685d}{receive\+\_\+radio\+\_\+status}} (mavlink\+\_\+message\+\_\+t $\ast$msg)
+\begin{DoxyCompactList}\small\item\em process radio status message to display signal strength on user display \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classpacket__receiver_ae411c07e9161d545120a616e2d96bdf2}{receive\+\_\+sys\+\_\+status}} (mavlink\+\_\+message\+\_\+t $\ast$msg)
+\begin{DoxyCompactList}\small\item\em process sys\+\_\+status message to display battery percentage on user display \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classpacket__receiver_aecdda53a01340f86b296f8eb50b3ad57}{receive\+\_\+ack}} (mavlink\+\_\+message\+\_\+t $\ast$msg)
+\begin{DoxyCompactList}\small\item\em receive acknowledgement for all command long messages sent from device; includes accepted/rejected status using which the hand controller knows whether the packet is accepted or rejected \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classpacket__receiver_a31de6d0a8f564c1c34de144904e6a9c4}{receive\+\_\+heartbeat}} (mavlink\+\_\+message\+\_\+t $\ast$msg)
+\begin{DoxyCompactList}\small\item\em receives and validates heartbeat messages received from scout, based on which the last\+\_\+heartbeat\+\_\+received\+\_\+at variable is updated \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Methods within this class is meant to be invoked by the packet handler class, in order to process all received packets. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classpacket__receiver_aecdda53a01340f86b296f8eb50b3ad57}\label{classpacket__receiver_aecdda53a01340f86b296f8eb50b3ad57}} 
+\index{packet\_receiver@{packet\_receiver}!receive\_ack@{receive\_ack}}
+\index{receive\_ack@{receive\_ack}!packet\_receiver@{packet\_receiver}}
+\doxysubsubsection{\texorpdfstring{receive\_ack()}{receive\_ack()}}
+{\footnotesize\ttfamily void packet\+\_\+receiver\+::receive\+\_\+ack (\begin{DoxyParamCaption}\item[{mavlink\+\_\+message\+\_\+t $\ast$}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+receive acknowledgement for all command long messages sent from device; includes accepted/rejected status using which the hand controller knows whether the packet is accepted or rejected 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & received message \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classpacket__receiver_a31de6d0a8f564c1c34de144904e6a9c4}\label{classpacket__receiver_a31de6d0a8f564c1c34de144904e6a9c4}} 
+\index{packet\_receiver@{packet\_receiver}!receive\_heartbeat@{receive\_heartbeat}}
+\index{receive\_heartbeat@{receive\_heartbeat}!packet\_receiver@{packet\_receiver}}
+\doxysubsubsection{\texorpdfstring{receive\_heartbeat()}{receive\_heartbeat()}}
+{\footnotesize\ttfamily void packet\+\_\+receiver\+::receive\+\_\+heartbeat (\begin{DoxyParamCaption}\item[{mavlink\+\_\+message\+\_\+t $\ast$}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+receives and validates heartbeat messages received from scout, based on which the last\+\_\+heartbeat\+\_\+received\+\_\+at variable is updated 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & received message \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classpacket__receiver_ac982b70d56cde6d25c75a345d8fb685d}\label{classpacket__receiver_ac982b70d56cde6d25c75a345d8fb685d}} 
+\index{packet\_receiver@{packet\_receiver}!receive\_radio\_status@{receive\_radio\_status}}
+\index{receive\_radio\_status@{receive\_radio\_status}!packet\_receiver@{packet\_receiver}}
+\doxysubsubsection{\texorpdfstring{receive\_radio\_status()}{receive\_radio\_status()}}
+{\footnotesize\ttfamily void packet\+\_\+receiver\+::receive\+\_\+radio\+\_\+status (\begin{DoxyParamCaption}\item[{mavlink\+\_\+message\+\_\+t $\ast$}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+process radio status message to display signal strength on user display 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & received message \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classpacket__receiver_ae411c07e9161d545120a616e2d96bdf2}\label{classpacket__receiver_ae411c07e9161d545120a616e2d96bdf2}} 
+\index{packet\_receiver@{packet\_receiver}!receive\_sys\_status@{receive\_sys\_status}}
+\index{receive\_sys\_status@{receive\_sys\_status}!packet\_receiver@{packet\_receiver}}
+\doxysubsubsection{\texorpdfstring{receive\_sys\_status()}{receive\_sys\_status()}}
+{\footnotesize\ttfamily void packet\+\_\+receiver\+::receive\+\_\+sys\+\_\+status (\begin{DoxyParamCaption}\item[{mavlink\+\_\+message\+\_\+t $\ast$}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+process sys\+\_\+status message to display battery percentage on user display 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & received message \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classpacket__receiver_a6ecda099f6d71a7f8c49c81c5119dca6}\label{classpacket__receiver_a6ecda099f6d71a7f8c49c81c5119dca6}} 
+\index{packet\_receiver@{packet\_receiver}!receive\_timesync@{receive\_timesync}}
+\index{receive\_timesync@{receive\_timesync}!packet\_receiver@{packet\_receiver}}
+\doxysubsubsection{\texorpdfstring{receive\_timesync()}{receive\_timesync()}}
+{\footnotesize\ttfamily void packet\+\_\+receiver\+::receive\+\_\+timesync (\begin{DoxyParamCaption}\item[{mavlink\+\_\+message\+\_\+t $\ast$}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+process timesync message; allows for accurate time synchronization on sending/receiving further signed packets 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & received message \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/\mbox{\hyperlink{packet__receiver_8hpp}{packet\+\_\+receiver.\+hpp}}\item 
+single\+\_\+hand\+\_\+controller/\mbox{\hyperlink{packet__receiver_8cpp}{packet\+\_\+receiver.\+cpp}}\end{DoxyCompactItemize}

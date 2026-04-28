@@ -1,0 +1,110 @@
+/**
+ * @file message_sender.cpp
+ * @version 0.1
+ * @author Nikhil Tom Jose
+ * @date 22/04/2026
+ * 
+ * Part of message sender library.
+ * Defines member functions of message_sender class
+ */
+#include "include/message_sender.hpp"
+
+extern uint64_t UGVTime,RecvTime, RecvTimeRef;
+
+int message_sender::buffer_arm_disarm_cmd(bool state)
+{
+    arm_disarm_cmd.param1 = state;
+
+    mavlink_msg_command_long_pack(
+        HC_ID,
+        HC_COMP_ID,
+        msg,
+
+        arm_disarm_cmd.target_system,
+        arm_disarm_cmd.target_component,
+        arm_disarm_cmd.command,
+        arm_disarm_cmd.confirmation,
+        arm_disarm_cmd.param1,
+        0,0,0,0,0,0);
+
+    return mavlink_msg_to_send_buffer(buf,msg);
+}
+
+int message_sender::buffer_heartbeat()
+{
+    
+    mavlink_msg_heartbeat_pack(
+        heartbeat.sys_id,
+        heartbeat.comp_id,
+        msg,
+
+        0,0,0,0,0);
+
+    return mavlink_msg_to_send_buffer(buf,msg);
+}
+
+
+int message_sender::buffer_timesync()
+{
+    if(RecvTimeRef == 0)    // during first timesync
+        RecvTimeRef = micros();
+    
+    timesync.ts1 = UGVTime + (micros() - RecvTimeRef);
+        
+    mavlink_msg_timesync_pack(
+        HC_ID,
+        HC_COMP_ID,
+        msg,
+        
+        timesync.tc1,
+        timesync.ts1,
+        timesync.target_sys,
+        timesync.target_comp);
+
+    return mavlink_msg_to_send_buffer(buf,msg);
+}
+
+int message_sender::buffer_manual_control(int x, int y, bool extra_feature_1_press, bool extra_feature_1_long_press, bool extra_feature_2_press, bool extra_feature_2_long_press, directionToggle dirTog, speedToggle spdTog)
+{
+    manual_control.x = x;
+    manual_control.y = y;
+    manual_control.Push_buttons = extra_feature_1_press | extra_feature_1_long_press << 1 | extra_feature_2_press << 2 | extra_feature_2_long_press << 3;
+    manual_control.Tristate_Toggle_switches = 0;
+    switch(dirTog){
+        case neutral:
+        break;
+        case forward:
+        manual_control.Tristate_Toggle_switches |= 1;
+        break;
+        case reverse:
+        manual_control.Tristate_Toggle_switches |= 2;
+        break;
+    }
+    switch(spdTog){
+        case low:
+        break;
+        case mid:
+        manual_control.Tristate_Toggle_switches |= 4;
+        break;
+        case high:
+        manual_control.Tristate_Toggle_switches |= 8;
+        break;
+    }
+
+
+    mavlink_msg_manual_control_pack(
+        HC_ID,
+        HC_COMP_ID,
+        msg,
+
+        manual_control.target,
+        manual_control.x,
+        manual_control.y,
+        0,0,
+        manual_control.Push_buttons,
+        manual_control.Tristate_Toggle_switches,
+        0,0,0,0,0,0,0,0,0
+    );
+
+    return mavlink_msg_to_send_buffer(buf,msg);
+}

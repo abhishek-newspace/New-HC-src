@@ -1,0 +1,4 @@
+<map id="mavlink::common::msg::AUTOPILOT_STATE_FOR_GIMBAL_DEVICE" name="mavlink::common::msg::AUTOPILOT_STATE_FOR_GIMBAL_DEVICE">
+<area shape="rect" id="node1" title="AUTOPILOT_STATE_FOR_GIMBAL_DEVICE message." alt="" coords="5,80,189,136"/>
+<area shape="rect" id="node2" title=" " alt="" coords="27,5,168,32"/>
+</map>

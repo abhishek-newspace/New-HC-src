@@ -1,0 +1,107 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION}{}\doxysection{mavlink\+::common\+::msg\+::GIMBAL\+\_\+\+MANAGER\+\_\+\+INFORMATION Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION}\index{mavlink::common::msg::GIMBAL\_MANAGER\_INFORMATION@{mavlink::common::msg::GIMBAL\_MANAGER\_INFORMATION}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION}{GIMBAL\+\_\+\+MANAGER\+\_\+\+INFORMATION}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+gimbal\+\_\+manager\+\_\+information.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::GIMBAL\+\_\+\+MANAGER\+\_\+\+INFORMATION\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=271pt]{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::GIMBAL\+\_\+\+MANAGER\+\_\+\+INFORMATION\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=271pt]{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a44713d680ef4d3f5b1aeaa45cdf12e81}\label{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a44713d680ef4d3f5b1aeaa45cdf12e81}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a2d14cf46fbb69f206eb5566534862ccf}\label{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a2d14cf46fbb69f206eb5566534862ccf}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a93ca1e606365921cd037c31743c6ae3c}\label{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a93ca1e606365921cd037c31743c6ae3c}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a395293f2e0d5113c95e4be9dbb40432c}\label{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a395293f2e0d5113c95e4be9dbb40432c}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_acd0615d22a989491fe107541dc643a4b}\label{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_acd0615d22a989491fe107541dc643a4b}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a101c1a6357fd8e58baaa0e920581147c}\label{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a101c1a6357fd8e58baaa0e920581147c}} 
+uint32\+\_\+t {\bfseries time\+\_\+boot\+\_\+ms}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_af4f1cc210a86148076ba195c160f52a0}\label{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_af4f1cc210a86148076ba195c160f52a0}} 
+uint32\+\_\+t {\bfseries cap\+\_\+flags}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a359e856cc42f9a20dfbf14be4f55fa66}\label{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a359e856cc42f9a20dfbf14be4f55fa66}} 
+uint8\+\_\+t {\bfseries gimbal\+\_\+device\+\_\+id}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a4b82467d64133584bae38402e8d38245}\label{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a4b82467d64133584bae38402e8d38245}} 
+float {\bfseries roll\+\_\+min}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a370ed608eb1c552e1b42076a40e7a09a}\label{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a370ed608eb1c552e1b42076a40e7a09a}} 
+float {\bfseries roll\+\_\+max}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_afa76061070d9609c033684e27933b42c}\label{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_afa76061070d9609c033684e27933b42c}} 
+float {\bfseries pitch\+\_\+min}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a1ab255a441f3ac4c07d91fbd54566d68}\label{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a1ab255a441f3ac4c07d91fbd54566d68}} 
+float {\bfseries pitch\+\_\+max}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a7f0b7ee2599e411e860ea603d5612a55}\label{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a7f0b7ee2599e411e860ea603d5612a55}} 
+float {\bfseries yaw\+\_\+min}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_ad01f4d54363687de727b52751a75651e}\label{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_ad01f4d54363687de727b52751a75651e}} 
+float {\bfseries yaw\+\_\+max}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a661ca5acf3802f63b6904b39fa253501}\label{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a661ca5acf3802f63b6904b39fa253501}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 280
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a7b016ef849a26ae38e3ad79c50b6a2bb}\label{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a7b016ef849a26ae38e3ad79c50b6a2bb}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 33
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a037de3f53c41b5df5ce2fffa2d3deed4}\label{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a037de3f53c41b5df5ce2fffa2d3deed4}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 33
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a88c5586020d9967e44fe3a84ca23b05b}\label{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a88c5586020d9967e44fe3a84ca23b05b}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 70
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a3a4954b95ce14156c8c06f4cd5ea3a4d}\label{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION_a3a4954b95ce14156c8c06f4cd5ea3a4d}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}GIMBAL\+\_\+\+MANAGER\+\_\+\+INFORMATION\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1GIMBAL__MANAGER__INFORMATION}{GIMBAL\+\_\+\+MANAGER\+\_\+\+INFORMATION}} message. 
+
+Information about a high level gimbal manager. This message should be requested by a ground station using MAV\+\_\+\+CMD\+\_\+\+REQUEST\+\_\+\+MESSAGE. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+gimbal\+\_\+manager\+\_\+information.\+hpp\end{DoxyCompactItemize}

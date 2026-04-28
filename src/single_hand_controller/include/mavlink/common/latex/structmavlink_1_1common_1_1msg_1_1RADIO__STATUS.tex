@@ -1,0 +1,101 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS}{}\doxysection{mavlink\+::common\+::msg\+::RADIO\+\_\+\+STATUS Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS}\index{mavlink::common::msg::RADIO\_STATUS@{mavlink::common::msg::RADIO\_STATUS}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS}{RADIO\+\_\+\+STATUS}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+radio\+\_\+status.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::RADIO\+\_\+\+STATUS\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::RADIO\+\_\+\+STATUS\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_acbc3891cc1f17e9e78044b2092e2cb75}\label{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_acbc3891cc1f17e9e78044b2092e2cb75}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_ab0091f221c677ee16d29f8bf77460411}\label{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_ab0091f221c677ee16d29f8bf77460411}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_a475c0c3cd6521439e3ca0a1d81ae283c}\label{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_a475c0c3cd6521439e3ca0a1d81ae283c}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_affe030a9cedca92e422ade80c708950d}\label{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_affe030a9cedca92e422ade80c708950d}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_aff8adf3b0db2ff55a919325155ce0dbb}\label{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_aff8adf3b0db2ff55a919325155ce0dbb}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_ade1cffc00753bf588f7f2c1f2ec2f6a2}\label{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_ade1cffc00753bf588f7f2c1f2ec2f6a2}} 
+uint8\+\_\+t {\bfseries rssi}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_a7ccf9be158d5bcdc0e3902c67a259e95}\label{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_a7ccf9be158d5bcdc0e3902c67a259e95}} 
+uint8\+\_\+t {\bfseries remrssi}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_ad36ba475e2dd7890c0270f9a30661bbc}\label{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_ad36ba475e2dd7890c0270f9a30661bbc}} 
+uint8\+\_\+t {\bfseries txbuf}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_a3418adc3ca92e0b033f847bc805aa314}\label{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_a3418adc3ca92e0b033f847bc805aa314}} 
+uint8\+\_\+t {\bfseries noise}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_a28d108008f4f6402da149ea20badc106}\label{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_a28d108008f4f6402da149ea20badc106}} 
+uint8\+\_\+t {\bfseries remnoise}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_ae5fc17c87f214baa80c00d30b8b317d0}\label{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_ae5fc17c87f214baa80c00d30b8b317d0}} 
+uint16\+\_\+t {\bfseries rxerrors}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_a5c627439f631cf030f7841fb5f88f171}\label{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_a5c627439f631cf030f7841fb5f88f171}} 
+uint16\+\_\+t {\bfseries fixed}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_a3971f3dc1a5f0a581452f43175939f3c}\label{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_a3971f3dc1a5f0a581452f43175939f3c}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 109
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_a4c063c0b4fbb723f96ec1e58af7697aa}\label{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_a4c063c0b4fbb723f96ec1e58af7697aa}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 9
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_afee6e5df1a1667bdae6d9647ef157a79}\label{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_afee6e5df1a1667bdae6d9647ef157a79}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 9
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_a83812223ad41fbf1b37e76e0176b761d}\label{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_a83812223ad41fbf1b37e76e0176b761d}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 185
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_a6538f00019522ae7b8954e7906bfb9c0}\label{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS_a6538f00019522ae7b8954e7906bfb9c0}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}RADIO\+\_\+\+STATUS\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1RADIO__STATUS}{RADIO\+\_\+\+STATUS}} message. 
+
+Status generated by radio and injected into MAVLink stream. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+radio\+\_\+status.\+hpp\end{DoxyCompactItemize}

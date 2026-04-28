@@ -1,0 +1,130 @@
+\hypertarget{standard_8hpp}{}\doxysection{single\+\_\+hand\+\_\+controller/include/mavlink/standard/standard.hpp File Reference}
+\label{standard_8hpp}\index{single\_hand\_controller/include/mavlink/standard/standard.hpp@{single\_hand\_controller/include/mavlink/standard/standard.hpp}}
+
+
+MAVLink comm protocol generated from standard.\+xml.  
+
+
+{\ttfamily \#include $<$array$>$}\newline
+{\ttfamily \#include $<$cstdint$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include \char`\"{}../message.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}./mavlink\+\_\+msg\+\_\+global\+\_\+position\+\_\+int.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}./mavlink\+\_\+msg\+\_\+autopilot\+\_\+version.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../minimal/minimal.\+hpp\char`\"{}}\newline
+Include dependency graph for standard.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{standard_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{standard_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{standard_8hpp_af97e9d670eb0963e3f3fb17a1f6bceeb}\label{standard_8hpp_af97e9d670eb0963e3f3fb17a1f6bceeb}} 
+\#define {\bfseries MAVLINK\+\_\+\+STX}~253
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{standard_8hpp_a5dcaf6f3095bd600397fa1e281a54488}\label{standard_8hpp_a5dcaf6f3095bd600397fa1e281a54488}} 
+enum class \mbox{\hyperlink{standard_8hpp_a5dcaf6f3095bd600397fa1e281a54488}{mavlink\+::standard\+::\+MAV\+\_\+\+BOOL}} \{ {\bfseries FALSE\+\_\+} =0
+, {\bfseries TRUE\+\_\+} =1
+ \}
+\begin{DoxyCompactList}\small\item\em Enum used to indicate true or false (also\+: success or failure, enabled or disabled, active or inactive). \end{DoxyCompactList}\item 
+enum class \mbox{\hyperlink{standard_8hpp_a225cc296c88d09788b639e963673a6c4}{mavlink\+::standard\+::\+MAV\+\_\+\+PROTOCOL\+\_\+\+CAPABILITY}} \+: uint64\+\_\+t \{ \newline
+{\bfseries MISSION\+\_\+\+FLOAT} =1
+, {\bfseries PARAM\+\_\+\+FLOAT} =2
+, {\bfseries MISSION\+\_\+\+INT} =4
+, {\bfseries COMMAND\+\_\+\+INT} =8
+, \newline
+{\bfseries PARAM\+\_\+\+ENCODE\+\_\+\+BYTEWISE} =16
+, {\bfseries FTP} =32
+, {\bfseries SET\+\_\+\+ATTITUDE\+\_\+\+TARGET} =64
+, {\bfseries SET\+\_\+\+POSITION\+\_\+\+TARGET\+\_\+\+LOCAL\+\_\+\+NED} =128
+, \newline
+{\bfseries SET\+\_\+\+POSITION\+\_\+\+TARGET\+\_\+\+GLOBAL\+\_\+\+INT} =256
+, {\bfseries TERRAIN} =512
+, {\bfseries RESERVED3} =1024
+, {\bfseries FLIGHT\+\_\+\+TERMINATION} =2048
+, \newline
+{\bfseries COMPASS\+\_\+\+CALIBRATION} =4096
+, {\bfseries MAVLINK2} =8192
+, {\bfseries MISSION\+\_\+\+FENCE} =16384
+, {\bfseries MISSION\+\_\+\+RALLY} =32768
+, \newline
+{\bfseries RESERVED2} =65536
+, {\bfseries PARAM\+\_\+\+ENCODE\+\_\+\+C\+\_\+\+CAST} =131072
+, {\bfseries COMPONENT\+\_\+\+IMPLEMENTS\+\_\+\+GIMBAL\+\_\+\+MANAGER} =262144
+, {\bfseries COMPONENT\+\_\+\+ACCEPTS\+\_\+\+GCS\+\_\+\+CONTROL} =524288
+, \newline
+{\bfseries GRIPPER} =1048576
+ \}
+\begin{DoxyCompactList}\small\item\em Bitmask of (optional) autopilot capabilities (64 bit). \end{DoxyCompactList}\item 
+enum class \mbox{\hyperlink{standard_8hpp_a79d6d36f35ea05824ca31e221adcaf43}{mavlink\+::standard\+::\+FIRMWARE\+\_\+\+VERSION\+\_\+\+TYPE}} \{ \newline
+{\bfseries DEV} =0
+, {\bfseries ALPHA} =64
+, {\bfseries BETA} =128
+, {\bfseries RC} =192
+, \newline
+{\bfseries OFFICIAL} =255
+ \}
+\begin{DoxyCompactList}\small\item\em These values define the type of firmware release. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{standard_8hpp_af17e1632fd50266262ccccf807a10194}\label{standard_8hpp_af17e1632fd50266262ccccf807a10194}} 
+constexpr std\+::array$<$ \mbox{\hyperlink{struct____mavlink__msg__entry}{mavlink\+\_\+msg\+\_\+entry\+\_\+t}}, 3 $>$ \mbox{\hyperlink{standard_8hpp_af17e1632fd50266262ccccf807a10194}{mavlink\+::standard\+::\+MESSAGE\+\_\+\+ENTRIES}} \{\{ \{0, 50, 9, 9, 0, 0, 0\}, \{33, 104, 28, 28, 0, 0, 0\}, \{148, 178, 60, 78, 0, 0, 0\} \}\}
+\begin{DoxyCompactList}\small\item\em Array of msg\+\_\+entry needed for {\ttfamily mavlink\+\_\+parse\+\_\+char()} (through {\ttfamily mavlink\+\_\+get\+\_\+msg\+\_\+entry()}) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{standard_8hpp_a57ce01447c700dbbfe9e8bc9545be06f}\label{standard_8hpp_a57ce01447c700dbbfe9e8bc9545be06f}} 
+constexpr auto \mbox{\hyperlink{standard_8hpp_a57ce01447c700dbbfe9e8bc9545be06f}{mavlink\+::standard\+::\+MAVLINK\+\_\+\+VERSION}} = 2
+\begin{DoxyCompactList}\small\item\em MAVLINK VERSION. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{standard_8hpp_a6f474ae440e0360a704b25486c95ab73}\label{standard_8hpp_a6f474ae440e0360a704b25486c95ab73}} 
+constexpr auto \mbox{\hyperlink{standard_8hpp_a6f474ae440e0360a704b25486c95ab73}{mavlink\+::standard\+::\+MAV\+\_\+\+BOOL\+\_\+\+ENUM\+\_\+\+END}} = 2
+\begin{DoxyCompactList}\small\item\em MAV\+\_\+\+BOOL ENUM\+\_\+\+END. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{standard_8hpp_a4155d121fa09c245e0510c9ecaaedecc}\label{standard_8hpp_a4155d121fa09c245e0510c9ecaaedecc}} 
+constexpr auto \mbox{\hyperlink{standard_8hpp_a4155d121fa09c245e0510c9ecaaedecc}{mavlink\+::standard\+::\+MAV\+\_\+\+PROTOCOL\+\_\+\+CAPABILITY\+\_\+\+ENUM\+\_\+\+END}} = 1048577
+\begin{DoxyCompactList}\small\item\em MAV\+\_\+\+PROTOCOL\+\_\+\+CAPABILITY ENUM\+\_\+\+END. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{standard_8hpp_ac83ea4a42c4d000f9634a2e66c8a43da}\label{standard_8hpp_ac83ea4a42c4d000f9634a2e66c8a43da}} 
+constexpr auto \mbox{\hyperlink{standard_8hpp_ac83ea4a42c4d000f9634a2e66c8a43da}{mavlink\+::standard\+::\+FIRMWARE\+\_\+\+VERSION\+\_\+\+TYPE\+\_\+\+ENUM\+\_\+\+END}} = 256
+\begin{DoxyCompactList}\small\item\em FIRMWARE\+\_\+\+VERSION\+\_\+\+TYPE ENUM\+\_\+\+END. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+MAVLink comm protocol generated from standard.\+xml. 
+
+\begin{DoxySeeAlso}{See also}
+\href{http://mavlink.org}{\texttt{ http\+://mavlink.\+org}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{standard_8hpp_a79d6d36f35ea05824ca31e221adcaf43}\label{standard_8hpp_a79d6d36f35ea05824ca31e221adcaf43}} 
+\index{standard.hpp@{standard.hpp}!FIRMWARE\_VERSION\_TYPE@{FIRMWARE\_VERSION\_TYPE}}
+\index{FIRMWARE\_VERSION\_TYPE@{FIRMWARE\_VERSION\_TYPE}!standard.hpp@{standard.hpp}}
+\doxysubsubsection{\texorpdfstring{FIRMWARE\_VERSION\_TYPE}{FIRMWARE\_VERSION\_TYPE}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{standard_8hpp_a79d6d36f35ea05824ca31e221adcaf43}{mavlink\+::standard\+::\+FIRMWARE\+\_\+\+VERSION\+\_\+\+TYPE}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+These values define the type of firmware release. 
+
+These values indicate the first version or release of this type. For example the first alpha release would be 64, the second would be 65. \mbox{\Hypertarget{standard_8hpp_a225cc296c88d09788b639e963673a6c4}\label{standard_8hpp_a225cc296c88d09788b639e963673a6c4}} 
+\index{standard.hpp@{standard.hpp}!MAV\_PROTOCOL\_CAPABILITY@{MAV\_PROTOCOL\_CAPABILITY}}
+\index{MAV\_PROTOCOL\_CAPABILITY@{MAV\_PROTOCOL\_CAPABILITY}!standard.hpp@{standard.hpp}}
+\doxysubsubsection{\texorpdfstring{MAV\_PROTOCOL\_CAPABILITY}{MAV\_PROTOCOL\_CAPABILITY}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{standard_8hpp_a225cc296c88d09788b639e963673a6c4}{mavlink\+::standard\+::\+MAV\+\_\+\+PROTOCOL\+\_\+\+CAPABILITY}} \+: uint64\+\_\+t\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Bitmask of (optional) autopilot capabilities (64 bit). 
+
+If a bit is set, the autopilot supports this capability. 

@@ -1,0 +1,178 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL}{}\doxysection{mavlink\+::common\+::msg\+::MANUAL\+\_\+\+CONTROL Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL}\index{mavlink::common::msg::MANUAL\_CONTROL@{mavlink::common::msg::MANUAL\_CONTROL}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL}{MANUAL\+\_\+\+CONTROL}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+manual\+\_\+control.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::MANUAL\+\_\+\+CONTROL\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::MANUAL\+\_\+\+CONTROL\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a1489acac754068834d1230c917a3b4ca}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_afa27ad87e996018be47ee6b453a38313}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_afa27ad87e996018be47ee6b453a38313}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_afa27ad87e996018be47ee6b453a38313}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_acacd7a7c264b1c569b6b8b74148a098e}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_acacd7a7c264b1c569b6b8b74148a098e}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_acacd7a7c264b1c569b6b8b74148a098e}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a12c84a01fb509572b6becfbfcaf2e71e}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_ae7ac92680db52ee044193eb72aef321f}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a1b45dc05076cb7e864c3296471ac75c8}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a1b45dc05076cb7e864c3296471ac75c8}} 
+uint8\+\_\+t {\bfseries target}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_aa156d1b900fcea586852de4a1fae5561}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_aa156d1b900fcea586852de4a1fae5561}} 
+int16\+\_\+t {\bfseries x}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a6497073e9ea4c83fdcf33ef641e3e89b}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a6497073e9ea4c83fdcf33ef641e3e89b}} 
+int16\+\_\+t {\bfseries y}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a2cfee40358dd0536a785049055da7d56}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a2cfee40358dd0536a785049055da7d56}} 
+int16\+\_\+t {\bfseries z}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a9a512bd8158c7bf39aac6037b8f83d1f}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a9a512bd8158c7bf39aac6037b8f83d1f}} 
+int16\+\_\+t {\bfseries r}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a32f5fca523c58a51d835ed9e403fca26}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a32f5fca523c58a51d835ed9e403fca26}} 
+uint16\+\_\+t {\bfseries buttons}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_af18ccfa5a895732e2218c9616fc928c2}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_af18ccfa5a895732e2218c9616fc928c2}} 
+uint16\+\_\+t {\bfseries buttons2}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a9a7f0ad7337a4ec71b028f65bf33e9f4}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a9a7f0ad7337a4ec71b028f65bf33e9f4}} 
+uint8\+\_\+t {\bfseries enabled\+\_\+extensions}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a78954a83cf358a43d4b9e405858056f1}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a78954a83cf358a43d4b9e405858056f1}} 
+int16\+\_\+t {\bfseries s}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_aee29c3dc31f83c3ea2a9c893d4925b93}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_aee29c3dc31f83c3ea2a9c893d4925b93}} 
+int16\+\_\+t {\bfseries t}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a5d0b60c88109af0c79ddbb7ee77a7149}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a5d0b60c88109af0c79ddbb7ee77a7149}} 
+int16\+\_\+t {\bfseries aux1}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a48ccdb9a034b17e2b8226c336e1b632d}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a48ccdb9a034b17e2b8226c336e1b632d}} 
+int16\+\_\+t {\bfseries aux2}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_ae43854ae562282387a798422feaadabb}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_ae43854ae562282387a798422feaadabb}} 
+int16\+\_\+t {\bfseries aux3}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_acee80f1c301199bde3ca3a2ae6995896}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_acee80f1c301199bde3ca3a2ae6995896}} 
+int16\+\_\+t {\bfseries aux4}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_aeee7cc9f4f4a921b7650875bba7d2faa}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_aeee7cc9f4f4a921b7650875bba7d2faa}} 
+int16\+\_\+t {\bfseries aux5}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a7f1f5589b86065ca01bbc6e7db55486c}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a7f1f5589b86065ca01bbc6e7db55486c}} 
+int16\+\_\+t {\bfseries aux6}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a0ba6ae5e06bc502ca80b60b7389858c2}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a0ba6ae5e06bc502ca80b60b7389858c2}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 69
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a72cc4a3e642f3d7c8bd7ff45565be480}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a72cc4a3e642f3d7c8bd7ff45565be480}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 30
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a405e14025e7673510e4c26fadc65dbc9}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a405e14025e7673510e4c26fadc65dbc9}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 11
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a3622001f4e969082498eebccba7a0a07}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a3622001f4e969082498eebccba7a0a07}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 243
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a88191a7d8b3c56a8b0dad8829ca8cb8c}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a88191a7d8b3c56a8b0dad8829ca8cb8c}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}MANUAL\+\_\+\+CONTROL\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL}{MANUAL\+\_\+\+CONTROL}} message. 
+
+Manual (joystick) control message. This message represents movement axes and button using standard joystick axes nomenclature. Unused axes can be disabled and buttons states are transmitted as individual on/off bits of a bitmask. For more information see \href{https://mavlink.io/en/manual_control.html}{\texttt{ https\+://mavlink.\+io/en/manual\+\_\+control.\+html}} 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_ae7ac92680db52ee044193eb72aef321f}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_ae7ac92680db52ee044193eb72aef321f}} 
+\index{mavlink::common::msg::MANUAL\_CONTROL@{mavlink::common::msg::MANUAL\_CONTROL}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::MANUAL\_CONTROL@{mavlink::common::msg::MANUAL\_CONTROL}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+MANUAL\+\_\+\+CONTROL\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a1489acac754068834d1230c917a3b4ca}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a1489acac754068834d1230c917a3b4ca}} 
+\index{mavlink::common::msg::MANUAL\_CONTROL@{mavlink::common::msg::MANUAL\_CONTROL}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::MANUAL\_CONTROL@{mavlink::common::msg::MANUAL\_CONTROL}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+MANUAL\+\_\+\+CONTROL\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a12c84a01fb509572b6becfbfcaf2e71e}\label{structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL_a12c84a01fb509572b6becfbfcaf2e71e}} 
+\index{mavlink::common::msg::MANUAL\_CONTROL@{mavlink::common::msg::MANUAL\_CONTROL}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::MANUAL\_CONTROL@{mavlink::common::msg::MANUAL\_CONTROL}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+MANUAL\+\_\+\+CONTROL\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+manual\+\_\+control.\+hpp\end{DoxyCompactItemize}

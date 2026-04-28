@@ -1,0 +1,145 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA}{}\doxysection{mavlink\+::common\+::msg\+::TERRAIN\+\_\+\+DATA Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA}\index{mavlink::common::msg::TERRAIN\_DATA@{mavlink::common::msg::TERRAIN\_DATA}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA}{TERRAIN\+\_\+\+DATA}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+terrain\+\_\+data.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::TERRAIN\+\_\+\+DATA\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::TERRAIN\+\_\+\+DATA\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a21657c40854f7016a4fcbacc48560693}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_ab93c3bf36731b4d0f04f72a29495db77}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_ab93c3bf36731b4d0f04f72a29495db77}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_ab93c3bf36731b4d0f04f72a29495db77}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a878e13ca1dae02924ff87eff041c1727}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a878e13ca1dae02924ff87eff041c1727}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a878e13ca1dae02924ff87eff041c1727}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a8257fd6bfcb588ff5541eece4416776a}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a56ac494f3af868d481379dcf55d24add}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_ad79bba76429bf6e2c4a38929998919f7}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_ad79bba76429bf6e2c4a38929998919f7}} 
+int32\+\_\+t {\bfseries lat}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a0fdc7ef554983a81354b2d187e06365a}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a0fdc7ef554983a81354b2d187e06365a}} 
+int32\+\_\+t {\bfseries lon}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a58f4306e8f6b16c70f902005cca6e632}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a58f4306e8f6b16c70f902005cca6e632}} 
+uint16\+\_\+t {\bfseries grid\+\_\+spacing}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a6c3e7c92f2c827917a03be703076f4df}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a6c3e7c92f2c827917a03be703076f4df}} 
+uint8\+\_\+t {\bfseries gridbit}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a0e9e5df96b0e156d7efd542d1d46c75c}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a0e9e5df96b0e156d7efd542d1d46c75c}} 
+std\+::array$<$ int16\+\_\+t, 16 $>$ {\bfseries data}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a556a6c0716908e487022bd4e24cdbd32}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a556a6c0716908e487022bd4e24cdbd32}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 134
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_abf7af2c50aa14da31357f88ccd0358cc}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_abf7af2c50aa14da31357f88ccd0358cc}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 43
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a69bc9eae3881676a0522b0cb3eebf68f}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a69bc9eae3881676a0522b0cb3eebf68f}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 43
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a66013e1fa7fc52ea2dc9f29f03157f1e}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a66013e1fa7fc52ea2dc9f29f03157f1e}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 229
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_aa1153a5641fb3a82993c4e37efe42397}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_aa1153a5641fb3a82993c4e37efe42397}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}TERRAIN\+\_\+\+DATA\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA}{TERRAIN\+\_\+\+DATA}} message. 
+
+Terrain data sent from GCS. The lat/lon and grid\+\_\+spacing must be the same as a lat/lon from a \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TERRAIN__REQUEST}{TERRAIN\+\_\+\+REQUEST}}. See terrain protocol docs\+: \href{https://mavlink.io/en/services/terrain.html}{\texttt{ https\+://mavlink.\+io/en/services/terrain.\+html}} 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a56ac494f3af868d481379dcf55d24add}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a56ac494f3af868d481379dcf55d24add}} 
+\index{mavlink::common::msg::TERRAIN\_DATA@{mavlink::common::msg::TERRAIN\_DATA}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::TERRAIN\_DATA@{mavlink::common::msg::TERRAIN\_DATA}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+TERRAIN\+\_\+\+DATA\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a21657c40854f7016a4fcbacc48560693}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a21657c40854f7016a4fcbacc48560693}} 
+\index{mavlink::common::msg::TERRAIN\_DATA@{mavlink::common::msg::TERRAIN\_DATA}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::TERRAIN\_DATA@{mavlink::common::msg::TERRAIN\_DATA}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+TERRAIN\+\_\+\+DATA\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a8257fd6bfcb588ff5541eece4416776a}\label{structmavlink_1_1common_1_1msg_1_1TERRAIN__DATA_a8257fd6bfcb588ff5541eece4416776a}} 
+\index{mavlink::common::msg::TERRAIN\_DATA@{mavlink::common::msg::TERRAIN\_DATA}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::TERRAIN\_DATA@{mavlink::common::msg::TERRAIN\_DATA}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+TERRAIN\+\_\+\+DATA\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+terrain\+\_\+data.\+hpp\end{DoxyCompactItemize}

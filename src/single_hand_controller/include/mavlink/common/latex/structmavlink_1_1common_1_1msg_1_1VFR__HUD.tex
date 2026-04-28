@@ -1,0 +1,98 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1VFR__HUD}{}\doxysection{mavlink\+::common\+::msg\+::VFR\+\_\+\+HUD Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1VFR__HUD}\index{mavlink::common::msg::VFR\_HUD@{mavlink::common::msg::VFR\_HUD}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1VFR__HUD}{VFR\+\_\+\+HUD}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+vfr\+\_\+hud.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::VFR\+\_\+\+HUD\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1VFR__HUD__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::VFR\+\_\+\+HUD\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1VFR__HUD__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1VFR__HUD_a4a744993e62c4cc112daf065889e7629}\label{structmavlink_1_1common_1_1msg_1_1VFR__HUD_a4a744993e62c4cc112daf065889e7629}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1VFR__HUD_a997a0275cfb2ef1ee9f023b513368180}\label{structmavlink_1_1common_1_1msg_1_1VFR__HUD_a997a0275cfb2ef1ee9f023b513368180}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1VFR__HUD_ad6dbbf46b5387ff9db2614e9fbde314e}\label{structmavlink_1_1common_1_1msg_1_1VFR__HUD_ad6dbbf46b5387ff9db2614e9fbde314e}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1VFR__HUD_ab2b25097d6e4dd3253ceb40d28fcdf00}\label{structmavlink_1_1common_1_1msg_1_1VFR__HUD_ab2b25097d6e4dd3253ceb40d28fcdf00}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1VFR__HUD_af9e74d5efee4aba1c466cc64bd7035a7}\label{structmavlink_1_1common_1_1msg_1_1VFR__HUD_af9e74d5efee4aba1c466cc64bd7035a7}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1VFR__HUD_aff5d98e06c88e765dc9fd81797d39e60}\label{structmavlink_1_1common_1_1msg_1_1VFR__HUD_aff5d98e06c88e765dc9fd81797d39e60}} 
+float {\bfseries airspeed}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1VFR__HUD_a521090550e1eda7c2999c27663931459}\label{structmavlink_1_1common_1_1msg_1_1VFR__HUD_a521090550e1eda7c2999c27663931459}} 
+float {\bfseries groundspeed}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1VFR__HUD_a901e7fbf6c741149aa2caf1dd8ae183f}\label{structmavlink_1_1common_1_1msg_1_1VFR__HUD_a901e7fbf6c741149aa2caf1dd8ae183f}} 
+int16\+\_\+t {\bfseries heading}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1VFR__HUD_a546c72229d362cd0fafd9fd70104365a}\label{structmavlink_1_1common_1_1msg_1_1VFR__HUD_a546c72229d362cd0fafd9fd70104365a}} 
+uint16\+\_\+t {\bfseries throttle}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1VFR__HUD_a2bdea543dfaf23e43dbcd5953eda1886}\label{structmavlink_1_1common_1_1msg_1_1VFR__HUD_a2bdea543dfaf23e43dbcd5953eda1886}} 
+float {\bfseries alt}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1VFR__HUD_a652247233e76b147ad34cd5bcf0e68c3}\label{structmavlink_1_1common_1_1msg_1_1VFR__HUD_a652247233e76b147ad34cd5bcf0e68c3}} 
+float {\bfseries climb}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1VFR__HUD_a5f2d6030643cce6a073165b0982a2168}\label{structmavlink_1_1common_1_1msg_1_1VFR__HUD_a5f2d6030643cce6a073165b0982a2168}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 74
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1VFR__HUD_a5bac0fab9bd92b4f7bdba1bd35f5f7d2}\label{structmavlink_1_1common_1_1msg_1_1VFR__HUD_a5bac0fab9bd92b4f7bdba1bd35f5f7d2}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 20
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1VFR__HUD_a9c1bfb230f3ede51cc1a6a766cff095d}\label{structmavlink_1_1common_1_1msg_1_1VFR__HUD_a9c1bfb230f3ede51cc1a6a766cff095d}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 20
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1VFR__HUD_a881bb4dfbc92ecbdfcb6c87859c5464d}\label{structmavlink_1_1common_1_1msg_1_1VFR__HUD_a881bb4dfbc92ecbdfcb6c87859c5464d}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 20
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1VFR__HUD_a8c2ff642509aae114e6bda8913653165}\label{structmavlink_1_1common_1_1msg_1_1VFR__HUD_a8c2ff642509aae114e6bda8913653165}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}VFR\+\_\+\+HUD\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1VFR__HUD}{VFR\+\_\+\+HUD}} message. 
+
+Metrics typically displayed on a HUD for fixed wing aircraft. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+vfr\+\_\+hud.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,151 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE}{}\doxysection{mavlink\+::common\+::msg\+::ATTITUDE Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE}\index{mavlink::common::msg::ATTITUDE@{mavlink::common::msg::ATTITUDE}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ATTITUDE}{ATTITUDE}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+attitude.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::ATTITUDE\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1ATTITUDE__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::ATTITUDE\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1ATTITUDE__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ATTITUDE_abd13cdc0c39805f8eea66e8ec154e318}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE_adb08aaadad76195992697741726584a7}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE_adb08aaadad76195992697741726584a7}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ATTITUDE_adb08aaadad76195992697741726584a7}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE_ade9d73c68089b953e6d521307e773d2a}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE_ade9d73c68089b953e6d521307e773d2a}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ATTITUDE_ade9d73c68089b953e6d521307e773d2a}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ATTITUDE_a7bf8d5be5443cb03fc4514a59958d145}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ATTITUDE_ad3452932d114a135d58e996efb42a739}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE_ace30d4694361a15d32f3289817e99f8f}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE_ace30d4694361a15d32f3289817e99f8f}} 
+uint32\+\_\+t {\bfseries time\+\_\+boot\+\_\+ms}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE_a1f9480d82cf6e79b6bed1c1e7d7d81a1}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE_a1f9480d82cf6e79b6bed1c1e7d7d81a1}} 
+float {\bfseries roll}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE_a5db732c464f770ce36ebb17fc47e4cca}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE_a5db732c464f770ce36ebb17fc47e4cca}} 
+float {\bfseries pitch}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE_a6258a847bc2c86bb07ee4cfeb4f528b5}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE_a6258a847bc2c86bb07ee4cfeb4f528b5}} 
+float {\bfseries yaw}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE_a5e784d0b9e55855ed4a3a697e305ab16}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE_a5e784d0b9e55855ed4a3a697e305ab16}} 
+float {\bfseries rollspeed}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE_a2f02f943b338ab1b4a7a10a83a5aacb8}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE_a2f02f943b338ab1b4a7a10a83a5aacb8}} 
+float {\bfseries pitchspeed}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE_a160a360f17578615d5005413cba7f9cb}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE_a160a360f17578615d5005413cba7f9cb}} 
+float {\bfseries yawspeed}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE_a85d561c516dfee9af538831510e60297}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE_a85d561c516dfee9af538831510e60297}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 30
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE_acd8d6e740b0f1e63c223649352bb1518}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE_acd8d6e740b0f1e63c223649352bb1518}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 28
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE_a8d982bc400023bc963645f235a9d9410}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE_a8d982bc400023bc963645f235a9d9410}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 28
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE_a83df50f899adb010bb1915ffa0b53048}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE_a83df50f899adb010bb1915ffa0b53048}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 39
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE_a0c165c5a0280a4d181a061fca9527ee0}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE_a0c165c5a0280a4d181a061fca9527ee0}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}ATTITUDE\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ATTITUDE}{ATTITUDE}} message. 
+
+The attitude in the aeronautical frame (right-\/handed, Z-\/down, Y-\/right, X-\/front, ZYX, intrinsic). 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE_ad3452932d114a135d58e996efb42a739}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE_ad3452932d114a135d58e996efb42a739}} 
+\index{mavlink::common::msg::ATTITUDE@{mavlink::common::msg::ATTITUDE}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::ATTITUDE@{mavlink::common::msg::ATTITUDE}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+ATTITUDE\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE_abd13cdc0c39805f8eea66e8ec154e318}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE_abd13cdc0c39805f8eea66e8ec154e318}} 
+\index{mavlink::common::msg::ATTITUDE@{mavlink::common::msg::ATTITUDE}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::ATTITUDE@{mavlink::common::msg::ATTITUDE}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+ATTITUDE\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE_a7bf8d5be5443cb03fc4514a59958d145}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE_a7bf8d5be5443cb03fc4514a59958d145}} 
+\index{mavlink::common::msg::ATTITUDE@{mavlink::common::msg::ATTITUDE}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::ATTITUDE@{mavlink::common::msg::ATTITUDE}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+ATTITUDE\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+attitude.\+hpp\end{DoxyCompactItemize}

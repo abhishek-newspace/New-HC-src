@@ -1,0 +1,139 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS}{}\doxysection{mavlink\+::common\+::msg\+::RELAY\+\_\+\+STATUS Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS}\index{mavlink::common::msg::RELAY\_STATUS@{mavlink::common::msg::RELAY\_STATUS}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS}{RELAY\+\_\+\+STATUS}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+relay\+\_\+status.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::RELAY\+\_\+\+STATUS\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::RELAY\+\_\+\+STATUS\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_aa68b52ed440d9c670f52306e5ebb6a79}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_a7c1f5e7019bc42b74e1ca414bf07ff15}\label{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_a7c1f5e7019bc42b74e1ca414bf07ff15}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_a7c1f5e7019bc42b74e1ca414bf07ff15}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_a8bee888f3baf0509de81b87d0ea3d854}\label{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_a8bee888f3baf0509de81b87d0ea3d854}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_a8bee888f3baf0509de81b87d0ea3d854}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_a5cf989f35a96244affd37c50b3d2f3ac}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_aa701d7f2faf1e22fed012b079a44491a}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_a2a3e7620320447bf702128065425308e}\label{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_a2a3e7620320447bf702128065425308e}} 
+uint32\+\_\+t {\bfseries time\+\_\+boot\+\_\+ms}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_a9ee5b5578b8626d1921144e084eb6c96}\label{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_a9ee5b5578b8626d1921144e084eb6c96}} 
+uint16\+\_\+t {\bfseries on}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_a86ff3e56fe235ccfcf3663b56c634b89}\label{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_a86ff3e56fe235ccfcf3663b56c634b89}} 
+uint16\+\_\+t {\bfseries present}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_ae6ff46e03557481bdb5b6a9b0b35da41}\label{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_ae6ff46e03557481bdb5b6a9b0b35da41}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 376
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_a9cf2d4c6bbd57d2a7498e373688413b9}\label{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_a9cf2d4c6bbd57d2a7498e373688413b9}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 8
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_a8ae68950bbad3dbbff3a9098c18760df}\label{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_a8ae68950bbad3dbbff3a9098c18760df}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 8
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_a63859e6f2d31746f0d478a5553d83d1e}\label{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_a63859e6f2d31746f0d478a5553d83d1e}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 199
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_ae3e1b555a30e233e6abb883aae95640b}\label{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_ae3e1b555a30e233e6abb883aae95640b}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}RELAY\+\_\+\+STATUS\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS}{RELAY\+\_\+\+STATUS}} message. 
+
+Reports the on/off state of relays, as controlled by MAV\+\_\+\+CMD\+\_\+\+DO\+\_\+\+SET\+\_\+\+RELAY. \mbox{\hyperlink{structmavlink_1_1Message}{Message}} streaming should be requested using MAV\+\_\+\+CMD\+\_\+\+SET\+\_\+\+MESSAGE\+\_\+\+INTERVAL. Note that it should not be sent on every relay state change to avoid flooding the link. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_aa701d7f2faf1e22fed012b079a44491a}\label{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_aa701d7f2faf1e22fed012b079a44491a}} 
+\index{mavlink::common::msg::RELAY\_STATUS@{mavlink::common::msg::RELAY\_STATUS}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::RELAY\_STATUS@{mavlink::common::msg::RELAY\_STATUS}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+RELAY\+\_\+\+STATUS\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_aa68b52ed440d9c670f52306e5ebb6a79}\label{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_aa68b52ed440d9c670f52306e5ebb6a79}} 
+\index{mavlink::common::msg::RELAY\_STATUS@{mavlink::common::msg::RELAY\_STATUS}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::RELAY\_STATUS@{mavlink::common::msg::RELAY\_STATUS}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+RELAY\+\_\+\+STATUS\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_a5cf989f35a96244affd37c50b3d2f3ac}\label{structmavlink_1_1common_1_1msg_1_1RELAY__STATUS_a5cf989f35a96244affd37c50b3d2f3ac}} 
+\index{mavlink::common::msg::RELAY\_STATUS@{mavlink::common::msg::RELAY\_STATUS}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::RELAY\_STATUS@{mavlink::common::msg::RELAY\_STATUS}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+RELAY\+\_\+\+STATUS\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+relay\+\_\+status.\+hpp\end{DoxyCompactItemize}

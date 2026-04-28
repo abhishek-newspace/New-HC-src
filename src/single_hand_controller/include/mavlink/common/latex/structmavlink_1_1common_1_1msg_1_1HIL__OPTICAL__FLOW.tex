@@ -1,0 +1,116 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW}{}\doxysection{mavlink\+::common\+::msg\+::HIL\+\_\+\+OPTICAL\+\_\+\+FLOW Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW}\index{mavlink::common::msg::HIL\_OPTICAL\_FLOW@{mavlink::common::msg::HIL\_OPTICAL\_FLOW}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW}{HIL\+\_\+\+OPTICAL\+\_\+\+FLOW}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+hil\+\_\+optical\+\_\+flow.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::HIL\+\_\+\+OPTICAL\+\_\+\+FLOW\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::HIL\+\_\+\+OPTICAL\+\_\+\+FLOW\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a25c640dc880b0d89102c357bc32bcca8}\label{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a25c640dc880b0d89102c357bc32bcca8}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a7dd67591c63acf19f96e79536dbee27f}\label{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a7dd67591c63acf19f96e79536dbee27f}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a42742cea1c9722543c9f0dbde8bd3370}\label{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a42742cea1c9722543c9f0dbde8bd3370}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a5cbcc3ca76e1d6aa247f541409c14c17}\label{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a5cbcc3ca76e1d6aa247f541409c14c17}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_ab95ecaf82dfa338225dcdaaff4466f59}\label{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_ab95ecaf82dfa338225dcdaaff4466f59}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a5e3a9779a4c5c9523a201d956c1921c3}\label{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a5e3a9779a4c5c9523a201d956c1921c3}} 
+uint64\+\_\+t {\bfseries time\+\_\+usec}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a1a07fb9649620086415ce3e52eeec47f}\label{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a1a07fb9649620086415ce3e52eeec47f}} 
+uint8\+\_\+t {\bfseries sensor\+\_\+id}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_ab34b7623598313ebfd3161443b8f4e83}\label{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_ab34b7623598313ebfd3161443b8f4e83}} 
+uint32\+\_\+t {\bfseries integration\+\_\+time\+\_\+us}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a52633726e5173a6b8f49a3874c958753}\label{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a52633726e5173a6b8f49a3874c958753}} 
+float {\bfseries integrated\+\_\+x}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a38d1422796def8f46b6bca737ec938f0}\label{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a38d1422796def8f46b6bca737ec938f0}} 
+float {\bfseries integrated\+\_\+y}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_ab55db096f72915059b90289ff8f5a8e3}\label{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_ab55db096f72915059b90289ff8f5a8e3}} 
+float {\bfseries integrated\+\_\+xgyro}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_aac4a7aa2ae56c69f75a595a2e10ec8cc}\label{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_aac4a7aa2ae56c69f75a595a2e10ec8cc}} 
+float {\bfseries integrated\+\_\+ygyro}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a18e3084018219c2e41c9d15482196000}\label{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a18e3084018219c2e41c9d15482196000}} 
+float {\bfseries integrated\+\_\+zgyro}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_ac602dac4905a828349cee7e19eccc4f5}\label{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_ac602dac4905a828349cee7e19eccc4f5}} 
+int16\+\_\+t {\bfseries temperature}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a1a611402f45895bce769f0edd5c186a0}\label{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a1a611402f45895bce769f0edd5c186a0}} 
+uint8\+\_\+t {\bfseries quality}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a8574a0f05232ab4188c018751412fce0}\label{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a8574a0f05232ab4188c018751412fce0}} 
+uint32\+\_\+t {\bfseries time\+\_\+delta\+\_\+distance\+\_\+us}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_acc29321b3b55f6a5bbc17636b96f469d}\label{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_acc29321b3b55f6a5bbc17636b96f469d}} 
+float {\bfseries distance}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a60deaddff04c5eb6a0f6b9275bd7acd7}\label{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a60deaddff04c5eb6a0f6b9275bd7acd7}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 114
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a6f45c7db8782921f909bf13dcaa5b861}\label{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a6f45c7db8782921f909bf13dcaa5b861}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 44
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a16495a7f201fd0f30959eba4eb6f1f4b}\label{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a16495a7f201fd0f30959eba4eb6f1f4b}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 44
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a844d1e19cc3dcc72fe5bb83ad72e4d5f}\label{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a844d1e19cc3dcc72fe5bb83ad72e4d5f}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 237
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a7d029a8dc18f0e372ece9921fd4039e5}\label{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW_a7d029a8dc18f0e372ece9921fd4039e5}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}HIL\+\_\+\+OPTICAL\+\_\+\+FLOW\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1HIL__OPTICAL__FLOW}{HIL\+\_\+\+OPTICAL\+\_\+\+FLOW}} message. 
+
+Simulated optical flow from a flow sensor (e.\+g. PX4\+FLOW or optical mouse sensor) 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+hil\+\_\+optical\+\_\+flow.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,4 @@
+<map id="mavlink::common::msg::ATTITUDE_QUATERNION_COV" name="mavlink::common::msg::ATTITUDE_QUATERNION_COV">
+<area shape="rect" id="node1" title="ATTITUDE_QUATERNION_COV message." alt="" coords="5,80,228,121"/>
+<area shape="rect" id="node2" title=" " alt="" coords="46,5,187,32"/>
+</map>

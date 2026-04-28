@@ -1,0 +1,142 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE}{}\doxysection{mavlink\+::common\+::msg\+::PLAY\+\_\+\+TUNE Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE}\index{mavlink::common::msg::PLAY\_TUNE@{mavlink::common::msg::PLAY\_TUNE}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE}{PLAY\+\_\+\+TUNE}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+play\+\_\+tune.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::PLAY\+\_\+\+TUNE\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::PLAY\+\_\+\+TUNE\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_a6bcdd4a84ecb69c272f541384d6bb9bd}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_aa8f0dd52555e3ca7eda52a1d859028a3}\label{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_aa8f0dd52555e3ca7eda52a1d859028a3}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_aa8f0dd52555e3ca7eda52a1d859028a3}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_a3bfcb1c14d47f93f28354321c491aa47}\label{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_a3bfcb1c14d47f93f28354321c491aa47}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_a3bfcb1c14d47f93f28354321c491aa47}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_ac74fca8625d8b7b5b5ea2624dc7e5e09}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_aa602c970cc82ec8f8e004baec2be8d3a}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_a2eb08a7e14b4330b5ca172b88ccd876d}\label{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_a2eb08a7e14b4330b5ca172b88ccd876d}} 
+uint8\+\_\+t {\bfseries target\+\_\+system}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_a5773f04f6d9296f7aee684926efc7b03}\label{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_a5773f04f6d9296f7aee684926efc7b03}} 
+uint8\+\_\+t {\bfseries target\+\_\+component}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_a17537588a019c67f0d3c6d2c76aaaac0}\label{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_a17537588a019c67f0d3c6d2c76aaaac0}} 
+std\+::array$<$ char, 30 $>$ {\bfseries tune}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_a1c161eb213494ee83f04cb98e1139233}\label{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_a1c161eb213494ee83f04cb98e1139233}} 
+std\+::array$<$ char, 200 $>$ {\bfseries tune2}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_a8e9613a731efded7ab97edfd7c008889}\label{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_a8e9613a731efded7ab97edfd7c008889}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 258
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_ac267a0b3c4648bb18053cf403456bb0d}\label{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_ac267a0b3c4648bb18053cf403456bb0d}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 232
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_ab1d8afff4b2037c055d4d67c4cddb3f2}\label{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_ab1d8afff4b2037c055d4d67c4cddb3f2}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 32
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_a96fd92a74183cdb5c61ff079fe716718}\label{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_a96fd92a74183cdb5c61ff079fe716718}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 187
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_a4fcbbb2aeac3d3bfd914ac2c518846ce}\label{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_a4fcbbb2aeac3d3bfd914ac2c518846ce}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}PLAY\+\_\+\+TUNE\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE}{PLAY\+\_\+\+TUNE}} message. 
+
+Control vehicle tone generation (buzzer). 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_aa602c970cc82ec8f8e004baec2be8d3a}\label{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_aa602c970cc82ec8f8e004baec2be8d3a}} 
+\index{mavlink::common::msg::PLAY\_TUNE@{mavlink::common::msg::PLAY\_TUNE}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::PLAY\_TUNE@{mavlink::common::msg::PLAY\_TUNE}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+PLAY\+\_\+\+TUNE\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_a6bcdd4a84ecb69c272f541384d6bb9bd}\label{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_a6bcdd4a84ecb69c272f541384d6bb9bd}} 
+\index{mavlink::common::msg::PLAY\_TUNE@{mavlink::common::msg::PLAY\_TUNE}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::PLAY\_TUNE@{mavlink::common::msg::PLAY\_TUNE}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+PLAY\+\_\+\+TUNE\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_ac74fca8625d8b7b5b5ea2624dc7e5e09}\label{structmavlink_1_1common_1_1msg_1_1PLAY__TUNE_ac74fca8625d8b7b5b5ea2624dc7e5e09}} 
+\index{mavlink::common::msg::PLAY\_TUNE@{mavlink::common::msg::PLAY\_TUNE}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::PLAY\_TUNE@{mavlink::common::msg::PLAY\_TUNE}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+PLAY\+\_\+\+TUNE\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+play\+\_\+tune.\+hpp\end{DoxyCompactItemize}

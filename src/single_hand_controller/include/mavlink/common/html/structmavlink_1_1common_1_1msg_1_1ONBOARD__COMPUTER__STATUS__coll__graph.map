@@ -1,0 +1,4 @@
+<map id="mavlink::common::msg::ONBOARD_COMPUTER_STATUS" name="mavlink::common::msg::ONBOARD_COMPUTER_STATUS">
+<area shape="rect" id="node1" title="ONBOARD_COMPUTER_STATUS message." alt="" coords="5,80,240,121"/>
+<area shape="rect" id="node2" title=" " alt="" coords="52,5,193,32"/>
+</map>

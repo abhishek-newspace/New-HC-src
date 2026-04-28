@@ -1,0 +1,95 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA}{}\doxysection{mavlink\+::common\+::msg\+::LOG\+\_\+\+REQUEST\+\_\+\+DATA Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA}\index{mavlink::common::msg::LOG\_REQUEST\_DATA@{mavlink::common::msg::LOG\_REQUEST\_DATA}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA}{LOG\+\_\+\+REQUEST\+\_\+\+DATA}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+log\+\_\+request\+\_\+data.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::LOG\+\_\+\+REQUEST\+\_\+\+DATA\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::LOG\+\_\+\+REQUEST\+\_\+\+DATA\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_ae0e04ddebe72a0cc3b641e0a9f252c27}\label{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_ae0e04ddebe72a0cc3b641e0a9f252c27}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_a8275c394ccbe7b5fa3bd72c467512fe2}\label{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_a8275c394ccbe7b5fa3bd72c467512fe2}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_a116956b4c0bda1cc0d235c57c6e32df6}\label{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_a116956b4c0bda1cc0d235c57c6e32df6}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_adede5e0b20a01ccce660608bce006a56}\label{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_adede5e0b20a01ccce660608bce006a56}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_a04de4879ddc61d67386f2bb373c53d12}\label{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_a04de4879ddc61d67386f2bb373c53d12}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_a33a104ac411ee773eb85fd35fe9535c7}\label{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_a33a104ac411ee773eb85fd35fe9535c7}} 
+uint8\+\_\+t {\bfseries target\+\_\+system}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_a227c2b14fa587692386b419361bac711}\label{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_a227c2b14fa587692386b419361bac711}} 
+uint8\+\_\+t {\bfseries target\+\_\+component}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_a754e41a7f658625ddd57ee39b5e971bd}\label{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_a754e41a7f658625ddd57ee39b5e971bd}} 
+uint16\+\_\+t {\bfseries id}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_a859cc2a5bd9155c261c9dea3fd259053}\label{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_a859cc2a5bd9155c261c9dea3fd259053}} 
+uint32\+\_\+t {\bfseries ofs}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_a490c99bef5cbcd4b6f9cc3a08812e3cd}\label{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_a490c99bef5cbcd4b6f9cc3a08812e3cd}} 
+uint32\+\_\+t {\bfseries count}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_a26b3d94f8df4b5801284b81a72974607}\label{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_a26b3d94f8df4b5801284b81a72974607}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 119
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_ae57b335aa36ce4efb3d1972dbced4191}\label{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_ae57b335aa36ce4efb3d1972dbced4191}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 12
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_a4896cf29554bd18fb1d0e8cce93213d0}\label{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_a4896cf29554bd18fb1d0e8cce93213d0}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 12
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_aae60fa36338319ae72c5f96382ba1548}\label{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_aae60fa36338319ae72c5f96382ba1548}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 116
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_a36db2dcf279bcb1b1999f6b0886ec1bb}\label{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA_a36db2dcf279bcb1b1999f6b0886ec1bb}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}LOG\+\_\+\+REQUEST\+\_\+\+DATA\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1LOG__REQUEST__DATA}{LOG\+\_\+\+REQUEST\+\_\+\+DATA}} message. 
+
+Request a chunk of a log 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+log\+\_\+request\+\_\+data.\+hpp\end{DoxyCompactItemize}

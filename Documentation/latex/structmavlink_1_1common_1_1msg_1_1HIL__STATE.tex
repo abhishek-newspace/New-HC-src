@@ -1,0 +1,178 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE}{}\doxysection{mavlink\+::common\+::msg\+::HIL\+\_\+\+STATE Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE}\index{mavlink::common::msg::HIL\_STATE@{mavlink::common::msg::HIL\_STATE}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1HIL__STATE}{HIL\+\_\+\+STATE}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+hil\+\_\+state.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::HIL\+\_\+\+STATE\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1HIL__STATE__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::HIL\+\_\+\+STATE\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1HIL__STATE__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a5b7a6b93d8f310c62616a8b9263c046c}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a87431d719566461ed284f71fe43ef2bf}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a87431d719566461ed284f71fe43ef2bf}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a87431d719566461ed284f71fe43ef2bf}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a285d5c4a5bafa4cac8ff841075daa106}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a285d5c4a5bafa4cac8ff841075daa106}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a285d5c4a5bafa4cac8ff841075daa106}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1HIL__STATE_aae3cc7df20e71c0fcd86a47d5024abb2}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a571ad120ec2cf937f0407001e4f479f4}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_af237dca3d0ce880acc75f09620a05c4d}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_af237dca3d0ce880acc75f09620a05c4d}} 
+uint64\+\_\+t {\bfseries time\+\_\+usec}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_ab15530890264b7617b3e67bcdde74935}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_ab15530890264b7617b3e67bcdde74935}} 
+float {\bfseries roll}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_acffa70b953ef3b868341107a15f52c9f}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_acffa70b953ef3b868341107a15f52c9f}} 
+float {\bfseries pitch}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a91056add1205e65e935ab79a6830d1fe}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a91056add1205e65e935ab79a6830d1fe}} 
+float {\bfseries yaw}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a82e153f68997f6586674c8f1fd6af591}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a82e153f68997f6586674c8f1fd6af591}} 
+float {\bfseries rollspeed}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a97b5f62c42010c5872422af0b74793f8}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a97b5f62c42010c5872422af0b74793f8}} 
+float {\bfseries pitchspeed}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a2e49bba8d264d844fc21db008789cc6f}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a2e49bba8d264d844fc21db008789cc6f}} 
+float {\bfseries yawspeed}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_ac04ba5888274ac4786410fe1a6219776}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_ac04ba5888274ac4786410fe1a6219776}} 
+int32\+\_\+t {\bfseries lat}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_ac7e1986f7af310ffdf76a9cdfc501a73}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_ac7e1986f7af310ffdf76a9cdfc501a73}} 
+int32\+\_\+t {\bfseries lon}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_aa391ed28a518a8e43dc494cb70cb1718}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_aa391ed28a518a8e43dc494cb70cb1718}} 
+int32\+\_\+t {\bfseries alt}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_abb53836932a9ca2e7ddd248ed192f440}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_abb53836932a9ca2e7ddd248ed192f440}} 
+int16\+\_\+t {\bfseries vx}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a3370496f20cd097be0a97b9c86741015}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a3370496f20cd097be0a97b9c86741015}} 
+int16\+\_\+t {\bfseries vy}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a0a66841d94c5dbe865f129b29b1810c3}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a0a66841d94c5dbe865f129b29b1810c3}} 
+int16\+\_\+t {\bfseries vz}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_aba8df41ce5bce7245a509dd4324e5afb}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_aba8df41ce5bce7245a509dd4324e5afb}} 
+int16\+\_\+t {\bfseries xacc}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a1a464b986be66088f7907d8f6860110d}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a1a464b986be66088f7907d8f6860110d}} 
+int16\+\_\+t {\bfseries yacc}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_ab3bc5babba6060e00bf5077ab6c22245}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_ab3bc5babba6060e00bf5077ab6c22245}} 
+int16\+\_\+t {\bfseries zacc}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_ab76a5083fb51902bd5302c2d692a51ef}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_ab76a5083fb51902bd5302c2d692a51ef}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 90
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_ac2502d26d0c80f57ecc75c2187a98045}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_ac2502d26d0c80f57ecc75c2187a98045}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 56
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a48efacfacb197293ed37501a6c75a765}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a48efacfacb197293ed37501a6c75a765}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 56
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_accc0b2b012b77105bfd41031dbef0875}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_accc0b2b012b77105bfd41031dbef0875}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 183
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a6baaaa1b6c9fb0985fe28b79aa2263fc}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a6baaaa1b6c9fb0985fe28b79aa2263fc}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}HIL\+\_\+\+STATE\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1HIL__STATE}{HIL\+\_\+\+STATE}} message. 
+
+Sent from simulation to autopilot. This packet is useful for high throughput applications such as hardware in the loop simulations. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a571ad120ec2cf937f0407001e4f479f4}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a571ad120ec2cf937f0407001e4f479f4}} 
+\index{mavlink::common::msg::HIL\_STATE@{mavlink::common::msg::HIL\_STATE}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::HIL\_STATE@{mavlink::common::msg::HIL\_STATE}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+HIL\+\_\+\+STATE\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a5b7a6b93d8f310c62616a8b9263c046c}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_a5b7a6b93d8f310c62616a8b9263c046c}} 
+\index{mavlink::common::msg::HIL\_STATE@{mavlink::common::msg::HIL\_STATE}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::HIL\_STATE@{mavlink::common::msg::HIL\_STATE}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+HIL\+\_\+\+STATE\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HIL__STATE_aae3cc7df20e71c0fcd86a47d5024abb2}\label{structmavlink_1_1common_1_1msg_1_1HIL__STATE_aae3cc7df20e71c0fcd86a47d5024abb2}} 
+\index{mavlink::common::msg::HIL\_STATE@{mavlink::common::msg::HIL\_STATE}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::HIL\_STATE@{mavlink::common::msg::HIL\_STATE}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+HIL\+\_\+\+STATE\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+hil\+\_\+state.\+hpp\end{DoxyCompactItemize}

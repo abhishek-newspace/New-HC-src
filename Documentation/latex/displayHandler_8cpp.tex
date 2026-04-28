@@ -1,0 +1,101 @@
+\hypertarget{displayHandler_8cpp}{}\doxysection{single\+\_\+hand\+\_\+controller/display\+Handler.cpp File Reference}
+\label{displayHandler_8cpp}\index{single\_hand\_controller/displayHandler.cpp@{single\_hand\_controller/displayHandler.cpp}}
+{\ttfamily \#include \char`\"{}include/display\+Handler.\+hpp\char`\"{}}\newline
+Include dependency graph for display\+Handler.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{displayHandler_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{displayHandler_8cpp_aa363c10f4f99c58179af601f5b031bfe}\label{displayHandler_8cpp_aa363c10f4f99c58179af601f5b031bfe}} 
+void \mbox{\hyperlink{displayHandler_8cpp_aa363c10f4f99c58179af601f5b031bfe}{display\+Logo}} ()
+\begin{DoxyCompactList}\small\item\em display newspace logo in white background and blue foreground colors \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{displayHandler_8cpp_a19b8dc99373dcbba0939f9939f38a131}\label{displayHandler_8cpp_a19b8dc99373dcbba0939f9939f38a131}} 
+void \mbox{\hyperlink{displayHandler_8cpp_a19b8dc99373dcbba0939f9939f38a131}{display\+Inverted\+Logo}} ()
+\begin{DoxyCompactList}\small\item\em display newspace logo in grey background and light blue foreground (to look like an translucent grey film filter) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{displayHandler_8cpp_af8280af9f32eeb36f672edf5ef29369a}\label{displayHandler_8cpp_af8280af9f32eeb36f672edf5ef29369a}} 
+void {\bfseries set\+Font\+Small} ()
+\item 
+\mbox{\Hypertarget{displayHandler_8cpp_a91cc887ae791adf3661f8d71ad35511e}\label{displayHandler_8cpp_a91cc887ae791adf3661f8d71ad35511e}} 
+void \mbox{\hyperlink{displayHandler_8cpp_a91cc887ae791adf3661f8d71ad35511e}{set\+Font1}} ()
+\begin{DoxyCompactList}\small\item\em set font style to 1 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{displayHandler_8cpp_a9416570363c621cbd3670e8e860aef58}\label{displayHandler_8cpp_a9416570363c621cbd3670e8e860aef58}} 
+void \mbox{\hyperlink{displayHandler_8cpp_a9416570363c621cbd3670e8e860aef58}{init\+Display\+Comm}} ()
+\begin{DoxyCompactList}\small\item\em initialize display communications (serial baud rate) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{displayHandler_8cpp_ac1486c1dea925018d24334240a13261e}\label{displayHandler_8cpp_ac1486c1dea925018d24334240a13261e}} 
+void \mbox{\hyperlink{displayHandler_8cpp_ac1486c1dea925018d24334240a13261e}{clear\+\_\+display}} ()
+\begin{DoxyCompactList}\small\item\em clear LCD display \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{displayHandler_8cpp_abf23ced647f52d2299ca7a5f57f92dd6}\label{displayHandler_8cpp_abf23ced647f52d2299ca7a5f57f92dd6}} 
+void \mbox{\hyperlink{displayHandler_8cpp_abf23ced647f52d2299ca7a5f57f92dd6}{display\+UGV\+\_\+status}} (ugv\+\_\+status s)
+\begin{DoxyCompactList}\small\item\em update UGV status dislay \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{displayHandler_8cpp_a019bd561935a2eb1e9b9001c18cc597c}\label{displayHandler_8cpp_a019bd561935a2eb1e9b9001c18cc597c}} 
+void \mbox{\hyperlink{displayHandler_8cpp_a019bd561935a2eb1e9b9001c18cc597c}{display\+Speed}} (int speed)
+\begin{DoxyCompactList}\small\item\em update speed display \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{displayHandler_8cpp_a05fd0d972479756332086a6b339f5270}\label{displayHandler_8cpp_a05fd0d972479756332086a6b339f5270}} 
+void \mbox{\hyperlink{displayHandler_8cpp_a05fd0d972479756332086a6b339f5270}{display\+RSSI}} ()
+\begin{DoxyCompactList}\small\item\em update RSSI stat display \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{displayHandler_8cpp_a2e4fc5dd9650d4f751ae48d17d6b0783}\label{displayHandler_8cpp_a2e4fc5dd9650d4f751ae48d17d6b0783}} 
+void \mbox{\hyperlink{displayHandler_8cpp_a2e4fc5dd9650d4f751ae48d17d6b0783}{display\+Battery}} ()
+\begin{DoxyCompactList}\small\item\em update battery stat display \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{displayHandler_8cpp_ab7eb3c8c2e8604801ee00f11d3af8c3f}{update\+Display}} ()
+\begin{DoxyCompactList}\small\item\em this function is meant to be called once every 1 second, and only updates RSSI, and battery stats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{displayHandler_8cpp_a565c04195c9a4193b3febfcd51844197}\label{displayHandler_8cpp_a565c04195c9a4193b3febfcd51844197}} 
+void \mbox{\hyperlink{displayHandler_8cpp_a565c04195c9a4193b3febfcd51844197}{display\+Info}} (String message)
+\begin{DoxyCompactList}\small\item\em display info message and wait for any user input to continue execution \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{displayHandler_8cpp_a1f44b689b497dd0ecbe3d4485ee6090a}\label{displayHandler_8cpp_a1f44b689b497dd0ecbe3d4485ee6090a}} 
+void \mbox{\hyperlink{displayHandler_8cpp_a1f44b689b497dd0ecbe3d4485ee6090a}{clear\+Info}} ()
+\begin{DoxyCompactList}\small\item\em clear all info that is displayed \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{displayHandler_8cpp_a6eda2793dc9a3be0b1d2dbc5703d178f}\label{displayHandler_8cpp_a6eda2793dc9a3be0b1d2dbc5703d178f}} 
+void {\bfseries display\+Error} (String message, int error\+\_\+code)
+\item 
+\mbox{\Hypertarget{displayHandler_8cpp_a926ead67a784f455ddd56590f2928e76}\label{displayHandler_8cpp_a926ead67a784f455ddd56590f2928e76}} 
+void \mbox{\hyperlink{displayHandler_8cpp_a926ead67a784f455ddd56590f2928e76}{clear\+Error}} ()
+\begin{DoxyCompactList}\small\item\em clear displayed error \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{displayHandler_8cpp_aacee99a6748f3c46f4b5131d8d9d198c}\label{displayHandler_8cpp_aacee99a6748f3c46f4b5131d8d9d198c}} 
+void \mbox{\hyperlink{displayHandler_8cpp_aacee99a6748f3c46f4b5131d8d9d198c}{display\+Basic}} ()
+\begin{DoxyCompactList}\small\item\em set the screen with symbols/text that is required to understand the output of the display updates \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{displayHandler_8cpp_a9569bc59ef2f48f50067beb978425274}\label{displayHandler_8cpp_a9569bc59ef2f48f50067beb978425274}} 
+struct buttons {\bfseries user\+\_\+input}
+\item 
+\mbox{\Hypertarget{displayHandler_8cpp_adca0827fe1591af1a7d3ce519f6a9ee2}\label{displayHandler_8cpp_adca0827fe1591af1a7d3ce519f6a9ee2}} 
+ugv\+\_\+status {\bfseries current\+\_\+state}
+\item 
+\mbox{\Hypertarget{displayHandler_8cpp_a9f1ae2392ae41abb8b43d5d4c39ef8d4}\label{displayHandler_8cpp_a9f1ae2392ae41abb8b43d5d4c39ef8d4}} 
+ugv\+\_\+status {\bfseries prev\+\_\+state}
+\item 
+\mbox{\Hypertarget{displayHandler_8cpp_a6df15c71fc676cdd091ee31ec52345f0}\label{displayHandler_8cpp_a6df15c71fc676cdd091ee31ec52345f0}} 
+TFT\+\_\+22\+\_\+\+ILI9225 {\bfseries tft} = TFT\+\_\+22\+\_\+\+ILI9225(TFT\+\_\+\+RST, TFT\+\_\+\+RS, TFT\+\_\+\+CS, TFT\+\_\+\+SDI, TFT\+\_\+\+CLK, TFT\+\_\+\+LED, TFT\+\_\+\+BRIGHTNESS)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyAuthor}{Author}
+Nikhil Tom Jose 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+22/04/2026
+\end{DoxyDate}
+Part of display\+Handler library. Defines variables and functions used for display\+Handler.\+h 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{displayHandler_8cpp_ab7eb3c8c2e8604801ee00f11d3af8c3f}\label{displayHandler_8cpp_ab7eb3c8c2e8604801ee00f11d3af8c3f}} 
+\index{displayHandler.cpp@{displayHandler.cpp}!updateDisplay@{updateDisplay}}
+\index{updateDisplay@{updateDisplay}!displayHandler.cpp@{displayHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{updateDisplay()}{updateDisplay()}}
+{\footnotesize\ttfamily void update\+Display (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+this function is meant to be called once every 1 second, and only updates RSSI, and battery stats. 
+
+call \mbox{\hyperlink{displayHandler_8hpp_a019bd561935a2eb1e9b9001c18cc597c}{display\+Speed()}} and \mbox{\hyperlink{displayHandler_8hpp_a9fe89e9d5a9f63e34cda8a4c2f9d734f}{display\+UGV\+\_\+status()}} separately when the values are updated (must be event based, and not periodic) 

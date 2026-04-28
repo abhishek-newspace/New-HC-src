@@ -1,0 +1,145 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1TUNNEL}{}\doxysection{mavlink\+::common\+::msg\+::TUNNEL Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1TUNNEL}\index{mavlink::common::msg::TUNNEL@{mavlink::common::msg::TUNNEL}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TUNNEL}{TUNNEL}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+tunnel.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::TUNNEL\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1TUNNEL__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::TUNNEL\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1TUNNEL__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TUNNEL_a168df63a8b07dbce74c1cdacb64b5c57}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TUNNEL_aca5180e59a445173bec1e0f427ac0b31}\label{structmavlink_1_1common_1_1msg_1_1TUNNEL_aca5180e59a445173bec1e0f427ac0b31}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TUNNEL_aca5180e59a445173bec1e0f427ac0b31}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TUNNEL_abcad7d356ac1edebb4b25fd58c302678}\label{structmavlink_1_1common_1_1msg_1_1TUNNEL_abcad7d356ac1edebb4b25fd58c302678}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TUNNEL_abcad7d356ac1edebb4b25fd58c302678}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TUNNEL_a73211174f4a375e5a793a3e2a61409ac}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TUNNEL_ae1da3df5920ca55a7bbec070e1a7580e}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TUNNEL_af6a22d4ba004d90e59034862904ced2f}\label{structmavlink_1_1common_1_1msg_1_1TUNNEL_af6a22d4ba004d90e59034862904ced2f}} 
+uint8\+\_\+t {\bfseries target\+\_\+system}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TUNNEL_a7e91f4db18feda15ecd25e9d6e4f5e17}\label{structmavlink_1_1common_1_1msg_1_1TUNNEL_a7e91f4db18feda15ecd25e9d6e4f5e17}} 
+uint8\+\_\+t {\bfseries target\+\_\+component}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TUNNEL_a6d7bba1f02b40796081bb7e55131eac3}\label{structmavlink_1_1common_1_1msg_1_1TUNNEL_a6d7bba1f02b40796081bb7e55131eac3}} 
+uint16\+\_\+t {\bfseries payload\+\_\+type}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TUNNEL_a70bb3c97d6dccba6733da05974faafd3}\label{structmavlink_1_1common_1_1msg_1_1TUNNEL_a70bb3c97d6dccba6733da05974faafd3}} 
+uint8\+\_\+t {\bfseries payload\+\_\+length}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TUNNEL_a3925cd00da98893c373e21ac82982af9}\label{structmavlink_1_1common_1_1msg_1_1TUNNEL_a3925cd00da98893c373e21ac82982af9}} 
+std\+::array$<$ uint8\+\_\+t, 128 $>$ {\bfseries payload}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TUNNEL_a8c9858e928d5bf6e2d11e6d54a2e36b2}\label{structmavlink_1_1common_1_1msg_1_1TUNNEL_a8c9858e928d5bf6e2d11e6d54a2e36b2}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 385
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TUNNEL_a051e2385752aaf153ae1fd2d42db9880}\label{structmavlink_1_1common_1_1msg_1_1TUNNEL_a051e2385752aaf153ae1fd2d42db9880}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 133
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TUNNEL_a6d66394fd83ad5819431cde55d061be4}\label{structmavlink_1_1common_1_1msg_1_1TUNNEL_a6d66394fd83ad5819431cde55d061be4}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 133
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TUNNEL_a839aa431cd5477a69b80b54e38d1232e}\label{structmavlink_1_1common_1_1msg_1_1TUNNEL_a839aa431cd5477a69b80b54e38d1232e}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 147
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TUNNEL_ad2ba7d41dbb5ffe7296a74f70340c033}\label{structmavlink_1_1common_1_1msg_1_1TUNNEL_ad2ba7d41dbb5ffe7296a74f70340c033}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}TUNNEL\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TUNNEL}{TUNNEL}} message. 
+
+\mbox{\hyperlink{structmavlink_1_1Message}{Message}} for transporting \char`\"{}arbitrary\char`\"{} variable-\/length data from one component to another (broadcast is not forbidden, but discouraged). The encoding of the data is usually extension specific, i.\+e. determined by the source, and is usually not documented as part of the MAVLink specification. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TUNNEL_ae1da3df5920ca55a7bbec070e1a7580e}\label{structmavlink_1_1common_1_1msg_1_1TUNNEL_ae1da3df5920ca55a7bbec070e1a7580e}} 
+\index{mavlink::common::msg::TUNNEL@{mavlink::common::msg::TUNNEL}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::TUNNEL@{mavlink::common::msg::TUNNEL}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+TUNNEL\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TUNNEL_a168df63a8b07dbce74c1cdacb64b5c57}\label{structmavlink_1_1common_1_1msg_1_1TUNNEL_a168df63a8b07dbce74c1cdacb64b5c57}} 
+\index{mavlink::common::msg::TUNNEL@{mavlink::common::msg::TUNNEL}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::TUNNEL@{mavlink::common::msg::TUNNEL}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+TUNNEL\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1TUNNEL_a73211174f4a375e5a793a3e2a61409ac}\label{structmavlink_1_1common_1_1msg_1_1TUNNEL_a73211174f4a375e5a793a3e2a61409ac}} 
+\index{mavlink::common::msg::TUNNEL@{mavlink::common::msg::TUNNEL}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::TUNNEL@{mavlink::common::msg::TUNNEL}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+TUNNEL\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+tunnel.\+hpp\end{DoxyCompactItemize}

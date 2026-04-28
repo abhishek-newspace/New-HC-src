@@ -1,0 +1,116 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION}{}\doxysection{mavlink\+::common\+::msg\+::STORAGE\+\_\+\+INFORMATION Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION}\index{mavlink::common::msg::STORAGE\_INFORMATION@{mavlink::common::msg::STORAGE\_INFORMATION}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION}{STORAGE\+\_\+\+INFORMATION}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+storage\+\_\+information.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::STORAGE\+\_\+\+INFORMATION\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::STORAGE\+\_\+\+INFORMATION\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_ad1a91e3c30a92a5ba5bd855933722f15}\label{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_ad1a91e3c30a92a5ba5bd855933722f15}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_aa21b1ac2e60ad5f97ee94d870622f5f9}\label{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_aa21b1ac2e60ad5f97ee94d870622f5f9}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a0955c460a7458230a64c5fc90b3f7640}\label{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a0955c460a7458230a64c5fc90b3f7640}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a5825af98d9f0aeff5c6ea2f85735f842}\label{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a5825af98d9f0aeff5c6ea2f85735f842}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a113d4f14b5daf175b596867afbb06974}\label{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a113d4f14b5daf175b596867afbb06974}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a299b32dd79ceefc0bfa129760d517c5b}\label{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a299b32dd79ceefc0bfa129760d517c5b}} 
+uint32\+\_\+t {\bfseries time\+\_\+boot\+\_\+ms}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a17c36dd382f93ec5d6307be02f00e345}\label{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a17c36dd382f93ec5d6307be02f00e345}} 
+uint8\+\_\+t {\bfseries storage\+\_\+id}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_aa0b42c9eafcf6163af843c1f58936bbf}\label{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_aa0b42c9eafcf6163af843c1f58936bbf}} 
+uint8\+\_\+t {\bfseries storage\+\_\+count}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a1eded392016df3ff8d06e5d580fca6ee}\label{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a1eded392016df3ff8d06e5d580fca6ee}} 
+uint8\+\_\+t {\bfseries status}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_aa311ecd905a107b92b9cbc9f0ff75e72}\label{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_aa311ecd905a107b92b9cbc9f0ff75e72}} 
+float {\bfseries total\+\_\+capacity}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a7e9f4c3fe261eeec2ee448bd39f99cca}\label{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a7e9f4c3fe261eeec2ee448bd39f99cca}} 
+float {\bfseries used\+\_\+capacity}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a33509007cd729d1bca4f31097c7eae22}\label{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a33509007cd729d1bca4f31097c7eae22}} 
+float {\bfseries available\+\_\+capacity}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a0700290449a9ac7161712959d52d4c58}\label{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a0700290449a9ac7161712959d52d4c58}} 
+float {\bfseries read\+\_\+speed}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_af12a3080b9ed483bb7528bc2949d6c43}\label{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_af12a3080b9ed483bb7528bc2949d6c43}} 
+float {\bfseries write\+\_\+speed}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a7801119356e19733427da590fb884403}\label{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a7801119356e19733427da590fb884403}} 
+uint8\+\_\+t {\bfseries type}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_ad43b43ff308ebba245eafc6bbf6cb83d}\label{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_ad43b43ff308ebba245eafc6bbf6cb83d}} 
+std\+::array$<$ char, 32 $>$ {\bfseries name}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_aedda14671249925143148e8e0a46cc7f}\label{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_aedda14671249925143148e8e0a46cc7f}} 
+uint8\+\_\+t {\bfseries storage\+\_\+usage}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a81842aea1a711fdb4208a8d61a73f537}\label{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a81842aea1a711fdb4208a8d61a73f537}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 261
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a6ee6c2893f655dc91b3d6792c8a86e14}\label{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a6ee6c2893f655dc91b3d6792c8a86e14}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 61
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_ad84719eeabb59dbc741c8d7b64e5edc5}\label{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_ad84719eeabb59dbc741c8d7b64e5edc5}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 27
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a0d324d0f671b285357a3288d0e7d8f2b}\label{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_a0d324d0f671b285357a3288d0e7d8f2b}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 179
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_afe87e2b1a00dba19fa0354fa55e01344}\label{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION_afe87e2b1a00dba19fa0354fa55e01344}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}STORAGE\+\_\+\+INFORMATION\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1STORAGE__INFORMATION}{STORAGE\+\_\+\+INFORMATION}} message. 
+
+Information about a storage medium. This message is sent in response to a request with MAV\+\_\+\+CMD\+\_\+\+REQUEST\+\_\+\+MESSAGE and whenever the status of the storage changes (STORAGE\+\_\+\+STATUS). Use MAV\+\_\+\+CMD\+\_\+\+REQUEST\+\_\+\+MESSAGE.\+param2 to indicate the index/id of requested storage\+: 0 for all, 1 for first, 2 for second, etc. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+storage\+\_\+information.\+hpp\end{DoxyCompactItemize}

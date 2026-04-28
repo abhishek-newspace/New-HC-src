@@ -1,0 +1,101 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET}{}\doxysection{mavlink\+::common\+::msg\+::ATTITUDE\+\_\+\+TARGET Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET}\index{mavlink::common::msg::ATTITUDE\_TARGET@{mavlink::common::msg::ATTITUDE\_TARGET}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET}{ATTITUDE\+\_\+\+TARGET}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+attitude\+\_\+target.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::ATTITUDE\+\_\+\+TARGET\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::ATTITUDE\+\_\+\+TARGET\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_aa13766f2815c557612d85386678c8d04}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_aa13766f2815c557612d85386678c8d04}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_a829e4eef210765b563dccdf327763d16}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_a829e4eef210765b563dccdf327763d16}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_ad9746887fdab19cd12ec3db1b14895cf}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_ad9746887fdab19cd12ec3db1b14895cf}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_a79d0ccbe09ee12a0cc7a03ede23be784}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_a79d0ccbe09ee12a0cc7a03ede23be784}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_a0557683026c58d566a15b134d59d9ad3}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_a0557683026c58d566a15b134d59d9ad3}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_ae964024fb663a482b023ab2efdb56802}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_ae964024fb663a482b023ab2efdb56802}} 
+uint32\+\_\+t {\bfseries time\+\_\+boot\+\_\+ms}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_a52732c5eb843d5bb0d23a54723b3e8bd}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_a52732c5eb843d5bb0d23a54723b3e8bd}} 
+uint8\+\_\+t {\bfseries type\+\_\+mask}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_ad136108dad2070a1a2f14256bf982831}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_ad136108dad2070a1a2f14256bf982831}} 
+std\+::array$<$ float, 4 $>$ {\bfseries q}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_a110982fca430a17b262a1eb398501f5e}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_a110982fca430a17b262a1eb398501f5e}} 
+float {\bfseries body\+\_\+roll\+\_\+rate}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_a2245f40f4d5ef26f55a804f569c57abc}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_a2245f40f4d5ef26f55a804f569c57abc}} 
+float {\bfseries body\+\_\+pitch\+\_\+rate}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_ac6412225c128996b497e3ad00759b1fc}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_ac6412225c128996b497e3ad00759b1fc}} 
+float {\bfseries body\+\_\+yaw\+\_\+rate}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_a584aefd366780ed083c148792bc571e6}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_a584aefd366780ed083c148792bc571e6}} 
+float {\bfseries thrust}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_a1d130d953806c4b354473a8d6b84ccf2}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_a1d130d953806c4b354473a8d6b84ccf2}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 83
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_a37b1a5ab2a21fcad21fdab021c06cc07}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_a37b1a5ab2a21fcad21fdab021c06cc07}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 37
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_a1c9829be584679f99c0550bcf10c0832}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_a1c9829be584679f99c0550bcf10c0832}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 37
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_a43c9e45fa3ecaeb0f367228f0bb7e116}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_a43c9e45fa3ecaeb0f367228f0bb7e116}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 22
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_acd82ad39844ccc5b6fbf8e74290b677f}\label{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET_acd82ad39844ccc5b6fbf8e74290b677f}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}ATTITUDE\+\_\+\+TARGET\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ATTITUDE__TARGET}{ATTITUDE\+\_\+\+TARGET}} message. 
+
+Reports the current commanded attitude of the vehicle as specified by the autopilot. This should match the commands sent in a \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SET__ATTITUDE__TARGET}{SET\+\_\+\+ATTITUDE\+\_\+\+TARGET}} message if the vehicle is being controlled this way. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+attitude\+\_\+target.\+hpp\end{DoxyCompactItemize}

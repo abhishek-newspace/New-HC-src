@@ -1,0 +1,145 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3}{}\doxysection{mavlink\+::common\+::msg\+::SCALED\+\_\+\+PRESSURE3 Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3}\index{mavlink::common::msg::SCALED\_PRESSURE3@{mavlink::common::msg::SCALED\_PRESSURE3}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3}{SCALED\+\_\+\+PRESSURE3}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+scaled\+\_\+pressure3.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::SCALED\+\_\+\+PRESSURE3\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::SCALED\+\_\+\+PRESSURE3\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a516d365f4ec6debe7707045c51619efa}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a8faf0f3eac3cc90ead3871119b348911}\label{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a8faf0f3eac3cc90ead3871119b348911}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a8faf0f3eac3cc90ead3871119b348911}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_af06dd9a1f2c73e28c51e5394eebc8f58}\label{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_af06dd9a1f2c73e28c51e5394eebc8f58}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_af06dd9a1f2c73e28c51e5394eebc8f58}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a6e3374608d4a486439aafcb30a1736d2}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a413634a5e0fbcc277bdc026152f931eb}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a9a5c5ec333e5e391d79061f7eec54a3d}\label{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a9a5c5ec333e5e391d79061f7eec54a3d}} 
+uint32\+\_\+t {\bfseries time\+\_\+boot\+\_\+ms}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a5fabfd16fa09b061ab6d0f27d5ea49f0}\label{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a5fabfd16fa09b061ab6d0f27d5ea49f0}} 
+float {\bfseries press\+\_\+abs}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a0ebf40c028723a74eccd36af84cf4005}\label{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a0ebf40c028723a74eccd36af84cf4005}} 
+float {\bfseries press\+\_\+diff}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a874d1a1ab0497644a5344af5e900edcf}\label{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a874d1a1ab0497644a5344af5e900edcf}} 
+int16\+\_\+t {\bfseries temperature}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_ab144148bf7a2bfebfcc524d1836daeea}\label{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_ab144148bf7a2bfebfcc524d1836daeea}} 
+int16\+\_\+t {\bfseries temperature\+\_\+press\+\_\+diff}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a4c51cba291573dd090cb4fc0f6725e03}\label{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a4c51cba291573dd090cb4fc0f6725e03}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 143
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a14ee9dd76183a1f2bdd06779ee30d775}\label{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a14ee9dd76183a1f2bdd06779ee30d775}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 16
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a00978e9ba9901e29f41aa2dcfe5dc6a0}\label{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a00978e9ba9901e29f41aa2dcfe5dc6a0}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 14
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a9238e88319bc3a31042896f69ea91a70}\label{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a9238e88319bc3a31042896f69ea91a70}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 131
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_ad2422e4107b88e16d3e93a4da04d12be}\label{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_ad2422e4107b88e16d3e93a4da04d12be}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}SCALED\+\_\+\+PRESSURE3\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3}{SCALED\+\_\+\+PRESSURE3}} message. 
+
+Barometer readings for 3rd barometer 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a413634a5e0fbcc277bdc026152f931eb}\label{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a413634a5e0fbcc277bdc026152f931eb}} 
+\index{mavlink::common::msg::SCALED\_PRESSURE3@{mavlink::common::msg::SCALED\_PRESSURE3}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::SCALED\_PRESSURE3@{mavlink::common::msg::SCALED\_PRESSURE3}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+SCALED\+\_\+\+PRESSURE3\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a516d365f4ec6debe7707045c51619efa}\label{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a516d365f4ec6debe7707045c51619efa}} 
+\index{mavlink::common::msg::SCALED\_PRESSURE3@{mavlink::common::msg::SCALED\_PRESSURE3}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::SCALED\_PRESSURE3@{mavlink::common::msg::SCALED\_PRESSURE3}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+SCALED\+\_\+\+PRESSURE3\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a6e3374608d4a486439aafcb30a1736d2}\label{structmavlink_1_1common_1_1msg_1_1SCALED__PRESSURE3_a6e3374608d4a486439aafcb30a1736d2}} 
+\index{mavlink::common::msg::SCALED\_PRESSURE3@{mavlink::common::msg::SCALED\_PRESSURE3}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::SCALED\_PRESSURE3@{mavlink::common::msg::SCALED\_PRESSURE3}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+SCALED\+\_\+\+PRESSURE3\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+scaled\+\_\+pressure3.\+hpp\end{DoxyCompactItemize}

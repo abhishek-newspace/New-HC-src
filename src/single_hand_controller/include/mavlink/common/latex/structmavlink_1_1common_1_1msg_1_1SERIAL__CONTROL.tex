@@ -1,0 +1,104 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL}{}\doxysection{mavlink\+::common\+::msg\+::SERIAL\+\_\+\+CONTROL Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL}\index{mavlink::common::msg::SERIAL\_CONTROL@{mavlink::common::msg::SERIAL\_CONTROL}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL}{SERIAL\+\_\+\+CONTROL}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+serial\+\_\+control.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::SERIAL\+\_\+\+CONTROL\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::SERIAL\+\_\+\+CONTROL\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_abb4fae0a7515da727dc09513e715fc4d}\label{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_abb4fae0a7515da727dc09513e715fc4d}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_a0fb75a4a821a2c03c52127add7f834eb}\label{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_a0fb75a4a821a2c03c52127add7f834eb}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_aab05e4b087bc16d32c2380d0ca1fff60}\label{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_aab05e4b087bc16d32c2380d0ca1fff60}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_a3653a31c874442e40740637ce82a66c3}\label{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_a3653a31c874442e40740637ce82a66c3}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_a479dbed86b9bafe93b06d70f0d8f2283}\label{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_a479dbed86b9bafe93b06d70f0d8f2283}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_aa0162d2bd17330e6d35bf90d2e8b4943}\label{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_aa0162d2bd17330e6d35bf90d2e8b4943}} 
+uint8\+\_\+t {\bfseries device}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_afcbe360c4e7f3dd875f71f04b774870e}\label{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_afcbe360c4e7f3dd875f71f04b774870e}} 
+uint8\+\_\+t {\bfseries flags}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_a2d1f44ae254dc81f548d2d03372645d9}\label{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_a2d1f44ae254dc81f548d2d03372645d9}} 
+uint16\+\_\+t {\bfseries timeout}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_a5c402202954615ef0f0b31be7677814a}\label{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_a5c402202954615ef0f0b31be7677814a}} 
+uint32\+\_\+t {\bfseries baudrate}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_a86ababd6cf4529dde99f6e9352b0528e}\label{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_a86ababd6cf4529dde99f6e9352b0528e}} 
+uint8\+\_\+t {\bfseries count}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_aabb84db0bdbf5918197645489d1a3865}\label{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_aabb84db0bdbf5918197645489d1a3865}} 
+std\+::array$<$ uint8\+\_\+t, 70 $>$ {\bfseries data}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_a3e6d936369317af73396ffc4735115d3}\label{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_a3e6d936369317af73396ffc4735115d3}} 
+uint8\+\_\+t {\bfseries target\+\_\+system}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_a903404602c14c1f4fb2ece48970d308b}\label{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_a903404602c14c1f4fb2ece48970d308b}} 
+uint8\+\_\+t {\bfseries target\+\_\+component}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_a95f56b7ab2e11e3ca011d5ef31660577}\label{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_a95f56b7ab2e11e3ca011d5ef31660577}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 126
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_a4e6d853f258659baaea9ac54bdc92583}\label{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_a4e6d853f258659baaea9ac54bdc92583}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 81
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_a9e13587c749153652041248dc1f180a2}\label{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_a9e13587c749153652041248dc1f180a2}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 79
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_a2c1f577e848ae412abb8d5e04f09905e}\label{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_a2c1f577e848ae412abb8d5e04f09905e}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 220
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_aa80d566a418e1a0248d76c865fa38607}\label{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL_aa80d566a418e1a0248d76c865fa38607}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}SERIAL\+\_\+\+CONTROL\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SERIAL__CONTROL}{SERIAL\+\_\+\+CONTROL}} message. 
+
+Control a serial port. This can be used for raw access to an onboard serial peripheral such as a GPS or telemetry radio. It is designed to make it possible to update the devices firmware via MAVLink messages or change the devices settings. A message with zero bytes can be used to change just the baudrate. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+serial\+\_\+control.\+hpp\end{DoxyCompactItemize}

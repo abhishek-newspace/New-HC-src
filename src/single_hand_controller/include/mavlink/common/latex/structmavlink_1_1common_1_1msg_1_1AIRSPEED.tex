@@ -1,0 +1,95 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1AIRSPEED}{}\doxysection{mavlink\+::common\+::msg\+::AIRSPEED Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1AIRSPEED}\index{mavlink::common::msg::AIRSPEED@{mavlink::common::msg::AIRSPEED}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1AIRSPEED}{AIRSPEED}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+airspeed.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::AIRSPEED\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1AIRSPEED__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::AIRSPEED\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1AIRSPEED__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIRSPEED_a7e06f75a1df55c6905876b991f302832}\label{structmavlink_1_1common_1_1msg_1_1AIRSPEED_a7e06f75a1df55c6905876b991f302832}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIRSPEED_a51e46745c4c01c1b038648ba86be402e}\label{structmavlink_1_1common_1_1msg_1_1AIRSPEED_a51e46745c4c01c1b038648ba86be402e}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIRSPEED_ae234fee09aa8eaee7e813f825db2308f}\label{structmavlink_1_1common_1_1msg_1_1AIRSPEED_ae234fee09aa8eaee7e813f825db2308f}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIRSPEED_a3ce17623add8462ea41aa14be9a088c1}\label{structmavlink_1_1common_1_1msg_1_1AIRSPEED_a3ce17623add8462ea41aa14be9a088c1}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIRSPEED_a5014fe7e4f8dbb787f0f450819dd6aa0}\label{structmavlink_1_1common_1_1msg_1_1AIRSPEED_a5014fe7e4f8dbb787f0f450819dd6aa0}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIRSPEED_aa74b9874275eb0fa8b1ae27c0b8082f2}\label{structmavlink_1_1common_1_1msg_1_1AIRSPEED_aa74b9874275eb0fa8b1ae27c0b8082f2}} 
+uint8\+\_\+t {\bfseries id}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIRSPEED_a6da299163f42d63d7f5bd8c5351c2829}\label{structmavlink_1_1common_1_1msg_1_1AIRSPEED_a6da299163f42d63d7f5bd8c5351c2829}} 
+float {\bfseries airspeed}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIRSPEED_a2dc17a240ace13b8a9f47f0bc41d0d7b}\label{structmavlink_1_1common_1_1msg_1_1AIRSPEED_a2dc17a240ace13b8a9f47f0bc41d0d7b}} 
+int16\+\_\+t {\bfseries temperature}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIRSPEED_a7a493f713b79196f89dc00017b5ad1d9}\label{structmavlink_1_1common_1_1msg_1_1AIRSPEED_a7a493f713b79196f89dc00017b5ad1d9}} 
+float {\bfseries raw\+\_\+press}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIRSPEED_a41ce9f575c7bebc2a788c4139ef21d6b}\label{structmavlink_1_1common_1_1msg_1_1AIRSPEED_a41ce9f575c7bebc2a788c4139ef21d6b}} 
+uint8\+\_\+t {\bfseries flags}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIRSPEED_a3cd9da9774893f83aea815d05c8f000b}\label{structmavlink_1_1common_1_1msg_1_1AIRSPEED_a3cd9da9774893f83aea815d05c8f000b}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 295
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIRSPEED_ac5fb6924d0f546938dcf09070f483e2e}\label{structmavlink_1_1common_1_1msg_1_1AIRSPEED_ac5fb6924d0f546938dcf09070f483e2e}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 12
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIRSPEED_a4cd8b481887e04ae4cba376f20e904c2}\label{structmavlink_1_1common_1_1msg_1_1AIRSPEED_a4cd8b481887e04ae4cba376f20e904c2}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 12
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIRSPEED_a253aa8d2cc91c5b925b9523b7f34a97b}\label{structmavlink_1_1common_1_1msg_1_1AIRSPEED_a253aa8d2cc91c5b925b9523b7f34a97b}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 234
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIRSPEED_ad53470dfaa8b7fd0c66374c501a87eb4}\label{structmavlink_1_1common_1_1msg_1_1AIRSPEED_ad53470dfaa8b7fd0c66374c501a87eb4}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}AIRSPEED\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1AIRSPEED}{AIRSPEED}} message. 
+
+Airspeed information from a sensor. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+airspeed.\+hpp\end{DoxyCompactItemize}

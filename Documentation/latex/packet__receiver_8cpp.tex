@@ -1,0 +1,60 @@
+\hypertarget{packet__receiver_8cpp}{}\doxysection{single\+\_\+hand\+\_\+controller/packet\+\_\+receiver.cpp File Reference}
+\label{packet__receiver_8cpp}\index{single\_hand\_controller/packet\_receiver.cpp@{single\_hand\_controller/packet\_receiver.cpp}}
+{\ttfamily \#include \char`\"{}include/packet\+\_\+receiver.\+hpp\char`\"{}}\newline
+Include dependency graph for packet\+\_\+receiver.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{packet__receiver_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{packet__receiver_8cpp_a9632c2885633ae81b1c9789976231015}\label{packet__receiver_8cpp_a9632c2885633ae81b1c9789976231015}} 
+bool \mbox{\hyperlink{packet__receiver_8cpp_a9632c2885633ae81b1c9789976231015}{received\+First\+Timesync}} ()
+\begin{DoxyCompactList}\small\item\em check whether first time synchronization is performed or not. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{packet__receiver_8cpp_a1b0cacf8ec50bb07a046ec41c18f8b0c}\label{packet__receiver_8cpp_a1b0cacf8ec50bb07a046ec41c18f8b0c}} 
+bool {\bfseries is\+Leap\+Year} (uint16\+\_\+t y)
+\item 
+\mbox{\Hypertarget{packet__receiver_8cpp_aef288ac2659e23a15c34ced1ab225091}\label{packet__receiver_8cpp_aef288ac2659e23a15c34ced1ab225091}} 
+void {\bfseries print\+With\+Leading\+Zero} (uint32\+\_\+t val)
+\item 
+\mbox{\Hypertarget{packet__receiver_8cpp_aa0330774698f8f8ce5d3984f0117999e}\label{packet__receiver_8cpp_aa0330774698f8f8ce5d3984f0117999e}} 
+unsigned long {\bfseries get\+Heartbeat\+Diff} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{packet__receiver_8cpp_a56accf18e235140c9a4bda6175165e2e}\label{packet__receiver_8cpp_a56accf18e235140c9a4bda6175165e2e}} 
+\mbox{\hyperlink{struct____mavlink__signing}{mavlink\+\_\+signing\+\_\+t}} {\bfseries signing}
+\item 
+\mbox{\Hypertarget{packet__receiver_8cpp_a6fa53b8085f20f054c610dedc3476352}\label{packet__receiver_8cpp_a6fa53b8085f20f054c610dedc3476352}} 
+uint64\+\_\+t \mbox{\hyperlink{packet__receiver_8cpp_a6fa53b8085f20f054c610dedc3476352}{UGVTime}} = 0
+\begin{DoxyCompactList}\small\item\em stores time of the drone at which timesync was received \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{packet__receiver_8cpp_af675e308618ed4385f7c04f9d61e7824}\label{packet__receiver_8cpp_af675e308618ed4385f7c04f9d61e7824}} 
+uint64\+\_\+t \mbox{\hyperlink{packet__receiver_8cpp_af675e308618ed4385f7c04f9d61e7824}{Recv\+Time}} = 0
+\begin{DoxyCompactList}\small\item\em stores time at which timesync was received. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{packet__receiver_8cpp_ae215fa6012ac989e0c84a5d5a7571655}\label{packet__receiver_8cpp_ae215fa6012ac989e0c84a5d5a7571655}} 
+uint64\+\_\+t {\bfseries Recv\+Time\+Ref} = 0
+\item 
+\mbox{\Hypertarget{packet__receiver_8cpp_adc3c7ffbf73c4d136759cb5fe340a02e}\label{packet__receiver_8cpp_adc3c7ffbf73c4d136759cb5fe340a02e}} 
+uint64\+\_\+t \mbox{\hyperlink{packet__receiver_8cpp_adc3c7ffbf73c4d136759cb5fe340a02e}{latency}} = 0
+\begin{DoxyCompactList}\small\item\em latency of timesync packet being sent \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{packet__receiver_8cpp_a400fdb9b1143f886e6571d8cb81ddbe0}\label{packet__receiver_8cpp_a400fdb9b1143f886e6571d8cb81ddbe0}} 
+unsigned long {\bfseries last\+\_\+heartbeat\+\_\+received\+\_\+at} = -\/4000
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyAuthor}{Author}
+Nikhil Tom Jose 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+22/04/2026
+\end{DoxyDate}
+Part of packet receiver library; used in Single Hand Controller for Scout Defines member functions of \mbox{\hyperlink{classmessage__sender}{message\+\_\+sender}} class 

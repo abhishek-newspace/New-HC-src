@@ -1,0 +1,4 @@
+<map id="mavlink::common::msg::MISSION_REQUEST_PARTIAL_LIST" name="mavlink::common::msg::MISSION_REQUEST_PARTIAL_LIST">
+<area shape="rect" id="node1" title="MISSION_REQUEST_PARTIAL_LIST message." alt="" coords="5,80,252,121"/>
+<area shape="rect" id="node2" href="$structmavlink_1_1Message.html" title="MAVLink Message base class." alt="" coords="58,5,199,32"/>
+</map>

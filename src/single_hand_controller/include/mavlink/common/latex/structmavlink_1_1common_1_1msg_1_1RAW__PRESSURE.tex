@@ -1,0 +1,95 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE}{}\doxysection{mavlink\+::common\+::msg\+::RAW\+\_\+\+PRESSURE Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE}\index{mavlink::common::msg::RAW\_PRESSURE@{mavlink::common::msg::RAW\_PRESSURE}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE}{RAW\+\_\+\+PRESSURE}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+raw\+\_\+pressure.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::RAW\+\_\+\+PRESSURE\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::RAW\+\_\+\+PRESSURE\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_a0dcef0a9e0ad9feb67d35bb7f63047d0}\label{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_a0dcef0a9e0ad9feb67d35bb7f63047d0}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_a2e53fee08f299e8f72c88211752a6146}\label{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_a2e53fee08f299e8f72c88211752a6146}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_a8432ac890aba05b7afeccfb444509d90}\label{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_a8432ac890aba05b7afeccfb444509d90}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_afe35e902d96b38773a2e4d4b74ef1adb}\label{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_afe35e902d96b38773a2e4d4b74ef1adb}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_ad9d860f58590c2d4304be9bae083267e}\label{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_ad9d860f58590c2d4304be9bae083267e}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_a23687ebd3deef1fe7b411b9e6fd376bd}\label{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_a23687ebd3deef1fe7b411b9e6fd376bd}} 
+uint64\+\_\+t {\bfseries time\+\_\+usec}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_a7ad07b9288c94115a933d69d086681c6}\label{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_a7ad07b9288c94115a933d69d086681c6}} 
+int16\+\_\+t {\bfseries press\+\_\+abs}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_a37743125e72a0d93347a592f0f56b4ea}\label{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_a37743125e72a0d93347a592f0f56b4ea}} 
+int16\+\_\+t {\bfseries press\+\_\+diff1}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_aefab6480a96e4557e65e386eee564866}\label{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_aefab6480a96e4557e65e386eee564866}} 
+int16\+\_\+t {\bfseries press\+\_\+diff2}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_ac9e1a1711857240cb0e49e6bd1292aa6}\label{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_ac9e1a1711857240cb0e49e6bd1292aa6}} 
+int16\+\_\+t {\bfseries temperature}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_a27baa21cc35ccdc48cf599000b5c08d2}\label{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_a27baa21cc35ccdc48cf599000b5c08d2}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 28
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_a2035df36378d3bc673cc469e6b03ec0d}\label{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_a2035df36378d3bc673cc469e6b03ec0d}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 16
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_ab0af960d58f38df4dbf70341314c7c84}\label{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_ab0af960d58f38df4dbf70341314c7c84}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 16
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_ad3d61f3a20233d812f0a03382b03f6ac}\label{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_ad3d61f3a20233d812f0a03382b03f6ac}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 67
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_a3cc9210b31e9ee79c5ffb0a17bdf9c66}\label{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE_a3cc9210b31e9ee79c5ffb0a17bdf9c66}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}RAW\+\_\+\+PRESSURE\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1RAW__PRESSURE}{RAW\+\_\+\+PRESSURE}} message. 
+
+The RAW pressure readings for the typical setup of one absolute pressure and one differential pressure sensor. The sensor values should be the raw, UNSCALED ADC values. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+raw\+\_\+pressure.\+hpp\end{DoxyCompactItemize}

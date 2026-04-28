@@ -1,0 +1,155 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT}{}\doxysection{mavlink\+::common\+::msg\+::MISSION\+\_\+\+CURRENT Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT}\index{mavlink::common::msg::MISSION\_CURRENT@{mavlink::common::msg::MISSION\_CURRENT}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT}{MISSION\+\_\+\+CURRENT}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+mission\+\_\+current.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::MISSION\+\_\+\+CURRENT\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::MISSION\+\_\+\+CURRENT\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_afee91728fe64f3c744bcc72884f0a434}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_a84f8ef57e59350fb4fafc5370f9f6799}\label{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_a84f8ef57e59350fb4fafc5370f9f6799}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_a84f8ef57e59350fb4fafc5370f9f6799}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_ac114ef9c0c7c7039d451c3e6064d5741}\label{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_ac114ef9c0c7c7039d451c3e6064d5741}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_ac114ef9c0c7c7039d451c3e6064d5741}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_a0c4dbcc5ca0434813ca3f902e5be4267}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_a0346e12b0817239276d2f6a6d1ad1b5e}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_acb040123ba3837c46f34436838f8f0ea}\label{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_acb040123ba3837c46f34436838f8f0ea}} 
+uint16\+\_\+t {\bfseries seq}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_a5213fdfd93a783034207f4c96bb56e11}\label{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_a5213fdfd93a783034207f4c96bb56e11}} 
+uint16\+\_\+t {\bfseries total}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_a04938fa31c129542974208262050b4bb}\label{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_a04938fa31c129542974208262050b4bb}} 
+uint8\+\_\+t {\bfseries mission\+\_\+state}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_a122b9035416cac4639577de456907850}\label{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_a122b9035416cac4639577de456907850}} 
+uint8\+\_\+t {\bfseries mission\+\_\+mode}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_a7e5c3a14afa0d0a30c30f6e3975329c3}\label{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_a7e5c3a14afa0d0a30c30f6e3975329c3}} 
+uint32\+\_\+t {\bfseries mission\+\_\+id}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_ad3722ac21d6e84cd53e745780a9df8a6}\label{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_ad3722ac21d6e84cd53e745780a9df8a6}} 
+uint32\+\_\+t {\bfseries fence\+\_\+id}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_ad1491d916f5f4b685900cb3d9ab32d89}\label{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_ad1491d916f5f4b685900cb3d9ab32d89}} 
+uint32\+\_\+t {\bfseries rally\+\_\+points\+\_\+id}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_a5d676b279bac7aecb4b2fa73a35d7a38}\label{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_a5d676b279bac7aecb4b2fa73a35d7a38}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 42
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_aed647dc6f763b53bbb7ea6d0efc9c8c8}\label{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_aed647dc6f763b53bbb7ea6d0efc9c8c8}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 18
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_af6899c90074b9b2b1e80302e69e6637f}\label{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_af6899c90074b9b2b1e80302e69e6637f}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 2
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_a6795848c9cb33c39c37a870ef6cfc7e7}\label{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_a6795848c9cb33c39c37a870ef6cfc7e7}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 28
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_a1009f5fe86407ecbecb2e365912061dd}\label{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_a1009f5fe86407ecbecb2e365912061dd}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}MISSION\+\_\+\+CURRENT\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT}{MISSION\+\_\+\+CURRENT}} message. 
+
+\begin{DoxyVerb} Message that announces the sequence number of the current target mission item (that the system will fly towards/execute when the mission is running).
+ This message should be streamed all the time (nominally at 1Hz).
+ This message should be emitted following a call to MAV_CMD_DO_SET_MISSION_CURRENT or MISSION_SET_CURRENT.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_a0346e12b0817239276d2f6a6d1ad1b5e}\label{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_a0346e12b0817239276d2f6a6d1ad1b5e}} 
+\index{mavlink::common::msg::MISSION\_CURRENT@{mavlink::common::msg::MISSION\_CURRENT}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::MISSION\_CURRENT@{mavlink::common::msg::MISSION\_CURRENT}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+MISSION\+\_\+\+CURRENT\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_afee91728fe64f3c744bcc72884f0a434}\label{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_afee91728fe64f3c744bcc72884f0a434}} 
+\index{mavlink::common::msg::MISSION\_CURRENT@{mavlink::common::msg::MISSION\_CURRENT}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::MISSION\_CURRENT@{mavlink::common::msg::MISSION\_CURRENT}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+MISSION\+\_\+\+CURRENT\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_a0c4dbcc5ca0434813ca3f902e5be4267}\label{structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT_a0c4dbcc5ca0434813ca3f902e5be4267}} 
+\index{mavlink::common::msg::MISSION\_CURRENT@{mavlink::common::msg::MISSION\_CURRENT}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::MISSION\_CURRENT@{mavlink::common::msg::MISSION\_CURRENT}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+MISSION\+\_\+\+CURRENT\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+mission\+\_\+current.\+hpp\end{DoxyCompactItemize}

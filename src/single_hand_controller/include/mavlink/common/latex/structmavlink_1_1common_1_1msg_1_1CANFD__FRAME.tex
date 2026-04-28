@@ -1,0 +1,98 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME}{}\doxysection{mavlink\+::common\+::msg\+::CANFD\+\_\+\+FRAME Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME}\index{mavlink::common::msg::CANFD\_FRAME@{mavlink::common::msg::CANFD\_FRAME}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME}{CANFD\+\_\+\+FRAME}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+canfd\+\_\+frame.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::CANFD\+\_\+\+FRAME\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::CANFD\+\_\+\+FRAME\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_a1a76c20aa74a52ffd2513f0aba78714c}\label{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_a1a76c20aa74a52ffd2513f0aba78714c}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_ad4b44add7d628360dafe9018adb5b6c7}\label{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_ad4b44add7d628360dafe9018adb5b6c7}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_a7732177a9ccca53aad2abe51390acb93}\label{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_a7732177a9ccca53aad2abe51390acb93}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_af90b17ccc8fd561e536e5c9e602fe170}\label{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_af90b17ccc8fd561e536e5c9e602fe170}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_a8fae4c7cf5920e5333e0522dc71c41f7}\label{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_a8fae4c7cf5920e5333e0522dc71c41f7}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_a1e338a56692627104b8203781cc3fbac}\label{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_a1e338a56692627104b8203781cc3fbac}} 
+uint8\+\_\+t {\bfseries target\+\_\+system}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_a0dfd7ee8cd7b7380dd71f5b2df897fc8}\label{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_a0dfd7ee8cd7b7380dd71f5b2df897fc8}} 
+uint8\+\_\+t {\bfseries target\+\_\+component}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_a542ec3056a96fb04b7883e586017dcae}\label{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_a542ec3056a96fb04b7883e586017dcae}} 
+uint8\+\_\+t {\bfseries bus}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_add3b13d391471b66ec223ed26564878d}\label{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_add3b13d391471b66ec223ed26564878d}} 
+uint8\+\_\+t {\bfseries len}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_abdacfbe2630997dbb92f33e5f2f9229b}\label{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_abdacfbe2630997dbb92f33e5f2f9229b}} 
+uint32\+\_\+t {\bfseries id}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_aec6207d2d77eee7a4067cb0c1a06ba0d}\label{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_aec6207d2d77eee7a4067cb0c1a06ba0d}} 
+std\+::array$<$ uint8\+\_\+t, 64 $>$ {\bfseries data}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_a0aa038930cf5cb439edbba8defd647cb}\label{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_a0aa038930cf5cb439edbba8defd647cb}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 387
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_a2fdb32593b6bad658922b914b4d66145}\label{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_a2fdb32593b6bad658922b914b4d66145}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 72
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_a855c814fa50003361be9690acc56deba}\label{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_a855c814fa50003361be9690acc56deba}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 72
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_aa11f0ac413ea0c17b7a208fde2f6de57}\label{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_aa11f0ac413ea0c17b7a208fde2f6de57}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 4
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_ab146da2f8719722c212b8577516104f3}\label{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME_ab146da2f8719722c212b8577516104f3}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}CANFD\+\_\+\+FRAME\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1CANFD__FRAME}{CANFD\+\_\+\+FRAME}} message. 
+
+A forwarded CANFD frame as requested by MAV\+\_\+\+CMD\+\_\+\+CAN\+\_\+\+FORWARD. These are separated from \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1CAN__FRAME}{CAN\+\_\+\+FRAME}} as they need different handling (eg. TAO handling) 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+canfd\+\_\+frame.\+hpp\end{DoxyCompactItemize}

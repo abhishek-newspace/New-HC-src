@@ -1,0 +1,148 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1CAN__FRAME}{}\doxysection{mavlink\+::common\+::msg\+::CAN\+\_\+\+FRAME Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1CAN__FRAME}\index{mavlink::common::msg::CAN\_FRAME@{mavlink::common::msg::CAN\_FRAME}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1CAN__FRAME}{CAN\+\_\+\+FRAME}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+can\+\_\+frame.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::CAN\+\_\+\+FRAME\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1CAN__FRAME__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::CAN\+\_\+\+FRAME\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1CAN__FRAME__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_ae0ce3cda6079720e2f3b2f72a0e3e3ca}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a0048abc522c0759d6e397cb7cf9339db}\label{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a0048abc522c0759d6e397cb7cf9339db}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a0048abc522c0759d6e397cb7cf9339db}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a2836ead363c979ed6a55c52765a39a36}\label{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a2836ead363c979ed6a55c52765a39a36}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a2836ead363c979ed6a55c52765a39a36}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a0a949c795066c1e080464a8fa6e45528}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a7a943dc69e852812654c902b2d683647}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a4d8358205e6f0002beceb8282a6d8ad8}\label{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a4d8358205e6f0002beceb8282a6d8ad8}} 
+uint8\+\_\+t {\bfseries target\+\_\+system}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_ad5faa2b29c2d3b80726746d38468b1cc}\label{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_ad5faa2b29c2d3b80726746d38468b1cc}} 
+uint8\+\_\+t {\bfseries target\+\_\+component}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a768e3a427932967b2133439a64930480}\label{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a768e3a427932967b2133439a64930480}} 
+uint8\+\_\+t {\bfseries bus}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a13289ecfbb8b1c0a81e81609adb3c3e2}\label{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a13289ecfbb8b1c0a81e81609adb3c3e2}} 
+uint8\+\_\+t {\bfseries len}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a7a29a1cf722ee7503683746f3dd56216}\label{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a7a29a1cf722ee7503683746f3dd56216}} 
+uint32\+\_\+t {\bfseries id}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a8f3001e96d89b76c831000e06e7896cd}\label{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a8f3001e96d89b76c831000e06e7896cd}} 
+std\+::array$<$ uint8\+\_\+t, 8 $>$ {\bfseries data}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_aad836bc7ee633c4b326421299edb2e3a}\label{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_aad836bc7ee633c4b326421299edb2e3a}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 386
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a007a7b23fdb974bb8157e9e6c93fcb43}\label{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a007a7b23fdb974bb8157e9e6c93fcb43}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 16
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a40ae4802c282828d69c5c3b6315d6114}\label{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a40ae4802c282828d69c5c3b6315d6114}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 16
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_abcea6f4952e8e2e621d944aab3d18921}\label{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_abcea6f4952e8e2e621d944aab3d18921}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 132
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_ab5471a35d0834ec2daaab23a91adad4f}\label{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_ab5471a35d0834ec2daaab23a91adad4f}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}CAN\+\_\+\+FRAME\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1CAN__FRAME}{CAN\+\_\+\+FRAME}} message. 
+
+A forwarded CAN frame as requested by MAV\+\_\+\+CMD\+\_\+\+CAN\+\_\+\+FORWARD. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a7a943dc69e852812654c902b2d683647}\label{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a7a943dc69e852812654c902b2d683647}} 
+\index{mavlink::common::msg::CAN\_FRAME@{mavlink::common::msg::CAN\_FRAME}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::CAN\_FRAME@{mavlink::common::msg::CAN\_FRAME}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+CAN\+\_\+\+FRAME\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_ae0ce3cda6079720e2f3b2f72a0e3e3ca}\label{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_ae0ce3cda6079720e2f3b2f72a0e3e3ca}} 
+\index{mavlink::common::msg::CAN\_FRAME@{mavlink::common::msg::CAN\_FRAME}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::CAN\_FRAME@{mavlink::common::msg::CAN\_FRAME}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+CAN\+\_\+\+FRAME\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a0a949c795066c1e080464a8fa6e45528}\label{structmavlink_1_1common_1_1msg_1_1CAN__FRAME_a0a949c795066c1e080464a8fa6e45528}} 
+\index{mavlink::common::msg::CAN\_FRAME@{mavlink::common::msg::CAN\_FRAME}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::CAN\_FRAME@{mavlink::common::msg::CAN\_FRAME}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+CAN\+\_\+\+FRAME\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+can\+\_\+frame.\+hpp\end{DoxyCompactItemize}

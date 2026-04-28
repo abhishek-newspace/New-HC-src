@@ -1,0 +1,95 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN}{}\doxysection{mavlink\+::common\+::msg\+::SET\+\_\+\+GPS\+\_\+\+GLOBAL\+\_\+\+ORIGIN Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN}\index{mavlink::common::msg::SET\_GPS\_GLOBAL\_ORIGIN@{mavlink::common::msg::SET\_GPS\_GLOBAL\_ORIGIN}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN}{SET\+\_\+\+GPS\+\_\+\+GLOBAL\+\_\+\+ORIGIN}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+set\+\_\+gps\+\_\+global\+\_\+origin.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::SET\+\_\+\+GPS\+\_\+\+GLOBAL\+\_\+\+ORIGIN\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::SET\+\_\+\+GPS\+\_\+\+GLOBAL\+\_\+\+ORIGIN\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_ae014d7910635d804b8dbd039dffad116}\label{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_ae014d7910635d804b8dbd039dffad116}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_ac02c33c6d47b0f0aa1de9759557223d1}\label{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_ac02c33c6d47b0f0aa1de9759557223d1}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_a4c84c323c8582b169af9f93e762e39ca}\label{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_a4c84c323c8582b169af9f93e762e39ca}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_a12d87463a3e60a28ec2daa4c4b42be46}\label{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_a12d87463a3e60a28ec2daa4c4b42be46}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_ac82bce68b52ec955aa23de3848208b46}\label{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_ac82bce68b52ec955aa23de3848208b46}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_a75e664f42fd5928f61b029693e552dbd}\label{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_a75e664f42fd5928f61b029693e552dbd}} 
+uint8\+\_\+t {\bfseries target\+\_\+system}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_adaec65389002aaed99e897e3e6a8a077}\label{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_adaec65389002aaed99e897e3e6a8a077}} 
+int32\+\_\+t {\bfseries latitude}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_a3e47a1ab00b3d6654a48d8a6f81a1232}\label{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_a3e47a1ab00b3d6654a48d8a6f81a1232}} 
+int32\+\_\+t {\bfseries longitude}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_a17694fcb46094dbfbe72f63010f161e6}\label{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_a17694fcb46094dbfbe72f63010f161e6}} 
+int32\+\_\+t {\bfseries altitude}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_aef8ba737a20d294af502027efddf1569}\label{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_aef8ba737a20d294af502027efddf1569}} 
+uint64\+\_\+t {\bfseries time\+\_\+usec}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_ae76226d2c1ee4470965ec1a5bfe1cc53}\label{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_ae76226d2c1ee4470965ec1a5bfe1cc53}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 48
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_a94fd1e5c4f969e0a786d6eaa3253230c}\label{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_a94fd1e5c4f969e0a786d6eaa3253230c}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 21
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_ae92b78d54568426111f8cd230828536a}\label{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_ae92b78d54568426111f8cd230828536a}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 13
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_a52985c2c48f3b96d0eff8617b6838495}\label{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_a52985c2c48f3b96d0eff8617b6838495}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 41
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_a5cac20d95147c30476c245a91bd54a8c}\label{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN_a5cac20d95147c30476c245a91bd54a8c}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}SET\+\_\+\+GPS\+\_\+\+GLOBAL\+\_\+\+ORIGIN\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SET__GPS__GLOBAL__ORIGIN}{SET\+\_\+\+GPS\+\_\+\+GLOBAL\+\_\+\+ORIGIN}} message. 
+
+Sets the GPS coordinates of the vehicle local origin (0,0,0) position. Vehicle should emit \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1GPS__GLOBAL__ORIGIN}{GPS\+\_\+\+GLOBAL\+\_\+\+ORIGIN}} irrespective of whether the origin is changed. This enables transform between the local coordinate frame and the global (GPS) coordinate frame, which may be necessary when (for example) indoor and outdoor settings are connected and the MAV should move from in-\/ to outdoor. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+set\+\_\+gps\+\_\+global\+\_\+origin.\+hpp\end{DoxyCompactItemize}

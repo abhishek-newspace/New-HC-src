@@ -1,0 +1,92 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST}{}\doxysection{mavlink\+::common\+::msg\+::MISSION\+\_\+\+REQUEST Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST}\index{mavlink::common::msg::MISSION\_REQUEST@{mavlink::common::msg::MISSION\_REQUEST}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST}{MISSION\+\_\+\+REQUEST}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+mission\+\_\+request.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::MISSION\+\_\+\+REQUEST\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::MISSION\+\_\+\+REQUEST\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_a5e652b307d14360522dc34a0339bf8d2}\label{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_a5e652b307d14360522dc34a0339bf8d2}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_a4d7006ce31c06847f8b13312f83cf884}\label{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_a4d7006ce31c06847f8b13312f83cf884}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_a1bfdab376111467d5741089bcc1caf50}\label{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_a1bfdab376111467d5741089bcc1caf50}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_ad1d2e84637e423be8c7777e6570655bc}\label{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_ad1d2e84637e423be8c7777e6570655bc}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_acc77198d55664d8b9169fc3b399d8d23}\label{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_acc77198d55664d8b9169fc3b399d8d23}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_a330698a2069a1598dfb6e8b374f270f0}\label{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_a330698a2069a1598dfb6e8b374f270f0}} 
+uint8\+\_\+t {\bfseries target\+\_\+system}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_a8016dfe69814b4c8d3b9e12174b4b0bd}\label{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_a8016dfe69814b4c8d3b9e12174b4b0bd}} 
+uint8\+\_\+t {\bfseries target\+\_\+component}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_a8a3a04282346582c8122e6d8d5b5eebd}\label{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_a8a3a04282346582c8122e6d8d5b5eebd}} 
+uint16\+\_\+t {\bfseries seq}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_aa463126d93e8edff43c25765c3e0f58b}\label{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_aa463126d93e8edff43c25765c3e0f58b}} 
+uint8\+\_\+t {\bfseries mission\+\_\+type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_a34b206f2c1326a0c4251569ac848d779}\label{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_a34b206f2c1326a0c4251569ac848d779}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 40
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_ab904c929da279ede7a4d1dbb535f9c33}\label{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_ab904c929da279ede7a4d1dbb535f9c33}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 5
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_ac4a97d426becd17e5fbd1d2eabce53e1}\label{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_ac4a97d426becd17e5fbd1d2eabce53e1}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 4
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_a0659c412ccd4bb281d7b3f9c876346a8}\label{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_a0659c412ccd4bb281d7b3f9c876346a8}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 230
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_aa39856a6706d1170d018f364e52a4fda}\label{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST_aa39856a6706d1170d018f364e52a4fda}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}MISSION\+\_\+\+REQUEST\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST}{MISSION\+\_\+\+REQUEST}} message. 
+
+Request the information of the mission item with the sequence number seq. The response of the system to this message should be a \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1MISSION__ITEM}{MISSION\+\_\+\+ITEM}} message. \href{https://mavlink.io/en/services/mission.html}{\texttt{ https\+://mavlink.\+io/en/services/mission.\+html}} 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+mission\+\_\+request.\+hpp\end{DoxyCompactItemize}

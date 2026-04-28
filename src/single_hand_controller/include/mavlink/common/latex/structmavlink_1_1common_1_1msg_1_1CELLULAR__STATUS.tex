@@ -1,0 +1,101 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS}{}\doxysection{mavlink\+::common\+::msg\+::CELLULAR\+\_\+\+STATUS Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS}\index{mavlink::common::msg::CELLULAR\_STATUS@{mavlink::common::msg::CELLULAR\_STATUS}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS}{CELLULAR\+\_\+\+STATUS}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+cellular\+\_\+status.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::CELLULAR\+\_\+\+STATUS\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::CELLULAR\+\_\+\+STATUS\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a79c12858e5a1b7e1b5fbfe6db58c4efe}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a79c12858e5a1b7e1b5fbfe6db58c4efe}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a4b5ca58ab8d36dc661de995c0488e4c6}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a4b5ca58ab8d36dc661de995c0488e4c6}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a4455ebdc72a0cb4797ea7e88b6fb6c4c}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a4455ebdc72a0cb4797ea7e88b6fb6c4c}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a4402d8024f49dc436822d0a27e4a4562}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a4402d8024f49dc436822d0a27e4a4562}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a402744865b9f8e8e4f2a47a4682533f8}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a402744865b9f8e8e4f2a47a4682533f8}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a2e0f93b47cc979ef73eee5e1f693183a}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a2e0f93b47cc979ef73eee5e1f693183a}} 
+uint8\+\_\+t {\bfseries status}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a5d24b8d168e1563d03169ea78f01be42}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a5d24b8d168e1563d03169ea78f01be42}} 
+uint8\+\_\+t {\bfseries failure\+\_\+reason}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a99c2b193a4e66751977d9e1b8de4c9ad}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a99c2b193a4e66751977d9e1b8de4c9ad}} 
+uint8\+\_\+t {\bfseries type}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a4bcc752cb609c2f05af9415dd23a00fd}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a4bcc752cb609c2f05af9415dd23a00fd}} 
+uint8\+\_\+t {\bfseries quality}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_ad62aecf17a2513857b9e2da8f75396e3}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_ad62aecf17a2513857b9e2da8f75396e3}} 
+uint16\+\_\+t {\bfseries mcc}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a512da75067dcd26e97b678f32155e241}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a512da75067dcd26e97b678f32155e241}} 
+uint16\+\_\+t {\bfseries mnc}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a02eceaf6cbdb268e630fe528f209f979}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a02eceaf6cbdb268e630fe528f209f979}} 
+uint16\+\_\+t {\bfseries lac}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_abf3b8ef847f83e1efadcd99090380447}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_abf3b8ef847f83e1efadcd99090380447}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 334
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a7e0ca7b51a2760e6b07553e72d635841}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a7e0ca7b51a2760e6b07553e72d635841}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 10
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a14cb0f48056069ff63d0b2447966ca8c}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_a14cb0f48056069ff63d0b2447966ca8c}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 10
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_ad8cbb1e21bf8ac01fa3f19f0ca90e9d0}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_ad8cbb1e21bf8ac01fa3f19f0ca90e9d0}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 72
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_aabcf761c7df38e7687d1dad36a2518d6}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS_aabcf761c7df38e7687d1dad36a2518d6}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}CELLULAR\+\_\+\+STATUS\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1CELLULAR__STATUS}{CELLULAR\+\_\+\+STATUS}} message. 
+
+Report current used cellular network status 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+cellular\+\_\+status.\+hpp\end{DoxyCompactItemize}

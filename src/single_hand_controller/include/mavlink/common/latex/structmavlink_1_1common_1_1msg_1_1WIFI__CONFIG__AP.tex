@@ -1,0 +1,92 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP}{}\doxysection{mavlink\+::common\+::msg\+::WIFI\+\_\+\+CONFIG\+\_\+\+AP Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP}\index{mavlink::common::msg::WIFI\_CONFIG\_AP@{mavlink::common::msg::WIFI\_CONFIG\_AP}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP}{WIFI\+\_\+\+CONFIG\+\_\+\+AP}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+wifi\+\_\+config\+\_\+ap.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::WIFI\+\_\+\+CONFIG\+\_\+\+AP\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::WIFI\+\_\+\+CONFIG\+\_\+\+AP\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_ada57e83f313674816c0349d2d67c8a84}\label{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_ada57e83f313674816c0349d2d67c8a84}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_a9336063db22faeab4edbd64d23bf5f8a}\label{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_a9336063db22faeab4edbd64d23bf5f8a}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_a1a075f99e9a8df1d174120067e8a1b4c}\label{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_a1a075f99e9a8df1d174120067e8a1b4c}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_a00e4251955c7ce2507158f9686895967}\label{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_a00e4251955c7ce2507158f9686895967}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_adf1b0b4196e60f12921d300d99c180c8}\label{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_adf1b0b4196e60f12921d300d99c180c8}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_a6363675a0a583e676a3a5c913c2b7553}\label{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_a6363675a0a583e676a3a5c913c2b7553}} 
+std\+::array$<$ char, 32 $>$ {\bfseries ssid}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_a125e29b34b6175a0e6e02a93d54e4849}\label{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_a125e29b34b6175a0e6e02a93d54e4849}} 
+std\+::array$<$ char, 64 $>$ {\bfseries password}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_a8499b6be7c437267be158fcd394069ee}\label{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_a8499b6be7c437267be158fcd394069ee}} 
+int8\+\_\+t {\bfseries mode}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_a950dc94314fad4adb048cb34c2ff91f0}\label{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_a950dc94314fad4adb048cb34c2ff91f0}} 
+int8\+\_\+t {\bfseries response}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_af1f119e9b96af37841781d93a8b618b7}\label{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_af1f119e9b96af37841781d93a8b618b7}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 299
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_a7f202d42984e2e255a2267c6a8ab0a6a}\label{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_a7f202d42984e2e255a2267c6a8ab0a6a}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 98
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_a8b220baba474388cd3b25ee8f18f39a7}\label{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_a8b220baba474388cd3b25ee8f18f39a7}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 96
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_a7c69569cb5d93cedd0065ccc2bebba77}\label{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_a7c69569cb5d93cedd0065ccc2bebba77}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 19
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_aa6ddb26a7c90473c1ecd8e1b870c5805}\label{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP_aa6ddb26a7c90473c1ecd8e1b870c5805}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}WIFI\+\_\+\+CONFIG\+\_\+\+AP\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1WIFI__CONFIG__AP}{WIFI\+\_\+\+CONFIG\+\_\+\+AP}} message. 
+
+Configure Wi\+Fi AP SSID, password, and mode. This message is re-\/emitted as an acknowledgement by the AP. The message may also be explicitly requested using MAV\+\_\+\+CMD\+\_\+\+REQUEST\+\_\+\+MESSAGE 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+wifi\+\_\+config\+\_\+ap.\+hpp\end{DoxyCompactItemize}

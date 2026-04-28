@@ -1,0 +1,128 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS}{}\doxysection{mavlink\+::common\+::msg\+::SYS\+\_\+\+STATUS Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS}\index{mavlink::common::msg::SYS\_STATUS@{mavlink::common::msg::SYS\_STATUS}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SYS__STATUS}{SYS\+\_\+\+STATUS}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+sys\+\_\+status.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::SYS\+\_\+\+STATUS\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1SYS__STATUS__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::SYS\+\_\+\+STATUS\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1SYS__STATUS__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_add0cb84c0c53638c844b180521764331}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_add0cb84c0c53638c844b180521764331}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a73c709fae4155e46f50d938dee2f2928}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a73c709fae4155e46f50d938dee2f2928}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_ab757b62fbe430998d30890a0e27c0871}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_ab757b62fbe430998d30890a0e27c0871}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a3b54c0b179450df136476129962fa5dc}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a3b54c0b179450df136476129962fa5dc}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_ab0097d1dfab43575a78592d5d6582dbe}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_ab0097d1dfab43575a78592d5d6582dbe}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_ab9873e080b6581ca9bccf129c9463eaa}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_ab9873e080b6581ca9bccf129c9463eaa}} 
+uint32\+\_\+t {\bfseries onboard\+\_\+control\+\_\+sensors\+\_\+present}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a25c22e49d3f9fb85d1c9b57eb343ed0d}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a25c22e49d3f9fb85d1c9b57eb343ed0d}} 
+uint32\+\_\+t {\bfseries onboard\+\_\+control\+\_\+sensors\+\_\+enabled}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a8424b3025e29f5e72daa031accc9bd6d}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a8424b3025e29f5e72daa031accc9bd6d}} 
+uint32\+\_\+t {\bfseries onboard\+\_\+control\+\_\+sensors\+\_\+health}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_abc89b516975e4ac41b66e3c0697d1653}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_abc89b516975e4ac41b66e3c0697d1653}} 
+uint16\+\_\+t {\bfseries load}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a3fce817101f8876b1f5a9003650bca24}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a3fce817101f8876b1f5a9003650bca24}} 
+uint16\+\_\+t {\bfseries voltage\+\_\+battery}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a8ab53237b3524d906040498f18f48ffa}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a8ab53237b3524d906040498f18f48ffa}} 
+int16\+\_\+t {\bfseries current\+\_\+battery}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_ac4ff88345d67d852bccd80957d54b261}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_ac4ff88345d67d852bccd80957d54b261}} 
+int8\+\_\+t {\bfseries battery\+\_\+remaining}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_affdeb76342039416115b0668658b3b70}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_affdeb76342039416115b0668658b3b70}} 
+uint16\+\_\+t {\bfseries drop\+\_\+rate\+\_\+comm}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a305a371904b42b272aebc285060a579b}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a305a371904b42b272aebc285060a579b}} 
+uint16\+\_\+t {\bfseries errors\+\_\+comm}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a745e53ff4a96439226c5bd0a72ef71b7}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a745e53ff4a96439226c5bd0a72ef71b7}} 
+uint16\+\_\+t {\bfseries errors\+\_\+count1}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a0e8fb899a57d781eab59a42e97dc77de}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a0e8fb899a57d781eab59a42e97dc77de}} 
+uint16\+\_\+t {\bfseries errors\+\_\+count2}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_aad7ac0c6f91a351b85e34555a0d2c33f}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_aad7ac0c6f91a351b85e34555a0d2c33f}} 
+uint16\+\_\+t {\bfseries errors\+\_\+count3}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_aa8d07e6f2b6c6ae04e23f383ebbbd4d4}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_aa8d07e6f2b6c6ae04e23f383ebbbd4d4}} 
+uint16\+\_\+t {\bfseries errors\+\_\+count4}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a973a8b7017941ba7bd08078e0d90d067}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a973a8b7017941ba7bd08078e0d90d067}} 
+uint32\+\_\+t {\bfseries onboard\+\_\+control\+\_\+sensors\+\_\+present\+\_\+extended}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a38bb018e7d66de9d1c9a0337cf45cb24}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a38bb018e7d66de9d1c9a0337cf45cb24}} 
+uint32\+\_\+t {\bfseries onboard\+\_\+control\+\_\+sensors\+\_\+enabled\+\_\+extended}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_aa85b31719bd191ee00d2780cefd2c98d}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_aa85b31719bd191ee00d2780cefd2c98d}} 
+uint32\+\_\+t {\bfseries onboard\+\_\+control\+\_\+sensors\+\_\+health\+\_\+extended}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a3ef7412e7d472aa2256dbda76bd2668c}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a3ef7412e7d472aa2256dbda76bd2668c}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 1
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_abd91ce035156a2b71d2d3f450a288d55}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_abd91ce035156a2b71d2d3f450a288d55}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 43
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_aad31bf583d3a226bda849bf249173062}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_aad31bf583d3a226bda849bf249173062}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 31
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a4c98aebabd92abd6b58ce742565dc7df}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a4c98aebabd92abd6b58ce742565dc7df}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 124
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a429a2dde30728a314696504d6a727c83}\label{structmavlink_1_1common_1_1msg_1_1SYS__STATUS_a429a2dde30728a314696504d6a727c83}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}SYS\+\_\+\+STATUS\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SYS__STATUS}{SYS\+\_\+\+STATUS}} message. 
+
+Sensor and subsystem status information. Provides a compact representation of sensor/subsystem status and a few other basic statistics. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+sys\+\_\+status.\+hpp\end{DoxyCompactItemize}

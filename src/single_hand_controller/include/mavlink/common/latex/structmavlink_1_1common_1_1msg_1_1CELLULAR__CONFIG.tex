@@ -1,0 +1,104 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG}{}\doxysection{mavlink\+::common\+::msg\+::CELLULAR\+\_\+\+CONFIG Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG}\index{mavlink::common::msg::CELLULAR\_CONFIG@{mavlink::common::msg::CELLULAR\_CONFIG}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG}{CELLULAR\+\_\+\+CONFIG}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+cellular\+\_\+config.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::CELLULAR\+\_\+\+CONFIG\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::CELLULAR\+\_\+\+CONFIG\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a29aa8d1fb1d64ebe6945bf37cee56443}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a29aa8d1fb1d64ebe6945bf37cee56443}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a6368ab2fbaad8c5021665653b5987c8b}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a6368ab2fbaad8c5021665653b5987c8b}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a873b0dec021e0c1a752ae9b37825a4ef}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a873b0dec021e0c1a752ae9b37825a4ef}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a5910704b3cc4459b1859a9ffe87b4b0e}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a5910704b3cc4459b1859a9ffe87b4b0e}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a6d221f076a184ce8ad1cda9978f15ca3}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a6d221f076a184ce8ad1cda9978f15ca3}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a29ecabc2ee9d11c7231e67b1add15faf}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a29ecabc2ee9d11c7231e67b1add15faf}} 
+uint8\+\_\+t {\bfseries enable\+\_\+lte}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a94b94034cf220ed596ac67974e56eb83}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a94b94034cf220ed596ac67974e56eb83}} 
+uint8\+\_\+t {\bfseries enable\+\_\+pin}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_af0118084f7c13076b4b8f529c6fae769}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_af0118084f7c13076b4b8f529c6fae769}} 
+std\+::array$<$ char, 16 $>$ {\bfseries pin}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a0bc210b871e1b77068d9b96c04d7f9b5}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a0bc210b871e1b77068d9b96c04d7f9b5}} 
+std\+::array$<$ char, 16 $>$ {\bfseries new\+\_\+pin}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a0fdf7082b60fb16ef46696eaab538ff1}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a0fdf7082b60fb16ef46696eaab538ff1}} 
+std\+::array$<$ char, 32 $>$ {\bfseries apn}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_af2ec696c908920fcef2020a52b266d68}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_af2ec696c908920fcef2020a52b266d68}} 
+std\+::array$<$ char, 16 $>$ {\bfseries puk}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_ae08d25973a650bf44dbee43c19a7b9f8}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_ae08d25973a650bf44dbee43c19a7b9f8}} 
+uint8\+\_\+t {\bfseries roaming}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_ad1663335ef430338f278c29722f7251e}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_ad1663335ef430338f278c29722f7251e}} 
+uint8\+\_\+t {\bfseries response}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a9d7c33acdbfb40acc7a7eebbb763b641}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a9d7c33acdbfb40acc7a7eebbb763b641}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 336
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a6c82cb3491d2fa4a2ca9b11566d7294b}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a6c82cb3491d2fa4a2ca9b11566d7294b}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 84
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a76a0576d40956449911542acb1a81ec1}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a76a0576d40956449911542acb1a81ec1}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 84
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a1ed2e294f86a42e0cb1ccc5ada1d17d1}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a1ed2e294f86a42e0cb1ccc5ada1d17d1}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 245
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a74e8df5edba8c1819e57abe8500e43fe}\label{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG_a74e8df5edba8c1819e57abe8500e43fe}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}CELLULAR\+\_\+\+CONFIG\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1CELLULAR__CONFIG}{CELLULAR\+\_\+\+CONFIG}} message. 
+
+Configure cellular modems. This message is re-\/emitted as an acknowledgement by the modem. The message may also be explicitly requested using MAV\+\_\+\+CMD\+\_\+\+REQUEST\+\_\+\+MESSAGE. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+cellular\+\_\+config.\+hpp\end{DoxyCompactItemize}

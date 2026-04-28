@@ -1,0 +1,139 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR}{}\doxysection{mavlink\+::common\+::msg\+::HYGROMETER\+\_\+\+SENSOR Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR}\index{mavlink::common::msg::HYGROMETER\_SENSOR@{mavlink::common::msg::HYGROMETER\_SENSOR}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR}{HYGROMETER\+\_\+\+SENSOR}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+hygrometer\+\_\+sensor.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::HYGROMETER\+\_\+\+SENSOR\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::HYGROMETER\+\_\+\+SENSOR\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_af7d1dd34b9cf20c615b2347aef95cf7b}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_a2c973023f60e39e992e36b4b4d6d93c7}\label{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_a2c973023f60e39e992e36b4b4d6d93c7}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_a2c973023f60e39e992e36b4b4d6d93c7}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_a5047d289277fffe33031d7d3ed713d75}\label{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_a5047d289277fffe33031d7d3ed713d75}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_a5047d289277fffe33031d7d3ed713d75}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_a6dfc64ffe17486e6be03e482f469f292}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_a841c3d488f5bccffbd1ffa8d3d62cd8d}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_a5dbb74a65d17c6ac88495b03c9c416af}\label{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_a5dbb74a65d17c6ac88495b03c9c416af}} 
+uint8\+\_\+t {\bfseries id}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_a6637b77a820286810ea88fe25f12fd1b}\label{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_a6637b77a820286810ea88fe25f12fd1b}} 
+int16\+\_\+t {\bfseries temperature}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_acb791db6f89ce692cad72540577a2327}\label{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_acb791db6f89ce692cad72540577a2327}} 
+uint16\+\_\+t {\bfseries humidity}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_a3b1c0e72126fe40388416dbe4db18b66}\label{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_a3b1c0e72126fe40388416dbe4db18b66}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 12920
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_a55cba7766320869f87c4eb223bae7de3}\label{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_a55cba7766320869f87c4eb223bae7de3}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 5
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_af130ccb1960b28e1c033c4d372aac247}\label{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_af130ccb1960b28e1c033c4d372aac247}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 5
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_aa87e522065ccc4e57e9e42343c8dbe27}\label{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_aa87e522065ccc4e57e9e42343c8dbe27}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 20
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_ac467f1e44e588fc10a3347a060fbe1a2}\label{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_ac467f1e44e588fc10a3347a060fbe1a2}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}HYGROMETER\+\_\+\+SENSOR\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR}{HYGROMETER\+\_\+\+SENSOR}} message. 
+
+Temperature and humidity from hygrometer. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_a841c3d488f5bccffbd1ffa8d3d62cd8d}\label{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_a841c3d488f5bccffbd1ffa8d3d62cd8d}} 
+\index{mavlink::common::msg::HYGROMETER\_SENSOR@{mavlink::common::msg::HYGROMETER\_SENSOR}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::HYGROMETER\_SENSOR@{mavlink::common::msg::HYGROMETER\_SENSOR}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+HYGROMETER\+\_\+\+SENSOR\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_af7d1dd34b9cf20c615b2347aef95cf7b}\label{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_af7d1dd34b9cf20c615b2347aef95cf7b}} 
+\index{mavlink::common::msg::HYGROMETER\_SENSOR@{mavlink::common::msg::HYGROMETER\_SENSOR}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::HYGROMETER\_SENSOR@{mavlink::common::msg::HYGROMETER\_SENSOR}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+HYGROMETER\+\_\+\+SENSOR\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_a6dfc64ffe17486e6be03e482f469f292}\label{structmavlink_1_1common_1_1msg_1_1HYGROMETER__SENSOR_a6dfc64ffe17486e6be03e482f469f292}} 
+\index{mavlink::common::msg::HYGROMETER\_SENSOR@{mavlink::common::msg::HYGROMETER\_SENSOR}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::HYGROMETER\_SENSOR@{mavlink::common::msg::HYGROMETER\_SENSOR}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+HYGROMETER\+\_\+\+SENSOR\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+hygrometer\+\_\+sensor.\+hpp\end{DoxyCompactItemize}

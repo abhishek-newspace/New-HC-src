@@ -1,0 +1,181 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL}{}\doxysection{mavlink\+::common\+::msg\+::AIS\+\_\+\+VESSEL Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL}\index{mavlink::common::msg::AIS\_VESSEL@{mavlink::common::msg::AIS\_VESSEL}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL}{AIS\+\_\+\+VESSEL}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+ais\+\_\+vessel.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::AIS\+\_\+\+VESSEL\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::AIS\+\_\+\+VESSEL\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_aa1b65b2b64036897b750add3dff51419}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_ae82bce96287eda8a465e942793928f1d}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_ae82bce96287eda8a465e942793928f1d}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_ae82bce96287eda8a465e942793928f1d}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_ae64511a35bd1b3fa2edadd9b7ab4d937}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_ae64511a35bd1b3fa2edadd9b7ab4d937}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_ae64511a35bd1b3fa2edadd9b7ab4d937}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_aff578e85d0240c16e18038a241fd227f}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_a8dde675c793a297b883f587088478106}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_ac38a0e8a38f1291eda8b929a961b8c48}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_ac38a0e8a38f1291eda8b929a961b8c48}} 
+uint32\+\_\+t {\bfseries MMSI}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_aaaf8137815188ec215d0cff0f82f7d92}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_aaaf8137815188ec215d0cff0f82f7d92}} 
+int32\+\_\+t {\bfseries lat}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_ae6bdf6c70aa74462d8b2c6d8d0fa9fac}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_ae6bdf6c70aa74462d8b2c6d8d0fa9fac}} 
+int32\+\_\+t {\bfseries lon}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_ae871af2ba935265a848d045235ea542c}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_ae871af2ba935265a848d045235ea542c}} 
+uint16\+\_\+t {\bfseries COG}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_a94753d99c2fee5dc4414419ab0c317a5}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_a94753d99c2fee5dc4414419ab0c317a5}} 
+uint16\+\_\+t {\bfseries heading}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_a4dcc149594b5f77d280b02acd88dce85}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_a4dcc149594b5f77d280b02acd88dce85}} 
+uint16\+\_\+t {\bfseries velocity}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_a999b2afe41c43c802c2c648d5a1d321e}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_a999b2afe41c43c802c2c648d5a1d321e}} 
+int8\+\_\+t {\bfseries turn\+\_\+rate}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_ae45fd435b44ded08f37c76fba4aca733}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_ae45fd435b44ded08f37c76fba4aca733}} 
+uint8\+\_\+t {\bfseries navigational\+\_\+status}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_ac71a94937bb8643abd59dec25929f438}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_ac71a94937bb8643abd59dec25929f438}} 
+uint8\+\_\+t {\bfseries type}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_a77de212df04f7a61401b0e4a828f232c}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_a77de212df04f7a61401b0e4a828f232c}} 
+uint16\+\_\+t {\bfseries dimension\+\_\+bow}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_a7c1dc2636faefb79ba5000bb8a6f9be3}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_a7c1dc2636faefb79ba5000bb8a6f9be3}} 
+uint16\+\_\+t {\bfseries dimension\+\_\+stern}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_a3e64332fee94654ece8ff4b655eecb2a}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_a3e64332fee94654ece8ff4b655eecb2a}} 
+uint8\+\_\+t {\bfseries dimension\+\_\+port}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_a6eb9fa9966915cc3193dc92d9cb4c932}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_a6eb9fa9966915cc3193dc92d9cb4c932}} 
+uint8\+\_\+t {\bfseries dimension\+\_\+starboard}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_abce0cb03c363c5fbb9de5dda707295dc}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_abce0cb03c363c5fbb9de5dda707295dc}} 
+std\+::array$<$ char, 7 $>$ {\bfseries callsign}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_af7f766e1d00359fa783a6e979f6dfc66}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_af7f766e1d00359fa783a6e979f6dfc66}} 
+std\+::array$<$ char, 20 $>$ {\bfseries name}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_a2535e7830970dd10a662b0f19d099bb3}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_a2535e7830970dd10a662b0f19d099bb3}} 
+uint16\+\_\+t {\bfseries tslc}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_af18a2b182124e4ca04293934ccbb5985}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_af18a2b182124e4ca04293934ccbb5985}} 
+uint16\+\_\+t {\bfseries flags}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_a16cd978e6a14b186fe4d2ed609d010e1}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_a16cd978e6a14b186fe4d2ed609d010e1}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 301
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_ad11fd0cca2daba255223c78b63d21652}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_ad11fd0cca2daba255223c78b63d21652}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 58
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_ad6be147cb1db4195c5610c643f66e858}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_ad6be147cb1db4195c5610c643f66e858}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 58
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_a4776e796b1451d246ffd78be99153f8f}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_a4776e796b1451d246ffd78be99153f8f}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 243
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_a3712662012f2776936b71fe55b24dc18}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_a3712662012f2776936b71fe55b24dc18}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}AIS\+\_\+\+VESSEL\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL}{AIS\+\_\+\+VESSEL}} message. 
+
+The location and information of an AIS vessel 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_a8dde675c793a297b883f587088478106}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_a8dde675c793a297b883f587088478106}} 
+\index{mavlink::common::msg::AIS\_VESSEL@{mavlink::common::msg::AIS\_VESSEL}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::AIS\_VESSEL@{mavlink::common::msg::AIS\_VESSEL}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+AIS\+\_\+\+VESSEL\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_aa1b65b2b64036897b750add3dff51419}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_aa1b65b2b64036897b750add3dff51419}} 
+\index{mavlink::common::msg::AIS\_VESSEL@{mavlink::common::msg::AIS\_VESSEL}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::AIS\_VESSEL@{mavlink::common::msg::AIS\_VESSEL}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+AIS\+\_\+\+VESSEL\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_aff578e85d0240c16e18038a241fd227f}\label{structmavlink_1_1common_1_1msg_1_1AIS__VESSEL_aff578e85d0240c16e18038a241fd227f}} 
+\index{mavlink::common::msg::AIS\_VESSEL@{mavlink::common::msg::AIS\_VESSEL}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::AIS\_VESSEL@{mavlink::common::msg::AIS\_VESSEL}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+AIS\+\_\+\+VESSEL\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+ais\+\_\+vessel.\+hpp\end{DoxyCompactItemize}

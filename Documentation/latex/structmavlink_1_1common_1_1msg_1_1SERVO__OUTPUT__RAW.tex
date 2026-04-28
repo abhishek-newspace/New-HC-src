@@ -1,0 +1,184 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW}{}\doxysection{mavlink\+::common\+::msg\+::SERVO\+\_\+\+OUTPUT\+\_\+\+RAW Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW}\index{mavlink::common::msg::SERVO\_OUTPUT\_RAW@{mavlink::common::msg::SERVO\_OUTPUT\_RAW}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW}{SERVO\+\_\+\+OUTPUT\+\_\+\+RAW}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+servo\+\_\+output\+\_\+raw.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::SERVO\+\_\+\+OUTPUT\+\_\+\+RAW\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::SERVO\+\_\+\+OUTPUT\+\_\+\+RAW\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a4e3903d1e8eb385d0ab5fd389644e755}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_af0258673e9001d903370f964f8198e5e}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_af0258673e9001d903370f964f8198e5e}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_af0258673e9001d903370f964f8198e5e}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_aec30931dd203cf6bab28a6935e8f9b87}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_aec30931dd203cf6bab28a6935e8f9b87}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_aec30931dd203cf6bab28a6935e8f9b87}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a891aa5e3bce0fc1ee90e17861c493045}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a4e87254419a6696015dcd66ca686d5b0}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a14fcec2d80d1a151f0cb4b2598b47725}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a14fcec2d80d1a151f0cb4b2598b47725}} 
+uint32\+\_\+t {\bfseries time\+\_\+usec}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a298ac5c565af60c2ddfa0059d29babf4}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a298ac5c565af60c2ddfa0059d29babf4}} 
+uint8\+\_\+t {\bfseries port}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a84af92a2784cb38ca09b6a5a7cb3c5ee}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a84af92a2784cb38ca09b6a5a7cb3c5ee}} 
+uint16\+\_\+t {\bfseries servo1\+\_\+raw}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a802730de9444ad6897cf7d8876c0e1cf}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a802730de9444ad6897cf7d8876c0e1cf}} 
+uint16\+\_\+t {\bfseries servo2\+\_\+raw}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a9b70ca4f9f84fb2c069998b20277eb66}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a9b70ca4f9f84fb2c069998b20277eb66}} 
+uint16\+\_\+t {\bfseries servo3\+\_\+raw}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_ad34d8cc0e8af363311e45cd0d9934724}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_ad34d8cc0e8af363311e45cd0d9934724}} 
+uint16\+\_\+t {\bfseries servo4\+\_\+raw}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a287b5ee131bd69e3194d91a8381506eb}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a287b5ee131bd69e3194d91a8381506eb}} 
+uint16\+\_\+t {\bfseries servo5\+\_\+raw}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a0a65adea1f8df674438288f3dbdc08fb}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a0a65adea1f8df674438288f3dbdc08fb}} 
+uint16\+\_\+t {\bfseries servo6\+\_\+raw}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a41a0d57690d341b67fe36cc991e5ab12}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a41a0d57690d341b67fe36cc991e5ab12}} 
+uint16\+\_\+t {\bfseries servo7\+\_\+raw}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a3e2c1c7a7192e6f5f6b2d2083566b4bb}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a3e2c1c7a7192e6f5f6b2d2083566b4bb}} 
+uint16\+\_\+t {\bfseries servo8\+\_\+raw}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_ade4e9579b39b864bddb9f6b2c2587d44}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_ade4e9579b39b864bddb9f6b2c2587d44}} 
+uint16\+\_\+t {\bfseries servo9\+\_\+raw}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a283707181f59ff23b59d6c09b7aea5cc}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a283707181f59ff23b59d6c09b7aea5cc}} 
+uint16\+\_\+t {\bfseries servo10\+\_\+raw}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a1232b1c695432d9bfc863fedd1d81d6c}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a1232b1c695432d9bfc863fedd1d81d6c}} 
+uint16\+\_\+t {\bfseries servo11\+\_\+raw}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_aedc496c797ec41dd72f0183ce011555e}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_aedc496c797ec41dd72f0183ce011555e}} 
+uint16\+\_\+t {\bfseries servo12\+\_\+raw}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_ad7f4b468501370a6f928f6ba8119bde1}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_ad7f4b468501370a6f928f6ba8119bde1}} 
+uint16\+\_\+t {\bfseries servo13\+\_\+raw}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_af3a04c56275daa02f13d0367ed44f2ba}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_af3a04c56275daa02f13d0367ed44f2ba}} 
+uint16\+\_\+t {\bfseries servo14\+\_\+raw}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a66daa4d476f03711498987a574b2617d}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a66daa4d476f03711498987a574b2617d}} 
+uint16\+\_\+t {\bfseries servo15\+\_\+raw}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_aea3b06a461a96cae80e277f8ed35c5bf}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_aea3b06a461a96cae80e277f8ed35c5bf}} 
+uint16\+\_\+t {\bfseries servo16\+\_\+raw}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_ae435e6fe3a2b11732930686e74d7fe24}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_ae435e6fe3a2b11732930686e74d7fe24}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 36
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_aa6bde6835173b3a2f86527054b344f47}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_aa6bde6835173b3a2f86527054b344f47}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 37
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_ae11d66e8c65834aaabed9c32e87c274e}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_ae11d66e8c65834aaabed9c32e87c274e}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 21
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a025a82defe5da00e2c8e8331dfea1964}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a025a82defe5da00e2c8e8331dfea1964}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 222
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a79f6008d4bcfab772fb916e31bb6b209}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a79f6008d4bcfab772fb916e31bb6b209}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}SERVO\+\_\+\+OUTPUT\+\_\+\+RAW\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW}{SERVO\+\_\+\+OUTPUT\+\_\+\+RAW}} message. 
+
+Superseded by \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ACTUATOR__OUTPUT__STATUS}{ACTUATOR\+\_\+\+OUTPUT\+\_\+\+STATUS}}. The RAW values of the servo outputs (for RC input from the remote, use the \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS}{RC\+\_\+\+CHANNELS}} messages). The standard PPM modulation is as follows\+: 1000 microseconds\+: 0\%, 2000 microseconds\+: 100\%. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a4e87254419a6696015dcd66ca686d5b0}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a4e87254419a6696015dcd66ca686d5b0}} 
+\index{mavlink::common::msg::SERVO\_OUTPUT\_RAW@{mavlink::common::msg::SERVO\_OUTPUT\_RAW}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::SERVO\_OUTPUT\_RAW@{mavlink::common::msg::SERVO\_OUTPUT\_RAW}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+SERVO\+\_\+\+OUTPUT\+\_\+\+RAW\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a4e3903d1e8eb385d0ab5fd389644e755}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a4e3903d1e8eb385d0ab5fd389644e755}} 
+\index{mavlink::common::msg::SERVO\_OUTPUT\_RAW@{mavlink::common::msg::SERVO\_OUTPUT\_RAW}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::SERVO\_OUTPUT\_RAW@{mavlink::common::msg::SERVO\_OUTPUT\_RAW}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+SERVO\+\_\+\+OUTPUT\+\_\+\+RAW\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a891aa5e3bce0fc1ee90e17861c493045}\label{structmavlink_1_1common_1_1msg_1_1SERVO__OUTPUT__RAW_a891aa5e3bce0fc1ee90e17861c493045}} 
+\index{mavlink::common::msg::SERVO\_OUTPUT\_RAW@{mavlink::common::msg::SERVO\_OUTPUT\_RAW}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::SERVO\_OUTPUT\_RAW@{mavlink::common::msg::SERVO\_OUTPUT\_RAW}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+SERVO\+\_\+\+OUTPUT\+\_\+\+RAW\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+servo\+\_\+output\+\_\+raw.\+hpp\end{DoxyCompactItemize}

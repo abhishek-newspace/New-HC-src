@@ -1,0 +1,193 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS}{}\doxysection{mavlink\+::common\+::msg\+::ONBOARD\+\_\+\+COMPUTER\+\_\+\+STATUS Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS}\index{mavlink::common::msg::ONBOARD\_COMPUTER\_STATUS@{mavlink::common::msg::ONBOARD\_COMPUTER\_STATUS}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS}{ONBOARD\+\_\+\+COMPUTER\+\_\+\+STATUS}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+onboard\+\_\+computer\+\_\+status.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::ONBOARD\+\_\+\+COMPUTER\+\_\+\+STATUS\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=256pt]{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::ONBOARD\+\_\+\+COMPUTER\+\_\+\+STATUS\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=256pt]{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_ae06679a3087e5b4ce0a2f0804b739a64}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a2b2415f42cc63b160e48b30c482dd2d2}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a2b2415f42cc63b160e48b30c482dd2d2}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a2b2415f42cc63b160e48b30c482dd2d2}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_ac8e1fffa2d2f009cf4af0ef31f92b379}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_ac8e1fffa2d2f009cf4af0ef31f92b379}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_ac8e1fffa2d2f009cf4af0ef31f92b379}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_ae016c689fd8c1f21ad9d6ea5df7879ec}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_ad2b86a2d5e858abc6235a6764db7dc41}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a5494e57038d8598bf9489ba4cff0f9f9}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a5494e57038d8598bf9489ba4cff0f9f9}} 
+uint64\+\_\+t {\bfseries time\+\_\+usec}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a8e677329095519bb19b46a6a40e922d6}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a8e677329095519bb19b46a6a40e922d6}} 
+uint32\+\_\+t {\bfseries uptime}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_afce21fe600237ffacde9eaa619135280}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_afce21fe600237ffacde9eaa619135280}} 
+uint8\+\_\+t {\bfseries type}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a230e51065041b424498bc9f99d74e818}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a230e51065041b424498bc9f99d74e818}} 
+std\+::array$<$ uint8\+\_\+t, 8 $>$ {\bfseries cpu\+\_\+cores}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a14f4dbc9bac6e59fd2d47022bc05d623}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a14f4dbc9bac6e59fd2d47022bc05d623}} 
+std\+::array$<$ uint8\+\_\+t, 10 $>$ {\bfseries cpu\+\_\+combined}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a591cb16c6446487eefcfb51a26f6f762}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a591cb16c6446487eefcfb51a26f6f762}} 
+std\+::array$<$ uint8\+\_\+t, 4 $>$ {\bfseries gpu\+\_\+cores}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_ad359d881f44010ecd054cc1798e2d955}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_ad359d881f44010ecd054cc1798e2d955}} 
+std\+::array$<$ uint8\+\_\+t, 10 $>$ {\bfseries gpu\+\_\+combined}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_aea471981d624c1913da75492af51b895}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_aea471981d624c1913da75492af51b895}} 
+int8\+\_\+t {\bfseries temperature\+\_\+board}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a5a15ac302bce72fe6b6a94e81563cd67}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a5a15ac302bce72fe6b6a94e81563cd67}} 
+std\+::array$<$ int8\+\_\+t, 8 $>$ {\bfseries temperature\+\_\+core}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_ad5a315a9a98f3658a75fccc19bb18071}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_ad5a315a9a98f3658a75fccc19bb18071}} 
+std\+::array$<$ int16\+\_\+t, 4 $>$ {\bfseries fan\+\_\+speed}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_acd6687581bece39af90e73893a4b5cfa}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_acd6687581bece39af90e73893a4b5cfa}} 
+uint32\+\_\+t {\bfseries ram\+\_\+usage}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_aabf7100f7d6f5e952254775a79178616}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_aabf7100f7d6f5e952254775a79178616}} 
+uint32\+\_\+t {\bfseries ram\+\_\+total}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a3f360dc02e62247bf7bb722d774b4909}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a3f360dc02e62247bf7bb722d774b4909}} 
+std\+::array$<$ uint32\+\_\+t, 4 $>$ {\bfseries storage\+\_\+type}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a96dc5626ae48bbc059188f2abf1e249e}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a96dc5626ae48bbc059188f2abf1e249e}} 
+std\+::array$<$ uint32\+\_\+t, 4 $>$ {\bfseries storage\+\_\+usage}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a4c24e19aba884735de7bf22171a59b18}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a4c24e19aba884735de7bf22171a59b18}} 
+std\+::array$<$ uint32\+\_\+t, 4 $>$ {\bfseries storage\+\_\+total}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a1a2845c9f2b9cb99c61044b90625c536}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a1a2845c9f2b9cb99c61044b90625c536}} 
+std\+::array$<$ uint32\+\_\+t, 6 $>$ {\bfseries link\+\_\+type}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_ac30b45a97f7f594f7215611f342880f1}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_ac30b45a97f7f594f7215611f342880f1}} 
+std\+::array$<$ uint32\+\_\+t, 6 $>$ {\bfseries link\+\_\+tx\+\_\+rate}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_ad232dfa934804ec3fcf57b45f1ca1dc0}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_ad232dfa934804ec3fcf57b45f1ca1dc0}} 
+std\+::array$<$ uint32\+\_\+t, 6 $>$ {\bfseries link\+\_\+rx\+\_\+rate}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a108cf5c775ead074712305f8eef44380}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a108cf5c775ead074712305f8eef44380}} 
+std\+::array$<$ uint32\+\_\+t, 6 $>$ {\bfseries link\+\_\+tx\+\_\+max}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_ac368ba64167f27f5cd3680d3d015a2bb}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_ac368ba64167f27f5cd3680d3d015a2bb}} 
+std\+::array$<$ uint32\+\_\+t, 6 $>$ {\bfseries link\+\_\+rx\+\_\+max}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_ab4fda3e1ab73a5a7cf94ab2141223a3d}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_ab4fda3e1ab73a5a7cf94ab2141223a3d}} 
+uint16\+\_\+t {\bfseries status\+\_\+flags}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a53b31b534c4910b7f595f9b7a733dc58}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a53b31b534c4910b7f595f9b7a733dc58}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 390
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_aebdbd303861750abcb6627f36a3786a3}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_aebdbd303861750abcb6627f36a3786a3}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 240
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a587da20cf9bd8f716c54ebcd7657d63e}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a587da20cf9bd8f716c54ebcd7657d63e}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 238
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a20eecf9ef05cb83cc5e083e52f82e87a}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a20eecf9ef05cb83cc5e083e52f82e87a}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 156
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a672eb710dae9192d16799d21521c0e4b}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_a672eb710dae9192d16799d21521c0e4b}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}ONBOARD\+\_\+\+COMPUTER\+\_\+\+STATUS\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS}{ONBOARD\+\_\+\+COMPUTER\+\_\+\+STATUS}} message. 
+
+Hardware status sent by an onboard computer. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_ad2b86a2d5e858abc6235a6764db7dc41}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_ad2b86a2d5e858abc6235a6764db7dc41}} 
+\index{mavlink::common::msg::ONBOARD\_COMPUTER\_STATUS@{mavlink::common::msg::ONBOARD\_COMPUTER\_STATUS}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::ONBOARD\_COMPUTER\_STATUS@{mavlink::common::msg::ONBOARD\_COMPUTER\_STATUS}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+ONBOARD\+\_\+\+COMPUTER\+\_\+\+STATUS\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_ae06679a3087e5b4ce0a2f0804b739a64}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_ae06679a3087e5b4ce0a2f0804b739a64}} 
+\index{mavlink::common::msg::ONBOARD\_COMPUTER\_STATUS@{mavlink::common::msg::ONBOARD\_COMPUTER\_STATUS}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::ONBOARD\_COMPUTER\_STATUS@{mavlink::common::msg::ONBOARD\_COMPUTER\_STATUS}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+ONBOARD\+\_\+\+COMPUTER\+\_\+\+STATUS\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_ae016c689fd8c1f21ad9d6ea5df7879ec}\label{structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS_ae016c689fd8c1f21ad9d6ea5df7879ec}} 
+\index{mavlink::common::msg::ONBOARD\_COMPUTER\_STATUS@{mavlink::common::msg::ONBOARD\_COMPUTER\_STATUS}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::ONBOARD\_COMPUTER\_STATUS@{mavlink::common::msg::ONBOARD\_COMPUTER\_STATUS}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+ONBOARD\+\_\+\+COMPUTER\+\_\+\+STATUS\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+onboard\+\_\+computer\+\_\+status.\+hpp\end{DoxyCompactItemize}

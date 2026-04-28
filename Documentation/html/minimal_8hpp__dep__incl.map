@@ -1,0 +1,8 @@
+<map id="single_hand_controller/include/mavlink/minimal/minimal.hpp" name="single_hand_controller/include/mavlink/minimal/minimal.hpp">
+<area shape="rect" id="node1" title="MAVLink comm protocol generated from minimal.xml." alt="" coords="112,5,300,61"/>
+<area shape="rect" id="node2" href="$minimal_2gtestsuite_8hpp.html" title="MAVLink comm testsuite protocol generated from minimal.xml." alt="" coords="5,109,193,165"/>
+<area shape="rect" id="node3" href="$standard_8hpp.html" title="MAVLink comm protocol generated from standard.xml." alt="" coords="217,109,408,165"/>
+<area shape="rect" id="node4" href="$common_8hpp.html" title="MAVLink comm protocol generated from common.xml." alt="" coords="109,213,300,269"/>
+<area shape="rect" id="node6" href="$standard_2gtestsuite_8hpp.html" title="MAVLink comm testsuite protocol generated from standard.xml." alt="" coords="324,213,515,269"/>
+<area shape="rect" id="node5" href="$common_2gtestsuite_8hpp.html" title="MAVLink comm testsuite protocol generated from common.xml." alt="" coords="109,317,300,373"/>
+</map>

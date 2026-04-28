@@ -1,0 +1,468 @@
+\hypertarget{minimal_8h}{}\doxysection{single\+\_\+hand\+\_\+controller/include/mavlink/minimal/minimal.h File Reference}
+\label{minimal_8h}\index{single\_hand\_controller/include/mavlink/minimal/minimal.h@{single\_hand\_controller/include/mavlink/minimal/minimal.h}}
+
+
+MAVLink comm protocol generated from minimal.\+xml.  
+
+
+{\ttfamily \#include \char`\"{}../protocol.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}./mavlink\+\_\+msg\+\_\+heartbeat.\+h\char`\"{}}\newline
+Include dependency graph for minimal.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{minimal_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{minimal_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{minimal_8h_a88890384324224a0e19172f44fc76808}\label{minimal_8h_a88890384324224a0e19172f44fc76808}} 
+\#define {\bfseries MAVLINK\+\_\+\+MINIMAL\+\_\+H}
+\item 
+\mbox{\Hypertarget{minimal_8h_ae0cb371b62ef0b9dcbb05cdf9497d763}\label{minimal_8h_ae0cb371b62ef0b9dcbb05cdf9497d763}} 
+\#define {\bfseries MAVLINK\+\_\+\+MINIMAL\+\_\+\+XML\+\_\+\+HASH}~2229504358257161077
+\item 
+\mbox{\Hypertarget{minimal_8h_aa90005429262b658c881fa203c4de208}\label{minimal_8h_aa90005429262b658c881fa203c4de208}} 
+\#define {\bfseries MAVLINK\+\_\+\+MESSAGE\+\_\+\+LENGTHS}~\{\}
+\item 
+\mbox{\Hypertarget{minimal_8h_a3f709d5835acb54a11202a5fdc7a6bfe}\label{minimal_8h_a3f709d5835acb54a11202a5fdc7a6bfe}} 
+\#define {\bfseries MAVLINK\+\_\+\+MESSAGE\+\_\+\+CRCS}~\{\{0, 50, 9, 9, 0, 0, 0\}\}
+\item 
+\mbox{\Hypertarget{minimal_8h_a913ac6f00a03f60361fe388081758e72}\label{minimal_8h_a913ac6f00a03f60361fe388081758e72}} 
+\#define {\bfseries MAVLINK\+\_\+\+ENABLED\+\_\+\+MINIMAL}
+\item 
+\#define \mbox{\hyperlink{minimal_8h_a2e111ba3d51671c7c15302296b1637a3}{HAVE\+\_\+\+ENUM\+\_\+\+MAV\+\_\+\+AUTOPILOT}}
+\begin{DoxyCompactList}\small\item\em Micro air vehicle / autopilot classes. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{minimal_8h_a3b4a4b640a6f693143693967d9c4186f}{HAVE\+\_\+\+ENUM\+\_\+\+MAV\+\_\+\+TYPE}}
+\begin{DoxyCompactList}\small\item\em MAVLINK component type reported in HEARTBEAT message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{minimal_8h_a4d10e65452d104b7a6f725423e01f83a}\label{minimal_8h_a4d10e65452d104b7a6f725423e01f83a}} 
+\#define \mbox{\hyperlink{minimal_8h_a4d10e65452d104b7a6f725423e01f83a}{HAVE\+\_\+\+ENUM\+\_\+\+MAV\+\_\+\+MODE\+\_\+\+FLAG}}
+\begin{DoxyCompactList}\small\item\em These flags encode the MAV mode, see MAV\+\_\+\+MODE enum for useful combinations. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{minimal_8h_af64abdf9b0014e46b8228dbd5c8d49e5}{HAVE\+\_\+\+ENUM\+\_\+\+MAV\+\_\+\+MODE\+\_\+\+FLAG\+\_\+\+DECODE\+\_\+\+POSITION}}
+\begin{DoxyCompactList}\small\item\em These values encode the bit positions of the decode position. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{minimal_8h_a1dd10ffbd73c33a555cb151a5c92e812}\label{minimal_8h_a1dd10ffbd73c33a555cb151a5c92e812}} 
+\#define \mbox{\hyperlink{minimal_8h_a1dd10ffbd73c33a555cb151a5c92e812}{HAVE\+\_\+\+ENUM\+\_\+\+MAV\+\_\+\+STATE}}
+\begin{DoxyCompactList}\small\item\em ~\newline
+ \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{minimal_8h_ae92fe496394c2a0fa3fc7fac939a7682}{HAVE\+\_\+\+ENUM\+\_\+\+MAV\+\_\+\+COMPONENT}}
+\begin{DoxyCompactList}\small\item\em Legacy component ID values for particular types of hardware/software that might make up a MAVLink system (autopilot, cameras, servos, avoidance systems etc.). \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{minimal_8h_a713480f83cc8ffd484a19a4b9b690215}\label{minimal_8h_a713480f83cc8ffd484a19a4b9b690215}} 
+\#define {\bfseries MAVLINK\+\_\+\+VERSION}~3
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{minimal_8h_a5863beaf01d6939bd3d0a11023ef0430}\label{minimal_8h_a5863beaf01d6939bd3d0a11023ef0430}} 
+typedef enum MAV\+\_\+\+AUTOPILOT {\bfseries MAV\+\_\+\+AUTOPILOT}
+\item 
+\mbox{\Hypertarget{minimal_8h_a51a661b6ac91f26e5329cff18516bc67}\label{minimal_8h_a51a661b6ac91f26e5329cff18516bc67}} 
+typedef enum MAV\+\_\+\+TYPE {\bfseries MAV\+\_\+\+TYPE}
+\item 
+\mbox{\Hypertarget{minimal_8h_aedc1948ad4bcb739dcb2cfebacbabe44}\label{minimal_8h_aedc1948ad4bcb739dcb2cfebacbabe44}} 
+typedef enum MAV\+\_\+\+MODE\+\_\+\+FLAG {\bfseries MAV\+\_\+\+MODE\+\_\+\+FLAG}
+\item 
+\mbox{\Hypertarget{minimal_8h_aa5930da35738ffd0a5fdf09c44729258}\label{minimal_8h_aa5930da35738ffd0a5fdf09c44729258}} 
+typedef enum MAV\+\_\+\+MODE\+\_\+\+FLAG\+\_\+\+DECODE\+\_\+\+POSITION {\bfseries MAV\+\_\+\+MODE\+\_\+\+FLAG\+\_\+\+DECODE\+\_\+\+POSITION}
+\item 
+\mbox{\Hypertarget{minimal_8h_ab70b8e3323cf9018010e2aadefe24cca}\label{minimal_8h_ab70b8e3323cf9018010e2aadefe24cca}} 
+typedef enum MAV\+\_\+\+STATE {\bfseries MAV\+\_\+\+STATE}
+\item 
+\mbox{\Hypertarget{minimal_8h_a8916bbb826f6a5101fdcea96f0d4c18c}\label{minimal_8h_a8916bbb826f6a5101fdcea96f0d4c18c}} 
+typedef enum MAV\+\_\+\+COMPONENT {\bfseries MAV\+\_\+\+COMPONENT}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{minimal_8h_add415966c25b466767c08bf3b8c00baa}\label{minimal_8h_add415966c25b466767c08bf3b8c00baa}} 
+enum {\bfseries MAV\+\_\+\+AUTOPILOT} \{ \newline
+{\bfseries MAV\+\_\+\+AUTOPILOT\+\_\+\+GENERIC} =0
+, {\bfseries MAV\+\_\+\+AUTOPILOT\+\_\+\+RESERVED} =1
+, {\bfseries MAV\+\_\+\+AUTOPILOT\+\_\+\+SLUGS} =2
+, {\bfseries MAV\+\_\+\+AUTOPILOT\+\_\+\+ARDUPILOTMEGA} =3
+, \newline
+{\bfseries MAV\+\_\+\+AUTOPILOT\+\_\+\+OPENPILOT} =4
+, {\bfseries MAV\+\_\+\+AUTOPILOT\+\_\+\+GENERIC\+\_\+\+WAYPOINTS\+\_\+\+ONLY} =5
+, {\bfseries MAV\+\_\+\+AUTOPILOT\+\_\+\+GENERIC\+\_\+\+WAYPOINTS\+\_\+\+AND\+\_\+\+SIMPLE\+\_\+\+NAVIGATION\+\_\+\+ONLY} =6
+, {\bfseries MAV\+\_\+\+AUTOPILOT\+\_\+\+GENERIC\+\_\+\+MISSION\+\_\+\+FULL} =7
+, \newline
+{\bfseries MAV\+\_\+\+AUTOPILOT\+\_\+\+INVALID} =8
+, {\bfseries MAV\+\_\+\+AUTOPILOT\+\_\+\+PPZ} =9
+, {\bfseries MAV\+\_\+\+AUTOPILOT\+\_\+\+UDB} =10
+, {\bfseries MAV\+\_\+\+AUTOPILOT\+\_\+\+FP} =11
+, \newline
+{\bfseries MAV\+\_\+\+AUTOPILOT\+\_\+\+PX4} =12
+, {\bfseries MAV\+\_\+\+AUTOPILOT\+\_\+\+SMACCMPILOT} =13
+, {\bfseries MAV\+\_\+\+AUTOPILOT\+\_\+\+AUTOQUAD} =14
+, {\bfseries MAV\+\_\+\+AUTOPILOT\+\_\+\+ARMAZILA} =15
+, \newline
+{\bfseries MAV\+\_\+\+AUTOPILOT\+\_\+\+AEROB} =16
+, {\bfseries MAV\+\_\+\+AUTOPILOT\+\_\+\+ASLUAV} =17
+, {\bfseries MAV\+\_\+\+AUTOPILOT\+\_\+\+SMARTAP} =18
+, {\bfseries MAV\+\_\+\+AUTOPILOT\+\_\+\+AIRRAILS} =19
+, \newline
+{\bfseries MAV\+\_\+\+AUTOPILOT\+\_\+\+REFLEX} =20
+, {\bfseries MAV\+\_\+\+AUTOPILOT\+\_\+\+ENUM\+\_\+\+END} =21
+ \}
+\item 
+\mbox{\Hypertarget{minimal_8h_aaf404a9fdbd4c9a05d6cab18790dbb28}\label{minimal_8h_aaf404a9fdbd4c9a05d6cab18790dbb28}} 
+enum {\bfseries MAV\+\_\+\+TYPE} \{ \newline
+{\bfseries MAV\+\_\+\+TYPE\+\_\+\+GENERIC} =0
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+FIXED\+\_\+\+WING} =1
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+QUADROTOR} =2
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+COAXIAL} =3
+, \newline
+{\bfseries MAV\+\_\+\+TYPE\+\_\+\+HELICOPTER} =4
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+ANTENNA\+\_\+\+TRACKER} =5
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+GCS} =6
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+AIRSHIP} =7
+, \newline
+{\bfseries MAV\+\_\+\+TYPE\+\_\+\+FREE\+\_\+\+BALLOON} =8
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+ROCKET} =9
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+GROUND\+\_\+\+ROVER} =10
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+SURFACE\+\_\+\+BOAT} =11
+, \newline
+{\bfseries MAV\+\_\+\+TYPE\+\_\+\+SUBMARINE} =12
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+HEXAROTOR} =13
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+OCTOROTOR} =14
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+TRICOPTER} =15
+, \newline
+{\bfseries MAV\+\_\+\+TYPE\+\_\+\+FLAPPING\+\_\+\+WING} =16
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+KITE} =17
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+ONBOARD\+\_\+\+CONTROLLER} =18
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+VTOL\+\_\+\+TAILSITTER\+\_\+\+DUOROTOR} =19
+, \newline
+{\bfseries MAV\+\_\+\+TYPE\+\_\+\+VTOL\+\_\+\+TAILSITTER\+\_\+\+QUADROTOR} =20
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+VTOL\+\_\+\+TILTROTOR} =21
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+VTOL\+\_\+\+FIXEDROTOR} =22
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+VTOL\+\_\+\+TAILSITTER} =23
+, \newline
+{\bfseries MAV\+\_\+\+TYPE\+\_\+\+VTOL\+\_\+\+TILTWING} =24
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+VTOL\+\_\+\+RESERVED5} =25
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+GIMBAL} =26
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+ADSB} =27
+, \newline
+{\bfseries MAV\+\_\+\+TYPE\+\_\+\+PARAFOIL} =28
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+DODECAROTOR} =29
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+CAMERA} =30
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+CHARGING\+\_\+\+STATION} =31
+, \newline
+{\bfseries MAV\+\_\+\+TYPE\+\_\+\+FLARM} =32
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+SERVO} =33
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+ODID} =34
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+DECAROTOR} =35
+, \newline
+{\bfseries MAV\+\_\+\+TYPE\+\_\+\+BATTERY} =36
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+PARACHUTE} =37
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+LOG} =38
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+OSD} =39
+, \newline
+{\bfseries MAV\+\_\+\+TYPE\+\_\+\+IMU} =40
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+GPS} =41
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+WINCH} =42
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+GENERIC\+\_\+\+MULTIROTOR} =43
+, \newline
+{\bfseries MAV\+\_\+\+TYPE\+\_\+\+ILLUMINATOR} =44
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+SPACECRAFT\+\_\+\+ORBITER} =45
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+GROUND\+\_\+\+QUADRUPED} =46
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+VTOL\+\_\+\+GYRODYNE} =47
+, \newline
+{\bfseries MAV\+\_\+\+TYPE\+\_\+\+GRIPPER} =48
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+RADIO} =49
+, {\bfseries MAV\+\_\+\+TYPE\+\_\+\+ENUM\+\_\+\+END} =50
+ \}
+\item 
+\mbox{\Hypertarget{minimal_8h_ae603f5021d4667cfcb111ccb235cdd85}\label{minimal_8h_ae603f5021d4667cfcb111ccb235cdd85}} 
+enum {\bfseries MAV\+\_\+\+MODE\+\_\+\+FLAG} \{ \newline
+{\bfseries MAV\+\_\+\+MODE\+\_\+\+FLAG\+\_\+\+CUSTOM\+\_\+\+MODE\+\_\+\+ENABLED} =1
+, {\bfseries MAV\+\_\+\+MODE\+\_\+\+FLAG\+\_\+\+TEST\+\_\+\+ENABLED} =2
+, {\bfseries MAV\+\_\+\+MODE\+\_\+\+FLAG\+\_\+\+AUTO\+\_\+\+ENABLED} =4
+, {\bfseries MAV\+\_\+\+MODE\+\_\+\+FLAG\+\_\+\+GUIDED\+\_\+\+ENABLED} =8
+, \newline
+{\bfseries MAV\+\_\+\+MODE\+\_\+\+FLAG\+\_\+\+STABILIZE\+\_\+\+ENABLED} =16
+, {\bfseries MAV\+\_\+\+MODE\+\_\+\+FLAG\+\_\+\+HIL\+\_\+\+ENABLED} =32
+, {\bfseries MAV\+\_\+\+MODE\+\_\+\+FLAG\+\_\+\+MANUAL\+\_\+\+INPUT\+\_\+\+ENABLED} =64
+, {\bfseries MAV\+\_\+\+MODE\+\_\+\+FLAG\+\_\+\+SAFETY\+\_\+\+ARMED} =128
+, \newline
+{\bfseries MAV\+\_\+\+MODE\+\_\+\+FLAG\+\_\+\+ENUM\+\_\+\+END} =129
+ \}
+\item 
+\mbox{\Hypertarget{minimal_8h_aa2237338e86bf81f4a42fd236080518e}\label{minimal_8h_aa2237338e86bf81f4a42fd236080518e}} 
+enum {\bfseries MAV\+\_\+\+MODE\+\_\+\+FLAG\+\_\+\+DECODE\+\_\+\+POSITION} \{ \newline
+{\bfseries MAV\+\_\+\+MODE\+\_\+\+FLAG\+\_\+\+DECODE\+\_\+\+POSITION\+\_\+\+CUSTOM\+\_\+\+MODE} =1
+, {\bfseries MAV\+\_\+\+MODE\+\_\+\+FLAG\+\_\+\+DECODE\+\_\+\+POSITION\+\_\+\+TEST} =2
+, {\bfseries MAV\+\_\+\+MODE\+\_\+\+FLAG\+\_\+\+DECODE\+\_\+\+POSITION\+\_\+\+AUTO} =4
+, {\bfseries MAV\+\_\+\+MODE\+\_\+\+FLAG\+\_\+\+DECODE\+\_\+\+POSITION\+\_\+\+GUIDED} =8
+, \newline
+{\bfseries MAV\+\_\+\+MODE\+\_\+\+FLAG\+\_\+\+DECODE\+\_\+\+POSITION\+\_\+\+STABILIZE} =16
+, {\bfseries MAV\+\_\+\+MODE\+\_\+\+FLAG\+\_\+\+DECODE\+\_\+\+POSITION\+\_\+\+HIL} =32
+, {\bfseries MAV\+\_\+\+MODE\+\_\+\+FLAG\+\_\+\+DECODE\+\_\+\+POSITION\+\_\+\+MANUAL} =64
+, {\bfseries MAV\+\_\+\+MODE\+\_\+\+FLAG\+\_\+\+DECODE\+\_\+\+POSITION\+\_\+\+SAFETY} =128
+, \newline
+{\bfseries MAV\+\_\+\+MODE\+\_\+\+FLAG\+\_\+\+DECODE\+\_\+\+POSITION\+\_\+\+ENUM\+\_\+\+END} =129
+ \}
+\item 
+\mbox{\Hypertarget{minimal_8h_a3ca5e79cdc1f95d953a6d1d7ab1e90bb}\label{minimal_8h_a3ca5e79cdc1f95d953a6d1d7ab1e90bb}} 
+enum {\bfseries MAV\+\_\+\+STATE} \{ \newline
+{\bfseries MAV\+\_\+\+STATE\+\_\+\+UNINIT} =0
+, {\bfseries MAV\+\_\+\+STATE\+\_\+\+BOOT} =1
+, {\bfseries MAV\+\_\+\+STATE\+\_\+\+CALIBRATING} =2
+, {\bfseries MAV\+\_\+\+STATE\+\_\+\+STANDBY} =3
+, \newline
+{\bfseries MAV\+\_\+\+STATE\+\_\+\+ACTIVE} =4
+, {\bfseries MAV\+\_\+\+STATE\+\_\+\+CRITICAL} =5
+, {\bfseries MAV\+\_\+\+STATE\+\_\+\+EMERGENCY} =6
+, {\bfseries MAV\+\_\+\+STATE\+\_\+\+POWEROFF} =7
+, \newline
+{\bfseries MAV\+\_\+\+STATE\+\_\+\+FLIGHT\+\_\+\+TERMINATION} =8
+, {\bfseries MAV\+\_\+\+STATE\+\_\+\+ENUM\+\_\+\+END} =9
+ \}
+\item 
+\mbox{\Hypertarget{minimal_8h_a441d65e499381efbd6da4afeab901a5d}\label{minimal_8h_a441d65e499381efbd6da4afeab901a5d}} 
+enum {\bfseries MAV\+\_\+\+COMPONENT} \{ \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+ALL} =0
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+AUTOPILOT1} =1
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER1} =25
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER2} =26
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER3} =27
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER4} =28
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER5} =29
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER6} =30
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER7} =31
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER8} =32
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER9} =33
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER10} =34
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER11} =35
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER12} =36
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER13} =37
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER14} =38
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER15} =39
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER16} =40
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER17} =41
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER18} =42
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER19} =43
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER20} =44
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER21} =45
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER22} =46
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER23} =47
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER24} =48
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER25} =49
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER26} =50
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER27} =51
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER28} =52
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER29} =53
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER30} =54
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER31} =55
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER32} =56
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER33} =57
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER34} =58
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER35} =59
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER36} =60
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER37} =61
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER38} =62
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER39} =63
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER40} =64
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER41} =65
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER42} =66
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER43} =67
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+TELEMETRY\+\_\+\+RADIO} =68
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER45} =69
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER46} =70
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER47} =71
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER48} =72
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER49} =73
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER50} =74
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER51} =75
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER52} =76
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER53} =77
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER54} =78
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER55} =79
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER56} =80
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER57} =81
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER58} =82
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER59} =83
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER60} =84
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER61} =85
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER62} =86
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER63} =87
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER64} =88
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER65} =89
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER66} =90
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER67} =91
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER68} =92
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER69} =93
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER70} =94
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER71} =95
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER72} =96
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER73} =97
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER74} =98
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+USER75} =99
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+CAMERA} =100
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+CAMERA2} =101
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+CAMERA3} =102
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+CAMERA4} =103
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+CAMERA5} =104
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+CAMERA6} =105
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+RADIO} =110
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+RADIO2} =111
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+RADIO3} =112
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+SERVO1} =140
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+SERVO2} =141
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+SERVO3} =142
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+SERVO4} =143
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+SERVO5} =144
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+SERVO6} =145
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+SERVO7} =146
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+SERVO8} =147
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+SERVO9} =148
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+SERVO10} =149
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+SERVO11} =150
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+SERVO12} =151
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+SERVO13} =152
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+SERVO14} =153
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+GIMBAL} =154
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+LOG} =155
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+ADSB} =156
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+OSD} =157
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+PERIPHERAL} =158
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+QX1\+\_\+\+GIMBAL} =159
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+FLARM} =160
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+PARACHUTE} =161
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+WINCH} =169
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+GIMBAL2} =171
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+GIMBAL3} =172
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+GIMBAL4} =173
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+GIMBAL5} =174
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+GIMBAL6} =175
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+BATTERY} =180
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+BATTERY2} =181
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+MAVCAN} =189
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+MISSIONPLANNER} =190
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+ONBOARD\+\_\+\+COMPUTER} =191
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+ONBOARD\+\_\+\+COMPUTER2} =192
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+ONBOARD\+\_\+\+COMPUTER3} =193
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+ONBOARD\+\_\+\+COMPUTER4} =194
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+PATHPLANNER} =195
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+OBSTACLE\+\_\+\+AVOIDANCE} =196
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+VISUAL\+\_\+\+INERTIAL\+\_\+\+ODOMETRY} =197
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+PAIRING\+\_\+\+MANAGER} =198
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+IMU} =200
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+IMU\+\_\+2} =201
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+IMU\+\_\+3} =202
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+GPS} =220
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+GPS2} =221
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+ODID\+\_\+\+TXRX\+\_\+1} =236
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+ODID\+\_\+\+TXRX\+\_\+2} =237
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+ODID\+\_\+\+TXRX\+\_\+3} =238
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+UDP\+\_\+\+BRIDGE} =240
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+UART\+\_\+\+BRIDGE} =241
+, \newline
+{\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+TUNNEL\+\_\+\+NODE} =242
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+ILLUMINATOR} =243
+, {\bfseries MAV\+\_\+\+COMP\+\_\+\+ID\+\_\+\+SYSTEM\+\_\+\+CONTROL} =250
+, {\bfseries MAV\+\_\+\+COMPONENT\+\_\+\+ENUM\+\_\+\+END} =251
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+MAVLink comm protocol generated from minimal.\+xml. 
+
+\begin{DoxySeeAlso}{See also}
+\href{http://mavlink.org}{\texttt{ http\+://mavlink.\+org}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{minimal_8h_a2e111ba3d51671c7c15302296b1637a3}\label{minimal_8h_a2e111ba3d51671c7c15302296b1637a3}} 
+\index{minimal.h@{minimal.h}!HAVE\_ENUM\_MAV\_AUTOPILOT@{HAVE\_ENUM\_MAV\_AUTOPILOT}}
+\index{HAVE\_ENUM\_MAV\_AUTOPILOT@{HAVE\_ENUM\_MAV\_AUTOPILOT}!minimal.h@{minimal.h}}
+\doxysubsubsection{\texorpdfstring{HAVE\_ENUM\_MAV\_AUTOPILOT}{HAVE\_ENUM\_MAV\_AUTOPILOT}}
+{\footnotesize\ttfamily \#define HAVE\+\_\+\+ENUM\+\_\+\+MAV\+\_\+\+AUTOPILOT}
+
+
+
+Micro air vehicle / autopilot classes. 
+
+This identifies the individual model. \mbox{\Hypertarget{minimal_8h_ae92fe496394c2a0fa3fc7fac939a7682}\label{minimal_8h_ae92fe496394c2a0fa3fc7fac939a7682}} 
+\index{minimal.h@{minimal.h}!HAVE\_ENUM\_MAV\_COMPONENT@{HAVE\_ENUM\_MAV\_COMPONENT}}
+\index{HAVE\_ENUM\_MAV\_COMPONENT@{HAVE\_ENUM\_MAV\_COMPONENT}!minimal.h@{minimal.h}}
+\doxysubsubsection{\texorpdfstring{HAVE\_ENUM\_MAV\_COMPONENT}{HAVE\_ENUM\_MAV\_COMPONENT}}
+{\footnotesize\ttfamily \#define HAVE\+\_\+\+ENUM\+\_\+\+MAV\+\_\+\+COMPONENT}
+
+
+
+Legacy component ID values for particular types of hardware/software that might make up a MAVLink system (autopilot, cameras, servos, avoidance systems etc.). 
+
+\begin{DoxyVerb}Components are not required or expected to use IDs with names that correspond to their type or function, but may choose to do so.
+Using an ID that matches the type may slightly reduce the chances of component id clashes, as, for historical reasons, it is less likely to be used by some other type of component.
+System integration will still need to ensure that all components have unique IDs.
+
+Component IDs are used for addressing messages to a particular component within a system.
+A component can use any unique ID between 1 and 255 (MAV_COMP_ID_ALL value is the broadcast address, used to send to all components).
+
+Historically component ID were also used for identifying the type of component.
+New code must not use component IDs to infer the component type, but instead check the MAV_TYPE in the HEARTBEAT message!
+\end{DoxyVerb}
+ \mbox{\Hypertarget{minimal_8h_af64abdf9b0014e46b8228dbd5c8d49e5}\label{minimal_8h_af64abdf9b0014e46b8228dbd5c8d49e5}} 
+\index{minimal.h@{minimal.h}!HAVE\_ENUM\_MAV\_MODE\_FLAG\_DECODE\_POSITION@{HAVE\_ENUM\_MAV\_MODE\_FLAG\_DECODE\_POSITION}}
+\index{HAVE\_ENUM\_MAV\_MODE\_FLAG\_DECODE\_POSITION@{HAVE\_ENUM\_MAV\_MODE\_FLAG\_DECODE\_POSITION}!minimal.h@{minimal.h}}
+\doxysubsubsection{\texorpdfstring{HAVE\_ENUM\_MAV\_MODE\_FLAG\_DECODE\_POSITION}{HAVE\_ENUM\_MAV\_MODE\_FLAG\_DECODE\_POSITION}}
+{\footnotesize\ttfamily \#define HAVE\+\_\+\+ENUM\+\_\+\+MAV\+\_\+\+MODE\+\_\+\+FLAG\+\_\+\+DECODE\+\_\+\+POSITION}
+
+
+
+These values encode the bit positions of the decode position. 
+
+These values can be used to read the value of a flag bit by combining the base\+\_\+mode variable with AND with the flag position value. The result will be either 0 or 1, depending on if the flag is set or not. \mbox{\Hypertarget{minimal_8h_a3b4a4b640a6f693143693967d9c4186f}\label{minimal_8h_a3b4a4b640a6f693143693967d9c4186f}} 
+\index{minimal.h@{minimal.h}!HAVE\_ENUM\_MAV\_TYPE@{HAVE\_ENUM\_MAV\_TYPE}}
+\index{HAVE\_ENUM\_MAV\_TYPE@{HAVE\_ENUM\_MAV\_TYPE}!minimal.h@{minimal.h}}
+\doxysubsubsection{\texorpdfstring{HAVE\_ENUM\_MAV\_TYPE}{HAVE\_ENUM\_MAV\_TYPE}}
+{\footnotesize\ttfamily \#define HAVE\+\_\+\+ENUM\+\_\+\+MAV\+\_\+\+TYPE}
+
+
+
+MAVLINK component type reported in HEARTBEAT message. 
+
+Flight controllers must report the type of the vehicle on which they are mounted (e.\+g. MAV\+\_\+\+TYPE\+\_\+\+OCTOROTOR). All other components must report a value appropriate for their type (e.\+g. a camera must use MAV\+\_\+\+TYPE\+\_\+\+CAMERA). 

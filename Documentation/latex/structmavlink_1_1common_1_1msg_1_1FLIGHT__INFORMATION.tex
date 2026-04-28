@@ -1,0 +1,145 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION}{}\doxysection{mavlink\+::common\+::msg\+::FLIGHT\+\_\+\+INFORMATION Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION}\index{mavlink::common::msg::FLIGHT\_INFORMATION@{mavlink::common::msg::FLIGHT\_INFORMATION}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION}{FLIGHT\+\_\+\+INFORMATION}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+flight\+\_\+information.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::FLIGHT\+\_\+\+INFORMATION\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=213pt]{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::FLIGHT\+\_\+\+INFORMATION\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=213pt]{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_a046ecd5d57a573db895a01033b14c172}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_a0e89c717bd5c5e5dd77ab6cd86db8c35}\label{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_a0e89c717bd5c5e5dd77ab6cd86db8c35}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_a0e89c717bd5c5e5dd77ab6cd86db8c35}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_aa8046bc1a2f76198239f8b8b6efba334}\label{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_aa8046bc1a2f76198239f8b8b6efba334}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_aa8046bc1a2f76198239f8b8b6efba334}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_a2024e9624fcc55184295f6e4eda26d52}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_a2e383139dae656828b885eb3e762ceaa}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_a7961f94a0616d27df186b4419e9768b1}\label{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_a7961f94a0616d27df186b4419e9768b1}} 
+uint32\+\_\+t {\bfseries time\+\_\+boot\+\_\+ms}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_a34321fcd7c62280f3e5f83cd0a729414}\label{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_a34321fcd7c62280f3e5f83cd0a729414}} 
+uint64\+\_\+t {\bfseries arming\+\_\+time\+\_\+utc}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_a7c129b1f01861b9ccd47d70419317831}\label{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_a7c129b1f01861b9ccd47d70419317831}} 
+uint64\+\_\+t {\bfseries takeoff\+\_\+time\+\_\+utc}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_ac510677eae458f8dd26c65b3292d1202}\label{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_ac510677eae458f8dd26c65b3292d1202}} 
+uint64\+\_\+t {\bfseries flight\+\_\+uuid}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_adadc40773e2359241fba82d6968419d9}\label{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_adadc40773e2359241fba82d6968419d9}} 
+uint32\+\_\+t {\bfseries landing\+\_\+time}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_ae6d8a4eb2d31608640257727c5f85a74}\label{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_ae6d8a4eb2d31608640257727c5f85a74}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 264
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_a3b9e615e55194d5d89b2a844c76ecb21}\label{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_a3b9e615e55194d5d89b2a844c76ecb21}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 32
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_aba5715661925621765a10d53854f7160}\label{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_aba5715661925621765a10d53854f7160}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 28
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_adc0789644de90f783b2cd9c084b5582e}\label{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_adc0789644de90f783b2cd9c084b5582e}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 49
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_a00395653184e6049ef4cafbb9ff953a6}\label{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_a00395653184e6049ef4cafbb9ff953a6}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}FLIGHT\+\_\+\+INFORMATION\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION}{FLIGHT\+\_\+\+INFORMATION}} message. 
+
+Flight information. This includes time since boot for arm, takeoff, and land, and a flight number. Takeoff and landing values reset to zero on arm. This can be requested using MAV\+\_\+\+CMD\+\_\+\+REQUEST\+\_\+\+MESSAGE. Note, some fields are misnamed -\/ timestamps are from boot (not UTC) and the flight\+\_\+uuid is a sequence number. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_a2e383139dae656828b885eb3e762ceaa}\label{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_a2e383139dae656828b885eb3e762ceaa}} 
+\index{mavlink::common::msg::FLIGHT\_INFORMATION@{mavlink::common::msg::FLIGHT\_INFORMATION}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::FLIGHT\_INFORMATION@{mavlink::common::msg::FLIGHT\_INFORMATION}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+FLIGHT\+\_\+\+INFORMATION\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_a046ecd5d57a573db895a01033b14c172}\label{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_a046ecd5d57a573db895a01033b14c172}} 
+\index{mavlink::common::msg::FLIGHT\_INFORMATION@{mavlink::common::msg::FLIGHT\_INFORMATION}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::FLIGHT\_INFORMATION@{mavlink::common::msg::FLIGHT\_INFORMATION}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+FLIGHT\+\_\+\+INFORMATION\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_a2024e9624fcc55184295f6e4eda26d52}\label{structmavlink_1_1common_1_1msg_1_1FLIGHT__INFORMATION_a2024e9624fcc55184295f6e4eda26d52}} 
+\index{mavlink::common::msg::FLIGHT\_INFORMATION@{mavlink::common::msg::FLIGHT\_INFORMATION}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::FLIGHT\_INFORMATION@{mavlink::common::msg::FLIGHT\_INFORMATION}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+FLIGHT\+\_\+\+INFORMATION\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+flight\+\_\+information.\+hpp\end{DoxyCompactItemize}

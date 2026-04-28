@@ -1,0 +1,95 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS}{}\doxysection{mavlink\+::common\+::msg\+::FENCE\+\_\+\+STATUS Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS}\index{mavlink::common::msg::FENCE\_STATUS@{mavlink::common::msg::FENCE\_STATUS}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS}{FENCE\+\_\+\+STATUS}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+fence\+\_\+status.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::FENCE\+\_\+\+STATUS\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::FENCE\+\_\+\+STATUS\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_a731ae18d9b004203e836c6782dfc0a42}\label{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_a731ae18d9b004203e836c6782dfc0a42}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_a3039d7316d2dfdf902071d31ae7e9129}\label{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_a3039d7316d2dfdf902071d31ae7e9129}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_a21a9f760af7e2495a190d92549754075}\label{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_a21a9f760af7e2495a190d92549754075}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_a14af7405ef72465362bc3e1f24f513f2}\label{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_a14af7405ef72465362bc3e1f24f513f2}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_ad377c427f2eff844017c8e2a1feff5fe}\label{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_ad377c427f2eff844017c8e2a1feff5fe}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_a02a722f0f4adec2aa7530c97960bd2d2}\label{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_a02a722f0f4adec2aa7530c97960bd2d2}} 
+uint8\+\_\+t {\bfseries breach\+\_\+status}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_aaabad16407a3b3e8aaa3c859d162dc93}\label{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_aaabad16407a3b3e8aaa3c859d162dc93}} 
+uint16\+\_\+t {\bfseries breach\+\_\+count}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_a06e100ebc4116ea0f2454673819536fc}\label{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_a06e100ebc4116ea0f2454673819536fc}} 
+uint8\+\_\+t {\bfseries breach\+\_\+type}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_a8efcca01d614bcdd951dba0a9bdc4522}\label{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_a8efcca01d614bcdd951dba0a9bdc4522}} 
+uint32\+\_\+t {\bfseries breach\+\_\+time}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_a7e5c62adace2bf9d044dbc221cf78ade}\label{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_a7e5c62adace2bf9d044dbc221cf78ade}} 
+uint8\+\_\+t {\bfseries breach\+\_\+mitigation}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_ae2b2a5ce869549bc3d0a24fe7ac90225}\label{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_ae2b2a5ce869549bc3d0a24fe7ac90225}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 162
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_aafa55d6cf795d808705976f949bf4404}\label{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_aafa55d6cf795d808705976f949bf4404}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 9
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_a1731e7a9d83b08e29cce56c2feff41ff}\label{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_a1731e7a9d83b08e29cce56c2feff41ff}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 8
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_ae668457c30cee29031249c151ffe4bf4}\label{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_ae668457c30cee29031249c151ffe4bf4}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 189
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_a3722369be2fb4f11f2c0698256f387fa}\label{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS_a3722369be2fb4f11f2c0698256f387fa}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}FENCE\+\_\+\+STATUS\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1FENCE__STATUS}{FENCE\+\_\+\+STATUS}} message. 
+
+Status of geo-\/fencing. Sent in extended status stream when fencing enabled. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+fence\+\_\+status.\+hpp\end{DoxyCompactItemize}

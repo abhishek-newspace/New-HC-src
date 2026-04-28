@@ -1,0 +1,142 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL}{}\doxysection{mavlink\+::common\+::msg\+::CHANGE\+\_\+\+OPERATOR\+\_\+\+CONTROL Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL}\index{mavlink::common::msg::CHANGE\_OPERATOR\_CONTROL@{mavlink::common::msg::CHANGE\_OPERATOR\_CONTROL}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL}{CHANGE\+\_\+\+OPERATOR\+\_\+\+CONTROL}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+change\+\_\+operator\+\_\+control.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::CHANGE\+\_\+\+OPERATOR\+\_\+\+CONTROL\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=255pt]{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::CHANGE\+\_\+\+OPERATOR\+\_\+\+CONTROL\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=255pt]{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_a281a77b9403092b16bc349bbff99bf8b}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_aeaa0f11493e20454bec5677f43a0157a}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_aeaa0f11493e20454bec5677f43a0157a}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_aeaa0f11493e20454bec5677f43a0157a}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_a764d0bcbe9ae1fa6de09ccc4760a56b6}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_a764d0bcbe9ae1fa6de09ccc4760a56b6}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_a764d0bcbe9ae1fa6de09ccc4760a56b6}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_a32f41e70656c5aed6c16f00e636621df}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_af6267779b45668098865fbd4c574e04c}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_ade492c90054cb667e9bc39cb628c7d4e}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_ade492c90054cb667e9bc39cb628c7d4e}} 
+uint8\+\_\+t {\bfseries target\+\_\+system}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_ab0c5bc33f32dc89f1fc3b63faaa467dc}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_ab0c5bc33f32dc89f1fc3b63faaa467dc}} 
+uint8\+\_\+t {\bfseries control\+\_\+request}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_aa9467817c76751b09c9790500c65e213}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_aa9467817c76751b09c9790500c65e213}} 
+uint8\+\_\+t {\bfseries version}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_a5d154b7d5dadda6578a7f3fba64d8948}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_a5d154b7d5dadda6578a7f3fba64d8948}} 
+std\+::array$<$ char, 25 $>$ {\bfseries passkey}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_ac01dff601103f0616d214ad560e184f2}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_ac01dff601103f0616d214ad560e184f2}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 5
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_a747f5c757f2d248d2d3ae236d3d98d7b}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_a747f5c757f2d248d2d3ae236d3d98d7b}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 28
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_a6843bd4afdab52a8134f4df5bc133b96}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_a6843bd4afdab52a8134f4df5bc133b96}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 28
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_a8dfcadc696493dc7683d5f5a541bdf00}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_a8dfcadc696493dc7683d5f5a541bdf00}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 217
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_a524888ea3d71277e892d20fd52ce1279}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_a524888ea3d71277e892d20fd52ce1279}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}CHANGE\+\_\+\+OPERATOR\+\_\+\+CONTROL\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL}{CHANGE\+\_\+\+OPERATOR\+\_\+\+CONTROL}} message. 
+
+Request to control this MAV 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_af6267779b45668098865fbd4c574e04c}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_af6267779b45668098865fbd4c574e04c}} 
+\index{mavlink::common::msg::CHANGE\_OPERATOR\_CONTROL@{mavlink::common::msg::CHANGE\_OPERATOR\_CONTROL}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::CHANGE\_OPERATOR\_CONTROL@{mavlink::common::msg::CHANGE\_OPERATOR\_CONTROL}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+CHANGE\+\_\+\+OPERATOR\+\_\+\+CONTROL\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_a281a77b9403092b16bc349bbff99bf8b}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_a281a77b9403092b16bc349bbff99bf8b}} 
+\index{mavlink::common::msg::CHANGE\_OPERATOR\_CONTROL@{mavlink::common::msg::CHANGE\_OPERATOR\_CONTROL}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::CHANGE\_OPERATOR\_CONTROL@{mavlink::common::msg::CHANGE\_OPERATOR\_CONTROL}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+CHANGE\+\_\+\+OPERATOR\+\_\+\+CONTROL\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_a32f41e70656c5aed6c16f00e636621df}\label{structmavlink_1_1common_1_1msg_1_1CHANGE__OPERATOR__CONTROL_a32f41e70656c5aed6c16f00e636621df}} 
+\index{mavlink::common::msg::CHANGE\_OPERATOR\_CONTROL@{mavlink::common::msg::CHANGE\_OPERATOR\_CONTROL}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::CHANGE\_OPERATOR\_CONTROL@{mavlink::common::msg::CHANGE\_OPERATOR\_CONTROL}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+CHANGE\+\_\+\+OPERATOR\+\_\+\+CONTROL\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+change\+\_\+operator\+\_\+control.\+hpp\end{DoxyCompactItemize}

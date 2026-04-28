@@ -1,0 +1,113 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED}{}\doxysection{mavlink\+::common\+::msg\+::CAMERA\+\_\+\+IMAGE\+\_\+\+CAPTURED Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED}\index{mavlink::common::msg::CAMERA\_IMAGE\_CAPTURED@{mavlink::common::msg::CAMERA\_IMAGE\_CAPTURED}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED}{CAMERA\+\_\+\+IMAGE\+\_\+\+CAPTURED}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+camera\+\_\+image\+\_\+captured.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::CAMERA\+\_\+\+IMAGE\+\_\+\+CAPTURED\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::CAMERA\+\_\+\+IMAGE\+\_\+\+CAPTURED\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_a77948fee1e62153311be25865283ba37}\label{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_a77948fee1e62153311be25865283ba37}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_a85a87b5bd20e83a0907ed3e517c4518b}\label{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_a85a87b5bd20e83a0907ed3e517c4518b}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_ae01e4bf0c8c18254adf555a6fd8f6c07}\label{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_ae01e4bf0c8c18254adf555a6fd8f6c07}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_a53f0a91664286e0c8b6a3382efc7f48b}\label{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_a53f0a91664286e0c8b6a3382efc7f48b}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_aa2e775fb9e2c183b0a2cd89f98f4e20d}\label{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_aa2e775fb9e2c183b0a2cd89f98f4e20d}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_ace434511cd3b4f4333b894f03ce01176}\label{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_ace434511cd3b4f4333b894f03ce01176}} 
+uint32\+\_\+t {\bfseries time\+\_\+boot\+\_\+ms}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_a5c995b53b3ec0694621787190cb5eb38}\label{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_a5c995b53b3ec0694621787190cb5eb38}} 
+uint64\+\_\+t {\bfseries time\+\_\+utc}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_a03a9abb72caa93a42b02cf8b743911cd}\label{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_a03a9abb72caa93a42b02cf8b743911cd}} 
+uint8\+\_\+t {\bfseries camera\+\_\+id}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_a2dc8f7e6d26ff6f240d5703d1c0a284b}\label{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_a2dc8f7e6d26ff6f240d5703d1c0a284b}} 
+int32\+\_\+t {\bfseries lat}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_ac5414602d3ae2f5094e602b868a9f888}\label{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_ac5414602d3ae2f5094e602b868a9f888}} 
+int32\+\_\+t {\bfseries lon}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_a5ace2d577506bfc8e52bf1e362886748}\label{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_a5ace2d577506bfc8e52bf1e362886748}} 
+int32\+\_\+t {\bfseries alt}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_abf14cee273ad24b87c1813a3961da5b7}\label{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_abf14cee273ad24b87c1813a3961da5b7}} 
+int32\+\_\+t {\bfseries relative\+\_\+alt}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_afb9452a59c046145fcede2b0b4b20f72}\label{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_afb9452a59c046145fcede2b0b4b20f72}} 
+std\+::array$<$ float, 4 $>$ {\bfseries q}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_a839ee7623a1892435516918c16f0e2d2}\label{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_a839ee7623a1892435516918c16f0e2d2}} 
+int32\+\_\+t {\bfseries image\+\_\+index}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_ab74c29457fd75f28ac79d16ce7515a9c}\label{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_ab74c29457fd75f28ac79d16ce7515a9c}} 
+int8\+\_\+t {\bfseries capture\+\_\+result}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_aaa9e08c27cee7ee5b04ac9337f526276}\label{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_aaa9e08c27cee7ee5b04ac9337f526276}} 
+std\+::array$<$ char, 205 $>$ {\bfseries file\+\_\+url}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_af29449c22411bedf8e452b6de7962c01}\label{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_af29449c22411bedf8e452b6de7962c01}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 263
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_a13005556ff4adb5d5b87db067f2082b8}\label{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_a13005556ff4adb5d5b87db067f2082b8}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 255
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_a5532afeed065adf9816d3257ee2cdbca}\label{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_a5532afeed065adf9816d3257ee2cdbca}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 255
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_a0a6062124eda8bdc140feaaf1aa416e8}\label{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_a0a6062124eda8bdc140feaaf1aa416e8}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 133
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_a765442a970b59a2476b14ce2ec4cccb6}\label{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED_a765442a970b59a2476b14ce2ec4cccb6}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}CAMERA\+\_\+\+IMAGE\+\_\+\+CAPTURED\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1CAMERA__IMAGE__CAPTURED}{CAMERA\+\_\+\+IMAGE\+\_\+\+CAPTURED}} message. 
+
+Information about a captured image. This is emitted every time a message is captured. MAV\+\_\+\+CMD\+\_\+\+REQUEST\+\_\+\+MESSAGE can be used to (re)request this message for a specific sequence number or range of sequence numbers\+: MAV\+\_\+\+CMD\+\_\+\+REQUEST\+\_\+\+MESSAGE.\+param2 indicates the sequence number the first image to send, or set to -\/1 to send the message for all sequence numbers. MAV\+\_\+\+CMD\+\_\+\+REQUEST\+\_\+\+MESSAGE.\+param3 is used to specify a range of messages to send\+: set to 0 (default) to send just the the message for the sequence number in param 2, set to -\/1 to send the message for the sequence number in param 2 and all the following sequence numbers, set to the sequence number of the final message in the range. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+camera\+\_\+image\+\_\+captured.\+hpp\end{DoxyCompactItemize}

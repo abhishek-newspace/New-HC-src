@@ -1,0 +1,4 @@
+<map id="mavlink::common::msg::SAFETY_SET_ALLOWED_AREA" name="mavlink::common::msg::SAFETY_SET_ALLOWED_AREA">
+<area shape="rect" id="node1" title="SAFETY_SET_ALLOWED_AREA message." alt="" coords="5,80,229,121"/>
+<area shape="rect" id="node2" href="$structmavlink_1_1Message.html" title="MAVLink Message base class." alt="" coords="47,5,188,32"/>
+</map>

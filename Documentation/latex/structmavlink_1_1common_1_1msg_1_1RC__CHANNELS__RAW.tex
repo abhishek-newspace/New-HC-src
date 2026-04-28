@@ -1,0 +1,163 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW}{}\doxysection{mavlink\+::common\+::msg\+::RC\+\_\+\+CHANNELS\+\_\+\+RAW Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW}\index{mavlink::common::msg::RC\_CHANNELS\_RAW@{mavlink::common::msg::RC\_CHANNELS\_RAW}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW}{RC\+\_\+\+CHANNELS\+\_\+\+RAW}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+rc\+\_\+channels\+\_\+raw.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::RC\+\_\+\+CHANNELS\+\_\+\+RAW\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::RC\+\_\+\+CHANNELS\+\_\+\+RAW\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a054e5745d9d5ed1e603daf5ebd7542a9}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a55a7e7b8ca9e1e9faa76fd62131c08b7}\label{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a55a7e7b8ca9e1e9faa76fd62131c08b7}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a55a7e7b8ca9e1e9faa76fd62131c08b7}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_ac8db0b4cc37e87725732c0bdf68b3c62}\label{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_ac8db0b4cc37e87725732c0bdf68b3c62}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_ac8db0b4cc37e87725732c0bdf68b3c62}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_ab84c75f51e334e406bb09362e93d4257}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_afcc347c91f603f3591bf8df6088f211a}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a6af7e81af08e37f1602f13320a6a35e8}\label{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a6af7e81af08e37f1602f13320a6a35e8}} 
+uint32\+\_\+t {\bfseries time\+\_\+boot\+\_\+ms}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_aa31f924aaf69ee13f6b3a94889eaf0da}\label{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_aa31f924aaf69ee13f6b3a94889eaf0da}} 
+uint8\+\_\+t {\bfseries port}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a2e5a61e612da1ebf8ade0447c8f27794}\label{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a2e5a61e612da1ebf8ade0447c8f27794}} 
+uint16\+\_\+t {\bfseries chan1\+\_\+raw}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a97ae203293db9c3e6bff02bf64389c9a}\label{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a97ae203293db9c3e6bff02bf64389c9a}} 
+uint16\+\_\+t {\bfseries chan2\+\_\+raw}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_aa7055773986502294411b8889447f743}\label{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_aa7055773986502294411b8889447f743}} 
+uint16\+\_\+t {\bfseries chan3\+\_\+raw}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a2b963efd74d01b42febf0efdb626f93f}\label{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a2b963efd74d01b42febf0efdb626f93f}} 
+uint16\+\_\+t {\bfseries chan4\+\_\+raw}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a68c7c9fc33d4b97bd2866df005cc2585}\label{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a68c7c9fc33d4b97bd2866df005cc2585}} 
+uint16\+\_\+t {\bfseries chan5\+\_\+raw}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a6e9a00f9ed802cc1bc2ff10c2c0697e0}\label{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a6e9a00f9ed802cc1bc2ff10c2c0697e0}} 
+uint16\+\_\+t {\bfseries chan6\+\_\+raw}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_aeaf0513a4fc67fcffd8586b9323bc012}\label{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_aeaf0513a4fc67fcffd8586b9323bc012}} 
+uint16\+\_\+t {\bfseries chan7\+\_\+raw}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a7e177f19bd41a7e7953dcf687cd90fc2}\label{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a7e177f19bd41a7e7953dcf687cd90fc2}} 
+uint16\+\_\+t {\bfseries chan8\+\_\+raw}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a92110eb42b7d1825d4763f2a5f424853}\label{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a92110eb42b7d1825d4763f2a5f424853}} 
+uint8\+\_\+t {\bfseries rssi}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a94455e6add7132d51d58ea28088d8c80}\label{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a94455e6add7132d51d58ea28088d8c80}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 35
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a3a0d992ef7a2e7103d11b4c1bcf13b07}\label{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a3a0d992ef7a2e7103d11b4c1bcf13b07}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 22
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a5105abd6ae73cbcb832c92ef25a7e763}\label{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a5105abd6ae73cbcb832c92ef25a7e763}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 22
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a089eb1fb6f4f46734b07aab8a4e27a65}\label{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a089eb1fb6f4f46734b07aab8a4e27a65}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 244
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a91cc5d5935dd481846d6cddd7436d974}\label{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a91cc5d5935dd481846d6cddd7436d974}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}RC\+\_\+\+CHANNELS\+\_\+\+RAW\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW}{RC\+\_\+\+CHANNELS\+\_\+\+RAW}} message. 
+
+The RAW values of the RC channels received. The standard PPM modulation is as follows\+: 1000 microseconds\+: 0\%, 2000 microseconds\+: 100\%. A value of UINT16\+\_\+\+MAX implies the channel is unused. Individual receivers/transmitters might violate this specification. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_afcc347c91f603f3591bf8df6088f211a}\label{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_afcc347c91f603f3591bf8df6088f211a}} 
+\index{mavlink::common::msg::RC\_CHANNELS\_RAW@{mavlink::common::msg::RC\_CHANNELS\_RAW}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::common::msg::RC\_CHANNELS\_RAW@{mavlink::common::msg::RC\_CHANNELS\_RAW}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+RC\+\_\+\+CHANNELS\+\_\+\+RAW\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a054e5745d9d5ed1e603daf5ebd7542a9}\label{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_a054e5745d9d5ed1e603daf5ebd7542a9}} 
+\index{mavlink::common::msg::RC\_CHANNELS\_RAW@{mavlink::common::msg::RC\_CHANNELS\_RAW}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::common::msg::RC\_CHANNELS\_RAW@{mavlink::common::msg::RC\_CHANNELS\_RAW}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::common\+::msg\+::\+RC\+\_\+\+CHANNELS\+\_\+\+RAW\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_ab84c75f51e334e406bb09362e93d4257}\label{structmavlink_1_1common_1_1msg_1_1RC__CHANNELS__RAW_ab84c75f51e334e406bb09362e93d4257}} 
+\index{mavlink::common::msg::RC\_CHANNELS\_RAW@{mavlink::common::msg::RC\_CHANNELS\_RAW}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::common::msg::RC\_CHANNELS\_RAW@{mavlink::common::msg::RC\_CHANNELS\_RAW}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::common\+::msg\+::\+RC\+\_\+\+CHANNELS\+\_\+\+RAW\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/common/mavlink\+\_\+msg\+\_\+rc\+\_\+channels\+\_\+raw.\+hpp\end{DoxyCompactItemize}

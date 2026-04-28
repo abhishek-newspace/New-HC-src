@@ -1,0 +1,86 @@
+\hypertarget{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME}{}\doxysection{mavlink\+::common\+::msg\+::SYSTEM\+\_\+\+TIME Struct Reference}
+\label{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME}\index{mavlink::common::msg::SYSTEM\_TIME@{mavlink::common::msg::SYSTEM\_TIME}}
+
+
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME}{SYSTEM\+\_\+\+TIME}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+system\+\_\+time.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::common\+::msg\+::SYSTEM\+\_\+\+TIME\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::common\+::msg\+::SYSTEM\+\_\+\+TIME\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME_a68c070344f6ce59c50f4fca7e911e5c9}\label{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME_a68c070344f6ce59c50f4fca7e911e5c9}} 
+std\+::string {\bfseries get\+\_\+name} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME_a07ef944c8f8c1295949919635b2fbc1a}\label{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME_a07ef944c8f8c1295949919635b2fbc1a}} 
+Info {\bfseries get\+\_\+message\+\_\+info} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME_ae2f26ad1dd981be3e431be69167452d8}\label{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME_ae2f26ad1dd981be3e431be69167452d8}} 
+std\+::string {\bfseries to\+\_\+yaml} (void) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME_a45500ec4a6ed9eafd695024c3267d196}\label{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME_a45500ec4a6ed9eafd695024c3267d196}} 
+void {\bfseries serialize} (mavlink\+::\+Msg\+Map \&map) const override
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME_a55a0a4583eb79c63523b55c318d6b173}\label{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME_a55a0a4583eb79c63523b55c318d6b173}} 
+void {\bfseries deserialize} (mavlink\+::\+Msg\+Map \&map) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME_a815d803e200b053915b28b6d854a4f9c}\label{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME_a815d803e200b053915b28b6d854a4f9c}} 
+uint64\+\_\+t {\bfseries time\+\_\+unix\+\_\+usec}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME_a481fc875aa99f0a2cb5201d0161bde52}\label{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME_a481fc875aa99f0a2cb5201d0161bde52}} 
+uint32\+\_\+t {\bfseries time\+\_\+boot\+\_\+ms}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME_a9eec30b9743031a8c57bd79d296bc4b6}\label{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME_a9eec30b9743031a8c57bd79d296bc4b6}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 2
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME_a2e7aac96fe42dccca79bc100e249a008}\label{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME_a2e7aac96fe42dccca79bc100e249a008}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 12
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME_a77e6bbe8e9c860ee0b6186de742319e2}\label{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME_a77e6bbe8e9c860ee0b6186de742319e2}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 12
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME_ae788a8e4a68d83b7ecfdaf4e20fe0dc3}\label{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME_ae788a8e4a68d83b7ecfdaf4e20fe0dc3}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 137
+\item 
+\mbox{\Hypertarget{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME_a366989a43c82dc24a93733507f4e9619}\label{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME_a366989a43c82dc24a93733507f4e9619}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}SYSTEM\+\_\+\+TIME\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1SYSTEM__TIME}{SYSTEM\+\_\+\+TIME}} message. 
+
+The system time is the time of the sender\textquotesingle{}s master clock. This can be emitted by flight controllers, onboard computers, or other components in the MAVLink network. Components that are using a less reliable time source, such as a battery-\/backed real time clock, can choose to match their system clock to that of a system that indicates a more recent time. This allows more broadly accurate date stamping of logs, and so on. If precise time synchronization is needed then use \mbox{\hyperlink{structmavlink_1_1common_1_1msg_1_1TIMESYNC}{TIMESYNC}} instead. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+mavlink\+\_\+msg\+\_\+system\+\_\+time.\+hpp\end{DoxyCompactItemize}

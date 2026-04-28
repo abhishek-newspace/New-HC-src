@@ -1,0 +1,113 @@
+\hypertarget{packetHandler_8cpp}{}\doxysection{single\+\_\+hand\+\_\+controller/packet\+Handler.cpp File Reference}
+\label{packetHandler_8cpp}\index{single\_hand\_controller/packetHandler.cpp@{single\_hand\_controller/packetHandler.cpp}}
+{\ttfamily \#include \char`\"{}include/packet\+Handler.\+h\char`\"{}}\newline
+Include dependency graph for packet\+Handler.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{packetHandler_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{packetHandler_8cpp_afaa36c7c855398011d79336c4b7e0463}\label{packetHandler_8cpp_afaa36c7c855398011d79336c4b7e0463}} 
+\mbox{\hyperlink{classmessage__sender}{message\+\_\+sender}} {\bfseries msgsndr} (\mbox{\hyperlink{packetHandler_8cpp_a07f7d1ef86a4316bd8f77f9a05e23715}{buf}}, \&msg)
+\item 
+\mbox{\Hypertarget{packetHandler_8cpp_aa0330774698f8f8ce5d3984f0117999e}\label{packetHandler_8cpp_aa0330774698f8f8ce5d3984f0117999e}} 
+unsigned long {\bfseries get\+Heartbeat\+Diff} ()
+\item 
+\mbox{\Hypertarget{packetHandler_8cpp_a1c391f6aae3d81afc962c904f69405cf}\label{packetHandler_8cpp_a1c391f6aae3d81afc962c904f69405cf}} 
+bool {\bfseries is\+\_\+unsigned\+\_\+message} (const \mbox{\hyperlink{struct____mavlink__status}{mavlink\+\_\+status\+\_\+t}} $\ast$\mbox{\hyperlink{packetHandler_8cpp_acdef7b92239f1e607ef6caa33a16d2ed}{status}}, uint32\+\_\+t msg\+Id)
+\item 
+bool \mbox{\hyperlink{packetHandler_8cpp_a7750d76e906478314f8abd6e9577502c}{setup\+Signing}} ()
+\begin{DoxyCompactList}\small\item\em sets up signing for all MAVLink packets \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{packetHandler_8cpp_aece8404fa680d108709bb7735af74ef7}\label{packetHandler_8cpp_aece8404fa680d108709bb7735af74ef7}} 
+void \mbox{\hyperlink{packetHandler_8cpp_aece8404fa680d108709bb7735af74ef7}{initiate\+Serial\+Comm}} ()
+\begin{DoxyCompactList}\small\item\em initiates serial communication with radio to send MAVLink packets; baud rate for serial communication is set in \mbox{\hyperlink{definitions_8h}{definitions.\+h}} \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{packetHandler_8cpp_a41085b7ecb8159ad9019e28aae16b7b6}{heartbeat\+\_\+timed\+\_\+out}} ()
+\begin{DoxyCompactList}\small\item\em check whether heartbeat has not been received within HEARTBEAT\+\_\+\+TIMEOUT microseconds (3 seconds) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{packetHandler_8cpp_a87644cb7562cd3a231e8f84e45087e05}\label{packetHandler_8cpp_a87644cb7562cd3a231e8f84e45087e05}} 
+void {\bfseries send\+Buffer} (int len)
+\item 
+\mbox{\Hypertarget{packetHandler_8cpp_ac9750f4d4982ebf34056cad179d402b2}\label{packetHandler_8cpp_ac9750f4d4982ebf34056cad179d402b2}} 
+void \mbox{\hyperlink{packetHandler_8cpp_ac9750f4d4982ebf34056cad179d402b2}{send\+Timesync\+Request}} ()
+\begin{DoxyCompactList}\small\item\em send a timesync request \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{packetHandler_8cpp_a84a9b9793add371df5defa93ce22ae11}\label{packetHandler_8cpp_a84a9b9793add371df5defa93ce22ae11}} 
+void \mbox{\hyperlink{packetHandler_8cpp_a84a9b9793add371df5defa93ce22ae11}{send\+Manual\+Control}} ()
+\begin{DoxyCompactList}\small\item\em send manual control packet \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{packetHandler_8cpp_a95cc55b29587a55012586af50444c640}\label{packetHandler_8cpp_a95cc55b29587a55012586af50444c640}} 
+void \mbox{\hyperlink{packetHandler_8cpp_a95cc55b29587a55012586af50444c640}{handle\+Packet\+Received}} ()
+\begin{DoxyCompactList}\small\item\em handle any packet that is received and send to \mbox{\hyperlink{classpacket__receiver}{packet\+\_\+receiver}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{packetHandler_8cpp_a3d8587dbfbeeebb96c50b75ee4a192f0}\label{packetHandler_8cpp_a3d8587dbfbeeebb96c50b75ee4a192f0}} 
+\mbox{\hyperlink{struct____mavlink__status}{mavlink\+\_\+status\+\_\+t}} $\ast$ {\bfseries status\+\_\+chan}
+\item 
+\mbox{\Hypertarget{packetHandler_8cpp_a56accf18e235140c9a4bda6175165e2e}\label{packetHandler_8cpp_a56accf18e235140c9a4bda6175165e2e}} 
+\mbox{\hyperlink{struct____mavlink__signing}{mavlink\+\_\+signing\+\_\+t}} {\bfseries signing}
+\item 
+\mbox{\Hypertarget{packetHandler_8cpp_a23df440adf4e1059c70aed563e9c511c}\label{packetHandler_8cpp_a23df440adf4e1059c70aed563e9c511c}} 
+\mbox{\hyperlink{struct____mavlink__signing__streams}{mavlink\+\_\+signing\+\_\+streams\+\_\+t}} {\bfseries signing\+\_\+streams}
+\item 
+\mbox{\Hypertarget{packetHandler_8cpp_a07f7d1ef86a4316bd8f77f9a05e23715}\label{packetHandler_8cpp_a07f7d1ef86a4316bd8f77f9a05e23715}} 
+byte \mbox{\hyperlink{packetHandler_8cpp_a07f7d1ef86a4316bd8f77f9a05e23715}{buf}} \mbox{[}300\mbox{]}
+\begin{DoxyCompactList}\small\item\em buffer to store serialized mavlink data \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{packetHandler_8cpp_acdef7b92239f1e607ef6caa33a16d2ed}\label{packetHandler_8cpp_acdef7b92239f1e607ef6caa33a16d2ed}} 
+\mbox{\hyperlink{struct____mavlink__status}{mavlink\+\_\+status\+\_\+t}} \mbox{\hyperlink{packetHandler_8cpp_acdef7b92239f1e607ef6caa33a16d2ed}{status}}
+\begin{DoxyCompactList}\small\item\em used to check parsing status \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{packetHandler_8cpp_a48be6085a723f7ef309f7f85875a4bcd}\label{packetHandler_8cpp_a48be6085a723f7ef309f7f85875a4bcd}} 
+mavlink\+\_\+message\+\_\+t {\bfseries msg}
+\item 
+\mbox{\Hypertarget{packetHandler_8cpp_acfaae40856b9c913683a7de219c858af}\label{packetHandler_8cpp_acfaae40856b9c913683a7de219c858af}} 
+bool \mbox{\hyperlink{packetHandler_8cpp_acfaae40856b9c913683a7de219c858af}{arm\+\_\+request\+\_\+sent}} = false
+\begin{DoxyCompactList}\small\item\em whether an arm request was sent (COMMAND\+\_\+\+LONG) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{packetHandler_8cpp_ac67997cc73fe75c913ec20a0e4b7be20}\label{packetHandler_8cpp_ac67997cc73fe75c913ec20a0e4b7be20}} 
+bool \mbox{\hyperlink{packetHandler_8cpp_ac67997cc73fe75c913ec20a0e4b7be20}{disarm\+\_\+request\+\_\+sent}} = false
+\begin{DoxyCompactList}\small\item\em whether a disarm request was sent (COMMAND\+\_\+\+LONG) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{packetHandler_8cpp_ab6f4522a5a5c4577c16d0e23339a1414}\label{packetHandler_8cpp_ab6f4522a5a5c4577c16d0e23339a1414}} 
+int {\bfseries rssi}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyAuthor}{Author}
+Nikhil Tom Jose 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+22/04/2026
+\end{DoxyDate}
+Part of packet handler library. Defines variables and functions used in \mbox{\hyperlink{packetHandler_8h}{packet\+Handler.\+h}} 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{packetHandler_8cpp_a41085b7ecb8159ad9019e28aae16b7b6}\label{packetHandler_8cpp_a41085b7ecb8159ad9019e28aae16b7b6}} 
+\index{packetHandler.cpp@{packetHandler.cpp}!heartbeat\_timed\_out@{heartbeat\_timed\_out}}
+\index{heartbeat\_timed\_out@{heartbeat\_timed\_out}!packetHandler.cpp@{packetHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{heartbeat\_timed\_out()}{heartbeat\_timed\_out()}}
+{\footnotesize\ttfamily bool heartbeat\+\_\+timed\+\_\+out (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+check whether heartbeat has not been received within HEARTBEAT\+\_\+\+TIMEOUT microseconds (3 seconds) 
+
+\begin{DoxyReturn}{Returns}
+true when timeout has occured 
+\end{DoxyReturn}
+\mbox{\Hypertarget{packetHandler_8cpp_a7750d76e906478314f8abd6e9577502c}\label{packetHandler_8cpp_a7750d76e906478314f8abd6e9577502c}} 
+\index{packetHandler.cpp@{packetHandler.cpp}!setupSigning@{setupSigning}}
+\index{setupSigning@{setupSigning}!packetHandler.cpp@{packetHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{setupSigning()}{setupSigning()}}
+{\footnotesize\ttfamily bool setup\+Signing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+sets up signing for all MAVLink packets 
+
+\begin{DoxyReturn}{Returns}
+true when signing is successfully setup 
+\end{DoxyReturn}

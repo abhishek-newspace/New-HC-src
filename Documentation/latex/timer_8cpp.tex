@@ -1,0 +1,76 @@
+\hypertarget{timer_8cpp}{}\doxysection{single\+\_\+hand\+\_\+controller/timer.cpp File Reference}
+\label{timer_8cpp}\index{single\_hand\_controller/timer.cpp@{single\_hand\_controller/timer.cpp}}
+{\ttfamily \#include \char`\"{}include/timer.\+hpp\char`\"{}}\newline
+Include dependency graph for timer.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{timer_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{timer_8cpp_aec53975ffc59ffaf3080db21af0d2f6e}\label{timer_8cpp_aec53975ffc59ffaf3080db21af0d2f6e}} 
+void \mbox{\hyperlink{timer_8cpp_aec53975ffc59ffaf3080db21af0d2f6e}{start\+Timer}} ()
+\begin{DoxyCompactList}\small\item\em start a timer, that keeps count of number of microseconds elapsed \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{timer_8cpp_a4d3cf1a5d9dff7c75d048869e321992a}{timeup}} (unsigned long int time\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em check whether the given amount of time (in ms) is completed or not \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{timer_8cpp_ad43a02209687d9c1e04dddd167f32c45}\label{timer_8cpp_ad43a02209687d9c1e04dddd167f32c45}} 
+void \mbox{\hyperlink{timer_8cpp_ad43a02209687d9c1e04dddd167f32c45}{reset\+Timer}} ()
+\begin{DoxyCompactList}\small\item\em essentially performs same task as \mbox{\hyperlink{timer_8hpp_aec53975ffc59ffaf3080db21af0d2f6e}{start\+Timer()}}; used to reset the timer to 0 and start again. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{timer_8cpp_aa57dc735e77b4149987272739f3a82df}\label{timer_8cpp_aa57dc735e77b4149987272739f3a82df}} 
+void \mbox{\hyperlink{timer_8cpp_aa57dc735e77b4149987272739f3a82df}{start\+OFPTimer}} ()
+\begin{DoxyCompactList}\small\item\em second timer meant to be used only within the OFP loop \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{timer_8cpp_abf477c66124f90bc11b5c67a3298b3c6}{end\+\_\+\+OFP\+\_\+timer}} (unsigned long int time\+\_\+limit)
+\begin{DoxyCompactList}\small\item\em waits until time\+\_\+limit microseconds are completed since beginning of OFP timer \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{timer_8cpp_aba2663911d722cd000f0f8432b045a57}\label{timer_8cpp_aba2663911d722cd000f0f8432b045a57}} 
+long unsigned int {\bfseries current\+\_\+time} = 0
+\item 
+\mbox{\Hypertarget{timer_8cpp_a2bd072fa71b56d00d2d59126d7dd9ad1}\label{timer_8cpp_a2bd072fa71b56d00d2d59126d7dd9ad1}} 
+long unsigned int {\bfseries OFP\+\_\+timer} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyAuthor}{Author}
+Nikhil Tom Jose 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+22/04/2026
+\end{DoxyDate}
+Part of timer library; Meant to be used only within the main source file to time intervals between 2 events. Defines variables and functions used in \mbox{\hyperlink{setupFunctions_8h}{setup\+Functions.\+h}}. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{timer_8cpp_abf477c66124f90bc11b5c67a3298b3c6}\label{timer_8cpp_abf477c66124f90bc11b5c67a3298b3c6}} 
+\index{timer.cpp@{timer.cpp}!end\_OFP\_timer@{end\_OFP\_timer}}
+\index{end\_OFP\_timer@{end\_OFP\_timer}!timer.cpp@{timer.cpp}}
+\doxysubsubsection{\texorpdfstring{end\_OFP\_timer()}{end\_OFP\_timer()}}
+{\footnotesize\ttfamily void end\+\_\+\+OFP\+\_\+timer (\begin{DoxyParamCaption}\item[{unsigned long int}]{time\+\_\+limit }\end{DoxyParamCaption})}
+
+
+
+waits until time\+\_\+limit microseconds are completed since beginning of OFP timer 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time\+\_\+limit} & number of microseconds the OFP loop is meant to last for \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{timer_8cpp_a4d3cf1a5d9dff7c75d048869e321992a}\label{timer_8cpp_a4d3cf1a5d9dff7c75d048869e321992a}} 
+\index{timer.cpp@{timer.cpp}!timeup@{timeup}}
+\index{timeup@{timeup}!timer.cpp@{timer.cpp}}
+\doxysubsubsection{\texorpdfstring{timeup()}{timeup()}}
+{\footnotesize\ttfamily bool timeup (\begin{DoxyParamCaption}\item[{unsigned long int}]{time\+\_\+ms }\end{DoxyParamCaption})}
+
+
+
+check whether the given amount of time (in ms) is completed or not 
+
+check whether time\+\_\+ms microseconds are completed since start of timer 

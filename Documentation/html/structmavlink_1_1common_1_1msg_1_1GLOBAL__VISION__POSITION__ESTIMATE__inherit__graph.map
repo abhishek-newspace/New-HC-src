@@ -1,0 +1,4 @@
+<map id="mavlink::common::msg::GLOBAL_VISION_POSITION_ESTIMATE" name="mavlink::common::msg::GLOBAL_VISION_POSITION_ESTIMATE">
+<area shape="rect" id="node1" title="GLOBAL_VISION_POSITION_ESTIMATE message." alt="" coords="5,80,208,136"/>
+<area shape="rect" id="node2" href="$structmavlink_1_1Message.html" title="MAVLink Message base class." alt="" coords="36,5,177,32"/>
+</map>

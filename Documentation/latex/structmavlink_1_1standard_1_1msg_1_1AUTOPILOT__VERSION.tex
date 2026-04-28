@@ -1,0 +1,166 @@
+\hypertarget{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION}{}\doxysection{mavlink\+::standard\+::msg\+::AUTOPILOT\+\_\+\+VERSION Struct Reference}
+\label{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION}\index{mavlink::standard::msg::AUTOPILOT\_VERSION@{mavlink::standard::msg::AUTOPILOT\_VERSION}}
+
+
+\mbox{\hyperlink{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION}{AUTOPILOT\+\_\+\+VERSION}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+autopilot\+\_\+version.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::standard\+::msg\+::AUTOPILOT\+\_\+\+VERSION\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::standard\+::msg\+::AUTOPILOT\+\_\+\+VERSION\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_a680bddb013fdb9fe79a1ad39d3d9ee41}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_ae09f45b6d578b7f857795bd2ae8f506b}\label{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_ae09f45b6d578b7f857795bd2ae8f506b}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_ae09f45b6d578b7f857795bd2ae8f506b}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_a71b9621d853d271f9c6d360f162d5272}\label{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_a71b9621d853d271f9c6d360f162d5272}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_a71b9621d853d271f9c6d360f162d5272}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_afb855acfccdce42344a669e5e99e04a7}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_a949f7968005f6a6e2cb83d419b713d9e}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_ab8fcbd0808f3e97897334ee0194e4bc1}\label{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_ab8fcbd0808f3e97897334ee0194e4bc1}} 
+uint64\+\_\+t {\bfseries capabilities}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_ac09513dcb5cb8606b167891191c3dca6}\label{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_ac09513dcb5cb8606b167891191c3dca6}} 
+uint32\+\_\+t {\bfseries flight\+\_\+sw\+\_\+version}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_a511b6cff35b24bc6ffd301ed4d680280}\label{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_a511b6cff35b24bc6ffd301ed4d680280}} 
+uint32\+\_\+t {\bfseries middleware\+\_\+sw\+\_\+version}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_ae2cd5e685e482df15dfd125c3a1b1005}\label{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_ae2cd5e685e482df15dfd125c3a1b1005}} 
+uint32\+\_\+t {\bfseries os\+\_\+sw\+\_\+version}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_aa585f0fceabc501cf8a3f8cc322bdb13}\label{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_aa585f0fceabc501cf8a3f8cc322bdb13}} 
+uint32\+\_\+t {\bfseries board\+\_\+version}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_af2bf587c1d9e1c8996c52cd5ffd17fc6}\label{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_af2bf587c1d9e1c8996c52cd5ffd17fc6}} 
+std\+::array$<$ uint8\+\_\+t, 8 $>$ {\bfseries flight\+\_\+custom\+\_\+version}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_aa0c52a7be9bce413d5b82a70aa740e82}\label{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_aa0c52a7be9bce413d5b82a70aa740e82}} 
+std\+::array$<$ uint8\+\_\+t, 8 $>$ {\bfseries middleware\+\_\+custom\+\_\+version}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_af3e3efe7fca5607815b02861afe1dd32}\label{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_af3e3efe7fca5607815b02861afe1dd32}} 
+std\+::array$<$ uint8\+\_\+t, 8 $>$ {\bfseries os\+\_\+custom\+\_\+version}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_a4c319a967fbf83c674ae1ccb9e9da9d4}\label{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_a4c319a967fbf83c674ae1ccb9e9da9d4}} 
+uint16\+\_\+t {\bfseries vendor\+\_\+id}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_a7051c49a76cc27448600aa0f59cafa4d}\label{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_a7051c49a76cc27448600aa0f59cafa4d}} 
+uint16\+\_\+t {\bfseries product\+\_\+id}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_a8a06f1223f49fd4c4fbbe4f4d0eab483}\label{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_a8a06f1223f49fd4c4fbbe4f4d0eab483}} 
+uint64\+\_\+t {\bfseries uid}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_a44d451ac102fa2688982e64889f72a3b}\label{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_a44d451ac102fa2688982e64889f72a3b}} 
+std\+::array$<$ uint8\+\_\+t, 18 $>$ {\bfseries uid2}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_aa5c0d963ce2fe85ab1d4e19def99a461}\label{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_aa5c0d963ce2fe85ab1d4e19def99a461}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 148
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_a76b66615b8e51bb09d85639b2ae50d80}\label{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_a76b66615b8e51bb09d85639b2ae50d80}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 78
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_aa33836e1b733df3c6200da6121b13603}\label{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_aa33836e1b733df3c6200da6121b13603}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 60
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_a772c037f020c29d8195a811441815279}\label{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_a772c037f020c29d8195a811441815279}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 178
+\item 
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_a113415712ac81918db7899d706221ff4}\label{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_a113415712ac81918db7899d706221ff4}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}AUTOPILOT\+\_\+\+VERSION\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION}{AUTOPILOT\+\_\+\+VERSION}} message. 
+
+Version and capability of autopilot software. This should be emitted in response to a request with MAV\+\_\+\+CMD\+\_\+\+REQUEST\+\_\+\+MESSAGE. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_a949f7968005f6a6e2cb83d419b713d9e}\label{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_a949f7968005f6a6e2cb83d419b713d9e}} 
+\index{mavlink::standard::msg::AUTOPILOT\_VERSION@{mavlink::standard::msg::AUTOPILOT\_VERSION}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::standard::msg::AUTOPILOT\_VERSION@{mavlink::standard::msg::AUTOPILOT\_VERSION}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::standard\+::msg\+::\+AUTOPILOT\+\_\+\+VERSION\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_a680bddb013fdb9fe79a1ad39d3d9ee41}\label{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_a680bddb013fdb9fe79a1ad39d3d9ee41}} 
+\index{mavlink::standard::msg::AUTOPILOT\_VERSION@{mavlink::standard::msg::AUTOPILOT\_VERSION}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::standard::msg::AUTOPILOT\_VERSION@{mavlink::standard::msg::AUTOPILOT\_VERSION}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::standard\+::msg\+::\+AUTOPILOT\+\_\+\+VERSION\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_afb855acfccdce42344a669e5e99e04a7}\label{structmavlink_1_1standard_1_1msg_1_1AUTOPILOT__VERSION_afb855acfccdce42344a669e5e99e04a7}} 
+\index{mavlink::standard::msg::AUTOPILOT\_VERSION@{mavlink::standard::msg::AUTOPILOT\_VERSION}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::standard::msg::AUTOPILOT\_VERSION@{mavlink::standard::msg::AUTOPILOT\_VERSION}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::standard\+::msg\+::\+AUTOPILOT\+\_\+\+VERSION\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/mavlink/standard/mavlink\+\_\+msg\+\_\+autopilot\+\_\+version.\+hpp\end{DoxyCompactItemize}
