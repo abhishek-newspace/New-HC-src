@@ -10,6 +10,9 @@
  * <h2>changes</h2>
  * renamed increaseSpeed to inc_speed due to name collision with that in buttons struct within IOhandler
  * renamed decreaseSpeed to dec_speed due to name collision with that in buttons struct within IOhandler
+ * 
+ * @date 04/05/2026
+ * - added function declarations for functions to change directions, and get current speed, and direction
  */
 #pragma once
 #include"displayHandler.hpp"
@@ -27,6 +30,14 @@ bool setUGV_state(ugv_status s1);
  */
 ugv_status getUGV_state();
 
+/// @brief get current UGV speed
+/// @return current UGV speed
+speedToggle getUGV_speed();
+
+/// @brief get current UGV direction
+/// @return current UGV direction
+directionToggle getUGV_dir();
+
 /**
  * check whether the UGV is connected or not
  * \returns true when UGV is not in disconnected state.
@@ -41,3 +52,9 @@ void dec_Speed();
 
 /// @brief used only within prototype version to set speed to neutral
 void setNeutral();
+
+/// @brief switch current direction to forward (if not in neutral)
+void dir_forward();
+
+/// @brief switch current direction to reverse (if not in neutral)
+void dir_reverse();

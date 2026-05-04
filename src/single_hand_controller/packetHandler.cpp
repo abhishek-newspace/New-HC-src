@@ -74,17 +74,20 @@ void sendTimesyncRequest(){
 }
 
 void sendManualControl(){
-    // thumbstickControl thumbstick_input;
-    // getXY(&thumbstick_input);
-    // message_sender::buffer_manual_control(
-    //     thumbstick_input.X,
-    //     thumbstick_input.Y,
-    //     0,
-    //     0,
-    //     0,
-    //     0,
-        
-    // )
+    thumbstickControl thumbstick_input;
+    getXY(&thumbstick_input);
+    sendBuffer(
+        message_sender::buffer_manual_control(
+            thumbstick_input.X,
+            thumbstick_input.Y,
+            0,
+            0,
+            0,
+            0,
+            getUGV_dir(),
+            getUGV_speed()
+        )
+    );
 }
 
 void handlePacketReceived()

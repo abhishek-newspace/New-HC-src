@@ -61,6 +61,7 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 
 #define LONG_PRESS_DURATION     SECONDS_MS_2
 #define BUTTON_PRESS_COOLDOWN   MS_200
+#define TOGGLE_DEBOUNCE_DURATION SECONDS_US_1
 
 // used in IOhandler to convert from raw thumbstick control input to normalized value that is sent to atlas
 #define XY_NORMALIZED_MAX 100
@@ -99,6 +100,13 @@ enum speedToggle{
     low,
     mid,
     high
+};
+
+/// @brief button press state
+enum buttonPress{
+    not_pressed = 0,
+    short_pressed = 1,
+    long_pressed = 3
 };
 
 // baud rates; used in setupFunctions.h

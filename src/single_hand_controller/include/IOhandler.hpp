@@ -44,27 +44,65 @@ void getXY(struct thumbstickControl *control);
 /// @return true when arm/disarm button is pressed
 bool arm_pressed();
 
-// struct holds current state of button
-IF_PROTOTYPE(
-    struct buttons{
-        uint8_t increaseSpeed = 0;
-        uint8_t decreaseSpeed = 0;
-        uint8_t neutral = 0;
-        uint8_t arm_disarm = 0;
-        uint8_t arm_disarm_long = 0;
-        
-        int32_t increaseSpeed_cooldown = 0;
-        int32_t decreaseSpeed_cooldown = 0;
-        int32_t neutral_cooldown = 0;
-        int32_t arm_disarm_cooldown = 0;
 
-        uint32_t arm_disarm_press_duration = 0;
-        
-        void (*neutral_callback)(void) = setNeutral;
-        void (*increaseSpeed_callback)(void) = inc_Speed;
-        void (*decreaseSpeed_callback)(void) = dec_Speed;
+/// @brief update parameters within the button struct
+/// @param b1 button struct in which update needs to happen
+/// @param ms_since_last_check number of milliseconds since last time this function was called (ideally to only be used within checkUserInput() function) 
+void updateButtonValues(button &b1, int32_t ms_since_last_check);
 
-        uint8_t toggle_forward = 0;
-        uint8_t toggle_reverse = 0;
-    };
-) // IF_PROTOTYPE
+/// @brief update parameters within the button struct
+/// @param b1 long press button struct in which update needs to happen
+/// @param ms_since_last_check number of milliseconds since last time this function was called (ideally to only be used within checkUserInput() function) 
+void updateLongPressButtonValues(long_press_button &b1, int32_t ms_since_last_check);
+
+/// @brief update parameters within the toggle struct
+/// @param t1 toggle struct in which update needs to happen
+/// @param ms_since_last_check number of milliseconds since last time this function was called (ideally to only be used within checkUserInput() function) 
+void updateToggleValues(toggle &t1, int32_t ms_since_last_check);
+
+/// @brief normal button for which there is just a single press
+struct button{
+    uint8_t pin;
+    buttonPress press_state;    // 0 => not pressed, 1 => pressed
+    void (*press_callback)(void);   // callback function; to be called when the button is pressed
+    uint32_t cooldown;  // button cooldown period. 0 when cooldown period is over, and more than 0 when cooling down
+};
+
+
+
+
+
+
+
+
+
+/// @brief a button in which long press is allowed
+struct long_press_button{
+    uint8_t pin;
+    buttonPress press_state; //0=> not pressed, 1=> short pressed, 3 => long pressed
+    void (*short_press_callback)(void);
+    void (*long_press_callback)(void);
+    uint32_t cooldown;
+    uint32_t pressed_for;
+};
+
+/// @brief 2-state direction toggle switch on prototype; requires jitter correction due to fault
+struct toggle{
+    uint8_t pin;
+    uint8_t state;  /// 1 when the toggle is in forward position; 0 when in reverse position
+    /**
+     * @brief This is waiting period to confirm 1 as the state.
+     * 
+     * when the state is 0, and 0 is the state that is read, then toggled_at is set to 0
+     * 
+     * when the state is 0, and 1 is the state that is read while toggled_at is 0, then toggled_at is set to micros();
+     * 
+     * when the state is 0, and 1 is the state that is read while toggled_at is more than 0, then if micros() - toggled_at > 1 second, then state is set to 1.
+     * 
+     * when the state is 1 and 0 is the state that is read, then toggled_at is set to 0, and state is set to 0.
+     */
+    uint32_t toggled_at;
+
+    void (*pos_0_callback)(void);   /// callback function to be triggered when toggle in position 1 (forward)
+    void (*pos_1_callback)(void);   /// callback function to be triggered when toggle in position 0 (reverse)
+};
