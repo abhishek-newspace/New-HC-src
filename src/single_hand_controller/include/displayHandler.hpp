@@ -79,4 +79,4 @@ void clearError();
 
 /// @brief writes direction onto screen
 /// @param direction current direction
-void displayDirection(bool direction);
+void displayDirection(directionToggle direction);

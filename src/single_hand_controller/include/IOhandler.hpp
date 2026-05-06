@@ -45,27 +45,32 @@ void getXY(struct thumbstickControl *control);
 bool arm_pressed();
 
 
+/// @brief whether arm/disarm button is long pressed or not
+/// @return true when arm/disarm button is long pressed
+bool arm_long_pressed();
+
+
 /// @brief update parameters within the button struct
 /// @param b1 button struct in which update needs to happen
 /// @param ms_since_last_check number of milliseconds since last time this function was called (ideally to only be used within checkUserInput() function) 
-void updateButtonValues(button &b1, int32_t ms_since_last_check);
+void updateButtonValues(struct button *b1, int32_t ms_since_last_check);
 
 /// @brief update parameters within the button struct
 /// @param b1 long press button struct in which update needs to happen
 /// @param ms_since_last_check number of milliseconds since last time this function was called (ideally to only be used within checkUserInput() function) 
-void updateLongPressButtonValues(long_press_button &b1, int32_t ms_since_last_check);
+void updateLongPressButtonValues(struct long_press_button *b1, int32_t ms_since_last_check);
 
 /// @brief update parameters within the toggle struct
 /// @param t1 toggle struct in which update needs to happen
 /// @param ms_since_last_check number of milliseconds since last time this function was called (ideally to only be used within checkUserInput() function) 
-void updateToggleValues(toggle &t1, int32_t ms_since_last_check);
+void updateToggleValues(struct toggle *t1, int32_t ms_since_last_check);
 
 /// @brief normal button for which there is just a single press
 struct button{
     uint8_t pin;
     buttonPress press_state;    // 0 => not pressed, 1 => pressed
     void (*press_callback)(void);   // callback function; to be called when the button is pressed
-    uint32_t cooldown;  // button cooldown period. 0 when cooldown period is over, and more than 0 when cooling down
+    int32_t cooldown;  // button cooldown period. 0 when cooldown period is over, and more than 0 when cooling down
 };
 
 

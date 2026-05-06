@@ -4,6 +4,10 @@
  * @author Nikhil Tom Jose
  * @date 22/04/2026
  * Handles all incoming communication over UART, from the hand controller radio
+ * 
+ * <h2>changes</h2>
+ * @date 06/05/2026
+ * added functions for arm, disarm and sending heartbeat
  */
 #pragma once
 #include "definitions.h"
@@ -34,3 +38,9 @@ void sendManualControl();
 
 /// @brief initiates serial communication with radio to send MAVLink packets; baud rate for serial communication is set in definitions.h
 void initiateSerialComm();
+
+void sendArmCommand();
+
+void sendDisarmCommand();
+
+void sendHeartbeat();

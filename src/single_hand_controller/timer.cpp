@@ -9,20 +9,19 @@
 */
 #include "include/timer.hpp"
 
-long unsigned int current_time = 0;
 long unsigned int OFP_timer = 0;
 
-void startTimer(){
+void timer::startTimer(){
     current_time = millis();
 }
 
 //! check whether the given amount of time (in ms) is completed or not
-bool timeup(unsigned long int time_ms){
+bool timer::timeup(unsigned long int time_ms){
     return (millis() - current_time >= time_ms);
 }
 
 
-void resetTimer(){
+void timer::resetTimer(){
     current_time = millis();
 }
 

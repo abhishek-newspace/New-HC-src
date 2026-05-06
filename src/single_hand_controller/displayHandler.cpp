@@ -359,16 +359,21 @@ void clearError(){
   tft.fillRectangle(0, 150, 176, 200, COLOR_GRAY);
 }
 
-void displayDirection(bool direction){
+void displayDirection(directionToggle direction){
   static short int prevDirection = -1;
   if(direction == prevDirection)
     return;
-    
-  if(direction){
-    tft.drawText(55,95,"FORWARD");
-  }
-  else{
-    tft.drawText(55,95,"REVERSE");
+  
+  switch(direction){
+    case forward:
+      tft.drawText(55,95,"FORWARD");
+    break;
+    case reverse:
+      tft.drawText(55,95,"REVERSE");
+    break;
+    case neutral:
+      tft.drawText(55,95,"NEUTRAL");
+    break;
   }
   prevDirection = direction;
 }

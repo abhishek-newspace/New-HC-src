@@ -61,20 +61,25 @@ bool isUGV_connected(){
 // internally used functions
 
 void inc_Speed(){
+    IF_DEBUG(Serial.println("increase speed called!"));
     speed = speed > 2 ? speed : speed + 1;
     current_spd = (speedToggle)(speed - 1);
     displaySpeed(speed);
     current_dir = set_dir;
+    displayDirection(current_dir);
 }
 void dec_Speed(){
+    IF_DEBUG(Serial.println("decrease speed called!"));
     speed = speed == 0 ? speed : speed - 1;
-    if(speed > 0)
+    if(speed > 0){
         current_spd = (speedToggle)(speed - 1);
+    }
     else{
         current_spd = 0;
         current_dir = neutral;
     }
     displaySpeed(speed);
+    displayDirection(current_dir);
 }
 
 void setNeutral(){
@@ -82,9 +87,11 @@ void setNeutral(){
     IF_DEBUG(Serial.println("set neutral called!"));
     displaySpeed(speed);
     current_dir = neutral;
+    displayDirection(current_dir);
 }
 
 void dir_reverse(){
+    IF_DEBUG(Serial.println("------------------dir reverse"));
     if(speed > 0){
         current_dir = reverse;
         displayDirection(current_dir);
@@ -94,6 +101,7 @@ void dir_reverse(){
 }
 
 void dir_forward(){
+    IF_DEBUG(Serial.println("+++++++++++++++++++dir forward"));
     if(speed > 0){
         current_dir = forward;
         displayDirection(current_dir);

@@ -5,23 +5,36 @@
  * @date 22/04/2026
  * 
  * All timing functions are contained within this header file
+ * 
+ * <h2>changes</h2>
+ * @date 06/05/2026
+ * placed startTimer, timeup, and resetTimer functions into a class so that multiple timers can be made within the OFP loop
  */
 #pragma once
 #include "definitions.h"
 #include "IOhandler.hpp"
 
 
-/// @brief start a timer, that keeps count of number of microseconds elapsed
-void startTimer();
 
-/// @brief check whether time_ms microseconds are completed since start of timer
-/// @param time_ms milliseconds since start of timer
-/// @return true when time_ms microseconds are completed since start of timer.
-bool timeup(unsigned long int time_ms);
+class timer{
 
-/// @brief essentially performs same task as startTimer(); used to reset the timer to 0 and start again.
-void resetTimer();
 
+    long unsigned int current_time = 0;
+
+public:
+    /// @brief start a timer, that keeps count of number of microseconds elapsed
+    void startTimer();
+
+    /// @brief check whether time_ms microseconds are completed since start of timer
+    /// @param time_ms milliseconds since start of timer
+    /// @return true when time_ms microseconds are completed since start of timer.
+    bool timeup(unsigned long int time_ms);
+
+    /// @brief essentially performs same task as startTimer(); used to reset the timer to 0 and start again.
+    void resetTimer();
+
+
+};
 /// @brief second timer meant to be used only within the OFP loop
 void startOFPTimer();
 

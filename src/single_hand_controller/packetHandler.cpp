@@ -69,15 +69,27 @@ void sendBuffer(int len){
     }
 }
 
+void sendHeartbeat(){
+    sendBuffer(msgsndr.buffer_heartbeat());
+}
+
 void sendTimesyncRequest(){
     sendBuffer(msgsndr.buffer_timesync());
+}
+
+void sendArmCommand(){
+    sendBuffer(msgsndr.buffer_arm_disarm_cmd(1));
+}
+
+void sendDisarmCommand(){
+    sendBuffer(msgsndr.buffer_arm_disarm_cmd(0));
 }
 
 void sendManualControl(){
     thumbstickControl thumbstick_input;
     getXY(&thumbstick_input);
     sendBuffer(
-        message_sender::buffer_manual_control(
+        msgsndr.buffer_manual_control(
             thumbstick_input.X,
             thumbstick_input.Y,
             0,

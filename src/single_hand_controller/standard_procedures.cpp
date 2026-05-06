@@ -4,10 +4,23 @@
  * @author Nikhil Tom Jose
  * @date 28/04/2026
  * @brief definitions of set of functions to represent phases within the main control loop of the microcontroller in the hand controller.
+ * 
+ * <h2>changes</h2>
+ * @date 06/05/2026
+ * - added included arm/disarm commands, based on reviewed OFP cycle
+ * - added heartbeat being sent from hand controller
+ * - created an object for timesync timing
  */
 
 #include "include/standard_procedures.hpp"
 
+
+timer timesync_timer;
+
+uint32_t arm_start = 0, disarm_start = 0;
+int requests_sent = 0;
+
+int hb_count = 0;
 
 /**
  * Before connectivity is established, the current state of the UGV is "disconnected"
@@ -20,10 +33,11 @@ void establish_connectivity()
     setUGV_state((ugv_status)disconnected);
     
     while(heartbeat_timed_out()){
-        IF_TESTING(checkUserInput());
+        // IF_TESTING(checkUserInput());
         handlePacketReceived();
-        IF_TESTING(delay(20));
+        // IF_TESTING(delay(20));
     }
+    hb_count = 0;
 
 }
 
@@ -37,14 +51,14 @@ void establish_connectivity()
 void time_synchronize()
 {
 
-    startTimer();
+    timesync_timer.startTimer();
     sendTimesyncRequest();
     IF_DEBUG(Serial.println("Entered time sync"));
     displayInfo("syncing ...");
     do{
-        if(timeup(SECONDS_MS_1)){
+        if(timesync_timer.timeup(SECONDS_MS_1)){
             sendTimesyncRequest();
-            resetTimer();
+            timesync_timer.resetTimer();
         }
         handlePacketReceived();
         if(heartbeat_timed_out()){
@@ -65,12 +79,47 @@ void run_OFP_cycle()
         return;
     }
 
-    if(timeup(TIMESYNC_MSG_WAIT)){
+    if(timesync_timer.timeup(TIMESYNC_MSG_WAIT)){
         sendTimesyncRequest();
-        resetTimer();
+        hb_count = 0;
+        timesync_timer.resetTimer();
+    }
+
+    if(timesync_timer.timeup(hb_count * SECONDS_MS_1)){
+        hb_count++;
+        sendHeartbeat();
     }
 
     sendManualControl();
+
+    if(arm_pressed() && getUGV_state() == standby){
+        displayInfo("arming ...");
+        requests_sent = 1;
+        arm_start = micros();
+        sendArmCommand();   // needs to be defined
+    }
+    else if(arm_long_pressed() && getUGV_state() == active){
+        displayInfo("disarming ...");
+        requests_sent = 1;
+        disarm_start = micros();
+        sendDisarmCommand();    // needs to be defined
+    }
+
+    if(arm_start && micros() - arm_start > requests_sent * SECONDS_US_1){
+        sendArmCommand();
+        requests_sent++;
+    }
+    else if(disarm_start && micros() - disarm_start > requests_sent * SECONDS_US_1){
+        sendDisarmCommand();
+        requests_sent++;
+    }
+
+    if(requests_sent >= 4){
+        displayError(arm_start ? String("disarm") : String("arm") + String(" request failed"),3);
+        arm_start = 0;
+        disarm_start = 0;
+        requests_sent = 0;
+    }
 
     handlePacketReceived();
 
@@ -95,6 +144,7 @@ void initiateController()
             }
             clearError();
         }
-
+        
     }
+    IF_DEBUG(Serial.println("completed controller calibration");)
 }

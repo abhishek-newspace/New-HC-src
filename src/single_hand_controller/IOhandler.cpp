@@ -14,6 +14,9 @@
  * 
  * @date 04/05/2026
  * - separated single button struct into multiple button structs for better modularity
+ * 
+ * @date 06/05/2026
+ * added function to check for long press
  */
 #include "include/IOhandler.hpp"
 
@@ -24,7 +27,7 @@ int drift_y;
 button  b_neutral = {
             BUTTON_NEUTRAL,     // uint8_t pin;                
             0,                  // buttonPress press_state;
-            nullptr,            // void (*press_callback)(void);        
+            setNeutral,            // void (*press_callback)(void);        
             0                   // uint32_t cooldown;
         },
         b_inc_speed = {
@@ -49,7 +52,8 @@ long_press_button b_arm_disarm = {
     0
 };
 struct toggle dir_toggle = {
-    1,
+    TOGGLE_REVERSE,
+    forward,
     0,
     dir_reverse,
     dir_forward
@@ -114,78 +118,87 @@ void getXY(struct thumbstickControl *control){
 
 bool arm_pressed()
 {
-    return arm_disarm.press_state > 0;
+    return b_arm_disarm.press_state > 0;
 }
 
-/**
- * update the struct values for a normal button
- */
-void updateButtonValues(button &b1, int32_t ms_since_last_check){
-    b1.press_state = digitalRead(b1.pin);
-    if(b1.press_state && b1.cooldown == 0){
+bool arm_long_pressed()
+{
+    return b_arm_disarm.press_state == long_pressed;
+} /**
+   * update the struct values for a normal button
+   */
+void updateButtonValues(struct button *b1, int32_t ms_since_last_check){
+    b1->press_state = (uint8_t)!digitalRead(b1->pin);
+    if(b1->press_state && b1->cooldown == 0){
+        if(b1->press_callback != nullptr)
+            b1->press_callback();
 
-        if(b1.press_callback != nullptr)
-            b1.press_callback();
-
-        b1.cooldown = BUTTON_PRESS_COOLDOWN;
+        b1->cooldown = BUTTON_PRESS_COOLDOWN;
     }
     else
-        b1.cooldown = max(0, b1.cooldown - ms_since_last_check);
+        b1->cooldown = max(0, b1->cooldown - ms_since_last_check);
+
+    IF_DEBUG(Serial.println(b1->cooldown);)
 }
 
 /**
  * update the struct values for a long press button
  */
-void updateLongPressButtonValues(long_press_button &b1, int32_t ms_since_last_check){
-    buttonPress prevState = b1.press_state;
+void updateLongPressButtonValues(struct long_press_button *b1, int32_t ms_since_last_check){
+    buttonPress prevState = b1->press_state;
 
-    b1.press_state = digitalRead(b1.pin);
+    b1->press_state = (int)!digitalRead(b1->pin);
 
-    if(b1.press_state && b1.cooldown > 0){
-        b1.cooldown = max(0, b1.cooldown - ms_since_last_check);
-        b1.press_state = 0;
+    if(b1->press_state && b1->cooldown > 0){
+        b1->cooldown = max(0, b1->cooldown - ms_since_last_check);
+        b1->press_state = 0;
     }
 
-    if(b1.press_state && b1.pressed_for > LONG_PRESS_DURATION)
-        b1.press_state = long_pressed;
+    if(b1->press_state && b1->pressed_for > LONG_PRESS_DURATION)
+        b1->press_state = long_pressed;
 
-    else if(b1.press_state && prevState)
-        b1.pressed_for += ms_since_last_check;
+    else if(b1->press_state && prevState)
+        b1->pressed_for += ms_since_last_check;
 
-    else if(b1.press_state == not_pressed && prevState){
-        if(prevState == long_pressed && b1.long_press_callback != nullptr){
-            b1.long_press_callback();
+    else if(b1->press_state == not_pressed && prevState){
+        if(prevState == long_pressed && b1->long_press_callback != nullptr){
+            b1->long_press_callback();
         }
-        else if(prevState == short_pressed && b1.short_press_callback != nullptr){
-            b1.long_press_callback();
+        else if(prevState == short_pressed && b1->short_press_callback != nullptr){
+            b1->long_press_callback();
         }
-        b1.cooldown = BUTTON_PRESS_COOLDOWN;
+        b1->cooldown = BUTTON_PRESS_COOLDOWN;
     }    
 }
 
-void updateToggleValues(toggle &t1, int32_t ms_since_last_check){
-    if(digitalRead(t1.pin)){    // currently read 1
-        if(!t1.state){  // currently read 1 but previously was 0
-            if(t1.toggled_at > 0 && (micros() - t1.toggled_at) > TOGGLE_DEBOUNCE_DURATION){
-                t1.state = 1;
-                t1.toggled_at = 0;
-                t1.pos_1_callback();
+void updateToggleValues(struct toggle *t1, int32_t ms_since_last_check){
+    if(digitalRead(t1->pin)){    // currently read 1
+        IF_DEBUG(Serial.println("currently FORWARD"));
+        if(!t1->state){  // currently read 1 but previously was 0
+            if(t1->toggled_at > 0 && (micros() - t1->toggled_at) > TOGGLE_DEBOUNCE_DURATION){
+                IF_DEBUG(Serial.println("SWITCHED FORRRRRRRRRRRRRRRRRR"));
+
+                t1->state = 1;
+                t1->toggled_at = 0;
+                t1->pos_1_callback();
             }
-            else if(t1.toggled_at == 0){    
-                t1.toggled_at = micros();
+            else if(t1->toggled_at == 0){    
+                t1->toggled_at = micros();
             }
         }
         else{   // currently read 1 and previously also 1
-            t1.toggled_at = 0;
+            t1->toggled_at = 0;
         }
     }
     else{
-        if(!t1.state){   // currently read 0 and previously was also 0
-            t1.toggled_at = 0;
+        IF_DEBUG(Serial.println("currently REVERSE"));
+        if(!t1->state){   // currently read 0 and previously was also 0
+            t1->toggled_at = 0;
         }
-        else if(t1.state){   // currently read 0 but previously was 1
-            t1.state = 0;
-            t1.pos_0_callback();
+        else if(t1->state){   // currently read 0 but previously was 1
+            IF_DEBUG(Serial.println("SWITCHED REVVVVVVVVVVVVV"));
+            t1->state = 0;
+            t1->pos_0_callback();
         }
         
     }
@@ -198,11 +211,11 @@ void checkUserInput()
 
     int32_t ms_since_last_check = millis() - last_input_checked_at;
     
-    updateButtonValues(b_neutral, ms_since_last_check);
-    updateButtonValues(b_inc_speed, ms_since_last_check);
-    updateButtonValues(b_dec_speed, ms_since_last_check);
-    updateLongPressButtonValues(b_arm_disarm, ms_since_last_check);
-    updateToggleValues(dir_toggle,ms_since_last_check);
+    updateButtonValues(&b_neutral, ms_since_last_check);
+    updateButtonValues(&b_inc_speed, ms_since_last_check);
+    updateButtonValues(&b_dec_speed, ms_since_last_check);
+    updateLongPressButtonValues(&b_arm_disarm, ms_since_last_check);
+    updateToggleValues(&dir_toggle,ms_since_last_check);
 
     last_input_checked_at = millis();
 }
