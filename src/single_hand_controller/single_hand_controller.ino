@@ -32,6 +32,7 @@ void loop(){
     if(heartbeat_timed_out()){
         establish_connectivity();
         time_synchronize();
+        sendComponentVersion();
     }
 
     if(!isUGV_connected())

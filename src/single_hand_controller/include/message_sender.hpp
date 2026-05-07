@@ -5,6 +5,10 @@
  * @author Nikhil Tom Jose
  * @date 22/04/2026
  * MAVLink messages are packed and placed into the char buffer based on input parameters required for the given message.
+ * 
+ * <h2>changes</h2>
+ * @date 07/05/2026
+ * Added component_version sender
  */
 
 #include"message_structs.h"
@@ -21,6 +25,7 @@ class message_sender{
     struct HC_ATLAS_HEARTBEAT_BC heartbeat;
     struct HC_ATLAS_MANUAL_CONTROL_BC manual_control;
     struct HC_ATLAS_TIMESYNC_REQ timesync;
+    struct HC_ATLAS_UGV_COMPONENT_VER component_version;
 
     uint8_t* buf;
     mavlink_message_t*msg;
@@ -62,4 +67,6 @@ public:
         speedToggle spdTog
     );
     int buffer_timesync();
+
+    int buffer_component_version();
 };

@@ -30,7 +30,7 @@ int rssi;
 unsigned long getHeartbeatDiff();
 
 bool is_unsigned_message(const mavlink_status_t* status, uint32_t msgId) {
-  return (msgId == MAVLINK_MSG_ID_TIMESYNC || msgId == MAVLINK_MSG_ID_HEARTBEAT || msgId == MAVLINK_MSG_ID_RADIO_STATUS);
+  return (msgId == MAVLINK_MSG_ID_TIMESYNC || msgId == MAVLINK_MSG_ID_HEARTBEAT /*|| msgId == MAVLINK_MSG_ID_RADIO_STATUS*/);
 }
 
 bool setupSigning(){
@@ -73,7 +73,14 @@ void sendHeartbeat(){
     sendBuffer(msgsndr.buffer_heartbeat());
 }
 
-void sendTimesyncRequest(){
+void sendComponentVersion()
+{
+    sendBuffer(msgsndr.buffer_component_version());
+}
+
+
+void sendTimesyncRequest()
+{
     sendBuffer(msgsndr.buffer_timesync());
 }
 
@@ -114,19 +121,19 @@ void handlePacketReceived()
                 packet_receiver::receive_timesync(&msg);
             break;
 
-            case MAVLINK_MSG_ID_RADIO_STATUS:
-                IF_DEBUG(Serial.println("received radio"));
-                packet_receiver::receive_radio_status(&msg);
-            break;
+            // case MAVLINK_MSG_ID_RADIO_STATUS:
+            //     IF_DEBUG(Serial.println("received radio"));
+            //     packet_receiver::receive_radio_status(&msg);
+            //  break;
 
             case MAVLINK_MSG_ID_HEARTBEAT:
                 IF_DEBUG(Serial.println("received heartbeat"));
                 packet_receiver::receive_heartbeat(&msg);
             break;
-            case MAVLINK_MSG_ID_SYS_STATUS: 
-                IF_DEBUG(Serial.println("received system status"));
-                packet_receiver::receive_sys_status(&msg);
-                break;
+            // case MAVLINK_MSG_ID_SYS_STATUS: 
+            //     IF_DEBUG(Serial.println("received system status"));
+            //     packet_receiver::receive_sys_status(&msg);
+            //     break;
             case MAVLINK_MSG_ID_COMMAND_ACK:
                 IF_DEBUG(Serial.println("received command ack"));
                 packet_receiver::receive_ack(&msg);

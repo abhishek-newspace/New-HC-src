@@ -8,6 +8,8 @@
  * <h2>changes</h2>
  * @date 06/05/2026
  * added functions for arm, disarm and sending heartbeat
+ * @date 07/05/2026
+ * added function to send component version
  */
 #pragma once
 #include "definitions.h"
@@ -44,3 +46,5 @@ void sendArmCommand();
 void sendDisarmCommand();
 
 void sendHeartbeat();
+
+void sendComponentVersion();

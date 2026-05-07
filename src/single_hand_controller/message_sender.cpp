@@ -64,6 +64,20 @@ int message_sender::buffer_timesync()
     return mavlink_msg_to_send_buffer(buf,msg);
 }
 
+int message_sender::buffer_component_version()
+{
+    mavlink_msg_ugv_component_version_pack(
+        SCOUT_ID,
+        HC_ID,
+        msg,
+        
+        component_version.software_version,
+        component_version.checksum,
+        component_version.target_system,
+        component_version.target_component);
+
+    return mavlink_msg_to_send_buffer(buf,msg);
+}
 int message_sender::buffer_manual_control(int x, int y, bool extra_feature_1_press, bool extra_feature_1_long_press, bool extra_feature_2_press, bool extra_feature_2_long_press, directionToggle dirTog, speedToggle spdTog)
 {
     manual_control.x = x;

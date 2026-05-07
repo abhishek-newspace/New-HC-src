@@ -7,7 +7,8 @@
  */
 #pragma once
 #include "definitions.h"
-#include "mavlink/common/mavlink.h"
+//#include "mavlink/common/mavlink.h"
+#include "custom_v0.3/ugvCustom/mavlink.h"
 
 // commands sent from hand controller
 // empty fields within structs need to be filled with appropriate values
@@ -37,6 +38,13 @@ struct HC_ATLAS_ARM_DISARM_CMD{
     uint16_t command = MAV_CMD_COMPONENT_ARM_DISARM;
     uint8_t confirmation = 0;
     float param1;
+};
+
+struct HC_ATLAS_UGV_COMPONENT_VER{
+    uint32_t software_version = VERSION_MAJOR << 24 | VERSION_MINOR << 16 | VERSION_PATCH << 8 | VERSION_TYPE;
+    uint8_t checksum[32] = {0x05,0xbc,0xda,0x07,0x72,0xfe,0x22,0x13,0xf9,0xa7,0x29,0x79,0x58,0xbd,0x8a,0xa2,0x2a,0xbd,0xbc,0x58,0x3d,0x03,0xcb,0x9c,0xa8,0xf7,0x8b,0x64,0x88,0x2f,0x5e,0x36};   // checksum of build file with arm/disarm command allowed
+    uint8_t target_system = 2;
+    uint8_t target_component = 1;
 };
 
 
