@@ -67,8 +67,8 @@ int message_sender::buffer_timesync()
 int message_sender::buffer_component_version()
 {
     mavlink_msg_ugv_component_version_pack(
-        SCOUT_ID,
         HC_ID,
+        HC_COMP_ID,
         msg,
         
         component_version.software_version,
