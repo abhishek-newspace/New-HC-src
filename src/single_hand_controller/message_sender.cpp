@@ -10,6 +10,7 @@
 #include "include/message_sender.hpp"
 
 extern uint64_t UGVTime,RecvTime, RecvTimeRef;
+extern mavlink_status_t* status_chan;
 
 int message_sender::buffer_arm_disarm_cmd(bool state)
 {
@@ -32,14 +33,15 @@ int message_sender::buffer_arm_disarm_cmd(bool state)
 
 int message_sender::buffer_heartbeat()
 {
-    
+    uint8_t prevFlags = mavlink_get_channel_status(MAVLINK_COMM_0)->flags;  
+    mavlink_get_channel_status(MAVLINK_COMM_0)->flags = MAVLINK_STATUS_FLAG_OUT_MAVLINK1;  
     mavlink_msg_heartbeat_pack(
         heartbeat.sys_id,
         heartbeat.comp_id,
         msg,
 
         0,0,0,0,0);
-
+    mavlink_get_channel_status(MAVLINK_COMM_0)->flags = prevFlags;
     return mavlink_msg_to_send_buffer(buf,msg);
 }
 
@@ -57,15 +59,16 @@ int message_sender::buffer_timesync()
         msg,
         
         timesync.tc1,
-        timesync.ts1,
-        timesync.target_sys,
-        timesync.target_comp);
+        timesync.ts1
+    ,timesync.target_sys
+    ,timesync.target_comp);
 
     return mavlink_msg_to_send_buffer(buf,msg);
 }
 
 int message_sender::buffer_component_version()
 {
+
     mavlink_msg_ugv_component_version_pack(
         HC_ID,
         HC_COMP_ID,
@@ -80,6 +83,7 @@ int message_sender::buffer_component_version()
 }
 int message_sender::buffer_manual_control(int x, int y, bool extra_feature_1_press, bool extra_feature_1_long_press, bool extra_feature_2_press, bool extra_feature_2_long_press, directionToggle dirTog, speedToggle spdTog)
 {
+    IF_DEBUG(Serial.println("buffering manual control");)
     manual_control.x = x;
     manual_control.y = y;
     manual_control.Push_buttons = extra_feature_1_press | extra_feature_1_long_press << 1 | extra_feature_2_press << 2 | extra_feature_2_long_press << 3;
@@ -88,20 +92,20 @@ int message_sender::buffer_manual_control(int x, int y, bool extra_feature_1_pre
         case neutral:
         break;
         case forward:
-        manual_control.Tristate_Toggle_switches |= 1;
+        manual_control.Tristate_Toggle_switches |= FORWARD_DIRECTION;
         break;
         case reverse:
-        manual_control.Tristate_Toggle_switches |= 2;
+        manual_control.Tristate_Toggle_switches |= REVERSE_DIRECTION;
         break;
     }
     switch(spdTog){
         case low:
         break;
         case mid:
-        manual_control.Tristate_Toggle_switches |= 4;
+        manual_control.Tristate_Toggle_switches |= MEDIUM_SPEED;
         break;
         case high:
-        manual_control.Tristate_Toggle_switches |= 8;
+        manual_control.Tristate_Toggle_switches |= HIGH_SPEED;
         break;
     }
 
@@ -116,8 +120,8 @@ int message_sender::buffer_manual_control(int x, int y, bool extra_feature_1_pre
         manual_control.y,
         0,0,
         manual_control.Push_buttons,
-        manual_control.Tristate_Toggle_switches,
-        0,0,0,0,0,0,0,0,0
+        manual_control.Tristate_Toggle_switches
+        ,0,0,0,0,0,0,0,0,0
     );
 
     return mavlink_msg_to_send_buffer(buf,msg);

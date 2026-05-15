@@ -9,8 +9,6 @@
 */
 #include "include/timer.hpp"
 
-long unsigned int OFP_timer = 0;
-
 void timer::startTimer(){
     current_time = millis();
 }
@@ -20,16 +18,17 @@ bool timer::timeup(unsigned long int time_ms){
     return (millis() - current_time >= time_ms);
 }
 
+bool timer::timeup()
+{
+    if(timeup(duration)){
+        resetTimer();
+        return true;
+    }
+    else
+        return false;
 
-void timer::resetTimer(){
+}
+
+void timer::resetTimer(){ 
     current_time = millis();
-}
-
-void startOFPTimer(){
-    OFP_timer = micros();
-}
-
-void end_OFP_timer(unsigned long int time_limit){
-    while(micros() - OFP_timer < time_limit)
-        checkUserInput();
 }

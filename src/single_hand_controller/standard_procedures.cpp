@@ -15,120 +15,18 @@
 #include "include/standard_procedures.hpp"
 
 
+periodicActions periodic_actions;
+
 timer timesync_timer;
 
-uint32_t arm_start = 0, disarm_start = 0;
-int requests_sent = 0;
+timer update_screen_timer;
 
 int hb_count = 0;
+long unsigned int OFP_timer = 0;
 
-/**
- * Before connectivity is established, the current state of the UGV is "disconnected"
- * The hand controller continuously checks for incoming heartbeat packets.
- * Once a valid heartbeat is received, heartbeat_timed_out() function will return false, hence exiting the connectivity phase
- */
-void establish_connectivity()
-{
+uint32_t init_time;
 
-    setUGV_state((ugv_status)disconnected);
-    
-    while(heartbeat_timed_out()){
-        // IF_TESTING(checkUserInput());
-        handlePacketReceived();
-        // IF_TESTING(delay(20));
-    }
-    hb_count = 0;
-
-}
-
-/**
- * A MAVLink Timesync request packet is sent immediately on entering this phase.
- * Ideally, within 1 second of sending the packet, the hand controller is to receive a response.
- * However, in case the response does not arrive, a timesync packet will be sent every 1 second.
- * All incoming packets are handled; as a heartbeat is expected to ensure connectivity.
- * In case of no heartbeat being received, then it is understood that connection has been lost. Hence the "syncing ..." message is erased from screen and exitted
- */
-void time_synchronize()
-{
-
-    timesync_timer.startTimer();
-    sendTimesyncRequest();
-    IF_DEBUG(Serial.println("Entered time sync"));
-    displayInfo("syncing ...");
-    do{
-        if(timesync_timer.timeup(SECONDS_MS_1)){
-            sendTimesyncRequest();
-            timesync_timer.resetTimer();
-        }
-        handlePacketReceived();
-        if(heartbeat_timed_out()){
-            clearInfo();
-            setUGV_state((ugv_status)disconnected);
-            return;
-        }
-    }while(!receivedFirstTimesync());
-
-}
-
-void run_OFP_cycle()
-{
-    startOFPTimer();
-
-    if(heartbeat_timed_out()){
-        setUGV_state((ugv_status)disconnected);
-        return;
-    }
-
-    if(timesync_timer.timeup(TIMESYNC_MSG_WAIT)){
-        sendTimesyncRequest();
-        hb_count = 0;
-        timesync_timer.resetTimer();
-    }
-
-    if(timesync_timer.timeup(hb_count * SECONDS_MS_1)){
-        hb_count++;
-        sendHeartbeat();
-    }
-
-    sendManualControl();
-
-    if(arm_pressed() && getUGV_state() == standby){
-        displayInfo("arming ...");
-        requests_sent = 1;
-        arm_start = micros();
-        sendArmCommand();   // needs to be defined
-    }
-    else if(arm_long_pressed() && getUGV_state() == active){
-        displayInfo("disarming ...");
-        requests_sent = 1;
-        disarm_start = micros();
-        sendDisarmCommand();    // needs to be defined
-    }
-
-    if(arm_start && micros() - arm_start > requests_sent * SECONDS_US_1){
-        sendArmCommand();
-        requests_sent++;
-    }
-    else if(disarm_start && micros() - disarm_start > requests_sent * SECONDS_US_1){
-        sendDisarmCommand();
-        requests_sent++;
-    }
-
-    if(requests_sent >= 4){
-        displayError(arm_start ? String("disarm") : String("arm") + String(" request failed"),3);
-        arm_start = 0;
-        disarm_start = 0;
-        requests_sent = 0;
-    }
-
-    handlePacketReceived();
-
-    end_OFP_timer(OFP_LOOP_TIME);
-}
-
-void initiateController()
-{
-
+void initiateController(){
     if(!identifyControllerDrift()){
         IF_DEBUG(Serial.println("didn't calibrate drift");)
 
@@ -144,7 +42,131 @@ void initiateController()
             }
             clearError();
         }
-        
     }
     IF_DEBUG(Serial.println("completed controller calibration");)
+}
+
+
+
+void run_wakeup_seq(){
+    periodic_actions.reset();
+    periodic_actions.addPeriodicAction(sendHeartbeat,SECONDS_MS_1);   // send a heartbeat every 1 second
+    establish_connectivity();
+    periodic_actions.addPeriodicAction(updateDisplay,SECONDS_MS_1);
+    time_synchronize();
+    sendComponentVersion();
+}
+
+/**
+ * Before connectivity is established, the current state of the UGV is "disconnected"
+ * The hand controller continuously checks for incoming heartbeat packets.
+ * Once a valid heartbeat is received, heartbeat_timed_out() function will return false, hence exiting the connectivity phase
+ */
+void establish_connectivity()
+{
+
+    setUGV_state((ugv_status)disconnected);
+    
+    while(heartbeat_timed_out()){
+        handlePacketReceived();
+        periodic_actions.performPeriodicActions();
+    }
+    hb_count = 0;
+
+}
+
+/**
+ * A MAVLink Timesync request packet is sent immediately on entering this phase.
+ * Ideally, within 1 second of sending the packet, the hand controller is to receive a response.
+ * However, in case the response does not arrive, a timesync packet will be sent every 1 second.
+ * All incoming packets are handled; as a heartbeat is expected to ensure connectivity.
+ * In case of no heartbeat being received, then it is understood that connection has been lost. Hence the "syncing ..." message is erased from screen and exitted
+ */
+void time_synchronize()
+{
+
+    int tsID = periodic_actions.addPeriodicAction(sendTimesyncRequest,SECONDS_MS_1,receivedFirstTimesync);
+    IF_DEBUG(Serial.println("Entered time sync"));
+    displayInfo("syncing ...");
+    do{
+        handlePacketReceived();
+        if(heartbeat_timed_out()){
+            clearInfo();
+            setUGV_state((ugv_status)disconnected);
+            return;
+        }
+        periodic_actions.performPeriodicActions();
+    }while(!receivedFirstTimesync());
+    periodic_actions.stopPeriodicAction(tsID);
+    periodic_actions.addPeriodicAction(sendTimesyncRequest,TIMESYNC_MSG_WAIT);
+}
+
+void startOFPTimer(){
+    OFP_timer = micros();
+}
+
+/// @brief waits until time_limit microseconds are completed since beginning of OFP timer
+/// @param time_limit number of microseconds the OFP loop is meant to last for
+void end_OFP_timer(unsigned long int time_limit){
+    do{
+        checkUserInput();
+    }while(micros() - OFP_timer < time_limit);
+}
+
+
+bool startArmConditionSatisfied(){
+    return arm_pressed() && getUGV_state() == standby && get_requests_sent() == 0;
+}
+
+bool startDisarmConditionSatisfied(){
+    return arm_long_pressed() && getUGV_state() == active && get_requests_sent() == 0;
+}
+
+bool stopArmDisarmResendCondition(){
+    return get_requests_sent == 0;
+}
+
+void resendArmCommand(){
+    sendArmCommand();
+    inc_requests_sent();
+}
+
+void resendDisarmCommand(){
+    sendDisarmCommand();
+    inc_requests_sent();
+}
+
+void run_OFP_cycle()
+{
+    startOFPTimer();
+
+    if(heartbeat_timed_out()){
+        setUGV_state((ugv_status)disconnected);
+        return;
+    }
+
+    if(getUGV_state() == active)
+        sendManualControl();
+
+    if(startArmConditionSatisfied()){
+        IF_DEBUG(Serial.println("ARM BUTTON PRESSED"));
+        displayInfo("arming ...");
+        periodic_actions.addPeriodicAction(resendArmCommand,ARM_DISARM_RESEND_DELAY,stopArmDisarmResendCondition);
+    }
+    else if(startDisarmConditionSatisfied()){
+        IF_DEBUG(Serial.println("DISARM BUTTON PRESSED"));
+        displayInfo("disarming ...");
+        periodic_actions.addPeriodicAction(resendDisarmCommand,ARM_DISARM_RESEND_DELAY,stopArmDisarmResendCondition);
+    }
+
+    if(get_requests_sent() >= 4){
+        clearInfo();
+        displayError((get_arm_start() ? String("disarm") : String("arm") + String(" request failed")),3);
+        resetArmDisarm();
+    }
+
+    handlePacketReceived();
+    periodic_actions.performPeriodicActions();
+
+    end_OFP_timer(OFP_LOOP_TIME);
 }

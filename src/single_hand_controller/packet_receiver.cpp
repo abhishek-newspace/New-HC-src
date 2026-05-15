@@ -15,7 +15,9 @@ static struct HC_RADIO_STATUS packet_receiver::radio_status;
 static struct ATLAS_HC_SYS_STAT packet_receiver::sys_status;
 static struct ATLAS_HC_ARM_DISARM_ACK packet_receiver::ack;
 
-extern mavlink_signing_t signing; 
+
+uint32_t arm_start = 0, disarm_start = 0;
+int requests_sent = 0;
 
 uint64_t  UGVTime = 0, //!< stores time of the drone at which timesync was received
           RecvTime = 0,  //!< stores time at which timesync was received.
@@ -75,8 +77,7 @@ void packet_receiver::receive_timesync(mavlink_message_t *msg)
     clearInfo();
     displayInfo(time);
 #endif
-    
-    signing.timestamp = UGVTime / 10;
+    mavlink_get_channel_status(MAVLINK_COMM_0)->signing->timestamp = UGVTime / 10;
 }
 
 
@@ -84,15 +85,66 @@ void packet_receiver::receive_timesync(mavlink_message_t *msg)
 
 void packet_receiver::receive_radio_status(mavlink_message_t *msg)
 {
+    radio_status.rssi = mavlink_msg_radio_status_get_rssi(msg);
+    IF_DEBUG(Serial.print("rssi");)
+    IF_DEBUG(Serial.println(radio_status.rssi);)
+    setRSSI(radio_status.rssi);
 }
 
 void packet_receiver::receive_sys_status(mavlink_message_t *msg)
 {
+    sys_status.battery_remaining = mavlink_msg_sys_status_get_battery_remaining(msg);
+    sys_status.drop_rate_comm = mavlink_msg_sys_status_get_drop_rate_comm(msg);
+    sys_status.voltage_battery = mavlink_msg_sys_status_get_voltage_battery(msg);
+
+    setBatterySOC(sys_status.battery_remaining);
+
+    // display errors when drop rate or battery voltage above/below thresholds
 }
 
 void packet_receiver::receive_ack(mavlink_message_t *msg)
 {
+    displayInfo("ARM command acknowledged");
+    resetArmDisarm();
 }
+
+void resetArmDisarm(){
+    requests_sent = 0;
+    disarm_start = 0;
+    arm_start = 0;
+}
+
+void setArmNow()
+{
+    requests_sent = 1;
+    arm_start = micros();
+}
+
+void setDisarmNow()
+{
+    requests_sent = 1;
+    disarm_start = micros();
+}
+
+uint32_t get_arm_start(){
+    return arm_start;
+}
+uint32_t get_disarm_start(){
+    return disarm_start;
+}
+
+void inc_requests_sent(){
+    requests_sent++;
+}
+
+int get_requests_sent(){
+    return requests_sent;
+}
+void init_requests_sent(){
+    requests_sent = 1;
+}
+
+
 
 void packet_receiver::receive_heartbeat(mavlink_message_t *msg)
 {

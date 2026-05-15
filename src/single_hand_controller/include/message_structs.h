@@ -9,6 +9,8 @@
 #include "definitions.h"
 //#include "mavlink/common/mavlink.h"
 #include "custom_v0.3/ugvCustom/mavlink.h"
+#include "/home/nikhil/MAVLink/mavlink_standard/common/mavlink.h"
+//#include "custom_v0.3_mav1/ugvCustom/mavlink.h"   // FOR MAVLINK V1.0
 
 // commands sent from hand controller
 // empty fields within structs need to be filled with appropriate values

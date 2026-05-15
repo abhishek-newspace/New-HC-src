@@ -44,3 +44,15 @@ public:
 
 /// @brief check whether first time synchronization is performed or not.
 bool receivedFirstTimesync();
+
+void resetArmDisarm();
+void setArmNow();
+void setDisarmNow();
+
+uint32_t get_arm_start();
+uint32_t get_disarm_start();
+
+
+void inc_requests_sent();
+int get_requests_sent();
+void init_requests_sent();

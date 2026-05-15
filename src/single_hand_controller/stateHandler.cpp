@@ -94,6 +94,7 @@ void dir_reverse(){
     IF_DEBUG(Serial.println("------------------dir reverse"));
     if(speed > 0){
         current_dir = reverse;
+        set_dir = reverse;
         displayDirection(current_dir);
     }
     else
@@ -104,6 +105,7 @@ void dir_forward(){
     IF_DEBUG(Serial.println("+++++++++++++++++++dir forward"));
     if(speed > 0){
         current_dir = forward;
+        set_dir = forward;
         displayDirection(current_dir);
     }
     else

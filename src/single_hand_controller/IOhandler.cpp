@@ -24,6 +24,7 @@
 int drift_x;
 int drift_y;
 
+
 button  b_neutral = {
             BUTTON_NEUTRAL,     // uint8_t pin;                
             0,                  // buttonPress press_state;
@@ -128,8 +129,11 @@ bool arm_long_pressed()
    * update the struct values for a normal button
    */
 void updateButtonValues(struct button *b1, int32_t ms_since_last_check){
+
+    // IF_DEBUG(Serial.println("ARM BUTTON CHECK"));
     b1->press_state = (uint8_t)!digitalRead(b1->pin);
     if(b1->press_state && b1->cooldown == 0){
+        
         if(b1->press_callback != nullptr)
             b1->press_callback();
 
@@ -138,24 +142,56 @@ void updateButtonValues(struct button *b1, int32_t ms_since_last_check){
     else
         b1->cooldown = max(0, b1->cooldown - ms_since_last_check);
 
-    IF_DEBUG(Serial.println(b1->cooldown);)
+    // IF_DEBUG(Serial.println(b1->cooldown);)
 }
 
 /**
  * update the struct values for a long press button
  */
 void updateLongPressButtonValues(struct long_press_button *b1, int32_t ms_since_last_check){
+    b1->cooldown = max(0, b1->cooldown - ms_since_last_check);
+    if(!(digitalRead(b1->pin)) && b1->cooldown == 0){
+        if(b1->press_state){
+            b1->pressed_for += ms_since_last_check;
+            if(b1->pressed_for >= LONG_PRESS_DURATION)
+                b1->press_state = long_pressed;
+        }
+        else{
+            b1->press_state = short_pressed;
+        }
+    }
+    else{
+        if(b1->press_state == long_pressed){
+            b1->cooldown = BUTTON_PRESS_COOLDOWN;
+            if(b1->long_press_callback != nullptr)
+                b1->long_press_callback();
+        }
+        else if(b1->press_state == short_pressed){
+            b1->cooldown = BUTTON_PRESS_COOLDOWN;
+            if(b1->short_press_callback != nullptr)
+                b1->short_press_callback();
+        }
+        b1->press_state = not_pressed;
+        b1->pressed_for = 0;
+        
+    }
+    IF_DEBUG(Serial.println(b1->press_state));
+    return;
+    
     buttonPress prevState = b1->press_state;
 
     b1->press_state = (int)!digitalRead(b1->pin);
+    b1->cooldown = max(0, b1->cooldown - ms_since_last_check);
 
     if(b1->press_state && b1->cooldown > 0){
-        b1->cooldown = max(0, b1->cooldown - ms_since_last_check);
         b1->press_state = 0;
+        return;
     }
 
-    if(b1->press_state && b1->pressed_for > LONG_PRESS_DURATION)
+    if(b1->press_state && b1->pressed_for > LONG_PRESS_DURATION){
+        IF_DEBUG(Serial.println("long pressed!");)
         b1->press_state = long_pressed;
+    }
 
     else if(b1->press_state && prevState)
         b1->pressed_for += ms_since_last_check;
@@ -165,18 +201,18 @@ void updateLongPressButtonValues(struct long_press_button *b1, int32_t ms_since_
             b1->long_press_callback();
         }
         else if(prevState == short_pressed && b1->short_press_callback != nullptr){
-            b1->long_press_callback();
+            b1->short_press_callback();
         }
         b1->cooldown = BUTTON_PRESS_COOLDOWN;
-    }    
+    }
 }
 
 void updateToggleValues(struct toggle *t1, int32_t ms_since_last_check){
     if(digitalRead(t1->pin)){    // currently read 1
-        IF_DEBUG(Serial.println("currently FORWARD"));
+        // IF_DEBUG(Serial.println("currently FORWARD"));
+
         if(!t1->state){  // currently read 1 but previously was 0
             if(t1->toggled_at > 0 && (micros() - t1->toggled_at) > TOGGLE_DEBOUNCE_DURATION){
-                IF_DEBUG(Serial.println("SWITCHED FORRRRRRRRRRRRRRRRRR"));
 
                 t1->state = 1;
                 t1->toggled_at = 0;
@@ -191,18 +227,20 @@ void updateToggleValues(struct toggle *t1, int32_t ms_since_last_check){
         }
     }
     else{
-        IF_DEBUG(Serial.println("currently REVERSE"));
+        // IF_DEBUG(Serial.println("currently REVERSE"));
+        
         if(!t1->state){   // currently read 0 and previously was also 0
             t1->toggled_at = 0;
         }
         else if(t1->state){   // currently read 0 but previously was 1
-            IF_DEBUG(Serial.println("SWITCHED REVVVVVVVVVVVVV"));
             t1->state = 0;
             t1->pos_0_callback();
         }
         
     }
 }
+
+
 
 
 void checkUserInput()

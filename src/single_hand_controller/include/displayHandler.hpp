@@ -60,6 +60,9 @@ void displayLogo();
 void displayInvertedLogo();
 
 
+void setBatterySOC(uint8_t);
+void setRSSI(uint8_t);
+
 /**
  * this function is meant to be called once every 1 second, and only updates RSSI, and battery stats.
  * call displaySpeed() and displayUGV_status() separately when the values are updated (must be event based, and not periodic)

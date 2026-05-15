@@ -15,13 +15,14 @@
 */
 #include "include/standard_procedures.hpp"
 
+
 void setup(){
     setupIO();
     setupDisplay();
-    
     if(!initMAVLink()){
         displayError("continue without packet signing", 1);
     }
+
 
     initiateController();
 }
@@ -30,9 +31,7 @@ void setup(){
 void loop(){
     
     if(heartbeat_timed_out()){
-        establish_connectivity();
-        time_synchronize();
-        sendComponentVersion();
+        run_wakeup_seq();
     }
 
     if(!isUGV_connected())

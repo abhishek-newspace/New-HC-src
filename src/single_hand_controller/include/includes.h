@@ -10,6 +10,7 @@
 
 // complete setup
 #include "setupFunctions.h" // setup of all required headers
+#include "PeriodicActions.hpp"
 
 // header files for handling MAVLink packets
 #include "packetHandler.h"  // receiving and sending of packets to and from buffer

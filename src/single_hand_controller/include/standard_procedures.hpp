@@ -8,7 +8,6 @@
  */
 #include "definitions.h"
 #include "includes.h"
-#include "IOhandler.hpp"
 
 /// @brief identify controller drift and calibrate controller for further use
 void initiateController();
@@ -21,5 +20,8 @@ void time_synchronize();
 
 /// @brief run through the OFP cycle once.
 void run_OFP_cycle();
+
+/// @brief run the part of the wakeup sequence that appears in void loop()
+void run_wakeup_seq();
 
 

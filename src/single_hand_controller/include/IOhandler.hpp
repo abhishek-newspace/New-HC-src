@@ -12,7 +12,6 @@
  */
 #pragma once
 #include "definitions.h"
-#include "mavlink/common/mavlink.h"
 #include "stateHandler.hpp"
 
 #define SPEED_HIGH
@@ -87,7 +86,7 @@ struct long_press_button{
     buttonPress press_state; //0=> not pressed, 1=> short pressed, 3 => long pressed
     void (*short_press_callback)(void);
     void (*long_press_callback)(void);
-    uint32_t cooldown;
+    int32_t cooldown;
     uint32_t pressed_for;
 };
 
