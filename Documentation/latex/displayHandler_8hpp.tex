@@ -1,9 +1,9 @@
 \hypertarget{displayHandler_8hpp}{}\doxysection{single\+\_\+hand\+\_\+controller/include/display\+Handler.hpp File Reference}
 \label{displayHandler_8hpp}\index{single\_hand\_controller/include/displayHandler.hpp@{single\_hand\_controller/include/displayHandler.hpp}}
 {\ttfamily \#include \char`\"{}definitions.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}TFT\+\_\+22\+\_\+\+ILI9225.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}IOhandler.\+hpp\char`\"{}}\newline
-Include dependency graph for display\+Handler.\+hpp\+:\nopagebreak
+{\ttfamily \#include \char`\"{}definitions/display\+\_\+defs.\+h\char`\"{}}\newline
+Include dependency graph for display\+Handler.\+hpp\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -36,7 +36,7 @@ void \mbox{\hyperlink{displayHandler_8hpp_a565c04195c9a4193b3febfcd51844197}{dis
 void \mbox{\hyperlink{displayHandler_8hpp_a9416570363c621cbd3670e8e860aef58}{init\+Display\+Comm}} ()
 \begin{DoxyCompactList}\small\item\em initialize display communications (serial baud rate) \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{displayHandler_8hpp_a9fe89e9d5a9f63e34cda8a4c2f9d734f}\label{displayHandler_8hpp_a9fe89e9d5a9f63e34cda8a4c2f9d734f}} 
-void \mbox{\hyperlink{displayHandler_8hpp_a9fe89e9d5a9f63e34cda8a4c2f9d734f}{display\+UGV\+\_\+status}} (ugv\+\_\+status)
+void \mbox{\hyperlink{displayHandler_8hpp_a9fe89e9d5a9f63e34cda8a4c2f9d734f}{display\+UGV\+\_\+status}} (\mbox{\hyperlink{enum__defs_8h_a5045ad02c47704d467d7e26254e2f0bf}{ugv\+\_\+status}})
 \begin{DoxyCompactList}\small\item\em update UGV status dislay \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{displayHandler_8hpp_a019bd561935a2eb1e9b9001c18cc597c}\label{displayHandler_8hpp_a019bd561935a2eb1e9b9001c18cc597c}} 
 void \mbox{\hyperlink{displayHandler_8hpp_a019bd561935a2eb1e9b9001c18cc597c}{display\+Speed}} (int speed)
@@ -56,6 +56,12 @@ void \mbox{\hyperlink{displayHandler_8hpp_aa363c10f4f99c58179af601f5b031bfe}{dis
 \mbox{\Hypertarget{displayHandler_8hpp_a19b8dc99373dcbba0939f9939f38a131}\label{displayHandler_8hpp_a19b8dc99373dcbba0939f9939f38a131}} 
 void \mbox{\hyperlink{displayHandler_8hpp_a19b8dc99373dcbba0939f9939f38a131}{display\+Inverted\+Logo}} ()
 \begin{DoxyCompactList}\small\item\em display newspace logo in grey background and light blue foreground (to look like an translucent grey film filter) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{displayHandler_8hpp_a7f8840de79e27341e479052e1f95f0cc}\label{displayHandler_8hpp_a7f8840de79e27341e479052e1f95f0cc}} 
+void {\bfseries set\+Battery\+SOC} (uint8\+\_\+t)
+\item 
+\mbox{\Hypertarget{displayHandler_8hpp_a6d03d3f2f128c99d8b82a2c5af4dcedb}\label{displayHandler_8hpp_a6d03d3f2f128c99d8b82a2c5af4dcedb}} 
+void {\bfseries set\+RSSI} (uint8\+\_\+t)
+\item 
 void \mbox{\hyperlink{displayHandler_8hpp_ab7eb3c8c2e8604801ee00f11d3af8c3f}{update\+Display}} ()
 \begin{DoxyCompactList}\small\item\em this function is meant to be called once every 1 second, and only updates RSSI, and battery stats. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{displayHandler_8hpp_a91cc887ae791adf3661f8d71ad35511e}\label{displayHandler_8hpp_a91cc887ae791adf3661f8d71ad35511e}} 
@@ -66,7 +72,9 @@ void \mbox{\hyperlink{displayHandler_8hpp_a1f44b689b497dd0ecbe3d4485ee6090a}{cle
 \begin{DoxyCompactList}\small\item\em clear all info that is displayed \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{displayHandler_8hpp_a926ead67a784f455ddd56590f2928e76}\label{displayHandler_8hpp_a926ead67a784f455ddd56590f2928e76}} 
 void \mbox{\hyperlink{displayHandler_8hpp_a926ead67a784f455ddd56590f2928e76}{clear\+Error}} ()
-\begin{DoxyCompactList}\small\item\em clear displayed error \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em clear displayed error \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{displayHandler_8hpp_aa1d8232f2a4e6c11883603b3e00a4cb4}{display\+Direction}} (\mbox{\hyperlink{enum__defs_8h_a99eced5804d2818722a6e61476fb3ff7}{direction\+Toggle}} direction)
+\begin{DoxyCompactList}\small\item\em writes direction onto screen \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -88,6 +96,21 @@ Nikhil Tom Jose
 
 
 \doxysubsection{Function Documentation}
+\mbox{\Hypertarget{displayHandler_8hpp_aa1d8232f2a4e6c11883603b3e00a4cb4}\label{displayHandler_8hpp_aa1d8232f2a4e6c11883603b3e00a4cb4}} 
+\index{displayHandler.hpp@{displayHandler.hpp}!displayDirection@{displayDirection}}
+\index{displayDirection@{displayDirection}!displayHandler.hpp@{displayHandler.hpp}}
+\doxysubsubsection{\texorpdfstring{displayDirection()}{displayDirection()}}
+{\footnotesize\ttfamily void display\+Direction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enum__defs_8h_a99eced5804d2818722a6e61476fb3ff7}{direction\+Toggle}}}]{direction }\end{DoxyParamCaption})}
+
+
+
+writes direction onto screen 
+
+
+\begin{DoxyParams}{Parameters}
+{\em direction} & current direction \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{displayHandler_8hpp_a08fe4f1365befd57f4baeda7242be757}\label{displayHandler_8hpp_a08fe4f1365befd57f4baeda7242be757}} 
 \index{displayHandler.hpp@{displayHandler.hpp}!setupDisplay@{setupDisplay}}
 \index{setupDisplay@{setupDisplay}!displayHandler.hpp@{displayHandler.hpp}}

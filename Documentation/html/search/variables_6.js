@@ -1,11 +1,14 @@
 var searchData=
 [
-  ['gimbal_5fdevice_5fcap_5fflags_5fenum_5fend_1653',['GIMBAL_DEVICE_CAP_FLAGS_ENUM_END',['../common_8hpp.html#a8e72a8ed651d61f0cef0b940b0b9cefa',1,'mavlink::common']]],
-  ['gimbal_5fdevice_5ferror_5fflags_5fenum_5fend_1654',['GIMBAL_DEVICE_ERROR_FLAGS_ENUM_END',['../common_8hpp.html#a3c9349a9d3b1b85a7c738910cd71bfd7',1,'mavlink::common']]],
-  ['gimbal_5fdevice_5fflags_5fenum_5fend_1655',['GIMBAL_DEVICE_FLAGS_ENUM_END',['../common_8hpp.html#a6e74ebdec711e38d766c9366bee4b5ba',1,'mavlink::common']]],
-  ['gimbal_5fmanager_5fcap_5fflags_5fenum_5fend_1656',['GIMBAL_MANAGER_CAP_FLAGS_ENUM_END',['../common_8hpp.html#ab2701974458037f2aaa31593441cc450',1,'mavlink::common']]],
-  ['gimbal_5fmanager_5fflags_5fenum_5fend_1657',['GIMBAL_MANAGER_FLAGS_ENUM_END',['../common_8hpp.html#a57385201be303c2f9252e826ca9685ad',1,'mavlink::common']]],
-  ['gps_5ffix_5ftype_5fenum_5fend_1658',['GPS_FIX_TYPE_ENUM_END',['../common_8hpp.html#a8d313530c5b4dee5f26f24f09824370a',1,'mavlink::common']]],
-  ['gps_5finput_5fignore_5fflags_5fenum_5fend_1659',['GPS_INPUT_IGNORE_FLAGS_ENUM_END',['../common_8hpp.html#ace69a55209b658ec794701b9db4e908a',1,'mavlink::common']]],
-  ['gripper_5factions_5fenum_5fend_1660',['GRIPPER_ACTIONS_ENUM_END',['../common_8hpp.html#a9a5cb1c5d3c1bb913199070301c5aa5d',1,'mavlink::common']]]
+  ['mav_5fautopilot_5fenum_5fend_452',['MAV_AUTOPILOT_ENUM_END',['../ugvCustom_8hpp.html#a29074d3ccce1bbb981900c0dadb5d452',1,'mavlink::ugvCustom']]],
+  ['mav_5fbool_5fenum_5fend_453',['MAV_BOOL_ENUM_END',['../ugvCustom_8hpp.html#af501f360b8238133cb2739820ea497af',1,'mavlink::ugvCustom']]],
+  ['mav_5fcmd_5fenum_5fend_454',['MAV_CMD_ENUM_END',['../ugvCustom_8hpp.html#aa2fc56671012bccbfff830781ae8759f',1,'mavlink::ugvCustom']]],
+  ['mav_5fmode_5fflag_5fenum_5fend_455',['MAV_MODE_FLAG_ENUM_END',['../ugvCustom_8hpp.html#a61a9d775c90631890d19e54aa360c31e',1,'mavlink::ugvCustom']]],
+  ['mav_5fresult_5fenum_5fend_456',['MAV_RESULT_ENUM_END',['../ugvCustom_8hpp.html#ae00f1415b29c93d2c135f2a79652c0b3',1,'mavlink::ugvCustom']]],
+  ['mav_5fstate_5fenum_5fend_457',['MAV_STATE_ENUM_END',['../ugvCustom_8hpp.html#a210cbb7bcd564d4d258203d01672343e',1,'mavlink::ugvCustom']]],
+  ['mav_5ftype_5fenum_5fend_458',['MAV_TYPE_ENUM_END',['../ugvCustom_8hpp.html#af959f73e39fb3b70b88a8ef8fe884777',1,'mavlink::ugvCustom']]],
+  ['mavlink_5fversion_459',['MAVLINK_VERSION',['../ugvCustom_8hpp.html#a17ae195f29435bf5ca9af7f848a704cd',1,'mavlink::ugvCustom']]],
+  ['message_5fentries_460',['MESSAGE_ENTRIES',['../ugvCustom_8hpp.html#ab8d94edee4a3c1437115779221d7c506',1,'mavlink::ugvCustom']]],
+  ['mode_5fchange_5freason_5fenum_5fend_461',['MODE_CHANGE_REASON_ENUM_END',['../ugvCustom_8hpp.html#a878e7d2a9a06fb22f970ffe7f6e4f8f5',1,'mavlink::ugvCustom']]],
+  ['msg_5freceived_462',['msg_received',['../struct____mavlink__status.html#a183576e45facc9da8123b7866d458680',1,'__mavlink_status']]]
 ];

@@ -175,7 +175,7 @@ void updateLongPressButtonValues(struct long_press_button *b1, int32_t ms_since_
         b1->pressed_for = 0;
         
     }
-    IF_DEBUG(Serial.println(b1->press_state));
+    //IF_DEBUG(Serial.println(b1->press_state));
     return;
     
     buttonPress prevState = b1->press_state;
@@ -189,7 +189,7 @@ void updateLongPressButtonValues(struct long_press_button *b1, int32_t ms_since_
     }
 
     if(b1->press_state && b1->pressed_for > LONG_PRESS_DURATION){
-        IF_DEBUG(Serial.println("long pressed!");)
+        //IF_DEBUG(Serial.println("long pressed!");)
         b1->press_state = long_pressed;
     }
 

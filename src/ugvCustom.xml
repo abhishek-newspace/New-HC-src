@@ -129,8 +129,8 @@
       <description> a long press of extra feature 2 button. </description>
 		</entry>
 	</enum>
-	
-  <enum name="TOGGLE_SWITCH_POS" bitmask="true">
+
+    <enum name="TOGGLE_SWITCH_POS" bitmask="true">
     <description>Used to indicate the position of the tristate toggle switches.</description>
     <entry value="1" name="FORWARD_DIRECTION">
       <description>0x01 Forward Direction</description>
@@ -218,37 +218,58 @@
 
     </enum>
 
-    <enum name="UGV_MOTOR_ERROR_BITMASK" bitmask="true">
-      <description>These encode the sub systems whose status is sent as part of the UGV_MASTER_HEALTH message.</description>
-      <entry value="1" name="MOTOR_OVERLOAD">
-        <description>0x01 Motor Overload</description>
+    <enum name="UGV_MOTOR_ERROR" bitmask="true">
+      <description>Enum used to indicate the errors present in Motors</description>
+      <entry value="1" name="UGV_MOTOR_ERROR_OVER_SPEED">
+        <description>0x01 Motor Over Speed</description>
       </entry>
-      <entry value="2" name="MOTOR_OVER_TEMP">
-        <description>0x02 Motor Overtemperature</description>
+      <entry value="2" name="UGV_MOTOR_ERROR_OVERLOAD">
+        <description>0x02 Motor Overload</description>
       </entry>
-      <entry value="4" name="MOTOR_OVER_SPEED">
-        <description>0x04 Motor Controller (left)</description>
+      <entry value="4" name="UGV_MOTOR_ERROR_PHASE_LOSS">
+        <description>0x04 Motor Phase Loss</description>
       </entry>
-      <entry value="8" name="MOTOR_STALLED">
-        <description>0x08 Motor Controller (right)</description>
+      <entry value="8" name="UGV_MOTOR_ERROR_BRAKE_FAULT">
+        <description>0x08 Motor Brake Fault</description>
       </entry>
-      <entry value="16" name="MOTOR_PHASE_LOSS">
-        <description>0x10 Battery Management System (BMS)</description>
+      <entry value="16" name="UGV_MOTOR_ERROR_ENCODER_FAULT">
+        <description>0x10 Motor Encoder Fault</description>
       </entry>
-      <entry value="32" name="MOTOR_HALL_FAULT">
-        <description>0x20 Power Distribution Unit (PDU)</description>
+      <entry value="32" name="UGV_MOTOR_ERROR_OVER_TEMPERATURE">
+        <description>0x20 Motor Over Temperature</description>
       </entry>
-      <entry value="64" name="MOTOR_ENCODER_FAULT">
-        <description>0x40 Display unit</description>
+      <entry value="64" name="UGV_MOTOR_ERROR_HALL_FAULT">
+        <description>0x40 Motor Hall Fault</description>
       </entry>
-      <entry value="128" name="MOTOR_BRAKE_FAULT">
-        <description>0x80 UHF Radio link</description>
+      <entry value="128" name="UGV_MOTOR_ERROR_STALLED">
+        <description>0x80 Motor Stalled Fault</description>
       </entry>
     </enum>
 
+    <enum name="UGV_MOTOR_CTRL_ERROR" bitmask="true">
+      <description>Enum used to indicate the errors present in Motor Controller</description>
+      <entry value="1" name="UGV_MOTOR_CTRL_ERROR_DRIVE">
+        <description>0x01 Drive Fault</description>
+      </entry>
+      <entry value="2" name="UGV_MOTOR_CTRL_ERROR_OVER_CURRENT">
+        <description>0x02 Over Current</description>
+      </entry>
+      <entry value="4" name="UGV_MOTOR_CTRL_ERROR_OVER_PRESSURE">
+        <description>0x04 Over Pressure</description>
+      </entry>
+      <entry value="8" name="UGV_MOTOR_CTRL_ERROR_UNDER_VOLTAGE">
+        <description>0x08 Under Voltage</description>
+      </entry>
+      <entry value="16" name="UGV_MOTOR_CTRL_ERROR_OVER_TEMPERATURE">
+        <description>0x10 Over Temperature</description>
+      </entry>
+      <entry value="32" name="UGV_MOTOR_CTRL_ERROR_CAN_COMM">
+        <description>0x20 CAN Communication Fault</description>
+      </entry>
+    </enum>
 
     <enum name="UGV_MAIN_MODE">
-      <description>Operator mode in which the UGV operates in. Mode A signifies hand controller, Mode B signfies GCS</description>
+      <description>Operator mode in which the UGV operates in. Mode A signifies hand controller, Mode B signifies GCS</description>
       <entry value="1" name="MODE_A">
         <description>Mode A, hand controller</description>
       </entry>
@@ -267,7 +288,6 @@
       </entry>
     </enum>
 
-
     <enum name="MODE_CHANGE_REASON">
       <description>Reason for sub-mode change.</description>
       <entry value="0" name="GCS_COMMAND">
@@ -281,23 +301,6 @@
       </entry>
       <entry value="3" name="COMM_LOSS">
         <description>submode change due to loss of communication</description>
-      </entry>
-    </enum>
-
-
-    <enum name="UGV_SENSOR_ERROR_BITMASK" bitmask="true">
-      <description>These encode the sub systems whose status is sent as part of the UGV_MASTER_HEALTH message.</description>
-      <entry value="1" name="BAT_UNDER_VOLTAGE">
-        <description>0x01 Battery Under Voltage</description>
-      </entry>
-      <entry value="2" name="BAT_OVER_CURRENT">
-        <description>0x02 Battery Over Current</description>
-      </entry>
-      <entry value="4" name="BAT_OVER_VOLTAGE">
-        <description>0x04 Battery Over Voltage</description>
-      </entry>
-      <entry value="8" name="BAT_OVER_TEMP">
-        <description>0x08 Battery Over Temperature</description>
       </entry>
     </enum>
 
@@ -345,7 +348,6 @@
       <field type="uint16_t" name="drop_rate_comm" units="c%">Communication drop rate, (UART, I2C, SPI, CAN), dropped packets on all links (packets that were corrupted on reception on the MAV)</field>
     </message>
 
-
     <message id="2" name="SYSTEM_TIME">
       <description>The system time is the time of the sender's master clock.
         This can be emitted by flight controllers, onboard computers, or other components in the MAVLink network.
@@ -355,18 +357,16 @@
       <field type="uint64_t" name="time_unix_usec" units="us">Timestamp (UNIX epoch time).</field>
       <field type="uint32_t" name="time_boot_ms" units="ms">Timestamp (time since system boot).</field>
     </message>
-
     <message id="69" name="MANUAL_CONTROL">
       <description>Manual (joystick) control message.
         This message represents movement axes and button using standard joystick axes nomenclature. Unused axes can be disabled and buttons states are transmitted as individual on/off bits of a bitmask. For more information see https://mavlink.io/en/services/manual_control.html</description>
       <field type="uint8_t" name="target">The system to be controlled.</field>
-      <field type="int16_t" name="x" minValue="-1000" maxValue="1000" invalid="INT16_MAX">X-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to forward(1000)-backward(-1000) movement on a joystick and the pitch of a vehicle.</field>
-      <field type="int16_t" name="y" minValue="-1000" maxValue="1000" invalid="INT16_MAX">Y-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to left(-1000)-right(1000) movement on a joystick and the roll of a vehicle.</field>
-      <field type="int16_t" name="z" minValue="-1000" maxValue="1000" invalid="INT16_MAX">Z-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to a separate slider movement with maximum being 1000 and minimum being -1000 on a joystick and the thrust of a vehicle. Positive values are positive thrust, negative values are negative thrust.</field>
-      <field type="int16_t" name="r" minValue="-1000" maxValue="1000" invalid="INT16_MAX">R-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to a twisting of the joystick, with clockwise being 1000 and counter-clockwise being -1000, and the yaw of a vehicle.</field>
+      <field type="float" name="x" minValue="-2.78" maxValue="2.78" invalid="NaN">X-axis, normalized to the range [-2.78,2.78]. A value of NaN indicates that this axis is invalid. Generally corresponds to forward(2.78)-backward(-2.78) movement on a joystick and the pitch of a vehicle.</field>
+      <field type="float" name="y" minValue="-13.7" maxValue="13.7" invalid="NaN">Y-axis, normalized to the range [-13.7,13.7]. A value of NaN indicates that this axis is invalid. Generally corresponds to left(-13.7)-right(13.7) movement on a joystick and the roll of a vehicle.</field>
+      <field type="int16_t" name="z" invalid="INT16_MAX">Z-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to a separate slider movement with maximum being 1000 and minimum being -1000 on a joystick and the thrust of a vehicle. Positive values are positive thrust, negative values are negative thrust.</field>
+      <field type="int16_t" name="r" invalid="INT16_MAX">R-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to a twisting of the joystick, with clockwise being 1000 and counter-clockwise being -1000, and the yaw of a vehicle.</field>
       <field type="uint16_t" name="push_buttons" enum="PUSH_BUTTONS">A bitfield corresponding to the joystick buttons' 0-15 current state, 1 for pressed, 0 for released. The lowest bit corresponds to Button 1.</field>
       <extensions/>
-      <field type="uint16_t" name="tristate_toggle_switches" enum="TOGGLE_SWITCH_POS">A bitfield corresponding to the joystick buttons' 16-31 current state, 1 for pressed, 0 for released. The lowest bit corresponds to Button 16.</field>
       <field type="uint8_t" name="enabled_extensions">Set bits to 1 to indicate which of the following extension fields contain valid data: bit 0: pitch, bit 1: roll, bit 2: aux1, bit 3: aux2, bit 4: aux3, bit 5: aux4, bit 6: aux5, bit 7: aux6</field>
       <field type="int16_t" name="s" minValue="-1000" maxValue="1000">Pitch-only-axis, normalized to the range [-1000,1000]. Generally corresponds to pitch on vehicles with additional degrees of freedom. Valid if bit 0 of enabled_extensions field is set. Set to 0 if invalid.</field>
       <field type="int16_t" name="t" minValue="-1000" maxValue="1000">Roll-only-axis, normalized to the range [-1000,1000]. Generally corresponds to roll on vehicles with additional degrees of freedom. Valid if bit 1 of enabled_extensions field is set. Set to 0 if invalid.</field>
@@ -402,6 +402,17 @@
       <field type="int32_t" name="result_param2">Additional result information. Can be set with a command-specific enum containing command-specific error reasons for why the command might be denied. If used, the associated enum must be documented in the corresponding MAV_CMD (this enum should have a 0 value to indicate "unused" or "unknown").</field>
       <field type="uint8_t" name="target_system">System ID of the target recipient. This is the ID of the system that sent the command for which this COMMAND_ACK is an acknowledgement.</field>
       <field type="uint8_t" name="target_component">Component ID of the target recipient. This is the ID of the system that sent the command for which this COMMAND_ACK is an acknowledgement.</field>
+    </message>
+    
+    <message id="109" name="RADIO_STATUS">
+      <description>Status generated by radio and injected into MAVLink stream.</description>
+      <field type="uint8_t" name="rssi" invalid="UINT8_MAX">Local (message sender) received signal strength indication in device-dependent units/scale. Values: [0-254], UINT8_MAX: invalid/unknown.</field>
+      <field type="uint8_t" name="remrssi" invalid="UINT8_MAX">Remote (message receiver) signal strength indication in device-dependent units/scale. Values: [0-254], UINT8_MAX: invalid/unknown.</field>
+      <field type="uint8_t" name="txbuf" units="%">Remaining free transmitter buffer space.</field>
+      <field type="uint8_t" name="noise" invalid="UINT8_MAX">Local background noise level. These are device dependent RSSI values (scale as approx 2x dB on SiK radios). Values: [0-254], UINT8_MAX: invalid/unknown.</field>
+      <field type="uint8_t" name="remnoise" invalid="UINT8_MAX">Remote background noise level. These are device dependent RSSI values (scale as approx 2x dB on SiK radios). Values: [0-254], UINT8_MAX: invalid/unknown.</field>
+      <field type="uint16_t" name="rxerrors">Count of radio packet receive errors (since boot).</field>
+      <field type="uint16_t" name="fixed">Count of error corrected radio packets (since boot).</field>
     </message>
 
     <message id="111" name="TIMESYNC">
@@ -493,6 +504,42 @@
         Reason for last mode transition.
       </field>
 
+      <!-- MOTOR FAULTS-->
+
+      <field type="uint8_t" name="rear_left_motor_faults" enum="UGV_MOTOR_ERROR">
+        Rear Left Motor Faults
+      </field>
+
+      <field type="uint8_t" name="rear_right_motor_faults" enum="UGV_MOTOR_ERROR">
+        Rear Right Motor Faults
+      </field>
+
+      <field type="uint8_t" name="front_left_motor_faults" enum="UGV_MOTOR_ERROR">
+        Front Left Motor Faults
+      </field>
+
+      <field type="uint8_t" name="front_right_motor_faults" enum="UGV_MOTOR_ERROR">
+        Front Right Motor Faults
+      </field>
+
+      <!-- MOTOR CONTROLLER FAULTS -->
+
+      <field type="uint8_t" name="left_mc_faults" enum="UGV_MOTOR_CTRL_ERROR">
+        Left Motor Controller Faults
+      </field>
+
+      <field type="uint8_t" name="right_mc_faults" enum="UGV_MOTOR_CTRL_ERROR">
+        Right Motor Controller Faults
+      </field>
+
+      <field type="uint8_t" name="left_mc_voltage">Left Motor Controller Voltage (Unit: 0.1 V)</field>
+
+      <field type="uint8_t" name="right_mc_voltage">Right Motor Controller Voltage (Unit: 0.1 V)</field>
+
+      <field type="uint8_t" name="left_mc_temperature">Left Motor Controller Temperature (Unit: 1 Degree Celsius)</field>
+
+      <field type="uint8_t" name="right_mc_temperature">Right Motor Controller Temperature (Unit: 1 Degree Celsius)</field>
+
     </message>
 
     <message id="50002" name="UGV_COMPONENT_VERSION">
@@ -516,17 +563,6 @@
       <field type="uint8_t[32]" name="component4_checksum">Software checksum of component 4. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
       <field type="uint32_t" name="component5_sw">Software version of component 5. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
       <field type="uint8_t[32]" name="component5_checksum">Software checksum of component 5. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
-    </message>
-
-    <message id="109" name="RADIO_STATUS">
-      <description>Status generated by radio and injected into MAVLink stream.</description>
-      <field type="uint8_t" name="rssi" invalid="UINT8_MAX">Local (message sender) received signal strength indication in device-dependent units/scale. Values: [0-254], UINT8_MAX: invalid/unknown.</field>
-      <field type="uint8_t" name="remrssi" invalid="UINT8_MAX">Remote (message receiver) signal strength indication in device-dependent units/scale. Values: [0-254], UINT8_MAX: invalid/unknown.</field>
-      <field type="uint8_t" name="txbuf" units="%">Remaining free transmitter buffer space.</field>
-      <field type="uint8_t" name="noise" invalid="UINT8_MAX">Local background noise level. These are device dependent RSSI values (scale as approx 2x dB on SiK radios). Values: [0-254], UINT8_MAX: invalid/unknown.</field>
-      <field type="uint8_t" name="remnoise" invalid="UINT8_MAX">Remote background noise level. These are device dependent RSSI values (scale as approx 2x dB on SiK radios). Values: [0-254], UINT8_MAX: invalid/unknown.</field>
-      <field type="uint16_t" name="rxerrors">Count of radio packet receive errors (since boot).</field>
-      <field type="uint16_t" name="fixed">Count of error corrected radio packets (since boot).</field>
     </message>
 
   </messages>

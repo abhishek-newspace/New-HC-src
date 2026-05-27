@@ -1,0 +1,6 @@
+<map id="single_hand_controller/include/PeriodicActions.hpp" name="single_hand_controller/include/PeriodicActions.hpp">
+<area shape="rect" id="node1" title="Run functions periodically." alt="" coords="23,5,229,47"/>
+<area shape="rect" id="node2" href="$includes_8h.html" title=" " alt="" coords="41,95,211,136"/>
+<area shape="rect" id="node3" href="$standard__procedures_8hpp.html" title="set of functions to represent phases within the main control loop of the microcontroller in the hand ..." alt="" coords="5,184,247,225"/>
+<area shape="rect" id="node4" href="$standard__procedures_8cpp.html" title="definitions of set of functions to represent phases within the main control loop of the microcontroll..." alt="" coords="31,273,221,315"/>
+</map>

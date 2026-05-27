@@ -8,8 +8,8 @@
 #pragma once
 #include "definitions.h"
 //#include "mavlink/common/mavlink.h"
+//#include "/home/nikhil/MAVLink/mavlink_standard/common/mavlink.h"
 #include "custom_v0.3/ugvCustom/mavlink.h"
-#include "/home/nikhil/MAVLink/mavlink_standard/common/mavlink.h"
 //#include "custom_v0.3_mav1/ugvCustom/mavlink.h"   // FOR MAVLINK V1.0
 
 // commands sent from hand controller
@@ -31,7 +31,7 @@ struct HC_ATLAS_MANUAL_CONTROL_BC{
     uint8_t target = SCOUT_ID;
     int16_t x,y;
     uint16_t Push_buttons = 0;
-    uint16_t Tristate_Toggle_switches = 0;
+    //uint16_t Tristate_Toggle_switches = 0;
 };
 
 struct HC_ATLAS_ARM_DISARM_CMD{

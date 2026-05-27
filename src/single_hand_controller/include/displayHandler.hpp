@@ -7,9 +7,8 @@
  */
 #pragma once
 #include "definitions.h"
+#include "definitions/display_defs.h"
 
-// LCD Device-specific header file
-#include "TFT_22_ILI9225.h"
 
 
 /**

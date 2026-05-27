@@ -1,6 +1,6 @@
 /** @file
- *	@brief MAVLink comm protocol generated from ugvCustom.xml
- *	@see http://mavlink.org
+ *  @brief MAVLink comm protocol generated from ugvCustom.xml
+ *  @see http://mavlink.org
  */
 
 #pragma once
@@ -21,7 +21,7 @@ namespace ugvCustom {
 /**
  * Array of msg_entry needed for @p mavlink_parse_char() (through @p mavlink_get_msg_entry())
  */
-constexpr std::array<mavlink_msg_entry_t, 11> MESSAGE_ENTRIES {{ {0, 50, 9, 9, 0, 0, 0}, {1, 3, 5, 5, 0, 0, 0}, {2, 137, 12, 12, 0, 0, 0}, {69, 96, 11, 30, 1, 10, 0}, {76, 152, 33, 33, 3, 30, 31}, {77, 143, 3, 10, 3, 8, 9}, {109, 185, 9, 9, 0, 0, 0}, {111, 34, 16, 18, 3, 16, 17}, {50001, 66, 10, 10, 0, 0, 0}, {50002, 161, 38, 38, 3, 36, 37}, {50003, 50, 181, 181, 0, 0, 0} }};
+constexpr std::array<mavlink_msg_entry_t, 11> MESSAGE_ENTRIES {{ {0, 50, 9, 9, 0, 0, 0}, {1, 3, 5, 5, 0, 0, 0}, {2, 137, 12, 12, 0, 0, 0}, {69, 170, 15, 32, 1, 14, 0}, {76, 152, 33, 33, 3, 30, 31}, {77, 143, 3, 10, 3, 8, 9}, {109, 185, 9, 9, 0, 0, 0}, {111, 34, 16, 18, 3, 16, 17}, {50001, 101, 20, 20, 0, 0, 0}, {50002, 161, 38, 38, 3, 36, 37}, {50003, 50, 181, 181, 0, 0, 0} }};
 
 //! MAVLINK VERSION
 constexpr auto MAVLINK_VERSION = 2;
@@ -114,7 +114,7 @@ enum class PUSH_BUTTONS : uint16_t
 constexpr auto PUSH_BUTTONS_ENUM_END = 9;
 
 /** @brief Used to indicate the position of the tristate toggle switches. */
-enum class TOGGLE_SWITCH_POS : uint16_t
+enum class TOGGLE_SWITCH_POS
 {
     FORWARD_DIRECTION=1, /* 0x01 Forward Direction | */
     REVERSE_DIRECTION=2, /* 0x02 Reverse Direction | */
@@ -159,23 +159,37 @@ enum class UGV_COMP_BITMASK
 //! UGV_COMP_BITMASK ENUM_END
 constexpr auto UGV_COMP_BITMASK_ENUM_END = 513;
 
-/** @brief These encode the sub systems whose status is sent as part of the UGV_MASTER_HEALTH message. */
-enum class UGV_MOTOR_ERROR_BITMASK
+/** @brief Enum used to indicate the errors present in Motors */
+enum class UGV_MOTOR_ERROR : uint8_t
 {
-    MOTOR_OVERLOAD=1, /* 0x01 Motor Overload | */
-    MOTOR_OVER_TEMP=2, /* 0x02 Motor Overtemperature | */
-    MOTOR_OVER_SPEED=4, /* 0x04 Motor Controller (left) | */
-    MOTOR_STALLED=8, /* 0x08 Motor Controller (right) | */
-    MOTOR_PHASE_LOSS=16, /* 0x10 Battery Management System (BMS) | */
-    MOTOR_HALL_FAULT=32, /* 0x20 Power Distribution Unit (PDU) | */
-    MOTOR_ENCODER_FAULT=64, /* 0x40 Display unit | */
-    MOTOR_BRAKE_FAULT=128, /* 0x80 UHF Radio link | */
+    OVER_SPEED=1, /* 0x01 Motor Over Speed | */
+    OVERLOAD=2, /* 0x02 Motor Overload | */
+    PHASE_LOSS=4, /* 0x04 Motor Phase Loss | */
+    BRAKE_FAULT=8, /* 0x08 Motor Brake Fault | */
+    ENCODER_FAULT=16, /* 0x10 Motor Encoder Fault | */
+    OVER_TEMPERATURE=32, /* 0x20 Motor Over Temperature | */
+    HALL_FAULT=64, /* 0x40 Motor Hall Fault | */
+    STALLED=128, /* 0x80 Motor Stalled Fault | */
 };
 
-//! UGV_MOTOR_ERROR_BITMASK ENUM_END
-constexpr auto UGV_MOTOR_ERROR_BITMASK_ENUM_END = 129;
+//! UGV_MOTOR_ERROR ENUM_END
+constexpr auto UGV_MOTOR_ERROR_ENUM_END = 129;
 
-/** @brief Operator mode in which the UGV operates in. Mode A signifies hand controller, Mode B signfies GCS */
+/** @brief Enum used to indicate the errors present in Motor Controller */
+enum class UGV_MOTOR_CTRL_ERROR : uint8_t
+{
+    DRIVE=1, /* 0x01 Drive Fault | */
+    OVER_CURRENT=2, /* 0x02 Over Current | */
+    OVER_PRESSURE=4, /* 0x04 Over Pressure | */
+    UNDER_VOLTAGE=8, /* 0x08 Under Voltage | */
+    OVER_TEMPERATURE=16, /* 0x10 Over Temperature | */
+    CAN_COMM=32, /* 0x20 CAN Communication Fault | */
+};
+
+//! UGV_MOTOR_CTRL_ERROR ENUM_END
+constexpr auto UGV_MOTOR_CTRL_ERROR_ENUM_END = 33;
+
+/** @brief Operator mode in which the UGV operates in. Mode A signifies hand controller, Mode B signifies GCS */
 enum class UGV_MAIN_MODE : uint8_t
 {
     MODE_A=1, /* Mode A, hand controller | */
@@ -207,18 +221,6 @@ enum class MODE_CHANGE_REASON : uint8_t
 //! MODE_CHANGE_REASON ENUM_END
 constexpr auto MODE_CHANGE_REASON_ENUM_END = 4;
 
-/** @brief These encode the sub systems whose status is sent as part of the UGV_MASTER_HEALTH message. */
-enum class UGV_SENSOR_ERROR_BITMASK
-{
-    BAT_UNDER_VOLTAGE=1, /* 0x01 Battery Under Voltage | */
-    BAT_OVER_CURRENT=2, /* 0x02 Battery Over Current | */
-    BAT_OVER_VOLTAGE=4, /* 0x04 Battery Over Voltage | */
-    BAT_OVER_TEMP=8, /* 0x08 Battery Over Temperature | */
-};
-
-//! UGV_SENSOR_ERROR_BITMASK ENUM_END
-constexpr auto UGV_SENSOR_ERROR_BITMASK_ENUM_END = 9;
-
 /** @brief 
             Generic subsystem communication and health status.
             Used for motor controllers, batteries, PDUs, and other subsystems.
@@ -245,11 +247,11 @@ constexpr auto UGV_HEALTH_STATE_ENUM_END = 4;
 #include "./mavlink_msg_manual_control.hpp"
 #include "./mavlink_msg_command_long.hpp"
 #include "./mavlink_msg_command_ack.hpp"
+#include "./mavlink_msg_radio_status.hpp"
 #include "./mavlink_msg_timesync.hpp"
 #include "./mavlink_msg_ugv_system_info.hpp"
 #include "./mavlink_msg_ugv_component_version.hpp"
 #include "./mavlink_msg_ugv_subsystem_version.hpp"
-#include "./mavlink_msg_radio_status.hpp"
 
 // base include
 

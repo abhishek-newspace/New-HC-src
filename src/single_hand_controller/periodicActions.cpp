@@ -28,17 +28,22 @@ int periodicActions::addPeriodicAction(void (*function)(void), uint32_t action_s
 
 void periodicActions::performPeriodicActions(){
     deleteStoppedPeriodicActions();
-    
-    action* curr_action = actionsHead;
+    int activeActions = 0;
+    action* curr_action = actionsHead;  
     while(curr_action != nullptr){
-        if(curr_action->stopCondition != nullptr && curr_action->stopCondition()){
-            stopPeriodicAction(curr_action);
-        }
-        else if(curr_action->intervalDuration.timeup()){
+        activeActions++;
+        if(curr_action->intervalDuration.timeup()){
+            if(curr_action->stopCondition != nullptr && curr_action->stopCondition()){
+            //IF_DEBUG(Serial.println("STOPPING action!");)
+                stopPeriodicAction(curr_action);
+            }
+            //IF_DEBUG(Serial.println("performing action!");)
             curr_action->performAction();
         }
         curr_action = curr_action->nextAction;
     }
+    // IF_DEBUG(Serial.print("currently active actions : "));
+    // IF_DEBUG(Serial.println(activeActions);)
 }
 
 void periodicActions::stopPeriodicAction(int ID){
@@ -75,6 +80,7 @@ action *periodicActions::getActionWithID(int ID)
 }
 
 void periodicActions::stopPeriodicAction(action* stopAction){
+    //IF_DEBUG(Serial.println("+=+= STOP ACTION ADDING ... ");)
     if(stopAction == nullptr)
         return;
     // update tail of the queue
@@ -93,16 +99,19 @@ void periodicActions::stopPeriodicAction(action* stopAction){
     if(stopAction->stopAction != nullptr){
         stopAction->stopAction();
     }
+    //IF_DEBUG(Serial.println("+=+= STOP ACTION ADDED ");)
 }
 
 void periodicActions::deleteStoppedPeriodicActions(){
+
+    if(stopQueueHead == nullptr)
+        return;
+
     stopActionQueue* curr_stop = stopQueueHead;
     action* curr_action, *prev_action, *temp;
     curr_action = actionsHead;
     prev_action = nullptr;
 
-    if(actionsHead == nullptr)
-        return;
 
     // if head needs to be deleted is a special case
     if(curr_stop->actionID == actionsHead->actionID){

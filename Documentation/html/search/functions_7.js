@@ -1,10 +1,12 @@
 var searchData=
 [
-  ['mavlink_5fdcm_5fto_5feuler_1583',['mavlink_dcm_to_euler',['../mavlink__conversions_8h.html#a034c8265f27e81fa17cf4cf483b7ad8c',1,'mavlink_conversions.h']]],
-  ['mavlink_5fdcm_5fto_5fquaternion_1584',['mavlink_dcm_to_quaternion',['../mavlink__conversions_8h.html#a4e183fc5dc505bee17dfac58ab18d9f9',1,'mavlink_conversions.h']]],
-  ['mavlink_5feuler_5fto_5fdcm_1585',['mavlink_euler_to_dcm',['../mavlink__conversions_8h.html#a5a662d9d3db2fb392c9466dab354b287',1,'mavlink_conversions.h']]],
-  ['mavlink_5feuler_5fto_5fquaternion_1586',['mavlink_euler_to_quaternion',['../mavlink__conversions_8h.html#a286e44d134e0722c8fbc595f9d25d767',1,'mavlink_conversions.h']]],
-  ['mavlink_5fquaternion_5fto_5fdcm_1587',['mavlink_quaternion_to_dcm',['../mavlink__conversions_8h.html#a1acebd1df006ab806149f3bf9cc5544e',1,'mavlink_conversions.h']]],
-  ['mavlink_5fquaternion_5fto_5feuler_1588',['mavlink_quaternion_to_euler',['../mavlink__conversions_8h.html#a96913fc5846ae95f89c99423e4c0e6c1',1,'mavlink_conversions.h']]],
-  ['message_5fsender_1589',['message_sender',['../classmessage__sender.html#a5bc02a6f6c6616b35a8eb8c145973147',1,'message_sender']]]
+  ['identifycontrollerdrift_393',['identifyControllerDrift',['../setupFunctions_8cpp.html#a29300a769e1664e90c99611071259f4c',1,'identifyControllerDrift():&#160;setupFunctions.cpp'],['../setupFunctions_8h.html#a29300a769e1664e90c99611071259f4c',1,'identifyControllerDrift():&#160;setupFunctions.cpp']]],
+  ['if_5fprototype_394',['IF_PROTOTYPE',['../displayHandler_8hpp.html#ae68397938bfc95745bb533bc5740003e',1,'displayHandler.hpp']]],
+  ['inc_5fspeed_395',['inc_Speed',['../stateHandler_8hpp.html#a73d44d90d5953dbc6aee0c4e98642b57',1,'inc_Speed():&#160;stateHandler.cpp'],['../stateHandler_8cpp.html#a73d44d90d5953dbc6aee0c4e98642b57',1,'inc_Speed():&#160;stateHandler.cpp']]],
+  ['initdisplaycomm_396',['initDisplayComm',['../displayHandler_8cpp.html#a9416570363c621cbd3670e8e860aef58',1,'initDisplayComm():&#160;displayHandler.cpp'],['../displayHandler_8hpp.html#a9416570363c621cbd3670e8e860aef58',1,'initDisplayComm():&#160;displayHandler.cpp']]],
+  ['initiatecontroller_397',['initiateController',['../standard__procedures_8cpp.html#a08c780620453f47db7e1845dddb2d1c5',1,'initiateController():&#160;standard_procedures.cpp'],['../standard__procedures_8hpp.html#a08c780620453f47db7e1845dddb2d1c5',1,'initiateController():&#160;standard_procedures.cpp']]],
+  ['initiateserialcomm_398',['initiateSerialComm',['../packetHandler_8h.html#aece8404fa680d108709bb7735af74ef7',1,'initiateSerialComm():&#160;packetHandler.cpp'],['../packetHandler_8cpp.html#aece8404fa680d108709bb7735af74ef7',1,'initiateSerialComm():&#160;packetHandler.cpp']]],
+  ['initmavlink_399',['initMAVLink',['../setupFunctions_8h.html#a500ad75f6580ee72e7ee2010102f7ce0',1,'initMAVLink():&#160;setupFunctions.cpp'],['../setupFunctions_8cpp.html#a500ad75f6580ee72e7ee2010102f7ce0',1,'initMAVLink():&#160;setupFunctions.cpp']]],
+  ['initstate_400',['initState',['../setupFunctions_8h.html#a3c34ea9b29f410748d4435a667484924',1,'initState():&#160;setupFunctions.cpp'],['../setupFunctions_8cpp.html#a3c34ea9b29f410748d4435a667484924',1,'initState():&#160;setupFunctions.cpp']]],
+  ['isugv_5fconnected_401',['isUGV_connected',['../stateHandler_8hpp.html#a4cd6236f2271568b01f7df03bc7cd7f0',1,'isUGV_connected():&#160;stateHandler.cpp'],['../stateHandler_8cpp.html#a4cd6236f2271568b01f7df03bc7cd7f0',1,'isUGV_connected():&#160;stateHandler.cpp']]]
 ];

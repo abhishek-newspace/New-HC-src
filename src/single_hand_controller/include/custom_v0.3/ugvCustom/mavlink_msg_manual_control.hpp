@@ -14,19 +14,18 @@ namespace msg {
  */
 struct MANUAL_CONTROL : mavlink::Message {
     static constexpr msgid_t MSG_ID = 69;
-    static constexpr size_t LENGTH = 30;
-    static constexpr size_t MIN_LENGTH = 11;
-    static constexpr uint8_t CRC_EXTRA = 96;
+    static constexpr size_t LENGTH = 32;
+    static constexpr size_t MIN_LENGTH = 15;
+    static constexpr uint8_t CRC_EXTRA = 170;
     static constexpr auto NAME = "MANUAL_CONTROL";
 
 
     uint8_t target; /*<  The system to be controlled. */
-    int16_t x; /*<  X-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to forward(1000)-backward(-1000) movement on a joystick and the pitch of a vehicle. */
-    int16_t y; /*<  Y-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to left(-1000)-right(1000) movement on a joystick and the roll of a vehicle. */
+    float x; /*<  X-axis, normalized to the range [-2.78,2.78]. A value of NaN indicates that this axis is invalid. Generally corresponds to forward(2.78)-backward(-2.78) movement on a joystick and the pitch of a vehicle. */
+    float y; /*<  Y-axis, normalized to the range [-13.7,13.7]. A value of NaN indicates that this axis is invalid. Generally corresponds to left(-13.7)-right(13.7) movement on a joystick and the roll of a vehicle. */
     int16_t z; /*<  Z-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to a separate slider movement with maximum being 1000 and minimum being -1000 on a joystick and the thrust of a vehicle. Positive values are positive thrust, negative values are negative thrust. */
     int16_t r; /*<  R-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to a twisting of the joystick, with clockwise being 1000 and counter-clockwise being -1000, and the yaw of a vehicle. */
     uint16_t push_buttons; /*<  A bitfield corresponding to the joystick buttons' 0-15 current state, 1 for pressed, 0 for released. The lowest bit corresponds to Button 1. */
-    uint16_t tristate_toggle_switches; /*<  A bitfield corresponding to the joystick buttons' 16-31 current state, 1 for pressed, 0 for released. The lowest bit corresponds to Button 16. */
     uint8_t enabled_extensions; /*<  Set bits to 1 to indicate which of the following extension fields contain valid data: bit 0: pitch, bit 1: roll, bit 2: aux1, bit 3: aux2, bit 4: aux3, bit 5: aux4, bit 6: aux5, bit 7: aux6 */
     int16_t s; /*<  Pitch-only-axis, normalized to the range [-1000,1000]. Generally corresponds to pitch on vehicles with additional degrees of freedom. Valid if bit 0 of enabled_extensions field is set. Set to 0 if invalid. */
     int16_t t; /*<  Roll-only-axis, normalized to the range [-1000,1000]. Generally corresponds to roll on vehicles with additional degrees of freedom. Valid if bit 1 of enabled_extensions field is set. Set to 0 if invalid. */
@@ -59,7 +58,6 @@ struct MANUAL_CONTROL : mavlink::Message {
         ss << "  z: " << z << std::endl;
         ss << "  r: " << r << std::endl;
         ss << "  push_buttons: " << push_buttons << std::endl;
-        ss << "  tristate_toggle_switches: " << tristate_toggle_switches << std::endl;
         ss << "  enabled_extensions: " << +enabled_extensions << std::endl;
         ss << "  s: " << s << std::endl;
         ss << "  t: " << t << std::endl;
@@ -78,41 +76,39 @@ struct MANUAL_CONTROL : mavlink::Message {
         map.reset(MSG_ID, LENGTH);
 
         map << x;                             // offset: 0
-        map << y;                             // offset: 2
-        map << z;                             // offset: 4
-        map << r;                             // offset: 6
-        map << push_buttons;                  // offset: 8
-        map << target;                        // offset: 10
-        map << tristate_toggle_switches;      // offset: 11
-        map << enabled_extensions;            // offset: 13
-        map << s;                             // offset: 14
-        map << t;                             // offset: 16
-        map << aux1;                          // offset: 18
-        map << aux2;                          // offset: 20
-        map << aux3;                          // offset: 22
-        map << aux4;                          // offset: 24
-        map << aux5;                          // offset: 26
-        map << aux6;                          // offset: 28
+        map << y;                             // offset: 4
+        map << z;                             // offset: 8
+        map << r;                             // offset: 10
+        map << push_buttons;                  // offset: 12
+        map << target;                        // offset: 14
+        map << enabled_extensions;            // offset: 15
+        map << s;                             // offset: 16
+        map << t;                             // offset: 18
+        map << aux1;                          // offset: 20
+        map << aux2;                          // offset: 22
+        map << aux3;                          // offset: 24
+        map << aux4;                          // offset: 26
+        map << aux5;                          // offset: 28
+        map << aux6;                          // offset: 30
     }
 
     inline void deserialize(mavlink::MsgMap &map) override
     {
         map >> x;                             // offset: 0
-        map >> y;                             // offset: 2
-        map >> z;                             // offset: 4
-        map >> r;                             // offset: 6
-        map >> push_buttons;                  // offset: 8
-        map >> target;                        // offset: 10
-        map >> tristate_toggle_switches;      // offset: 11
-        map >> enabled_extensions;            // offset: 13
-        map >> s;                             // offset: 14
-        map >> t;                             // offset: 16
-        map >> aux1;                          // offset: 18
-        map >> aux2;                          // offset: 20
-        map >> aux3;                          // offset: 22
-        map >> aux4;                          // offset: 24
-        map >> aux5;                          // offset: 26
-        map >> aux6;                          // offset: 28
+        map >> y;                             // offset: 4
+        map >> z;                             // offset: 8
+        map >> r;                             // offset: 10
+        map >> push_buttons;                  // offset: 12
+        map >> target;                        // offset: 14
+        map >> enabled_extensions;            // offset: 15
+        map >> s;                             // offset: 16
+        map >> t;                             // offset: 18
+        map >> aux1;                          // offset: 20
+        map >> aux2;                          // offset: 22
+        map >> aux3;                          // offset: 24
+        map >> aux4;                          // offset: 26
+        map >> aux5;                          // offset: 28
+        map >> aux6;                          // offset: 30
     }
 };
 

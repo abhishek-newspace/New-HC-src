@@ -2,7 +2,8 @@
 \label{stateHandler_8hpp}\index{single\_hand\_controller/include/stateHandler.hpp@{single\_hand\_controller/include/stateHandler.hpp}}
 {\ttfamily \#include \char`\"{}display\+Handler.\+hpp\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}definitions.\+h\char`\"{}}\newline
-Include dependency graph for state\+Handler.\+hpp\+:\nopagebreak
+Include dependency graph for state\+Handler.\+hpp\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -20,14 +21,32 @@ This graph shows which files directly or indirectly include this file\+:
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-bool \mbox{\hyperlink{stateHandler_8hpp_a03481fd31a10cf5b9848c679ec43b109}{set\+UGV\+\_\+state}} (ugv\+\_\+status s1)
+bool \mbox{\hyperlink{stateHandler_8hpp_a03481fd31a10cf5b9848c679ec43b109}{set\+UGV\+\_\+state}} (\mbox{\hyperlink{enum__defs_8h_a5045ad02c47704d467d7e26254e2f0bf}{ugv\+\_\+status}} s1)
 \begin{DoxyCompactList}\small\item\em set the current UGV state. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{stateHandler_8hpp_a0c2b9d9d6ea65051192f227e7176fe98}\label{stateHandler_8hpp_a0c2b9d9d6ea65051192f227e7176fe98}} 
-void \mbox{\hyperlink{stateHandler_8hpp_a0c2b9d9d6ea65051192f227e7176fe98}{increase\+Speed}} ()
+\mbox{\Hypertarget{stateHandler_8hpp_acbe676be72e31f553e2301ddee5291f7}\label{stateHandler_8hpp_acbe676be72e31f553e2301ddee5291f7}} 
+\mbox{\hyperlink{enum__defs_8h_a5045ad02c47704d467d7e26254e2f0bf}{ugv\+\_\+status}} \mbox{\hyperlink{stateHandler_8hpp_acbe676be72e31f553e2301ddee5291f7}{get\+UGV\+\_\+state}} ()
+\begin{DoxyCompactList}\small\item\em returns the current UGV state \end{DoxyCompactList}\item 
+\mbox{\hyperlink{enum__defs_8h_a2cca2977d757608930203a59d8ce4cd7}{speed\+Toggle}} \mbox{\hyperlink{stateHandler_8hpp_afe9b1570c342feba2645ec3ed52f03f8}{get\+UGV\+\_\+speed}} ()
+\begin{DoxyCompactList}\small\item\em get current UGV speed \end{DoxyCompactList}\item 
+\mbox{\hyperlink{enum__defs_8h_a99eced5804d2818722a6e61476fb3ff7}{direction\+Toggle}} \mbox{\hyperlink{stateHandler_8hpp_a9bb4be0a6a66a01b02e8ecc279f866b7}{get\+UGV\+\_\+dir}} ()
+\begin{DoxyCompactList}\small\item\em get current UGV direction \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{stateHandler_8hpp_a4cd6236f2271568b01f7df03bc7cd7f0}{is\+UGV\+\_\+connected}} ()
+\begin{DoxyCompactList}\small\item\em check whether the UGV is connected or not \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{stateHandler_8hpp_a73d44d90d5953dbc6aee0c4e98642b57}\label{stateHandler_8hpp_a73d44d90d5953dbc6aee0c4e98642b57}} 
+void \mbox{\hyperlink{stateHandler_8hpp_a73d44d90d5953dbc6aee0c4e98642b57}{inc\+\_\+\+Speed}} ()
 \begin{DoxyCompactList}\small\item\em used only within prototype version, to increase speed \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{stateHandler_8hpp_af3335868090f25203ea0417cf1669fdf}\label{stateHandler_8hpp_af3335868090f25203ea0417cf1669fdf}} 
-void \mbox{\hyperlink{stateHandler_8hpp_af3335868090f25203ea0417cf1669fdf}{decrease\+Speed}} ()
-\begin{DoxyCompactList}\small\item\em used only within prototype version, to decrease speed \end{DoxyCompactList}\end{DoxyCompactItemize}
+\mbox{\Hypertarget{stateHandler_8hpp_a447fea5021dd723e19cc1ca26da8e0a9}\label{stateHandler_8hpp_a447fea5021dd723e19cc1ca26da8e0a9}} 
+void \mbox{\hyperlink{stateHandler_8hpp_a447fea5021dd723e19cc1ca26da8e0a9}{dec\+\_\+\+Speed}} ()
+\begin{DoxyCompactList}\small\item\em used only within prototype version, to decrease speed \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{stateHandler_8hpp_abb560acb343e5f4709a2348f6157cb8a}\label{stateHandler_8hpp_abb560acb343e5f4709a2348f6157cb8a}} 
+void \mbox{\hyperlink{stateHandler_8hpp_abb560acb343e5f4709a2348f6157cb8a}{set\+Neutral}} ()
+\begin{DoxyCompactList}\small\item\em used only within prototype version to set speed to neutral \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{stateHandler_8hpp_ac81b7121cdbc5ee505565720d3746be5}\label{stateHandler_8hpp_ac81b7121cdbc5ee505565720d3746be5}} 
+void \mbox{\hyperlink{stateHandler_8hpp_ac81b7121cdbc5ee505565720d3746be5}{dir\+\_\+forward}} ()
+\begin{DoxyCompactList}\small\item\em switch current direction to forward (if not in neutral) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{stateHandler_8hpp_a29862efc4e6d70caca8390dd66317ccf}\label{stateHandler_8hpp_a29862efc4e6d70caca8390dd66317ccf}} 
+void \mbox{\hyperlink{stateHandler_8hpp_a29862efc4e6d70caca8390dd66317ccf}{dir\+\_\+reverse}} ()
+\begin{DoxyCompactList}\small\item\em switch current direction to reverse (if not in neutral) \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -42,14 +61,63 @@ Nikhil Tom Jose
 \end{DoxyDate}
 Handling of states within the hand controller is performed within the state\+Handler.
 
-currently handles states for ugv state, and speed 
+currently handles states for ugv state, and speed \doxysubsubsection*{changes}
+
+renamed increase\+Speed to inc\+\_\+speed due to name collision with that in buttons struct within IOhandler renamed decrease\+Speed to dec\+\_\+speed due to name collision with that in buttons struct within IOhandler
+
+\begin{DoxyDate}{Date}
+04/05/2026
+\begin{DoxyItemize}
+\item added function declarations for functions to change directions, and get current speed, and direction 
+\end{DoxyItemize}
+\end{DoxyDate}
+
 
 \doxysubsection{Function Documentation}
+\mbox{\Hypertarget{stateHandler_8hpp_a9bb4be0a6a66a01b02e8ecc279f866b7}\label{stateHandler_8hpp_a9bb4be0a6a66a01b02e8ecc279f866b7}} 
+\index{stateHandler.hpp@{stateHandler.hpp}!getUGV\_dir@{getUGV\_dir}}
+\index{getUGV\_dir@{getUGV\_dir}!stateHandler.hpp@{stateHandler.hpp}}
+\doxysubsubsection{\texorpdfstring{getUGV\_dir()}{getUGV\_dir()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{enum__defs_8h_a99eced5804d2818722a6e61476fb3ff7}{direction\+Toggle}} get\+UGV\+\_\+dir (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get current UGV direction 
+
+\begin{DoxyReturn}{Returns}
+current UGV direction 
+\end{DoxyReturn}
+\mbox{\Hypertarget{stateHandler_8hpp_afe9b1570c342feba2645ec3ed52f03f8}\label{stateHandler_8hpp_afe9b1570c342feba2645ec3ed52f03f8}} 
+\index{stateHandler.hpp@{stateHandler.hpp}!getUGV\_speed@{getUGV\_speed}}
+\index{getUGV\_speed@{getUGV\_speed}!stateHandler.hpp@{stateHandler.hpp}}
+\doxysubsubsection{\texorpdfstring{getUGV\_speed()}{getUGV\_speed()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{enum__defs_8h_a2cca2977d757608930203a59d8ce4cd7}{speed\+Toggle}} get\+UGV\+\_\+speed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get current UGV speed 
+
+\begin{DoxyReturn}{Returns}
+current UGV speed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{stateHandler_8hpp_a4cd6236f2271568b01f7df03bc7cd7f0}\label{stateHandler_8hpp_a4cd6236f2271568b01f7df03bc7cd7f0}} 
+\index{stateHandler.hpp@{stateHandler.hpp}!isUGV\_connected@{isUGV\_connected}}
+\index{isUGV\_connected@{isUGV\_connected}!stateHandler.hpp@{stateHandler.hpp}}
+\doxysubsubsection{\texorpdfstring{isUGV\_connected()}{isUGV\_connected()}}
+{\footnotesize\ttfamily bool is\+UGV\+\_\+connected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+check whether the UGV is connected or not 
+
+\begin{DoxyReturn}{Returns}
+true when UGV is not in disconnected state. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{stateHandler_8hpp_a03481fd31a10cf5b9848c679ec43b109}\label{stateHandler_8hpp_a03481fd31a10cf5b9848c679ec43b109}} 
 \index{stateHandler.hpp@{stateHandler.hpp}!setUGV\_state@{setUGV\_state}}
 \index{setUGV\_state@{setUGV\_state}!stateHandler.hpp@{stateHandler.hpp}}
 \doxysubsubsection{\texorpdfstring{setUGV\_state()}{setUGV\_state()}}
-{\footnotesize\ttfamily bool set\+UGV\+\_\+state (\begin{DoxyParamCaption}\item[{ugv\+\_\+status}]{s1 }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool set\+UGV\+\_\+state (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enum__defs_8h_a5045ad02c47704d467d7e26254e2f0bf}{ugv\+\_\+status}}}]{s1 }\end{DoxyParamCaption})}
 
 
 

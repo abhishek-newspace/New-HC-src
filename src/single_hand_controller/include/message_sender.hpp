@@ -9,6 +9,8 @@
  * <h2>changes</h2>
  * @date 07/05/2026
  * Added component_version sender
+ * @date 19/05/2026
+ * Modified manual control to not send direction and speed control
  */
 
 #include"message_structs.h"
@@ -62,9 +64,7 @@ public:
         bool extra_feature_1_press, 
         bool extra_feature_1_long_press, 
         bool extra_feature_2_press, 
-        bool extra_feature_2_long_press, 
-        directionToggle dirTog, 
-        speedToggle spdTog
+        bool extra_feature_2_long_press
     );
     int buffer_timesync();
 

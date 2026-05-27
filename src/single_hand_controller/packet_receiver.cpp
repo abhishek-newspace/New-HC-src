@@ -16,8 +16,6 @@ static struct ATLAS_HC_SYS_STAT packet_receiver::sys_status;
 static struct ATLAS_HC_ARM_DISARM_ACK packet_receiver::ack;
 
 
-uint32_t arm_start = 0, disarm_start = 0;
-int requests_sent = 0;
 
 uint64_t  UGVTime = 0, //!< stores time of the drone at which timesync was received
           RecvTime = 0,  //!< stores time at which timesync was received.
@@ -25,6 +23,8 @@ uint64_t  UGVTime = 0, //!< stores time of the drone at which timesync was recei
           latency = 0;   //!< latency of timesync packet being sent
    
 unsigned long last_heartbeat_received_at = -4000;
+
+int arm_send_count = 0;
 
 bool receivedFirstTimesync(){
     return !(UGVTime == 0);
@@ -86,8 +86,8 @@ void packet_receiver::receive_timesync(mavlink_message_t *msg)
 void packet_receiver::receive_radio_status(mavlink_message_t *msg)
 {
     radio_status.rssi = mavlink_msg_radio_status_get_rssi(msg);
-    IF_DEBUG(Serial.print("rssi");)
-    IF_DEBUG(Serial.println(radio_status.rssi);)
+    //IF_DEBUG(Serial.print("rssi");)
+    //IF_DEBUG(Serial.println(radio_status.rssi);)
     setRSSI(radio_status.rssi);
 }
 
@@ -105,45 +105,8 @@ void packet_receiver::receive_sys_status(mavlink_message_t *msg)
 void packet_receiver::receive_ack(mavlink_message_t *msg)
 {
     displayInfo("ARM command acknowledged");
-    resetArmDisarm();
+    arm_send_count = 0;
 }
-
-void resetArmDisarm(){
-    requests_sent = 0;
-    disarm_start = 0;
-    arm_start = 0;
-}
-
-void setArmNow()
-{
-    requests_sent = 1;
-    arm_start = micros();
-}
-
-void setDisarmNow()
-{
-    requests_sent = 1;
-    disarm_start = micros();
-}
-
-uint32_t get_arm_start(){
-    return arm_start;
-}
-uint32_t get_disarm_start(){
-    return disarm_start;
-}
-
-void inc_requests_sent(){
-    requests_sent++;
-}
-
-int get_requests_sent(){
-    return requests_sent;
-}
-void init_requests_sent(){
-    requests_sent = 1;
-}
-
 
 
 void packet_receiver::receive_heartbeat(mavlink_message_t *msg)
@@ -172,7 +135,7 @@ void packet_receiver::receive_heartbeat(mavlink_message_t *msg)
             }
         break;
         default:
-        IF_DEBUG(Serial.println(mavlink_msg_heartbeat_get_system_status(msg)));
+        //IF_DEBUG(Serial.println(mavlink_msg_heartbeat_get_system_status(msg)));
         if(setUGV_state(unknown)){
             displayUGV_status(unknown);
         }
@@ -183,4 +146,18 @@ void packet_receiver::receive_heartbeat(mavlink_message_t *msg)
 
 unsigned long getHeartbeatDiff(){
     return millis() - last_heartbeat_received_at;
+}
+
+bool is_arm_disarm_sending(){
+    return arm_send_count > 0;
+}
+void reset_arm_disarm_sending(){
+    arm_send_count = 0;
+}
+void init_arm_disarm_sending(){
+    arm_send_count = 1;
+}
+
+void dec_arm_disarm_sending(){
+    arm_send_count--;
 }

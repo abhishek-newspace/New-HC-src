@@ -7,10 +7,9 @@
  * All definitions, used within every header file is included here. 
  */
 #pragma once
-#include "definitions/display_defs.h"
 #include "definitions/enum_defs.h"
 #include "definitions/IO_defs.h"
-#include "definitions/time_conv.h"
+#include "definitions/time_defs.h"
 #include "definitions/version.h"
 
 
@@ -38,15 +37,18 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 // if the code is not meant to be deployed on the prototype hand controller, then comment out this line
 #define PROTOTYPE
 
-// if the code is not meant to operate in debug mode (prints out info on serial communication), comment out this line
-#define _DEBUG_
+//#define SIGN_PACKETS  // used to send and receive signed packets
 
-// ONLY use this when testing features
-#define TESTING
+// if the code is not meant to operate in debug mode (prints out info on serial communication), comment out this line
+//#define _DEBUG_
+
+//#define TESTING // ONLY use this when testing features
 
 //#define SPECIAL_TESTING
 
 //#define PRINT_BYTES // used to print raw received bytes
+
+
 
 #define TIME_REQ
 

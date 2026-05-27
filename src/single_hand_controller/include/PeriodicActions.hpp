@@ -8,7 +8,15 @@
 #pragma once
 #include "timer.hpp"
 
-
+/**
+ * @struct action
+ * defines all the variables required to
+ * 
+ * 1. know when to perform the action
+ * 2. know when to stop performing the action
+ * 3. action to perform as the periodic action is stopped
+ * 4. 
+ */
 struct action{
     timer intervalDuration;
     int actionID;
@@ -20,7 +28,7 @@ struct action{
 
 struct stopActionQueue{
     int actionID;
-    stopActionQueue* next;
+    stopActionQueue* next = nullptr;
 };
 
 /**

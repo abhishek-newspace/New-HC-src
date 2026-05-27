@@ -1,26 +1,7 @@
 var searchData=
 [
-  ['mag_5fcal_5freport_1391',['MAG_CAL_REPORT',['../structmavlink_1_1common_1_1msg_1_1MAG__CAL__REPORT.html',1,'mavlink::common::msg']]],
-  ['manual_5fcontrol_1392',['MANUAL_CONTROL',['../structmavlink_1_1common_1_1msg_1_1MANUAL__CONTROL.html',1,'mavlink::common::msg']]],
-  ['manual_5fsetpoint_1393',['MANUAL_SETPOINT',['../structmavlink_1_1common_1_1msg_1_1MANUAL__SETPOINT.html',1,'mavlink::common::msg']]],
-  ['mavlink_5fsha256_5fctx_1394',['mavlink_sha256_ctx',['../structmavlink__sha256__ctx.html',1,'']]],
-  ['memory_5fvect_1395',['MEMORY_VECT',['../structmavlink_1_1common_1_1msg_1_1MEMORY__VECT.html',1,'mavlink::common::msg']]],
-  ['message_1396',['Message',['../structmavlink_1_1Message.html',1,'mavlink']]],
-  ['message_5finterval_1397',['MESSAGE_INTERVAL',['../structmavlink_1_1common_1_1msg_1_1MESSAGE__INTERVAL.html',1,'mavlink::common::msg']]],
-  ['message_5fsender_1398',['message_sender',['../classmessage__sender.html',1,'']]],
-  ['mission_5fack_1399',['MISSION_ACK',['../structmavlink_1_1common_1_1msg_1_1MISSION__ACK.html',1,'mavlink::common::msg']]],
-  ['mission_5fclear_5fall_1400',['MISSION_CLEAR_ALL',['../structmavlink_1_1common_1_1msg_1_1MISSION__CLEAR__ALL.html',1,'mavlink::common::msg']]],
-  ['mission_5fcount_1401',['MISSION_COUNT',['../structmavlink_1_1common_1_1msg_1_1MISSION__COUNT.html',1,'mavlink::common::msg']]],
-  ['mission_5fcurrent_1402',['MISSION_CURRENT',['../structmavlink_1_1common_1_1msg_1_1MISSION__CURRENT.html',1,'mavlink::common::msg']]],
-  ['mission_5fitem_1403',['MISSION_ITEM',['../structmavlink_1_1common_1_1msg_1_1MISSION__ITEM.html',1,'mavlink::common::msg']]],
-  ['mission_5fitem_5fint_1404',['MISSION_ITEM_INT',['../structmavlink_1_1common_1_1msg_1_1MISSION__ITEM__INT.html',1,'mavlink::common::msg']]],
-  ['mission_5fitem_5freached_1405',['MISSION_ITEM_REACHED',['../structmavlink_1_1common_1_1msg_1_1MISSION__ITEM__REACHED.html',1,'mavlink::common::msg']]],
-  ['mission_5frequest_1406',['MISSION_REQUEST',['../structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST.html',1,'mavlink::common::msg']]],
-  ['mission_5frequest_5fint_1407',['MISSION_REQUEST_INT',['../structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST__INT.html',1,'mavlink::common::msg']]],
-  ['mission_5frequest_5flist_1408',['MISSION_REQUEST_LIST',['../structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST__LIST.html',1,'mavlink::common::msg']]],
-  ['mission_5frequest_5fpartial_5flist_1409',['MISSION_REQUEST_PARTIAL_LIST',['../structmavlink_1_1common_1_1msg_1_1MISSION__REQUEST__PARTIAL__LIST.html',1,'mavlink::common::msg']]],
-  ['mission_5fset_5fcurrent_1410',['MISSION_SET_CURRENT',['../structmavlink_1_1common_1_1msg_1_1MISSION__SET__CURRENT.html',1,'mavlink::common::msg']]],
-  ['mission_5fwrite_5fpartial_5flist_1411',['MISSION_WRITE_PARTIAL_LIST',['../structmavlink_1_1common_1_1msg_1_1MISSION__WRITE__PARTIAL__LIST.html',1,'mavlink::common::msg']]],
-  ['mount_5forientation_1412',['MOUNT_ORIENTATION',['../structmavlink_1_1common_1_1msg_1_1MOUNT__ORIENTATION.html',1,'mavlink::common::msg']]],
-  ['msgmap_1413',['MsgMap',['../classmavlink_1_1MsgMap.html',1,'mavlink']]]
+  ['thumbstickcontrol_310',['thumbstickControl',['../structthumbstickControl.html',1,'']]],
+  ['timer_311',['timer',['../classtimer.html',1,'']]],
+  ['timesync_312',['TIMESYNC',['../structmavlink_1_1ugvCustom_1_1msg_1_1TIMESYNC.html',1,'mavlink::ugvCustom::msg']]],
+  ['toggle_313',['toggle',['../structtoggle.html',1,'']]]
 ];

@@ -81,33 +81,33 @@ int message_sender::buffer_component_version()
 
     return mavlink_msg_to_send_buffer(buf,msg);
 }
-int message_sender::buffer_manual_control(int x, int y, bool extra_feature_1_press, bool extra_feature_1_long_press, bool extra_feature_2_press, bool extra_feature_2_long_press, directionToggle dirTog, speedToggle spdTog)
+int message_sender::buffer_manual_control(int x, int y, bool extra_feature_1_press, bool extra_feature_1_long_press, bool extra_feature_2_press, bool extra_feature_2_long_press)
 {
-    IF_DEBUG(Serial.println("buffering manual control");)
+    //IF_DEBUG(Serial.println("buffering manual control");)
     manual_control.x = x;
     manual_control.y = y;
     manual_control.Push_buttons = extra_feature_1_press | extra_feature_1_long_press << 1 | extra_feature_2_press << 2 | extra_feature_2_long_press << 3;
-    manual_control.Tristate_Toggle_switches = 0;
-    switch(dirTog){
-        case neutral:
-        break;
-        case forward:
-        manual_control.Tristate_Toggle_switches |= FORWARD_DIRECTION;
-        break;
-        case reverse:
-        manual_control.Tristate_Toggle_switches |= REVERSE_DIRECTION;
-        break;
-    }
-    switch(spdTog){
-        case low:
-        break;
-        case mid:
-        manual_control.Tristate_Toggle_switches |= MEDIUM_SPEED;
-        break;
-        case high:
-        manual_control.Tristate_Toggle_switches |= HIGH_SPEED;
-        break;
-    }
+    //manual_control.Tristate_Toggle_switches = 0;
+    // switch(dirTog){
+    //     case neutral:
+    //     break;
+    //     case forward:
+    //     manual_control.Tristate_Toggle_switches |= FORWARD_DIRECTION;
+    //     break;
+    //     case reverse:
+    //     manual_control.Tristate_Toggle_switches |= REVERSE_DIRECTION;
+    //     break;
+    // }
+    // switch(spdTog){
+    //     case low:
+    //     break;
+    //     case mid:
+    //     manual_control.Tristate_Toggle_switches |= MEDIUM_SPEED;
+    //     break;
+    //     case high:
+    //     manual_control.Tristate_Toggle_switches |= HIGH_SPEED;
+    //     break;
+    // }
 
 
     mavlink_msg_manual_control_pack(
@@ -120,8 +120,8 @@ int message_sender::buffer_manual_control(int x, int y, bool extra_feature_1_pre
         manual_control.y,
         0,0,
         manual_control.Push_buttons,
-        manual_control.Tristate_Toggle_switches
-        ,0,0,0,0,0,0,0,0,0
+        //manual_control.Tristate_Toggle_switches
+        0,0,0,0,0,0,0,0,0
     );
 
     return mavlink_msg_to_send_buffer(buf,msg);

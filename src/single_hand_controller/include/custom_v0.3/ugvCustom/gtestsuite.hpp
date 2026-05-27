@@ -1,6 +1,6 @@
 /** @file
- *	@brief MAVLink comm testsuite protocol generated from ugvCustom.xml
- *	@see http://mavlink.org
+ *  @brief MAVLink comm testsuite protocol generated from ugvCustom.xml
+ *  @see http://mavlink.org
  */
 
 #pragma once
@@ -231,22 +231,21 @@ TEST(ugvCustom, MANUAL_CONTROL)
     mavlink::MsgMap map2(msg);
 
     mavlink::ugvCustom::msg::MANUAL_CONTROL packet_in{};
-    packet_in.target = 163;
-    packet_in.x = 17235;
-    packet_in.y = 17339;
-    packet_in.z = 17443;
-    packet_in.r = 17547;
-    packet_in.push_buttons = 17651;
-    packet_in.tristate_toggle_switches = 17807;
-    packet_in.enabled_extensions = 108;
-    packet_in.s = 17963;
-    packet_in.t = 18067;
-    packet_in.aux1 = 18171;
-    packet_in.aux2 = 18275;
-    packet_in.aux3 = 18379;
-    packet_in.aux4 = 18483;
-    packet_in.aux5 = 18587;
-    packet_in.aux6 = 18691;
+    packet_in.target = 175;
+    packet_in.x = 17.0;
+    packet_in.y = 45.0;
+    packet_in.z = 17651;
+    packet_in.r = 17755;
+    packet_in.push_buttons = 17859;
+    packet_in.enabled_extensions = 242;
+    packet_in.s = 18067;
+    packet_in.t = 18171;
+    packet_in.aux1 = 18275;
+    packet_in.aux2 = 18379;
+    packet_in.aux3 = 18483;
+    packet_in.aux4 = 18587;
+    packet_in.aux5 = 18691;
+    packet_in.aux6 = 18795;
 
     mavlink::ugvCustom::msg::MANUAL_CONTROL packet1{};
     mavlink::ugvCustom::msg::MANUAL_CONTROL packet2{};
@@ -267,7 +266,6 @@ TEST(ugvCustom, MANUAL_CONTROL)
     EXPECT_EQ(packet1.z, packet2.z);
     EXPECT_EQ(packet1.r, packet2.r);
     EXPECT_EQ(packet1.push_buttons, packet2.push_buttons);
-    EXPECT_EQ(packet1.tristate_toggle_switches, packet2.tristate_toggle_switches);
     EXPECT_EQ(packet1.enabled_extensions, packet2.enabled_extensions);
     EXPECT_EQ(packet1.s, packet2.s);
     EXPECT_EQ(packet1.t, packet2.t);
@@ -288,26 +286,25 @@ TEST(ugvCustom_interop, MANUAL_CONTROL)
     memset(&msg, 0, sizeof(msg));
 
     mavlink_manual_control_t packet_c {
-         17235, 17339, 17443, 17547, 17651, 163, 17807, 108, 17963, 18067, 18171, 18275, 18379, 18483, 18587, 18691
+         17.0, 45.0, 17651, 17755, 17859, 175, 242, 18067, 18171, 18275, 18379, 18483, 18587, 18691, 18795
     };
 
     mavlink::ugvCustom::msg::MANUAL_CONTROL packet_in{};
-    packet_in.target = 163;
-    packet_in.x = 17235;
-    packet_in.y = 17339;
-    packet_in.z = 17443;
-    packet_in.r = 17547;
-    packet_in.push_buttons = 17651;
-    packet_in.tristate_toggle_switches = 17807;
-    packet_in.enabled_extensions = 108;
-    packet_in.s = 17963;
-    packet_in.t = 18067;
-    packet_in.aux1 = 18171;
-    packet_in.aux2 = 18275;
-    packet_in.aux3 = 18379;
-    packet_in.aux4 = 18483;
-    packet_in.aux5 = 18587;
-    packet_in.aux6 = 18691;
+    packet_in.target = 175;
+    packet_in.x = 17.0;
+    packet_in.y = 45.0;
+    packet_in.z = 17651;
+    packet_in.r = 17755;
+    packet_in.push_buttons = 17859;
+    packet_in.enabled_extensions = 242;
+    packet_in.s = 18067;
+    packet_in.t = 18171;
+    packet_in.aux1 = 18275;
+    packet_in.aux2 = 18379;
+    packet_in.aux3 = 18483;
+    packet_in.aux4 = 18587;
+    packet_in.aux5 = 18691;
+    packet_in.aux6 = 18795;
 
     mavlink::ugvCustom::msg::MANUAL_CONTROL packet2{};
 
@@ -326,7 +323,6 @@ TEST(ugvCustom_interop, MANUAL_CONTROL)
     EXPECT_EQ(packet_in.z, packet2.z);
     EXPECT_EQ(packet_in.r, packet2.r);
     EXPECT_EQ(packet_in.push_buttons, packet2.push_buttons);
-    EXPECT_EQ(packet_in.tristate_toggle_switches, packet2.tristate_toggle_switches);
     EXPECT_EQ(packet_in.enabled_extensions, packet2.enabled_extensions);
     EXPECT_EQ(packet_in.s, packet2.s);
     EXPECT_EQ(packet_in.t, packet2.t);
@@ -521,6 +517,89 @@ TEST(ugvCustom_interop, COMMAND_ACK)
 }
 #endif
 
+TEST(ugvCustom, RADIO_STATUS)
+{
+    mavlink::mavlink_message_t msg;
+    mavlink::MsgMap map1(msg);
+    mavlink::MsgMap map2(msg);
+
+    mavlink::ugvCustom::msg::RADIO_STATUS packet_in{};
+    packet_in.rssi = 17;
+    packet_in.remrssi = 84;
+    packet_in.txbuf = 151;
+    packet_in.noise = 218;
+    packet_in.remnoise = 29;
+    packet_in.rxerrors = 17235;
+    packet_in.fixed = 17339;
+
+    mavlink::ugvCustom::msg::RADIO_STATUS packet1{};
+    mavlink::ugvCustom::msg::RADIO_STATUS packet2{};
+
+    packet1 = packet_in;
+
+    //std::cout << packet1.to_yaml() << std::endl;
+
+    packet1.serialize(map1);
+
+    mavlink::mavlink_finalize_message(&msg, 1, 1, packet1.MIN_LENGTH, packet1.LENGTH, packet1.CRC_EXTRA);
+
+    packet2.deserialize(map2);
+
+    EXPECT_EQ(packet1.rssi, packet2.rssi);
+    EXPECT_EQ(packet1.remrssi, packet2.remrssi);
+    EXPECT_EQ(packet1.txbuf, packet2.txbuf);
+    EXPECT_EQ(packet1.noise, packet2.noise);
+    EXPECT_EQ(packet1.remnoise, packet2.remnoise);
+    EXPECT_EQ(packet1.rxerrors, packet2.rxerrors);
+    EXPECT_EQ(packet1.fixed, packet2.fixed);
+}
+
+#ifdef TEST_INTEROP
+TEST(ugvCustom_interop, RADIO_STATUS)
+{
+    mavlink_message_t msg;
+
+    // to get nice print
+    memset(&msg, 0, sizeof(msg));
+
+    mavlink_radio_status_t packet_c {
+         17235, 17339, 17, 84, 151, 218, 29
+    };
+
+    mavlink::ugvCustom::msg::RADIO_STATUS packet_in{};
+    packet_in.rssi = 17;
+    packet_in.remrssi = 84;
+    packet_in.txbuf = 151;
+    packet_in.noise = 218;
+    packet_in.remnoise = 29;
+    packet_in.rxerrors = 17235;
+    packet_in.fixed = 17339;
+
+    mavlink::ugvCustom::msg::RADIO_STATUS packet2{};
+
+    mavlink_msg_radio_status_encode(1, 1, &msg, &packet_c);
+
+    // simulate message-handling callback
+    [&packet2](const mavlink_message_t *cmsg) {
+        MsgMap map2(cmsg);
+
+        packet2.deserialize(map2);
+    } (&msg);
+
+    EXPECT_EQ(packet_in.rssi, packet2.rssi);
+    EXPECT_EQ(packet_in.remrssi, packet2.remrssi);
+    EXPECT_EQ(packet_in.txbuf, packet2.txbuf);
+    EXPECT_EQ(packet_in.noise, packet2.noise);
+    EXPECT_EQ(packet_in.remnoise, packet2.remnoise);
+    EXPECT_EQ(packet_in.rxerrors, packet2.rxerrors);
+    EXPECT_EQ(packet_in.fixed, packet2.fixed);
+
+#ifdef PRINT_MSG
+    PRINT_MSG(msg);
+#endif
+}
+#endif
+
 TEST(ugvCustom, TIMESYNC)
 {
     mavlink::mavlink_message_t msg;
@@ -609,6 +688,16 @@ TEST(ugvCustom, UGV_SYSTEM_INFO)
     packet_in.intended_main_mode = 218;
     packet_in.intended_sub_mode = 29;
     packet_in.mode_change_reason = 96;
+    packet_in.rear_left_motor_faults = 163;
+    packet_in.rear_right_motor_faults = 230;
+    packet_in.front_left_motor_faults = 41;
+    packet_in.front_right_motor_faults = 108;
+    packet_in.left_mc_faults = 175;
+    packet_in.right_mc_faults = 242;
+    packet_in.left_mc_voltage = 53;
+    packet_in.right_mc_voltage = 120;
+    packet_in.left_mc_temperature = 187;
+    packet_in.right_mc_temperature = 254;
 
     mavlink::ugvCustom::msg::UGV_SYSTEM_INFO packet1{};
     mavlink::ugvCustom::msg::UGV_SYSTEM_INFO packet2{};
@@ -633,6 +722,16 @@ TEST(ugvCustom, UGV_SYSTEM_INFO)
     EXPECT_EQ(packet1.intended_main_mode, packet2.intended_main_mode);
     EXPECT_EQ(packet1.intended_sub_mode, packet2.intended_sub_mode);
     EXPECT_EQ(packet1.mode_change_reason, packet2.mode_change_reason);
+    EXPECT_EQ(packet1.rear_left_motor_faults, packet2.rear_left_motor_faults);
+    EXPECT_EQ(packet1.rear_right_motor_faults, packet2.rear_right_motor_faults);
+    EXPECT_EQ(packet1.front_left_motor_faults, packet2.front_left_motor_faults);
+    EXPECT_EQ(packet1.front_right_motor_faults, packet2.front_right_motor_faults);
+    EXPECT_EQ(packet1.left_mc_faults, packet2.left_mc_faults);
+    EXPECT_EQ(packet1.right_mc_faults, packet2.right_mc_faults);
+    EXPECT_EQ(packet1.left_mc_voltage, packet2.left_mc_voltage);
+    EXPECT_EQ(packet1.right_mc_voltage, packet2.right_mc_voltage);
+    EXPECT_EQ(packet1.left_mc_temperature, packet2.left_mc_temperature);
+    EXPECT_EQ(packet1.right_mc_temperature, packet2.right_mc_temperature);
 }
 
 #ifdef TEST_INTEROP
@@ -644,7 +743,7 @@ TEST(ugvCustom_interop, UGV_SYSTEM_INFO)
     memset(&msg, 0, sizeof(msg));
 
     mavlink_ugv_system_info_t packet_c {
-         5, 72, 139, 206, 17, 84, 151, 218, 29, 96
+         5, 72, 139, 206, 17, 84, 151, 218, 29, 96, 163, 230, 41, 108, 175, 242, 53, 120, 187, 254
     };
 
     mavlink::ugvCustom::msg::UGV_SYSTEM_INFO packet_in{};
@@ -658,6 +757,16 @@ TEST(ugvCustom_interop, UGV_SYSTEM_INFO)
     packet_in.intended_main_mode = 218;
     packet_in.intended_sub_mode = 29;
     packet_in.mode_change_reason = 96;
+    packet_in.rear_left_motor_faults = 163;
+    packet_in.rear_right_motor_faults = 230;
+    packet_in.front_left_motor_faults = 41;
+    packet_in.front_right_motor_faults = 108;
+    packet_in.left_mc_faults = 175;
+    packet_in.right_mc_faults = 242;
+    packet_in.left_mc_voltage = 53;
+    packet_in.right_mc_voltage = 120;
+    packet_in.left_mc_temperature = 187;
+    packet_in.right_mc_temperature = 254;
 
     mavlink::ugvCustom::msg::UGV_SYSTEM_INFO packet2{};
 
@@ -680,6 +789,16 @@ TEST(ugvCustom_interop, UGV_SYSTEM_INFO)
     EXPECT_EQ(packet_in.intended_main_mode, packet2.intended_main_mode);
     EXPECT_EQ(packet_in.intended_sub_mode, packet2.intended_sub_mode);
     EXPECT_EQ(packet_in.mode_change_reason, packet2.mode_change_reason);
+    EXPECT_EQ(packet_in.rear_left_motor_faults, packet2.rear_left_motor_faults);
+    EXPECT_EQ(packet_in.rear_right_motor_faults, packet2.rear_right_motor_faults);
+    EXPECT_EQ(packet_in.front_left_motor_faults, packet2.front_left_motor_faults);
+    EXPECT_EQ(packet_in.front_right_motor_faults, packet2.front_right_motor_faults);
+    EXPECT_EQ(packet_in.left_mc_faults, packet2.left_mc_faults);
+    EXPECT_EQ(packet_in.right_mc_faults, packet2.right_mc_faults);
+    EXPECT_EQ(packet_in.left_mc_voltage, packet2.left_mc_voltage);
+    EXPECT_EQ(packet_in.right_mc_voltage, packet2.right_mc_voltage);
+    EXPECT_EQ(packet_in.left_mc_temperature, packet2.left_mc_temperature);
+    EXPECT_EQ(packet_in.right_mc_temperature, packet2.right_mc_temperature);
 
 #ifdef PRINT_MSG
     PRINT_MSG(msg);
@@ -850,89 +969,6 @@ TEST(ugvCustom_interop, UGV_SUBSYSTEM_VERSION)
     EXPECT_EQ(packet_in.component4_checksum, packet2.component4_checksum);
     EXPECT_EQ(packet_in.component5_sw, packet2.component5_sw);
     EXPECT_EQ(packet_in.component5_checksum, packet2.component5_checksum);
-
-#ifdef PRINT_MSG
-    PRINT_MSG(msg);
-#endif
-}
-#endif
-
-TEST(ugvCustom, RADIO_STATUS)
-{
-    mavlink::mavlink_message_t msg;
-    mavlink::MsgMap map1(msg);
-    mavlink::MsgMap map2(msg);
-
-    mavlink::ugvCustom::msg::RADIO_STATUS packet_in{};
-    packet_in.rssi = 17;
-    packet_in.remrssi = 84;
-    packet_in.txbuf = 151;
-    packet_in.noise = 218;
-    packet_in.remnoise = 29;
-    packet_in.rxerrors = 17235;
-    packet_in.fixed = 17339;
-
-    mavlink::ugvCustom::msg::RADIO_STATUS packet1{};
-    mavlink::ugvCustom::msg::RADIO_STATUS packet2{};
-
-    packet1 = packet_in;
-
-    //std::cout << packet1.to_yaml() << std::endl;
-
-    packet1.serialize(map1);
-
-    mavlink::mavlink_finalize_message(&msg, 1, 1, packet1.MIN_LENGTH, packet1.LENGTH, packet1.CRC_EXTRA);
-
-    packet2.deserialize(map2);
-
-    EXPECT_EQ(packet1.rssi, packet2.rssi);
-    EXPECT_EQ(packet1.remrssi, packet2.remrssi);
-    EXPECT_EQ(packet1.txbuf, packet2.txbuf);
-    EXPECT_EQ(packet1.noise, packet2.noise);
-    EXPECT_EQ(packet1.remnoise, packet2.remnoise);
-    EXPECT_EQ(packet1.rxerrors, packet2.rxerrors);
-    EXPECT_EQ(packet1.fixed, packet2.fixed);
-}
-
-#ifdef TEST_INTEROP
-TEST(ugvCustom_interop, RADIO_STATUS)
-{
-    mavlink_message_t msg;
-
-    // to get nice print
-    memset(&msg, 0, sizeof(msg));
-
-    mavlink_radio_status_t packet_c {
-         17235, 17339, 17, 84, 151, 218, 29
-    };
-
-    mavlink::ugvCustom::msg::RADIO_STATUS packet_in{};
-    packet_in.rssi = 17;
-    packet_in.remrssi = 84;
-    packet_in.txbuf = 151;
-    packet_in.noise = 218;
-    packet_in.remnoise = 29;
-    packet_in.rxerrors = 17235;
-    packet_in.fixed = 17339;
-
-    mavlink::ugvCustom::msg::RADIO_STATUS packet2{};
-
-    mavlink_msg_radio_status_encode(1, 1, &msg, &packet_c);
-
-    // simulate message-handling callback
-    [&packet2](const mavlink_message_t *cmsg) {
-        MsgMap map2(cmsg);
-
-        packet2.deserialize(map2);
-    } (&msg);
-
-    EXPECT_EQ(packet_in.rssi, packet2.rssi);
-    EXPECT_EQ(packet_in.remrssi, packet2.remrssi);
-    EXPECT_EQ(packet_in.txbuf, packet2.txbuf);
-    EXPECT_EQ(packet_in.noise, packet2.noise);
-    EXPECT_EQ(packet_in.remnoise, packet2.remnoise);
-    EXPECT_EQ(packet_in.rxerrors, packet2.rxerrors);
-    EXPECT_EQ(packet_in.fixed, packet2.fixed);
 
 #ifdef PRINT_MSG
     PRINT_MSG(msg);

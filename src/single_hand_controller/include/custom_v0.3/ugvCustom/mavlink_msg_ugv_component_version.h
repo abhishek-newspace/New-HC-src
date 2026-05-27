@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE UGV_COMPONENT_VERSION PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_UGV_COMPONENT_VERSION 50002
 
 

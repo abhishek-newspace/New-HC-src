@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_UGVCUSTOM.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_UGVCUSTOM_XML_HASH 1646739116131856633
+#define MAVLINK_UGVCUSTOM_XML_HASH 1390003806544637740
 
 #ifdef __cplusplus
 extern "C" {
@@ -23,7 +23,7 @@ extern "C" {
 #endif
 
 #ifndef MAVLINK_MESSAGE_CRCS
-#define MAVLINK_MESSAGE_CRCS {{0, 50, 9, 9, 0, 0, 0}, {1, 3, 5, 5, 0, 0, 0}, {2, 137, 12, 12, 0, 0, 0}, {69, 96, 11, 30, 1, 10, 0}, {76, 152, 33, 33, 3, 30, 31}, {77, 143, 3, 10, 3, 8, 9}, {109, 185, 9, 9, 0, 0, 0}, {111, 34, 16, 18, 3, 16, 17}, {50001, 66, 10, 10, 0, 0, 0}, {50002, 161, 38, 38, 3, 36, 37}, {50003, 50, 181, 181, 0, 0, 0}}
+#define MAVLINK_MESSAGE_CRCS {{0, 50, 9, 9, 0, 0, 0}, {1, 3, 5, 5, 0, 0, 0}, {2, 137, 12, 12, 0, 0, 0}, {69, 170, 15, 32, 1, 14, 0}, {76, 152, 33, 33, 3, 30, 31}, {77, 143, 3, 10, 3, 8, 9}, {109, 185, 9, 9, 0, 0, 0}, {111, 34, 16, 18, 3, 16, 17}, {50001, 101, 20, 20, 0, 0, 0}, {50002, 161, 38, 38, 3, 36, 37}, {50003, 50, 181, 181, 0, 0, 0}}
 #endif
 
 #include "../protocol.h"
@@ -172,24 +172,39 @@ typedef enum UGV_COMP_BITMASK
 } UGV_COMP_BITMASK;
 #endif
 
-/** @brief These encode the sub systems whose status is sent as part of the UGV_MASTER_HEALTH message. */
-#ifndef HAVE_ENUM_UGV_MOTOR_ERROR_BITMASK
-#define HAVE_ENUM_UGV_MOTOR_ERROR_BITMASK
-typedef enum UGV_MOTOR_ERROR_BITMASK
+/** @brief Enum used to indicate the errors present in Motors */
+#ifndef HAVE_ENUM_UGV_MOTOR_ERROR
+#define HAVE_ENUM_UGV_MOTOR_ERROR
+typedef enum UGV_MOTOR_ERROR
 {
-   MOTOR_OVERLOAD=1, /* 0x01 Motor Overload | */
-   MOTOR_OVER_TEMP=2, /* 0x02 Motor Overtemperature | */
-   MOTOR_OVER_SPEED=4, /* 0x04 Motor Controller (left) | */
-   MOTOR_STALLED=8, /* 0x08 Motor Controller (right) | */
-   MOTOR_PHASE_LOSS=16, /* 0x10 Battery Management System (BMS) | */
-   MOTOR_HALL_FAULT=32, /* 0x20 Power Distribution Unit (PDU) | */
-   MOTOR_ENCODER_FAULT=64, /* 0x40 Display unit | */
-   MOTOR_BRAKE_FAULT=128, /* 0x80 UHF Radio link | */
-   UGV_MOTOR_ERROR_BITMASK_ENUM_END=129, /*  | */
-} UGV_MOTOR_ERROR_BITMASK;
+   UGV_MOTOR_ERROR_OVER_SPEED=1, /* 0x01 Motor Over Speed | */
+   UGV_MOTOR_ERROR_OVERLOAD=2, /* 0x02 Motor Overload | */
+   UGV_MOTOR_ERROR_PHASE_LOSS=4, /* 0x04 Motor Phase Loss | */
+   UGV_MOTOR_ERROR_BRAKE_FAULT=8, /* 0x08 Motor Brake Fault | */
+   UGV_MOTOR_ERROR_ENCODER_FAULT=16, /* 0x10 Motor Encoder Fault | */
+   UGV_MOTOR_ERROR_OVER_TEMPERATURE=32, /* 0x20 Motor Over Temperature | */
+   UGV_MOTOR_ERROR_HALL_FAULT=64, /* 0x40 Motor Hall Fault | */
+   UGV_MOTOR_ERROR_STALLED=128, /* 0x80 Motor Stalled Fault | */
+   UGV_MOTOR_ERROR_ENUM_END=129, /*  | */
+} UGV_MOTOR_ERROR;
 #endif
 
-/** @brief Operator mode in which the UGV operates in. Mode A signifies hand controller, Mode B signfies GCS */
+/** @brief Enum used to indicate the errors present in Motor Controller */
+#ifndef HAVE_ENUM_UGV_MOTOR_CTRL_ERROR
+#define HAVE_ENUM_UGV_MOTOR_CTRL_ERROR
+typedef enum UGV_MOTOR_CTRL_ERROR
+{
+   UGV_MOTOR_CTRL_ERROR_DRIVE=1, /* 0x01 Drive Fault | */
+   UGV_MOTOR_CTRL_ERROR_OVER_CURRENT=2, /* 0x02 Over Current | */
+   UGV_MOTOR_CTRL_ERROR_OVER_PRESSURE=4, /* 0x04 Over Pressure | */
+   UGV_MOTOR_CTRL_ERROR_UNDER_VOLTAGE=8, /* 0x08 Under Voltage | */
+   UGV_MOTOR_CTRL_ERROR_OVER_TEMPERATURE=16, /* 0x10 Over Temperature | */
+   UGV_MOTOR_CTRL_ERROR_CAN_COMM=32, /* 0x20 CAN Communication Fault | */
+   UGV_MOTOR_CTRL_ERROR_ENUM_END=33, /*  | */
+} UGV_MOTOR_CTRL_ERROR;
+#endif
+
+/** @brief Operator mode in which the UGV operates in. Mode A signifies hand controller, Mode B signifies GCS */
 #ifndef HAVE_ENUM_UGV_MAIN_MODE
 #define HAVE_ENUM_UGV_MAIN_MODE
 typedef enum UGV_MAIN_MODE
@@ -222,19 +237,6 @@ typedef enum MODE_CHANGE_REASON
    COMM_LOSS=3, /* submode change due to loss of communication | */
    MODE_CHANGE_REASON_ENUM_END=4, /*  | */
 } MODE_CHANGE_REASON;
-#endif
-
-/** @brief These encode the sub systems whose status is sent as part of the UGV_MASTER_HEALTH message. */
-#ifndef HAVE_ENUM_UGV_SENSOR_ERROR_BITMASK
-#define HAVE_ENUM_UGV_SENSOR_ERROR_BITMASK
-typedef enum UGV_SENSOR_ERROR_BITMASK
-{
-   BAT_UNDER_VOLTAGE=1, /* 0x01 Battery Under Voltage | */
-   BAT_OVER_CURRENT=2, /* 0x02 Battery Over Current | */
-   BAT_OVER_VOLTAGE=4, /* 0x04 Battery Over Voltage | */
-   BAT_OVER_TEMP=8, /* 0x08 Battery Over Temperature | */
-   UGV_SENSOR_ERROR_BITMASK_ENUM_END=9, /*  | */
-} UGV_SENSOR_ERROR_BITMASK;
 #endif
 
 /** @brief 
@@ -271,11 +273,11 @@ typedef enum UGV_HEALTH_STATE
 #include "./mavlink_msg_manual_control.h"
 #include "./mavlink_msg_command_long.h"
 #include "./mavlink_msg_command_ack.h"
+#include "./mavlink_msg_radio_status.h"
 #include "./mavlink_msg_timesync.h"
 #include "./mavlink_msg_ugv_system_info.h"
 #include "./mavlink_msg_ugv_component_version.h"
 #include "./mavlink_msg_ugv_subsystem_version.h"
-#include "./mavlink_msg_radio_status.h"
 
 // base include
 

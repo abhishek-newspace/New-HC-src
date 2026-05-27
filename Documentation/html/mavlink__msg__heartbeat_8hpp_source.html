@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Single Hand Controller For Scout: single_hand_controller/include/mavlink/minimal/mavlink_msg_heartbeat.hpp Source File</title>
+<title>Single Hand Controller For Scout: single_hand_controller/include/custom_v0.3/ugvCustom/mavlink_msg_heartbeat.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_7b9fbb5a735e340c531b53011231aa9d.html">single_hand_controller</a></li><li class="navelem"><a class="el" href="dir_01ee359754578e648c351ebeb302157d.html">include</a></li><li class="navelem"><a class="el" href="dir_e21d7d8a2780ecd467ece0ec1bc272a6.html">mavlink</a></li><li class="navelem"><a class="el" href="dir_9d5980cdf75798938b649a8a46ae2e58.html">minimal</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_7b9fbb5a735e340c531b53011231aa9d.html">single_hand_controller</a></li><li class="navelem"><a class="el" href="dir_01ee359754578e648c351ebeb302157d.html">include</a></li><li class="navelem"><a class="el" href="dir_d82262b09b6b654af1bda48f1378af91.html">custom_v0.3</a></li><li class="navelem"><a class="el" href="dir_e1dfe24b8dafda5a407fda5110d290fe.html">ugvCustom</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -77,10 +77,10 @@ $(function() {
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">namespace </span>mavlink {</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span>minimal {</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span>ugvCustom {</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span>msg {</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="structmavlink_1_1minimal_1_1msg_1_1HEARTBEAT.html">   14</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structmavlink_1_1minimal_1_1msg_1_1HEARTBEAT.html">HEARTBEAT</a> : <a class="code" href="structmavlink_1_1Message.html">mavlink::Message</a> {</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="structmavlink_1_1ugvCustom_1_1msg_1_1HEARTBEAT.html">   14</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structmavlink_1_1ugvCustom_1_1msg_1_1HEARTBEAT.html">HEARTBEAT</a> : <a class="code" href="structmavlink_1_1Message.html">mavlink::Message</a> {</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">static</span> constexpr msgid_t MSG_ID = 0;</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">static</span> constexpr <span class="keywordtype">size_t</span> LENGTH = 9;</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">static</span> constexpr <span class="keywordtype">size_t</span> MIN_LENGTH = 9;</div>
@@ -96,17 +96,17 @@ $(function() {
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    uint8_t mavlink_version; <span class="comment">/*&lt;  MAVLink version, not writable by user, gets added by protocol because of magic data type: uint8_t_mavlink_version */</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="structmavlink_1_1minimal_1_1msg_1_1HEARTBEAT.html#ab190ec121cea8c0121cdf6d733fbf9c6">   30</a></span>&#160;    <span class="keyword">inline</span> std::string <a class="code" href="structmavlink_1_1minimal_1_1msg_1_1HEARTBEAT.html#ab190ec121cea8c0121cdf6d733fbf9c6">get_name</a>(<span class="keywordtype">void</span>)<span class="keyword"> const override</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="structmavlink_1_1ugvCustom_1_1msg_1_1HEARTBEAT.html#abb8126e304919f04c7deb344c7e93d49">   30</a></span>&#160;    <span class="keyword">inline</span> std::string <a class="code" href="structmavlink_1_1ugvCustom_1_1msg_1_1HEARTBEAT.html#abb8126e304919f04c7deb344c7e93d49">get_name</a>(<span class="keywordtype">void</span>)<span class="keyword"> const override</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">    </span>{</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="keywordflow">return</span> NAME;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    }</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="structmavlink_1_1minimal_1_1msg_1_1HEARTBEAT.html#a16132091064ce7e43f25312542bafc5b">   35</a></span>&#160;    <span class="keyword">inline</span> <a class="code" href="structmavlink_1_1Message_1_1Info.html">Info</a> <a class="code" href="structmavlink_1_1minimal_1_1msg_1_1HEARTBEAT.html#a16132091064ce7e43f25312542bafc5b">get_message_info</a>(<span class="keywordtype">void</span>)<span class="keyword"> const override</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="structmavlink_1_1ugvCustom_1_1msg_1_1HEARTBEAT.html#ad848bb63ea89ebd0c84bd3a21027b213">   35</a></span>&#160;    <span class="keyword">inline</span> <a class="code" href="structmavlink_1_1Message_1_1Info.html">Info</a> <a class="code" href="structmavlink_1_1ugvCustom_1_1msg_1_1HEARTBEAT.html#ad848bb63ea89ebd0c84bd3a21027b213">get_message_info</a>(<span class="keywordtype">void</span>)<span class="keyword"> const override</span></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">    </span>{</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <span class="keywordflow">return</span> { MSG_ID, LENGTH, MIN_LENGTH, CRC_EXTRA };</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    }</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="structmavlink_1_1minimal_1_1msg_1_1HEARTBEAT.html#a2f1ebe2d4b91aa1cb5814a7103f79188">   40</a></span>&#160;    <span class="keyword">inline</span> std::string <a class="code" href="structmavlink_1_1minimal_1_1msg_1_1HEARTBEAT.html#a2f1ebe2d4b91aa1cb5814a7103f79188">to_yaml</a>(<span class="keywordtype">void</span>)<span class="keyword"> const override</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="structmavlink_1_1ugvCustom_1_1msg_1_1HEARTBEAT.html#a54ee72b10c3d828bbd9d6f531c724c63">   40</a></span>&#160;    <span class="keyword">inline</span> std::string <a class="code" href="structmavlink_1_1ugvCustom_1_1msg_1_1HEARTBEAT.html#a54ee72b10c3d828bbd9d6f531c724c63">to_yaml</a>(<span class="keywordtype">void</span>)<span class="keyword"> const override</span></div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">    </span>{</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        std::stringstream ss;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
@@ -121,7 +121,7 @@ $(function() {
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">return</span> ss.str();</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="structmavlink_1_1minimal_1_1msg_1_1HEARTBEAT.html#a2c9d145c559a4ade06aaaaf5ed1cbcb3">   55</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="structmavlink_1_1minimal_1_1msg_1_1HEARTBEAT.html#a2c9d145c559a4ade06aaaaf5ed1cbcb3">serialize</a>(<a class="code" href="classmavlink_1_1MsgMap.html">mavlink::MsgMap</a> &amp;map)<span class="keyword"> const override</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="structmavlink_1_1ugvCustom_1_1msg_1_1HEARTBEAT.html#a932f605bc2aba017f63db1d9bd2ad886">   55</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="structmavlink_1_1ugvCustom_1_1msg_1_1HEARTBEAT.html#a932f605bc2aba017f63db1d9bd2ad886">serialize</a>(<a class="code" href="classmavlink_1_1MsgMap.html">mavlink::MsgMap</a> &amp;map)<span class="keyword"> const override</span></div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">    </span>{</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        map.reset(MSG_ID, LENGTH);</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
@@ -130,10 +130,10 @@ $(function() {
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        map &lt;&lt; autopilot;                     <span class="comment">// offset: 5</span></div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        map &lt;&lt; base_mode;                     <span class="comment">// offset: 6</span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        map &lt;&lt; system_status;                 <span class="comment">// offset: 7</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        map &lt;&lt; uint8_t(3);               <span class="comment">// offset: 8</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        map &lt;&lt; uint8_t(2);               <span class="comment">// offset: 8</span></div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    }</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="structmavlink_1_1minimal_1_1msg_1_1HEARTBEAT.html#ab8c17acb76322bbad2caee955a5538b9">   67</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="structmavlink_1_1minimal_1_1msg_1_1HEARTBEAT.html#ab8c17acb76322bbad2caee955a5538b9">deserialize</a>(<a class="code" href="classmavlink_1_1MsgMap.html">mavlink::MsgMap</a> &amp;map)<span class="keyword"> override</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="structmavlink_1_1ugvCustom_1_1msg_1_1HEARTBEAT.html#a2a4725f5e7e28a37062e9b93695e1f2e">   67</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="structmavlink_1_1ugvCustom_1_1msg_1_1HEARTBEAT.html#a2a4725f5e7e28a37062e9b93695e1f2e">deserialize</a>(<a class="code" href="classmavlink_1_1MsgMap.html">mavlink::MsgMap</a> &amp;map)<span class="keyword"> override</span></div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keyword">    </span>{</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        map &gt;&gt; custom_mode;                   <span class="comment">// offset: 0</span></div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        map &gt;&gt; type;                          <span class="comment">// offset: 4</span></div>
@@ -145,17 +145,17 @@ $(function() {
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;};</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;} <span class="comment">// namespace msg</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;} <span class="comment">// namespace minimal</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;} <span class="comment">// namespace ugvCustom</span></div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;} <span class="comment">// namespace mavlink</span></div>
 <div class="ttc" id="aclassmavlink_1_1MsgMap_html"><div class="ttname"><a href="classmavlink_1_1MsgMap.html">mavlink::MsgMap</a></div><div class="ttdoc">Serialization helper wrapper for mavlink_message_t.</div><div class="ttdef"><b>Definition:</b> msgmap.hpp:19</div></div>
 <div class="ttc" id="astructmavlink_1_1Message_1_1Info_html"><div class="ttname"><a href="structmavlink_1_1Message_1_1Info.html">mavlink::Message::Info</a></div><div class="ttdef"><b>Definition:</b> message.hpp:52</div></div>
 <div class="ttc" id="astructmavlink_1_1Message_html"><div class="ttname"><a href="structmavlink_1_1Message.html">mavlink::Message</a></div><div class="ttdoc">MAVLink Message base class.</div><div class="ttdef"><b>Definition:</b> message.hpp:45</div></div>
-<div class="ttc" id="astructmavlink_1_1minimal_1_1msg_1_1HEARTBEAT_html"><div class="ttname"><a href="structmavlink_1_1minimal_1_1msg_1_1HEARTBEAT.html">mavlink::minimal::msg::HEARTBEAT</a></div><div class="ttdoc">HEARTBEAT message.</div><div class="ttdef"><b>Definition:</b> mavlink_msg_heartbeat.hpp:14</div></div>
-<div class="ttc" id="astructmavlink_1_1minimal_1_1msg_1_1HEARTBEAT_html_a16132091064ce7e43f25312542bafc5b"><div class="ttname"><a href="structmavlink_1_1minimal_1_1msg_1_1HEARTBEAT.html#a16132091064ce7e43f25312542bafc5b">mavlink::minimal::msg::HEARTBEAT::get_message_info</a></div><div class="ttdeci">Info get_message_info(void) const override</div><div class="ttdoc">Get info needed for mavlink_finalize_message_xxx()</div><div class="ttdef"><b>Definition:</b> mavlink_msg_heartbeat.hpp:35</div></div>
-<div class="ttc" id="astructmavlink_1_1minimal_1_1msg_1_1HEARTBEAT_html_a2c9d145c559a4ade06aaaaf5ed1cbcb3"><div class="ttname"><a href="structmavlink_1_1minimal_1_1msg_1_1HEARTBEAT.html#a2c9d145c559a4ade06aaaaf5ed1cbcb3">mavlink::minimal::msg::HEARTBEAT::serialize</a></div><div class="ttdeci">void serialize(mavlink::MsgMap &amp;map) const override</div><div class="ttdoc">Serialize message.</div><div class="ttdef"><b>Definition:</b> mavlink_msg_heartbeat.hpp:55</div></div>
-<div class="ttc" id="astructmavlink_1_1minimal_1_1msg_1_1HEARTBEAT_html_a2f1ebe2d4b91aa1cb5814a7103f79188"><div class="ttname"><a href="structmavlink_1_1minimal_1_1msg_1_1HEARTBEAT.html#a2f1ebe2d4b91aa1cb5814a7103f79188">mavlink::minimal::msg::HEARTBEAT::to_yaml</a></div><div class="ttdeci">std::string to_yaml(void) const override</div><div class="ttdoc">Make YAML-string from message content.</div><div class="ttdef"><b>Definition:</b> mavlink_msg_heartbeat.hpp:40</div></div>
-<div class="ttc" id="astructmavlink_1_1minimal_1_1msg_1_1HEARTBEAT_html_ab190ec121cea8c0121cdf6d733fbf9c6"><div class="ttname"><a href="structmavlink_1_1minimal_1_1msg_1_1HEARTBEAT.html#ab190ec121cea8c0121cdf6d733fbf9c6">mavlink::minimal::msg::HEARTBEAT::get_name</a></div><div class="ttdeci">std::string get_name(void) const override</div><div class="ttdoc">Get NAME constant.</div><div class="ttdef"><b>Definition:</b> mavlink_msg_heartbeat.hpp:30</div></div>
-<div class="ttc" id="astructmavlink_1_1minimal_1_1msg_1_1HEARTBEAT_html_ab8c17acb76322bbad2caee955a5538b9"><div class="ttname"><a href="structmavlink_1_1minimal_1_1msg_1_1HEARTBEAT.html#ab8c17acb76322bbad2caee955a5538b9">mavlink::minimal::msg::HEARTBEAT::deserialize</a></div><div class="ttdeci">void deserialize(mavlink::MsgMap &amp;map) override</div><div class="ttdoc">Deserialize message.</div><div class="ttdef"><b>Definition:</b> mavlink_msg_heartbeat.hpp:67</div></div>
+<div class="ttc" id="astructmavlink_1_1ugvCustom_1_1msg_1_1HEARTBEAT_html"><div class="ttname"><a href="structmavlink_1_1ugvCustom_1_1msg_1_1HEARTBEAT.html">mavlink::ugvCustom::msg::HEARTBEAT</a></div><div class="ttdoc">HEARTBEAT message.</div><div class="ttdef"><b>Definition:</b> mavlink_msg_heartbeat.hpp:14</div></div>
+<div class="ttc" id="astructmavlink_1_1ugvCustom_1_1msg_1_1HEARTBEAT_html_a2a4725f5e7e28a37062e9b93695e1f2e"><div class="ttname"><a href="structmavlink_1_1ugvCustom_1_1msg_1_1HEARTBEAT.html#a2a4725f5e7e28a37062e9b93695e1f2e">mavlink::ugvCustom::msg::HEARTBEAT::deserialize</a></div><div class="ttdeci">void deserialize(mavlink::MsgMap &amp;map) override</div><div class="ttdoc">Deserialize message.</div><div class="ttdef"><b>Definition:</b> mavlink_msg_heartbeat.hpp:67</div></div>
+<div class="ttc" id="astructmavlink_1_1ugvCustom_1_1msg_1_1HEARTBEAT_html_a54ee72b10c3d828bbd9d6f531c724c63"><div class="ttname"><a href="structmavlink_1_1ugvCustom_1_1msg_1_1HEARTBEAT.html#a54ee72b10c3d828bbd9d6f531c724c63">mavlink::ugvCustom::msg::HEARTBEAT::to_yaml</a></div><div class="ttdeci">std::string to_yaml(void) const override</div><div class="ttdoc">Make YAML-string from message content.</div><div class="ttdef"><b>Definition:</b> mavlink_msg_heartbeat.hpp:40</div></div>
+<div class="ttc" id="astructmavlink_1_1ugvCustom_1_1msg_1_1HEARTBEAT_html_a932f605bc2aba017f63db1d9bd2ad886"><div class="ttname"><a href="structmavlink_1_1ugvCustom_1_1msg_1_1HEARTBEAT.html#a932f605bc2aba017f63db1d9bd2ad886">mavlink::ugvCustom::msg::HEARTBEAT::serialize</a></div><div class="ttdeci">void serialize(mavlink::MsgMap &amp;map) const override</div><div class="ttdoc">Serialize message.</div><div class="ttdef"><b>Definition:</b> mavlink_msg_heartbeat.hpp:55</div></div>
+<div class="ttc" id="astructmavlink_1_1ugvCustom_1_1msg_1_1HEARTBEAT_html_abb8126e304919f04c7deb344c7e93d49"><div class="ttname"><a href="structmavlink_1_1ugvCustom_1_1msg_1_1HEARTBEAT.html#abb8126e304919f04c7deb344c7e93d49">mavlink::ugvCustom::msg::HEARTBEAT::get_name</a></div><div class="ttdeci">std::string get_name(void) const override</div><div class="ttdoc">Get NAME constant.</div><div class="ttdef"><b>Definition:</b> mavlink_msg_heartbeat.hpp:30</div></div>
+<div class="ttc" id="astructmavlink_1_1ugvCustom_1_1msg_1_1HEARTBEAT_html_ad848bb63ea89ebd0c84bd3a21027b213"><div class="ttname"><a href="structmavlink_1_1ugvCustom_1_1msg_1_1HEARTBEAT.html#ad848bb63ea89ebd0c84bd3a21027b213">mavlink::ugvCustom::msg::HEARTBEAT::get_message_info</a></div><div class="ttdeci">Info get_message_info(void) const override</div><div class="ttdoc">Get info needed for mavlink_finalize_message_xxx()</div><div class="ttdef"><b>Definition:</b> mavlink_msg_heartbeat.hpp:35</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

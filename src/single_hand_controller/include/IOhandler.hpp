@@ -73,13 +73,6 @@ struct button{
 };
 
 
-
-
-
-
-
-
-
 /// @brief a button in which long press is allowed
 struct long_press_button{
     uint8_t pin;

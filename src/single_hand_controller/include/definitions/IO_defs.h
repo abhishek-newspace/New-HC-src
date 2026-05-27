@@ -1,3 +1,11 @@
+/**
+ * @file IO_defs.h
+ * @version 0.1
+ * @author Nikhil Tom Jose
+ * @date 20/05/2026
+ * 
+ * Input and output pins, and other I/O related definitions
+ */
 #pragma once
 #include "Arduino.h"
 

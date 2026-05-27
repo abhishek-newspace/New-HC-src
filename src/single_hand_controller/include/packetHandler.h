@@ -42,10 +42,14 @@ void sendManualControl();
 /// @brief initiates serial communication with radio to send MAVLink packets; baud rate for serial communication is set in definitions.h
 void initiateSerialComm();
 
+/// @brief send an arm request
 void sendArmCommand();
 
+/// @brief send a disarm request
 void sendDisarmCommand();
 
+/// @brief send a heartbeat
 void sendHeartbeat();
 
+/// @brief send component version
 void sendComponentVersion();

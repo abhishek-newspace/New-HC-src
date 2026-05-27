@@ -20,9 +20,9 @@ namespace msg {
  */
 struct UGV_SYSTEM_INFO : mavlink::Message {
     static constexpr msgid_t MSG_ID = 50001;
-    static constexpr size_t LENGTH = 10;
-    static constexpr size_t MIN_LENGTH = 10;
-    static constexpr uint8_t CRC_EXTRA = 66;
+    static constexpr size_t LENGTH = 20;
+    static constexpr size_t MIN_LENGTH = 20;
+    static constexpr uint8_t CRC_EXTRA = 101;
     static constexpr auto NAME = "UGV_SYSTEM_INFO";
 
 
@@ -70,6 +70,28 @@ struct UGV_SYSTEM_INFO : mavlink::Message {
     uint8_t mode_change_reason; /*<  
         Reason for last mode transition.
        */
+    uint8_t rear_left_motor_faults; /*<  
+        Rear Left Motor Faults
+       */
+    uint8_t rear_right_motor_faults; /*<  
+        Rear Right Motor Faults
+       */
+    uint8_t front_left_motor_faults; /*<  
+        Front Left Motor Faults
+       */
+    uint8_t front_right_motor_faults; /*<  
+        Front Right Motor Faults
+       */
+    uint8_t left_mc_faults; /*<  
+        Left Motor Controller Faults
+       */
+    uint8_t right_mc_faults; /*<  
+        Right Motor Controller Faults
+       */
+    uint8_t left_mc_voltage; /*<  Left Motor Controller Voltage (Unit: 0.1 V) */
+    uint8_t right_mc_voltage; /*<  Right Motor Controller Voltage (Unit: 0.1 V) */
+    uint8_t left_mc_temperature; /*<  Left Motor Controller Temperature (Unit: 1 Degree Celsius) */
+    uint8_t right_mc_temperature; /*<  Right Motor Controller Temperature (Unit: 1 Degree Celsius) */
 
 
     inline std::string get_name(void) const override
@@ -97,6 +119,16 @@ struct UGV_SYSTEM_INFO : mavlink::Message {
         ss << "  intended_main_mode: " << +intended_main_mode << std::endl;
         ss << "  intended_sub_mode: " << +intended_sub_mode << std::endl;
         ss << "  mode_change_reason: " << +mode_change_reason << std::endl;
+        ss << "  rear_left_motor_faults: " << +rear_left_motor_faults << std::endl;
+        ss << "  rear_right_motor_faults: " << +rear_right_motor_faults << std::endl;
+        ss << "  front_left_motor_faults: " << +front_left_motor_faults << std::endl;
+        ss << "  front_right_motor_faults: " << +front_right_motor_faults << std::endl;
+        ss << "  left_mc_faults: " << +left_mc_faults << std::endl;
+        ss << "  right_mc_faults: " << +right_mc_faults << std::endl;
+        ss << "  left_mc_voltage: " << +left_mc_voltage << std::endl;
+        ss << "  right_mc_voltage: " << +right_mc_voltage << std::endl;
+        ss << "  left_mc_temperature: " << +left_mc_temperature << std::endl;
+        ss << "  right_mc_temperature: " << +right_mc_temperature << std::endl;
 
         return ss.str();
     }
@@ -115,6 +147,16 @@ struct UGV_SYSTEM_INFO : mavlink::Message {
         map << intended_main_mode;            // offset: 7
         map << intended_sub_mode;             // offset: 8
         map << mode_change_reason;            // offset: 9
+        map << rear_left_motor_faults;        // offset: 10
+        map << rear_right_motor_faults;       // offset: 11
+        map << front_left_motor_faults;       // offset: 12
+        map << front_right_motor_faults;      // offset: 13
+        map << left_mc_faults;                // offset: 14
+        map << right_mc_faults;               // offset: 15
+        map << left_mc_voltage;               // offset: 16
+        map << right_mc_voltage;              // offset: 17
+        map << left_mc_temperature;           // offset: 18
+        map << right_mc_temperature;          // offset: 19
     }
 
     inline void deserialize(mavlink::MsgMap &map) override
@@ -129,6 +171,16 @@ struct UGV_SYSTEM_INFO : mavlink::Message {
         map >> intended_main_mode;            // offset: 7
         map >> intended_sub_mode;             // offset: 8
         map >> mode_change_reason;            // offset: 9
+        map >> rear_left_motor_faults;        // offset: 10
+        map >> rear_right_motor_faults;       // offset: 11
+        map >> front_left_motor_faults;       // offset: 12
+        map >> front_right_motor_faults;      // offset: 13
+        map >> left_mc_faults;                // offset: 14
+        map >> right_mc_faults;               // offset: 15
+        map >> left_mc_voltage;               // offset: 16
+        map >> right_mc_voltage;              // offset: 17
+        map >> left_mc_temperature;           // offset: 18
+        map >> right_mc_temperature;          // offset: 19
     }
 };
 

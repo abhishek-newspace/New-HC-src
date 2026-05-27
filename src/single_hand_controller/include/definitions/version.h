@@ -1,3 +1,11 @@
+/**
+ * @file version.h
+ * @version 0.1
+ * @author Nikhil Tom Jose
+ * @date 20/05/2026
+ * 
+ * current software version
+ */
 #pragma once
 
 

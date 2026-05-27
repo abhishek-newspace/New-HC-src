@@ -78,18 +78,20 @@ $(function() {
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// complete setup</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="setupFunctions_8h.html">setupFunctions.h</a>&quot;</span> <span class="comment">// setup of all required headers</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">// header files for handling MAVLink packets</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="packetHandler_8h.html">packetHandler.h</a>&quot;</span>  <span class="comment">// receiving and sending of packets to and from buffer</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="packet__receiver_8hpp.html">packet_receiver.hpp</a>&quot;</span>  <span class="comment">// processing of received packets</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="message__sender_8hpp.html">message_sender.hpp</a>&quot;</span>   <span class="comment">// packing data into buffer and sending</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="timer_8hpp.html">timer.hpp</a>&quot;</span>    <span class="comment">// handles timing within loop</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="IOhandler_8hpp.html">IOhandler.hpp</a>&quot;</span>    <span class="comment">// sending and receiving data between input, output ports</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="displayHandler_8hpp.html">displayHandler.hpp</a>&quot;</span>   <span class="comment">// displays anything meant to be displayed on LCD screen</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="stateHandler_8hpp.html">stateHandler.hpp</a>&quot;</span> <span class="comment">// handles state of connection, and speed</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="PeriodicActions_8hpp.html">PeriodicActions.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">// header files for handling MAVLink packets</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="packetHandler_8h.html">packetHandler.h</a>&quot;</span>  <span class="comment">// receiving and sending of packets to and from buffer</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="packet__receiver_8hpp.html">packet_receiver.hpp</a>&quot;</span>  <span class="comment">// processing of received packets</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="message__sender_8hpp.html">message_sender.hpp</a>&quot;</span>   <span class="comment">// packing data into buffer and sending</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="timer_8hpp.html">timer.hpp</a>&quot;</span>    <span class="comment">// handles timing within loop</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="IOhandler_8hpp.html">IOhandler.hpp</a>&quot;</span>    <span class="comment">// sending and receiving data between input, output ports</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="displayHandler_8hpp.html">displayHandler.hpp</a>&quot;</span>   <span class="comment">// displays anything meant to be displayed on LCD screen</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="stateHandler_8hpp.html">stateHandler.hpp</a>&quot;</span> <span class="comment">// handles state of connection, and speed</span></div>
 <div class="ttc" id="aIOhandler_8hpp_html"><div class="ttname"><a href="IOhandler_8hpp.html">IOhandler.hpp</a></div></div>
+<div class="ttc" id="aPeriodicActions_8hpp_html"><div class="ttname"><a href="PeriodicActions_8hpp.html">PeriodicActions.hpp</a></div><div class="ttdoc">Run functions periodically.</div></div>
 <div class="ttc" id="adefinitions_8h_html"><div class="ttname"><a href="definitions_8h.html">definitions.h</a></div></div>
 <div class="ttc" id="adisplayHandler_8hpp_html"><div class="ttname"><a href="displayHandler_8hpp.html">displayHandler.hpp</a></div></div>
 <div class="ttc" id="amessage__sender_8hpp_html"><div class="ttname"><a href="message__sender_8hpp.html">message_sender.hpp</a></div></div>

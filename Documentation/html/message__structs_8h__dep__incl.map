@@ -1,12 +1,14 @@
 <map id="single_hand_controller/include/message_structs.h" name="single_hand_controller/include/message_structs.h">
 <area shape="rect" id="node1" title="This header file is part of the Single Hand Controller for Scout project; Defines all message structs..." alt="" coords="210,5,409,47"/>
 <area shape="rect" id="node2" href="$message__sender_8hpp.html" title=" " alt="" coords="30,95,245,136"/>
-<area shape="rect" id="node4" href="$packetHandler_8h.html" title=" " alt="" coords="218,184,401,225"/>
-<area shape="rect" id="node9" href="$packet__receiver_8hpp.html" title="Process all received messages, through MAVLink." alt="" coords="377,95,583,136"/>
+<area shape="rect" id="node6" href="$packetHandler_8h.html" title=" " alt="" coords="218,184,401,225"/>
+<area shape="rect" id="node11" href="$packet__receiver_8hpp.html" title="Process all received messages, through MAVLink." alt="" coords="377,95,583,136"/>
 <area shape="rect" id="node3" href="$includes_8h.html" title=" " alt="" coords="91,363,261,404"/>
-<area shape="rect" id="node8" href="$message__sender_8cpp.html" title=" " alt="" coords="25,184,194,225"/>
-<area shape="rect" id="node5" href="$setupFunctions_8h.html" title="Defines all functions required during setup phase of hand controller." alt="" coords="213,273,400,315"/>
-<area shape="rect" id="node7" href="$packetHandler_8cpp.html" title=" " alt="" coords="425,273,594,315"/>
-<area shape="rect" id="node6" href="$setupFunctions_8cpp.html" title=" " alt="" coords="285,363,454,404"/>
-<area shape="rect" id="node10" href="$packet__receiver_8cpp.html" title=" " alt="" coords="425,184,594,225"/>
+<area shape="rect" id="node10" href="$message__sender_8cpp.html" title=" " alt="" coords="25,184,194,225"/>
+<area shape="rect" id="node4" href="$standard__procedures_8hpp.html" title="set of functions to represent phases within the main control loop of the microcontroller in the hand ..." alt="" coords="55,452,297,493"/>
+<area shape="rect" id="node5" href="$standard__procedures_8cpp.html" title="definitions of set of functions to represent phases within the main control loop of the microcontroll..." alt="" coords="81,541,271,583"/>
+<area shape="rect" id="node7" href="$setupFunctions_8h.html" title="Defines all functions required during setup phase of hand controller." alt="" coords="213,273,400,315"/>
+<area shape="rect" id="node9" href="$packetHandler_8cpp.html" title=" " alt="" coords="425,273,594,315"/>
+<area shape="rect" id="node8" href="$setupFunctions_8cpp.html" title=" " alt="" coords="285,363,454,404"/>
+<area shape="rect" id="node12" href="$packet__receiver_8cpp.html" title=" " alt="" coords="425,184,594,225"/>
 </map>

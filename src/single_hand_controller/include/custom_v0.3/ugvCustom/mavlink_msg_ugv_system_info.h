@@ -1,6 +1,8 @@
 #pragma once
 // MESSAGE UGV_SYSTEM_INFO PACKING
 
+#include <stdint.h>
+
 #define MAVLINK_MSG_ID_UGV_SYSTEM_INFO 50001
 
 
@@ -49,15 +51,37 @@ typedef struct __mavlink_ugv_system_info_t {
  uint8_t mode_change_reason; /*<  
         Reason for last mode transition.
       */
+ uint8_t rear_left_motor_faults; /*<  
+        Rear Left Motor Faults
+      */
+ uint8_t rear_right_motor_faults; /*<  
+        Rear Right Motor Faults
+      */
+ uint8_t front_left_motor_faults; /*<  
+        Front Left Motor Faults
+      */
+ uint8_t front_right_motor_faults; /*<  
+        Front Right Motor Faults
+      */
+ uint8_t left_mc_faults; /*<  
+        Left Motor Controller Faults
+      */
+ uint8_t right_mc_faults; /*<  
+        Right Motor Controller Faults
+      */
+ uint8_t left_mc_voltage; /*<  Left Motor Controller Voltage (Unit: 0.1 V)*/
+ uint8_t right_mc_voltage; /*<  Right Motor Controller Voltage (Unit: 0.1 V)*/
+ uint8_t left_mc_temperature; /*<  Left Motor Controller Temperature (Unit: 1 Degree Celsius)*/
+ uint8_t right_mc_temperature; /*<  Right Motor Controller Temperature (Unit: 1 Degree Celsius)*/
 } mavlink_ugv_system_info_t;
 
-#define MAVLINK_MSG_ID_UGV_SYSTEM_INFO_LEN 10
-#define MAVLINK_MSG_ID_UGV_SYSTEM_INFO_MIN_LEN 10
-#define MAVLINK_MSG_ID_50001_LEN 10
-#define MAVLINK_MSG_ID_50001_MIN_LEN 10
+#define MAVLINK_MSG_ID_UGV_SYSTEM_INFO_LEN 20
+#define MAVLINK_MSG_ID_UGV_SYSTEM_INFO_MIN_LEN 20
+#define MAVLINK_MSG_ID_50001_LEN 20
+#define MAVLINK_MSG_ID_50001_MIN_LEN 20
 
-#define MAVLINK_MSG_ID_UGV_SYSTEM_INFO_CRC 66
-#define MAVLINK_MSG_ID_50001_CRC 66
+#define MAVLINK_MSG_ID_UGV_SYSTEM_INFO_CRC 101
+#define MAVLINK_MSG_ID_50001_CRC 101
 
 
 
@@ -65,7 +89,7 @@ typedef struct __mavlink_ugv_system_info_t {
 #define MAVLINK_MESSAGE_INFO_UGV_SYSTEM_INFO { \
     50001, \
     "UGV_SYSTEM_INFO", \
-    10, \
+    20, \
     {  { "subsystem_health_1", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_ugv_system_info_t, subsystem_health_1) }, \
          { "subsystem_health_2", NULL, MAVLINK_TYPE_UINT8_T, 0, 1, offsetof(mavlink_ugv_system_info_t, subsystem_health_2) }, \
          { "subsystem_health_3", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_ugv_system_info_t, subsystem_health_3) }, \
@@ -76,12 +100,22 @@ typedef struct __mavlink_ugv_system_info_t {
          { "intended_main_mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 7, offsetof(mavlink_ugv_system_info_t, intended_main_mode) }, \
          { "intended_sub_mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_ugv_system_info_t, intended_sub_mode) }, \
          { "mode_change_reason", NULL, MAVLINK_TYPE_UINT8_T, 0, 9, offsetof(mavlink_ugv_system_info_t, mode_change_reason) }, \
+         { "rear_left_motor_faults", NULL, MAVLINK_TYPE_UINT8_T, 0, 10, offsetof(mavlink_ugv_system_info_t, rear_left_motor_faults) }, \
+         { "rear_right_motor_faults", NULL, MAVLINK_TYPE_UINT8_T, 0, 11, offsetof(mavlink_ugv_system_info_t, rear_right_motor_faults) }, \
+         { "front_left_motor_faults", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_ugv_system_info_t, front_left_motor_faults) }, \
+         { "front_right_motor_faults", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_ugv_system_info_t, front_right_motor_faults) }, \
+         { "left_mc_faults", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_ugv_system_info_t, left_mc_faults) }, \
+         { "right_mc_faults", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_ugv_system_info_t, right_mc_faults) }, \
+         { "left_mc_voltage", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_ugv_system_info_t, left_mc_voltage) }, \
+         { "right_mc_voltage", NULL, MAVLINK_TYPE_UINT8_T, 0, 17, offsetof(mavlink_ugv_system_info_t, right_mc_voltage) }, \
+         { "left_mc_temperature", NULL, MAVLINK_TYPE_UINT8_T, 0, 18, offsetof(mavlink_ugv_system_info_t, left_mc_temperature) }, \
+         { "right_mc_temperature", NULL, MAVLINK_TYPE_UINT8_T, 0, 19, offsetof(mavlink_ugv_system_info_t, right_mc_temperature) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_UGV_SYSTEM_INFO { \
     "UGV_SYSTEM_INFO", \
-    10, \
+    20, \
     {  { "subsystem_health_1", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_ugv_system_info_t, subsystem_health_1) }, \
          { "subsystem_health_2", NULL, MAVLINK_TYPE_UINT8_T, 0, 1, offsetof(mavlink_ugv_system_info_t, subsystem_health_2) }, \
          { "subsystem_health_3", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_ugv_system_info_t, subsystem_health_3) }, \
@@ -92,6 +126,16 @@ typedef struct __mavlink_ugv_system_info_t {
          { "intended_main_mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 7, offsetof(mavlink_ugv_system_info_t, intended_main_mode) }, \
          { "intended_sub_mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_ugv_system_info_t, intended_sub_mode) }, \
          { "mode_change_reason", NULL, MAVLINK_TYPE_UINT8_T, 0, 9, offsetof(mavlink_ugv_system_info_t, mode_change_reason) }, \
+         { "rear_left_motor_faults", NULL, MAVLINK_TYPE_UINT8_T, 0, 10, offsetof(mavlink_ugv_system_info_t, rear_left_motor_faults) }, \
+         { "rear_right_motor_faults", NULL, MAVLINK_TYPE_UINT8_T, 0, 11, offsetof(mavlink_ugv_system_info_t, rear_right_motor_faults) }, \
+         { "front_left_motor_faults", NULL, MAVLINK_TYPE_UINT8_T, 0, 12, offsetof(mavlink_ugv_system_info_t, front_left_motor_faults) }, \
+         { "front_right_motor_faults", NULL, MAVLINK_TYPE_UINT8_T, 0, 13, offsetof(mavlink_ugv_system_info_t, front_right_motor_faults) }, \
+         { "left_mc_faults", NULL, MAVLINK_TYPE_UINT8_T, 0, 14, offsetof(mavlink_ugv_system_info_t, left_mc_faults) }, \
+         { "right_mc_faults", NULL, MAVLINK_TYPE_UINT8_T, 0, 15, offsetof(mavlink_ugv_system_info_t, right_mc_faults) }, \
+         { "left_mc_voltage", NULL, MAVLINK_TYPE_UINT8_T, 0, 16, offsetof(mavlink_ugv_system_info_t, left_mc_voltage) }, \
+         { "right_mc_voltage", NULL, MAVLINK_TYPE_UINT8_T, 0, 17, offsetof(mavlink_ugv_system_info_t, right_mc_voltage) }, \
+         { "left_mc_temperature", NULL, MAVLINK_TYPE_UINT8_T, 0, 18, offsetof(mavlink_ugv_system_info_t, left_mc_temperature) }, \
+         { "right_mc_temperature", NULL, MAVLINK_TYPE_UINT8_T, 0, 19, offsetof(mavlink_ugv_system_info_t, right_mc_temperature) }, \
          } \
 }
 #endif
@@ -146,10 +190,32 @@ typedef struct __mavlink_ugv_system_info_t {
  * @param mode_change_reason  
         Reason for last mode transition.
       
+ * @param rear_left_motor_faults  
+        Rear Left Motor Faults
+      
+ * @param rear_right_motor_faults  
+        Rear Right Motor Faults
+      
+ * @param front_left_motor_faults  
+        Front Left Motor Faults
+      
+ * @param front_right_motor_faults  
+        Front Right Motor Faults
+      
+ * @param left_mc_faults  
+        Left Motor Controller Faults
+      
+ * @param right_mc_faults  
+        Right Motor Controller Faults
+      
+ * @param left_mc_voltage  Left Motor Controller Voltage (Unit: 0.1 V)
+ * @param right_mc_voltage  Right Motor Controller Voltage (Unit: 0.1 V)
+ * @param left_mc_temperature  Left Motor Controller Temperature (Unit: 1 Degree Celsius)
+ * @param right_mc_temperature  Right Motor Controller Temperature (Unit: 1 Degree Celsius)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_ugv_system_info_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint8_t subsystem_health_1, uint8_t subsystem_health_2, uint8_t subsystem_health_3, uint8_t subsystem_health_4, uint8_t battery_soc, uint8_t main_mode, uint8_t sub_mode, uint8_t intended_main_mode, uint8_t intended_sub_mode, uint8_t mode_change_reason)
+                               uint8_t subsystem_health_1, uint8_t subsystem_health_2, uint8_t subsystem_health_3, uint8_t subsystem_health_4, uint8_t battery_soc, uint8_t main_mode, uint8_t sub_mode, uint8_t intended_main_mode, uint8_t intended_sub_mode, uint8_t mode_change_reason, uint8_t rear_left_motor_faults, uint8_t rear_right_motor_faults, uint8_t front_left_motor_faults, uint8_t front_right_motor_faults, uint8_t left_mc_faults, uint8_t right_mc_faults, uint8_t left_mc_voltage, uint8_t right_mc_voltage, uint8_t left_mc_temperature, uint8_t right_mc_temperature)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_UGV_SYSTEM_INFO_LEN];
@@ -163,6 +229,16 @@ static inline uint16_t mavlink_msg_ugv_system_info_pack(uint8_t system_id, uint8
     _mav_put_uint8_t(buf, 7, intended_main_mode);
     _mav_put_uint8_t(buf, 8, intended_sub_mode);
     _mav_put_uint8_t(buf, 9, mode_change_reason);
+    _mav_put_uint8_t(buf, 10, rear_left_motor_faults);
+    _mav_put_uint8_t(buf, 11, rear_right_motor_faults);
+    _mav_put_uint8_t(buf, 12, front_left_motor_faults);
+    _mav_put_uint8_t(buf, 13, front_right_motor_faults);
+    _mav_put_uint8_t(buf, 14, left_mc_faults);
+    _mav_put_uint8_t(buf, 15, right_mc_faults);
+    _mav_put_uint8_t(buf, 16, left_mc_voltage);
+    _mav_put_uint8_t(buf, 17, right_mc_voltage);
+    _mav_put_uint8_t(buf, 18, left_mc_temperature);
+    _mav_put_uint8_t(buf, 19, right_mc_temperature);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_UGV_SYSTEM_INFO_LEN);
 #else
@@ -177,6 +253,16 @@ static inline uint16_t mavlink_msg_ugv_system_info_pack(uint8_t system_id, uint8
     packet.intended_main_mode = intended_main_mode;
     packet.intended_sub_mode = intended_sub_mode;
     packet.mode_change_reason = mode_change_reason;
+    packet.rear_left_motor_faults = rear_left_motor_faults;
+    packet.rear_right_motor_faults = rear_right_motor_faults;
+    packet.front_left_motor_faults = front_left_motor_faults;
+    packet.front_right_motor_faults = front_right_motor_faults;
+    packet.left_mc_faults = left_mc_faults;
+    packet.right_mc_faults = right_mc_faults;
+    packet.left_mc_voltage = left_mc_voltage;
+    packet.right_mc_voltage = right_mc_voltage;
+    packet.left_mc_temperature = left_mc_temperature;
+    packet.right_mc_temperature = right_mc_temperature;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_UGV_SYSTEM_INFO_LEN);
 #endif
@@ -236,10 +322,32 @@ static inline uint16_t mavlink_msg_ugv_system_info_pack(uint8_t system_id, uint8
  * @param mode_change_reason  
         Reason for last mode transition.
       
+ * @param rear_left_motor_faults  
+        Rear Left Motor Faults
+      
+ * @param rear_right_motor_faults  
+        Rear Right Motor Faults
+      
+ * @param front_left_motor_faults  
+        Front Left Motor Faults
+      
+ * @param front_right_motor_faults  
+        Front Right Motor Faults
+      
+ * @param left_mc_faults  
+        Left Motor Controller Faults
+      
+ * @param right_mc_faults  
+        Right Motor Controller Faults
+      
+ * @param left_mc_voltage  Left Motor Controller Voltage (Unit: 0.1 V)
+ * @param right_mc_voltage  Right Motor Controller Voltage (Unit: 0.1 V)
+ * @param left_mc_temperature  Left Motor Controller Temperature (Unit: 1 Degree Celsius)
+ * @param right_mc_temperature  Right Motor Controller Temperature (Unit: 1 Degree Celsius)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_ugv_system_info_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
-                               uint8_t subsystem_health_1, uint8_t subsystem_health_2, uint8_t subsystem_health_3, uint8_t subsystem_health_4, uint8_t battery_soc, uint8_t main_mode, uint8_t sub_mode, uint8_t intended_main_mode, uint8_t intended_sub_mode, uint8_t mode_change_reason)
+                               uint8_t subsystem_health_1, uint8_t subsystem_health_2, uint8_t subsystem_health_3, uint8_t subsystem_health_4, uint8_t battery_soc, uint8_t main_mode, uint8_t sub_mode, uint8_t intended_main_mode, uint8_t intended_sub_mode, uint8_t mode_change_reason, uint8_t rear_left_motor_faults, uint8_t rear_right_motor_faults, uint8_t front_left_motor_faults, uint8_t front_right_motor_faults, uint8_t left_mc_faults, uint8_t right_mc_faults, uint8_t left_mc_voltage, uint8_t right_mc_voltage, uint8_t left_mc_temperature, uint8_t right_mc_temperature)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_UGV_SYSTEM_INFO_LEN];
@@ -253,6 +361,16 @@ static inline uint16_t mavlink_msg_ugv_system_info_pack_status(uint8_t system_id
     _mav_put_uint8_t(buf, 7, intended_main_mode);
     _mav_put_uint8_t(buf, 8, intended_sub_mode);
     _mav_put_uint8_t(buf, 9, mode_change_reason);
+    _mav_put_uint8_t(buf, 10, rear_left_motor_faults);
+    _mav_put_uint8_t(buf, 11, rear_right_motor_faults);
+    _mav_put_uint8_t(buf, 12, front_left_motor_faults);
+    _mav_put_uint8_t(buf, 13, front_right_motor_faults);
+    _mav_put_uint8_t(buf, 14, left_mc_faults);
+    _mav_put_uint8_t(buf, 15, right_mc_faults);
+    _mav_put_uint8_t(buf, 16, left_mc_voltage);
+    _mav_put_uint8_t(buf, 17, right_mc_voltage);
+    _mav_put_uint8_t(buf, 18, left_mc_temperature);
+    _mav_put_uint8_t(buf, 19, right_mc_temperature);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_UGV_SYSTEM_INFO_LEN);
 #else
@@ -267,6 +385,16 @@ static inline uint16_t mavlink_msg_ugv_system_info_pack_status(uint8_t system_id
     packet.intended_main_mode = intended_main_mode;
     packet.intended_sub_mode = intended_sub_mode;
     packet.mode_change_reason = mode_change_reason;
+    packet.rear_left_motor_faults = rear_left_motor_faults;
+    packet.rear_right_motor_faults = rear_right_motor_faults;
+    packet.front_left_motor_faults = front_left_motor_faults;
+    packet.front_right_motor_faults = front_right_motor_faults;
+    packet.left_mc_faults = left_mc_faults;
+    packet.right_mc_faults = right_mc_faults;
+    packet.left_mc_voltage = left_mc_voltage;
+    packet.right_mc_voltage = right_mc_voltage;
+    packet.left_mc_temperature = left_mc_temperature;
+    packet.right_mc_temperature = right_mc_temperature;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_UGV_SYSTEM_INFO_LEN);
 #endif
@@ -329,11 +457,33 @@ static inline uint16_t mavlink_msg_ugv_system_info_pack_status(uint8_t system_id
  * @param mode_change_reason  
         Reason for last mode transition.
       
+ * @param rear_left_motor_faults  
+        Rear Left Motor Faults
+      
+ * @param rear_right_motor_faults  
+        Rear Right Motor Faults
+      
+ * @param front_left_motor_faults  
+        Front Left Motor Faults
+      
+ * @param front_right_motor_faults  
+        Front Right Motor Faults
+      
+ * @param left_mc_faults  
+        Left Motor Controller Faults
+      
+ * @param right_mc_faults  
+        Right Motor Controller Faults
+      
+ * @param left_mc_voltage  Left Motor Controller Voltage (Unit: 0.1 V)
+ * @param right_mc_voltage  Right Motor Controller Voltage (Unit: 0.1 V)
+ * @param left_mc_temperature  Left Motor Controller Temperature (Unit: 1 Degree Celsius)
+ * @param right_mc_temperature  Right Motor Controller Temperature (Unit: 1 Degree Celsius)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_ugv_system_info_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint8_t subsystem_health_1,uint8_t subsystem_health_2,uint8_t subsystem_health_3,uint8_t subsystem_health_4,uint8_t battery_soc,uint8_t main_mode,uint8_t sub_mode,uint8_t intended_main_mode,uint8_t intended_sub_mode,uint8_t mode_change_reason)
+                                   uint8_t subsystem_health_1,uint8_t subsystem_health_2,uint8_t subsystem_health_3,uint8_t subsystem_health_4,uint8_t battery_soc,uint8_t main_mode,uint8_t sub_mode,uint8_t intended_main_mode,uint8_t intended_sub_mode,uint8_t mode_change_reason,uint8_t rear_left_motor_faults,uint8_t rear_right_motor_faults,uint8_t front_left_motor_faults,uint8_t front_right_motor_faults,uint8_t left_mc_faults,uint8_t right_mc_faults,uint8_t left_mc_voltage,uint8_t right_mc_voltage,uint8_t left_mc_temperature,uint8_t right_mc_temperature)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_UGV_SYSTEM_INFO_LEN];
@@ -347,6 +497,16 @@ static inline uint16_t mavlink_msg_ugv_system_info_pack_chan(uint8_t system_id, 
     _mav_put_uint8_t(buf, 7, intended_main_mode);
     _mav_put_uint8_t(buf, 8, intended_sub_mode);
     _mav_put_uint8_t(buf, 9, mode_change_reason);
+    _mav_put_uint8_t(buf, 10, rear_left_motor_faults);
+    _mav_put_uint8_t(buf, 11, rear_right_motor_faults);
+    _mav_put_uint8_t(buf, 12, front_left_motor_faults);
+    _mav_put_uint8_t(buf, 13, front_right_motor_faults);
+    _mav_put_uint8_t(buf, 14, left_mc_faults);
+    _mav_put_uint8_t(buf, 15, right_mc_faults);
+    _mav_put_uint8_t(buf, 16, left_mc_voltage);
+    _mav_put_uint8_t(buf, 17, right_mc_voltage);
+    _mav_put_uint8_t(buf, 18, left_mc_temperature);
+    _mav_put_uint8_t(buf, 19, right_mc_temperature);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_UGV_SYSTEM_INFO_LEN);
 #else
@@ -361,6 +521,16 @@ static inline uint16_t mavlink_msg_ugv_system_info_pack_chan(uint8_t system_id, 
     packet.intended_main_mode = intended_main_mode;
     packet.intended_sub_mode = intended_sub_mode;
     packet.mode_change_reason = mode_change_reason;
+    packet.rear_left_motor_faults = rear_left_motor_faults;
+    packet.rear_right_motor_faults = rear_right_motor_faults;
+    packet.front_left_motor_faults = front_left_motor_faults;
+    packet.front_right_motor_faults = front_right_motor_faults;
+    packet.left_mc_faults = left_mc_faults;
+    packet.right_mc_faults = right_mc_faults;
+    packet.left_mc_voltage = left_mc_voltage;
+    packet.right_mc_voltage = right_mc_voltage;
+    packet.left_mc_temperature = left_mc_temperature;
+    packet.right_mc_temperature = right_mc_temperature;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_UGV_SYSTEM_INFO_LEN);
 #endif
@@ -379,7 +549,7 @@ static inline uint16_t mavlink_msg_ugv_system_info_pack_chan(uint8_t system_id, 
  */
 static inline uint16_t mavlink_msg_ugv_system_info_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_ugv_system_info_t* ugv_system_info)
 {
-    return mavlink_msg_ugv_system_info_pack(system_id, component_id, msg, ugv_system_info->subsystem_health_1, ugv_system_info->subsystem_health_2, ugv_system_info->subsystem_health_3, ugv_system_info->subsystem_health_4, ugv_system_info->battery_soc, ugv_system_info->main_mode, ugv_system_info->sub_mode, ugv_system_info->intended_main_mode, ugv_system_info->intended_sub_mode, ugv_system_info->mode_change_reason);
+    return mavlink_msg_ugv_system_info_pack(system_id, component_id, msg, ugv_system_info->subsystem_health_1, ugv_system_info->subsystem_health_2, ugv_system_info->subsystem_health_3, ugv_system_info->subsystem_health_4, ugv_system_info->battery_soc, ugv_system_info->main_mode, ugv_system_info->sub_mode, ugv_system_info->intended_main_mode, ugv_system_info->intended_sub_mode, ugv_system_info->mode_change_reason, ugv_system_info->rear_left_motor_faults, ugv_system_info->rear_right_motor_faults, ugv_system_info->front_left_motor_faults, ugv_system_info->front_right_motor_faults, ugv_system_info->left_mc_faults, ugv_system_info->right_mc_faults, ugv_system_info->left_mc_voltage, ugv_system_info->right_mc_voltage, ugv_system_info->left_mc_temperature, ugv_system_info->right_mc_temperature);
 }
 
 /**
@@ -393,7 +563,7 @@ static inline uint16_t mavlink_msg_ugv_system_info_encode(uint8_t system_id, uin
  */
 static inline uint16_t mavlink_msg_ugv_system_info_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_ugv_system_info_t* ugv_system_info)
 {
-    return mavlink_msg_ugv_system_info_pack_chan(system_id, component_id, chan, msg, ugv_system_info->subsystem_health_1, ugv_system_info->subsystem_health_2, ugv_system_info->subsystem_health_3, ugv_system_info->subsystem_health_4, ugv_system_info->battery_soc, ugv_system_info->main_mode, ugv_system_info->sub_mode, ugv_system_info->intended_main_mode, ugv_system_info->intended_sub_mode, ugv_system_info->mode_change_reason);
+    return mavlink_msg_ugv_system_info_pack_chan(system_id, component_id, chan, msg, ugv_system_info->subsystem_health_1, ugv_system_info->subsystem_health_2, ugv_system_info->subsystem_health_3, ugv_system_info->subsystem_health_4, ugv_system_info->battery_soc, ugv_system_info->main_mode, ugv_system_info->sub_mode, ugv_system_info->intended_main_mode, ugv_system_info->intended_sub_mode, ugv_system_info->mode_change_reason, ugv_system_info->rear_left_motor_faults, ugv_system_info->rear_right_motor_faults, ugv_system_info->front_left_motor_faults, ugv_system_info->front_right_motor_faults, ugv_system_info->left_mc_faults, ugv_system_info->right_mc_faults, ugv_system_info->left_mc_voltage, ugv_system_info->right_mc_voltage, ugv_system_info->left_mc_temperature, ugv_system_info->right_mc_temperature);
 }
 
 /**
@@ -407,7 +577,7 @@ static inline uint16_t mavlink_msg_ugv_system_info_encode_chan(uint8_t system_id
  */
 static inline uint16_t mavlink_msg_ugv_system_info_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_ugv_system_info_t* ugv_system_info)
 {
-    return mavlink_msg_ugv_system_info_pack_status(system_id, component_id, _status, msg,  ugv_system_info->subsystem_health_1, ugv_system_info->subsystem_health_2, ugv_system_info->subsystem_health_3, ugv_system_info->subsystem_health_4, ugv_system_info->battery_soc, ugv_system_info->main_mode, ugv_system_info->sub_mode, ugv_system_info->intended_main_mode, ugv_system_info->intended_sub_mode, ugv_system_info->mode_change_reason);
+    return mavlink_msg_ugv_system_info_pack_status(system_id, component_id, _status, msg,  ugv_system_info->subsystem_health_1, ugv_system_info->subsystem_health_2, ugv_system_info->subsystem_health_3, ugv_system_info->subsystem_health_4, ugv_system_info->battery_soc, ugv_system_info->main_mode, ugv_system_info->sub_mode, ugv_system_info->intended_main_mode, ugv_system_info->intended_sub_mode, ugv_system_info->mode_change_reason, ugv_system_info->rear_left_motor_faults, ugv_system_info->rear_right_motor_faults, ugv_system_info->front_left_motor_faults, ugv_system_info->front_right_motor_faults, ugv_system_info->left_mc_faults, ugv_system_info->right_mc_faults, ugv_system_info->left_mc_voltage, ugv_system_info->right_mc_voltage, ugv_system_info->left_mc_temperature, ugv_system_info->right_mc_temperature);
 }
 
 /**
@@ -458,10 +628,32 @@ static inline uint16_t mavlink_msg_ugv_system_info_encode_status(uint8_t system_
  * @param mode_change_reason  
         Reason for last mode transition.
       
+ * @param rear_left_motor_faults  
+        Rear Left Motor Faults
+      
+ * @param rear_right_motor_faults  
+        Rear Right Motor Faults
+      
+ * @param front_left_motor_faults  
+        Front Left Motor Faults
+      
+ * @param front_right_motor_faults  
+        Front Right Motor Faults
+      
+ * @param left_mc_faults  
+        Left Motor Controller Faults
+      
+ * @param right_mc_faults  
+        Right Motor Controller Faults
+      
+ * @param left_mc_voltage  Left Motor Controller Voltage (Unit: 0.1 V)
+ * @param right_mc_voltage  Right Motor Controller Voltage (Unit: 0.1 V)
+ * @param left_mc_temperature  Left Motor Controller Temperature (Unit: 1 Degree Celsius)
+ * @param right_mc_temperature  Right Motor Controller Temperature (Unit: 1 Degree Celsius)
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_ugv_system_info_send(mavlink_channel_t chan, uint8_t subsystem_health_1, uint8_t subsystem_health_2, uint8_t subsystem_health_3, uint8_t subsystem_health_4, uint8_t battery_soc, uint8_t main_mode, uint8_t sub_mode, uint8_t intended_main_mode, uint8_t intended_sub_mode, uint8_t mode_change_reason)
+static inline void mavlink_msg_ugv_system_info_send(mavlink_channel_t chan, uint8_t subsystem_health_1, uint8_t subsystem_health_2, uint8_t subsystem_health_3, uint8_t subsystem_health_4, uint8_t battery_soc, uint8_t main_mode, uint8_t sub_mode, uint8_t intended_main_mode, uint8_t intended_sub_mode, uint8_t mode_change_reason, uint8_t rear_left_motor_faults, uint8_t rear_right_motor_faults, uint8_t front_left_motor_faults, uint8_t front_right_motor_faults, uint8_t left_mc_faults, uint8_t right_mc_faults, uint8_t left_mc_voltage, uint8_t right_mc_voltage, uint8_t left_mc_temperature, uint8_t right_mc_temperature)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_UGV_SYSTEM_INFO_LEN];
@@ -475,6 +667,16 @@ static inline void mavlink_msg_ugv_system_info_send(mavlink_channel_t chan, uint
     _mav_put_uint8_t(buf, 7, intended_main_mode);
     _mav_put_uint8_t(buf, 8, intended_sub_mode);
     _mav_put_uint8_t(buf, 9, mode_change_reason);
+    _mav_put_uint8_t(buf, 10, rear_left_motor_faults);
+    _mav_put_uint8_t(buf, 11, rear_right_motor_faults);
+    _mav_put_uint8_t(buf, 12, front_left_motor_faults);
+    _mav_put_uint8_t(buf, 13, front_right_motor_faults);
+    _mav_put_uint8_t(buf, 14, left_mc_faults);
+    _mav_put_uint8_t(buf, 15, right_mc_faults);
+    _mav_put_uint8_t(buf, 16, left_mc_voltage);
+    _mav_put_uint8_t(buf, 17, right_mc_voltage);
+    _mav_put_uint8_t(buf, 18, left_mc_temperature);
+    _mav_put_uint8_t(buf, 19, right_mc_temperature);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UGV_SYSTEM_INFO, buf, MAVLINK_MSG_ID_UGV_SYSTEM_INFO_MIN_LEN, MAVLINK_MSG_ID_UGV_SYSTEM_INFO_LEN, MAVLINK_MSG_ID_UGV_SYSTEM_INFO_CRC);
 #else
@@ -489,6 +691,16 @@ static inline void mavlink_msg_ugv_system_info_send(mavlink_channel_t chan, uint
     packet.intended_main_mode = intended_main_mode;
     packet.intended_sub_mode = intended_sub_mode;
     packet.mode_change_reason = mode_change_reason;
+    packet.rear_left_motor_faults = rear_left_motor_faults;
+    packet.rear_right_motor_faults = rear_right_motor_faults;
+    packet.front_left_motor_faults = front_left_motor_faults;
+    packet.front_right_motor_faults = front_right_motor_faults;
+    packet.left_mc_faults = left_mc_faults;
+    packet.right_mc_faults = right_mc_faults;
+    packet.left_mc_voltage = left_mc_voltage;
+    packet.right_mc_voltage = right_mc_voltage;
+    packet.left_mc_temperature = left_mc_temperature;
+    packet.right_mc_temperature = right_mc_temperature;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UGV_SYSTEM_INFO, (const char *)&packet, MAVLINK_MSG_ID_UGV_SYSTEM_INFO_MIN_LEN, MAVLINK_MSG_ID_UGV_SYSTEM_INFO_LEN, MAVLINK_MSG_ID_UGV_SYSTEM_INFO_CRC);
 #endif
@@ -502,7 +714,7 @@ static inline void mavlink_msg_ugv_system_info_send(mavlink_channel_t chan, uint
 static inline void mavlink_msg_ugv_system_info_send_struct(mavlink_channel_t chan, const mavlink_ugv_system_info_t* ugv_system_info)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_ugv_system_info_send(chan, ugv_system_info->subsystem_health_1, ugv_system_info->subsystem_health_2, ugv_system_info->subsystem_health_3, ugv_system_info->subsystem_health_4, ugv_system_info->battery_soc, ugv_system_info->main_mode, ugv_system_info->sub_mode, ugv_system_info->intended_main_mode, ugv_system_info->intended_sub_mode, ugv_system_info->mode_change_reason);
+    mavlink_msg_ugv_system_info_send(chan, ugv_system_info->subsystem_health_1, ugv_system_info->subsystem_health_2, ugv_system_info->subsystem_health_3, ugv_system_info->subsystem_health_4, ugv_system_info->battery_soc, ugv_system_info->main_mode, ugv_system_info->sub_mode, ugv_system_info->intended_main_mode, ugv_system_info->intended_sub_mode, ugv_system_info->mode_change_reason, ugv_system_info->rear_left_motor_faults, ugv_system_info->rear_right_motor_faults, ugv_system_info->front_left_motor_faults, ugv_system_info->front_right_motor_faults, ugv_system_info->left_mc_faults, ugv_system_info->right_mc_faults, ugv_system_info->left_mc_voltage, ugv_system_info->right_mc_voltage, ugv_system_info->left_mc_temperature, ugv_system_info->right_mc_temperature);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UGV_SYSTEM_INFO, (const char *)ugv_system_info, MAVLINK_MSG_ID_UGV_SYSTEM_INFO_MIN_LEN, MAVLINK_MSG_ID_UGV_SYSTEM_INFO_LEN, MAVLINK_MSG_ID_UGV_SYSTEM_INFO_CRC);
 #endif
@@ -516,7 +728,7 @@ static inline void mavlink_msg_ugv_system_info_send_struct(mavlink_channel_t cha
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_ugv_system_info_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t subsystem_health_1, uint8_t subsystem_health_2, uint8_t subsystem_health_3, uint8_t subsystem_health_4, uint8_t battery_soc, uint8_t main_mode, uint8_t sub_mode, uint8_t intended_main_mode, uint8_t intended_sub_mode, uint8_t mode_change_reason)
+static inline void mavlink_msg_ugv_system_info_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t subsystem_health_1, uint8_t subsystem_health_2, uint8_t subsystem_health_3, uint8_t subsystem_health_4, uint8_t battery_soc, uint8_t main_mode, uint8_t sub_mode, uint8_t intended_main_mode, uint8_t intended_sub_mode, uint8_t mode_change_reason, uint8_t rear_left_motor_faults, uint8_t rear_right_motor_faults, uint8_t front_left_motor_faults, uint8_t front_right_motor_faults, uint8_t left_mc_faults, uint8_t right_mc_faults, uint8_t left_mc_voltage, uint8_t right_mc_voltage, uint8_t left_mc_temperature, uint8_t right_mc_temperature)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
@@ -530,6 +742,16 @@ static inline void mavlink_msg_ugv_system_info_send_buf(mavlink_message_t *msgbu
     _mav_put_uint8_t(buf, 7, intended_main_mode);
     _mav_put_uint8_t(buf, 8, intended_sub_mode);
     _mav_put_uint8_t(buf, 9, mode_change_reason);
+    _mav_put_uint8_t(buf, 10, rear_left_motor_faults);
+    _mav_put_uint8_t(buf, 11, rear_right_motor_faults);
+    _mav_put_uint8_t(buf, 12, front_left_motor_faults);
+    _mav_put_uint8_t(buf, 13, front_right_motor_faults);
+    _mav_put_uint8_t(buf, 14, left_mc_faults);
+    _mav_put_uint8_t(buf, 15, right_mc_faults);
+    _mav_put_uint8_t(buf, 16, left_mc_voltage);
+    _mav_put_uint8_t(buf, 17, right_mc_voltage);
+    _mav_put_uint8_t(buf, 18, left_mc_temperature);
+    _mav_put_uint8_t(buf, 19, right_mc_temperature);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UGV_SYSTEM_INFO, buf, MAVLINK_MSG_ID_UGV_SYSTEM_INFO_MIN_LEN, MAVLINK_MSG_ID_UGV_SYSTEM_INFO_LEN, MAVLINK_MSG_ID_UGV_SYSTEM_INFO_CRC);
 #else
@@ -544,6 +766,16 @@ static inline void mavlink_msg_ugv_system_info_send_buf(mavlink_message_t *msgbu
     packet->intended_main_mode = intended_main_mode;
     packet->intended_sub_mode = intended_sub_mode;
     packet->mode_change_reason = mode_change_reason;
+    packet->rear_left_motor_faults = rear_left_motor_faults;
+    packet->rear_right_motor_faults = rear_right_motor_faults;
+    packet->front_left_motor_faults = front_left_motor_faults;
+    packet->front_right_motor_faults = front_right_motor_faults;
+    packet->left_mc_faults = left_mc_faults;
+    packet->right_mc_faults = right_mc_faults;
+    packet->left_mc_voltage = left_mc_voltage;
+    packet->right_mc_voltage = right_mc_voltage;
+    packet->left_mc_temperature = left_mc_temperature;
+    packet->right_mc_temperature = right_mc_temperature;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_UGV_SYSTEM_INFO, (const char *)packet, MAVLINK_MSG_ID_UGV_SYSTEM_INFO_MIN_LEN, MAVLINK_MSG_ID_UGV_SYSTEM_INFO_LEN, MAVLINK_MSG_ID_UGV_SYSTEM_INFO_CRC);
 #endif
@@ -690,6 +922,118 @@ static inline uint8_t mavlink_msg_ugv_system_info_get_mode_change_reason(const m
 }
 
 /**
+ * @brief Get field rear_left_motor_faults from ugv_system_info message
+ *
+ * @return  
+        Rear Left Motor Faults
+      
+ */
+static inline uint8_t mavlink_msg_ugv_system_info_get_rear_left_motor_faults(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_uint8_t(msg,  10);
+}
+
+/**
+ * @brief Get field rear_right_motor_faults from ugv_system_info message
+ *
+ * @return  
+        Rear Right Motor Faults
+      
+ */
+static inline uint8_t mavlink_msg_ugv_system_info_get_rear_right_motor_faults(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_uint8_t(msg,  11);
+}
+
+/**
+ * @brief Get field front_left_motor_faults from ugv_system_info message
+ *
+ * @return  
+        Front Left Motor Faults
+      
+ */
+static inline uint8_t mavlink_msg_ugv_system_info_get_front_left_motor_faults(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_uint8_t(msg,  12);
+}
+
+/**
+ * @brief Get field front_right_motor_faults from ugv_system_info message
+ *
+ * @return  
+        Front Right Motor Faults
+      
+ */
+static inline uint8_t mavlink_msg_ugv_system_info_get_front_right_motor_faults(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_uint8_t(msg,  13);
+}
+
+/**
+ * @brief Get field left_mc_faults from ugv_system_info message
+ *
+ * @return  
+        Left Motor Controller Faults
+      
+ */
+static inline uint8_t mavlink_msg_ugv_system_info_get_left_mc_faults(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_uint8_t(msg,  14);
+}
+
+/**
+ * @brief Get field right_mc_faults from ugv_system_info message
+ *
+ * @return  
+        Right Motor Controller Faults
+      
+ */
+static inline uint8_t mavlink_msg_ugv_system_info_get_right_mc_faults(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_uint8_t(msg,  15);
+}
+
+/**
+ * @brief Get field left_mc_voltage from ugv_system_info message
+ *
+ * @return  Left Motor Controller Voltage (Unit: 0.1 V)
+ */
+static inline uint8_t mavlink_msg_ugv_system_info_get_left_mc_voltage(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_uint8_t(msg,  16);
+}
+
+/**
+ * @brief Get field right_mc_voltage from ugv_system_info message
+ *
+ * @return  Right Motor Controller Voltage (Unit: 0.1 V)
+ */
+static inline uint8_t mavlink_msg_ugv_system_info_get_right_mc_voltage(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_uint8_t(msg,  17);
+}
+
+/**
+ * @brief Get field left_mc_temperature from ugv_system_info message
+ *
+ * @return  Left Motor Controller Temperature (Unit: 1 Degree Celsius)
+ */
+static inline uint8_t mavlink_msg_ugv_system_info_get_left_mc_temperature(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_uint8_t(msg,  18);
+}
+
+/**
+ * @brief Get field right_mc_temperature from ugv_system_info message
+ *
+ * @return  Right Motor Controller Temperature (Unit: 1 Degree Celsius)
+ */
+static inline uint8_t mavlink_msg_ugv_system_info_get_right_mc_temperature(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_uint8_t(msg,  19);
+}
+
+/**
  * @brief Decode a ugv_system_info message into a struct
  *
  * @param msg The message to decode
@@ -708,6 +1052,16 @@ static inline void mavlink_msg_ugv_system_info_decode(const mavlink_message_t* m
     ugv_system_info->intended_main_mode = mavlink_msg_ugv_system_info_get_intended_main_mode(msg);
     ugv_system_info->intended_sub_mode = mavlink_msg_ugv_system_info_get_intended_sub_mode(msg);
     ugv_system_info->mode_change_reason = mavlink_msg_ugv_system_info_get_mode_change_reason(msg);
+    ugv_system_info->rear_left_motor_faults = mavlink_msg_ugv_system_info_get_rear_left_motor_faults(msg);
+    ugv_system_info->rear_right_motor_faults = mavlink_msg_ugv_system_info_get_rear_right_motor_faults(msg);
+    ugv_system_info->front_left_motor_faults = mavlink_msg_ugv_system_info_get_front_left_motor_faults(msg);
+    ugv_system_info->front_right_motor_faults = mavlink_msg_ugv_system_info_get_front_right_motor_faults(msg);
+    ugv_system_info->left_mc_faults = mavlink_msg_ugv_system_info_get_left_mc_faults(msg);
+    ugv_system_info->right_mc_faults = mavlink_msg_ugv_system_info_get_right_mc_faults(msg);
+    ugv_system_info->left_mc_voltage = mavlink_msg_ugv_system_info_get_left_mc_voltage(msg);
+    ugv_system_info->right_mc_voltage = mavlink_msg_ugv_system_info_get_right_mc_voltage(msg);
+    ugv_system_info->left_mc_temperature = mavlink_msg_ugv_system_info_get_left_mc_temperature(msg);
+    ugv_system_info->right_mc_temperature = mavlink_msg_ugv_system_info_get_right_mc_temperature(msg);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_UGV_SYSTEM_INFO_LEN? msg->len : MAVLINK_MSG_ID_UGV_SYSTEM_INFO_LEN;
         memset(ugv_system_info, 0, MAVLINK_MSG_ID_UGV_SYSTEM_INFO_LEN);

@@ -36,6 +36,7 @@ bool is_unsigned_message(const mavlink_status_t* status, uint32_t msgId) {
 
 bool setupSigning(){
     
+#ifdef SIGN_PACKETS
     memset(&signing, 0, sizeof(signing)); // ensure no garbage values
     signing.flags = MAVLINK_SIGNING_FLAG_SIGN_OUTGOING; 
     memcpy(signing.secret_key, signing_key, 32);  // set signing key
@@ -49,6 +50,7 @@ bool setupSigning(){
     status_chan->signing = &signing;
 
     IF_DEBUG(Serial.print("set up signing, current flags ->");)
+#endif
     IF_DEBUG(Serial.println(mavlink_get_channel_status(MAVLINK_COMM_0)->flags);)
 
     return !(status_chan == nullptr);
@@ -71,8 +73,8 @@ bool heartbeat_timed_out()
 
 
 void sendBuffer(int len){
-    IF_DEBUG(Serial.print("current flags ->");)
-    IF_DEBUG(Serial.println(mavlink_get_channel_status(MAVLINK_COMM_0)->flags);)
+    //IF_DEBUG(Serial.print("current flags ->");)
+    //IF_DEBUG(Serial.println(mavlink_get_channel_status(MAVLINK_COMM_0)->flags);)
     IF_PRINT_BYTES(Serial.print("sending -> "));
     for(int i = 0; i < len; i++){
         IF_PRINT_BYTES(Serial.print("0x");)
@@ -102,6 +104,7 @@ void sendTimesyncRequest()
 }
 
 void sendArmCommand(){
+    IF_DEBUG(Serial.println("\\\\\\\\\\\\\\\\\\\\\\\\\\ARM\\\\\\\\\\\\\\");)
     sendBuffer(msgsndr.buffer_arm_disarm_cmd(1));
 }
 
@@ -110,25 +113,18 @@ void sendDisarmCommand(){
     sendBuffer(msgsndr.buffer_arm_disarm_cmd(0));
 }
 
-// void getRadioStatus(){
-//     for(int i = 0;i < sizeof(radio_status_trigger); i++){
-//         msgsndr.
-//     }
-// }
-
 void sendManualControl(){
+    IF_DEBUG(Serial.println("sending manual control");)
     thumbstickControl thumbstick_input;
     getXY(&thumbstick_input);
     sendBuffer(
         msgsndr.buffer_manual_control(
-            thumbstick_input.X,
-            thumbstick_input.Y,
+            thumbstick_input.X / (float)100 * 2.78 ,
+            thumbstick_input.Y / (float)100 * 13.7,
             0,
             0,
             0,
-            0,
-            getUGV_dir(),
-            getUGV_speed()
+            0
         )
     );
 }
@@ -159,7 +155,7 @@ void handlePacketReceived()
              break;
 
             case MAVLINK_MSG_ID_HEARTBEAT:
-                IF_DEBUG(Serial.println("received heartbeat"));
+                IF_DEBUG(Serial.println("((((((((((((((((((((received heartbeat))))))))))))))))"));
                 packet_receiver::receive_heartbeat(&msg);
             break;
             case MAVLINK_MSG_ID_SYS_STATUS: 
@@ -167,11 +163,17 @@ void handlePacketReceived()
                 packet_receiver::receive_sys_status(&msg);
                 break;
             case MAVLINK_MSG_ID_COMMAND_ACK:
-                IF_DEBUG(Serial.println("received command ack"));
+                IF_DEBUG(Serial.println("++++++++++++++++++received command ack"));
                 packet_receiver::receive_ack(&msg);
                 break;
             }
         }
+        // else if(status.parse_state == 14)
+        //     IF_DEBUG(Serial.println("failed CRC");)
+
+        
     }
+    
+        
     IF_PRINT_BYTES(Serial.println(""));
 }

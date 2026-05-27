@@ -21,10 +21,59 @@ timer timesync_timer;
 
 timer update_screen_timer;
 
+bool currentlySendingArm = false;
+extern int arm_send_count;
+bool arm_disarm_error = false;
+
 int hb_count = 0;
 long unsigned int OFP_timer = 0;
 
+
 uint32_t init_time;
+
+
+
+inline bool isUGVdisconnected(){
+    return getUGV_state() == disconnected;
+}
+
+inline bool startArmCondition(){
+    return arm_pressed() && getUGV_state() == standby && !is_arm_disarm_sending();
+}
+
+inline bool startDisarmCondition(){
+    return arm_long_pressed() && getUGV_state() == active && !is_arm_disarm_sending();
+}
+
+inline bool stopArmDisarmResendCondition(){
+    return arm_send_count <= 0;
+}
+
+void resendArmCommand(){
+    sendArmCommand();
+    dec_arm_disarm_sending();
+}
+
+void resendDisarmCommand(){
+    sendDisarmCommand();
+    dec_arm_disarm_sending();
+}
+
+void endArmDisarmResend(){
+    Serial.println("/////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\");
+    clearInfo();
+    if(arm_disarm_error){
+        // resend limit reached due to lack of acknowledgment
+        displayError((currentlySendingArm ? String("arm") : String("disarm") + String(" request failed")),3);
+        currentlySendingArm = false;
+    }
+    reset_arm_disarm_sending();
+    arm_disarm_error = false;
+}
+
+
+
+
 
 void initiateController(){
     if(!identifyControllerDrift()){
@@ -49,12 +98,19 @@ void initiateController(){
 
 
 void run_wakeup_seq(){
+    sendHeartbeat();
+    sendHeartbeat();
+    sendHeartbeat();
     periodic_actions.reset();
     periodic_actions.addPeriodicAction(sendHeartbeat,SECONDS_MS_1);   // send a heartbeat every 1 second
     establish_connectivity();
-    periodic_actions.addPeriodicAction(updateDisplay,SECONDS_MS_1);
     time_synchronize();
     sendComponentVersion();
+
+    periodic_actions.reset();
+    periodic_actions.addPeriodicAction(sendHeartbeat,SECONDS_MS_1);
+    periodic_actions.addPeriodicAction(updateDisplay,SECONDS_MS_1);
+    periodic_actions.addPeriodicAction(sendTimesyncRequest,TIMESYNC_MSG_WAIT,isUGVdisconnected);
 }
 
 /**
@@ -72,8 +128,8 @@ void establish_connectivity()
         periodic_actions.performPeriodicActions();
     }
     hb_count = 0;
-
 }
+
 
 /**
  * A MAVLink Timesync request packet is sent immediately on entering this phase.
@@ -98,7 +154,6 @@ void time_synchronize()
         periodic_actions.performPeriodicActions();
     }while(!receivedFirstTimesync());
     periodic_actions.stopPeriodicAction(tsID);
-    periodic_actions.addPeriodicAction(sendTimesyncRequest,TIMESYNC_MSG_WAIT);
 }
 
 void startOFPTimer(){
@@ -114,31 +169,11 @@ void end_OFP_timer(unsigned long int time_limit){
 }
 
 
-bool startArmConditionSatisfied(){
-    return arm_pressed() && getUGV_state() == standby && get_requests_sent() == 0;
-}
-
-bool startDisarmConditionSatisfied(){
-    return arm_long_pressed() && getUGV_state() == active && get_requests_sent() == 0;
-}
-
-bool stopArmDisarmResendCondition(){
-    return get_requests_sent == 0;
-}
-
-void resendArmCommand(){
-    sendArmCommand();
-    inc_requests_sent();
-}
-
-void resendDisarmCommand(){
-    sendDisarmCommand();
-    inc_requests_sent();
-}
-
 void run_OFP_cycle()
 {
     startOFPTimer();
+    Serial.print("Arm send count : ");
+    Serial.println(arm_send_count);
 
     if(heartbeat_timed_out()){
         setUGV_state((ugv_status)disconnected);
@@ -148,23 +183,19 @@ void run_OFP_cycle()
     if(getUGV_state() == active)
         sendManualControl();
 
-    if(startArmConditionSatisfied()){
+    if(startArmCondition()){
+        init_arm_disarm_sending();
+        currentlySendingArm = true;
         IF_DEBUG(Serial.println("ARM BUTTON PRESSED"));
         displayInfo("arming ...");
-        periodic_actions.addPeriodicAction(resendArmCommand,ARM_DISARM_RESEND_DELAY,stopArmDisarmResendCondition);
+        periodic_actions.addPeriodicAction(resendArmCommand,ARM_DISARM_RESEND_DELAY,stopArmDisarmResendCondition, endArmDisarmResend);
     }
-    else if(startDisarmConditionSatisfied()){
+    else if(startDisarmCondition()){
+        init_arm_disarm_sending();
         IF_DEBUG(Serial.println("DISARM BUTTON PRESSED"));
         displayInfo("disarming ...");
-        periodic_actions.addPeriodicAction(resendDisarmCommand,ARM_DISARM_RESEND_DELAY,stopArmDisarmResendCondition);
+        periodic_actions.addPeriodicAction(resendDisarmCommand,ARM_DISARM_RESEND_DELAY,stopArmDisarmResendCondition, endArmDisarmResend);
     }
-
-    if(get_requests_sent() >= 4){
-        clearInfo();
-        displayError((get_arm_start() ? String("disarm") : String("arm") + String(" request failed")),3);
-        resetArmDisarm();
-    }
-
     handlePacketReceived();
     periodic_actions.performPeriodicActions();
 

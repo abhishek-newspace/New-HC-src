@@ -45,14 +45,15 @@ public:
 /// @brief check whether first time synchronization is performed or not.
 bool receivedFirstTimesync();
 
-void resetArmDisarm();
-void setArmNow();
-void setDisarmNow();
+/// @brief check whether an arm/disarm message is currently being sent
+/// @return true when an arm/disarm message is currently being sent (arm_disarm_count > 0)
+bool is_arm_disarm_sending();
 
-uint32_t get_arm_start();
-uint32_t get_disarm_start();
+/// @brief reset arm_disarm_count to 0; so that no arm/disarm messages will be sent
+void reset_arm_disarm_sending();
 
+/// @brief set arm_disarm_count to number of times arm/disarm command needs to be resent
+void init_arm_disarm_sending();
 
-void inc_requests_sent();
-int get_requests_sent();
-void init_requests_sent();
+/// @brief decrement arm_disarm_count, to be called everytime an arm/disarm command is sent.
+void dec_arm_disarm_sending();

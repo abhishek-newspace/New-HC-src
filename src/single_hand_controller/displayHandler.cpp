@@ -15,7 +15,7 @@ extern ugv_status current_state;
 extern ugv_status prev_state;
 
 uint8_t RSSI = 0;
-uint8_t ugv_battery_soc = 0;
+uint8_t ugv_battery_soc = 80;
 
 uint8_t battery_topLeftX, battery_topLeftY;
 
@@ -257,7 +257,13 @@ void displayLogo(){
     tft.drawBitmap(0, 0, ns_logo, SCREEN_WIDTH, SCREEN_HEIGHT, COLOR_WHITE, COLOR_BLUE);
 }
 void displayInvertedLogo(){
-    tft.drawBitmap(0, 0, ns_logo, SCREEN_WIDTH, SCREEN_HEIGHT, COLOR_GRAY, COLOR_LIGHTBLUE);
+    #ifdef DISPLAY_NS_LOGO
+      tft.drawBitmap(0, 0, ns_logo, SCREEN_WIDTH, SCREEN_HEIGHT, COLOR_GRAY, COLOR_LIGHTBLUE);
+    #else
+      tft.fillRectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, COLOR_BLACK);
+    #endif
+    
+
 }
 
 void setFontSmall(){
@@ -278,48 +284,60 @@ void clear_display(){
 }
 
 void displayUGV_status(ugv_status s){
-    switch(s){
-      case disconnected:
-        tft.drawText(UGV_STATUS_TEXT_POS_X,UGV_STATUS_TEXT_POS_Y,"DISCONNECTED",COLOR_RED);
-        IF_DEBUG (Serial.println("disconnected");)
-      break;
-      case active:
-        tft.drawText(UGV_STATUS_TEXT_POS_X,UGV_STATUS_TEXT_POS_Y,"ARMED           ",COLOR_GREEN); 
-      break;
-      case standby:
-        tft.drawText(UGV_STATUS_TEXT_POS_X,UGV_STATUS_TEXT_POS_Y,"DISARMED        ",COLOR_BLUE);
-      break;
-      default:
-        tft.drawText(UGV_STATUS_TEXT_POS_X,UGV_STATUS_TEXT_POS_Y,"UNKOWN          ",COLOR_BLUE);
-    }
+  String text;
+  int color;
+  switch(s){
+    case disconnected:
+      text = "DISCONNECTED";
+      color = COLOR_RED;
+      IF_DEBUG (Serial.println("disconnected");)
+    break;
+    case active:
+      text = "ARMED           ";
+      color = COLOR_GREEN;
+    break;
+    case standby:
+      text = "DISARMED        ";
+      color = COLOR_BLUE;
+    break;
+    default:
+      text = "UNKOWN          ";
+      color = COLOR_ORANGE;
+  }
+  tft.drawText(UGV_STATUS_TEXT_POS_X,UGV_STATUS_TEXT_POS_Y,text,color);
 }
 
 
 void displaySpeed(int speed){
   String text;
+  int color;
   switch(speed){
     case 0:
       text = "NEUTRAL   ";
+      color = DEFAULT_TEXT_COLOR;
     break;
     case 1:
       text = "LOW       ";
+      color = COLOR_GREEN;
     break;
     case 2:
       text = "MEDIUM    ";
+      color = COLOR_YELLOW;
     break;
     case 3:
       text = "HIGH      ";
+      color = COLOR_RED;
       break;
   }
-  tft.drawText(SPEED_TEXT_POS_X,SPEED_TEXT_POS_Y,text, COLOR_ORANGE);  
+  tft.drawText(SPEED_TEXT_POS_X,SPEED_TEXT_POS_Y,text, color);  
 }
 
 
 void displayRSSI(){
-  if(current_state != disconnected)
-    tft.drawText(RSSI_TEXT_POS_X, RSSI_TEXT_POS_Y, String(RSSI));
-  else
-    tft.drawText(RSSI_TEXT_POS_X, RSSI_TEXT_POS_Y, "-");
+  // if(current_state != disconnected)
+    tft.drawText(RSSI_TEXT_POS_X, RSSI_TEXT_POS_Y, String(RSSI), DEFAULT_TEXT_COLOR);
+  // else
+  //   tft.drawText(RSSI_TEXT_POS_X, RSSI_TEXT_POS_Y, "-", DEFAULT_TEXT_COLOR);
 }
 
 
@@ -364,17 +382,16 @@ void displayInfo(String message){
     return;
   current_info_displayed = message;
   clearInfo();
-  tft.setBackgroundColor(COLOR_GRAY);
   setFontSmall();
   if(message.length() > 23){
-    tft.drawText(0 ,200, String("INFO:" + message.substring(0,22)),COLOR_BLACK);
-    tft.drawText(0 ,208, String(message.substring(22)), COLOR_BLACK);
+    tft.drawText(INFO_MSG_POS_X ,INFO_MSG_POS_Y, String("INFO:" + message.substring(0,22)),COLOR_YELLOW);
+    tft.drawText(INFO_MSG_POS_X ,INFO_MSG_POS_Y + 8, String(message.substring(22)), COLOR_YELLOW);
   }
   else{
-    tft.drawText(0 ,200, String("INFO:" + message), COLOR_BLACK);
+    tft.drawText(INFO_MSG_POS_X ,INFO_MSG_POS_Y , String("INFO:" + message), COLOR_YELLOW);
   }
   setFont1();
-  tft.setBackgroundColor(COLOR_BLACK);
+  
 
 
     // do{
@@ -383,29 +400,27 @@ void displayInfo(String message){
 }
 
 void clearInfo(){
-  tft.fillRectangle(0, 200, 176, 221, COLOR_GRAY);
+  tft.fillRectangle(INFO_MSG_POS_X, INFO_MSG_POS_Y, INFO_MSG_POS_X1, INFO_MSG_POS_Y1, BACKGROUND_COLOR);
 }
 
 void displayError(String message, int error_code){
   if(message == current_err_displayed)
     return;
   current_err_displayed = message;
-  tft.setBackgroundColor(COLOR_WHITE);
-  tft.drawText(0,150, String("ERROR : " + String(error_code)), COLOR_RED);
+  tft.drawText(0,150, String("ERROR : " + String(error_code)), ERROR_TEXT_COLOR);
   setFontSmall();
 
   if(message.length() > 27){
-    tft.drawText(0,170, message.substring(0,27), COLOR_RED);
-    tft.drawText(0,178, message.substring(27), COLOR_RED);
+    tft.drawText(0,170, message.substring(0,27), ERROR_TEXT_COLOR);
+    tft.drawText(0,178, message.substring(27), ERROR_TEXT_COLOR);
   }
   else{
-    tft.drawText(0,170, message, COLOR_RED);
+    tft.drawText(0,170, message, ERROR_TEXT_COLOR);
   }
   setFont1();
-  tft.setBackgroundColor(COLOR_BLACK);
 }
 void clearError(){
-  tft.fillRectangle(0, 150, 176, 200, COLOR_GRAY);
+  tft.fillRectangle(ERROR_MSG_POS_X, ERROR_MSG_POS_Y, ERROR_MSG_POS_X1, ERROR_MSG_POS_Y1, BACKGROUND_COLOR);
 }
 
 void displayDirection(directionToggle direction){
@@ -424,7 +439,7 @@ void displayDirection(directionToggle direction){
       text = "NEUTRAL";
     break;
   }
-  tft.drawText(55,95,text);
+  tft.drawText(DIRN_POS_TEXT_X, DIRN_POS_TEXT_Y, text, DEFAULT_TEXT_COLOR);
   prevDirection = direction;
 }
 
@@ -440,15 +455,16 @@ void drawBatterySymbol(int topLeftX, int topLeftY){
         topLeftX + BATTERY_TIP_WIDTH + BATTERY_LENGTH + BATTERY_RECTANGLE_THICKNESS + i, 
         topLeftY + BATTERY_HEIGHT + BATTERY_RECTANGLE_THICKNESS + i, 
         
-        COLOR_BLACK);
+        BATTERY_COLOR);
 
-    tft.fillRectangle(topLeftX, topLeftY + BATTERY_HEIGHT/4 + BATTERY_RECTANGLE_THICKNESS, topLeftX + BATTERY_TIP_WIDTH, topLeftY + (BATTERY_HEIGHT * 3) / 4 + BATTERY_RECTANGLE_THICKNESS, COLOR_BLACK);
+    tft.fillRectangle(topLeftX, topLeftY + BATTERY_HEIGHT/4 + BATTERY_RECTANGLE_THICKNESS, topLeftX + BATTERY_TIP_WIDTH, topLeftY + (BATTERY_HEIGHT * 3) / 4 + BATTERY_RECTANGLE_THICKNESS, BATTERY_COLOR);
 }
 void displayBasic(){
-    tft.drawText(5, 5, "UGV STATUS:");
-    tft.drawText(5, 45, "SPEED:");
-    tft.drawText(5, 70, "RSSI:");
-    tft.drawText(5, 95, "DIRN:");
-    drawBatterySymbol(120,5);
+    tft.setBackgroundColor(BACKGROUND_COLOR);
+    tft.drawText(Y_OFFSET, UGV_STATUS_POS_X, "UGV STATUS:",DEFAULT_TEXT_COLOR);
+    tft.drawText(Y_OFFSET, SPEED_POS_X, "SPEED:", DEFAULT_TEXT_COLOR);
+    tft.drawText(Y_OFFSET, RSSI_POS_X, "RSSI:", DEFAULT_TEXT_COLOR);
+    tft.drawText(Y_OFFSET, DIRN_POS_X, "DIRN:", DEFAULT_TEXT_COLOR);
+    drawBatterySymbol(BATTERY_POS_X, BATTERY_POS_Y);
 
 }
