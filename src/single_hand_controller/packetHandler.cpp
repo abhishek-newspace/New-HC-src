@@ -19,6 +19,7 @@ byte buf[300];  //!< buffer to store serialized mavlink data
 mavlink_status_t  status;    //!< used to check parsing status
 mavlink_message_t msg;
 
+extern speedToggle requested_spd;
 
 message_sender msgsndr(buf, &msg);
 
@@ -36,7 +37,8 @@ bool is_unsigned_message(const mavlink_status_t* status, uint32_t msgId) {
 }
 
 bool setupSigning(){
-    
+
+
 #ifdef SIGN_PACKETS
     memset(&signing, 0, sizeof(signing)); // ensure no garbage values
     signing.flags = MAVLINK_SIGNING_FLAG_SIGN_OUTGOING; 
@@ -54,6 +56,9 @@ bool setupSigning(){
 #endif
     IF_DEBUG(Serial.println(mavlink_get_channel_status(MAVLINK_COMM_0)->flags);)
 
+#ifdef BYPASS_NO_SIGNING
+    return true;
+#endif
     return !(status_chan == nullptr);
 }
 
@@ -114,14 +119,88 @@ void sendDisarmCommand(){
     sendBuffer(msgsndr.buffer_arm_disarm_cmd(0));
 }
 
+void sendHeadlight(){
+    // sendBuffer(msgsndr.buffer_light_control_cmd(0,0,0));
+    // return;
+    
+    if(headlight_off()){
+        
+        setHeadlighState(1);
+        if(foglight_off()){
+            sendBuffer(msgsndr.buffer_light_control_cmd(1,0,0));
+        }
+        else{
+            sendBuffer(msgsndr.buffer_light_control_cmd(1,1,1));
+        }
+    }
+    else{
+        
+        setHeadlighState(0);
+        if(foglight_off()){
+            sendBuffer(msgsndr.buffer_light_control_cmd(0,0,0));
+        }
+        else{
+            sendBuffer(msgsndr.buffer_light_control_cmd(0,1,1));
+        }
+    }
+}
+
+/// @brief send a request to turn on brake light and fog light
+void sendFogBrakeLight(){
+    // sendBuffer(msgsndr.buffer_light_control_cmd(1,1,1));
+    // return;
+    if(headlight_off()){
+        if(foglight_off()){
+            setFoglightState(1);
+            sendBuffer(msgsndr.buffer_light_control_cmd(0,1,1));
+        }
+        else{
+            setFoglightState(0);
+            sendBuffer(msgsndr.buffer_light_control_cmd(0,0,0));
+        }
+    }
+    else{
+        if(foglight_off()){
+            setFoglightState(1);
+            sendBuffer(msgsndr.buffer_light_control_cmd(1,1,1));
+        }
+        else{
+            setFoglightState(0);
+            sendBuffer(msgsndr.buffer_light_control_cmd(1,0,0));
+        }
+    }   
+}
+
+/// @brief send a request to turn off headlight
+void sendHeadlight_OFF(){
+    setHeadlighState(0);
+    IF_DEBUG(Serial.println("sending headlight turn off request");)
+        sendBuffer(msgsndr.buffer_light_control_cmd(0,0,0));
+}
+
+/// @brief send a request to turn off brake light and fog light
+void sendFogBrakeLight_OFF(){
+    setFoglightState(0);
+    IF_DEBUG(Serial.println("sending foglight turn off request");)
+        sendBuffer(msgsndr.buffer_light_control_cmd(0,0,0));
+}
+
+/// @brief send request to set speed to required speed
+void sendSpeedChangeRequest(){
+    IF_DEBUG(Serial.println("sending speed change request");)
+    sendBuffer(msgsndr.buffer_drive_mode_cmd(getUGV_speed() + 1));
+}
+
+
 void sendManualControl(){
     IF_DEBUG(Serial.println("sending manual control");)
     thumbstickControl thumbstick_input;
     getXY(&thumbstick_input);
+    
     sendBuffer(
         msgsndr.buffer_manual_control(
-            thumbstick_input.X / (float)100 * 2.78 ,
-            thumbstick_input.Y / (float)100 * 13.7,
+            thumbstick_input.X,
+            thumbstick_input.Y,
             0,
             0,
             0,

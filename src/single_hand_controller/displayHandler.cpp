@@ -15,12 +15,22 @@ extern ugv_status current_state;
 extern ugv_status prev_state;
 
 uint8_t RSSI = 0;
-uint8_t ugv_battery_soc = 80;
+uint8_t ugv_battery_soc = 0;
+bool radioConnected;
 
 uint8_t battery_topLeftX, battery_topLeftY;
 
 String current_info_displayed = "";
 String current_err_displayed = "";
+
+void disconnectRadio(){
+  radioConnected = false;
+}
+
+
+void connectRadio(){
+  radioConnected = true;
+}
 
 #ifdef PROTOTYPE
     TFT_22_ILI9225 tft = TFT_22_ILI9225(TFT_RST, TFT_RS, TFT_CS, TFT_SDI, TFT_CLK, TFT_LED, TFT_BRIGHTNESS);
@@ -311,7 +321,7 @@ void displayUGV_status(ugv_status s){
 void displaySpeed(int speed){
   String text;
   int color;
-  switch(speed){
+  switch(speed + 1){
     case 0:
       text = "NEUTRAL   ";
       color = DEFAULT_TEXT_COLOR;
@@ -334,10 +344,18 @@ void displaySpeed(int speed){
 
 
 void displayRSSI(){
-  // if(current_state != disconnected)
-    tft.drawText(RSSI_TEXT_POS_X, RSSI_TEXT_POS_Y, String(RSSI), DEFAULT_TEXT_COLOR);
-  // else
-  //   tft.drawText(RSSI_TEXT_POS_X, RSSI_TEXT_POS_Y, "-", DEFAULT_TEXT_COLOR);
+  String rssiStr = String(RSSI);
+  if(RSSI < 100 && RSSI > 10)
+    rssiStr = String("0") + String(RSSI);
+  else if(RSSI < 10){
+    rssiStr = String("00") + String(RSSI);
+  }
+  else if(RSSI == 0)
+    radioConnected = false;
+  if(radioConnected)
+    tft.drawText(RSSI_TEXT_POS_X, RSSI_TEXT_POS_Y, rssiStr, DEFAULT_TEXT_COLOR);
+  else
+     tft.drawText(RSSI_TEXT_POS_X, RSSI_TEXT_POS_Y, "      ", DEFAULT_TEXT_COLOR);
 }
 
 
@@ -357,7 +375,7 @@ void displayBattery(){
         battery_topLeftY + BATTERY_HEIGHT, 
         
         color);
-    if(ugv_battery_soc < 20){
+    if(ugv_battery_soc < 20 && ugv_battery_soc > 0){
       displayInfo("Scout battery charge below 20%; please charge");
     }
 }
@@ -370,8 +388,25 @@ void setBatterySOC(uint8_t batterySOC){
   ugv_battery_soc = batterySOC;
 }
 
+void displayConnectionStatus(){
+  setFontSmall();
+  if(radioConnected && current_state != disconnected){
+    tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y, "ATLAS AND RADIO  ", CONNECTED_COLOR);
+    tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y + 8, "CONNECTED  ", CONNECTED_COLOR);
+  }
+  else if(radioConnected){
+   tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y, "RADIO CONNECTED   ", RADIO_CONNECTED_COLOR);
+   tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y + 8, "                 ", CONNECTED_COLOR);
+  }
+  else{
+    tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y, "ALL DISCONNECTED", DISCONNECTED_COLOR);
+    tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y + 8, "                 ", CONNECTED_COLOR);
+  }
+  setFont1();
+}
 
 void updateDisplay(){
+    displayConnectionStatus();
     displayRSSI();
     displayBattery();
 }
@@ -461,10 +496,11 @@ void drawBatterySymbol(int topLeftX, int topLeftY){
 }
 void displayBasic(){
     tft.setBackgroundColor(BACKGROUND_COLOR);
+    
     tft.drawText(Y_OFFSET, UGV_STATUS_POS_X, "UGV STATUS:",DEFAULT_TEXT_COLOR);
     tft.drawText(Y_OFFSET, SPEED_POS_X, "SPEED:", DEFAULT_TEXT_COLOR);
     tft.drawText(Y_OFFSET, RSSI_POS_X, "RSSI:", DEFAULT_TEXT_COLOR);
-    tft.drawText(Y_OFFSET, DIRN_POS_X, "DIRN:", DEFAULT_TEXT_COLOR);
+    // tft.drawText(Y_OFFSET, DIRN_POS_X, "DIRN:", DEFAULT_TEXT_COLOR);
     drawBatterySymbol(BATTERY_POS_X, BATTERY_POS_Y);
 
 }

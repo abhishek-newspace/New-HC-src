@@ -35,6 +35,7 @@
 
 #define MS_1500 1500
 #define MS_200 200  // 200 milliseconds
+#define MS_40 40    // 40 milliseconds
 #define MS_20 20    // 20 milliseconds
 #define MS_10 10    // 10 milliseconds
 
@@ -48,7 +49,7 @@
 #define MANUAL_CONTROL_MSG_WAIT MS_10
 #define ARM_DISARM_RESEND_DELAY MS_1500
 
-#define OFP_LOOP_TIME           MS_20 
+#define OFP_LOOP_TIME           MS_20
 #define SCREEN_UPDATE_DELAY     SECONDS_MS_1    // screen to be updated every 1 second
 
 #define LONG_PRESS_DURATION     SECONDS_MS_2

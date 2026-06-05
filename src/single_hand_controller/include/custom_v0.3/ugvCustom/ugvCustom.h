@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_UGVCUSTOM.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_UGVCUSTOM_XML_HASH 1390003806544637740
+#define MAVLINK_UGVCUSTOM_XML_HASH 5648155403271001561
 
 #ifdef __cplusplus
 extern "C" {
@@ -23,7 +23,7 @@ extern "C" {
 #endif
 
 #ifndef MAVLINK_MESSAGE_CRCS
-#define MAVLINK_MESSAGE_CRCS {{0, 50, 9, 9, 0, 0, 0}, {1, 3, 5, 5, 0, 0, 0}, {2, 137, 12, 12, 0, 0, 0}, {69, 170, 15, 32, 1, 14, 0}, {76, 152, 33, 33, 3, 30, 31}, {77, 143, 3, 10, 3, 8, 9}, {109, 185, 9, 9, 0, 0, 0}, {111, 34, 16, 18, 3, 16, 17}, {50001, 101, 20, 20, 0, 0, 0}, {50002, 161, 38, 38, 3, 36, 37}, {50003, 50, 181, 181, 0, 0, 0}}
+#define MAVLINK_MESSAGE_CRCS {{0, 50, 9, 9, 0, 0, 0}, {1, 3, 5, 5, 0, 0, 0}, {2, 137, 12, 12, 0, 0, 0}, {69, 96, 11, 28, 1, 10, 0}, {76, 152, 33, 33, 3, 30, 31}, {77, 143, 3, 10, 3, 8, 9}, {109, 185, 9, 9, 0, 0, 0}, {111, 34, 16, 18, 3, 16, 17}, {50001, 128, 37, 37, 0, 0, 0}, {50002, 161, 38, 38, 3, 36, 37}, {50003, 50, 181, 181, 0, 0, 0}}
 #endif
 
 #include "../protocol.h"
@@ -72,10 +72,12 @@ typedef enum MAV_STATE
 #define HAVE_ENUM_MAV_CMD
 typedef enum MAV_CMD
 {
-   MAV_CMD_DO_SET_MODE=176, /* Set system mode. |Mode flags. MAV_MODE values can be used to set some mode flag combinations.| Custom system-specific mode (see target autopilot specifications for mode information). If MAV_MODE_FLAG_CUSTOM_MODE_ENABLED is set in param1 (mode) this mode is used: otherwise the field is ignored.| Custom sub mode - this is system specific, please refer to the individual autopilot specifications for details.| Empty| Empty| Empty| Empty|  */
+   MAV_CMD_DO_SET_MODE=176, /* Set system mode. |Mode flags. MAV_MODE values can be used to set some mode flag combinations.| Main mode selection for UGV| Sub mode selection for UGV| Speed sub mode selection| Empty| Empty| Empty|  */
    MAV_CMD_COMPONENT_ARM_DISARM=400, /* Arms / Disarms a component |Arm (MAV_BOOL_FALSE: disarm). Values not equal to 0 or 1 are invalid.| 0: arm-disarm unless prevented by safety checks (i.e. when landed), 21196: force arming/disarming (e.g. allow arming to override preflight checks and disarming in flight)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)|  */
    MAV_CMD_REQUEST_MESSAGE=512, /* Request the target system(s) emit a single instance of a specified message (i.e. a "one-shot" version of MAV_CMD_SET_MESSAGE_INTERVAL). |The MAVLink message ID of the requested message.| Use for index ID, if required. Otherwise, the use of this parameter (if any) must be defined in the requested message. By default assumed not used (0).| The use of this parameter (if any), must be defined in the requested message. By default assumed not used (0).| The use of this parameter (if any), must be defined in the requested message. By default assumed not used (0).| The use of this parameter (if any), must be defined in the requested message. By default assumed not used (0).| The use of this parameter (if any), must be defined in the requested message. By default assumed not used (0).| Target address for requested message (if message has target address fields). 0: Flight-stack default, 1: address of requester, 2: broadcast.|  */
-   MAV_CMD_ENUM_END=513, /*  | */
+   MAV_CMD_DRIVE_MODE=31900, /* Command to change drive mode of UGV |Drive mode request.| Empty| Empty| Empty| Empty| Empty| Empty|  */
+   MAV_CMD_LIGHT_CONTROL=31901, /* Command to change light state of UGV |ON (MAV_BOOL_FALSE: OFF).| ON (MAV_BOOL_FALSE: OFF).| ON (MAV_BOOL_FALSE: OFF).| Empty| Empty| Empty| Empty|  */
+   MAV_CMD_ENUM_END=31902, /*  | */
 } MAV_CMD;
 #endif
 
@@ -226,6 +228,31 @@ typedef enum UGV_SUB_MODE
 } UGV_SUB_MODE;
 #endif
 
+/** @brief Operator speed mode in which the UGV operates in. */
+#ifndef HAVE_ENUM_UGV_SPEED_MODE
+#define HAVE_ENUM_UGV_SPEED_MODE
+typedef enum UGV_SPEED_MODE
+{
+   UGV_SPEED_LOW=1, /* low speed mode | */
+   UGV_SPEED_MEDIUM=2, /* medium speed mode | */
+   UGV_SPEED_HIGH=3, /* high speed mode | */
+   UGV_SPEED_MODE_ENUM_END=4, /*  | */
+} UGV_SPEED_MODE;
+#endif
+
+/** @brief Operator drive mode in which the UGV operates in. */
+#ifndef HAVE_ENUM_UGV_DRIVE_MODE
+#define HAVE_ENUM_UGV_DRIVE_MODE
+typedef enum UGV_DRIVE_MODE
+{
+   SPEED=1, /* speed mode | */
+   TORQUE=2, /* torque mode | */
+   TORQUE_WITH_SPEED_LIMIT=3, /* torque with speed limit mode | */
+   POSITION=4, /* position mode | */
+   UGV_DRIVE_MODE_ENUM_END=5, /*  | */
+} UGV_DRIVE_MODE;
+#endif
+
 /** @brief Reason for sub-mode change. */
 #ifndef HAVE_ENUM_MODE_CHANGE_REASON
 #define HAVE_ENUM_MODE_CHANGE_REASON
@@ -268,13 +295,13 @@ typedef enum UGV_HEALTH_STATE
 
 // MESSAGE DEFINITIONS
 #include "./mavlink_msg_heartbeat.h"
-#include "./mavlink_msg_sys_status.h"
-#include "./mavlink_msg_system_time.h"
-#include "./mavlink_msg_manual_control.h"
+#include "./mavlink_msg_timesync.h"
 #include "./mavlink_msg_command_long.h"
 #include "./mavlink_msg_command_ack.h"
+#include "./mavlink_msg_manual_control.h"
 #include "./mavlink_msg_radio_status.h"
-#include "./mavlink_msg_timesync.h"
+#include "./mavlink_msg_sys_status.h"
+#include "./mavlink_msg_system_time.h"
 #include "./mavlink_msg_ugv_system_info.h"
 #include "./mavlink_msg_ugv_component_version.h"
 #include "./mavlink_msg_ugv_subsystem_version.h"

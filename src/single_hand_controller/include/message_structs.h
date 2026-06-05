@@ -49,8 +49,31 @@ struct HC_ATLAS_UGV_COMPONENT_VER{
     uint8_t target_component = ATLAS_COMP_ID;
 };
 
+struct HC_MODE_COMMAND{
+    uint8_t target_system = SCOUT_ID;
+    uint8_t target_component = ATLAS_COMP_ID;
+    uint16_t command = MAV_CMD_DO_SET_MODE;
+    uint8_t confirmation = 0;
+    float param1 = 1;
+    float param2 = 1;
+    float param3 = 1;
+    float param4;   // SPEED MODE
+};
+
+struct HC_LIGHT_CONTROL_COMMAND{
+    uint8_t target_system = SCOUT_ID;
+    uint8_t target_component = ATLAS_COMP_ID;
+    uint16_t command = MAV_CMD_LIGHT_CONTROL;
+    uint8_t confirmation = 0;
+    float param1;   // headlight
+    float param2;   // fog light
+    float param3;   //
+};
+
+
 
 // commands received from atlas
+
 
 // heartbeat is rejected in case parameters don't match
 struct ATLAS_HC_HEARTBEAT_BC{
@@ -87,7 +110,21 @@ struct ATLAS_HC_SYS_STAT{
 };
 
 struct ATLAS_HC_ARM_DISARM_ACK{
-    uint8_t command;
+    uint8_t command = MAV_CMD_COMPONENT_ARM_DISARM;
+    uint8_t result;
+    uint8_t target_system = HC_ID;
+    uint8_t target_component = HC_COMP_ID;
+};
+
+struct COMP_MODE_COMMAND_ACK{
+    uint8_t command = MAV_CMD_DO_SET_MODE;
+    uint8_t result;
+    uint8_t target_system = HC_ID;
+    uint8_t target_component = HC_COMP_ID;
+};
+
+struct COMP_LIGHT_CONTROL_ACK{
+    uint8_t command = MAV_CMD_LIGHT_CONTROL;
     uint8_t result;
     uint8_t target_system = HC_ID;
     uint8_t target_component = HC_COMP_ID;

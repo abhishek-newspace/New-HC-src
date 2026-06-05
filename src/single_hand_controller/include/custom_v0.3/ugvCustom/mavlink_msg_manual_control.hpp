@@ -14,15 +14,15 @@ namespace msg {
  */
 struct MANUAL_CONTROL : mavlink::Message {
     static constexpr msgid_t MSG_ID = 69;
-    static constexpr size_t LENGTH = 32;
-    static constexpr size_t MIN_LENGTH = 15;
-    static constexpr uint8_t CRC_EXTRA = 170;
+    static constexpr size_t LENGTH = 28;
+    static constexpr size_t MIN_LENGTH = 11;
+    static constexpr uint8_t CRC_EXTRA = 96;
     static constexpr auto NAME = "MANUAL_CONTROL";
 
 
     uint8_t target; /*<  The system to be controlled. */
-    float x; /*<  X-axis, normalized to the range [-2.78,2.78]. A value of NaN indicates that this axis is invalid. Generally corresponds to forward(2.78)-backward(-2.78) movement on a joystick and the pitch of a vehicle. */
-    float y; /*<  Y-axis, normalized to the range [-13.7,13.7]. A value of NaN indicates that this axis is invalid. Generally corresponds to left(-13.7)-right(13.7) movement on a joystick and the roll of a vehicle. */
+    int16_t x; /*<  X-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to forward(1000)-backward(-1000) movement on a joystick and the pitch of a vehicle. */
+    int16_t y; /*<  Y-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to left(-1000)-right(1000) movement on a joystick and the roll of a vehicle. */
     int16_t z; /*<  Z-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to a separate slider movement with maximum being 1000 and minimum being -1000 on a joystick and the thrust of a vehicle. Positive values are positive thrust, negative values are negative thrust. */
     int16_t r; /*<  R-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to a twisting of the joystick, with clockwise being 1000 and counter-clockwise being -1000, and the yaw of a vehicle. */
     uint16_t push_buttons; /*<  A bitfield corresponding to the joystick buttons' 0-15 current state, 1 for pressed, 0 for released. The lowest bit corresponds to Button 1. */
@@ -76,39 +76,39 @@ struct MANUAL_CONTROL : mavlink::Message {
         map.reset(MSG_ID, LENGTH);
 
         map << x;                             // offset: 0
-        map << y;                             // offset: 4
-        map << z;                             // offset: 8
-        map << r;                             // offset: 10
-        map << push_buttons;                  // offset: 12
-        map << target;                        // offset: 14
-        map << enabled_extensions;            // offset: 15
-        map << s;                             // offset: 16
-        map << t;                             // offset: 18
-        map << aux1;                          // offset: 20
-        map << aux2;                          // offset: 22
-        map << aux3;                          // offset: 24
-        map << aux4;                          // offset: 26
-        map << aux5;                          // offset: 28
-        map << aux6;                          // offset: 30
+        map << y;                             // offset: 2
+        map << z;                             // offset: 4
+        map << r;                             // offset: 6
+        map << push_buttons;                  // offset: 8
+        map << target;                        // offset: 10
+        map << enabled_extensions;            // offset: 11
+        map << s;                             // offset: 12
+        map << t;                             // offset: 14
+        map << aux1;                          // offset: 16
+        map << aux2;                          // offset: 18
+        map << aux3;                          // offset: 20
+        map << aux4;                          // offset: 22
+        map << aux5;                          // offset: 24
+        map << aux6;                          // offset: 26
     }
 
     inline void deserialize(mavlink::MsgMap &map) override
     {
         map >> x;                             // offset: 0
-        map >> y;                             // offset: 4
-        map >> z;                             // offset: 8
-        map >> r;                             // offset: 10
-        map >> push_buttons;                  // offset: 12
-        map >> target;                        // offset: 14
-        map >> enabled_extensions;            // offset: 15
-        map >> s;                             // offset: 16
-        map >> t;                             // offset: 18
-        map >> aux1;                          // offset: 20
-        map >> aux2;                          // offset: 22
-        map >> aux3;                          // offset: 24
-        map >> aux4;                          // offset: 26
-        map >> aux5;                          // offset: 28
-        map >> aux6;                          // offset: 30
+        map >> y;                             // offset: 2
+        map >> z;                             // offset: 4
+        map >> r;                             // offset: 6
+        map >> push_buttons;                  // offset: 8
+        map >> target;                        // offset: 10
+        map >> enabled_extensions;            // offset: 11
+        map >> s;                             // offset: 12
+        map >> t;                             // offset: 14
+        map >> aux1;                          // offset: 16
+        map >> aux2;                          // offset: 18
+        map >> aux3;                          // offset: 20
+        map >> aux4;                          // offset: 22
+        map >> aux5;                          // offset: 24
+        map >> aux6;                          // offset: 26
     }
 };
 

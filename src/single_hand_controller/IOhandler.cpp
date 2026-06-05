@@ -25,22 +25,22 @@ int drift_x;
 int drift_y;
 
 
-button  b_neutral = {
+button  b_headlight = {
             BUTTON_NEUTRAL,     // uint8_t pin;                
             0,                  // buttonPress press_state;
-            setNeutral,            // void (*press_callback)(void);        
+            nullptr,            // void (*press_callback)(void);        
             0                   // uint32_t cooldown;
         },
         b_inc_speed = {
             BUTTON_INC_SPEED,    // uint8_t pin; 
             0,                   // buttonPress press_state; 
-            inc_Speed,           // void (*press_callback)(void); 
+            nullptr,           // void (*press_callback)(void); 
             0                    // uint32_t cooldown;
         },
-        b_dec_speed = {
+        b_foglight = {
             BUTTON_DEC_SPEED,    // uint8_t pin;
             0,                   // buttonPress press_state;
-            dec_Speed,           // void (*press_callback)(void);
+            nullptr,           // void (*press_callback)(void);
             0                    // uint32_t cooldown;
         };
 
@@ -89,8 +89,8 @@ bool debounceAndInput(int buttonNumber){
 
 void getXY_raw(struct thumbstickControl *control){
 
-    int* x = &control->X;
-    int* y = &control->Y;
+    float* x = &control->X;
+    float* y = &control->Y;
     float xsum = 0, ysum = 0;
 
     for(int i = 0; i < FILTER_SAMPLES; i++){
@@ -105,16 +105,35 @@ void getXY(struct thumbstickControl *control){
 
     getXY_raw(control);
 
-    int* x = &control->X;
-    int* y = &control->Y;
+    float* x = &control->X;
+    float* y = &control->Y;
 
-    *x = *x < drift_x ? 
-            ((*x  - drift_x)/ (float)drift_x) * XY_NORMALIZED_MAX 
-            : ((*x - drift_x) / (float)(ANALOG_OUTPUT_MAX - drift_x)) * XY_NORMALIZED_MAX;
+    *x = (*x < XY_LOWER_LIMIT) ? (*x - XY_LOWER_LIMIT) : ((*x > XY_UPPER_LIMIT) ? (*x - XY_UPPER_LIMIT) : 0);
+    *x *= 10;
+    *y = (*y < XY_LOWER_LIMIT) ? (*y - XY_LOWER_LIMIT) : ((*y > XY_UPPER_LIMIT) ? (*y - XY_UPPER_LIMIT) : 0);
+    *y *= 10;
 
-    *y = *y < drift_y ? 
-            ((*y  - drift_y)/ (float)drift_y) * XY_NORMALIZED_MAX 
-            : ((*y - drift_y) / (float)(ANALOG_OUTPUT_MAX - drift_y)) * XY_NORMALIZED_MAX;
+    IF_TESTING_JOYSTICK(Serial.print(*x);)
+    IF_TESTING_JOYSTICK(Serial.print(",");)
+    IF_TESTING_JOYSTICK(Serial.println(*y);)    
+}
+
+/// @brief whether headlight was recently pressed
+/// @return true, when pressed
+bool headlight_pressed(){
+    return b_headlight.press_state > 0 && b_headlight.cooldown == 0;   
+}
+
+/// @brief whether foglight was recently pressed
+/// @return true, when pressed
+bool foglight_pressed(){
+    return b_foglight.press_state > 0 && b_foglight.cooldown == 0;
+}
+
+/// @brief whether speed change button was recently pressed
+/// @return true, when pressed
+bool speed_change_pressed(){
+    return b_inc_speed.press_state > 0 && b_inc_speed.cooldown == 0;
 }
 
 bool arm_pressed()
@@ -249,9 +268,9 @@ void checkUserInput()
 
     int32_t ms_since_last_check = millis() - last_input_checked_at;
     
-    updateButtonValues(&b_neutral, ms_since_last_check);
+    updateButtonValues(&b_headlight, ms_since_last_check);
     updateButtonValues(&b_inc_speed, ms_since_last_check);
-    updateButtonValues(&b_dec_speed, ms_since_last_check);
+    updateButtonValues(&b_foglight, ms_since_last_check);
     updateLongPressButtonValues(&b_arm_disarm, ms_since_last_check);
     updateToggleValues(&dir_toggle,ms_since_last_check);
 

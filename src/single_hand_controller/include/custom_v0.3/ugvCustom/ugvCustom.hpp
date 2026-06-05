@@ -21,7 +21,7 @@ namespace ugvCustom {
 /**
  * Array of msg_entry needed for @p mavlink_parse_char() (through @p mavlink_get_msg_entry())
  */
-constexpr std::array<mavlink_msg_entry_t, 11> MESSAGE_ENTRIES {{ {0, 50, 9, 9, 0, 0, 0}, {1, 3, 5, 5, 0, 0, 0}, {2, 137, 12, 12, 0, 0, 0}, {69, 170, 15, 32, 1, 14, 0}, {76, 152, 33, 33, 3, 30, 31}, {77, 143, 3, 10, 3, 8, 9}, {109, 185, 9, 9, 0, 0, 0}, {111, 34, 16, 18, 3, 16, 17}, {50001, 101, 20, 20, 0, 0, 0}, {50002, 161, 38, 38, 3, 36, 37}, {50003, 50, 181, 181, 0, 0, 0} }};
+constexpr std::array<mavlink_msg_entry_t, 11> MESSAGE_ENTRIES {{ {0, 50, 9, 9, 0, 0, 0}, {1, 3, 5, 5, 0, 0, 0}, {2, 137, 12, 12, 0, 0, 0}, {69, 96, 11, 28, 1, 10, 0}, {76, 152, 33, 33, 3, 30, 31}, {77, 143, 3, 10, 3, 8, 9}, {109, 185, 9, 9, 0, 0, 0}, {111, 34, 16, 18, 3, 16, 17}, {50001, 128, 37, 37, 0, 0, 0}, {50002, 161, 38, 38, 3, 36, 37}, {50003, 50, 181, 181, 0, 0, 0} }};
 
 //! MAVLINK VERSION
 constexpr auto MAVLINK_VERSION = 2;
@@ -64,13 +64,15 @@ constexpr auto MAV_STATE_ENUM_END = 5;
 /** @brief Commands to be executed by the MAV. They can be executed on user request, or as part of a mission script. If the action is used in a mission, the parameter mapping to the waypoint/mission message is as follows: Param 1, Param 2, Param 3, Param 4, X: Param 5, Y:Param 6, Z:Param 7. This command list is similar what ARINC 424 is for commercial aircraft: A data format how to interpret waypoint/mission data. NaN and INT32_MAX may be used in float/integer params (respectively) to indicate optional/default values (e.g. to use the component's current yaw or latitude rather than a specific value). See https://mavlink.io/en/guide/xml_schema.html#MAV_CMD for information about the structure of the MAV_CMD entries */
 enum class MAV_CMD : uint16_t
 {
-    DO_SET_MODE=176, /* Set system mode. |Mode flags. MAV_MODE values can be used to set some mode flag combinations.| Custom system-specific mode (see target autopilot specifications for mode information). If MAV_MODE_FLAG_CUSTOM_MODE_ENABLED is set in param1 (mode) this mode is used: otherwise the field is ignored.| Custom sub mode - this is system specific, please refer to the individual autopilot specifications for details.| Empty| Empty| Empty| Empty|  */
+    DO_SET_MODE=176, /* Set system mode. |Mode flags. MAV_MODE values can be used to set some mode flag combinations.| Main mode selection for UGV| Sub mode selection for UGV| Speed sub mode selection| Empty| Empty| Empty|  */
     COMPONENT_ARM_DISARM=400, /* Arms / Disarms a component |Arm (MAV_BOOL_FALSE: disarm). Values not equal to 0 or 1 are invalid.| 0: arm-disarm unless prevented by safety checks (i.e. when landed), 21196: force arming/disarming (e.g. allow arming to override preflight checks and disarming in flight)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)| Reserved (default:0)|  */
     REQUEST_MESSAGE=512, /* Request the target system(s) emit a single instance of a specified message (i.e. a "one-shot" version of MAV_CMD_SET_MESSAGE_INTERVAL). |The MAVLink message ID of the requested message.| Use for index ID, if required. Otherwise, the use of this parameter (if any) must be defined in the requested message. By default assumed not used (0).| The use of this parameter (if any), must be defined in the requested message. By default assumed not used (0).| The use of this parameter (if any), must be defined in the requested message. By default assumed not used (0).| The use of this parameter (if any), must be defined in the requested message. By default assumed not used (0).| The use of this parameter (if any), must be defined in the requested message. By default assumed not used (0).| Target address for requested message (if message has target address fields). 0: Flight-stack default, 1: address of requester, 2: broadcast.|  */
+    DRIVE_MODE=31900, /* Command to change drive mode of UGV |Drive mode request.| Empty| Empty| Empty| Empty| Empty| Empty|  */
+    LIGHT_CONTROL=31901, /* Command to change light state of UGV |ON (MAV_BOOL_FALSE: OFF).| ON (MAV_BOOL_FALSE: OFF).| ON (MAV_BOOL_FALSE: OFF).| Empty| Empty| Empty| Empty|  */
 };
 
 //! MAV_CMD ENUM_END
-constexpr auto MAV_CMD_ENUM_END = 513;
+constexpr auto MAV_CMD_ENUM_END = 31902;
 
 /** @brief Result from a MAVLink command (MAV_CMD) */
 enum class MAV_RESULT : uint8_t
@@ -92,7 +94,7 @@ enum class MAV_RESULT : uint8_t
 constexpr auto MAV_RESULT_ENUM_END = 11;
 
 /** @brief Enum used to indicate true or false (also: success or failure, enabled or disabled, active or inactive). */
-enum class MAV_BOOL
+enum class MAV_BOOL : uint8_t
 {
     FALSE_=0, /* False. | */
     TRUE_=1, /* True. | */
@@ -209,6 +211,29 @@ enum class UGV_SUB_MODE : uint8_t
 //! UGV_SUB_MODE ENUM_END
 constexpr auto UGV_SUB_MODE_ENUM_END = 11;
 
+/** @brief Operator speed mode in which the UGV operates in. */
+enum class UGV_SPEED_MODE : uint8_t
+{
+    LOW=1, /* low speed mode | */
+    MEDIUM=2, /* medium speed mode | */
+    HIGH=3, /* high speed mode | */
+};
+
+//! UGV_SPEED_MODE ENUM_END
+constexpr auto UGV_SPEED_MODE_ENUM_END = 4;
+
+/** @brief Operator drive mode in which the UGV operates in. */
+enum class UGV_DRIVE_MODE : uint8_t
+{
+    SPEED=1, /* speed mode | */
+    TORQUE=2, /* torque mode | */
+    TORQUE_WITH_SPEED_LIMIT=3, /* torque with speed limit mode | */
+    POSITION=4, /* position mode | */
+};
+
+//! UGV_DRIVE_MODE ENUM_END
+constexpr auto UGV_DRIVE_MODE_ENUM_END = 5;
+
 /** @brief Reason for sub-mode change. */
 enum class MODE_CHANGE_REASON : uint8_t
 {
@@ -242,13 +267,13 @@ constexpr auto UGV_HEALTH_STATE_ENUM_END = 4;
 
 // MESSAGE DEFINITIONS
 #include "./mavlink_msg_heartbeat.hpp"
-#include "./mavlink_msg_sys_status.hpp"
-#include "./mavlink_msg_system_time.hpp"
-#include "./mavlink_msg_manual_control.hpp"
+#include "./mavlink_msg_timesync.hpp"
 #include "./mavlink_msg_command_long.hpp"
 #include "./mavlink_msg_command_ack.hpp"
+#include "./mavlink_msg_manual_control.hpp"
 #include "./mavlink_msg_radio_status.hpp"
-#include "./mavlink_msg_timesync.hpp"
+#include "./mavlink_msg_sys_status.hpp"
+#include "./mavlink_msg_system_time.hpp"
 #include "./mavlink_msg_ugv_system_info.hpp"
 #include "./mavlink_msg_ugv_component_version.hpp"
 #include "./mavlink_msg_ugv_subsystem_version.hpp"

@@ -16,7 +16,6 @@
 #include "message_structs.h"
 #include "message_sender.hpp"
 #include "packet_receiver.hpp"
-#include "stateHandler.hpp"
 #include "displayHandler.hpp"
 #include "IOhandler.hpp"
 
@@ -53,3 +52,19 @@ void sendHeartbeat();
 
 /// @brief send component version
 void sendComponentVersion();
+
+/// @brief send a request to turn on headlight
+void sendHeadlight();
+
+/// @brief send a request to turn on brake light and fog light
+void sendFogBrakeLight();
+
+
+// /// @brief send a request to turn off headlight
+// void sendHeadlight_OFF();
+
+// /// @brief send a request to turn off brake light and fog light
+// void sendFogBrakeLight_OFF();
+
+/// @brief send request to set speed to required speed
+void sendSpeedChangeRequest();

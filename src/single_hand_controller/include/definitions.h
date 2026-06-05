@@ -38,10 +38,11 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 #define PROTOTYPE
 
 //#define SIGN_PACKETS  // used to send and receive signed packets
+#define BYPASS_NO_SIGNING
 
 // if the code is not meant to operate in debug mode (prints out info on serial communication), comment out this line
 //#define _DEBUG_
-
+//#define TESTING_JOYSTICK
 //#define TESTING // ONLY use this when testing features
 
 //#define SPECIAL_TESTING
@@ -67,6 +68,12 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 #define IF_PRINT_BYTES(CODE)
 #endif
 
+
+#ifdef TESTING_JOYSTICK
+#define IF_TESTING_JOYSTICK(CODE) CODE
+#else
+#define IF_TESTING_JOYSTICK(CODE)
+#endif
 
 #ifdef TESTING
 

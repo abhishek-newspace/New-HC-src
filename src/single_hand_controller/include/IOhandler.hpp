@@ -22,7 +22,7 @@
 
 /// @brief thumbstick control is used within this library
 struct thumbstickControl{
-    int X, Y;
+    float X, Y;
 };
 
 /**
@@ -38,6 +38,18 @@ void getXY_raw(struct thumbstickControl *control);
 /// @brief get thumbstick's normalized position (-100 to 100)
 /// @param control -> the current position of the thumbstick is written into this struct
 void getXY(struct thumbstickControl *control);
+
+/// @brief whether headlight was recently pressed
+/// @return true, when pressed
+bool headlight_pressed();
+
+/// @brief whether foglight was recently pressed
+/// @return true, when pressed
+bool foglight_pressed();
+
+/// @brief whether speed change button was recently pressed
+/// @return true, when pressed
+bool speed_change_pressed();
 
 /// @brief whether arm/disarm button is pressed or not
 /// @return true when arm/disarm button is pressed

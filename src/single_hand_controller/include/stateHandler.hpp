@@ -18,6 +18,13 @@
 #include"displayHandler.hpp"
 #include "definitions.h"
 
+
+// gettr functions
+bool headlight_off();
+bool foglight_off();
+void setHeadlighState(bool state);
+void setFoglightState(bool state);
+
 /**
  * set the current UGV state. 
  * \returns true when current UGV state is updated to a new value.
@@ -43,6 +50,8 @@ directionToggle getUGV_dir();
  * \returns true when UGV is not in disconnected state.
  */
 bool isUGV_connected();
+
+void setUGV_speed(int speed);
 
 /// @brief used only within prototype version, to increase speed
 void inc_Speed();

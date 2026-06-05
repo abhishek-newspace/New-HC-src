@@ -23,9 +23,33 @@ ugv_status prev_state = unknown;
 
 directionToggle current_dir = neutral,    /// inicates current direction state regardless of toggle switch (includes neutral state for toggle switch)
                 set_dir = forward;        /// indicates direction state that is set by the toggle switch
-speedToggle current_spd = low;
+speedToggle current_spd = low,
+            requested_spd = low;
 
 int speed = 0;
+
+bool headlight_state = 0;
+
+bool fog_brake_state = 0;
+
+
+
+// gettr functions
+bool headlight_off(){
+    return headlight_state == 0;
+}
+bool foglight_off(){
+    return fog_brake_state == 0;
+}
+
+// setter functions
+void setHeadlighState(bool state){
+    headlight_state = state;
+}
+
+void setFoglightState(bool state){
+    fog_brake_state = state;
+}
 
 // setter functions
 bool setUGV_state(ugv_status s1){   
@@ -46,7 +70,12 @@ ugv_status getUGV_state(){
 }
 
 speedToggle getUGV_speed(){
-    return current_spd;
+    return current_spd + 1;
+}
+
+void setUGV_speed(int speed){
+    current_spd = (speedToggle)(speed - 1);
+    displaySpeed(current_spd);
 }
 
 directionToggle getUGV_dir(){
@@ -62,11 +91,13 @@ bool isUGV_connected(){
 
 void inc_Speed(){
     IF_DEBUG(Serial.println("increase speed called!"));
-    speed = speed > 2 ? speed : speed + 1;
-    current_spd = (speedToggle)(speed - 1);
-    displaySpeed(speed);
-    current_dir = set_dir;
-    displayDirection(current_dir);
+    current_spd = (current_spd + 1) % 3;
+    setUGV_speed(current_spd + 1);
+    // speed = speed > 2 ? speed : speed + 1;
+    // current_spd = (speedToggle)(speed - 1);
+    // displaySpeed(speed);
+    // current_dir = set_dir;
+    // displayDirection(current_dir);
 }
 void dec_Speed(){
     IF_DEBUG(Serial.println("decrease speed called!"));

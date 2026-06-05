@@ -82,3 +82,9 @@ void clearError();
 /// @brief writes direction onto screen
 /// @param direction current direction
 void displayDirection(directionToggle direction);
+
+/// @brief set radio status to disconnected
+void disconnectRadio();
+
+/// @brief set radio status to connected
+void connectRadio();

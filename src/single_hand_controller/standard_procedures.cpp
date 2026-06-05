@@ -37,6 +37,29 @@ inline bool isUGVdisconnected(){
     return getUGV_state() == disconnected;
 }
 
+
+
+inline bool turnHeadlightCondition(){
+    return (headlight_pressed()) ;
+}
+
+inline bool turnFogLightCondition(){
+    return (foglight_pressed()) ;
+}
+
+// inline bool turnOffHeadlightCondition(){
+//     return (headlight_pressed() && !headlight_off()) ;
+// }
+
+
+// inline bool turnFogLightOffCondition(){
+//     return (foglight_pressed() && !foglight_off()) ;
+// }
+
+inline bool speedChangeCondition(){
+    return speed_change_pressed();
+}
+
 inline bool startArmCondition(){
     return arm_pressed() && getUGV_state() == standby && !is_arm_disarm_sending();
 }
@@ -60,7 +83,6 @@ void resendDisarmCommand(){
 }
 
 void endArmDisarmResend(){
-    Serial.println("/////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\");
     clearInfo();
     if(arm_disarm_error){
         // resend limit reached due to lack of acknowledgment
@@ -95,23 +117,6 @@ void initiateController(){
     IF_DEBUG(Serial.println("completed controller calibration");)
 }
 
-
-
-void run_wakeup_seq(){
-    sendHeartbeat();
-    sendHeartbeat();
-    sendHeartbeat();
-    periodic_actions.reset();
-    periodic_actions.addPeriodicAction(sendHeartbeat,SECONDS_MS_1);   // send a heartbeat every 1 second
-    establish_connectivity();
-    time_synchronize();
-    sendComponentVersion();
-
-    periodic_actions.reset();
-    periodic_actions.addPeriodicAction(sendHeartbeat,SECONDS_MS_1);
-    periodic_actions.addPeriodicAction(updateDisplay,SECONDS_MS_1);
-    periodic_actions.addPeriodicAction(sendTimesyncRequest,TIMESYNC_MSG_WAIT,isUGVdisconnected);
-}
 
 /**
  * Before connectivity is established, the current state of the UGV is "disconnected"
@@ -157,7 +162,7 @@ void time_synchronize()
 }
 
 void startOFPTimer(){
-    OFP_timer = micros();
+    OFP_timer = millis();   
 }
 
 /// @brief waits until time_limit microseconds are completed since beginning of OFP timer
@@ -165,21 +170,45 @@ void startOFPTimer(){
 void end_OFP_timer(unsigned long int time_limit){
     do{
         checkUserInput();
-    }while(micros() - OFP_timer < time_limit);
+    }while(millis() - OFP_timer < time_limit);
 }
+
+/**
+ * current wakeup sequence - 
+ * send 3 consecutive heartbeats (to ensure radio status will be received)
+ */
+void run_wakeup_seq(){
+    sendHeartbeat();
+    sendHeartbeat();
+    sendHeartbeat();
+    periodic_actions.reset();
+    periodic_actions.addPeriodicAction(sendHeartbeat,SECONDS_MS_1);   // send a heartbeat every 1 second
+    periodic_actions.addPeriodicAction(updateDisplay,SECONDS_MS_2);
+    establish_connectivity();
+    //time_synchronize();
+
+    setUGV_speed(1);
+    setFoglightState(0);
+    setHeadlighState(0);
+    
+    sendComponentVersion();
+
+    periodic_actions.reset();
+    periodic_actions.addPeriodicAction(sendHeartbeat,SECONDS_MS_1);
+    periodic_actions.addPeriodicAction(updateDisplay,SECONDS_MS_2);
+    //periodic_actions.addPeriodicAction(sendTimesyncRequest,TIMESYNC_MSG_WAIT,isUGVdisconnected);
+}
+
 
 
 void run_OFP_cycle()
 {
     startOFPTimer();
-    Serial.print("Arm send count : ");
-    Serial.println(arm_send_count);
 
     if(heartbeat_timed_out()){
         setUGV_state((ugv_status)disconnected);
         return;
     }
-
     if(getUGV_state() == active)
         sendManualControl();
 
@@ -195,6 +224,15 @@ void run_OFP_cycle()
         IF_DEBUG(Serial.println("DISARM BUTTON PRESSED"));
         displayInfo("disarming ...");
         periodic_actions.addPeriodicAction(resendDisarmCommand,ARM_DISARM_RESEND_DELAY,stopArmDisarmResendCondition, endArmDisarmResend);
+    }
+    if(turnHeadlightCondition()){
+        sendHeadlight();
+    }
+    if(turnFogLightCondition()){
+        sendFogBrakeLight();
+    }
+    if(speedChangeCondition()){
+        sendSpeedChangeRequest();
     }
     handlePacketReceived();
     periodic_actions.performPeriodicActions();

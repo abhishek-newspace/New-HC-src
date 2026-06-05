@@ -22,14 +22,24 @@ void setup(){
     if(!initMAVLink()){
         displayError("continue without packet signing", 1);
     }
-
-
     initiateController();
 }
 
 
 void loop(){
-    
+    #ifdef TESTING_JOYSTICK
+    thumbstickControl c1;
+    uint32_t t1 = micros();
+    getXY(&c1);
+    Serial.print(micros() - t1);
+    Serial.println("micro sec");
+
+    while(true){
+        getXY(&c1);
+    }
+    #endif
+
+
     if(heartbeat_timed_out()){
         run_wakeup_seq();
     }

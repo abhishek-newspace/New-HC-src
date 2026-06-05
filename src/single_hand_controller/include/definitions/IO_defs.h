@@ -37,14 +37,14 @@
 
 
 // used in IOhandler to convert from raw thumbstick control input to normalized value that is sent to atlas
-#define XY_NORMALIZED_MAX 100
+#define XY_NORMALIZED_MAX 4800
 #define ANALOG_OUTPUT_MAX 1023
 
 /**
  * 512 is the midpoint of 0 to 1023 hence, 50 units towards either side is allowed
  */
-#define XY_UPPER_LIMIT 562 // 512 + 50 = 562
-#define XY_LOWER_LIMIT 462 // 512 - 50 = 462
+#define XY_UPPER_LIMIT 544 // 512 + 32 = 544
+#define XY_LOWER_LIMIT 480 // 512 - 32 = 480
 
 
 // number of samples to be considered for filtering any analog signal taken from analog input

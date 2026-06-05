@@ -94,19 +94,20 @@ TEST(ugvCustom_interop, HEARTBEAT)
 }
 #endif
 
-TEST(ugvCustom, SYS_STATUS)
+TEST(ugvCustom, TIMESYNC)
 {
     mavlink::mavlink_message_t msg;
     mavlink::MsgMap map1(msg);
     mavlink::MsgMap map2(msg);
 
-    mavlink::ugvCustom::msg::SYS_STATUS packet_in{};
-    packet_in.voltage_battery = 17235;
-    packet_in.battery_remaining = 17;
-    packet_in.drop_rate_comm = 17339;
+    mavlink::ugvCustom::msg::TIMESYNC packet_in{};
+    packet_in.tc1 = 93372036854775807LL;
+    packet_in.ts1 = 170LL;
+    packet_in.target_system = 53;
+    packet_in.target_component = 120;
 
-    mavlink::ugvCustom::msg::SYS_STATUS packet1{};
-    mavlink::ugvCustom::msg::SYS_STATUS packet2{};
+    mavlink::ugvCustom::msg::TIMESYNC packet1{};
+    mavlink::ugvCustom::msg::TIMESYNC packet2{};
 
     packet1 = packet_in;
 
@@ -118,31 +119,33 @@ TEST(ugvCustom, SYS_STATUS)
 
     packet2.deserialize(map2);
 
-    EXPECT_EQ(packet1.voltage_battery, packet2.voltage_battery);
-    EXPECT_EQ(packet1.battery_remaining, packet2.battery_remaining);
-    EXPECT_EQ(packet1.drop_rate_comm, packet2.drop_rate_comm);
+    EXPECT_EQ(packet1.tc1, packet2.tc1);
+    EXPECT_EQ(packet1.ts1, packet2.ts1);
+    EXPECT_EQ(packet1.target_system, packet2.target_system);
+    EXPECT_EQ(packet1.target_component, packet2.target_component);
 }
 
 #ifdef TEST_INTEROP
-TEST(ugvCustom_interop, SYS_STATUS)
+TEST(ugvCustom_interop, TIMESYNC)
 {
     mavlink_message_t msg;
 
     // to get nice print
     memset(&msg, 0, sizeof(msg));
 
-    mavlink_sys_status_t packet_c {
-         17235, 17339, 17
+    mavlink_timesync_t packet_c {
+         93372036854775807LL, 170LL, 53, 120
     };
 
-    mavlink::ugvCustom::msg::SYS_STATUS packet_in{};
-    packet_in.voltage_battery = 17235;
-    packet_in.battery_remaining = 17;
-    packet_in.drop_rate_comm = 17339;
+    mavlink::ugvCustom::msg::TIMESYNC packet_in{};
+    packet_in.tc1 = 93372036854775807LL;
+    packet_in.ts1 = 170LL;
+    packet_in.target_system = 53;
+    packet_in.target_component = 120;
 
-    mavlink::ugvCustom::msg::SYS_STATUS packet2{};
+    mavlink::ugvCustom::msg::TIMESYNC packet2{};
 
-    mavlink_msg_sys_status_encode(1, 1, &msg, &packet_c);
+    mavlink_msg_timesync_encode(1, 1, &msg, &packet_c);
 
     // simulate message-handling callback
     [&packet2](const mavlink_message_t *cmsg) {
@@ -151,187 +154,10 @@ TEST(ugvCustom_interop, SYS_STATUS)
         packet2.deserialize(map2);
     } (&msg);
 
-    EXPECT_EQ(packet_in.voltage_battery, packet2.voltage_battery);
-    EXPECT_EQ(packet_in.battery_remaining, packet2.battery_remaining);
-    EXPECT_EQ(packet_in.drop_rate_comm, packet2.drop_rate_comm);
-
-#ifdef PRINT_MSG
-    PRINT_MSG(msg);
-#endif
-}
-#endif
-
-TEST(ugvCustom, SYSTEM_TIME)
-{
-    mavlink::mavlink_message_t msg;
-    mavlink::MsgMap map1(msg);
-    mavlink::MsgMap map2(msg);
-
-    mavlink::ugvCustom::msg::SYSTEM_TIME packet_in{};
-    packet_in.time_unix_usec = 93372036854775807ULL;
-    packet_in.time_boot_ms = 963497880;
-
-    mavlink::ugvCustom::msg::SYSTEM_TIME packet1{};
-    mavlink::ugvCustom::msg::SYSTEM_TIME packet2{};
-
-    packet1 = packet_in;
-
-    //std::cout << packet1.to_yaml() << std::endl;
-
-    packet1.serialize(map1);
-
-    mavlink::mavlink_finalize_message(&msg, 1, 1, packet1.MIN_LENGTH, packet1.LENGTH, packet1.CRC_EXTRA);
-
-    packet2.deserialize(map2);
-
-    EXPECT_EQ(packet1.time_unix_usec, packet2.time_unix_usec);
-    EXPECT_EQ(packet1.time_boot_ms, packet2.time_boot_ms);
-}
-
-#ifdef TEST_INTEROP
-TEST(ugvCustom_interop, SYSTEM_TIME)
-{
-    mavlink_message_t msg;
-
-    // to get nice print
-    memset(&msg, 0, sizeof(msg));
-
-    mavlink_system_time_t packet_c {
-         93372036854775807ULL, 963497880
-    };
-
-    mavlink::ugvCustom::msg::SYSTEM_TIME packet_in{};
-    packet_in.time_unix_usec = 93372036854775807ULL;
-    packet_in.time_boot_ms = 963497880;
-
-    mavlink::ugvCustom::msg::SYSTEM_TIME packet2{};
-
-    mavlink_msg_system_time_encode(1, 1, &msg, &packet_c);
-
-    // simulate message-handling callback
-    [&packet2](const mavlink_message_t *cmsg) {
-        MsgMap map2(cmsg);
-
-        packet2.deserialize(map2);
-    } (&msg);
-
-    EXPECT_EQ(packet_in.time_unix_usec, packet2.time_unix_usec);
-    EXPECT_EQ(packet_in.time_boot_ms, packet2.time_boot_ms);
-
-#ifdef PRINT_MSG
-    PRINT_MSG(msg);
-#endif
-}
-#endif
-
-TEST(ugvCustom, MANUAL_CONTROL)
-{
-    mavlink::mavlink_message_t msg;
-    mavlink::MsgMap map1(msg);
-    mavlink::MsgMap map2(msg);
-
-    mavlink::ugvCustom::msg::MANUAL_CONTROL packet_in{};
-    packet_in.target = 175;
-    packet_in.x = 17.0;
-    packet_in.y = 45.0;
-    packet_in.z = 17651;
-    packet_in.r = 17755;
-    packet_in.push_buttons = 17859;
-    packet_in.enabled_extensions = 242;
-    packet_in.s = 18067;
-    packet_in.t = 18171;
-    packet_in.aux1 = 18275;
-    packet_in.aux2 = 18379;
-    packet_in.aux3 = 18483;
-    packet_in.aux4 = 18587;
-    packet_in.aux5 = 18691;
-    packet_in.aux6 = 18795;
-
-    mavlink::ugvCustom::msg::MANUAL_CONTROL packet1{};
-    mavlink::ugvCustom::msg::MANUAL_CONTROL packet2{};
-
-    packet1 = packet_in;
-
-    //std::cout << packet1.to_yaml() << std::endl;
-
-    packet1.serialize(map1);
-
-    mavlink::mavlink_finalize_message(&msg, 1, 1, packet1.MIN_LENGTH, packet1.LENGTH, packet1.CRC_EXTRA);
-
-    packet2.deserialize(map2);
-
-    EXPECT_EQ(packet1.target, packet2.target);
-    EXPECT_EQ(packet1.x, packet2.x);
-    EXPECT_EQ(packet1.y, packet2.y);
-    EXPECT_EQ(packet1.z, packet2.z);
-    EXPECT_EQ(packet1.r, packet2.r);
-    EXPECT_EQ(packet1.push_buttons, packet2.push_buttons);
-    EXPECT_EQ(packet1.enabled_extensions, packet2.enabled_extensions);
-    EXPECT_EQ(packet1.s, packet2.s);
-    EXPECT_EQ(packet1.t, packet2.t);
-    EXPECT_EQ(packet1.aux1, packet2.aux1);
-    EXPECT_EQ(packet1.aux2, packet2.aux2);
-    EXPECT_EQ(packet1.aux3, packet2.aux3);
-    EXPECT_EQ(packet1.aux4, packet2.aux4);
-    EXPECT_EQ(packet1.aux5, packet2.aux5);
-    EXPECT_EQ(packet1.aux6, packet2.aux6);
-}
-
-#ifdef TEST_INTEROP
-TEST(ugvCustom_interop, MANUAL_CONTROL)
-{
-    mavlink_message_t msg;
-
-    // to get nice print
-    memset(&msg, 0, sizeof(msg));
-
-    mavlink_manual_control_t packet_c {
-         17.0, 45.0, 17651, 17755, 17859, 175, 242, 18067, 18171, 18275, 18379, 18483, 18587, 18691, 18795
-    };
-
-    mavlink::ugvCustom::msg::MANUAL_CONTROL packet_in{};
-    packet_in.target = 175;
-    packet_in.x = 17.0;
-    packet_in.y = 45.0;
-    packet_in.z = 17651;
-    packet_in.r = 17755;
-    packet_in.push_buttons = 17859;
-    packet_in.enabled_extensions = 242;
-    packet_in.s = 18067;
-    packet_in.t = 18171;
-    packet_in.aux1 = 18275;
-    packet_in.aux2 = 18379;
-    packet_in.aux3 = 18483;
-    packet_in.aux4 = 18587;
-    packet_in.aux5 = 18691;
-    packet_in.aux6 = 18795;
-
-    mavlink::ugvCustom::msg::MANUAL_CONTROL packet2{};
-
-    mavlink_msg_manual_control_encode(1, 1, &msg, &packet_c);
-
-    // simulate message-handling callback
-    [&packet2](const mavlink_message_t *cmsg) {
-        MsgMap map2(cmsg);
-
-        packet2.deserialize(map2);
-    } (&msg);
-
-    EXPECT_EQ(packet_in.target, packet2.target);
-    EXPECT_EQ(packet_in.x, packet2.x);
-    EXPECT_EQ(packet_in.y, packet2.y);
-    EXPECT_EQ(packet_in.z, packet2.z);
-    EXPECT_EQ(packet_in.r, packet2.r);
-    EXPECT_EQ(packet_in.push_buttons, packet2.push_buttons);
-    EXPECT_EQ(packet_in.enabled_extensions, packet2.enabled_extensions);
-    EXPECT_EQ(packet_in.s, packet2.s);
-    EXPECT_EQ(packet_in.t, packet2.t);
-    EXPECT_EQ(packet_in.aux1, packet2.aux1);
-    EXPECT_EQ(packet_in.aux2, packet2.aux2);
-    EXPECT_EQ(packet_in.aux3, packet2.aux3);
-    EXPECT_EQ(packet_in.aux4, packet2.aux4);
-    EXPECT_EQ(packet_in.aux5, packet2.aux5);
-    EXPECT_EQ(packet_in.aux6, packet2.aux6);
+    EXPECT_EQ(packet_in.tc1, packet2.tc1);
+    EXPECT_EQ(packet_in.ts1, packet2.ts1);
+    EXPECT_EQ(packet_in.target_system, packet2.target_system);
+    EXPECT_EQ(packet_in.target_component, packet2.target_component);
 
 #ifdef PRINT_MSG
     PRINT_MSG(msg);
@@ -517,6 +343,121 @@ TEST(ugvCustom_interop, COMMAND_ACK)
 }
 #endif
 
+TEST(ugvCustom, MANUAL_CONTROL)
+{
+    mavlink::mavlink_message_t msg;
+    mavlink::MsgMap map1(msg);
+    mavlink::MsgMap map2(msg);
+
+    mavlink::ugvCustom::msg::MANUAL_CONTROL packet_in{};
+    packet_in.target = 163;
+    packet_in.x = 17235;
+    packet_in.y = 17339;
+    packet_in.z = 17443;
+    packet_in.r = 17547;
+    packet_in.push_buttons = 17651;
+    packet_in.enabled_extensions = 230;
+    packet_in.s = 17859;
+    packet_in.t = 17963;
+    packet_in.aux1 = 18067;
+    packet_in.aux2 = 18171;
+    packet_in.aux3 = 18275;
+    packet_in.aux4 = 18379;
+    packet_in.aux5 = 18483;
+    packet_in.aux6 = 18587;
+
+    mavlink::ugvCustom::msg::MANUAL_CONTROL packet1{};
+    mavlink::ugvCustom::msg::MANUAL_CONTROL packet2{};
+
+    packet1 = packet_in;
+
+    //std::cout << packet1.to_yaml() << std::endl;
+
+    packet1.serialize(map1);
+
+    mavlink::mavlink_finalize_message(&msg, 1, 1, packet1.MIN_LENGTH, packet1.LENGTH, packet1.CRC_EXTRA);
+
+    packet2.deserialize(map2);
+
+    EXPECT_EQ(packet1.target, packet2.target);
+    EXPECT_EQ(packet1.x, packet2.x);
+    EXPECT_EQ(packet1.y, packet2.y);
+    EXPECT_EQ(packet1.z, packet2.z);
+    EXPECT_EQ(packet1.r, packet2.r);
+    EXPECT_EQ(packet1.push_buttons, packet2.push_buttons);
+    EXPECT_EQ(packet1.enabled_extensions, packet2.enabled_extensions);
+    EXPECT_EQ(packet1.s, packet2.s);
+    EXPECT_EQ(packet1.t, packet2.t);
+    EXPECT_EQ(packet1.aux1, packet2.aux1);
+    EXPECT_EQ(packet1.aux2, packet2.aux2);
+    EXPECT_EQ(packet1.aux3, packet2.aux3);
+    EXPECT_EQ(packet1.aux4, packet2.aux4);
+    EXPECT_EQ(packet1.aux5, packet2.aux5);
+    EXPECT_EQ(packet1.aux6, packet2.aux6);
+}
+
+#ifdef TEST_INTEROP
+TEST(ugvCustom_interop, MANUAL_CONTROL)
+{
+    mavlink_message_t msg;
+
+    // to get nice print
+    memset(&msg, 0, sizeof(msg));
+
+    mavlink_manual_control_t packet_c {
+         17235, 17339, 17443, 17547, 17651, 163, 230, 17859, 17963, 18067, 18171, 18275, 18379, 18483, 18587
+    };
+
+    mavlink::ugvCustom::msg::MANUAL_CONTROL packet_in{};
+    packet_in.target = 163;
+    packet_in.x = 17235;
+    packet_in.y = 17339;
+    packet_in.z = 17443;
+    packet_in.r = 17547;
+    packet_in.push_buttons = 17651;
+    packet_in.enabled_extensions = 230;
+    packet_in.s = 17859;
+    packet_in.t = 17963;
+    packet_in.aux1 = 18067;
+    packet_in.aux2 = 18171;
+    packet_in.aux3 = 18275;
+    packet_in.aux4 = 18379;
+    packet_in.aux5 = 18483;
+    packet_in.aux6 = 18587;
+
+    mavlink::ugvCustom::msg::MANUAL_CONTROL packet2{};
+
+    mavlink_msg_manual_control_encode(1, 1, &msg, &packet_c);
+
+    // simulate message-handling callback
+    [&packet2](const mavlink_message_t *cmsg) {
+        MsgMap map2(cmsg);
+
+        packet2.deserialize(map2);
+    } (&msg);
+
+    EXPECT_EQ(packet_in.target, packet2.target);
+    EXPECT_EQ(packet_in.x, packet2.x);
+    EXPECT_EQ(packet_in.y, packet2.y);
+    EXPECT_EQ(packet_in.z, packet2.z);
+    EXPECT_EQ(packet_in.r, packet2.r);
+    EXPECT_EQ(packet_in.push_buttons, packet2.push_buttons);
+    EXPECT_EQ(packet_in.enabled_extensions, packet2.enabled_extensions);
+    EXPECT_EQ(packet_in.s, packet2.s);
+    EXPECT_EQ(packet_in.t, packet2.t);
+    EXPECT_EQ(packet_in.aux1, packet2.aux1);
+    EXPECT_EQ(packet_in.aux2, packet2.aux2);
+    EXPECT_EQ(packet_in.aux3, packet2.aux3);
+    EXPECT_EQ(packet_in.aux4, packet2.aux4);
+    EXPECT_EQ(packet_in.aux5, packet2.aux5);
+    EXPECT_EQ(packet_in.aux6, packet2.aux6);
+
+#ifdef PRINT_MSG
+    PRINT_MSG(msg);
+#endif
+}
+#endif
+
 TEST(ugvCustom, RADIO_STATUS)
 {
     mavlink::mavlink_message_t msg;
@@ -600,20 +541,19 @@ TEST(ugvCustom_interop, RADIO_STATUS)
 }
 #endif
 
-TEST(ugvCustom, TIMESYNC)
+TEST(ugvCustom, SYS_STATUS)
 {
     mavlink::mavlink_message_t msg;
     mavlink::MsgMap map1(msg);
     mavlink::MsgMap map2(msg);
 
-    mavlink::ugvCustom::msg::TIMESYNC packet_in{};
-    packet_in.tc1 = 93372036854775807LL;
-    packet_in.ts1 = 170LL;
-    packet_in.target_system = 53;
-    packet_in.target_component = 120;
+    mavlink::ugvCustom::msg::SYS_STATUS packet_in{};
+    packet_in.voltage_battery = 17235;
+    packet_in.battery_remaining = 17;
+    packet_in.drop_rate_comm = 17339;
 
-    mavlink::ugvCustom::msg::TIMESYNC packet1{};
-    mavlink::ugvCustom::msg::TIMESYNC packet2{};
+    mavlink::ugvCustom::msg::SYS_STATUS packet1{};
+    mavlink::ugvCustom::msg::SYS_STATUS packet2{};
 
     packet1 = packet_in;
 
@@ -625,33 +565,31 @@ TEST(ugvCustom, TIMESYNC)
 
     packet2.deserialize(map2);
 
-    EXPECT_EQ(packet1.tc1, packet2.tc1);
-    EXPECT_EQ(packet1.ts1, packet2.ts1);
-    EXPECT_EQ(packet1.target_system, packet2.target_system);
-    EXPECT_EQ(packet1.target_component, packet2.target_component);
+    EXPECT_EQ(packet1.voltage_battery, packet2.voltage_battery);
+    EXPECT_EQ(packet1.battery_remaining, packet2.battery_remaining);
+    EXPECT_EQ(packet1.drop_rate_comm, packet2.drop_rate_comm);
 }
 
 #ifdef TEST_INTEROP
-TEST(ugvCustom_interop, TIMESYNC)
+TEST(ugvCustom_interop, SYS_STATUS)
 {
     mavlink_message_t msg;
 
     // to get nice print
     memset(&msg, 0, sizeof(msg));
 
-    mavlink_timesync_t packet_c {
-         93372036854775807LL, 170LL, 53, 120
+    mavlink_sys_status_t packet_c {
+         17235, 17339, 17
     };
 
-    mavlink::ugvCustom::msg::TIMESYNC packet_in{};
-    packet_in.tc1 = 93372036854775807LL;
-    packet_in.ts1 = 170LL;
-    packet_in.target_system = 53;
-    packet_in.target_component = 120;
+    mavlink::ugvCustom::msg::SYS_STATUS packet_in{};
+    packet_in.voltage_battery = 17235;
+    packet_in.battery_remaining = 17;
+    packet_in.drop_rate_comm = 17339;
 
-    mavlink::ugvCustom::msg::TIMESYNC packet2{};
+    mavlink::ugvCustom::msg::SYS_STATUS packet2{};
 
-    mavlink_msg_timesync_encode(1, 1, &msg, &packet_c);
+    mavlink_msg_sys_status_encode(1, 1, &msg, &packet_c);
 
     // simulate message-handling callback
     [&packet2](const mavlink_message_t *cmsg) {
@@ -660,10 +598,72 @@ TEST(ugvCustom_interop, TIMESYNC)
         packet2.deserialize(map2);
     } (&msg);
 
-    EXPECT_EQ(packet_in.tc1, packet2.tc1);
-    EXPECT_EQ(packet_in.ts1, packet2.ts1);
-    EXPECT_EQ(packet_in.target_system, packet2.target_system);
-    EXPECT_EQ(packet_in.target_component, packet2.target_component);
+    EXPECT_EQ(packet_in.voltage_battery, packet2.voltage_battery);
+    EXPECT_EQ(packet_in.battery_remaining, packet2.battery_remaining);
+    EXPECT_EQ(packet_in.drop_rate_comm, packet2.drop_rate_comm);
+
+#ifdef PRINT_MSG
+    PRINT_MSG(msg);
+#endif
+}
+#endif
+
+TEST(ugvCustom, SYSTEM_TIME)
+{
+    mavlink::mavlink_message_t msg;
+    mavlink::MsgMap map1(msg);
+    mavlink::MsgMap map2(msg);
+
+    mavlink::ugvCustom::msg::SYSTEM_TIME packet_in{};
+    packet_in.time_unix_usec = 93372036854775807ULL;
+    packet_in.time_boot_ms = 963497880;
+
+    mavlink::ugvCustom::msg::SYSTEM_TIME packet1{};
+    mavlink::ugvCustom::msg::SYSTEM_TIME packet2{};
+
+    packet1 = packet_in;
+
+    //std::cout << packet1.to_yaml() << std::endl;
+
+    packet1.serialize(map1);
+
+    mavlink::mavlink_finalize_message(&msg, 1, 1, packet1.MIN_LENGTH, packet1.LENGTH, packet1.CRC_EXTRA);
+
+    packet2.deserialize(map2);
+
+    EXPECT_EQ(packet1.time_unix_usec, packet2.time_unix_usec);
+    EXPECT_EQ(packet1.time_boot_ms, packet2.time_boot_ms);
+}
+
+#ifdef TEST_INTEROP
+TEST(ugvCustom_interop, SYSTEM_TIME)
+{
+    mavlink_message_t msg;
+
+    // to get nice print
+    memset(&msg, 0, sizeof(msg));
+
+    mavlink_system_time_t packet_c {
+         93372036854775807ULL, 963497880
+    };
+
+    mavlink::ugvCustom::msg::SYSTEM_TIME packet_in{};
+    packet_in.time_unix_usec = 93372036854775807ULL;
+    packet_in.time_boot_ms = 963497880;
+
+    mavlink::ugvCustom::msg::SYSTEM_TIME packet2{};
+
+    mavlink_msg_system_time_encode(1, 1, &msg, &packet_c);
+
+    // simulate message-handling callback
+    [&packet2](const mavlink_message_t *cmsg) {
+        MsgMap map2(cmsg);
+
+        packet2.deserialize(map2);
+    } (&msg);
+
+    EXPECT_EQ(packet_in.time_unix_usec, packet2.time_unix_usec);
+    EXPECT_EQ(packet_in.time_boot_ms, packet2.time_boot_ms);
 
 #ifdef PRINT_MSG
     PRINT_MSG(msg);
@@ -678,26 +678,43 @@ TEST(ugvCustom, UGV_SYSTEM_INFO)
     mavlink::MsgMap map2(msg);
 
     mavlink::ugvCustom::msg::UGV_SYSTEM_INFO packet_in{};
-    packet_in.subsystem_health_1 = 5;
-    packet_in.subsystem_health_2 = 72;
-    packet_in.subsystem_health_3 = 139;
-    packet_in.subsystem_health_4 = 206;
-    packet_in.battery_soc = 17;
-    packet_in.main_mode = 84;
-    packet_in.sub_mode = 151;
-    packet_in.intended_main_mode = 218;
-    packet_in.intended_sub_mode = 29;
-    packet_in.mode_change_reason = 96;
-    packet_in.rear_left_motor_faults = 163;
-    packet_in.rear_right_motor_faults = 230;
-    packet_in.front_left_motor_faults = 41;
-    packet_in.front_right_motor_faults = 108;
-    packet_in.left_mc_faults = 175;
-    packet_in.right_mc_faults = 242;
-    packet_in.left_mc_voltage = 53;
-    packet_in.right_mc_voltage = 120;
-    packet_in.left_mc_temperature = 187;
-    packet_in.right_mc_temperature = 254;
+    packet_in.ts1_hour = 5;
+    packet_in.ts1_minute = 72;
+    packet_in.ts1_second = 139;
+    packet_in.subsystem_health_1 = 206;
+    packet_in.subsystem_health_2 = 17;
+    packet_in.subsystem_health_3 = 84;
+    packet_in.subsystem_health_4 = 151;
+    packet_in.ts2_hour = 218;
+    packet_in.ts2_minute = 29;
+    packet_in.ts2_second = 96;
+    packet_in.battery_soc = 163;
+    packet_in.main_mode = 230;
+    packet_in.sub_mode = 41;
+    packet_in.speed_mode = 108;
+    packet_in.drive_mode = 175;
+    packet_in.arm_mode = 242;
+    packet_in.intended_main_mode = 53;
+    packet_in.intended_sub_mode = 120;
+    packet_in.intended_speed_mode = 187;
+    packet_in.intended_drive_mode = 254;
+    packet_in.intended_arm_mode = 65;
+    packet_in.mode_change_reason = 132;
+    packet_in.ts3_hour = 199;
+    packet_in.ts3_minute = 10;
+    packet_in.ts3_second = 77;
+    packet_in.rear_left_motor_faults = 144;
+    packet_in.rear_right_motor_faults = 211;
+    packet_in.front_left_motor_faults = 22;
+    packet_in.front_right_motor_faults = 89;
+    packet_in.rear_mc_faults = 156;
+    packet_in.front_mc_faults = 223;
+    packet_in.rear_mc_voltage = 34;
+    packet_in.front_mc_voltage = 101;
+    packet_in.rear_mc_temperature = 168;
+    packet_in.front_mc_temperature = 235;
+    packet_in.light_status = 46;
+    packet_in.pdu_channel_status = 113;
 
     mavlink::ugvCustom::msg::UGV_SYSTEM_INFO packet1{};
     mavlink::ugvCustom::msg::UGV_SYSTEM_INFO packet2{};
@@ -712,26 +729,43 @@ TEST(ugvCustom, UGV_SYSTEM_INFO)
 
     packet2.deserialize(map2);
 
+    EXPECT_EQ(packet1.ts1_hour, packet2.ts1_hour);
+    EXPECT_EQ(packet1.ts1_minute, packet2.ts1_minute);
+    EXPECT_EQ(packet1.ts1_second, packet2.ts1_second);
     EXPECT_EQ(packet1.subsystem_health_1, packet2.subsystem_health_1);
     EXPECT_EQ(packet1.subsystem_health_2, packet2.subsystem_health_2);
     EXPECT_EQ(packet1.subsystem_health_3, packet2.subsystem_health_3);
     EXPECT_EQ(packet1.subsystem_health_4, packet2.subsystem_health_4);
+    EXPECT_EQ(packet1.ts2_hour, packet2.ts2_hour);
+    EXPECT_EQ(packet1.ts2_minute, packet2.ts2_minute);
+    EXPECT_EQ(packet1.ts2_second, packet2.ts2_second);
     EXPECT_EQ(packet1.battery_soc, packet2.battery_soc);
     EXPECT_EQ(packet1.main_mode, packet2.main_mode);
     EXPECT_EQ(packet1.sub_mode, packet2.sub_mode);
+    EXPECT_EQ(packet1.speed_mode, packet2.speed_mode);
+    EXPECT_EQ(packet1.drive_mode, packet2.drive_mode);
+    EXPECT_EQ(packet1.arm_mode, packet2.arm_mode);
     EXPECT_EQ(packet1.intended_main_mode, packet2.intended_main_mode);
     EXPECT_EQ(packet1.intended_sub_mode, packet2.intended_sub_mode);
+    EXPECT_EQ(packet1.intended_speed_mode, packet2.intended_speed_mode);
+    EXPECT_EQ(packet1.intended_drive_mode, packet2.intended_drive_mode);
+    EXPECT_EQ(packet1.intended_arm_mode, packet2.intended_arm_mode);
     EXPECT_EQ(packet1.mode_change_reason, packet2.mode_change_reason);
+    EXPECT_EQ(packet1.ts3_hour, packet2.ts3_hour);
+    EXPECT_EQ(packet1.ts3_minute, packet2.ts3_minute);
+    EXPECT_EQ(packet1.ts3_second, packet2.ts3_second);
     EXPECT_EQ(packet1.rear_left_motor_faults, packet2.rear_left_motor_faults);
     EXPECT_EQ(packet1.rear_right_motor_faults, packet2.rear_right_motor_faults);
     EXPECT_EQ(packet1.front_left_motor_faults, packet2.front_left_motor_faults);
     EXPECT_EQ(packet1.front_right_motor_faults, packet2.front_right_motor_faults);
-    EXPECT_EQ(packet1.left_mc_faults, packet2.left_mc_faults);
-    EXPECT_EQ(packet1.right_mc_faults, packet2.right_mc_faults);
-    EXPECT_EQ(packet1.left_mc_voltage, packet2.left_mc_voltage);
-    EXPECT_EQ(packet1.right_mc_voltage, packet2.right_mc_voltage);
-    EXPECT_EQ(packet1.left_mc_temperature, packet2.left_mc_temperature);
-    EXPECT_EQ(packet1.right_mc_temperature, packet2.right_mc_temperature);
+    EXPECT_EQ(packet1.rear_mc_faults, packet2.rear_mc_faults);
+    EXPECT_EQ(packet1.front_mc_faults, packet2.front_mc_faults);
+    EXPECT_EQ(packet1.rear_mc_voltage, packet2.rear_mc_voltage);
+    EXPECT_EQ(packet1.front_mc_voltage, packet2.front_mc_voltage);
+    EXPECT_EQ(packet1.rear_mc_temperature, packet2.rear_mc_temperature);
+    EXPECT_EQ(packet1.front_mc_temperature, packet2.front_mc_temperature);
+    EXPECT_EQ(packet1.light_status, packet2.light_status);
+    EXPECT_EQ(packet1.pdu_channel_status, packet2.pdu_channel_status);
 }
 
 #ifdef TEST_INTEROP
@@ -743,30 +777,47 @@ TEST(ugvCustom_interop, UGV_SYSTEM_INFO)
     memset(&msg, 0, sizeof(msg));
 
     mavlink_ugv_system_info_t packet_c {
-         5, 72, 139, 206, 17, 84, 151, 218, 29, 96, 163, 230, 41, 108, 175, 242, 53, 120, 187, 254
+         5, 72, 139, 206, 17, 84, 151, 218, 29, 96, 163, 230, 41, 108, 175, 242, 53, 120, 187, 254, 65, 132, 199, 10, 77, 144, 211, 22, 89, 156, 223, 34, 101, 168, 235, 46, 113
     };
 
     mavlink::ugvCustom::msg::UGV_SYSTEM_INFO packet_in{};
-    packet_in.subsystem_health_1 = 5;
-    packet_in.subsystem_health_2 = 72;
-    packet_in.subsystem_health_3 = 139;
-    packet_in.subsystem_health_4 = 206;
-    packet_in.battery_soc = 17;
-    packet_in.main_mode = 84;
-    packet_in.sub_mode = 151;
-    packet_in.intended_main_mode = 218;
-    packet_in.intended_sub_mode = 29;
-    packet_in.mode_change_reason = 96;
-    packet_in.rear_left_motor_faults = 163;
-    packet_in.rear_right_motor_faults = 230;
-    packet_in.front_left_motor_faults = 41;
-    packet_in.front_right_motor_faults = 108;
-    packet_in.left_mc_faults = 175;
-    packet_in.right_mc_faults = 242;
-    packet_in.left_mc_voltage = 53;
-    packet_in.right_mc_voltage = 120;
-    packet_in.left_mc_temperature = 187;
-    packet_in.right_mc_temperature = 254;
+    packet_in.ts1_hour = 5;
+    packet_in.ts1_minute = 72;
+    packet_in.ts1_second = 139;
+    packet_in.subsystem_health_1 = 206;
+    packet_in.subsystem_health_2 = 17;
+    packet_in.subsystem_health_3 = 84;
+    packet_in.subsystem_health_4 = 151;
+    packet_in.ts2_hour = 218;
+    packet_in.ts2_minute = 29;
+    packet_in.ts2_second = 96;
+    packet_in.battery_soc = 163;
+    packet_in.main_mode = 230;
+    packet_in.sub_mode = 41;
+    packet_in.speed_mode = 108;
+    packet_in.drive_mode = 175;
+    packet_in.arm_mode = 242;
+    packet_in.intended_main_mode = 53;
+    packet_in.intended_sub_mode = 120;
+    packet_in.intended_speed_mode = 187;
+    packet_in.intended_drive_mode = 254;
+    packet_in.intended_arm_mode = 65;
+    packet_in.mode_change_reason = 132;
+    packet_in.ts3_hour = 199;
+    packet_in.ts3_minute = 10;
+    packet_in.ts3_second = 77;
+    packet_in.rear_left_motor_faults = 144;
+    packet_in.rear_right_motor_faults = 211;
+    packet_in.front_left_motor_faults = 22;
+    packet_in.front_right_motor_faults = 89;
+    packet_in.rear_mc_faults = 156;
+    packet_in.front_mc_faults = 223;
+    packet_in.rear_mc_voltage = 34;
+    packet_in.front_mc_voltage = 101;
+    packet_in.rear_mc_temperature = 168;
+    packet_in.front_mc_temperature = 235;
+    packet_in.light_status = 46;
+    packet_in.pdu_channel_status = 113;
 
     mavlink::ugvCustom::msg::UGV_SYSTEM_INFO packet2{};
 
@@ -779,26 +830,43 @@ TEST(ugvCustom_interop, UGV_SYSTEM_INFO)
         packet2.deserialize(map2);
     } (&msg);
 
+    EXPECT_EQ(packet_in.ts1_hour, packet2.ts1_hour);
+    EXPECT_EQ(packet_in.ts1_minute, packet2.ts1_minute);
+    EXPECT_EQ(packet_in.ts1_second, packet2.ts1_second);
     EXPECT_EQ(packet_in.subsystem_health_1, packet2.subsystem_health_1);
     EXPECT_EQ(packet_in.subsystem_health_2, packet2.subsystem_health_2);
     EXPECT_EQ(packet_in.subsystem_health_3, packet2.subsystem_health_3);
     EXPECT_EQ(packet_in.subsystem_health_4, packet2.subsystem_health_4);
+    EXPECT_EQ(packet_in.ts2_hour, packet2.ts2_hour);
+    EXPECT_EQ(packet_in.ts2_minute, packet2.ts2_minute);
+    EXPECT_EQ(packet_in.ts2_second, packet2.ts2_second);
     EXPECT_EQ(packet_in.battery_soc, packet2.battery_soc);
     EXPECT_EQ(packet_in.main_mode, packet2.main_mode);
     EXPECT_EQ(packet_in.sub_mode, packet2.sub_mode);
+    EXPECT_EQ(packet_in.speed_mode, packet2.speed_mode);
+    EXPECT_EQ(packet_in.drive_mode, packet2.drive_mode);
+    EXPECT_EQ(packet_in.arm_mode, packet2.arm_mode);
     EXPECT_EQ(packet_in.intended_main_mode, packet2.intended_main_mode);
     EXPECT_EQ(packet_in.intended_sub_mode, packet2.intended_sub_mode);
+    EXPECT_EQ(packet_in.intended_speed_mode, packet2.intended_speed_mode);
+    EXPECT_EQ(packet_in.intended_drive_mode, packet2.intended_drive_mode);
+    EXPECT_EQ(packet_in.intended_arm_mode, packet2.intended_arm_mode);
     EXPECT_EQ(packet_in.mode_change_reason, packet2.mode_change_reason);
+    EXPECT_EQ(packet_in.ts3_hour, packet2.ts3_hour);
+    EXPECT_EQ(packet_in.ts3_minute, packet2.ts3_minute);
+    EXPECT_EQ(packet_in.ts3_second, packet2.ts3_second);
     EXPECT_EQ(packet_in.rear_left_motor_faults, packet2.rear_left_motor_faults);
     EXPECT_EQ(packet_in.rear_right_motor_faults, packet2.rear_right_motor_faults);
     EXPECT_EQ(packet_in.front_left_motor_faults, packet2.front_left_motor_faults);
     EXPECT_EQ(packet_in.front_right_motor_faults, packet2.front_right_motor_faults);
-    EXPECT_EQ(packet_in.left_mc_faults, packet2.left_mc_faults);
-    EXPECT_EQ(packet_in.right_mc_faults, packet2.right_mc_faults);
-    EXPECT_EQ(packet_in.left_mc_voltage, packet2.left_mc_voltage);
-    EXPECT_EQ(packet_in.right_mc_voltage, packet2.right_mc_voltage);
-    EXPECT_EQ(packet_in.left_mc_temperature, packet2.left_mc_temperature);
-    EXPECT_EQ(packet_in.right_mc_temperature, packet2.right_mc_temperature);
+    EXPECT_EQ(packet_in.rear_mc_faults, packet2.rear_mc_faults);
+    EXPECT_EQ(packet_in.front_mc_faults, packet2.front_mc_faults);
+    EXPECT_EQ(packet_in.rear_mc_voltage, packet2.rear_mc_voltage);
+    EXPECT_EQ(packet_in.front_mc_voltage, packet2.front_mc_voltage);
+    EXPECT_EQ(packet_in.rear_mc_temperature, packet2.rear_mc_temperature);
+    EXPECT_EQ(packet_in.front_mc_temperature, packet2.front_mc_temperature);
+    EXPECT_EQ(packet_in.light_status, packet2.light_status);
+    EXPECT_EQ(packet_in.pdu_channel_status, packet2.pdu_channel_status);
 
 #ifdef PRINT_MSG
     PRINT_MSG(msg);
