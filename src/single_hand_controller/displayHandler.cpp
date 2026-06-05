@@ -14,6 +14,7 @@ extern struct buttons user_input;
 extern ugv_status current_state;
 extern ugv_status prev_state;
 
+int prevConnStatus = -1;
 uint8_t RSSI = 0;
 uint8_t ugv_battery_soc = 0;
 bool radioConnected;
@@ -368,15 +369,15 @@ void displayBattery(){
 
     else
       color = COLOR_RED;
-    tft.fillRectangle(battery_topLeftX, battery_topLeftY, battery_topLeftX + BATTERY_LENGTH * (1 - ugv_battery_soc / (float)100), battery_topLeftY + BATTERY_HEIGHT, COLOR_GRAY);
+    tft.fillRectangle(battery_topLeftX, battery_topLeftY, battery_topLeftX + BATTERY_LENGTH * (1 - ugv_battery_soc / (float)100), battery_topLeftY + BATTERY_HEIGHT, BATTERY_BG_COLOR);
     tft.fillRectangle(battery_topLeftX + BATTERY_LENGTH * (1 - ugv_battery_soc / (float)100), 
         battery_topLeftY, 
         battery_topLeftX + BATTERY_LENGTH, 
         battery_topLeftY + BATTERY_HEIGHT, 
         
         color);
-    if(ugv_battery_soc < 20 && ugv_battery_soc > 0){
-      displayInfo("Scout battery charge below 20%; please charge");
+    if(ugv_battery_soc < 10 && ugv_battery_soc > 0){
+      displayInfo("Scout battery charge below 10%; please charge");
     }
 }
 
@@ -385,30 +386,46 @@ void setRSSI(uint8_t curr_RSSI){
 }
 
 void setBatterySOC(uint8_t batterySOC){
+  IF_DEBUG(Serial.print("current soc : ");)
+  IF_DEBUG(Serial.println(batterySOC);)
   ugv_battery_soc = batterySOC;
 }
 
 void displayConnectionStatus(){
   setFontSmall();
   if(radioConnected && current_state != disconnected){
-    tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y, "ATLAS AND RADIO  ", CONNECTED_COLOR);
-    tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y + 8, "CONNECTED  ", CONNECTED_COLOR);
+    if(prevConnStatus != 2){
+      tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y, "ATLAS AND RADIO  ", CONNECTED_COLOR);
+      tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y + 8, "CONNECTED  ", CONNECTED_COLOR);
+    }
+    prevConnStatus = 2;
   }
   else if(radioConnected){
-   tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y, "RADIO CONNECTED   ", RADIO_CONNECTED_COLOR);
-   tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y + 8, "                 ", CONNECTED_COLOR);
+    if(prevConnStatus != 1){
+      tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y, "RADIO CONNECTED   ", RADIO_CONNECTED_COLOR);
+      tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y + 8, "                 ", CONNECTED_COLOR);
+    }
+    prevConnStatus = 1;
   }
-  else{
+  else if(prevConnStatus != 0){
     tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y, "ALL DISCONNECTED", DISCONNECTED_COLOR);
     tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y + 8, "                 ", CONNECTED_COLOR);
+    prevConnStatus = 0;
   }
   setFont1();
 }
 
 void updateDisplay(){
+    static int prevRSSI = 0, prevBattery = 0;
+
     displayConnectionStatus();
-    displayRSSI();
-    displayBattery();
+    if(RSSI != prevRSSI)
+      displayRSSI();
+    if(ugv_battery_soc != prevBattery)
+      displayBattery();
+
+    prevRSSI = RSSI;
+    prevBattery = ugv_battery_soc;
 }
 
 

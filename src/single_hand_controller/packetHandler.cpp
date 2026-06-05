@@ -86,7 +86,9 @@ void sendBuffer(int len){
         IF_PRINT_BYTES(Serial.print("0x");)
         IF_PRINT_BYTES(Serial.print(buf[i],HEX));
         IF_PRINT_BYTES(Serial.print(",");)
+        #ifndef STOP_COMM
         Serial3.write(buf[i]);
+        #endif
     }
     IF_PRINT_BYTES(Serial.println("");)
 }
@@ -122,25 +124,24 @@ void sendDisarmCommand(){
 void sendHeadlight(){
     // sendBuffer(msgsndr.buffer_light_control_cmd(0,0,0));
     // return;
-    
+    IF_DEBUG(Serial.println("+++++++++++++HEADLIGHT");)
     if(headlight_off()){
         
         setHeadlighState(1);
         if(foglight_off()){
-            sendBuffer(msgsndr.buffer_light_control_cmd(1,0,0));
+            sendBuffer(msgsndr.buffer_light_control_cmd(1,0,1));
         }
         else{
             sendBuffer(msgsndr.buffer_light_control_cmd(1,1,1));
         }
     }
     else{
-        
         setHeadlighState(0);
         if(foglight_off()){
             sendBuffer(msgsndr.buffer_light_control_cmd(0,0,0));
         }
         else{
-            sendBuffer(msgsndr.buffer_light_control_cmd(0,1,1));
+            sendBuffer(msgsndr.buffer_light_control_cmd(0,1,0));
         }
     }
 }
@@ -149,10 +150,12 @@ void sendHeadlight(){
 void sendFogBrakeLight(){
     // sendBuffer(msgsndr.buffer_light_control_cmd(1,1,1));
     // return;
+    IF_DEBUG(Serial.println("---------------FOGLIGHT");)
     if(headlight_off()){
+        
         if(foglight_off()){
             setFoglightState(1);
-            sendBuffer(msgsndr.buffer_light_control_cmd(0,1,1));
+            sendBuffer(msgsndr.buffer_light_control_cmd(0,1,0));
         }
         else{
             setFoglightState(0);
@@ -160,13 +163,14 @@ void sendFogBrakeLight(){
         }
     }
     else{
+        
         if(foglight_off()){
             setFoglightState(1);
             sendBuffer(msgsndr.buffer_light_control_cmd(1,1,1));
         }
         else{
             setFoglightState(0);
-            sendBuffer(msgsndr.buffer_light_control_cmd(1,0,0));
+            sendBuffer(msgsndr.buffer_light_control_cmd(1,0,1));
         }
     }   
 }

@@ -48,6 +48,7 @@ void setHeadlighState(bool state){
 }
 
 void setFoglightState(bool state){
+    
     fog_brake_state = state;
 }
 

@@ -22,7 +22,7 @@ void setup(){
     if(!initMAVLink()){
         displayError("continue without packet signing", 1);
     }
-    initiateController();
+    //initiateController();
 }
 
 
@@ -52,8 +52,9 @@ void loop(){
     while(true){
         run_OFP_cycle();
 
+#ifndef TESTING
         if(!isUGV_connected())
             return;
-
+#endif
     }
 }

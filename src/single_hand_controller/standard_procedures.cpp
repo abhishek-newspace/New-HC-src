@@ -25,6 +25,10 @@ bool currentlySendingArm = false;
 extern int arm_send_count;
 bool arm_disarm_error = false;
 
+bool turnOnHeadlight = false;
+bool turnOnFoglight = false;
+bool increaseSpeed = false;
+
 int hb_count = 0;
 long unsigned int OFP_timer = 0;
 
@@ -40,24 +44,16 @@ inline bool isUGVdisconnected(){
 
 
 inline bool turnHeadlightCondition(){
-    return (headlight_pressed()) ;
+    return turnOnHeadlight ;
 }
 
 inline bool turnFogLightCondition(){
-    return (foglight_pressed()) ;
+    return turnOnFoglight ;
 }
 
-// inline bool turnOffHeadlightCondition(){
-//     return (headlight_pressed() && !headlight_off()) ;
-// }
-
-
-// inline bool turnFogLightOffCondition(){
-//     return (foglight_pressed() && !foglight_off()) ;
-// }
 
 inline bool speedChangeCondition(){
-    return speed_change_pressed();
+    return increaseSpeed;
 }
 
 inline bool startArmCondition(){
@@ -178,6 +174,7 @@ void end_OFP_timer(unsigned long int time_limit){
  * send 3 consecutive heartbeats (to ensure radio status will be received)
  */
 void run_wakeup_seq(){
+#ifndef TESTING
     sendHeartbeat();
     sendHeartbeat();
     sendHeartbeat();
@@ -192,11 +189,12 @@ void run_wakeup_seq(){
     setHeadlighState(0);
     
     sendComponentVersion();
-
+#endif
     periodic_actions.reset();
     periodic_actions.addPeriodicAction(sendHeartbeat,SECONDS_MS_1);
     periodic_actions.addPeriodicAction(updateDisplay,SECONDS_MS_2);
     //periodic_actions.addPeriodicAction(sendTimesyncRequest,TIMESYNC_MSG_WAIT,isUGVdisconnected);
+    IF_TESTING(setUGV_state(active);)
 }
 
 
@@ -205,10 +203,13 @@ void run_OFP_cycle()
 {
     startOFPTimer();
 
+    #ifndef TESTING
     if(heartbeat_timed_out()){
         setUGV_state((ugv_status)disconnected);
         return;
     }
+    #endif
+
     if(getUGV_state() == active)
         sendManualControl();
 
@@ -227,12 +228,15 @@ void run_OFP_cycle()
     }
     if(turnHeadlightCondition()){
         sendHeadlight();
+        turnOnHeadlight = false;
     }
     if(turnFogLightCondition()){
         sendFogBrakeLight();
+        turnOnFoglight = false;
     }
     if(speedChangeCondition()){
         sendSpeedChangeRequest();
+        increaseSpeed = false;
     }
     handlePacketReceived();
     periodic_actions.performPeriodicActions();

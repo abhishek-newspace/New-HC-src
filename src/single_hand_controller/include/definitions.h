@@ -38,12 +38,13 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 #define PROTOTYPE
 
 //#define SIGN_PACKETS  // used to send and receive signed packets
-#define BYPASS_NO_SIGNING
+#define BYPASS_NO_SIGNING   // prevents display of error to show that signing is disabled
 
 // if the code is not meant to operate in debug mode (prints out info on serial communication), comment out this line
-//#define _DEBUG_
+#define _DEBUG_
 //#define TESTING_JOYSTICK
 //#define TESTING // ONLY use this when testing features
+//#define STOP_COMM   // when testing features and no communication is to be sent.
 
 //#define SPECIAL_TESTING
 

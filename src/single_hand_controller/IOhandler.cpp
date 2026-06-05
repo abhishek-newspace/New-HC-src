@@ -24,31 +24,56 @@
 int drift_x;
 int drift_y;
 
+extern bool turnOnHeadlight;
+extern bool turnOnFoglight;
+extern bool increaseSpeed;
+bool arm_press;
+bool disarm_press;
+
+void enableHeadlight(){
+    turnOnHeadlight = true;
+}
+
+void enabledFoglight(){
+    turnOnFoglight = true;
+}
+
+void enableIncreaseSpeed(){
+    increaseSpeed = true;
+}
+
+void enableArm(){
+    arm_press = true;
+}
+
+void enableDisarm(){
+    disarm_press = true;
+}
 
 button  b_headlight = {
             BUTTON_NEUTRAL,     // uint8_t pin;                
             0,                  // buttonPress press_state;
-            nullptr,            // void (*press_callback)(void);        
+            enableHeadlight,            // void (*press_callback)(void);        
             0                   // uint32_t cooldown;
         },
         b_inc_speed = {
             BUTTON_INC_SPEED,    // uint8_t pin; 
             0,                   // buttonPress press_state; 
-            nullptr,           // void (*press_callback)(void); 
+            enableIncreaseSpeed,           // void (*press_callback)(void); 
             0                    // uint32_t cooldown;
         },
         b_foglight = {
             BUTTON_DEC_SPEED,    // uint8_t pin;
             0,                   // buttonPress press_state;
-            nullptr,           // void (*press_callback)(void);
+            enabledFoglight,           // void (*press_callback)(void);
             0                    // uint32_t cooldown;
         };
 
 long_press_button b_arm_disarm = {
     BUTTON_ARM_DISARM, 
     0, 
-    nullptr, 
-    nullptr, 
+    enableArm, 
+    enableDisarm, 
     0, 
     0
 };
@@ -138,12 +163,20 @@ bool speed_change_pressed(){
 
 bool arm_pressed()
 {
-    return b_arm_disarm.press_state > 0;
+    if(arm_press){
+        arm_press = false;
+        return true;
+    }
+    return false;
 }
 
 bool arm_long_pressed()
 {
-    return b_arm_disarm.press_state == long_pressed;
+    if(disarm_press){
+        disarm_press = false;
+        return true;
+    }
+    return false;
 } /**
    * update the struct values for a normal button
    */
@@ -172,20 +205,19 @@ void updateLongPressButtonValues(struct long_press_button *b1, int32_t ms_since_
     if(!(digitalRead(b1->pin)) && b1->cooldown == 0){
         if(b1->press_state){
             b1->pressed_for += ms_since_last_check;
-            if(b1->pressed_for >= LONG_PRESS_DURATION)
+            if(b1->pressed_for >= LONG_PRESS_DURATION){
                 b1->press_state = long_pressed;
+                b1->cooldown = BUTTON_PRESS_COOLDOWN;
+                if(b1->long_press_callback != nullptr)
+                    b1->long_press_callback();
+            }
         }
         else{
             b1->press_state = short_pressed;
         }
     }
     else{
-        if(b1->press_state == long_pressed){
-            b1->cooldown = BUTTON_PRESS_COOLDOWN;
-            if(b1->long_press_callback != nullptr)
-                b1->long_press_callback();
-        }
-        else if(b1->press_state == short_pressed){
+        if(b1->press_state == short_pressed){
             b1->cooldown = BUTTON_PRESS_COOLDOWN;
             if(b1->short_press_callback != nullptr)
                 b1->short_press_callback();
