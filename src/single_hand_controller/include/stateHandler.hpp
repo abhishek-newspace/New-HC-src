@@ -67,3 +67,7 @@ void dir_forward();
 
 /// @brief switch current direction to reverse (if not in neutral)
 void dir_reverse();
+
+/// @brief Get the next speed when to be increased.
+/// @return get the current speed that should appear when speed is increased
+int get_inc_speed();

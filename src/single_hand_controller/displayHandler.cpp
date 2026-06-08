@@ -301,6 +301,7 @@ void displayUGV_status(ugv_status s){
     case disconnected:
       text = "DISCONNECTED";
       color = COLOR_RED;
+      ugv_battery_soc = 0;
       IF_DEBUG (Serial.println("disconnected");)
     break;
     case active:
@@ -379,6 +380,14 @@ void displayBattery(){
     if(ugv_battery_soc < 10 && ugv_battery_soc > 0){
       displayInfo("Scout battery charge below 10%; please charge");
     }
+    setFontSmall();
+    String soc = String(ugv_battery_soc);
+    if(ugv_battery_soc < 10 && ugv_battery_soc > 0)
+      soc = String("0") + soc;
+    else if(ugv_battery_soc == 0){
+      soc = "__";
+    }
+    tft.drawText(battery_topLeftX + BATTERY_LENGTH + 10, battery_topLeftY, soc + String("%"));
 }
 
 void setRSSI(uint8_t curr_RSSI){

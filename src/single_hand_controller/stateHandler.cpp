@@ -100,6 +100,9 @@ void inc_Speed(){
     // current_dir = set_dir;
     // displayDirection(current_dir);
 }
+int get_inc_speed(){
+    return (current_spd + 1) % 3;
+}
 void dec_Speed(){
     IF_DEBUG(Serial.println("decrease speed called!"));
     speed = speed == 0 ? speed : speed - 1;

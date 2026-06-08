@@ -38,7 +38,7 @@
 #define BATTERY_LENGTH 40
 #define BATTERY_HEIGHT 10
 
-#define BATTERY_POS_X 120 
+#define BATTERY_POS_X 100 
 #define BATTERY_POS_Y 5
 
 #define Y_OFFSET 5
