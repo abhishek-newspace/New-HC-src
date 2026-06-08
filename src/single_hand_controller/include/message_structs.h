@@ -7,7 +7,10 @@
  */
 #pragma once
 #include "definitions.h"
-#include "mavlink/common/mavlink.h"
+//#include "mavlink/common/mavlink.h"
+//#include "/home/nikhil/MAVLink/mavlink_standard/common/mavlink.h"
+#include "custom_v0.3/ugvCustom/mavlink.h"
+//#include "custom_v0.3_mav1/ugvCustom/mavlink.h"   // FOR MAVLINK V1.0
 
 // commands sent from hand controller
 // empty fields within structs need to be filled with appropriate values
@@ -28,7 +31,7 @@ struct HC_ATLAS_MANUAL_CONTROL_BC{
     uint8_t target = SCOUT_ID;
     int16_t x,y;
     uint16_t Push_buttons = 0;
-    uint16_t Tristate_Toggle_switches = 0;
+    //uint16_t Tristate_Toggle_switches = 0;
 };
 
 struct HC_ATLAS_ARM_DISARM_CMD{
@@ -39,8 +42,38 @@ struct HC_ATLAS_ARM_DISARM_CMD{
     float param1;
 };
 
+struct HC_ATLAS_UGV_COMPONENT_VER{
+    uint32_t software_version = VERSION_MAJOR << 24 | VERSION_MINOR << 16 | VERSION_PATCH << 8 | VERSION_TYPE;
+    uint8_t checksum[32] = {0x05,0xbc,0xda,0x07,0x72,0xfe,0x22,0x13,0xf9,0xa7,0x29,0x79,0x58,0xbd,0x8a,0xa2,0x2a,0xbd,0xbc,0x58,0x3d,0x03,0xcb,0x9c,0xa8,0xf7,0x8b,0x64,0x88,0x2f,0x5e,0x36};   // checksum of build file with arm/disarm command allowed
+    uint8_t target_system = SCOUT_ID;
+    uint8_t target_component = ATLAS_COMP_ID;
+};
+
+struct HC_MODE_COMMAND{
+    uint8_t target_system = SCOUT_ID;
+    uint8_t target_component = ATLAS_COMP_ID;
+    uint16_t command = MAV_CMD_DO_SET_MODE;
+    uint8_t confirmation = 0;
+    float param1 = 1;
+    float param2 = 1;
+    float param3 = 1;
+    float param4;   // SPEED MODE
+};
+
+struct HC_LIGHT_CONTROL_COMMAND{
+    uint8_t target_system = SCOUT_ID;
+    uint8_t target_component = ATLAS_COMP_ID;
+    uint16_t command = MAV_CMD_LIGHT_CONTROL;
+    uint8_t confirmation = 0;
+    float param1;   // headlight
+    float param2;   // fog light
+    float param3;   //
+};
+
+
 
 // commands received from atlas
+
 
 // heartbeat is rejected in case parameters don't match
 struct ATLAS_HC_HEARTBEAT_BC{
@@ -77,7 +110,21 @@ struct ATLAS_HC_SYS_STAT{
 };
 
 struct ATLAS_HC_ARM_DISARM_ACK{
-    uint8_t command;
+    uint8_t command = MAV_CMD_COMPONENT_ARM_DISARM;
+    uint8_t result;
+    uint8_t target_system = HC_ID;
+    uint8_t target_component = HC_COMP_ID;
+};
+
+struct COMP_MODE_COMMAND_ACK{
+    uint8_t command = MAV_CMD_DO_SET_MODE;
+    uint8_t result;
+    uint8_t target_system = HC_ID;
+    uint8_t target_component = HC_COMP_ID;
+};
+
+struct COMP_LIGHT_CONTROL_ACK{
+    uint8_t command = MAV_CMD_LIGHT_CONTROL;
     uint8_t result;
     uint8_t target_system = HC_ID;
     uint8_t target_component = HC_COMP_ID;

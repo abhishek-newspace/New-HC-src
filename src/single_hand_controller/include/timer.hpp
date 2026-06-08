@@ -5,30 +5,44 @@
  * @date 22/04/2026
  * 
  * All timing functions are contained within this header file
+ * 
+ * <h2>changes</h2>
+ * @date 06/05/2026
+ * placed startTimer, timeup, and resetTimer functions into a class so that multiple timers can be made within the OFP loop
  */
 #pragma once
 #include "definitions.h"
-#include "IOhandler.hpp"
+
+class timer{
+    long unsigned int current_time = 0;
+    long unsigned int duration = 0;
+
+public:
+    timer(){
+        duration = 0;
+    }
+
+    timer(long unsigned int intervalDuration){
+        duration = intervalDuration;
+    }
+
+    /// @brief start a timer, that keeps count of number of microseconds elapsed
+    void startTimer();
+
+    /// @brief check whether time_ms microseconds are completed since start of timer
+    /// @param time_ms milliseconds since start of timer
+    /// @return true when time_ms microseconds are completed since start of timer.
+    bool timeup(unsigned long int time_ms);
+
+    /// @brief check whether the duration for which the timer should run is complete, and resets timer. Will always return true if intervalDuration is not set.
+    /// @return true when duration is complete
+    bool timeup();
+
+    /// @brief essentially performs same task as startTimer(); used to reset the timer to 0 and start again.
+    void resetTimer();
 
 
-/// @brief start a timer, that keeps count of number of microseconds elapsed
-void startTimer();
-
-/// @brief check whether time_ms microseconds are completed since start of timer
-/// @param time_ms microseconds since start of timer
-/// @return true when time_ms microseconds are completed since start of timer.
-bool timeup(unsigned long int time_ms);
-
-/// @brief essentially performs same task as startTimer(); used to reset the timer to 0 and start again.
-void resetTimer();
-
-/// @brief second timer meant to be used only within the OFP loop
-void startOFPTimer();
-
-/// @brief waits until time_limit microseconds are completed since beginning of OFP timer
-/// @param time_limit number of microseconds the OFP loop is meant to last for
-void end_OFP_timer(unsigned long int time_limit);
-
+};
 
 /// @brief get the current global time as provided by ATLAS.
 /// @param UGVTime time provided by ATLAS

@@ -7,10 +7,23 @@
  * Handling of states within the hand controller is performed within the stateHandler.
  * 
  * currently handles states for ugv state, and speed
+ * <h2>changes</h2>
+ * renamed increaseSpeed to inc_speed due to name collision with that in buttons struct within IOhandler
+ * renamed decreaseSpeed to dec_speed due to name collision with that in buttons struct within IOhandler
+ * 
+ * @date 04/05/2026
+ * - added function declarations for functions to change directions, and get current speed, and direction
  */
 #pragma once
 #include"displayHandler.hpp"
 #include "definitions.h"
+
+
+// gettr functions
+bool headlight_off();
+bool foglight_off();
+void setHeadlighState(bool state);
+void setFoglightState(bool state);
 
 /**
  * set the current UGV state. 
@@ -19,8 +32,42 @@
  */
 bool setUGV_state(ugv_status s1);
 
+/**
+ * returns the current UGV state
+ */
+ugv_status getUGV_state();
+
+/// @brief get current UGV speed
+/// @return current UGV speed
+speedToggle getUGV_speed();
+
+/// @brief get current UGV direction
+/// @return current UGV direction
+directionToggle getUGV_dir();
+
+/**
+ * check whether the UGV is connected or not
+ * \returns true when UGV is not in disconnected state.
+ */
+bool isUGV_connected();
+
+void setUGV_speed(int speed);
+
 /// @brief used only within prototype version, to increase speed
-void increaseSpeed();
+void inc_Speed();
 
 /// @brief used only within prototype version, to decrease speed
-void decreaseSpeed();
+void dec_Speed();
+
+/// @brief used only within prototype version to set speed to neutral
+void setNeutral();
+
+/// @brief switch current direction to forward (if not in neutral)
+void dir_forward();
+
+/// @brief switch current direction to reverse (if not in neutral)
+void dir_reverse();
+
+/// @brief Get the next speed when to be increased.
+/// @return get the current speed that should appear when speed is increased
+int get_inc_speed();

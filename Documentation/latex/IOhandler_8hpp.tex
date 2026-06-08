@@ -1,8 +1,9 @@
 \hypertarget{IOhandler_8hpp}{}\doxysection{single\+\_\+hand\+\_\+controller/include/\+IOhandler.hpp File Reference}
 \label{IOhandler_8hpp}\index{single\_hand\_controller/include/IOhandler.hpp@{single\_hand\_controller/include/IOhandler.hpp}}
 {\ttfamily \#include \char`\"{}definitions.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}mavlink/common/mavlink.\+h\char`\"{}}\newline
-Include dependency graph for IOhandler.\+hpp\+:\nopagebreak
+{\ttfamily \#include \char`\"{}state\+Handler.\+hpp\char`\"{}}\newline
+Include dependency graph for IOhandler.\+hpp\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,17 +22,32 @@ This graph shows which files directly or indirectly include this file\+:
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structthumbstickControl}{thumbstick\+Control}}
-\begin{DoxyCompactList}\small\item\em thumbstick control is used within this library \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em thumbstick control is used within this library \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structbutton}{button}}
+\begin{DoxyCompactList}\small\item\em normal button for which there is just a single press \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structlong__press__button}{long\+\_\+press\+\_\+button}}
+\begin{DoxyCompactList}\small\item\em a button in which long press is allowed \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structtoggle}{toggle}}
+\begin{DoxyCompactList}\small\item\em 2-\/state direction toggle switch on prototype; requires jitter correction due to fault \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{IOhandler_8hpp_a1dc0c60e438aa4320dea211ce0bc76ed}\label{IOhandler_8hpp_a1dc0c60e438aa4320dea211ce0bc76ed}} 
 void \mbox{\hyperlink{IOhandler_8hpp_a1dc0c60e438aa4320dea211ce0bc76ed}{check\+User\+Input}} ()
-\begin{DoxyCompactList}\small\item\em update user input \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em update user input struct \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{IOhandler_8hpp_a9c4aeedf63c6452e322687f5bf755a9f}{get\+XY\+\_\+raw}} (struct \mbox{\hyperlink{structthumbstickControl}{thumbstick\+Control}} $\ast$control)
 \begin{DoxyCompactList}\small\item\em get thumbstick\textquotesingle{}s raw position (0 to 1023) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{IOhandler_8hpp_aa5c60ad78017adbedcd90d1c8188299e}{get\+XY}} (struct \mbox{\hyperlink{structthumbstickControl}{thumbstick\+Control}} $\ast$control)
-\begin{DoxyCompactList}\small\item\em get thumbstick\textquotesingle{}s normalized position (-\/100 to 100) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em get thumbstick\textquotesingle{}s normalized position (-\/100 to 100) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{IOhandler_8hpp_a752981eb72c55e53f5b80467105b293f}{arm\+\_\+pressed}} ()
+\begin{DoxyCompactList}\small\item\em whether arm/disarm button is pressed or not \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{IOhandler_8hpp_ae35d4929cddd51eb9ba34a96518f6e23}{arm\+\_\+long\+\_\+pressed}} ()
+\begin{DoxyCompactList}\small\item\em whether arm/disarm button is long pressed or not \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{IOhandler_8hpp_a55c2266c27aefe9a03bec35aecfbca2a}{update\+Button\+Values}} (struct \mbox{\hyperlink{structbutton}{button}} $\ast$b1, int32\+\_\+t ms\+\_\+since\+\_\+last\+\_\+check)
+\begin{DoxyCompactList}\small\item\em update parameters within the button struct \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{IOhandler_8hpp_ac068efb8c06de7b1ada4f22535d1bfc1}{update\+Long\+Press\+Button\+Values}} (struct \mbox{\hyperlink{structlong__press__button}{long\+\_\+press\+\_\+button}} $\ast$b1, int32\+\_\+t ms\+\_\+since\+\_\+last\+\_\+check)
+\begin{DoxyCompactList}\small\item\em update parameters within the button struct \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{IOhandler_8hpp_afbac70413ebf09de75cf653b0b173d49}{update\+Toggle\+Values}} (struct \mbox{\hyperlink{structtoggle}{toggle}} $\ast$t1, int32\+\_\+t ms\+\_\+since\+\_\+last\+\_\+check)
+\begin{DoxyCompactList}\small\item\em update parameters within the toggle struct \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -42,12 +58,57 @@ void \mbox{\hyperlink{IOhandler_8hpp_aa5c60ad78017adbedcd90d1c8188299e}{get\+XY}
 Nikhil Tom Jose 
 \end{DoxyAuthor}
 \begin{DoxyDate}{Date}
-22/04/2026 Any interfacing with input/output pins of the microcontroller is taken care of, within this header file, except handling display output, which is done by the display\+Handler 
+22/04/2026 Any interfacing with input/output pins of the microcontroller is taken care of, within this header file, except handling display output, which is done by the display\+Handler
+\end{DoxyDate}
+\doxysubsubsection*{Changes}
+
+\begin{DoxyDate}{Date}
+28/04/2026
+\begin{DoxyItemize}
+\item Modified struct to inclued cooldown period, so that when the button is pressed and released, the next press is only registered after the cooldown period
+\item modified struct to include callback functions to increase, decrease and set speed to neutral 
+\end{DoxyItemize}
 \end{DoxyDate}
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{IOhandler_8hpp_aa5c60ad78017adbedcd90d1c8188299e}\label{IOhandler_8hpp_aa5c60ad78017adbedcd90d1c8188299e}} 
+\mbox{\Hypertarget{IOhandler_8hpp_ae35d4929cddd51eb9ba34a96518f6e23}\label{IOhandler_8hpp_ae35d4929cddd51eb9ba34a96518f6e23}} 
+\index{IOhandler.hpp@{IOhandler.hpp}!arm\_long\_pressed@{arm\_long\_pressed}}
+\index{arm\_long\_pressed@{arm\_long\_pressed}!IOhandler.hpp@{IOhandler.hpp}}
+\doxysubsubsection{\texorpdfstring{arm\_long\_pressed()}{arm\_long\_pressed()}}
+{\footnotesize\ttfamily bool arm\+\_\+long\+\_\+pressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+whether arm/disarm button is long pressed or not 
+
+\begin{DoxyReturn}{Returns}
+true when arm/disarm button is long pressed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{IOhandler_8hpp_a752981eb72c55e53f5b80467105b293f}\label{IOhandler_8hpp_a752981eb72c55e53f5b80467105b293f}} 
+\index{IOhandler.hpp@{IOhandler.hpp}!arm\_pressed@{arm\_pressed}}
+\index{arm\_pressed@{arm\_pressed}!IOhandler.hpp@{IOhandler.hpp}}
+\doxysubsubsection{\texorpdfstring{arm\_pressed()}{arm\_pressed()}}
+{\footnotesize\ttfamily bool arm\+\_\+pressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+whether arm/disarm button is pressed or not 
+
+\begin{DoxyReturn}{Returns}
+true when arm/disarm button is pressed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{IOhandler_8hpp_a1dc0c60e438aa4320dea211ce0bc76ed}\label{IOhandler_8hpp_a1dc0c60e438aa4320dea211ce0bc76ed}} 
+\index{IOhandler.hpp@{IOhandler.hpp}!checkUserInput@{checkUserInput}}
+\index{checkUserInput@{checkUserInput}!IOhandler.hpp@{IOhandler.hpp}}
+\doxysubsubsection{\texorpdfstring{checkUserInput()}{checkUserInput()}}
+{\footnotesize\ttfamily void check\+User\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+update user input struct 
+
+user input struct is defined in \mbox{\hyperlink{IOhandler_8cpp}{IOhandler.\+cpp}}. declare it in the file where it is required as {\ttfamily extern struct buttons user\+\_\+input} and access the variables in it to obtain updated user input \mbox{\Hypertarget{IOhandler_8hpp_aa5c60ad78017adbedcd90d1c8188299e}\label{IOhandler_8hpp_aa5c60ad78017adbedcd90d1c8188299e}} 
 \index{IOhandler.hpp@{IOhandler.hpp}!getXY@{getXY}}
 \index{getXY@{getXY}!IOhandler.hpp@{IOhandler.hpp}}
 \doxysubsubsection{\texorpdfstring{getXY()}{getXY()}}
@@ -75,5 +136,59 @@ get thumbstick\textquotesingle{}s raw position (0 to 1023)
 
 \begin{DoxyParams}{Parameters}
 {\em control} & -\/$>$ the current position of the thumbstick is written into this struct \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{IOhandler_8hpp_a55c2266c27aefe9a03bec35aecfbca2a}\label{IOhandler_8hpp_a55c2266c27aefe9a03bec35aecfbca2a}} 
+\index{IOhandler.hpp@{IOhandler.hpp}!updateButtonValues@{updateButtonValues}}
+\index{updateButtonValues@{updateButtonValues}!IOhandler.hpp@{IOhandler.hpp}}
+\doxysubsubsection{\texorpdfstring{updateButtonValues()}{updateButtonValues()}}
+{\footnotesize\ttfamily void update\+Button\+Values (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structbutton}{button}} $\ast$}]{b1,  }\item[{int32\+\_\+t}]{ms\+\_\+since\+\_\+last\+\_\+check }\end{DoxyParamCaption})}
+
+
+
+update parameters within the button struct 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b1} & button struct in which update needs to happen \\
+\hline
+{\em ms\+\_\+since\+\_\+last\+\_\+check} & number of milliseconds since last time this function was called (ideally to only be used within \mbox{\hyperlink{IOhandler_8hpp_a1dc0c60e438aa4320dea211ce0bc76ed}{check\+User\+Input()}} function) ~\newline
+\\
+\hline
+\end{DoxyParams}
+update parameters within the button struct \mbox{\Hypertarget{IOhandler_8hpp_ac068efb8c06de7b1ada4f22535d1bfc1}\label{IOhandler_8hpp_ac068efb8c06de7b1ada4f22535d1bfc1}} 
+\index{IOhandler.hpp@{IOhandler.hpp}!updateLongPressButtonValues@{updateLongPressButtonValues}}
+\index{updateLongPressButtonValues@{updateLongPressButtonValues}!IOhandler.hpp@{IOhandler.hpp}}
+\doxysubsubsection{\texorpdfstring{updateLongPressButtonValues()}{updateLongPressButtonValues()}}
+{\footnotesize\ttfamily void update\+Long\+Press\+Button\+Values (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlong__press__button}{long\+\_\+press\+\_\+button}} $\ast$}]{b1,  }\item[{int32\+\_\+t}]{ms\+\_\+since\+\_\+last\+\_\+check }\end{DoxyParamCaption})}
+
+
+
+update parameters within the button struct 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b1} & long press button struct in which update needs to happen \\
+\hline
+{\em ms\+\_\+since\+\_\+last\+\_\+check} & number of milliseconds since last time this function was called (ideally to only be used within \mbox{\hyperlink{IOhandler_8hpp_a1dc0c60e438aa4320dea211ce0bc76ed}{check\+User\+Input()}} function) ~\newline
+\\
+\hline
+\end{DoxyParams}
+update parameters within the button struct \mbox{\Hypertarget{IOhandler_8hpp_afbac70413ebf09de75cf653b0b173d49}\label{IOhandler_8hpp_afbac70413ebf09de75cf653b0b173d49}} 
+\index{IOhandler.hpp@{IOhandler.hpp}!updateToggleValues@{updateToggleValues}}
+\index{updateToggleValues@{updateToggleValues}!IOhandler.hpp@{IOhandler.hpp}}
+\doxysubsubsection{\texorpdfstring{updateToggleValues()}{updateToggleValues()}}
+{\footnotesize\ttfamily void update\+Toggle\+Values (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structtoggle}{toggle}} $\ast$}]{t1,  }\item[{int32\+\_\+t}]{ms\+\_\+since\+\_\+last\+\_\+check }\end{DoxyParamCaption})}
+
+
+
+update parameters within the toggle struct 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t1} & toggle struct in which update needs to happen \\
+\hline
+{\em ms\+\_\+since\+\_\+last\+\_\+check} & number of milliseconds since last time this function was called (ideally to only be used within \mbox{\hyperlink{IOhandler_8hpp_a1dc0c60e438aa4320dea211ce0bc76ed}{check\+User\+Input()}} function) ~\newline
+ \\
 \hline
 \end{DoxyParams}

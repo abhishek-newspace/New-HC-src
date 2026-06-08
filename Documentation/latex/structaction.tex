@@ -1,0 +1,58 @@
+\hypertarget{structaction}{}\doxysection{action Struct Reference}
+\label{structaction}\index{action@{action}}
+
+
+defines all the variables required to  
+
+
+
+
+{\ttfamily \#include $<$Periodic\+Actions.\+hpp$>$}
+
+
+
+Collaboration diagram for action\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=201pt]{structaction__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structaction_a615e5d7a06a794265fd0d05a6855293e}\label{structaction_a615e5d7a06a794265fd0d05a6855293e}} 
+\mbox{\hyperlink{classtimer}{timer}} {\bfseries interval\+Duration}
+\item 
+\mbox{\Hypertarget{structaction_a596c41691ecad540418300ca2b207773}\label{structaction_a596c41691ecad540418300ca2b207773}} 
+int {\bfseries action\+ID}
+\item 
+\mbox{\Hypertarget{structaction_a4ff7aa18ae650e9fe05723163dae7a8e}\label{structaction_a4ff7aa18ae650e9fe05723163dae7a8e}} 
+bool($\ast$ {\bfseries stop\+Condition} )() = nullptr
+\item 
+\mbox{\Hypertarget{structaction_a9dbbfaa914ecb8a9d9f2a6d5df624d4f}\label{structaction_a9dbbfaa914ecb8a9d9f2a6d5df624d4f}} 
+void($\ast$ {\bfseries perform\+Action} )(void) = nullptr
+\item 
+\mbox{\Hypertarget{structaction_aa3de500be515653ad4920b7270acc181}\label{structaction_aa3de500be515653ad4920b7270acc181}} 
+void($\ast$ {\bfseries stop\+Action} )(void) = nullptr
+\item 
+\mbox{\Hypertarget{structaction_a789718e2aa2662255960fa47cd91cbd3}\label{structaction_a789718e2aa2662255960fa47cd91cbd3}} 
+\mbox{\hyperlink{structaction}{action}} $\ast$ {\bfseries next\+Action} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+defines all the variables required to 
+
+
+\begin{DoxyEnumerate}
+\item know when to perform the action
+\item know when to stop performing the action
+\item action to perform as the periodic action is stopped
+\item 
+\end{DoxyEnumerate}
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/\mbox{\hyperlink{PeriodicActions_8hpp}{Periodic\+Actions.\+hpp}}\end{DoxyCompactItemize}

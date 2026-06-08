@@ -1,0 +1,4 @@
+<map id="mavlink::ugvCustom::msg::MANUAL_CONTROL" name="mavlink::ugvCustom::msg::MANUAL_CONTROL">
+<area shape="rect" id="node1" title="MANUAL_CONTROL message." alt="" coords="5,80,199,121"/>
+<area shape="rect" id="node2" href="$structmavlink_1_1Message.html" title="MAVLink Message base class." alt="" coords="31,5,173,32"/>
+</map>

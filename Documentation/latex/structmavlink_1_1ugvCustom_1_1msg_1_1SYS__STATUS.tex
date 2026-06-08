@@ -1,0 +1,141 @@
+\hypertarget{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS}{}\doxysection{mavlink\+::ugv\+Custom\+::msg\+::SYS\+\_\+\+STATUS Struct Reference}
+\label{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS}\index{mavlink::ugvCustom::msg::SYS\_STATUS@{mavlink::ugvCustom::msg::SYS\_STATUS}}
+
+
+\mbox{\hyperlink{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS}{SYS\+\_\+\+STATUS}} message.  
+
+
+
+
+{\ttfamily \#include $<$mavlink\+\_\+msg\+\_\+sys\+\_\+status.\+hpp$>$}
+
+
+
+Inheritance diagram for mavlink\+::ugv\+Custom\+::msg\+::SYS\+\_\+\+STATUS\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=198pt]{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for mavlink\+::ugv\+Custom\+::msg\+::SYS\+\_\+\+STATUS\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=198pt]{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_af22f05f8eb237e31eaa159cde60aae50}{get\+\_\+name}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get NAME constant. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_ada4c11392a04a3293ad4f3ba711f88b7}\label{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_ada4c11392a04a3293ad4f3ba711f88b7}} 
+\mbox{\hyperlink{structmavlink_1_1Message_1_1Info}{Info}} \mbox{\hyperlink{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_ada4c11392a04a3293ad4f3ba711f88b7}{get\+\_\+message\+\_\+info}} (void) const override
+\begin{DoxyCompactList}\small\item\em Get info needed for mavlink\+\_\+finalize\+\_\+message\+\_\+xxx() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_a6311b4e16a792ab86be8f40df25272fd}\label{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_a6311b4e16a792ab86be8f40df25272fd}} 
+std\+::string \mbox{\hyperlink{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_a6311b4e16a792ab86be8f40df25272fd}{to\+\_\+yaml}} (void) const override
+\begin{DoxyCompactList}\small\item\em Make YAML-\/string from message content. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_a5c8af39f103032c73deecf874a6ec84c}{serialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) const override
+\begin{DoxyCompactList}\small\item\em Serialize message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_a638abd7eca92594d3b6a149531d18110}{deserialize}} (\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&map) override
+\begin{DoxyCompactList}\small\item\em Deserialize message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_a0eb4672d8ec8bbea80eaaa4833f52926}\label{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_a0eb4672d8ec8bbea80eaaa4833f52926}} 
+uint16\+\_\+t {\bfseries voltage\+\_\+battery}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_a9b75902d2306bef555d400792530b34c}\label{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_a9b75902d2306bef555d400792530b34c}} 
+int8\+\_\+t {\bfseries battery\+\_\+remaining}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_a5a96cc4e48ab961bc4ef629042df647b}\label{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_a5a96cc4e48ab961bc4ef629042df647b}} 
+uint16\+\_\+t {\bfseries drop\+\_\+rate\+\_\+comm}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_ac7021dfcd430d85bbab88ef35324fd67}\label{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_ac7021dfcd430d85bbab88ef35324fd67}} 
+static constexpr msgid\+\_\+t {\bfseries MSG\+\_\+\+ID} = 1
+\item 
+\mbox{\Hypertarget{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_a344a71d8155a97f694e667f1a8e19c39}\label{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_a344a71d8155a97f694e667f1a8e19c39}} 
+static constexpr size\+\_\+t {\bfseries LENGTH} = 5
+\item 
+\mbox{\Hypertarget{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_a360404795194b4843aa316c48967f9bf}\label{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_a360404795194b4843aa316c48967f9bf}} 
+static constexpr size\+\_\+t {\bfseries MIN\+\_\+\+LENGTH} = 5
+\item 
+\mbox{\Hypertarget{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_ae8329a0473b4cc9187fef30e33d4d61b}\label{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_ae8329a0473b4cc9187fef30e33d4d61b}} 
+static constexpr uint8\+\_\+t {\bfseries CRC\+\_\+\+EXTRA} = 3
+\item 
+\mbox{\Hypertarget{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_a5328bace10b3b8c2a3f2136138aa4093}\label{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_a5328bace10b3b8c2a3f2136138aa4093}} 
+static constexpr auto {\bfseries NAME} = \char`\"{}SYS\+\_\+\+STATUS\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS}{SYS\+\_\+\+STATUS}} message. 
+
+Sensor and subsystem status information. Provides a compact representation of sensor/subsystem status and a few other basic statistics. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_a638abd7eca92594d3b6a149531d18110}\label{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_a638abd7eca92594d3b6a149531d18110}} 
+\index{mavlink::ugvCustom::msg::SYS\_STATUS@{mavlink::ugvCustom::msg::SYS\_STATUS}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!mavlink::ugvCustom::msg::SYS\_STATUS@{mavlink::ugvCustom::msg::SYS\_STATUS}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily void mavlink\+::ugv\+Custom\+::msg\+::\+SYS\+\_\+\+STATUS\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{msp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deserialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a082824377e57f4e90bce4cba1a44f90b}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_af22f05f8eb237e31eaa159cde60aae50}\label{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_af22f05f8eb237e31eaa159cde60aae50}} 
+\index{mavlink::ugvCustom::msg::SYS\_STATUS@{mavlink::ugvCustom::msg::SYS\_STATUS}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!mavlink::ugvCustom::msg::SYS\_STATUS@{mavlink::ugvCustom::msg::SYS\_STATUS}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string mavlink\+::ugv\+Custom\+::msg\+::\+SYS\+\_\+\+STATUS\+::get\+\_\+name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get NAME constant. 
+
+Helper for overloaded class access. 
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_acfcd821ce25f7e4e2633f44d4a57b185}{mavlink\+::\+Message}}.
+
+\mbox{\Hypertarget{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_a5c8af39f103032c73deecf874a6ec84c}\label{structmavlink_1_1ugvCustom_1_1msg_1_1SYS__STATUS_a5c8af39f103032c73deecf874a6ec84c}} 
+\index{mavlink::ugvCustom::msg::SYS\_STATUS@{mavlink::ugvCustom::msg::SYS\_STATUS}!serialize@{serialize}}
+\index{serialize@{serialize}!mavlink::ugvCustom::msg::SYS\_STATUS@{mavlink::ugvCustom::msg::SYS\_STATUS}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily void mavlink\+::ugv\+Custom\+::msg\+::\+SYS\+\_\+\+STATUS\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmavlink_1_1MsgMap}{mavlink\+::\+Msg\+Map}} \&}]{map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Serialize message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em map} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{structmavlink_1_1Message_a8aebc1882e5e4b7838909b5fdd56ef1d}{mavlink\+::\+Message}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/custom\+\_\+v0.\+3/ugv\+Custom/mavlink\+\_\+msg\+\_\+sys\+\_\+status.\+hpp\end{DoxyCompactItemize}

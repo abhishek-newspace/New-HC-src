@@ -6,7 +6,6 @@
  * @brief Defines all functions required during setup phase of hand controller
  */
 #pragma once
-#include "mavlink/common/mavlink.h"
 #include "definitions.h"
 #include "displayHandler.hpp"
 #include "IOhandler.hpp"
@@ -29,9 +28,6 @@ void setupDisplay();
 /// @return true when the deviation is within permissible limits.
 bool identifyControllerDrift();
 
-/// @brief set a default UGV state
-/// @param s1 enum value indicating the current UGV state.
-void initUGV_state(ugv_status s1);
 
 /// @brief initialize variables required for signing and sending MAVLink packets
 /// @return true when initialization is done correctly, false in case of a nullpointer error.

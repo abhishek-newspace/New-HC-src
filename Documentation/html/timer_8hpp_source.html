@@ -73,35 +73,42 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <a href="timer_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="definitions_8h.html">definitions.h</a>&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="IOhandler_8hpp.html">IOhandler.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">void</span> <a class="code" href="timer_8hpp.html#aec53975ffc59ffaf3080db21af0d2f6e">startTimer</a>();</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="timer_8hpp.html#a4d3cf1a5d9dff7c75d048869e321992a">timeup</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">int</span> time_ms);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keywordtype">void</span> <a class="code" href="timer_8hpp.html#ad43a02209687d9c1e04dddd167f32c45">resetTimer</a>();</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="definitions_8h.html">definitions.h</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classtimer.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="classtimer.html">timer</a>{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">long</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> current_time = 0;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordtype">long</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> duration = 0;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="classtimer.html">timer</a>(){</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        duration = 0;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    }</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">void</span> <a class="code" href="timer_8hpp.html#aa57dc735e77b4149987272739f3a82df">startOFPTimer</a>();</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keywordtype">void</span> <a class="code" href="timer_8hpp.html#abf477c66124f90bc11b5c67a3298b3c6">end_OFP_timer</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">int</span> time_limit);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="classtimer.html">timer</a>(<span class="keywordtype">long</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> intervalDuration){</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        duration = intervalDuration;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classtimer.html#aea687c1086bfb15ec7de5150a0ee174f">startTimer</a>();</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="timer_8hpp.html#a4ee78989c6d27ac87993a76f9dbad1e2">   38</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <span class="keywordtype">unsigned</span> <a class="code" href="timer_8hpp.html#a4ee78989c6d27ac87993a76f9dbad1e2">getGlobalTime</a>(uint64_t <a class="code" href="message__sender_8cpp.html#a6fa53b8085f20f054c610dedc3476352">UGVTime</a>, uint64_t <a class="code" href="packet__receiver_8cpp.html#af675e308618ed4385f7c04f9d61e7824">RecvTime</a>, uint64_t Now){</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="message__sender_8cpp.html#a6fa53b8085f20f054c610dedc3476352">UGVTime</a> + (Now - <a class="code" href="packet__receiver_8cpp.html#af675e308618ed4385f7c04f9d61e7824">RecvTime</a>);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div>
-<div class="ttc" id="aIOhandler_8hpp_html"><div class="ttname"><a href="IOhandler_8hpp.html">IOhandler.hpp</a></div></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classtimer.html#aaac0df8a8589a1a17bf1b7fc32e00e89">timeup</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">int</span> time_ms);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classtimer.html#aaac0df8a8589a1a17bf1b7fc32e00e89">timeup</a>();</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classtimer.html#a7f3b8d8eed77088f28ff685c5455ebcb">resetTimer</a>();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;};</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="timer_8hpp.html#a4ee78989c6d27ac87993a76f9dbad1e2">   52</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <span class="keywordtype">unsigned</span> <a class="code" href="timer_8hpp.html#a4ee78989c6d27ac87993a76f9dbad1e2">getGlobalTime</a>(uint64_t UGVTime, uint64_t RecvTime, uint64_t Now){</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">return</span> UGVTime + (Now - RecvTime);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
+<div class="ttc" id="aclasstimer_html"><div class="ttname"><a href="classtimer.html">timer</a></div><div class="ttdef"><b>Definition:</b> timer.hpp:16</div></div>
+<div class="ttc" id="aclasstimer_html_a7f3b8d8eed77088f28ff685c5455ebcb"><div class="ttname"><a href="classtimer.html#a7f3b8d8eed77088f28ff685c5455ebcb">timer::resetTimer</a></div><div class="ttdeci">void resetTimer()</div><div class="ttdoc">essentially performs same task as startTimer(); used to reset the timer to 0 and start again.</div><div class="ttdef"><b>Definition:</b> timer.cpp:32</div></div>
+<div class="ttc" id="aclasstimer_html_aaac0df8a8589a1a17bf1b7fc32e00e89"><div class="ttname"><a href="classtimer.html#aaac0df8a8589a1a17bf1b7fc32e00e89">timer::timeup</a></div><div class="ttdeci">bool timeup()</div><div class="ttdoc">check whether the duration for which the timer should run is complete, and resets timer.</div><div class="ttdef"><b>Definition:</b> timer.cpp:21</div></div>
+<div class="ttc" id="aclasstimer_html_aea687c1086bfb15ec7de5150a0ee174f"><div class="ttname"><a href="classtimer.html#aea687c1086bfb15ec7de5150a0ee174f">timer::startTimer</a></div><div class="ttdeci">void startTimer()</div><div class="ttdoc">start a timer, that keeps count of number of microseconds elapsed</div><div class="ttdef"><b>Definition:</b> timer.cpp:12</div></div>
 <div class="ttc" id="adefinitions_8h_html"><div class="ttname"><a href="definitions_8h.html">definitions.h</a></div></div>
-<div class="ttc" id="amessage__sender_8cpp_html_a6fa53b8085f20f054c610dedc3476352"><div class="ttname"><a href="message__sender_8cpp.html#a6fa53b8085f20f054c610dedc3476352">UGVTime</a></div><div class="ttdeci">uint64_t UGVTime</div><div class="ttdoc">stores time of the drone at which timesync was received</div><div class="ttdef"><b>Definition:</b> packet_receiver.cpp:20</div></div>
-<div class="ttc" id="apacket__receiver_8cpp_html_af675e308618ed4385f7c04f9d61e7824"><div class="ttname"><a href="packet__receiver_8cpp.html#af675e308618ed4385f7c04f9d61e7824">RecvTime</a></div><div class="ttdeci">uint64_t RecvTime</div><div class="ttdoc">stores time at which timesync was received.</div><div class="ttdef"><b>Definition:</b> packet_receiver.cpp:21</div></div>
-<div class="ttc" id="atimer_8hpp_html_a4d3cf1a5d9dff7c75d048869e321992a"><div class="ttname"><a href="timer_8hpp.html#a4d3cf1a5d9dff7c75d048869e321992a">timeup</a></div><div class="ttdeci">bool timeup(unsigned long int time_ms)</div><div class="ttdoc">check whether time_ms microseconds are completed since start of timer</div><div class="ttdef"><b>Definition:</b> timer.cpp:20</div></div>
-<div class="ttc" id="atimer_8hpp_html_a4ee78989c6d27ac87993a76f9dbad1e2"><div class="ttname"><a href="timer_8hpp.html#a4ee78989c6d27ac87993a76f9dbad1e2">getGlobalTime</a></div><div class="ttdeci">long long unsigned getGlobalTime(uint64_t UGVTime, uint64_t RecvTime, uint64_t Now)</div><div class="ttdoc">get the current global time as provided by ATLAS.</div><div class="ttdef"><b>Definition:</b> timer.hpp:38</div></div>
-<div class="ttc" id="atimer_8hpp_html_aa57dc735e77b4149987272739f3a82df"><div class="ttname"><a href="timer_8hpp.html#aa57dc735e77b4149987272739f3a82df">startOFPTimer</a></div><div class="ttdeci">void startOFPTimer()</div><div class="ttdoc">second timer meant to be used only within the OFP loop</div><div class="ttdef"><b>Definition:</b> timer.cpp:29</div></div>
-<div class="ttc" id="atimer_8hpp_html_abf477c66124f90bc11b5c67a3298b3c6"><div class="ttname"><a href="timer_8hpp.html#abf477c66124f90bc11b5c67a3298b3c6">end_OFP_timer</a></div><div class="ttdeci">void end_OFP_timer(unsigned long int time_limit)</div><div class="ttdoc">waits until time_limit microseconds are completed since beginning of OFP timer</div><div class="ttdef"><b>Definition:</b> timer.cpp:33</div></div>
-<div class="ttc" id="atimer_8hpp_html_ad43a02209687d9c1e04dddd167f32c45"><div class="ttname"><a href="timer_8hpp.html#ad43a02209687d9c1e04dddd167f32c45">resetTimer</a></div><div class="ttdeci">void resetTimer()</div><div class="ttdoc">essentially performs same task as startTimer(); used to reset the timer to 0 and start again.</div><div class="ttdef"><b>Definition:</b> timer.cpp:25</div></div>
-<div class="ttc" id="atimer_8hpp_html_aec53975ffc59ffaf3080db21af0d2f6e"><div class="ttname"><a href="timer_8hpp.html#aec53975ffc59ffaf3080db21af0d2f6e">startTimer</a></div><div class="ttdeci">void startTimer()</div><div class="ttdoc">start a timer, that keeps count of number of microseconds elapsed</div><div class="ttdef"><b>Definition:</b> timer.cpp:15</div></div>
+<div class="ttc" id="atimer_8hpp_html_a4ee78989c6d27ac87993a76f9dbad1e2"><div class="ttname"><a href="timer_8hpp.html#a4ee78989c6d27ac87993a76f9dbad1e2">getGlobalTime</a></div><div class="ttdeci">long long unsigned getGlobalTime(uint64_t UGVTime, uint64_t RecvTime, uint64_t Now)</div><div class="ttdoc">get the current global time as provided by ATLAS.</div><div class="ttdef"><b>Definition:</b> timer.hpp:52</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

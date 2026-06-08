@@ -7,12 +7,9 @@
  */
 #pragma once
 #include "definitions.h"
-
-// LCD Device-specific header file
-#include "TFT_22_ILI9225.h"
+#include "definitions/display_defs.h"
 
 
-#include "IOhandler.hpp"    // required for checking user inputs
 
 /**
  * 1. setup display baud rate
@@ -61,6 +58,10 @@ void displayLogo();
 /// @brief display newspace logo in grey background and light blue foreground (to look like an translucent grey film filter)
 void displayInvertedLogo();
 
+
+void setBatterySOC(uint8_t);
+void setRSSI(uint8_t);
+
 /**
  * this function is meant to be called once every 1 second, and only updates RSSI, and battery stats.
  * call displaySpeed() and displayUGV_status() separately when the values are updated (must be event based, and not periodic)
@@ -77,3 +78,13 @@ void clearInfo();
 /// @brief clear displayed error
 void clearError();
 
+
+/// @brief writes direction onto screen
+/// @param direction current direction
+void displayDirection(directionToggle direction);
+
+/// @brief set radio status to disconnected
+void disconnectRadio();
+
+/// @brief set radio status to connected
+void connectRadio();

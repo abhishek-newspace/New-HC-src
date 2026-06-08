@@ -18,10 +18,13 @@ int \mbox{\hyperlink{classmessage__sender_abfb59ced8051e77f0560ec444a3031ed}{buf
 \begin{DoxyCompactList}\small\item\em pack an arm/disarm command into buffer \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classmessage__sender_a3b89d7bde0b78e68c12e65f40dc730cb}{buffer\+\_\+heartbeat}} ()
 \begin{DoxyCompactList}\small\item\em send heartbeat to buffer; heartbeat from hand controller is used to invoke ATLAS\textquotesingle{} radio to send RADIO\+\_\+\+STATUS packets \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{classmessage__sender_a70e8079ce2adf67a9d5813240f3011cc}{buffer\+\_\+manual\+\_\+control}} (int x, int y, bool extra\+\_\+feature\+\_\+1\+\_\+press, bool extra\+\_\+feature\+\_\+1\+\_\+long\+\_\+press, bool extra\+\_\+feature\+\_\+2\+\_\+press, bool extra\+\_\+feature\+\_\+2\+\_\+long\+\_\+press, \mbox{\hyperlink{message__sender_8hpp_a99eced5804d2818722a6e61476fb3ff7}{direction\+Toggle}} dir\+Tog, \mbox{\hyperlink{message__sender_8hpp_a2cca2977d757608930203a59d8ce4cd7}{speed\+Toggle}} spd\+Tog)
+int \mbox{\hyperlink{classmessage__sender_a91e3fb3b908d777ad3ad67085ca7cdae}{buffer\+\_\+manual\+\_\+control}} (int x, int y, bool extra\+\_\+feature\+\_\+1\+\_\+press, bool extra\+\_\+feature\+\_\+1\+\_\+long\+\_\+press, bool extra\+\_\+feature\+\_\+2\+\_\+press, bool extra\+\_\+feature\+\_\+2\+\_\+long\+\_\+press)
 \begin{DoxyCompactList}\small\item\em send manual control packet to buffer \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classmessage__sender_af2c79f08f7db3ce8a3c25b1dc290905e}\label{classmessage__sender_af2c79f08f7db3ce8a3c25b1dc290905e}} 
 int {\bfseries buffer\+\_\+timesync} ()
+\item 
+\mbox{\Hypertarget{classmessage__sender_a6c6e919096433ff56c4475c440df49d4}\label{classmessage__sender_a6c6e919096433ff56c4475c440df49d4}} 
+int {\bfseries buffer\+\_\+component\+\_\+version} ()
 \end{DoxyCompactItemize}
 
 
@@ -82,11 +85,11 @@ send heartbeat to buffer; heartbeat from hand controller is used to invoke ATLAS
 \begin{DoxyReturn}{Returns}
 length of buffer 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classmessage__sender_a70e8079ce2adf67a9d5813240f3011cc}\label{classmessage__sender_a70e8079ce2adf67a9d5813240f3011cc}} 
+\mbox{\Hypertarget{classmessage__sender_a91e3fb3b908d777ad3ad67085ca7cdae}\label{classmessage__sender_a91e3fb3b908d777ad3ad67085ca7cdae}} 
 \index{message\_sender@{message\_sender}!buffer\_manual\_control@{buffer\_manual\_control}}
 \index{buffer\_manual\_control@{buffer\_manual\_control}!message\_sender@{message\_sender}}
 \doxysubsubsection{\texorpdfstring{buffer\_manual\_control()}{buffer\_manual\_control()}}
-{\footnotesize\ttfamily int message\+\_\+sender\+::buffer\+\_\+manual\+\_\+control (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{bool}]{extra\+\_\+feature\+\_\+1\+\_\+press,  }\item[{bool}]{extra\+\_\+feature\+\_\+1\+\_\+long\+\_\+press,  }\item[{bool}]{extra\+\_\+feature\+\_\+2\+\_\+press,  }\item[{bool}]{extra\+\_\+feature\+\_\+2\+\_\+long\+\_\+press,  }\item[{\mbox{\hyperlink{message__sender_8hpp_a99eced5804d2818722a6e61476fb3ff7}{direction\+Toggle}}}]{dir\+Tog,  }\item[{\mbox{\hyperlink{message__sender_8hpp_a2cca2977d757608930203a59d8ce4cd7}{speed\+Toggle}}}]{spd\+Tog }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int message\+\_\+sender\+::buffer\+\_\+manual\+\_\+control (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{bool}]{extra\+\_\+feature\+\_\+1\+\_\+press,  }\item[{bool}]{extra\+\_\+feature\+\_\+1\+\_\+long\+\_\+press,  }\item[{bool}]{extra\+\_\+feature\+\_\+2\+\_\+press,  }\item[{bool}]{extra\+\_\+feature\+\_\+2\+\_\+long\+\_\+press }\end{DoxyParamCaption})}
 
 
 

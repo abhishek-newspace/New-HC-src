@@ -1,0 +1,161 @@
+\hypertarget{classperiodicActions}{}\doxysection{periodic\+Actions Class Reference}
+\label{classperiodicActions}\index{periodicActions@{periodicActions}}
+
+
+When functions need to be called periodically, it can be added to an instance of \mbox{\hyperlink{classperiodicActions}{periodic\+Actions}}.  
+
+
+
+
+{\ttfamily \#include $<$Periodic\+Actions.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classperiodicActions_a6e5ba80e8d23f6210d08b5d15f66775d}{add\+Periodic\+Action}} (void($\ast$function)(void), uint32\+\_\+t action\+\_\+sleep\+\_\+time)
+\begin{DoxyCompactList}\small\item\em make a function to be executed periodically \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classperiodicActions_ad819b12178ab6cedca70487b5eecb296}{add\+Periodic\+Action}} (void($\ast$function)(void), uint32\+\_\+t action\+\_\+sleep\+\_\+time, bool($\ast$stop\+Condition)(void))
+\begin{DoxyCompactList}\small\item\em make a function to be executed periodically with a condition based on which the function should stop executing \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classperiodicActions_a6dfaa7aa380bc3517688f43bde027ae9}{add\+Periodic\+Action}} (void($\ast$function)(void), uint32\+\_\+t action\+\_\+sleep\+\_\+time, bool($\ast$stop\+Condition)(void), void($\ast$stop\+Action)(void))
+\begin{DoxyCompactList}\small\item\em make a function to be executed periodically with a condition for stopping, and a function to be executed when stopping \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classperiodicActions_a930325ef15f51d6388144c5699b0e34c}{stop\+Periodic\+Action}} (\mbox{\hyperlink{structaction}{action}} $\ast$stop\+Action)
+\begin{DoxyCompactList}\small\item\em add the action to the stop action queue \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classperiodicActions_aadfc33bcd9fccb6d26346b0a25190d3f}{stop\+Periodic\+Action}} (int ID)
+\begin{DoxyCompactList}\small\item\em add the action id to the stop action queue \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classperiodicActions_a016ee8915792ed86e8c3a169b2340e26}\label{classperiodicActions_a016ee8915792ed86e8c3a169b2340e26}} 
+void \mbox{\hyperlink{classperiodicActions_a016ee8915792ed86e8c3a169b2340e26}{reset}} ()
+\begin{DoxyCompactList}\small\item\em delete all periodic actions and reset. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structaction}{action}} $\ast$ \mbox{\hyperlink{classperiodicActions_a6ccba22a8b13a96402416aa4f0137e50}{get\+Action\+With\+ID}} (int ID)
+\begin{DoxyCompactList}\small\item\em get pointer to the action with given ID \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classperiodicActions_aa68a0e0c7ee0e54f0b542036b28cc83b}\label{classperiodicActions_aa68a0e0c7ee0e54f0b542036b28cc83b}} 
+void \mbox{\hyperlink{classperiodicActions_aa68a0e0c7ee0e54f0b542036b28cc83b}{delete\+Stopped\+Periodic\+Actions}} ()
+\begin{DoxyCompactList}\small\item\em used to delete all the actions that are currently stopped \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classperiodicActions_a6c29a29a6a50af8f6225c875d627556a}\label{classperiodicActions_a6c29a29a6a50af8f6225c875d627556a}} 
+void \mbox{\hyperlink{classperiodicActions_a6c29a29a6a50af8f6225c875d627556a}{perform\+Periodic\+Actions}} ()
+\begin{DoxyCompactList}\small\item\em Function to be called by user, to check and execute periodic functions that need to be executed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+When functions need to be called periodically, it can be added to an instance of \mbox{\hyperlink{classperiodicActions}{periodic\+Actions}}. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classperiodicActions_a6e5ba80e8d23f6210d08b5d15f66775d}\label{classperiodicActions_a6e5ba80e8d23f6210d08b5d15f66775d}} 
+\index{periodicActions@{periodicActions}!addPeriodicAction@{addPeriodicAction}}
+\index{addPeriodicAction@{addPeriodicAction}!periodicActions@{periodicActions}}
+\doxysubsubsection{\texorpdfstring{addPeriodicAction()}{addPeriodicAction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily int periodic\+Actions\+::add\+Periodic\+Action (\begin{DoxyParamCaption}\item[{void($\ast$)(void)}]{function,  }\item[{uint32\+\_\+t}]{action\+\_\+sleep\+\_\+time }\end{DoxyParamCaption})}
+
+
+
+make a function to be executed periodically 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action} & function to be periodically executed \\
+\hline
+{\em action\+\_\+sleep\+\_\+time} & time interval for the periodic function to execute \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ID of the periodic function; required when calling stop\+Periodic\+Action 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classperiodicActions_ad819b12178ab6cedca70487b5eecb296}\label{classperiodicActions_ad819b12178ab6cedca70487b5eecb296}} 
+\index{periodicActions@{periodicActions}!addPeriodicAction@{addPeriodicAction}}
+\index{addPeriodicAction@{addPeriodicAction}!periodicActions@{periodicActions}}
+\doxysubsubsection{\texorpdfstring{addPeriodicAction()}{addPeriodicAction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily int periodic\+Actions\+::add\+Periodic\+Action (\begin{DoxyParamCaption}\item[{void($\ast$)(void)}]{function,  }\item[{uint32\+\_\+t}]{action\+\_\+sleep\+\_\+time,  }\item[{bool($\ast$)(void)}]{stop\+Condition }\end{DoxyParamCaption})}
+
+
+
+make a function to be executed periodically with a condition based on which the function should stop executing 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action} & function to be periodically executed \\
+\hline
+{\em action\+\_\+sleep\+\_\+time} & time interval for the periodic function to execute \\
+\hline
+{\em stop\+Condition} & condition based on which the function should stop executing periodically. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ID of the periodic function; required when calling stop\+Periodic\+Action 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classperiodicActions_a6dfaa7aa380bc3517688f43bde027ae9}\label{classperiodicActions_a6dfaa7aa380bc3517688f43bde027ae9}} 
+\index{periodicActions@{periodicActions}!addPeriodicAction@{addPeriodicAction}}
+\index{addPeriodicAction@{addPeriodicAction}!periodicActions@{periodicActions}}
+\doxysubsubsection{\texorpdfstring{addPeriodicAction()}{addPeriodicAction()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily int periodic\+Actions\+::add\+Periodic\+Action (\begin{DoxyParamCaption}\item[{void($\ast$)(void)}]{function,  }\item[{uint32\+\_\+t}]{action\+\_\+sleep\+\_\+time,  }\item[{bool($\ast$)(void)}]{stop\+Condition,  }\item[{void($\ast$)(void)}]{stop\+Action }\end{DoxyParamCaption})}
+
+
+
+make a function to be executed periodically with a condition for stopping, and a function to be executed when stopping 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action} & function to be periodically executed \\
+\hline
+{\em action\+\_\+sleep\+\_\+time} & time interval for the periodic function to execute \\
+\hline
+{\em stop\+Condition} & condition based on which the function should stop executing periodically. \\
+\hline
+{\em stop\+Action} & function to be executed when the periodic function stops executing \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ID of the periodic function; required when calling stop\+Periodic\+Action 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classperiodicActions_a6ccba22a8b13a96402416aa4f0137e50}\label{classperiodicActions_a6ccba22a8b13a96402416aa4f0137e50}} 
+\index{periodicActions@{periodicActions}!getActionWithID@{getActionWithID}}
+\index{getActionWithID@{getActionWithID}!periodicActions@{periodicActions}}
+\doxysubsubsection{\texorpdfstring{getActionWithID()}{getActionWithID()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structaction}{action}} $\ast$ periodic\+Actions\+::get\+Action\+With\+ID (\begin{DoxyParamCaption}\item[{int}]{ID }\end{DoxyParamCaption})}
+
+
+
+get pointer to the action with given ID 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ID} & ID of action \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to the action struct, however returns nullptr if action with given ID doesn\textquotesingle{}t exist 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classperiodicActions_a930325ef15f51d6388144c5699b0e34c}\label{classperiodicActions_a930325ef15f51d6388144c5699b0e34c}} 
+\index{periodicActions@{periodicActions}!stopPeriodicAction@{stopPeriodicAction}}
+\index{stopPeriodicAction@{stopPeriodicAction}!periodicActions@{periodicActions}}
+\doxysubsubsection{\texorpdfstring{stopPeriodicAction()}{stopPeriodicAction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void periodic\+Actions\+::stop\+Periodic\+Action (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structaction}{action}} $\ast$}]{stop\+Action }\end{DoxyParamCaption})}
+
+
+
+add the action to the stop action queue 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & ID of the action that needs to be stopped. Is returned by add\+Periodic\+Action when called. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classperiodicActions_aadfc33bcd9fccb6d26346b0a25190d3f}\label{classperiodicActions_aadfc33bcd9fccb6d26346b0a25190d3f}} 
+\index{periodicActions@{periodicActions}!stopPeriodicAction@{stopPeriodicAction}}
+\index{stopPeriodicAction@{stopPeriodicAction}!periodicActions@{periodicActions}}
+\doxysubsubsection{\texorpdfstring{stopPeriodicAction()}{stopPeriodicAction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void periodic\+Actions\+::stop\+Periodic\+Action (\begin{DoxyParamCaption}\item[{int}]{ID }\end{DoxyParamCaption})}
+
+
+
+add the action id to the stop action queue 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & ID of the action that needs to be stopped. Is returned by add\+Periodic\+Action when called. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/\mbox{\hyperlink{PeriodicActions_8hpp}{Periodic\+Actions.\+hpp}}\item 
+single\+\_\+hand\+\_\+controller/periodic\+Actions.\+cpp\end{DoxyCompactItemize}

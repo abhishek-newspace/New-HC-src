@@ -31,9 +31,21 @@ bool \mbox{\hyperlink{packetHandler_8cpp_a41085b7ecb8159ad9019e28aae16b7b6}{hear
 \mbox{\Hypertarget{packetHandler_8cpp_a87644cb7562cd3a231e8f84e45087e05}\label{packetHandler_8cpp_a87644cb7562cd3a231e8f84e45087e05}} 
 void {\bfseries send\+Buffer} (int len)
 \item 
+\mbox{\Hypertarget{packetHandler_8cpp_ab5aff384aaf666fd757c28f72b72b40a}\label{packetHandler_8cpp_ab5aff384aaf666fd757c28f72b72b40a}} 
+void \mbox{\hyperlink{packetHandler_8cpp_ab5aff384aaf666fd757c28f72b72b40a}{send\+Heartbeat}} ()
+\begin{DoxyCompactList}\small\item\em send a heartbeat \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{packetHandler_8cpp_a0cbea7c31b43892b2f3de81d87dcb704}\label{packetHandler_8cpp_a0cbea7c31b43892b2f3de81d87dcb704}} 
+void \mbox{\hyperlink{packetHandler_8cpp_a0cbea7c31b43892b2f3de81d87dcb704}{send\+Component\+Version}} ()
+\begin{DoxyCompactList}\small\item\em send component version \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{packetHandler_8cpp_ac9750f4d4982ebf34056cad179d402b2}\label{packetHandler_8cpp_ac9750f4d4982ebf34056cad179d402b2}} 
 void \mbox{\hyperlink{packetHandler_8cpp_ac9750f4d4982ebf34056cad179d402b2}{send\+Timesync\+Request}} ()
 \begin{DoxyCompactList}\small\item\em send a timesync request \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{packetHandler_8cpp_a3ce34dd9d0ad8dedee857fee96757664}\label{packetHandler_8cpp_a3ce34dd9d0ad8dedee857fee96757664}} 
+void \mbox{\hyperlink{packetHandler_8cpp_a3ce34dd9d0ad8dedee857fee96757664}{send\+Arm\+Command}} ()
+\begin{DoxyCompactList}\small\item\em send an arm request \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{packetHandler_8cpp_ae5fe1ed12dba56fe661bd13894a16aee}\label{packetHandler_8cpp_ae5fe1ed12dba56fe661bd13894a16aee}} 
+void \mbox{\hyperlink{packetHandler_8cpp_ae5fe1ed12dba56fe661bd13894a16aee}{send\+Disarm\+Command}} ()
+\begin{DoxyCompactList}\small\item\em send a disarm request \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{packetHandler_8cpp_a84a9b9793add371df5defa93ce22ae11}\label{packetHandler_8cpp_a84a9b9793add371df5defa93ce22ae11}} 
 void \mbox{\hyperlink{packetHandler_8cpp_a84a9b9793add371df5defa93ce22ae11}{send\+Manual\+Control}} ()
 \begin{DoxyCompactList}\small\item\em send manual control packet \end{DoxyCompactList}\item 
@@ -60,6 +72,9 @@ byte \mbox{\hyperlink{packetHandler_8cpp_a07f7d1ef86a4316bd8f77f9a05e23715}{buf}
 \begin{DoxyCompactList}\small\item\em used to check parsing status \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{packetHandler_8cpp_a48be6085a723f7ef309f7f85875a4bcd}\label{packetHandler_8cpp_a48be6085a723f7ef309f7f85875a4bcd}} 
 mavlink\+\_\+message\+\_\+t {\bfseries msg}
+\item 
+\mbox{\Hypertarget{packetHandler_8cpp_a5ac77a7ca7cd4aa06d6d087e58d1ebba}\label{packetHandler_8cpp_a5ac77a7ca7cd4aa06d6d087e58d1ebba}} 
+uint8\+\_\+t {\bfseries radio\+\_\+status\+\_\+trigger} \mbox{[}$\,$\mbox{]} = \{0x\+FE,0x9,0x31,0x\+FF,0x\+BE,0x0,0x0,0x0,0x0,0x0,0x6,0x8,0x0,0x0,0x3,0x\+AA,0x4F\}
 \item 
 \mbox{\Hypertarget{packetHandler_8cpp_acfaae40856b9c913683a7de219c858af}\label{packetHandler_8cpp_acfaae40856b9c913683a7de219c858af}} 
 bool \mbox{\hyperlink{packetHandler_8cpp_acfaae40856b9c913683a7de219c858af}{arm\+\_\+request\+\_\+sent}} = false

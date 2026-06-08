@@ -1,20 +1,14 @@
 var searchData=
 [
-  ['obstacle_5fdistance_833',['OBSTACLE_DISTANCE',['../structmavlink_1_1common_1_1msg_1_1OBSTACLE__DISTANCE.html',1,'mavlink::common::msg']]],
-  ['odometry_834',['ODOMETRY',['../structmavlink_1_1common_1_1msg_1_1ODOMETRY.html',1,'mavlink::common::msg']]],
-  ['onboard_5fcomputer_5fstatus_835',['ONBOARD_COMPUTER_STATUS',['../structmavlink_1_1common_1_1msg_1_1ONBOARD__COMPUTER__STATUS.html',1,'mavlink::common::msg']]],
-  ['open_5fdrone_5fid_5farm_5fstatus_836',['OPEN_DRONE_ID_ARM_STATUS',['../structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__ARM__STATUS.html',1,'mavlink::common::msg']]],
-  ['open_5fdrone_5fid_5fauthentication_837',['OPEN_DRONE_ID_AUTHENTICATION',['../structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__AUTHENTICATION.html',1,'mavlink::common::msg']]],
-  ['open_5fdrone_5fid_5fbasic_5fid_838',['OPEN_DRONE_ID_BASIC_ID',['../structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__BASIC__ID.html',1,'mavlink::common::msg']]],
-  ['open_5fdrone_5fid_5flocation_839',['OPEN_DRONE_ID_LOCATION',['../structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__LOCATION.html',1,'mavlink::common::msg']]],
-  ['open_5fdrone_5fid_5fmessage_5fpack_840',['OPEN_DRONE_ID_MESSAGE_PACK',['../structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__MESSAGE__PACK.html',1,'mavlink::common::msg']]],
-  ['open_5fdrone_5fid_5foperator_5fid_841',['OPEN_DRONE_ID_OPERATOR_ID',['../structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__OPERATOR__ID.html',1,'mavlink::common::msg']]],
-  ['open_5fdrone_5fid_5fself_5fid_842',['OPEN_DRONE_ID_SELF_ID',['../structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__SELF__ID.html',1,'mavlink::common::msg']]],
-  ['open_5fdrone_5fid_5fsystem_843',['OPEN_DRONE_ID_SYSTEM',['../structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__SYSTEM.html',1,'mavlink::common::msg']]],
-  ['open_5fdrone_5fid_5fsystem_5fupdate_844',['OPEN_DRONE_ID_SYSTEM_UPDATE',['../structmavlink_1_1common_1_1msg_1_1OPEN__DRONE__ID__SYSTEM__UPDATE.html',1,'mavlink::common::msg']]],
-  ['optical_5fflow_845',['OPTICAL_FLOW',['../structmavlink_1_1common_1_1msg_1_1OPTICAL__FLOW.html',1,'mavlink::common::msg']]],
-  ['optical_5fflow_5frad_846',['OPTICAL_FLOW_RAD',['../structmavlink_1_1common_1_1msg_1_1OPTICAL__FLOW__RAD.html',1,'mavlink::common::msg']]],
-  ['orbit_5fexecution_5fstatus_847',['ORBIT_EXECUTION_STATUS',['../structmavlink_1_1common_1_1msg_1_1ORBIT__EXECUTION__STATUS.html',1,'mavlink::common::msg']]],
-  ['orbit_5fyaw_5fbehaviour_848',['ORBIT_YAW_BEHAVIOUR',['../common_8hpp.html#abd8dadd97a87ba9a70b3fbe9b31d0be0',1,'mavlink::common']]],
-  ['orbit_5fyaw_5fbehaviour_5fenum_5fend_849',['ORBIT_YAW_BEHAVIOUR_ENUM_END',['../common_8hpp.html#ae1fee9ba2f375376d00d4a304777cb31',1,'mavlink::common']]]
+  ['radio_5fstatus_173',['RADIO_STATUS',['../structmavlink_1_1ugvCustom_1_1msg_1_1RADIO__STATUS.html',1,'mavlink::ugvCustom::msg']]],
+  ['receive_5fack_174',['receive_ack',['../classpacket__receiver.html#aecdda53a01340f86b296f8eb50b3ad57',1,'packet_receiver']]],
+  ['receive_5fheartbeat_175',['receive_heartbeat',['../classpacket__receiver.html#a31de6d0a8f564c1c34de144904e6a9c4',1,'packet_receiver']]],
+  ['receive_5fradio_5fstatus_176',['receive_radio_status',['../classpacket__receiver.html#ac982b70d56cde6d25c75a345d8fb685d',1,'packet_receiver']]],
+  ['receive_5fsys_5fstatus_177',['receive_sys_status',['../classpacket__receiver.html#ae411c07e9161d545120a616e2d96bdf2',1,'packet_receiver']]],
+  ['receive_5ftimesync_178',['receive_timesync',['../classpacket__receiver.html#a6ecda099f6d71a7f8c49c81c5119dca6',1,'packet_receiver']]],
+  ['receivedfirsttimesync_179',['receivedFirstTimesync',['../packet__receiver_8hpp.html#a9632c2885633ae81b1c9789976231015',1,'receivedFirstTimesync():&#160;packet_receiver.cpp'],['../packet__receiver_8cpp.html#a9632c2885633ae81b1c9789976231015',1,'receivedFirstTimesync():&#160;packet_receiver.cpp']]],
+  ['reset_180',['reset',['../classperiodicActions.html#a016ee8915792ed86e8c3a169b2340e26',1,'periodicActions']]],
+  ['resettimer_181',['resetTimer',['../classtimer.html#a7f3b8d8eed77088f28ff685c5455ebcb',1,'timer']]],
+  ['run_5fofp_5fcycle_182',['run_OFP_cycle',['../standard__procedures_8hpp.html#a827ca553985827b5f0d379662bdbd7c8',1,'run_OFP_cycle():&#160;standard_procedures.cpp'],['../standard__procedures_8cpp.html#a827ca553985827b5f0d379662bdbd7c8',1,'run_OFP_cycle():&#160;standard_procedures.cpp']]],
+  ['run_5fwakeup_5fseq_183',['run_wakeup_seq',['../standard__procedures_8hpp.html#a5837dc050c0155ca8941f921472f8dd4',1,'run_wakeup_seq():&#160;standard_procedures.cpp'],['../standard__procedures_8cpp.html#a5837dc050c0155ca8941f921472f8dd4',1,'run_wakeup_seq():&#160;standard_procedures.cpp']]]
 ];

@@ -70,20 +70,26 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
-<a href="#enum-members">Enumerations</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">definitions.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;Arduino.h&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="enum__defs_8h_source.html">definitions/enum_defs.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="IO__defs_8h_source.html">definitions/IO_defs.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="time__defs_8h_source.html">definitions/time_defs.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="definitions_2version_8h_source.html">definitions/version.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for definitions.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="definitions_8h__incl.png" border="0" usemap="#asingle__hand__controller_2include_2definitions_8h" alt=""/></div>
 <map name="asingle__hand__controller_2include_2definitions_8h" id="asingle__hand__controller_2include_2definitions_8h">
-<area shape="rect" title=" " alt="" coords="5,5,175,47"/>
-<area shape="rect" title=" " alt="" coords="48,95,132,121"/>
+<area shape="rect" title=" " alt="" coords="294,5,463,47"/>
+<area shape="rect" href="enum__defs_8h.html" title=" " alt="" coords="5,95,184,121"/>
+<area shape="rect" href="IO__defs_8h.html" title=" " alt="" coords="208,95,363,121"/>
+<area shape="rect" href="time__defs_8h.html" title=" " alt="" coords="387,95,557,121"/>
+<area shape="rect" href="definitions_2version_8h.html" title=" " alt="" coords="581,95,736,121"/>
+<area shape="rect" title=" " alt="" coords="243,169,327,196"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -91,25 +97,28 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="definitions_8h__dep__incl.png" border="0" usemap="#asingle__hand__controller_2include_2definitions_8hdep" alt=""/></div>
 <map name="asingle__hand__controller_2include_2definitions_8hdep" id="asingle__hand__controller_2include_2definitions_8hdep">
-<area shape="rect" title=" " alt="" coords="709,5,878,47"/>
-<area shape="rect" href="displayHandler_8hpp.html" title=" " alt="" coords="165,184,368,225"/>
-<area shape="rect" href="includes_8h.html" title=" " alt="" coords="549,631,718,672"/>
-<area shape="rect" href="packet__receiver_8hpp.html" title="Process all received messages, through MAVLink." alt="" coords="643,363,850,404"/>
-<area shape="rect" href="packetHandler_8h.html" title=" " alt="" coords="926,452,1109,493"/>
-<area shape="rect" href="setupFunctions_8h.html" title="Defines all functions required during setup phase of hand controller." alt="" coords="24,541,211,583"/>
-<area shape="rect" href="stateHandler_8hpp.html" title=" " alt="" coords="441,273,629,315"/>
-<area shape="rect" href="IOhandler_8hpp.html" title=" " alt="" coords="418,95,587,136"/>
-<area shape="rect" href="timer_8hpp.html" title=" " alt="" coords="806,273,975,315"/>
-<area shape="rect" href="message__sender_8hpp.html" title=" " alt="" coords="1273,363,1487,404"/>
-<area shape="rect" href="message__structs_8h.html" title="This header file is part of the Single Hand Controller for Scout project; Defines all message structs..." alt="" coords="999,273,1198,315"/>
-<area shape="rect" href="displayHandler_8cpp.html" title=" " alt="" coords="145,273,314,315"/>
-<area shape="rect" href="packet__receiver_8cpp.html" title=" " alt="" coords="671,452,841,493"/>
-<area shape="rect" href="packetHandler_8cpp.html" title=" " alt="" coords="977,541,1146,583"/>
-<area shape="rect" href="setupFunctions_8cpp.html" title=" " alt="" coords="33,631,202,672"/>
-<area shape="rect" href="stateHandler_8cpp.html" title=" " alt="" coords="398,363,567,404"/>
-<area shape="rect" href="IOhandler_8cpp.html" title=" " alt="" coords="443,184,613,225"/>
-<area shape="rect" href="timer_8cpp.html" title=" " alt="" coords="977,363,1146,404"/>
-<area shape="rect" href="message__sender_8cpp.html" title=" " alt="" coords="1295,452,1465,493"/>
+<area shape="rect" title=" " alt="" coords="858,5,1027,47"/>
+<area shape="rect" href="displayHandler_8hpp.html" title=" " alt="" coords="668,95,871,136"/>
+<area shape="rect" href="includes_8h.html" title=" " alt="" coords="702,541,871,583"/>
+<area shape="rect" href="standard__procedures_8hpp.html" title="set of functions to represent phases within the main control loop of the microcontroller in the hand ..." alt="" coords="255,631,497,672"/>
+<area shape="rect" href="packet__receiver_8hpp.html" title="Process all received messages, through MAVLink." alt="" coords="962,273,1169,315"/>
+<area shape="rect" href="packetHandler_8h.html" title=" " alt="" coords="735,363,918,404"/>
+<area shape="rect" href="setupFunctions_8h.html" title="Defines all functions required during setup phase of hand controller." alt="" coords="321,452,508,493"/>
+<area shape="rect" href="stateHandler_8hpp.html" title=" " alt="" coords="370,184,558,225"/>
+<area shape="rect" href="IOhandler_8hpp.html" title=" " alt="" coords="94,273,263,315"/>
+<area shape="rect" href="message__sender_8hpp.html" title=" " alt="" coords="1193,273,1407,315"/>
+<area shape="rect" href="message__structs_8h.html" title="This header file is part of the Single Hand Controller for Scout project; Defines all message structs..." alt="" coords="1081,184,1279,225"/>
+<area shape="rect" href="timer_8hpp.html" title=" " alt="" coords="1358,184,1527,225"/>
+<area shape="rect" href="displayHandler_8cpp.html" title=" " alt="" coords="685,184,854,225"/>
+<area shape="rect" href="standard__procedures_8cpp.html" title="definitions of set of functions to represent phases within the main control loop of the microcontroll..." alt="" coords="281,720,471,761"/>
+<area shape="rect" href="packet__receiver_8cpp.html" title=" " alt="" coords="942,363,1111,404"/>
+<area shape="rect" href="packetHandler_8cpp.html" title=" " alt="" coords="825,452,994,493"/>
+<area shape="rect" href="setupFunctions_8cpp.html" title=" " alt="" coords="330,541,499,583"/>
+<area shape="rect" href="stateHandler_8cpp.html" title=" " alt="" coords="287,273,457,315"/>
+<area shape="rect" href="IOhandler_8cpp.html" title=" " alt="" coords="217,363,386,404"/>
+<area shape="rect" href="message__sender_8cpp.html" title=" " alt="" coords="1238,363,1407,404"/>
+<area shape="rect" href="PeriodicActions_8hpp.html" title="Run functions periodically." alt="" coords="1291,452,1496,493"/>
+<area shape="rect" href="timer_8cpp.html" title=" " alt="" coords="1483,273,1653,315"/>
 </map>
 </div>
 </div>
@@ -129,70 +138,6 @@ Macros</h2></td></tr>
 <tr class="memitem:a3a800e85a466e36418ddd11864cb6232"><td class="memItemLeft" align="right" valign="top"><a id="a3a800e85a466e36418ddd11864cb6232"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>HC_COMP_ID</b>&#160;&#160;&#160;1</td></tr>
 <tr class="separator:a3a800e85a466e36418ddd11864cb6232"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3efde61ae5c90de9ac2c08d098ace5d"><td class="memItemLeft" align="right" valign="top"><a id="ad3efde61ae5c90de9ac2c08d098ace5d"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SCOUT_HEARTBEAT_IDENTIFIER</b>&#160;&#160;&#160;1191</td></tr>
-<tr class="separator:ad3efde61ae5c90de9ac2c08d098ace5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a201f3e82d2b5a23ad7fff30648b6145d"><td class="memItemLeft" align="right" valign="top"><a id="a201f3e82d2b5a23ad7fff30648b6145d"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SECONDS_US_10</b>&#160;&#160;&#160;10000000</td></tr>
-<tr class="separator:a201f3e82d2b5a23ad7fff30648b6145d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae190241ca53a6c4b3d94cf2c195b889d"><td class="memItemLeft" align="right" valign="top"><a id="ae190241ca53a6c4b3d94cf2c195b889d"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SECONDS_US_3</b>&#160;&#160;&#160;3000000</td></tr>
-<tr class="separator:ae190241ca53a6c4b3d94cf2c195b889d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fef897f951cda5ae1199e74de723c28"><td class="memItemLeft" align="right" valign="top"><a id="a7fef897f951cda5ae1199e74de723c28"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SECONDS_US_2</b>&#160;&#160;&#160;2000000</td></tr>
-<tr class="separator:a7fef897f951cda5ae1199e74de723c28"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a681336b6782161df6cef9116a26f04c0"><td class="memItemLeft" align="right" valign="top"><a id="a681336b6782161df6cef9116a26f04c0"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SECONDS_US_1</b>&#160;&#160;&#160;1000000</td></tr>
-<tr class="separator:a681336b6782161df6cef9116a26f04c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e4ef049e85a6f3e668fc4a4f3faa57b"><td class="memItemLeft" align="right" valign="top"><a id="a0e4ef049e85a6f3e668fc4a4f3faa57b"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SECONDS_MS_10</b>&#160;&#160;&#160;10000</td></tr>
-<tr class="separator:a0e4ef049e85a6f3e668fc4a4f3faa57b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9662f474ebf6adf9c1fd92feceb183eb"><td class="memItemLeft" align="right" valign="top"><a id="a9662f474ebf6adf9c1fd92feceb183eb"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SECONDS_MS_3</b>&#160;&#160;&#160;3000</td></tr>
-<tr class="separator:a9662f474ebf6adf9c1fd92feceb183eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae32ac1377224b31f5e05e89bc8116dc3"><td class="memItemLeft" align="right" valign="top"><a id="ae32ac1377224b31f5e05e89bc8116dc3"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SECONDS_MS_2</b>&#160;&#160;&#160;2000</td></tr>
-<tr class="separator:ae32ac1377224b31f5e05e89bc8116dc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24145a72f9f5db85ad534710d377e555"><td class="memItemLeft" align="right" valign="top"><a id="a24145a72f9f5db85ad534710d377e555"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SECONDS_MS_1</b>&#160;&#160;&#160;1000</td></tr>
-<tr class="separator:a24145a72f9f5db85ad534710d377e555"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af850f092cb6d44b3f20dde28666ef4c6"><td class="memItemLeft" align="right" valign="top"><a id="af850f092cb6d44b3f20dde28666ef4c6"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>MS_20</b>&#160;&#160;&#160;20</td></tr>
-<tr class="separator:af850f092cb6d44b3f20dde28666ef4c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a073c6a6198de0dbb10506254274d504d"><td class="memItemLeft" align="right" valign="top"><a id="a073c6a6198de0dbb10506254274d504d"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>MS_10</b>&#160;&#160;&#160;10</td></tr>
-<tr class="separator:a073c6a6198de0dbb10506254274d504d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd1e24640abcadec19ebb45ce2f73c10"><td class="memItemLeft" align="right" valign="top"><a id="abd1e24640abcadec19ebb45ce2f73c10"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>HEARTBEAT_TIMEOUT</b>&#160;&#160;&#160;SECONDS_MS_3</td></tr>
-<tr class="separator:abd1e24640abcadec19ebb45ce2f73c10"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8f614352fd0896fdf646f9bf413607a"><td class="memItemLeft" align="right" valign="top"><a id="ab8f614352fd0896fdf646f9bf413607a"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>LONG_PRESS_DURATION</b>&#160;&#160;&#160;SECONDS_US_2</td></tr>
-<tr class="separator:ab8f614352fd0896fdf646f9bf413607a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5dfb08d4dbab6b02f993afee7d09286f"><td class="memItemLeft" align="right" valign="top"><a id="a5dfb08d4dbab6b02f993afee7d09286f"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>TIMESYNC_MSG_WAIT</b>&#160;&#160;&#160;SECONDS_MS_10</td></tr>
-<tr class="separator:a5dfb08d4dbab6b02f993afee7d09286f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f1a53a280728f7ec8e9ae2e4f426543"><td class="memItemLeft" align="right" valign="top"><a id="a7f1a53a280728f7ec8e9ae2e4f426543"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>MANUAL_CONTROL_MSG_WAIT</b>&#160;&#160;&#160;MS_10</td></tr>
-<tr class="separator:a7f1a53a280728f7ec8e9ae2e4f426543"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32498eef178f78dee38ad9bd298b78ee"><td class="memItemLeft" align="right" valign="top"><a id="a32498eef178f78dee38ad9bd298b78ee"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>OFP_LOOP_TIME</b>&#160;&#160;&#160;MS_20</td></tr>
-<tr class="separator:a32498eef178f78dee38ad9bd298b78ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a691c6bdfad12067890933c72366e6c1f"><td class="memItemLeft" align="right" valign="top"><a id="a691c6bdfad12067890933c72366e6c1f"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>XY_NORMALIZED_MAX</b>&#160;&#160;&#160;100</td></tr>
-<tr class="separator:a691c6bdfad12067890933c72366e6c1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6369fdf6bfed58a32b9b81a8d231232"><td class="memItemLeft" align="right" valign="top"><a id="af6369fdf6bfed58a32b9b81a8d231232"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>ANALOG_OUTPUT_MAX</b>&#160;&#160;&#160;1023</td></tr>
-<tr class="separator:af6369fdf6bfed58a32b9b81a8d231232"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a802eafab5b437dc91df700d22672363d"><td class="memItemLeft" align="right" valign="top"><a id="a802eafab5b437dc91df700d22672363d"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="definitions_8h.html#a802eafab5b437dc91df700d22672363d">XY_UPPER_LIMIT</a>&#160;&#160;&#160;562</td></tr>
-<tr class="memdesc:a802eafab5b437dc91df700d22672363d"><td class="mdescLeft">&#160;</td><td class="mdescRight">512 is the midpoint of 0 to 1023 hence, 50 units towards either side is allowed <br /></td></tr>
-<tr class="separator:a802eafab5b437dc91df700d22672363d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5522b4dbfa8d7408ae7cfe34f026aa0"><td class="memItemLeft" align="right" valign="top"><a id="ad5522b4dbfa8d7408ae7cfe34f026aa0"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>XY_LOWER_LIMIT</b>&#160;&#160;&#160;462</td></tr>
-<tr class="separator:ad5522b4dbfa8d7408ae7cfe34f026aa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2db91fb5afeb4616925dca95c133fdb7"><td class="memItemLeft" align="right" valign="top"><a id="a2db91fb5afeb4616925dca95c133fdb7"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>FILTER_SAMPLES</b>&#160;&#160;&#160;10</td></tr>
-<tr class="separator:a2db91fb5afeb4616925dca95c133fdb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3158a7d6268d17e49accb646388ef50d"><td class="memItemLeft" align="right" valign="top"><a id="a3158a7d6268d17e49accb646388ef50d"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>STATE_DISARM</b>&#160;&#160;&#160;0</td></tr>
 <tr class="separator:a3158a7d6268d17e49accb646388ef50d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -214,6 +159,21 @@ Macros</h2></td></tr>
 <tr class="memitem:ad0aa22848f37b1767c613c22b7929603"><td class="memItemLeft" align="right" valign="top"><a id="ad0aa22848f37b1767c613c22b7929603"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>TIME_REQ</b></td></tr>
 <tr class="separator:ad0aa22848f37b1767c613c22b7929603"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f41a141fd8bd49719a7c61e18535ee7"><td class="memItemLeft" align="right" valign="top"><a id="a6f41a141fd8bd49719a7c61e18535ee7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>USE_HEARTBEAT_MAVLINKV1</b></td></tr>
+<tr class="separator:a6f41a141fd8bd49719a7c61e18535ee7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac30834f4d7a00cb4ba0480e124f24885"><td class="memItemLeft" align="right" valign="top"><a id="ac30834f4d7a00cb4ba0480e124f24885"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>IF_SPECIAL_TESTING</b>(CODE)</td></tr>
+<tr class="separator:ac30834f4d7a00cb4ba0480e124f24885"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8290559ede95672949473dda64689f61"><td class="memItemLeft" align="right" valign="top"><a id="a8290559ede95672949473dda64689f61"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>IF_PRINT_BYTES</b>(CODE)</td></tr>
+<tr class="separator:a8290559ede95672949473dda64689f61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69bb73bd84f35a8f9607f2b09e11aa8f"><td class="memItemLeft" align="right" valign="top"><a id="a69bb73bd84f35a8f9607f2b09e11aa8f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>IGNORE_WHILE_TESTING</b>(CODE)&#160;&#160;&#160;CODE</td></tr>
+<tr class="separator:a69bb73bd84f35a8f9607f2b09e11aa8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59b6444fab6cf19ef3601bb1424a929a"><td class="memItemLeft" align="right" valign="top"><a id="a59b6444fab6cf19ef3601bb1424a929a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>IF_TESTING</b>(CODE)</td></tr>
+<tr class="separator:a59b6444fab6cf19ef3601bb1424a929a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48092e74295fd9da329e5bac962c0c46"><td class="memItemLeft" align="right" valign="top"><a id="a48092e74295fd9da329e5bac962c0c46"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>IF_PROTOTYPE</b>(CODE)&#160;&#160;&#160;CODE</td></tr>
 <tr class="separator:a48092e74295fd9da329e5bac962c0c46"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -223,60 +183,6 @@ Macros</h2></td></tr>
 <tr class="memitem:a44c2a1d6867ea73507657c48e435a9d7"><td class="memItemLeft" align="right" valign="top"><a id="a44c2a1d6867ea73507657c48e435a9d7"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>IF_DEBUG</b>(CODE)&#160;&#160;&#160;CODE</td></tr>
 <tr class="separator:a44c2a1d6867ea73507657c48e435a9d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab40e9918d9141415a47e2a979292309c"><td class="memItemLeft" align="right" valign="top"><a id="ab40e9918d9141415a47e2a979292309c"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>TFT_RST</b>&#160;&#160;&#160;A4</td></tr>
-<tr class="separator:ab40e9918d9141415a47e2a979292309c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc277a0b2932dde65cdb25555e09c00f"><td class="memItemLeft" align="right" valign="top"><a id="afc277a0b2932dde65cdb25555e09c00f"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>TFT_RS</b>&#160;&#160;&#160;A3</td></tr>
-<tr class="separator:afc277a0b2932dde65cdb25555e09c00f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f4d46ae101b77df78010c506601c87c"><td class="memItemLeft" align="right" valign="top"><a id="a5f4d46ae101b77df78010c506601c87c"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>TFT_CS</b>&#160;&#160;&#160;A5</td></tr>
-<tr class="separator:a5f4d46ae101b77df78010c506601c87c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d076a23158c8f43d75d4d95d2f12815"><td class="memItemLeft" align="right" valign="top"><a id="a8d076a23158c8f43d75d4d95d2f12815"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>TFT_SDI</b>&#160;&#160;&#160;A2</td></tr>
-<tr class="separator:a8d076a23158c8f43d75d4d95d2f12815"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05f425917672194cf628897cb46cbf9d"><td class="memItemLeft" align="right" valign="top"><a id="a05f425917672194cf628897cb46cbf9d"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>TFT_CLK</b>&#160;&#160;&#160;A7</td></tr>
-<tr class="separator:a05f425917672194cf628897cb46cbf9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0dca31463a4633b158a8cbf90f8d0102"><td class="memItemLeft" align="right" valign="top"><a id="a0dca31463a4633b158a8cbf90f8d0102"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>TFT_LED</b>&#160;&#160;&#160;A9</td></tr>
-<tr class="separator:a0dca31463a4633b158a8cbf90f8d0102"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48934b78cf215a2737e9c783e207e96f"><td class="memItemLeft" align="right" valign="top"><a id="a48934b78cf215a2737e9c783e207e96f"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>TFT_BRIGHTNESS</b>&#160;&#160;&#160;200</td></tr>
-<tr class="separator:a48934b78cf215a2737e9c783e207e96f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace41f57580ab16826eb13625bef0257b"><td class="memItemLeft" align="right" valign="top"><a id="ace41f57580ab16826eb13625bef0257b"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>XPIN</b>&#160;&#160;&#160;A0</td></tr>
-<tr class="separator:ace41f57580ab16826eb13625bef0257b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad33cea96a8372a5abf9f7b40d819fc8c"><td class="memItemLeft" align="right" valign="top"><a id="ad33cea96a8372a5abf9f7b40d819fc8c"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>YPIN</b>&#160;&#160;&#160;A1</td></tr>
-<tr class="separator:ad33cea96a8372a5abf9f7b40d819fc8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4f6ae439294c6585db1ed955a275312"><td class="memItemLeft" align="right" valign="top"><a id="ae4f6ae439294c6585db1ed955a275312"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BUTTON_NEUTRAL</b>&#160;&#160;&#160;2</td></tr>
-<tr class="separator:ae4f6ae439294c6585db1ed955a275312"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab27da09cd7e59c045f69fa9faad7443f"><td class="memItemLeft" align="right" valign="top"><a id="ab27da09cd7e59c045f69fa9faad7443f"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BUTTON_INC_SPEED</b>&#160;&#160;&#160;3</td></tr>
-<tr class="separator:ab27da09cd7e59c045f69fa9faad7443f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab9f61e9aceecfcdf1c43c08df9a2117"><td class="memItemLeft" align="right" valign="top"><a id="aab9f61e9aceecfcdf1c43c08df9a2117"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BUTTON_DEC_SPEED</b>&#160;&#160;&#160;5</td></tr>
-<tr class="separator:aab9f61e9aceecfcdf1c43c08df9a2117"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a2bcd8faa1062a0b3f0f0761a2205f3"><td class="memItemLeft" align="right" valign="top"><a id="a0a2bcd8faa1062a0b3f0f0761a2205f3"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BUTTON_ARM_DISARM</b>&#160;&#160;&#160;4</td></tr>
-<tr class="separator:a0a2bcd8faa1062a0b3f0f0761a2205f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39f4604fd45f076faae1575468bda3c0"><td class="memItemLeft" align="right" valign="top"><a id="a39f4604fd45f076faae1575468bda3c0"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>TOGGLE_FORWARD</b>&#160;&#160;&#160;6</td></tr>
-<tr class="separator:a39f4604fd45f076faae1575468bda3c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c02cf2c898271ec0e3d9e2853440678"><td class="memItemLeft" align="right" valign="top"><a id="a3c02cf2c898271ec0e3d9e2853440678"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>TOGGLE_REVERSE</b>&#160;&#160;&#160;8</td></tr>
-<tr class="separator:a3c02cf2c898271ec0e3d9e2853440678"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:a5045ad02c47704d467d7e26254e2f0bf"><td class="memItemLeft" align="right" valign="top"><a id="a5045ad02c47704d467d7e26254e2f0bf"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>ugv_status</b> { <b>disconnected</b>
-, <b>active</b>
-, <b>standby</b>
-, <b>unknown</b>
- }</td></tr>
-<tr class="separator:a5045ad02c47704d467d7e26254e2f0bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>

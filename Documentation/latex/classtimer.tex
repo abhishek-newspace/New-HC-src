@@ -1,0 +1,60 @@
+\hypertarget{classtimer}{}\doxysection{timer Class Reference}
+\label{classtimer}\index{timer@{timer}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtimer_ab72dbacd3f9e14f81a50255fff86cd53}\label{classtimer_ab72dbacd3f9e14f81a50255fff86cd53}} 
+{\bfseries timer} (long unsigned int interval\+Duration)
+\item 
+\mbox{\Hypertarget{classtimer_aea687c1086bfb15ec7de5150a0ee174f}\label{classtimer_aea687c1086bfb15ec7de5150a0ee174f}} 
+void \mbox{\hyperlink{classtimer_aea687c1086bfb15ec7de5150a0ee174f}{start\+Timer}} ()
+\begin{DoxyCompactList}\small\item\em start a timer, that keeps count of number of microseconds elapsed \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classtimer_a2c424303c7929a6a7421d9bf336f41b1}{timeup}} (unsigned long int time\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em check whether time\+\_\+ms microseconds are completed since start of timer \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classtimer_aaac0df8a8589a1a17bf1b7fc32e00e89}{timeup}} ()
+\begin{DoxyCompactList}\small\item\em check whether the duration for which the timer should run is complete, and resets timer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classtimer_a7f3b8d8eed77088f28ff685c5455ebcb}\label{classtimer_a7f3b8d8eed77088f28ff685c5455ebcb}} 
+void \mbox{\hyperlink{classtimer_a7f3b8d8eed77088f28ff685c5455ebcb}{reset\+Timer}} ()
+\begin{DoxyCompactList}\small\item\em essentially performs same task as \mbox{\hyperlink{classtimer_aea687c1086bfb15ec7de5150a0ee174f}{start\+Timer()}}; used to reset the timer to 0 and start again. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classtimer_aaac0df8a8589a1a17bf1b7fc32e00e89}\label{classtimer_aaac0df8a8589a1a17bf1b7fc32e00e89}} 
+\index{timer@{timer}!timeup@{timeup}}
+\index{timeup@{timeup}!timer@{timer}}
+\doxysubsubsection{\texorpdfstring{timeup()}{timeup()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool timer\+::timeup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+check whether the duration for which the timer should run is complete, and resets timer. 
+
+Will always return true if interval\+Duration is not set. \begin{DoxyReturn}{Returns}
+true when duration is complete 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classtimer_a2c424303c7929a6a7421d9bf336f41b1}\label{classtimer_a2c424303c7929a6a7421d9bf336f41b1}} 
+\index{timer@{timer}!timeup@{timeup}}
+\index{timeup@{timeup}!timer@{timer}}
+\doxysubsubsection{\texorpdfstring{timeup()}{timeup()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool timer\+::timeup (\begin{DoxyParamCaption}\item[{unsigned long int}]{time\+\_\+ms }\end{DoxyParamCaption})}
+
+
+
+check whether time\+\_\+ms microseconds are completed since start of timer 
+
+check whether the given amount of time (in ms) is completed or not
+
+
+\begin{DoxyParams}{Parameters}
+{\em time\+\_\+ms} & milliseconds since start of timer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true when time\+\_\+ms microseconds are completed since start of timer. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+single\+\_\+hand\+\_\+controller/include/\mbox{\hyperlink{timer_8hpp}{timer.\+hpp}}\item 
+single\+\_\+hand\+\_\+controller/\mbox{\hyperlink{timer_8cpp}{timer.\+cpp}}\end{DoxyCompactItemize}

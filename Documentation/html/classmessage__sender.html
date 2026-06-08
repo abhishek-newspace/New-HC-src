@@ -88,12 +88,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3b89d7bde0b78e68c12e65f40dc730cb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage__sender.html#a3b89d7bde0b78e68c12e65f40dc730cb">buffer_heartbeat</a> ()</td></tr>
 <tr class="memdesc:a3b89d7bde0b78e68c12e65f40dc730cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">send heartbeat to buffer; heartbeat from hand controller is used to invoke ATLAS' radio to send RADIO_STATUS packets  <a href="classmessage__sender.html#a3b89d7bde0b78e68c12e65f40dc730cb">More...</a><br /></td></tr>
 <tr class="separator:a3b89d7bde0b78e68c12e65f40dc730cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70e8079ce2adf67a9d5813240f3011cc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage__sender.html#a70e8079ce2adf67a9d5813240f3011cc">buffer_manual_control</a> (int x, int y, bool extra_feature_1_press, bool extra_feature_1_long_press, bool extra_feature_2_press, bool extra_feature_2_long_press, <a class="el" href="message__sender_8hpp.html#a99eced5804d2818722a6e61476fb3ff7">directionToggle</a> dirTog, <a class="el" href="message__sender_8hpp.html#a2cca2977d757608930203a59d8ce4cd7">speedToggle</a> spdTog)</td></tr>
-<tr class="memdesc:a70e8079ce2adf67a9d5813240f3011cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">send manual control packet to buffer  <a href="classmessage__sender.html#a70e8079ce2adf67a9d5813240f3011cc">More...</a><br /></td></tr>
-<tr class="separator:a70e8079ce2adf67a9d5813240f3011cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91e3fb3b908d777ad3ad67085ca7cdae"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage__sender.html#a91e3fb3b908d777ad3ad67085ca7cdae">buffer_manual_control</a> (int x, int y, bool extra_feature_1_press, bool extra_feature_1_long_press, bool extra_feature_2_press, bool extra_feature_2_long_press)</td></tr>
+<tr class="memdesc:a91e3fb3b908d777ad3ad67085ca7cdae"><td class="mdescLeft">&#160;</td><td class="mdescRight">send manual control packet to buffer  <a href="classmessage__sender.html#a91e3fb3b908d777ad3ad67085ca7cdae">More...</a><br /></td></tr>
+<tr class="separator:a91e3fb3b908d777ad3ad67085ca7cdae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2c79f08f7db3ce8a3c25b1dc290905e"><td class="memItemLeft" align="right" valign="top"><a id="af2c79f08f7db3ce8a3c25b1dc290905e"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>buffer_timesync</b> ()</td></tr>
 <tr class="separator:af2c79f08f7db3ce8a3c25b1dc290905e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c6e919096433ff56c4475c440df49d4"><td class="memItemLeft" align="right" valign="top"><a id="a6c6e919096433ff56c4475c440df49d4"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>buffer_component_version</b> ()</td></tr>
+<tr class="separator:a6c6e919096433ff56c4475c440df49d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>pack data and write MAVLink packets to buffer. </p>
@@ -192,8 +195,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>buffer_timesync</b> ()
 
 </div>
 </div>
-<a id="a70e8079ce2adf67a9d5813240f3011cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a70e8079ce2adf67a9d5813240f3011cc">&#9670;&nbsp;</a></span>buffer_manual_control()</h2>
+<a id="a91e3fb3b908d777ad3ad67085ca7cdae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91e3fb3b908d777ad3ad67085ca7cdae">&#9670;&nbsp;</a></span>buffer_manual_control()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -232,19 +235,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>buffer_timesync</b> ()
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>extra_feature_2_long_press</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="message__sender_8hpp.html#a99eced5804d2818722a6e61476fb3ff7">directionToggle</a>&#160;</td>
-          <td class="paramname"><em>dirTog</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="message__sender_8hpp.html#a2cca2977d757608930203a59d8ce4cd7">speedToggle</a>&#160;</td>
-          <td class="paramname"><em>spdTog</em>&#160;</td>
+          <td class="paramname"><em>extra_feature_2_long_press</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
