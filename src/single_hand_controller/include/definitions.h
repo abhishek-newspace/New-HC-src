@@ -51,8 +51,8 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 #define _DEBUG_
 //#define TESTING_JOYSTICK
 
-//#define TESTING // ONLY use this when testing features
-//#define STOP_COMM   // when testing features and no communication is to be sent.
+#define TESTING // ONLY use this when testing features
+#define STOP_COMM   // when testing features and no communication is to be sent.
 //#define STOP_RECV
 //#define SPECIAL_TESTING
 

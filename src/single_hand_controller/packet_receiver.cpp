@@ -127,6 +127,10 @@ void packet_receiver::receive_ack(mavlink_message_t *msg)
             displayInfo("ARM command acknowledged");
             arm_send_count = 0;
         break;
+        case MAV_CMD_DRIVE_MODE:
+            switchDriveMode();
+            IF_DEBUG(Serial.println("drive mode switch acknowledged");)
+        break;
         case MAV_CMD_DO_SET_MODE:
             inc_Speed();
             IF_DEBUG(Serial.println("speed mode acknowledged");)

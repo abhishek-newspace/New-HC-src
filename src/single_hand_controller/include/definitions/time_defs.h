@@ -31,7 +31,7 @@
 #define SECONDS_MS_10 10000 /// 10 seconds to milliseconds
 #define SECONDS_MS_3 3000 /// 3 seconds to milliseconds
 #define SECONDS_MS_2 2000 /// 2 seconds to milliseconds
-#define SECONDS_MS_1 100 /// 1 seconds to milliseconds
+#define SECONDS_MS_1 1000 /// 1 seconds to milliseconds
 
 #define MS_1500 1500
 #define MS_500 500
@@ -51,8 +51,8 @@
 #define ARM_DISARM_RESEND_DELAY MS_1500
 
 #define OFP_LOOP_TIME           MS_20
-#define SCREEN_UPDATE_DELAY     SECONDS_MS_1    // screen to be updated every 1 second
+#define SCREEN_UPDATE_DELAY     SECONDS_MS_2    // screen to be updated every 2 second
 
-#define LONG_PRESS_DURATION     SECONDS_MS_1
+#define LONG_PRESS_DURATION     MS_500
 #define BUTTON_PRESS_COOLDOWN   MS_500
 #define TOGGLE_DEBOUNCE_DURATION SECONDS_US_2
