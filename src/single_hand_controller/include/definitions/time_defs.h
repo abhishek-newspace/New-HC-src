@@ -31,7 +31,7 @@
 #define SECONDS_MS_10 10000 /// 10 seconds to milliseconds
 #define SECONDS_MS_3 3000 /// 3 seconds to milliseconds
 #define SECONDS_MS_2 2000 /// 2 seconds to milliseconds
-#define SECONDS_MS_1 1000 /// 1 seconds to milliseconds
+#define SECONDS_MS_1 100 /// 1 seconds to milliseconds
 
 #define MS_1500 1500
 #define MS_500 500

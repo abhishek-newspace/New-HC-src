@@ -216,6 +216,9 @@ void sendManualControl(){
 
 void handlePacketReceived()
 {
+    #ifdef STOP_RECV
+        return;
+    #endif
 
     byte data;
     IF_PRINT_BYTES(Serial.print("receiving->");)

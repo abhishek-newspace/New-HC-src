@@ -194,7 +194,7 @@ void run_wakeup_seq(){
     periodic_actions.addPeriodicAction(sendHeartbeat,SECONDS_MS_1);
     periodic_actions.addPeriodicAction(updateDisplay,SECONDS_MS_2);
     //periodic_actions.addPeriodicAction(sendTimesyncRequest,TIMESYNC_MSG_WAIT,isUGVdisconnected);
-    IF_TESTING(setUGV_state(active);)
+    IF_TESTING(setUGV_state(disconnected);)
 }
 
 

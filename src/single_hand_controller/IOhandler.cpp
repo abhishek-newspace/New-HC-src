@@ -56,12 +56,6 @@ button  b_headlight = {
             enableHeadlight,            // void (*press_callback)(void);        
             0                   // uint32_t cooldown;
         },
-        b_inc_speed = {
-            BUTTON_INC_SPEED,    // uint8_t pin; 
-            0,                   // buttonPress press_state; 
-            enableIncreaseSpeed,           // void (*press_callback)(void); 
-            0                    // uint32_t cooldown;
-        },
         b_foglight = {
             BUTTON_DEC_SPEED,    // uint8_t pin;
             0,                   // buttonPress press_state;
@@ -76,7 +70,13 @@ long_press_button b_arm_disarm = {
     enableDisarm, 
     0, 
     0
-};
+},
+b_inc_speed = {
+            BUTTON_INC_SPEED,    // uint8_t pin; 
+            0,                   // buttonPress press_state; 
+            enableIncreaseSpeed,           // void (*press_callback)(void); 
+            0                    // uint32_t cooldown;
+        };
 struct toggle dir_toggle = {
     TOGGLE_REVERSE,
     forward,
