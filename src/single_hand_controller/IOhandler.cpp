@@ -27,6 +27,7 @@ int drift_y;
 extern bool turnOnHeadlight;
 extern bool turnOnFoglight;
 extern bool increaseSpeed;
+extern bool switchMode;
 bool arm_press;
 bool disarm_press;
 
@@ -40,6 +41,10 @@ void enabledFoglight(){
 
 void enableIncreaseSpeed(){
     increaseSpeed = true;
+}
+
+void enableSwitchMode(){
+    switchMode = true;
 }
 
 void enableArm(){
@@ -56,12 +61,6 @@ button  b_headlight = {
             enableHeadlight,            // void (*press_callback)(void);        
             0                   // uint32_t cooldown;
         },
-        b_inc_speed = {
-            BUTTON_INC_SPEED,    // uint8_t pin; 
-            0,                   // buttonPress press_state; 
-            enableIncreaseSpeed,           // void (*press_callback)(void); 
-            0                    // uint32_t cooldown;
-        },
         b_foglight = {
             BUTTON_DEC_SPEED,    // uint8_t pin;
             0,                   // buttonPress press_state;
@@ -70,13 +69,21 @@ button  b_headlight = {
         };
 
 long_press_button b_arm_disarm = {
-    BUTTON_ARM_DISARM, 
-    0, 
-    enableArm, 
-    enableDisarm, 
-    0, 
-    0
-};
+    BUTTON_ARM_DISARM,  // pin
+    0,              // initial state / current state
+    enableArm,      // short press action
+    enableDisarm,   // long press action
+    0,  // cooldown
+    0   // pressed duration
+},
+b_inc_speed = {
+            BUTTON_INC_SPEED,    // uint8_t pin; 
+            0,                   // buttonPress press_state; 
+            enableIncreaseSpeed,           // void (*press_callback)(void); 
+            enableSwitchMode,
+            0,                    // uint32_t cooldown;
+            0
+        };
 struct toggle dir_toggle = {
     TOGGLE_REVERSE,
     forward,
@@ -216,6 +223,9 @@ void updateLongPressButtonValues(struct long_press_button *b1, int32_t ms_since_
             b1->press_state = short_pressed;
         }
     }
+    else if(!digitalRead(b1->pin)){
+        b1->cooldown = BUTTON_PRESS_COOLDOWN;
+    }
     else{
         if(b1->press_state == short_pressed){
             b1->cooldown = BUTTON_PRESS_COOLDOWN;
@@ -301,7 +311,7 @@ void checkUserInput()
     int32_t ms_since_last_check = millis() - last_input_checked_at;
     
     updateButtonValues(&b_headlight, ms_since_last_check);
-    updateButtonValues(&b_inc_speed, ms_since_last_check);
+    updateLongPressButtonValues(&b_inc_speed, ms_since_last_check);
     updateButtonValues(&b_foglight, ms_since_last_check);
     updateLongPressButtonValues(&b_arm_disarm, ms_since_last_check);
     updateToggleValues(&dir_toggle,ms_since_last_check);

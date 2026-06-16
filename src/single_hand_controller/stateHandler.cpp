@@ -26,13 +26,25 @@ directionToggle current_dir = neutral,    /// inicates current direction state r
 speedToggle current_spd = low,
             requested_spd = low;
 
-int speed = 0;
+driveMode current_mode = speed;
+
 
 bool headlight_state = 0;
 
 bool fog_brake_state = 0;
 
 
+int getDriveMode(){
+    return current_mode;
+}
+
+int get_inc_driveMode(){
+    return (current_mode + 1) % 2;
+}
+
+void switchDriveMode(){
+    current_mode = (current_mode + 1) % 2;
+}
 
 // gettr functions
 bool headlight_off(){
@@ -103,22 +115,22 @@ void inc_Speed(){
 int get_inc_speed(){
     return (current_spd + 1) % 3;
 }
-void dec_Speed(){
+void dec_Speed(){   // DEPRECATED FUNCTION
     IF_DEBUG(Serial.println("decrease speed called!"));
-    speed = speed == 0 ? speed : speed - 1;
-    if(speed > 0){
-        current_spd = (speedToggle)(speed - 1);
-    }
-    else{
-        current_spd = 0;
-        current_dir = neutral;
-    }
-    displaySpeed(speed);
-    displayDirection(current_dir);
+    // speed = speed == 0 ? speed : speed - 1;
+    // if(speed > 0){
+    //     current_spd = (speedToggle)(speed - 1);
+    // }
+    // else{
+    //     current_spd = 0;
+    //     current_dir = neutral;
+    // }
+    // displaySpeed(speed);
+    // displayDirection(current_dir);
 }
 
 void setNeutral(){
-    speed = 0;
+    //speed = 0;
     IF_DEBUG(Serial.println("set neutral called!"));
     displaySpeed(speed);
     current_dir = neutral;

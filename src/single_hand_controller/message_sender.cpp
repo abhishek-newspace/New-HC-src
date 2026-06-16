@@ -54,7 +54,7 @@ int message_sender::buffer_light_control_cmd(bool headlight, bool foglight, bool
     );
     return mavlink_msg_to_send_buffer(buf, msg);
 }
-int message_sender::buffer_drive_mode_cmd(int speed)
+int message_sender::buffer_mode_cmd(int speed)
 {
     mode_cmd.param4 = speed;
     mavlink_msg_command_long_pack(
@@ -74,6 +74,25 @@ int message_sender::buffer_drive_mode_cmd(int speed)
     );
     return mavlink_msg_to_send_buffer(buf, msg);
 }
+
+int message_sender::buffer_drive_mode_cmd(int mode)
+{
+    drive_cmd.param1 = mode;
+    mavlink_msg_command_long_pack(
+        HC_ID,
+        HC_COMP_ID,
+        msg,
+        
+        mode_cmd.target_system,
+        mode_cmd.target_component,
+        mode_cmd.command,
+        mode_cmd.confirmation,
+        mode_cmd.param1,
+        0,0,0,0,0,0
+    );
+    return mavlink_msg_to_send_buffer(buf, msg);
+}
+
 int message_sender::buffer_heartbeat()
 {
     uint8_t prevFlags = mavlink_get_channel_status(MAVLINK_COMM_0)->flags;  

@@ -28,6 +28,7 @@ bool arm_disarm_error = false;
 bool turnOnHeadlight = false;
 bool turnOnFoglight = false;
 bool increaseSpeed = false;
+bool switchMode = false;
 
 int hb_count = 0;
 long unsigned int OFP_timer = 0;
@@ -42,6 +43,9 @@ inline bool isUGVdisconnected(){
 }
 
 
+inline bool switchModeCondition(){
+    return switchMode;
+}
 
 inline bool turnHeadlightCondition(){
     return turnOnHeadlight ;
@@ -237,6 +241,10 @@ void run_OFP_cycle()
     if(speedChangeCondition()){
         sendSpeedChangeRequest();
         increaseSpeed = false;
+    }
+    if(switchModeCondition()){
+        sendModeChangeRequest();
+        switchMode = false;
     }
     handlePacketReceived();
     periodic_actions.performPeriodicActions();

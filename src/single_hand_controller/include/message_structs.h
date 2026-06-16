@@ -60,6 +60,14 @@ struct HC_MODE_COMMAND{
     float param4;   // SPEED MODE
 };
 
+struct HC_DRIVE_MODE_COMMAND{
+    uint8_t target_system = SCOUT_ID;
+    uint8_t target_component = ATLAS_COMP_ID;
+    uint16_t command = MAV_CMD_DRIVE_MODE;
+    uint8_t confirmation = 0;
+    float param1;   // mode (only switches between speed and torque mode)
+};
+
 struct HC_LIGHT_CONTROL_COMMAND{
     uint8_t target_system = SCOUT_ID;
     uint8_t target_component = ATLAS_COMP_ID;

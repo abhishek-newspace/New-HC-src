@@ -100,6 +100,7 @@ void packet_receiver::receive_radio_status(mavlink_message_t *msg)
 
     if(radio_status.txbuf <= 10)
         displayError("Tx Buffer overload",6);
+    
     if(radio_status.remrssi > 0)
         connectRadio();
     else    
@@ -125,6 +126,10 @@ void packet_receiver::receive_ack(mavlink_message_t *msg)
         case MAV_CMD_COMPONENT_ARM_DISARM:
             displayInfo("ARM command acknowledged");
             arm_send_count = 0;
+        break;
+        case MAV_CMD_DRIVE_MODE:
+            switchDriveMode();
+            IF_DEBUG(Serial.println("drive mode switch acknowledged");)
         break;
         case MAV_CMD_DO_SET_MODE:
             inc_Speed();
@@ -163,7 +168,6 @@ void packet_receiver::receive_heartbeat(mavlink_message_t *msg)
     
     IF_DEBUG(Serial.println("heartbeat verified!");)
     last_heartbeat_received_at = millis();
-
     
     switch(mavlink_msg_heartbeat_get_system_status(msg)){
         case MAV_STATE_STANDBY:
