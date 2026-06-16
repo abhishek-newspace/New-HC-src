@@ -1,7 +1,6 @@
-/home/nikhil/.cache/arduino/sketches/4B84089CB73F43CCD32C0EAD5298DF55/sketch/periodicActions.cpp.o: \
- /home/nikhil/.cache/arduino/sketches/4B84089CB73F43CCD32C0EAD5298DF55/sketch/periodicActions.cpp \
- /home/nikhil/.cache/arduino/sketches/4B84089CB73F43CCD32C0EAD5298DF55/sketch/include/PeriodicActions.hpp \
- /home/nikhil/.cache/arduino/sketches/4B84089CB73F43CCD32C0EAD5298DF55/sketch/include/timer.hpp \
+/home/nikhil/.cache/arduino/sketches/4B84089CB73F43CCD32C0EAD5298DF55/sketch/radio_config.cpp.o: \
+ /home/nikhil/.cache/arduino/sketches/4B84089CB73F43CCD32C0EAD5298DF55/sketch/radio_config.cpp \
+ /home/nikhil/.cache/arduino/sketches/4B84089CB73F43CCD32C0EAD5298DF55/sketch/include/radio_config.h \
  /home/nikhil/.cache/arduino/sketches/4B84089CB73F43CCD32C0EAD5298DF55/sketch/include/definitions.h \
  /home/nikhil/.cache/arduino/sketches/4B84089CB73F43CCD32C0EAD5298DF55/sketch/include/definitions/enum_defs.h \
  /home/nikhil/.cache/arduino/sketches/4B84089CB73F43CCD32C0EAD5298DF55/sketch/include/definitions/IO_defs.h \

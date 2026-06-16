@@ -62,7 +62,7 @@ void packet_receiver::receive_timesync(mavlink_message_t *msg)
 
     IF_DEBUG(Serial.print("comm latency :"));
     IF_DEBUG(Serial.println((unsigned long)(UGVTime - timesync.tc1)));
-
+    clearInfo();
 
 #ifdef TIME_REQ
     uint32_t seconds, minutes, hours;
@@ -100,12 +100,16 @@ void packet_receiver::receive_radio_status(mavlink_message_t *msg)
     IF_DEBUG(Serial.println(radio_status.txbuf);)
 
     if(radio_status.txbuf <= 10)
-        displayError("Tx Buffer overload",6);
+        displayError("Tx Buffer overload",RADIO_BUFFER_OVERLOAD);
     
     if(radio_status.remrssi > 0)
         connectRadio();
-    else    
+    else{    
         disconnectRadio();
+        if(setUGV_state(disconnected)){
+            displayUGV_status(disconnected);
+        }
+    }
         
     setRSSI(radio_status.rssi);
 }

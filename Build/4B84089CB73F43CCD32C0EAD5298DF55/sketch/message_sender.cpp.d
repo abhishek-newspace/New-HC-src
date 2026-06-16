@@ -18,6 +18,7 @@
  /home/nikhil/.arduino15/packages/arduino/hardware/avr/1.8.7/variants/mega/pins_arduino.h \
  /home/nikhil/.cache/arduino/sketches/4B84089CB73F43CCD32C0EAD5298DF55/sketch/include/definitions/time_defs.h \
  /home/nikhil/.cache/arduino/sketches/4B84089CB73F43CCD32C0EAD5298DF55/sketch/include/definitions/version.h \
+ /home/nikhil/.cache/arduino/sketches/4B84089CB73F43CCD32C0EAD5298DF55/sketch/include/definitions/error_codes.h \
  /home/nikhil/.cache/arduino/sketches/4B84089CB73F43CCD32C0EAD5298DF55/sketch/include/custom_v0.3/ugvCustom/mavlink.h \
  /home/nikhil/.cache/arduino/sketches/4B84089CB73F43CCD32C0EAD5298DF55/sketch/include/custom_v0.3/ugvCustom/version.h \
  /home/nikhil/.cache/arduino/sketches/4B84089CB73F43CCD32C0EAD5298DF55/sketch/include/custom_v0.3/ugvCustom/ugvCustom.h \

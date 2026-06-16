@@ -17,6 +17,7 @@
  /home/nikhil/.arduino15/packages/arduino/hardware/avr/1.8.7/variants/mega/pins_arduino.h \
  /home/nikhil/.cache/arduino/sketches/4B84089CB73F43CCD32C0EAD5298DF55/sketch/include/definitions/time_defs.h \
  /home/nikhil/.cache/arduino/sketches/4B84089CB73F43CCD32C0EAD5298DF55/sketch/include/definitions/version.h \
+ /home/nikhil/.cache/arduino/sketches/4B84089CB73F43CCD32C0EAD5298DF55/sketch/include/definitions/error_codes.h \
  /home/nikhil/.cache/arduino/sketches/4B84089CB73F43CCD32C0EAD5298DF55/sketch/include/includes.h \
  /home/nikhil/.cache/arduino/sketches/4B84089CB73F43CCD32C0EAD5298DF55/sketch/include/setupFunctions.h \
  /home/nikhil/.cache/arduino/sketches/4B84089CB73F43CCD32C0EAD5298DF55/sketch/include/displayHandler.hpp \
