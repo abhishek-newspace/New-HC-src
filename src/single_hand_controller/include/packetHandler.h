@@ -71,3 +71,5 @@ void sendSpeedChangeRequest();
 
 /// @brief send a request to switch mode
 void sendModeChangeRequest();
+
+void getRadioConfigurations();

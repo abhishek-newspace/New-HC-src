@@ -193,10 +193,15 @@ void sendFogBrakeLight_OFF(){
 /// @brief send request to set speed to required speed
 void sendSpeedChangeRequest(){
     IF_DEBUG(Serial.print("sending speed change request : ");)
-    sendBuffer(msgsndr.buffer_drive_mode_cmd(get_inc_speed() + 1));
+    sendBuffer(msgsndr.buffer_mode_cmd(get_inc_speed() + 1));
     IF_DEBUG(Serial.println(get_inc_speed() + 1);)
 }
 
+void sendModeChangeRequest(){
+    IF_DEBUG(Serial.print("sending drive mode change request : ");)
+    msgsndr.buffer_drive_mode_cmd(get_inc_driveMode() + 1);
+    IF_DEBUG(Serial.println(get_inc_driveMode() + 1);)
+}
 
 void sendManualControl(){
     IF_DEBUG(Serial.println("sending manual control");)

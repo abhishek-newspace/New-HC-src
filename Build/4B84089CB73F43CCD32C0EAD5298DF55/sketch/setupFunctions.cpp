@@ -61,5 +61,6 @@ void setupDisplay(){
     setFont1();
     displayLogo();
     displayInvertedLogo();
+    displayDriveMode(speed);
     displayBasic();
 }

@@ -37,3 +37,8 @@ enum buttonPress{
     short_pressed = 1,
     long_pressed = 3
 };
+
+enum driveMode{
+    speed = 0,
+    torque = 1
+};

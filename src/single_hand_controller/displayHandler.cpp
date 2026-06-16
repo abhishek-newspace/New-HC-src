@@ -424,6 +424,15 @@ void displayConnectionStatus(){
   setFont1();
 }
 
+void displayDriveMode(driveMode mode){
+  setFontSmall();
+  if(mode == speed)
+    tft.drawText(DM_POS_X, DM_POS_Y, "SPEED MODE", DM_COLOR);   
+  else
+    tft.drawText(DM_POS_X, DM_POS_Y, "TORQUE MODE", DM_COLOR);   
+  setFont1();
+}
+
 void updateDisplay(){
     static int prevRSSI = 0, prevBattery = 0;
 

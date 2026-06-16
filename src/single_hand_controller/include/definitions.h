@@ -11,6 +11,7 @@
 #include "definitions/IO_defs.h"
 #include "definitions/time_defs.h"
 #include "definitions/version.h"
+#include "definitions/error_codes.h"
 
 
 
@@ -37,13 +38,13 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 // if the code is not meant to be deployed on the prototype hand controller, then comment out this line
 #define PROTOTYPE
 
-//#define SIGN_PACKETS  // used to send and receive signed packets
-#define BYPASS_NO_SIGNING   // prevents display of error to show that signing is disabled
+#define SIGN_PACKETS  // used to send and receive signed packets
+//#define BYPASS_NO_SIGNING   // prevents display of error to show that signing is disabled
 
 // if the code is not meant to operate in debug mode (prints out info on serial communication), comment out this line
 
 
-#define RELEASE
+//#define RELEASE
 
 
 #ifndef RELEASE // Turn off all debug features during release
@@ -51,8 +52,8 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 #define _DEBUG_
 //#define TESTING_JOYSTICK
 
-#define TESTING // ONLY use this when testing features
-#define STOP_COMM   // when testing features and no communication is to be sent.
+//#define TESTING // ONLY use this when testing features
+//#define STOP_COMM   // when testing features and no communication is to be sent.
 //#define STOP_RECV
 //#define SPECIAL_TESTING
 
@@ -61,7 +62,7 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 #endif
 
 
-#define TIME_REQ
+//#define TIME_REQ  // comment out this definition in case of not requiring time to be displayed
 
 #define USE_HEARTBEAT_MAVLINKV1
 
@@ -86,7 +87,10 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 #endif
 
 #ifdef TESTING
+#define LCD_DISPLAY_BAUD_RATE 115200
 
+
+#define GET_RADIO_CONFIG
 #define IF_TESTING(CODE) CODE
 #define IGNORE_WHILE_TESTING(CODE)
 
@@ -96,6 +100,7 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 #define IF_TESTING(CODE)
 
 #endif
+
 
 
 #ifdef PROTOTYPE
