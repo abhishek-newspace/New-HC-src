@@ -26,6 +26,7 @@
 class message_sender{
     struct HC_ATLAS_ARM_DISARM_CMD arm_disarm_cmd;
     struct HC_MODE_COMMAND mode_cmd;
+    struct HC_DRIVE_MODE_COMMAND drive_cmd;
     struct HC_LIGHT_CONTROL_COMMAND light_ctrl_cmd;
 
     struct HC_ATLAS_HEARTBEAT_BC heartbeat;
@@ -58,7 +59,12 @@ public:
     /// @brief pack command long for speed mode into buffer
     /// @param speed 1 => low ;;; 2 => medium ;;; 3 =>  high ;;; 0 => neutral
     /// @return length of buffer
-    int buffer_drive_mode_cmd(int speed);
+    int buffer_mode_cmd(int speed);
+
+    /// @brief switch drive mode between speed mode and torque mode
+    /// @param mode 1 => speed mode ;;; 2 => torque mode
+    /// @return length of buffer
+    int buffer_drive_mode_cmd(int mode);
 
     /// @brief send heartbeat to buffer; heartbeat from hand controller is used to invoke ATLAS' radio to send RADIO_STATUS packets
     /// @return length of buffer

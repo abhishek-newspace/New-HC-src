@@ -56,9 +56,12 @@ bool initMAVLink(){
 
 void setupDisplay(){
     initDisplayComm();
+
+    IF_TESTING(return;)
     clear_display();
     setFont1();
     displayLogo();
     displayInvertedLogo();
+    displayDriveMode(speed);
     displayBasic();
 }

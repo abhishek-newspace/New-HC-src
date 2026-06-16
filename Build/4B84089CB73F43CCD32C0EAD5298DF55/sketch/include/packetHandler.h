@@ -69,3 +69,8 @@ void sendFogBrakeLight();
 
 /// @brief send request to set speed to required speed
 void sendSpeedChangeRequest();
+
+/// @brief send a request to switch mode
+void sendModeChangeRequest();
+
+void getRadioConfigurations();

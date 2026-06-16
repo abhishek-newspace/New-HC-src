@@ -88,3 +88,7 @@ void disconnectRadio();
 
 /// @brief set radio status to connected
 void connectRadio();
+
+/// @brief update the display for drive mode
+/// @param mode speed / torque
+void displayDriveMode(driveMode mode);

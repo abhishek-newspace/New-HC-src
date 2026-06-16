@@ -44,6 +44,9 @@ int get_inc_driveMode(){
 
 void switchDriveMode(){
     current_mode = (current_mode + 1) % 2;
+    displayDriveMode(current_mode);
+    
+    
 }
 
 // gettr functions

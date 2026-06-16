@@ -27,13 +27,16 @@ void setup(){
     setupIO();
     setupDisplay();
     if(!initMAVLink()){
-        displayError("continue without packet signing", 1);
+        displayError("continue without packet signing", SIGNING_FAIL);
     }
     //initiateController();
 }
 
 
 void loop(){
+    #ifdef GET_RADIO_CONFIG
+        getRadioConfigurations();
+    #endif
     #ifdef TESTING_JOYSTICK
     thumbstickControl c1;
     uint32_t t1 = micros();

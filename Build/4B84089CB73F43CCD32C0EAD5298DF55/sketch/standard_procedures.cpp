@@ -29,6 +29,7 @@ bool arm_disarm_error = false;
 bool turnOnHeadlight = false;
 bool turnOnFoglight = false;
 bool increaseSpeed = false;
+bool switchMode = false;
 
 int hb_count = 0;
 long unsigned int OFP_timer = 0;
@@ -43,6 +44,9 @@ inline bool isUGVdisconnected(){
 }
 
 
+inline bool switchModeCondition(){
+    return switchMode;
+}
 
 inline bool turnHeadlightCondition(){
     return turnOnHeadlight ;
@@ -83,7 +87,7 @@ void endArmDisarmResend(){
     clearInfo();
     if(arm_disarm_error){
         // resend limit reached due to lack of acknowledgment
-        displayError((currentlySendingArm ? String("arm") : String("disarm") + String(" request failed")),3);
+        displayError((currentlySendingArm ? String("arm") : String("disarm") + String(" request failed")),ARM_DISARM_FAIL);
         currentlySendingArm = false;
     }
     reset_arm_disarm_sending();
@@ -104,7 +108,7 @@ void initiateController(){
 
         if(!identifyControllerDrift()){
             IF_DEBUG(Serial.println("Error 0x002; Joystick cannot be calibrated correctly!");)
-            displayError("Joystick cannot be calibrated correctly!", 2);
+            displayError("Joystick cannot be calibrated correctly!", JOYSTICK_CALIBRATION);
             while(!identifyControllerDrift()){
                 delay(SECONDS_MS_1);
             }
@@ -144,6 +148,7 @@ void time_synchronize()
 {
 
     int tsID = periodic_actions.addPeriodicAction(sendTimesyncRequest,SECONDS_MS_1,receivedFirstTimesync);
+    unsigned long long t1 = millis();
     IF_DEBUG(Serial.println("Entered time sync"));
     displayInfo("syncing ...");
     do{
@@ -154,7 +159,10 @@ void time_synchronize()
             return;
         }
         periodic_actions.performPeriodicActions();
-    }while(!receivedFirstTimesync());
+    }while(!receivedFirstTimesync() && millis() - t1 < 10000);
+    if(!receivedFirstTimesync()){
+        displayError("Failed Time Synchronization",TIME_SYNCHRONIZE_FAILED);
+    }
     periodic_actions.stopPeriodicAction(tsID);
 }
 
@@ -183,9 +191,11 @@ void run_wakeup_seq(){
     periodic_actions.addPeriodicAction(sendHeartbeat,SECONDS_MS_1);   // send a heartbeat every 1 second
     periodic_actions.addPeriodicAction(updateDisplay,SECONDS_MS_2);
     establish_connectivity();
-    //time_synchronize();
+    time_synchronize();
 
-    setUGV_speed(1);
+    setUGV_speed(3);    // gets changed to 1 on speed change
+    
+
     setFoglightState(0);
     setHeadlighState(0);
     
@@ -195,7 +205,9 @@ void run_wakeup_seq(){
     periodic_actions.addPeriodicAction(sendHeartbeat,SECONDS_MS_1);
     periodic_actions.addPeriodicAction(updateDisplay,SECONDS_MS_2);
     //periodic_actions.addPeriodicAction(sendTimesyncRequest,TIMESYNC_MSG_WAIT,isUGVdisconnected);
-    IF_TESTING(setUGV_state(disconnected);)
+    IF_TESTING(setUGV_state(active);)
+
+    sendSpeedChangeRequest();
 }
 
 
@@ -238,6 +250,10 @@ void run_OFP_cycle()
     if(speedChangeCondition()){
         sendSpeedChangeRequest();
         increaseSpeed = false;
+    }
+    if(switchModeCondition()){
+        sendModeChangeRequest();
+        switchMode = false;
     }
     handlePacketReceived();
     periodic_actions.performPeriodicActions();

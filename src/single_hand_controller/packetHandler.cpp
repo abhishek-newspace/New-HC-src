@@ -23,7 +23,6 @@ extern speedToggle requested_spd;
 
 message_sender msgsndr(buf, &msg);
 
-uint8_t radio_status_trigger[] = {0xFE,0x9,0x31,0xFF,0xBE,0x0,0x0,0x0,0x0,0x0,0x6,0x8,0x0,0x0,0x3,0xAA,0x4F};
 
 bool arm_request_sent = false,  //!< whether an arm request was sent (COMMAND_LONG)
     disarm_request_sent = false;  //!< whether a disarm request was sent (COMMAND_LONG)
@@ -33,7 +32,7 @@ int rssi;
 unsigned long getHeartbeatDiff();
 
 bool is_unsigned_message(const mavlink_status_t* status, uint32_t msgId) {
-  return (msgId == MAVLINK_MSG_ID_TIMESYNC || msgId == MAVLINK_MSG_ID_HEARTBEAT || msgId == MAVLINK_MSG_ID_RADIO_STATUS);
+  return (msgId == MAVLINK_MSG_ID_TIMESYNC || msgId == MAVLINK_MSG_ID_HEARTBEAT || msgId == MAVLINK_MSG_ID_RADIO_STATUS || msgId == 77);
 }
 
 bool setupSigning(){

@@ -72,3 +72,14 @@ void dir_reverse();
 /// @brief Get the next speed when to be increased.
 /// @return get the current speed that should appear when speed is increased
 int get_inc_speed();
+
+/// @brief switch between drive modes
+void switchDriveMode();
+
+/// @brief gets the current drive mode, default mode is speed mode, on controller startup
+/// @return current drive mode
+int getDriveMode();
+
+/// @brief get the next drive mode when it needs to be increased
+/// @return next drive mode
+int get_inc_driveMode();
