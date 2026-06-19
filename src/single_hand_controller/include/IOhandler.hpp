@@ -14,11 +14,6 @@
 #include "definitions.h"
 #include "stateHandler.hpp"
 
-#define SPEED_HIGH
-#define SPEED_MID
-
-#define DIR_FORWARD
-#define DIR_REVERSE
 
 /// @brief thumbstick control is used within this library
 struct thumbstickControl{
@@ -39,27 +34,6 @@ void getXY_raw(struct thumbstickControl *control);
 /// @param control -> the current position of the thumbstick is written into this struct
 void getXY(struct thumbstickControl *control);
 
-/// @brief whether headlight was recently pressed
-/// @return true, when pressed
-bool headlight_pressed();
-
-/// @brief whether foglight was recently pressed
-/// @return true, when pressed
-bool foglight_pressed();
-
-/// @brief whether speed change button was recently pressed
-/// @return true, when pressed
-bool speed_change_pressed();
-
-/// @brief whether arm/disarm button is pressed or not
-/// @return true when arm/disarm button is pressed
-bool arm_pressed();
-
-
-/// @brief whether arm/disarm button is long pressed or not
-/// @return true when arm/disarm button is long pressed
-bool arm_long_pressed();
-
 
 /// @brief update parameters within the button struct
 /// @param b1 button struct in which update needs to happen
@@ -75,6 +49,9 @@ void updateLongPressButtonValues(struct long_press_button *b1, int32_t ms_since_
 /// @param t1 toggle struct in which update needs to happen
 /// @param ms_since_last_check number of milliseconds since last time this function was called (ideally to only be used within checkUserInput() function) 
 void updateToggleValues(struct toggle *t1, int32_t ms_since_last_check);
+
+
+void updateTwoPosToggleValues(struct two_pos_toggle *t1, int32_t ms_since_last_check);
 
 /// @brief normal button for which there is just a single press
 struct button{
@@ -99,19 +76,15 @@ struct long_press_button{
 struct toggle{
     uint8_t pin;
     uint8_t state;  /// 1 when the toggle is in forward position; 0 when in reverse position
-    /**
-     * @brief This is waiting period to confirm 1 as the state.
-     * 
-     * when the state is 0, and 0 is the state that is read, then toggled_at is set to 0
-     * 
-     * when the state is 0, and 1 is the state that is read while toggled_at is 0, then toggled_at is set to micros();
-     * 
-     * when the state is 0, and 1 is the state that is read while toggled_at is more than 0, then if micros() - toggled_at > 1 second, then state is set to 1.
-     * 
-     * when the state is 1 and 0 is the state that is read, then toggled_at is set to 0, and state is set to 0.
-     */
-    uint32_t toggled_at;
+    void (*pos_0_callback)(void);   /// callback function to be triggered when toggle in position 0 (reverse)
+    void (*pos_1_callback)(void);   /// callback function to be triggered when toggle in position 1 (forward)
+};
 
-    void (*pos_0_callback)(void);   /// callback function to be triggered when toggle in position 1 (forward)
-    void (*pos_1_callback)(void);   /// callback function to be triggered when toggle in position 0 (reverse)
+struct two_pos_toggle{
+    uint8_t pin_pos2;
+    uint8_t pin_pos0;
+    uint8_t state;
+    void (*pos_0_callback)(void);   /// callback function to be triggered when toggle in position 0 (reverse)
+    void (*pos_1_callback)(void);   /// callback function to be triggered when toggle in position 1 (mid)
+    void (*pos_2_callback)(void);   /// callback function to be triggered when toggle in position 2 (forward)
 };

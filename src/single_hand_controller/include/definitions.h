@@ -33,7 +33,7 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 
 // baud rates; used in setupFunctions.h
 #define BAUD_RATE 115200
-#define LCD_DISPLAY_BAUD_RATE 9600
+#define LCD_DISPLAY_BAUD_RATE 115200
 
 // if the code is not meant to be deployed on the prototype hand controller, then comment out this line
 #define PROTOTYPE
@@ -44,12 +44,20 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 // if the code is not meant to operate in debug mode (prints out info on serial communication), comment out this line
 
 
+//#define RELEASE_ARDUINO_UNO
+
+#ifndef RELEASE_ARDUINO_UNO
 #define RELEASE
+#endif
 
 
 #ifndef RELEASE // Turn off all debug features during release
 
 #define _DEBUG_
+//#define GET_RADIO_CONFIG
+
+#define RADIO_SIMULATION_TESTING
+
 //#define TESTING_JOYSTICK
 
 //#define TESTING // ONLY use this when testing features
@@ -87,10 +95,7 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 #endif
 
 #ifdef TESTING
-#define LCD_DISPLAY_BAUD_RATE 115200
 
-
-#define GET_RADIO_CONFIG
 #define IF_TESTING(CODE) CODE
 #define IGNORE_WHILE_TESTING(CODE)
 
@@ -116,6 +121,12 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 #else
 #define DEBUG(CODE)
 #define IF_DEBUG(CODE)
+#endif
+
+#ifdef RADIO_SIMULATION_TESTING
+#define RADIO_PORT Serial
+#else
+#define RADIO_PORT Serial3
 #endif
 
 

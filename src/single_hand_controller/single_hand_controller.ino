@@ -28,7 +28,8 @@ void setup(){
 
 void loop(){
     #ifdef GET_RADIO_CONFIG
-        getRadioConfigurations();
+        performConfig();
+        while(true);
     #endif
     #ifdef TESTING_JOYSTICK
     thumbstickControl c1;
@@ -39,6 +40,7 @@ void loop(){
 
     while(true){
         getXY(&c1);
+        checkUserInput();
     }
     #endif
 

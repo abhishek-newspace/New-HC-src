@@ -20,11 +20,7 @@
 
 ugv_status current_state = unknown;
 ugv_status prev_state = unknown;
-
-directionToggle current_dir = neutral,    /// inicates current direction state regardless of toggle switch (includes neutral state for toggle switch)
-                set_dir = forward;        /// indicates direction state that is set by the toggle switch
-speedToggle current_spd = low,
-            requested_spd = low;
+speedToggle current_spd;
 
 driveMode current_mode = speed;
 
@@ -94,9 +90,6 @@ void setUGV_speed(int speed){
     displaySpeed(current_spd);
 }
 
-directionToggle getUGV_dir(){
-    return current_dir;
-}
 
 bool isUGV_connected(){
     return current_state != disconnected;
@@ -117,47 +110,4 @@ void inc_Speed(){
 }
 int get_inc_speed(){
     return (current_spd + 1) % 3;
-}
-void dec_Speed(){   // DEPRECATED FUNCTION
-    IF_DEBUG(Serial.println("decrease speed called!"));
-    // speed = speed == 0 ? speed : speed - 1;
-    // if(speed > 0){
-    //     current_spd = (speedToggle)(speed - 1);
-    // }
-    // else{
-    //     current_spd = 0;
-    //     current_dir = neutral;
-    // }
-    // displaySpeed(speed);
-    // displayDirection(current_dir);
-}
-
-void setNeutral(){
-    //speed = 0;
-    IF_DEBUG(Serial.println("set neutral called!"));
-    displaySpeed(speed);
-    current_dir = neutral;
-    displayDirection(current_dir);
-}
-
-void dir_reverse(){
-    IF_DEBUG(Serial.println("------------------dir reverse"));
-    if(speed > 0){
-        current_dir = reverse;
-        set_dir = reverse;
-        displayDirection(current_dir);
-    }
-    else
-        set_dir = reverse;
-}
-
-void dir_forward(){
-    IF_DEBUG(Serial.println("+++++++++++++++++++dir forward"));
-    if(speed > 0){
-        current_dir = forward;
-        set_dir = forward;
-        displayDirection(current_dir);
-    }
-    else
-        set_dir = forward;
 }

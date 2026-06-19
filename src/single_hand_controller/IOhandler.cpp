@@ -21,15 +21,12 @@
 #include "include/IOhandler.hpp"
 
 
-int drift_x;
-int drift_y;
-
 extern bool turnOnHeadlight;
 extern bool turnOnFoglight;
-extern bool increaseSpeed;
+extern int required_speed;
 extern bool switchMode;
-bool arm_press;
-bool disarm_press;
+extern bool arm_press;
+extern bool disarm_press;
 
 void enableHeadlight(){
     turnOnHeadlight = true;
@@ -39,73 +36,74 @@ void enabledFoglight(){
     turnOnFoglight = true;
 }
 
-void enableIncreaseSpeed(){
-    increaseSpeed = true;
-}
-
 void enableSwitchMode(){
     switchMode = true;
 }
 
 void enableArm(){
-    arm_press = true;
+    static long unsigned last_assigned_at = 0;
+    if(millis() - last_assigned_at > RESEND_DELAY){
+        arm_press = true;
+       last_assigned_at = millis();
+    }
 }
 
 void enableDisarm(){
-    disarm_press = true;
+    static long unsigned last_assigned_at = 0;
+    if(millis() - last_assigned_at > RESEND_DELAY){
+        disarm_press = true;
+        last_assigned_at = millis();
+    }
 }
+
+void set_speed_low(){
+    required_speed = 1;
+}
+
+void set_speed_mid(){
+    required_speed = 2;
+}
+
+void set_speed_high(){
+    required_speed = 3;
+}
+
+
+
 
 button  b_headlight = {
-            BUTTON_NEUTRAL,     // uint8_t pin;                
-            0,                  // buttonPress press_state;
-            enableHeadlight,            // void (*press_callback)(void);        
-            0                   // uint32_t cooldown;
-        },
-        b_foglight = {
-            BUTTON_DEC_SPEED,    // uint8_t pin;
-            0,                   // buttonPress press_state;
-            enabledFoglight,           // void (*press_callback)(void);
-            0                    // uint32_t cooldown;
-        };
+        BUTTON_HEADLIGHTS,     // uint8_t pin;                
+        0,                  // buttonPress press_state;
+        enableHeadlight,            // void (*press_callback)(void);        
+        0                   // uint32_t cooldown;
+    },
+    b_foglight = {
+        BUTTON_FOGLIGHTS,    // uint8_t pin;
+        0,                   // buttonPress press_state;
+        enabledFoglight,           // void (*press_callback)(void);
+        0                    // uint32_t cooldown;
+    },
+    b_mode_switch = {
+        BUTTON_TORQUE_MODE,
+        0,
+        enableSwitchMode,
+        0
+    };
 
-long_press_button b_arm_disarm = {
-    BUTTON_ARM_DISARM,  // pin
-    0,              // initial state / current state
-    enableArm,      // short press action
-    enableDisarm,   // long press action
-    0,  // cooldown
-    0   // pressed duration
-},
-b_inc_speed = {
-            BUTTON_INC_SPEED,    // uint8_t pin; 
-            0,                   // buttonPress press_state; 
-            enableIncreaseSpeed,           // void (*press_callback)(void); 
-            enableSwitchMode,
-            0,                    // uint32_t cooldown;
-            0
-        };
-struct toggle dir_toggle = {
-    TOGGLE_REVERSE,
-    forward,
+toggle t_arm_disarm = {
+    TOGGLE_ARM,
     0,
-    dir_reverse,
-    dir_forward
+    enableDisarm,
+    enableArm
 };
-
-
-#ifndef Arduino_h
-unsigned long int micros(){
-    return 0;
-}
-bool digitalRead(int k){
-    return 1;
-}
-
-int analogRead(int pin){
-    return 0;
-}
-
-#endif
+two_pos_toggle tt_speed_toggle = {
+        TOGGLE_HIGH_SPEED,
+        TOGGLE_LOW_SPEED,
+        0,
+        set_speed_low,
+        set_speed_mid,
+        set_speed_high
+    };
 
 
 bool debounceAndInput(int buttonNumber){
@@ -141,50 +139,16 @@ void getXY(struct thumbstickControl *control){
     float* y = &control->Y;
 
     *x = (*x < XY_LOWER_LIMIT) ? (*x - XY_LOWER_LIMIT) : ((*x > XY_UPPER_LIMIT) ? (*x - XY_UPPER_LIMIT) : 0);
-    *x *= 10;
+    *x *= -10;
     *y = (*y < XY_LOWER_LIMIT) ? (*y - XY_LOWER_LIMIT) : ((*y > XY_UPPER_LIMIT) ? (*y - XY_UPPER_LIMIT) : 0);
     *y *= 10;
 
     IF_TESTING_JOYSTICK(Serial.print(*x);)
     IF_TESTING_JOYSTICK(Serial.print(",");)
-    IF_TESTING_JOYSTICK(Serial.println(*y);)    
+    IF_TESTING_JOYSTICK(Serial.print(*y);)    
+    IF_TESTING_JOYSTICK(Serial.print("\t");)
 }
-
-/// @brief whether headlight was recently pressed
-/// @return true, when pressed
-bool headlight_pressed(){
-    return b_headlight.press_state > 0 && b_headlight.cooldown == 0;   
-}
-
-/// @brief whether foglight was recently pressed
-/// @return true, when pressed
-bool foglight_pressed(){
-    return b_foglight.press_state > 0 && b_foglight.cooldown == 0;
-}
-
-/// @brief whether speed change button was recently pressed
-/// @return true, when pressed
-bool speed_change_pressed(){
-    return b_inc_speed.press_state > 0 && b_inc_speed.cooldown == 0;
-}
-
-bool arm_pressed()
-{
-    if(arm_press){
-        arm_press = false;
-        return true;
-    }
-    return false;
-}
-
-bool arm_long_pressed()
-{
-    if(disarm_press){
-        disarm_press = false;
-        return true;
-    }
-    return false;
-} /**
+ /**
    * update the struct values for a normal button
    */
 void updateButtonValues(struct button *b1, int32_t ms_since_last_check){
@@ -198,9 +162,13 @@ void updateButtonValues(struct button *b1, int32_t ms_since_last_check){
 
         b1->cooldown = BUTTON_PRESS_COOLDOWN;
     }
-    else
+    else{
         b1->cooldown = max(0, b1->cooldown - ms_since_last_check);
+        b1->press_state = 0;
+    }
+    
 
+    
     // IF_DEBUG(Serial.println(b1->cooldown);)
 }
 
@@ -269,52 +237,53 @@ void updateLongPressButtonValues(struct long_press_button *b1, int32_t ms_since_
 }
 
 void updateToggleValues(struct toggle *t1, int32_t ms_since_last_check){
-    if(digitalRead(t1->pin)){    // currently read 1
-        // IF_DEBUG(Serial.println("currently FORWARD"));
-
-        if(!t1->state){  // currently read 1 but previously was 0
-            if(t1->toggled_at > 0 && (micros() - t1->toggled_at) > TOGGLE_DEBOUNCE_DURATION){
-
-                t1->state = 1;
-                t1->toggled_at = 0;
-                t1->pos_1_callback();
-            }
-            else if(t1->toggled_at == 0){    
-                t1->toggled_at = micros();
-            }
-        }
-        else{   // currently read 1 and previously also 1
-            t1->toggled_at = 0;
-        }
+    if(!digitalRead(t1->pin)){    // currently read 1
+        t1->state = 1;
+        t1->pos_1_callback();
     }
     else{
-        // IF_DEBUG(Serial.println("currently REVERSE"));
-        
-        if(!t1->state){   // currently read 0 and previously was also 0
-            t1->toggled_at = 0;
-        }
-        else if(t1->state){   // currently read 0 but previously was 1
-            t1->state = 0;
-            t1->pos_0_callback();
-        }
-        
+        t1->state = 0;
+        t1->pos_0_callback();
+    
+    }
+}
+
+void updateTwoPosToggleValues(struct two_pos_toggle *t1, int32_t ms_since_last_check){
+    if(!digitalRead(t1->pin_pos0)){    // currently read 1
+        t1->state = 0;
+        t1->pos_0_callback();
+    }
+    else if(!digitalRead(t1->pin_pos2)){
+        t1->state = 2;
+        t1->pos_2_callback();
+    }
+    else{
+        t1->state = 1;
+        t1->pos_1_callback();
     }
 }
 
 
 
-
 void checkUserInput()
 {
+    
+    // #ifdef TESTING_JOYSTICK
+    // for(int i = 2; i < 8; i++){
+    //     Serial.print(digitalRead(i));
+    // }
+    // Serial.println("");
+    // #endif
+
     static unsigned long int last_input_checked_at = millis();
 
     int32_t ms_since_last_check = millis() - last_input_checked_at;
     
     updateButtonValues(&b_headlight, ms_since_last_check);
-    updateLongPressButtonValues(&b_inc_speed, ms_since_last_check);
     updateButtonValues(&b_foglight, ms_since_last_check);
-    updateLongPressButtonValues(&b_arm_disarm, ms_since_last_check);
-    updateToggleValues(&dir_toggle,ms_since_last_check);
+    updateButtonValues(&b_mode_switch, ms_since_last_check);
+    updateToggleValues(&t_arm_disarm, ms_since_last_check);
+    updateTwoPosToggleValues(&tt_speed_toggle, ms_since_last_check);
 
     last_input_checked_at = millis();
 }

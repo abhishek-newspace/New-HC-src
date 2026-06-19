@@ -10,13 +10,14 @@
  */
 #include "include/displayHandler.hpp"
 
+#ifndef RELEASE_ARDUINO_UNO
 
 extern struct buttons user_input;
 extern ugv_status current_state;
 extern ugv_status prev_state;
 
 int prevConnStatus = -1;
-uint8_t RSSI = 0;
+int16_t RSSI = 0;
 uint8_t ugv_battery_soc = 0;
 bool radioConnected;
 
@@ -348,13 +349,13 @@ void displaySpeed(int speed){
 
 void displayRSSI(){
   String rssiStr = String(RSSI);
-  if(RSSI < 100 && RSSI > 10)
-    rssiStr = String("0") + String(RSSI);
-  else if(RSSI < 10){
-    rssiStr = String("00") + String(RSSI);
-  }
-  else if(RSSI == 0)
-    radioConnected = false;
+  if(RSSI > -100)
+    rssiStr = String(RSSI) + String("        ");
+  // else if(RSSI < 10){
+  //   rssiStr = String("00") + String(RSSI);
+  // }
+  // else if(RSSI == 0)
+  //   radioConnected = false;
   if(radioConnected)
     tft.drawText(RSSI_TEXT_POS_X, RSSI_TEXT_POS_Y, rssiStr, DEFAULT_TEXT_COLOR);
   else
@@ -391,7 +392,7 @@ void displayBattery(){
     tft.drawText(battery_topLeftX + BATTERY_LENGTH + 10, battery_topLeftY, soc + String("%"));
 }
 
-void setRSSI(uint8_t curr_RSSI){
+void setRSSI(int16_t curr_RSSI){
   RSSI = curr_RSSI;
 }
 
@@ -540,3 +541,77 @@ void displayBasic(){
     drawBatterySymbol(BATTERY_POS_X, BATTERY_POS_Y);
 
 }
+
+#else
+
+
+/// @brief clear LCD display
+void clear_display(){}
+
+
+/// @brief display error message and confirm with user whether to proceed or wait
+void displayError(String message, int error_code){}
+
+/// @brief display info message and wait for any user input to continue execution
+void displayInfo(String message){}
+
+/// initialize display communications (serial baud rate)
+void initDisplayComm(){}
+
+/// @brief update UGV status dislay
+void displayUGV_status(ugv_status){}
+
+/// @brief update speed display
+void displaySpeed(int speed){}
+
+/// @brief update RSSI stat display
+void displayRSSI(){}
+
+/// update battery stat display
+void displayBattery(){}
+
+/// @brief set the screen with symbols/text that is required to understand the output of the display updates
+void displayBasic(){}
+
+/// @brief display newspace logo in white background and blue foreground colors
+void displayLogo(){}
+
+/// @brief display newspace logo in grey background and light blue foreground (to look like an translucent grey film filter)
+void displayInvertedLogo(){}
+
+
+void setBatterySOC(uint8_t){}
+void setRSSI(int16_t){}
+
+/**
+ * this function is meant to be called once every 1 second, and only updates RSSI, and battery stats.
+ * call displaySpeed() and displayUGV_status() separately when the values are updated (must be event based, and not periodic)
+ */
+void updateDisplay(){}
+
+/// @brief set font style to 1
+void setFont1(){}
+
+/// @brief clear all info that is displayed
+void clearInfo(){}
+
+
+/// @brief clear displayed error
+void clearError(){}
+
+
+/// @brief writes direction onto screen
+/// @param direction current direction
+void displayDirection(directionToggle direction){}
+
+/// @brief set radio status to disconnected
+void disconnectRadio(){}
+
+/// @brief set radio status to connected
+void connectRadio(){}
+
+/// @brief update the display for drive mode
+/// @param mode speed / torque
+void displayDriveMode(driveMode mode){}
+
+#endif
