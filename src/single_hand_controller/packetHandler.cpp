@@ -62,7 +62,7 @@ bool setupSigning(){
 }
 
 void initiateSerialComm(){
-    Serial3.begin(BAUD_RATE);
+        RADIO_PORT.begin(BAUD_RATE);
 }
 
 bool heartbeat_timed_out()
@@ -86,7 +86,7 @@ void sendBuffer(int len){
         IF_PRINT_BYTES(Serial.print(buf[i],HEX));
         IF_PRINT_BYTES(Serial.print(",");)
         #ifndef STOP_COMM
-        Serial3.write(buf[i]);
+        RADIO_PORT.write(buf[i]);
         #endif
     }
     IF_PRINT_BYTES(Serial.println("");)
@@ -189,10 +189,10 @@ void sendFogBrakeLight_OFF(){
 }
 
 /// @brief send request to set speed to required speed
-void sendSpeedChangeRequest(){
+void sendSpeedChangeRequest(int speed){
     IF_DEBUG(Serial.print("sending speed change request : ");)
-    sendBuffer(msgsndr.buffer_mode_cmd(get_inc_speed() + 1));
-    IF_DEBUG(Serial.println(get_inc_speed() + 1);)
+    IF_DEBUG(Serial.println(speed);)
+    sendBuffer(msgsndr.buffer_mode_cmd(speed));
 }
 
 void sendModeChangeRequest(){
@@ -226,8 +226,8 @@ void handlePacketReceived()
 
     byte data;
     IF_PRINT_BYTES(Serial.print("receiving->");)
-    while(Serial3.available()){
-        data = Serial3.read();
+    while(RADIO_PORT.available()){
+        data = RADIO_PORT.read();
         IF_PRINT_BYTES(Serial.print("0x");)
         IF_PRINT_BYTES(Serial.print(data,HEX);)
         IF_PRINT_BYTES(Serial.print(",");)

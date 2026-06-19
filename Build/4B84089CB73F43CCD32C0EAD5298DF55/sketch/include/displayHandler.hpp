@@ -11,7 +11,6 @@
 #include "definitions/display_defs.h"
 
 
-
 /**
  * 1. setup display baud rate
  * 2. clear display
@@ -24,10 +23,8 @@ void setupDisplay();
 void clear_display();
 
 
-IF_PROTOTYPE(
-    void displayLogo();
-    void displayInvertedLogo();
-)   // IF_PROTOTYPE
+void displayLogo();
+void displayInvertedLogo();
 
 /// @brief display error message and confirm with user whether to proceed or wait
 void displayError(String message, int error_code);
@@ -61,7 +58,7 @@ void displayInvertedLogo();
 
 
 void setBatterySOC(uint8_t);
-void setRSSI(uint8_t);
+void setRSSI(int16_t);
 
 /**
  * this function is meant to be called once every 1 second, and only updates RSSI, and battery stats.
@@ -93,3 +90,4 @@ void connectRadio();
 /// @brief update the display for drive mode
 /// @param mode speed / torque
 void displayDriveMode(driveMode mode);
+

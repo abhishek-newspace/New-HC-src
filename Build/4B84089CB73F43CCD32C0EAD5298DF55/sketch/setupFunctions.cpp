@@ -14,12 +14,12 @@
 extern int drift_x, drift_y;
 
 void setupIO(){
-    pinMode(BUTTON_NEUTRAL, INPUT);
-    pinMode(BUTTON_INC_SPEED, INPUT);
-    pinMode(BUTTON_DEC_SPEED, INPUT);
-    pinMode(BUTTON_ARM_DISARM, INPUT);
-    pinMode(TOGGLE_FORWARD, INPUT);
-    pinMode(TOGGLE_REVERSE, INPUT);
+    pinMode(2, INPUT_PULLUP);
+    pinMode(3, INPUT_PULLUP);
+    pinMode(4, INPUT_PULLUP);
+    pinMode(5, INPUT_PULLUP);
+    pinMode(6, INPUT_PULLUP);
+    pinMode(7, INPUT_PULLUP);
     pinMode(XPIN, INPUT);
     pinMode(YPIN, INPUT);
 }
@@ -58,7 +58,6 @@ bool initMAVLink(){
 void setupDisplay(){
     initDisplayComm();
 
-    IF_TESTING(return;)
     clear_display();
     setFont1();
     displayLogo();

@@ -23,3 +23,10 @@
 #include "IOhandler.hpp"    // sending and receiving data between input, output ports
 #include "displayHandler.hpp"   // displays anything meant to be displayed on LCD screen
 #include "stateHandler.hpp" // handles state of connection, and speed
+
+
+#ifdef GET_RADIO_CONFIG
+
+#include "radio_config.h"   // to directly configure radio from Hand Controller
+
+#endif

@@ -24,16 +24,12 @@
 #define XPIN A0
 #define YPIN A1
 
-// Button input pins
-#define BUTTON_NEUTRAL 2
-#define BUTTON_INC_SPEED 3
-#define BUTTON_DEC_SPEED 5
-#define BUTTON_ARM_DISARM 4
-
-// toggle input pins
-#define TOGGLE_FORWARD 7
-#define TOGGLE_REVERSE 10
-
+#define TOGGLE_HIGH_SPEED 4
+#define TOGGLE_LOW_SPEED 5
+#define BUTTON_HEADLIGHTS 3
+#define BUTTON_FOGLIGHTS 2
+#define BUTTON_TORQUE_MODE 7
+#define TOGGLE_ARM 6
 
 
 // used in IOhandler to convert from raw thumbstick control input to normalized value that is sent to atlas

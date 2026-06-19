@@ -16,6 +16,7 @@ static struct ATLAS_HC_SYS_STAT packet_receiver::sys_status;
 static struct ATLAS_HC_ARM_DISARM_ACK packet_receiver::ack;
 
 
+extern int required_speed;
 
 uint64_t  UGVTime = 0, //!< stores time of the drone at which timesync was received
           RecvTime = 0,  //!< stores time at which timesync was received.
@@ -110,7 +111,7 @@ void packet_receiver::receive_radio_status(mavlink_message_t *msg)
         }
     }
         
-    setRSSI(radio_status.rssi);
+    setRSSI(radio_status.rssi / 2 - 152);
 }
 
 void packet_receiver::receive_sys_status(mavlink_message_t *msg)
@@ -137,7 +138,7 @@ void packet_receiver::receive_ack(mavlink_message_t *msg)
             IF_DEBUG(Serial.println("drive mode switch acknowledged");)
         break;
         case MAV_CMD_DO_SET_MODE:
-            inc_Speed();
+            setUGV_speed(required_speed);
             IF_DEBUG(Serial.println("speed mode acknowledged");)
         break;
         case MAV_CMD_LIGHT_CONTROL:

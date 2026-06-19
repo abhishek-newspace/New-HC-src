@@ -28,8 +28,10 @@ bool arm_disarm_error = false;
 
 bool turnOnHeadlight = false;
 bool turnOnFoglight = false;
-bool increaseSpeed = false;
+int required_speed = 0;
 bool switchMode = false;
+bool arm_press = false;
+bool disarm_press = false;
 
 int hb_count = 0;
 long unsigned int OFP_timer = 0;
@@ -45,28 +47,35 @@ inline bool isUGVdisconnected(){
 
 
 inline bool switchModeCondition(){
-    return switchMode;
+    return switchMode && getDriveMode != switchMode;
 }
 
 inline bool turnHeadlightCondition(){
-    return turnOnHeadlight ;
+    return turnOnHeadlight;
 }
 
 inline bool turnFogLightCondition(){
-    return turnOnFoglight ;
+    return turnOnFoglight;
 }
 
 
 inline bool speedChangeCondition(){
-    return increaseSpeed;
+    static unsigned long last_change_at = 0;
+    if(required_speed != getUGV_speed() && millis() - last_change_at > RESEND_DELAY){
+        last_change_at = millis();
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 inline bool startArmCondition(){
-    return arm_pressed() && getUGV_state() == standby && !is_arm_disarm_sending();
+    return arm_press && getUGV_state() == standby && !is_arm_disarm_sending();
 }
 
 inline bool startDisarmCondition(){
-    return arm_long_pressed() && getUGV_state() == active && !is_arm_disarm_sending();
+    return disarm_press && getUGV_state() == active && !is_arm_disarm_sending();
 }
 
 inline bool stopArmDisarmResendCondition(){
@@ -183,31 +192,26 @@ void end_OFP_timer(unsigned long int time_limit){
  * send 3 consecutive heartbeats (to ensure radio status will be received)
  */
 void run_wakeup_seq(){
-#ifndef TESTING
     sendHeartbeat();
     sendHeartbeat();
     sendHeartbeat();
     periodic_actions.reset();
+    #ifndef TESTING
     periodic_actions.addPeriodicAction(sendHeartbeat,SECONDS_MS_1);   // send a heartbeat every 1 second
     periodic_actions.addPeriodicAction(updateDisplay,SECONDS_MS_2);
     establish_connectivity();
     time_synchronize();
 
-    setUGV_speed(3);    // gets changed to 1 on speed change
-    
-
+    #endif
     setFoglightState(0);
     setHeadlighState(0);
     
     sendComponentVersion();
-#endif
     periodic_actions.reset();
     periodic_actions.addPeriodicAction(sendHeartbeat,SECONDS_MS_1);
     periodic_actions.addPeriodicAction(updateDisplay,SECONDS_MS_2);
     //periodic_actions.addPeriodicAction(sendTimesyncRequest,TIMESYNC_MSG_WAIT,isUGVdisconnected);
-    IF_TESTING(setUGV_state(active);)
-
-    sendSpeedChangeRequest();
+    IF_TESTING(setUGV_state(standby);)
 }
 
 
@@ -227,17 +231,18 @@ void run_OFP_cycle()
         sendManualControl();
 
     if(startArmCondition()){
-        init_arm_disarm_sending();
-        currentlySendingArm = true;
         IF_DEBUG(Serial.println("ARM BUTTON PRESSED"));
         displayInfo("arming ...");
-        periodic_actions.addPeriodicAction(resendArmCommand,ARM_DISARM_RESEND_DELAY,stopArmDisarmResendCondition, endArmDisarmResend);
+        sendArmCommand();
+        arm_press = false;
+        disarm_press = false;
     }
     else if(startDisarmCondition()){
-        init_arm_disarm_sending();
         IF_DEBUG(Serial.println("DISARM BUTTON PRESSED"));
         displayInfo("disarming ...");
-        periodic_actions.addPeriodicAction(resendDisarmCommand,ARM_DISARM_RESEND_DELAY,stopArmDisarmResendCondition, endArmDisarmResend);
+        sendDisarmCommand();
+        arm_press = false;
+        disarm_press = false;
     }
     if(turnHeadlightCondition()){
         sendHeadlight();
@@ -248,8 +253,7 @@ void run_OFP_cycle()
         turnOnFoglight = false;
     }
     if(speedChangeCondition()){
-        sendSpeedChangeRequest();
-        increaseSpeed = false;
+        sendSpeedChangeRequest(required_speed);
     }
     if(switchModeCondition()){
         sendModeChangeRequest();

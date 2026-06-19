@@ -50,6 +50,7 @@
 #define TIMESYNC_MSG_WAIT       SECONDS_MS_10  // left to be in milliseconds due to limitation of micros() function that resets every 70 minutes 
 #define MANUAL_CONTROL_MSG_WAIT MS_10
 #define ARM_DISARM_RESEND_DELAY MS_1500
+#define RESEND_DELAY MS_1500
 
 #define OFP_LOOP_TIME           MS_20
 #define SCREEN_UPDATE_DELAY     SECONDS_MS_2    // screen to be updated every 2 second
