@@ -200,7 +200,9 @@ void run_wakeup_seq(){
     periodic_actions.addPeriodicAction(sendHeartbeat,SECONDS_MS_1);   // send a heartbeat every 1 second
     periodic_actions.addPeriodicAction(updateDisplay,SECONDS_MS_2);
     establish_connectivity();
-    time_synchronize();
+    
+
+    //time_synchronize();
 
     #endif
     setFoglightState(0);
