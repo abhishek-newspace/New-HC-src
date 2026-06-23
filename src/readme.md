@@ -71,5 +71,46 @@ void switchDriveMode(){
 
 in order to switch the drive mode display, as well as change the internal state for the current drive mode.
 
+# Changing/Updating Display - 
+All functions that deal with display are declared in `displayHandler.hpp` and are defined in `displayHandler.cpp`. Further, definitions that deal with color and position of the displayed item is defined in `definitions/display_defs.h`.
+
+`displayHandler.hpp` is included in `stateHandler.cpp`, hence these functions defined here are meant to be called within `stateHandler.cpp` in order to update the display.
+
+## Adding a new display item - 
+1. Identify the handler associated with the display item. i.e. if the button state needs to be displayed, then `IOhandler.hpp` is the associated handler.
+2. There are 2 ways of the display being updated -
+    1. **Direct Updates** - when the change needs to be instantly, use this method. A function is called to directly update the given item in display.
+    2. **Periodic Updates** - Some items don't need to reflect instantly, i.e. battery status, radio connectivity, etc. For such items, make a function to update its current state, which is called by the associated handler when necessary. These items are updated along with a function call of `updateDisplay()`
+
+## Displaying items with direct updates
+1. create a function with naming in camel casing given by *display* followed by the parameter that needs to be displayed, i.e. if *speed* is the parameter that needs to be displayed, then the function declaration should look like - 
+```cpp
+void displaySpeed(int speed);
+```
+Ensure the function declaration in `displayHandler.hpp`.
+
+2. The function definition can be as required, however ensure that the position of the item can be changed easily, by defining a `POS_X` and `POS_Y` for the same. Further, if it's a figure that is being displayed, also ensure that the figure's scale can be easily modified through parameters that should all be modifiable from within `display_defs.h`
+3. Use this function call wherever the particular display item needs to be updated.
+
+## Displaying items with periodic updates
+When items need to be updated periodically, 
+1. make a variable to handle the state, and functions to **only update** the state variable.
+2. make a function to display the given item, of `void` return type.
+3. Within `updateDisplay()`, create a static variable to maintain the previous state of the display item to check whether it should really be updated.
+4. within `updateDisplay()` function, add function call to the function to display the item, after checking for updates in state. 
+
+Example for battery updates - 
+```cpp
+static int prevBattery = 0;
+if(ugv_battery_soc != prevBattery)
+    displayBattery();
+
+prevBattery = ugv_battery_soc;
+```
+
+## Items that are to only be displayed once
+Some items only need to be displayed once, on startup (i.e. logo, and placeholders). Place holder displaying functions are to be called within `displayBasic()` function, and other items that are to be displayed absolutely only once are to be called in `setupDisplay()`
+
+
 
 
