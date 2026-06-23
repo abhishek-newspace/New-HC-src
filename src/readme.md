@@ -111,6 +111,29 @@ prevBattery = ugv_battery_soc;
 ## Items that are to only be displayed once
 Some items only need to be displayed once, on startup (i.e. logo, and placeholders). Place holder displaying functions are to be called within `displayBasic()` function, and other items that are to be displayed absolutely only once are to be called in `setupDisplay()`
 
+# Adding a new type of user output
+For every new type of user output / any output coming from the microcontroller, a handler function should be created to handle the same.
 
+Current user outputs consist of display, and radio communication, which are handled by `displayHandler.hpp` and `packetHandler.h` respectively.
 
+# Adding new MAVLink messages
+Any new MAVLink message being added to the project needs to be done with proper planning. Steps to be followed - 
+1. **ICD updation** - Any change to the MAVLink message being sent or parsing a received message begins from a change in the ICD. **No changes** are meant to be made before this step.
+2. **Update XML** if required. When the XML is updated, ensure that the MAVLink message fields currently being used aren't removed in the updated XML.
+3. **Parser Generation** - use `mavgenerate.py` (from MAVlink official repository) to generate the parser header files for **C++11** with `validate units` enabled.
+4. Compile the code once to ensure again that no field that is currently used is accidentally removed, or needs to be removed.
+
+## For a MAVLink message that is to be sent - 
+5. Define a struct for the particular message in the top half of the `message_structs.h` header file, with the exact same name as in the ICD.
+6. In `message_sender.hpp` create an instance of the struct with appropriate naming, within the message_sender class.
+7. declare a function of `int` return type with naming given in snake casing as - `buffer` followed by the name of the message, whatever fields need to be changed dynamically within the message that is going to be sent, must be included as a parameter for the function declaration.
+8. Define the function in `message_sender.cpp`, to directly place the parameters into the message struct and when the packing function is called, **only use fields from the struct to fill in the parameters to the packing function**, except the common fields filled by *HC_ID*, *HC_COMP_ID*, and *msg*. Return the value obtained from `mavlink_msg_send_to_buffer()` function call.
+9. Within `packetHandler.h`, create a function declaration for a function that is meant to send the given message. Naming convention should be given as `send` followed by the message name, in camel case, and the return type to the function must be `void`.  It may or may not be given parameters as per requirements.
+10. In `packetHandler.cpp`, define the message as required along with a function call to `sendBuffer()` with the `message_sender` instance's function call to the given message to send the MAVLink message.
+
+## For a MAVLink message that is to be received - 
+5. Define a struct for the particular message in the bottom half of the `message_structs.h` header file, with the exact same name as in the ICD.
+6. In `packet_receiver.hpp`, create an instance of the given struct, along with a declaration of a `static void` function to receive the given message. Naming is to be in snake casing, with `receive` followed by the message name. Parameters should just be the message received, of type `mavlink_message_t*`.
+7. In `packet_receiver.cpp`, create a respective function definition that first updates the fields of the respective struct for the given message followed by handlig the data received from the message appropriately.
+8. In the `handlePacketRecieved()` function within `packetHandler.cpp`, update the switch case to handle the message ID respsective to the message that is added newly.
 

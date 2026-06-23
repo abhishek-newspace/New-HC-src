@@ -70,40 +70,12 @@ inline bool speedChangeCondition(){
 }
 
 inline bool startArmCondition(){
-    return arm_press && getUGV_state() == standby && !is_arm_disarm_sending();
+    return arm_press && getUGV_state() == standby;
 }
 
 inline bool startDisarmCondition(){
-    return disarm_press && getUGV_state() == active && !is_arm_disarm_sending();
+    return disarm_press && getUGV_state() == active;
 }
-
-inline bool stopArmDisarmResendCondition(){
-    return arm_send_count <= 0;
-}
-
-void resendArmCommand(){
-    sendArmCommand();
-    dec_arm_disarm_sending();
-}
-
-void resendDisarmCommand(){
-    sendDisarmCommand();
-    dec_arm_disarm_sending();
-}
-
-void endArmDisarmResend(){
-    clearInfo();
-    if(arm_disarm_error){
-        // resend limit reached due to lack of acknowledgment
-        displayError((currentlySendingArm ? String("arm") : String("disarm") + String(" request failed")),ARM_DISARM_FAIL);
-        currentlySendingArm = false;
-    }
-    reset_arm_disarm_sending();
-    arm_disarm_error = false;
-}
-
-
-
 
 
 void initiateController(){

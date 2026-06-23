@@ -25,8 +25,6 @@ uint64_t  UGVTime = 0, //!< stores time of the drone at which timesync was recei
    
 unsigned long last_heartbeat_received_at = -4000;
 
-int arm_send_count = 0;
-
 bool receivedFirstTimesync(){
     return !(UGVTime == 0);
 }
@@ -130,7 +128,7 @@ void packet_receiver::receive_ack(mavlink_message_t *msg)
     switch(mavlink_msg_command_ack_get_command(msg)){
         case MAV_CMD_COMPONENT_ARM_DISARM:
             displayInfo("ARM command acknowledged");
-            arm_send_count = 0;
+
         break;
         case MAV_CMD_DRIVE_MODE:
             switchDriveMode();
@@ -198,18 +196,4 @@ void packet_receiver::receive_heartbeat(mavlink_message_t *msg)
 
 unsigned long getHeartbeatDiff(){
     return millis() - last_heartbeat_received_at;
-}
-
-bool is_arm_disarm_sending(){
-    return arm_send_count > 0;
-}
-void reset_arm_disarm_sending(){
-    arm_send_count = 0;
-}
-void init_arm_disarm_sending(){
-    arm_send_count = 1;
-}
-
-void dec_arm_disarm_sending(){
-    arm_send_count--;
 }
