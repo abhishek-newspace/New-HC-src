@@ -41,8 +41,35 @@ This is how drive mode state is handled -
 2. `int getDriveMode()` is defined to get the current drive mode, `void switchDriveMode()` is defined to switch between the current drive modes (since there are only 2 drive modes). `get_inc_driveMode()` is used to get the next drive mode, just as another function to be able to define the 
 3. The 3 functions are declared and documented in `stateHandler.hpp`.
 4. within `packetHandler.hpp`, MAV_DRIVE_MODE acknowledgment causes a drive mode change by invoking the `switchDriveMode()` function.
-5. Within `standard_procedures.cpp`, defined `bool switchMode = false;`. This variable is used to enable sending the switch drive mode request.
-6. 
+5. Within `standard_procedures.cpp`, defined 
+```C++
+bool switchMode = false;
+```
+This variable is used to initiate a mode switch.
+6. Within `standard_procedures.cpp`, added this function to check whether the drive mode needs to be changed - 
+```C++
+inline bool switchModeCondition(){
+    return switchMode;
+}
+```
+Then, this code block is added within `run_OFP_cycle()` - 
+```C++
+if(switchModeCondition()){
+    sendModeChangeRequest();
+    switchMode = false;
+}
+```
+to send a mode change request.
+
+7. When the acknowledgment for mode change arrives, the display of current mode should be changed, hence within the packet_receiver.cpp, `switchDriveMode();` is called on receiving an acknowledgment. This function is defined within `stateHandler.cpp` as - 
+```cpp
+void switchDriveMode(){
+    current_mode = (current_mode + 1) % 2;
+    displayDriveMode(current_mode);
+}
+```
+
+in order to switch the drive mode display, as well as change the internal state for the current drive mode.
 
 
 

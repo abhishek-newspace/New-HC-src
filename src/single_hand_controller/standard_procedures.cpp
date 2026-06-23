@@ -46,7 +46,7 @@ inline bool isUGVdisconnected(){
 
 
 inline bool switchModeCondition(){
-    return switchMode && getDriveMode != switchMode;
+    return switchMode;
 }
 
 inline bool turnHeadlightCondition(){
