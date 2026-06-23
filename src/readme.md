@@ -137,3 +137,73 @@ Any new MAVLink message being added to the project needs to be done with proper 
 7. In `packet_receiver.cpp`, create a respective function definition that first updates the fields of the respective struct for the given message followed by handlig the data received from the message appropriately.
 8. In the `handlePacketRecieved()` function within `packetHandler.cpp`, update the switch case to handle the message ID respsective to the message that is added newly.
 
+# Adding new inputs (Buttons/toggle switches)
+An input can also act similar to how a button/toggle switch operates, and can be categorized into this category.
+
+1.  Define the input name within `IO_defs.h` and associate it with a pin number. Naming convention to be followed is - input type (toggle/button) followed by the purpose, all given in snake casing and all caps.
+2. In `setupIO()` function that is defined within `setupFunctions.cpp`, configure the pin as an input, or input pullup pin.
+3. create an instance of button at the top of the file in `IOhandler.cpp`, long_press_button (a button that has events that can be triggered for long presses as well as short presses), toggle, or two_pos_toggle based on the input type, in case the input is entirely new, refer the next section. Follow struct documentation to understand how to fill in the fields.
+4. In `void checkUserInput()` that is defined within `IOhandler.cpp`, add a function call of `updateButtonValues()`, `updateLongPressButtonValues()`, `updateToggleValues`, or `updateTwoPosToggleValues()` based on the type of input that was created.
+
+## creating a new input type - 
+In case the type of input is not a button or a toggle switch, a new input type would be required.
+1. Create a struct with naming in snake case, followed by the pins used, a variable to define its current state, and callback functions that are to be executed when their respective states are triggered.
+2. In `IOhandler.cpp`, create a function with name given by 'update' followed by the type of input, all in camel case. This function is to be of `void` return type, and must accept a pointer to the struct to update the instance of the struct, and another variable `ms_since_last_check` that is to contain the number of milliseconds since the function was last called. This is included in all input update functions regardless of usage for uniformity. It is generally used to update cooldown time.
+
+This function must also contain logic to call the respective callback function based on conditions.
+
+# Modes for compiling code - 
+## Release mode - 
+This is the default mode, where no debug data is given from the serial port. Place the code in this mode to ensure that the code is going to run without extra print statements.
+
+In `definitions.h`, uncomment `#define RELEASE` to enable Release mode.
+
+## Debug mode - 
+When a piece of code (single line) is to only execute when debugging (i.e. debug messages), mention it as `IF_DEBUG(<your code here>)`. Now whenever the code is set to run in debug mode, by commenting out `#define RELEASE` and uncommenting `#define _DEBUG_` (if not already uncommented) that are both defined within `definitions.h`, the code compiles in debug mode which allows all debug statements to print out.
+
+In case of blocks of code that should run only in debug mode, add a line - `#ifdef _DEBUG_` at the beginning of the code block, and `#endif` towards the end of the code block.
+
+## Radio Configuration mode - 
+The radio can be set to be configured when in this mode.
+Uncomment **only** `#define GET_RADIO_CONFIG` in order to startup the microcontroller in radio configuration mode, where the configurations can be managed in `void performConfig()` function that is present in `radio_config.cpp`.
+
+## Testing modes - 
+Any of these modes can be enabled by uncommenting the definition given in brackets, next to the mode name.
+
+### Radio simulation testing mode (RADIO_SIMULATION_TESTING)
+All the data that is normally sent to the radio through the dedicated serial port will be sent to the serial port for debugging so that the computer used to program the HC can directly access this data through the serial monitor.
+
+### Testing (TESTING)
+This is a temporary mode that is meant to test particular parts of the code, In this mode, the HC ignores establishing connectivity, and directly moves to the OFP Cycle.
+
+#### Testing Joystick (TESTING_JOYSTICK)
+When just the joystick data output needs to be tested.
+
+#### stop radio communications (STOP_COMM)
+Stops all data communication to the radio. This is used when testing whether certain buttons are working, without actually sending or receiving packets from radio.
+
+#### stop radio receiving (STOP_RECV)
+Stops any packets from being received on the radio communication channel.
+
+#### print the received bytes (PRINT_BYTES)
+For extended debugging of the packets being sent or received, this can be enabled
+
+# Compiling and running the code - 
+## Requirements - 
+1. Arduino IDE
+2. Linux OS (optional, for running shell files only)
+3. avrdude (optional, for verification/downloading flashed code only)
+
+## steps - 
+1. Open Arduino IDE
+2. Open `scout-td0-HC/src/single_hand_controller/single_hand_controller.ino`
+2. Click on File > Preferences, or just press `ctrl + ','`
+3. Update the sketchbook location to the current location of `single_hand_controller.ino`.
+4. Ensure the board is connected, currently only Arduino Mega is supported for this build.
+5. click on the arrow mark present on the top-left corner to compile and upload the code into the board.
+
+__Extra__
+6. In case the build files are required, run `import_build.sh`.
+7. To flash code from the Build directory, run `flash_code.sh`
+8. To chack whether there is a different code currently running in the hand controller than what is present in the Build directory, run `check_version_change.sh`
+9. To check the data that is being printed from the debug port/serial port, run `check_serial_buffer.sh`
