@@ -22,8 +22,8 @@
 ugv_status current_state = unknown;
 ugv_status prev_state = unknown;
 speedToggle current_spd;
-
 driveMode current_mode = speed;
+connectivity_status conn_stat = all_disconnected;
 
 
 bool headlight_state = 0;
@@ -31,16 +31,23 @@ bool headlight_state = 0;
 bool fog_brake_state = 0;
 
 
+void switch_conn_stat(connectivity_status status){
+    conn_stat = status;
+}
+connectivity_status get_conn_stat(){
+    return conn_stat;
+}
+
 int getDriveMode(){
     return current_mode;
 }
 
 int get_inc_driveMode(){
-    return (current_mode + 1) % 2;
+    return (current_mode + 1) % 3;
 }
 
 void switchDriveMode(){
-    current_mode = (current_mode + 1) % 2;
+    current_mode = (current_mode + 1) % 3;
     displayDriveMode(current_mode);
     
     

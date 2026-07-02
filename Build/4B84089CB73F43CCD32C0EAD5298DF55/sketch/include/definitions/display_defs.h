@@ -76,5 +76,10 @@
 #define CONNECTED_MSG_POS_X 5
 #define CONNECTED_MSG_POS_Y 115
 
+#define CONN_STAT_MSG_POS_X 150
+#define CONN_STAT_MSG_POS_Y 25
+#define CONN_STAT_MSG_SZ_X 20
+#define CONN_STAT_MSG_SZ_Y 20
+
 #define DM_POS_X 5
 #define DM_POS_Y 5
