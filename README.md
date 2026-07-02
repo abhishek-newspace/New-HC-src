@@ -18,4 +18,5 @@ Follow these steps to set up the project locally:
 4. **Launch**: `sh flash_code.sh` or `sh flash_code.sh [port]`
 
 ***Refer src/error_handling.md for understanding how to handle error codes displayed on screen***
+
 ***Refer src/readme.md for more info on compiling in different modes, and editing files/configurations***
