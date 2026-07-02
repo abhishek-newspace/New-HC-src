@@ -155,14 +155,17 @@ void updateButtonValues(struct button *b1, int32_t ms_since_last_check){
 
     // IF_DEBUG(Serial.println("ARM BUTTON CHECK"));
     b1->press_state = (uint8_t)!digitalRead(b1->pin);
-    if(b1->press_state && b1->cooldown == 0){
-        
+    if(b1->press_state && b1->cooldown <= 0){
+        IF_DEBUG(Serial.println("yes!"));
         if(b1->press_callback != nullptr)
             b1->press_callback();
 
         b1->cooldown = BUTTON_PRESS_COOLDOWN;
     }
     else{
+        // if(b1->cooldown > 0){
+        //     IF_DEBUG(Serial.println(b1->cooldown - ms_since_last_check));
+        // }
         b1->cooldown = max(0, b1->cooldown - ms_since_last_check);
         b1->press_state = 0;
     }
@@ -177,7 +180,7 @@ void updateButtonValues(struct button *b1, int32_t ms_since_last_check){
  */
 void updateLongPressButtonValues(struct long_press_button *b1, int32_t ms_since_last_check){
     b1->cooldown = max(0, b1->cooldown - ms_since_last_check);
-    if(!(digitalRead(b1->pin)) && b1->cooldown == 0){
+    if(!(digitalRead(b1->pin)) && b1->cooldown > 0){
         if(b1->press_state){
             b1->pressed_for += ms_since_last_check;
             if(b1->pressed_for >= LONG_PRESS_DURATION){
@@ -278,7 +281,6 @@ void checkUserInput()
     static unsigned long int last_input_checked_at = millis();
 
     int32_t ms_since_last_check = millis() - last_input_checked_at;
-    
     updateButtonValues(&b_headlight, ms_since_last_check);
     updateButtonValues(&b_foglight, ms_since_last_check);
     updateButtonValues(&b_mode_switch, ms_since_last_check);

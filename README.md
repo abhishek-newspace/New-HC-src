@@ -15,4 +15,8 @@ Follow these steps to set up the project locally:
 1. **Create a new directory**: mkdir my_project && cd my_project
 2. **Clone the Repo**: git clone https://github.com/newspaceresearch-ugv/scout-td0-HC.git
 3. **Navigate to Build directory**: cd Build/
-4. **Launch**: avrdude -v -p m2560 -c wiring -P /dev/ttyACM0 -b 115200 -D -U flash:w:"single_hand_controller.ino.hex":i
+4. **Launch**: `sh flash_code.sh` or `sh flash_code.sh [port]`
+
+***Refer src/error_handling.md for understanding how to handle error codes displayed on screen***
+
+***Refer src/readme.md for more info on compiling in different modes, and editing files/configurations***

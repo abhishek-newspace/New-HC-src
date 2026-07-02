@@ -48,6 +48,7 @@ void loop(){
     while(true){
         getXY(&c1);
         checkUserInput();
+        Serial.println("");
     }
     #endif
 

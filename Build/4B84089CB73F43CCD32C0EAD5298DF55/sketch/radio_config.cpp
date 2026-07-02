@@ -4,7 +4,8 @@
 #ifdef GET_RADIO_CONFIG
 
 void waitForResponse(){
-   delay(1000);             
+   delay(1000);           
+   while(!Serial3.available());
    Serial.print("Response: ");
    while(Serial3.available()) {
       Serial.write(Serial3.read()); 
@@ -63,22 +64,30 @@ void performConfig(){
    // exitConfig();
    // return;
 
-   // Serial.println("configuring radio ... ");
+   Serial.println("configuring radio ... ");
 
-   // setParameter("RTS2","128");
-   // setParameter("RTS4","20");
-   // setParameter("RTS10","10");
+   // setParameter("RTS6","1");
+   // setParameter("ATS6","1");
+   // // setParameter("RTS4","20");
+   // // setParameter("RTS10","10");
 
 
-   // setParameter("ATS2","64");
-   // setParameter("ATS4","20");
-   // setParameter("RTS10","10");
+   // // setParameter("ATS2","64");
+   // // setParameter("ATS4","20");
+   // // setParameter("RTS10","10");
 
-   // Serial.println("writing parameters");
-   // writeParameters();
+   setParameter("ATPI","5");
+   setParameter("RTPO","5");
+   writeParameters();
+   rebootRadio();
+
+   initRadioConnection();
+
+   setParameter("ATPM","5");
+   setParameter("RTPM","5");
+   //Serial.println("writing parameters");
 
    // Serial.println("rebooting radios");
-   // rebootRadio();
 
 
    // Serial.println("getting current local radio configurations");
@@ -88,6 +97,10 @@ void performConfig(){
    // getRemoteRadioConfigurations();
 
    requestParam("ATPP");
+   requestParam("RTPP");
+   rebootRadio();
+
+   
 
 }
 

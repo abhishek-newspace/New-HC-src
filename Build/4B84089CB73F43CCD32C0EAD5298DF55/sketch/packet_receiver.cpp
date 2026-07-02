@@ -18,7 +18,9 @@ static struct ATLAS_HC_ARM_DISARM_ACK packet_receiver::ack;
 
 
 extern int required_speed;
+extern bool timesync_received;
 
+bool RS_received = false;
 uint64_t  UGVTime = 0, //!< stores time of the drone at which timesync was received
           RecvTime = 0,  //!< stores time at which timesync was received.
           RecvTimeRef = 0,
@@ -26,10 +28,12 @@ uint64_t  UGVTime = 0, //!< stores time of the drone at which timesync was recei
    
 unsigned long last_heartbeat_received_at = -4000;
 
-int arm_send_count = 0;
-
 bool receivedFirstTimesync(){
     return !(UGVTime == 0);
+}
+
+bool receivedRadioStatus(){
+    return RS_received;
 }
 
 #ifdef TIME_REQ
@@ -48,6 +52,10 @@ void printWithLeadingZero(uint32_t val) {
 
 void packet_receiver::receive_timesync(mavlink_message_t *msg)
 {
+    if(getErrorCodeDisplayed() == TIME_SYNCHRONIZE_FAILED){
+        clearError();
+    }
+    timesync_received = true;
     timesync.tc1 = mavlink_msg_timesync_get_tc1(msg);
     timesync.ts1 = mavlink_msg_timesync_get_ts1(msg);
     IF_DEBUG(Serial.print("timesync_diff :"));
@@ -87,6 +95,10 @@ void packet_receiver::receive_timesync(mavlink_message_t *msg)
 
 void packet_receiver::receive_radio_status(mavlink_message_t *msg)
 {
+    
+    if(getErrorCodeDisplayed() == RADIO_COMM_FAILURE)
+        clearError();
+    RS_received = true;
     radio_status.rssi = mavlink_msg_radio_status_get_rssi(msg);
     radio_status.remrssi = mavlink_msg_radio_status_get_remrssi(msg);
     radio_status.txbuf = mavlink_msg_radio_status_get_txbuf(msg);
@@ -102,7 +114,9 @@ void packet_receiver::receive_radio_status(mavlink_message_t *msg)
 
     if(radio_status.txbuf <= 10)
         displayError("Tx Buffer overload",RADIO_BUFFER_OVERLOAD);
-    
+    else if(getErrorCodeDisplayed() == RADIO_BUFFER_OVERLOAD){
+        clearError();
+    }
     if(radio_status.remrssi > 0)
         connectRadio();
     else{    
@@ -113,6 +127,7 @@ void packet_receiver::receive_radio_status(mavlink_message_t *msg)
     }
         
     setRSSI(radio_status.rssi / 2 - 152);
+    setRemRSSI(radio_status.remrssi / 2 - 152);
 }
 
 void packet_receiver::receive_sys_status(mavlink_message_t *msg)
@@ -131,10 +146,9 @@ void packet_receiver::receive_ack(mavlink_message_t *msg)
     switch(mavlink_msg_command_ack_get_command(msg)){
         case MAV_CMD_COMPONENT_ARM_DISARM:
             displayInfo("ARM command acknowledged");
-            arm_send_count = 0;
         break;
         case MAV_CMD_DRIVE_MODE:
-            switchDriveMode();
+            // switchDriveMode();
             
             IF_DEBUG(Serial.println("drive mode switch acknowledged");)
         break;
@@ -199,18 +213,4 @@ void packet_receiver::receive_heartbeat(mavlink_message_t *msg)
 
 unsigned long getHeartbeatDiff(){
     return millis() - last_heartbeat_received_at;
-}
-
-bool is_arm_disarm_sending(){
-    return arm_send_count > 0;
-}
-void reset_arm_disarm_sending(){
-    arm_send_count = 0;
-}
-void init_arm_disarm_sending(){
-    arm_send_count = 1;
-}
-
-void dec_arm_disarm_sending(){
-    arm_send_count--;
 }

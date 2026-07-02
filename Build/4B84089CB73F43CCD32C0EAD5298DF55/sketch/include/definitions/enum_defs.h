@@ -17,6 +17,15 @@ enum ugv_status{
     standby, 
     unknown};
 
+enum connectivity_status{
+    all_disconnected,
+    only_radio_connected,
+    low_connectivity,
+    connected,
+    comm_fault,
+    conn_invalid
+};
+
 /// @brief directions within hand controller
 enum directionToggle{
     neutral,
@@ -40,5 +49,6 @@ enum buttonPress{
 
 enum driveMode{
     speed = 0,
-    torque = 1
+    torque = 1,
+    torque_sl = 2
 };

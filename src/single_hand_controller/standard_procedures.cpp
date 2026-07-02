@@ -34,7 +34,7 @@ bool disarm_press = false;
 
 int hb_count = 0;
 long unsigned int OFP_timer = 0;
-
+uint32_t startup_time = 0;
 
 uint32_t init_time;
 
@@ -46,7 +46,7 @@ inline bool isUGVdisconnected(){
 
 
 inline bool switchModeCondition(){
-    return switchMode && getDriveMode != switchMode;
+    return switchMode;
 }
 
 inline bool turnHeadlightCondition(){
@@ -70,40 +70,12 @@ inline bool speedChangeCondition(){
 }
 
 inline bool startArmCondition(){
-    return arm_press && getUGV_state() == standby && !is_arm_disarm_sending();
+    return arm_press && getUGV_state() == standby;
 }
 
 inline bool startDisarmCondition(){
-    return disarm_press && getUGV_state() == active && !is_arm_disarm_sending();
+    return disarm_press && getUGV_state() == active;
 }
-
-inline bool stopArmDisarmResendCondition(){
-    return arm_send_count <= 0;
-}
-
-void resendArmCommand(){
-    sendArmCommand();
-    dec_arm_disarm_sending();
-}
-
-void resendDisarmCommand(){
-    sendDisarmCommand();
-    dec_arm_disarm_sending();
-}
-
-void endArmDisarmResend(){
-    clearInfo();
-    if(arm_disarm_error){
-        // resend limit reached due to lack of acknowledgment
-        displayError((currentlySendingArm ? String("arm") : String("disarm") + String(" request failed")),ARM_DISARM_FAIL);
-        currentlySendingArm = false;
-    }
-    reset_arm_disarm_sending();
-    arm_disarm_error = false;
-}
-
-
-
 
 
 void initiateController(){
@@ -140,6 +112,11 @@ void establish_connectivity()
     while(heartbeat_timed_out()){
         handlePacketReceived();
         periodic_actions.performPeriodicActions();
+
+
+        if(!receivedRadioStatus() && micros() - startup_time > SECONDS_MS_5){
+           displayError("Radio communication failure", RADIO_COMM_FAILURE);
+    }
     }
     hb_count = 0;
 }
@@ -191,14 +168,22 @@ void end_OFP_timer(unsigned long int time_limit){
  * send 3 consecutive heartbeats (to ensure radio status will be received)
  */
 void run_wakeup_seq(){
+    
+    startup_time = micros();
+
     sendHeartbeat();
     sendHeartbeat();
     sendHeartbeat();
     periodic_actions.reset();
+    
     #ifndef TESTING
     periodic_actions.addPeriodicAction(sendHeartbeat,SECONDS_MS_1);   // send a heartbeat every 1 second
     periodic_actions.addPeriodicAction(updateDisplay,SECONDS_MS_2);
+   
+    
+   
     establish_connectivity();
+
     time_synchronize();
 
     #endif
@@ -210,6 +195,8 @@ void run_wakeup_seq(){
     periodic_actions.addPeriodicAction(sendHeartbeat,SECONDS_MS_1);
     periodic_actions.addPeriodicAction(updateDisplay,SECONDS_MS_2);
     //periodic_actions.addPeriodicAction(sendTimesyncRequest,TIMESYNC_MSG_WAIT,isUGVdisconnected);
+
+
     IF_TESTING(setUGV_state(standby);)
 }
 

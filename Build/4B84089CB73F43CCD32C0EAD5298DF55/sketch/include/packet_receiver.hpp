@@ -46,15 +46,5 @@ public:
 /// @brief check whether first time synchronization is performed or not.
 bool receivedFirstTimesync();
 
-/// @brief check whether an arm/disarm message is currently being sent
-/// @return true when an arm/disarm message is currently being sent (arm_disarm_count > 0)
-bool is_arm_disarm_sending();
+bool receivedRadioStatus();
 
-/// @brief reset arm_disarm_count to 0; so that no arm/disarm messages will be sent
-void reset_arm_disarm_sending();
-
-/// @brief set arm_disarm_count to number of times arm/disarm command needs to be resent
-void init_arm_disarm_sending();
-
-/// @brief decrement arm_disarm_count, to be called everytime an arm/disarm command is sent.
-void dec_arm_disarm_sending();

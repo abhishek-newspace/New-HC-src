@@ -29,6 +29,7 @@
 #define SECONDS_US_1 1000000 /// 1 seconds to microseconds
 
 #define SECONDS_MS_10 10000 /// 10 seconds to milliseconds
+#define SECONDS_MS_5 5000 /// 5 seconds to milliseconds
 #define SECONDS_MS_3 3000 /// 3 seconds to milliseconds
 #define SECONDS_MS_2 2000 /// 2 seconds to milliseconds
 #define SECONDS_MS_1 1000 /// 1 seconds to milliseconds
@@ -55,5 +56,5 @@
 #define SCREEN_UPDATE_DELAY     SECONDS_MS_2    // screen to be updated every 2 second
 
 #define LONG_PRESS_DURATION     MS_500
-#define BUTTON_PRESS_COOLDOWN   MS_500
+#define BUTTON_PRESS_COOLDOWN   MS_200
 #define TOGGLE_DEBOUNCE_DURATION SECONDS_US_2

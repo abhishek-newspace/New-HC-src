@@ -37,6 +37,9 @@ void initDisplayComm();
 /// @brief update UGV status dislay
 void displayUGV_status(ugv_status);
 
+/// @brief display current connection status
+void displayConnectionStatus();
+
 /// @brief update speed display
 void displaySpeed(int speed);
 
@@ -58,6 +61,7 @@ void displayInvertedLogo();
 
 void setBatterySOC(uint8_t);
 void setRSSI(int16_t);
+void setRemRSSI(uint16_t curr_remRSSI);
 
 /**
  * this function is meant to be called once every 1 second, and only updates RSSI, and battery stats.
@@ -89,4 +93,7 @@ void connectRadio();
 /// @brief update the display for drive mode
 /// @param mode speed / torque
 void displayDriveMode(driveMode mode);
+
+/// @brief returns the current error code currently dosplsyed
+int getErrorCodeDisplayed();
 

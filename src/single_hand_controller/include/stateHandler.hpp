@@ -41,10 +41,6 @@ ugv_status getUGV_state();
 /// @return current UGV speed
 speedToggle getUGV_speed();
 
-/// @brief get current UGV direction
-/// @return current UGV direction
-directionToggle getUGV_dir();
-
 /**
  * check whether the UGV is connected or not
  * \returns true when UGV is not in disconnected state.
@@ -56,17 +52,6 @@ void setUGV_speed(int speed);
 /// @brief used only within prototype version, to increase speed
 void inc_Speed();
 
-/// @brief used only within prototype version, to decrease speed
-void dec_Speed();
-
-/// @brief used only within prototype version to set speed to neutral
-void setNeutral();
-
-/// @brief switch current direction to forward (if not in neutral)
-void dir_forward();
-
-/// @brief switch current direction to reverse (if not in neutral)
-void dir_reverse();
 
 /// @brief Get the next speed when to be increased.
 /// @return get the current speed that should appear when speed is increased
@@ -82,3 +67,11 @@ int getDriveMode();
 /// @brief get the next drive mode when it needs to be increased
 /// @return next drive mode
 int get_inc_driveMode();
+
+/// @brief switch to the given connectivity status
+/// @param status status to which it needs to be switched to
+void switch_conn_stat(connectivity_status status);
+
+/// @brief get the current connectivity status
+/// @return the current connnectivity status
+connectivity_status get_conn_stat();
