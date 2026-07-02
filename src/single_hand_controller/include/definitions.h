@@ -47,7 +47,7 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 //#define RELEASE_ARDUINO_UNO
 
 #ifndef RELEASE_ARDUINO_UNO
-#define RELEASE
+// #define RELEASE
 #endif
 
 
@@ -56,7 +56,7 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 #define _DEBUG_
 //#define GET_RADIO_CONFIG
 
-//#define RADIO_SIMULATION_TESTING
+#define RADIO_SIMULATION_TESTING
 
 // #define TESTING_JOYSTICK
 

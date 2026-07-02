@@ -32,7 +32,7 @@ int rssi;
 unsigned long getHeartbeatDiff();
 
 bool is_unsigned_message(const mavlink_status_t* status, uint32_t msgId) {
-  return (msgId == MAVLINK_MSG_ID_TIMESYNC || msgId == MAVLINK_MSG_ID_HEARTBEAT || msgId == MAVLINK_MSG_ID_RADIO_STATUS || msgId == 77);
+  return (msgId == MAVLINK_MSG_ID_TIMESYNC || msgId == MAVLINK_MSG_ID_HEARTBEAT || msgId == MAVLINK_MSG_ID_RADIO_STATUS || msgId == 77 || msgId == 1);
 }
 
 bool setupSigning(){
@@ -198,6 +198,7 @@ void sendSpeedChangeRequest(int speed){
 void sendModeChangeRequest(){
     IF_DEBUG(Serial.print("sending drive mode change request : ");)
     msgsndr.buffer_drive_mode_cmd(get_inc_driveMode() + 1);
+    switchDriveMode();
     IF_DEBUG(Serial.println(get_inc_driveMode() + 1);)
 }
 

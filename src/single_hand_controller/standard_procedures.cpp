@@ -34,7 +34,7 @@ bool disarm_press = false;
 
 int hb_count = 0;
 long unsigned int OFP_timer = 0;
-
+uint32_t startup_time = 0;
 
 uint32_t init_time;
 
@@ -112,6 +112,11 @@ void establish_connectivity()
     while(heartbeat_timed_out()){
         handlePacketReceived();
         periodic_actions.performPeriodicActions();
+
+
+        if(!receivedRadioStatus() && micros() - startup_time > SECONDS_MS_5){
+           displayError("Radio communication failure", RADIO_COMM_FAILURE);
+    }
     }
     hb_count = 0;
 }
@@ -163,17 +168,23 @@ void end_OFP_timer(unsigned long int time_limit){
  * send 3 consecutive heartbeats (to ensure radio status will be received)
  */
 void run_wakeup_seq(){
+    
+    startup_time = micros();
+
     sendHeartbeat();
     sendHeartbeat();
     sendHeartbeat();
     periodic_actions.reset();
+    
     #ifndef TESTING
     periodic_actions.addPeriodicAction(sendHeartbeat,SECONDS_MS_1);   // send a heartbeat every 1 second
     periodic_actions.addPeriodicAction(updateDisplay,SECONDS_MS_2);
-    establish_connectivity();
+   
     
+   
+    establish_connectivity();
 
-    //time_synchronize();
+    time_synchronize();
 
     #endif
     setFoglightState(0);
@@ -184,6 +195,8 @@ void run_wakeup_seq(){
     periodic_actions.addPeriodicAction(sendHeartbeat,SECONDS_MS_1);
     periodic_actions.addPeriodicAction(updateDisplay,SECONDS_MS_2);
     //periodic_actions.addPeriodicAction(sendTimesyncRequest,TIMESYNC_MSG_WAIT,isUGVdisconnected);
+
+
     IF_TESTING(setUGV_state(standby);)
 }
 

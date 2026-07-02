@@ -197,13 +197,15 @@ For extended debugging of the packets being sent or received, this can be enable
 ## steps - 
 1. Open Arduino IDE
 2. Open `scout-td0-HC/src/single_hand_controller/single_hand_controller.ino`
-2. Click on File > Preferences, or just press `ctrl + ','`
-3. Update the sketchbook location to the current location of `single_hand_controller.ino`.
-4. Ensure the board is connected, currently only Arduino Mega is supported for this build.
-5. click on the arrow mark present on the top-left corner to compile and upload the code into the board.
+3. Click on File > Preferences, or just press `ctrl + ','`
+4. Update the sketchbook location to the current location of `single_hand_controller.ino`.
+5. Ensure the board is connected, currently only Arduino Mega is supported for this build.
+6. click on the arrow mark present on the top-left corner to compile and upload the code into the board.
 
-__Extra__
-6. In case the build files are required, run `import_build.sh`.
-7. To flash code from the Build directory, run `flash_code.sh`
-8. To chack whether there is a different code currently running in the hand controller than what is present in the Build directory, run `check_version_change.sh`
-9. To check the data that is being printed from the debug port/serial port, run `check_serial_buffer.sh`
+****Extra****
+7. In case the build files are required, run `import_build.sh`.
+8. To flash code from the Build directory, run `flash_code.sh`
+9. To chack whether there is a different code currently running in the hand controller than what is present in the Build directory, run `check_version_change.sh`
+10. To check the data that is being printed from the debug port/serial port, run `check_serial_buffer.sh`
+
+***Refer error_handling.md for understanding how to handle error codes displayed on screen***

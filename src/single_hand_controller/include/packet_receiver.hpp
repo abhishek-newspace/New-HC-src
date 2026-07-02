@@ -45,3 +45,5 @@ public:
 /// @brief check whether first time synchronization is performed or not.
 bool receivedFirstTimesync();
 
+bool receivedRadioStatus();
+

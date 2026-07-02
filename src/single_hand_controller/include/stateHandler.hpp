@@ -67,3 +67,11 @@ int getDriveMode();
 /// @brief get the next drive mode when it needs to be increased
 /// @return next drive mode
 int get_inc_driveMode();
+
+/// @brief switch to the given connectivity status
+/// @param status status to which it needs to be switched to
+void switch_conn_stat(connectivity_status status);
+
+/// @brief get the current connectivity status
+/// @return the current connnectivity status
+connectivity_status get_conn_stat();

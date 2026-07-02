@@ -14,11 +14,16 @@
 extern struct buttons user_input;
 extern ugv_status current_state;
 extern ugv_status prev_state;
+extern connectivity_status conn_stat;
+connectivity_status prev_conn_stat = conn_invalid;
 
+int currentErrorCodeDisplayed = -1;
 int prevConnStatus = -1;
-int16_t RSSI = 0;
+int16_t RSSI = 0, remRSSI = 0;
 uint8_t ugv_battery_soc = 0;
 bool radioConnected;
+
+bool timesync_received = false;
 
 uint8_t battery_topLeftX, battery_topLeftY;
 
@@ -29,6 +34,9 @@ void disconnectRadio(){
   radioConnected = false;
 }
 
+int getErrorCodeDisplayed(){
+  return currentErrorCodeDisplayed;
+}
 
 void connectRadio(){
   radioConnected = true;
@@ -394,43 +402,89 @@ void displayBattery(){
 void setRSSI(int16_t curr_RSSI){
   RSSI = curr_RSSI;
 }
+void setRemRSSI(uint16_t curr_remRSSI){
+  remRSSI = curr_remRSSI;
+}
 
 void setBatterySOC(uint8_t batterySOC){
   IF_DEBUG(Serial.print("current soc : ");)
   IF_DEBUG(Serial.println(batterySOC);)
-  ugv_battery_soc = batterySOC;
+  if(batterySOC > 0 && batterySOC <= 100)
+    ugv_battery_soc = batterySOC;
 }
 
 void displayConnectionStatus(){
   setFontSmall();
+  
   if(radioConnected && current_state != disconnected){
     if(prevConnStatus != 2){
       tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y, "ATLAS AND RADIO  ", CONNECTED_COLOR);
       tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y + 8, "CONNECTED  ", CONNECTED_COLOR);
     }
     prevConnStatus = 2;
+    conn_stat = connected;
   }
   else if(radioConnected){
     if(prevConnStatus != 1){
       tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y, "RADIO CONNECTED   ", RADIO_CONNECTED_COLOR);
       tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y + 8, "                 ", CONNECTED_COLOR);
     }
+    conn_stat = only_radio_connected;
     prevConnStatus = 1;
   }
   else if(prevConnStatus != 0){
     tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y, "ALL DISCONNECTED", DISCONNECTED_COLOR);
     tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y + 8, "                 ", CONNECTED_COLOR);
     prevConnStatus = 0;
+    conn_stat = all_disconnected;
   }
+  
   setFont1();
+  
+  if(conn_stat == connected){
+    if(remRSSI < -120 && RSSI  < -120)
+      conn_stat = low_connectivity;
+    if(timesync_received == false )
+      conn_stat = comm_fault;
+  }
+
+  int LED_color = 0;
+
+  if(conn_stat != prev_conn_stat){
+    IF_DEBUG(Serial.println("yipee!"));
+    switch(conn_stat){
+      case connected:
+        LED_color = COLOR_GREEN;
+        break;
+      case all_disconnected:
+        LED_color = COLOR_RED;
+        break;
+      case low_connectivity:
+        LED_color = COLOR_YELLOW;
+        break;
+      case comm_fault:
+        LED_color = COLOR_BLUE;
+        break;
+      case only_radio_connected:
+        LED_color = COLOR_ORANGE;
+        break;
+    }
+    tft.fillRectangle(CONN_STAT_MSG_POS_X, CONN_STAT_MSG_POS_Y, CONN_STAT_MSG_POS_X + CONN_STAT_MSG_SZ_X, CONN_STAT_MSG_POS_Y + CONN_STAT_MSG_SZ_Y, LED_color);
+  }
+
+  prev_conn_stat = conn_stat;
 }
+
+
 
 void displayDriveMode(driveMode mode){
   setFontSmall();
   if(mode == speed)
-    tft.drawText(DM_POS_X, DM_POS_Y, "SPEED MODE", DM_COLOR);   
-  else
+    tft.drawText(DM_POS_X, DM_POS_Y, "SPEED  MODE", DM_COLOR);   
+  else if(mode == torque)
     tft.drawText(DM_POS_X, DM_POS_Y, "TORQUE MODE", DM_COLOR);   
+  else
+    tft.drawText(DM_POS_X, DM_POS_Y, "TRQ SL MODE", DM_COLOR);   
   setFont1();
 }
 
@@ -478,6 +532,8 @@ void displayError(String message, int error_code){
   if(message == current_err_displayed)
     return;
   current_err_displayed = message;
+  currentErrorCodeDisplayed = error_code;
+
   tft.drawText(0,150, String("ERROR : " + String(error_code)), ERROR_TEXT_COLOR);
   setFontSmall();
 
