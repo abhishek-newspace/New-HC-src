@@ -28,9 +28,9 @@ This document outlines the meaning behind error codes displayed on the hand cont
 
 **How to Resolve** : Follow these steps - 
 
-1. Ensure that the configurations for the radio haven't been altered.
-2. Open the Hand Controller, and check whether the pins are connected correctly, refer it's [datasheet](https://files.rfdesign.com.au/Files/documents/RFD900x DataSheet V1.2.pdf)
-3. In case the radio is powered up correctly, and the Rx/Tx pins are correctly connected with the microcontroller, then the radio may be configured on radio simulation testing mode, refer `readme.md` to understand the various testing, debug, and release modes.
+  1. Ensure that the configurations for the radio haven't been altered.
+  2. Open the Hand Controller, and check whether the pins are connected correctly, refer it's [datasheet](https://files.rfdesign.com.au/Files/documents/RFD900x DataSheet V1.2.pdf)
+  3. In case the radio is powered up correctly, and the Rx/Tx pins are correctly connected with the microcontroller, then the radio may be configured on radio simulation testing mode, refer `readme.md` to understand the various testing, debug, and release modes.
 
 6. **Error code 6 : Radio Transmission Buffer Full**
 
