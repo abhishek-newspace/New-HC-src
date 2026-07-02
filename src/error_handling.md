@@ -30,7 +30,7 @@ This document outlines the meaning behind error codes displayed on the hand cont
 
 5.1. Ensure that the configurations for the radio haven't been altered.
 
-5.2. Open the Hand Controller, and check whether the pins are connected correctly, refer it's [datasheet](files.rfdesign.com.au/Files/documents/RFD900x%20DataSheet%20V1.2.pdf)
+5.2. Open the Hand Controller, and check whether the pins are connected correctly, refer it's [datasheet](https://files.rfdesign.com.au/Files/documents/RFD900x%20DataSheet%20V1.2.pdf)
 
 5.3. In case the radio is powered up correctly, and the Rx/Tx pins are correctly connected with the microcontroller, then the radio may be configured on radio simulation testing mode, refer `readme.md` to understand the various testing, debug, and release modes.
 
@@ -38,7 +38,7 @@ This document outlines the meaning behind error codes displayed on the hand cont
 
 **Meaning** : The serial buffer on the radio that handles transmission of data is full.
 
-**How to Resolve** : Ensure that the radio configurations are correct as per the [datasheet](files.rfdesign.com.au/Files/documents/RFD900x%20DataSheet%20V1.2.pdf).
+**How to Resolve** : Ensure that the radio configurations are correct as per the [datasheet](https://files.rfdesign.com.au/Files/documents/RFD900x%20DataSheet%20V1.2.pdf).
 
 7. **Error code 7 : Time Synchronization Error / No response from Scout**
 
