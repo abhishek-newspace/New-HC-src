@@ -12,9 +12,11 @@
 static struct ATLAS_HC_HEARTBEAT_BC packet_receiver::heartbeat;
 static struct ATLAS_HC_TIMESYNC_RESP packet_receiver::timesync;
 static struct HC_RADIO_STATUS packet_receiver::radio_status;
+
+#ifndef DEPRECATED_REV_1
 static struct ATLAS_HC_SYS_STAT packet_receiver::sys_status;
 static struct ATLAS_HC_ARM_DISARM_ACK packet_receiver::ack;
-
+#endif
 
 extern int required_speed;
 extern bool timesync_received;
@@ -129,6 +131,64 @@ void packet_receiver::receive_radio_status(mavlink_message_t *msg)
     setRemRSSI(radio_status.remrssi / 2 - 152);
 }
 
+
+void packet_receiver::receive_heartbeat(mavlink_message_t *msg)
+{
+    uint8_t temp = 0;
+
+    if(msg->sysid != heartbeat.sys_id || msg->compid != heartbeat.comp_id){
+        IF_DEBUG(Serial.println("heartbeat system validation failed");)
+        return;
+    }
+    
+    IF_DEBUG(Serial.println("heartbeat verified!");)
+    last_heartbeat_received_at = millis();
+    
+    heartbeat.sys_status = mavlink_msg_heartbeat_get_system_status(msg);
+    heartbeat.type = mavlink_msg_heartbeat_get_custom_mode(msg);
+    heartbeat.autopilot = mavlink_msg_heartbeat_get_autopilot(msg);
+    heartbeat.custom_mode.custom_mode = mavlink_msg_heartbeat_get_custom_mode(msg);
+
+    switch(heartbeat.sys_status){
+        case MAV_STATE_STANDBY:
+            if(setUGV_state(standby)){
+                displayUGV_status(standby);
+            }
+            break;
+        case MAV_STATE_ACTIVE:
+            if(setUGV_state(active)){
+                displayUGV_status(active);
+            }
+        break;
+        default:
+        //IF_DEBUG(Serial.println(mavlink_msg_heartbeat_get_system_status(msg)));
+        if(setUGV_state(unknown)){
+            displayUGV_status(unknown);
+        }
+    }
+    
+    temp =  heartbeat.custom_mode.hcm.driveMode[0] + 
+            heartbeat.custom_mode.hcm.driveMode[1] * 2;
+    switchDriveMode(temp);
+    
+    temp =  heartbeat.custom_mode.hcm.arm_mode[0] + 
+            heartbeat.custom_mode.hcm.arm_mode[1] * 2;
+    // ignoring arm status
+
+    temp =  heartbeat.custom_mode.hcm.driveModeLimit[0] + 
+            heartbeat.custom_mode.hcm.driveModeLimit[1] * 2;
+    setUGV_speed(temp);
+
+    temp =  heartbeat.custom_mode.hcm.emergency[0] + 
+            heartbeat.custom_mode.hcm.emergency[1] * 2;
+    switchEmergencyMode(temp);
+
+    setBatterySOC(heartbeat.custom_mode.hcm.battery_soc);
+
+    
+}
+
+#ifndef DEPRECATED_REV_1
 void packet_receiver::receive_sys_status(mavlink_message_t *msg)
 {
     sys_status.battery_remaining = mavlink_msg_sys_status_get_battery_remaining(msg);
@@ -162,53 +222,7 @@ void packet_receiver::receive_ack(mavlink_message_t *msg)
     }
     
 }
-
-
-void packet_receiver::receive_heartbeat(mavlink_message_t *msg)
-{
-
-    /*
-     heartbeat_speed bitmask - 
-        0000000000000000000000000000000011
-    heartbeat light bitmask
-        headlight - 
-        0000000000000000000000000000000100
-
-        foglight - 
-        0000000000000000000000000000001000
-
-        brakelight - 
-        0000000000000000000000000000010000
-    */
-    if(msg->sysid != SCOUT_ID || msg->compid != ATLAS_COMP_ID){
-        IF_DEBUG(Serial.println("heartbeat system validation failed");)
-        return;
-    }
-
-    
-    IF_DEBUG(Serial.println("heartbeat verified!");)
-    last_heartbeat_received_at = millis();
-    
-    switch(mavlink_msg_heartbeat_get_system_status(msg)){
-        case MAV_STATE_STANDBY:
-            if(setUGV_state(standby)){
-                displayUGV_status(standby);
-            }
-            break;
-        case MAV_STATE_ACTIVE:
-            if(setUGV_state(active)){
-                displayUGV_status(active);
-            }
-        break;
-        default:
-        //IF_DEBUG(Serial.println(mavlink_msg_heartbeat_get_system_status(msg)));
-        if(setUGV_state(unknown)){
-            displayUGV_status(unknown);
-        }
-    }
-    
-}
-
+#endif
 
 unsigned long getHeartbeatDiff(){
     return millis() - last_heartbeat_received_at;

@@ -52,3 +52,9 @@ This document outlines the meaning behind error codes displayed on the hand cont
 
 7.3. In case there are absolutely no issues between communication between ATLAS and the Scout's Radio, then the issue lies within ATLAS.
 
+8. **Error code 8 : Emergency stop engaged**
+
+**Meaning** : Emergency stop is engaged, no issues
+
+**How to Resolve** : Disengage the emergency stop.
+

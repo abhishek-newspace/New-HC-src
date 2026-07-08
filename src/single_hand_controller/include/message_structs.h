@@ -15,9 +15,23 @@
 // commands sent from hand controller
 // empty fields within structs need to be filled with appropriate values
 
+struct heartbeat_custom_mode{
+    bool driveMode[2];
+    bool driveModeLimit[2];
+    bool arm_mode[2];
+    bool emergency[2];
+    uint8_t battery_soc;
+};
+
+
 struct HC_ATLAS_HEARTBEAT_BC{
     uint8_t sys_id = HC_ID;
     uint8_t comp_id = HC_COMP_ID;
+    uint8_t type = 6 ;   // GCS
+    uint8_t autopilot = MAV_AUTOPILOT_INVALID;
+    uint8_t base_mode = 0;
+    uint8_t custom_mode = 0;
+    uint8_t system_status = 0;
 };
 
 struct HC_ATLAS_TIMESYNC_REQ{
@@ -29,7 +43,7 @@ struct HC_ATLAS_TIMESYNC_REQ{
 
 struct HC_ATLAS_MANUAL_CONTROL_BC{
     uint8_t target = SCOUT_ID;
-    int16_t x,y;
+    int16_t x,y, z = 32767, r = 32767;
     uint16_t Push_buttons = 0;
     //uint16_t Tristate_Toggle_switches = 0;
 };
@@ -40,7 +54,10 @@ struct HC_ATLAS_ARM_DISARM_CMD{
     uint16_t command = MAV_CMD_COMPONENT_ARM_DISARM;
     uint8_t confirmation = 0;
     float param1;
+    float param2 = 0;
 };
+
+#ifndef DEPRECATED_REV_1
 
 struct HC_ATLAS_UGV_COMPONENT_VER{
     uint32_t software_version = VERSION_MAJOR << 24 | VERSION_MINOR << 16 | VERSION_PATCH << 8 | VERSION_TYPE;
@@ -49,6 +66,8 @@ struct HC_ATLAS_UGV_COMPONENT_VER{
     uint8_t target_component = ATLAS_COMP_ID;
 };
 
+#endif
+
 struct HC_MODE_COMMAND{
     uint8_t target_system = SCOUT_ID;
     uint8_t target_component = ATLAS_COMP_ID;
@@ -56,8 +75,15 @@ struct HC_MODE_COMMAND{
     uint8_t confirmation = 0;
     float param1 = 1;
     float param2 = 1;
-    float param3 = 1;
-    float param4;   // SPEED MODE
+    float param3;   // SPEED MODE   
+};
+
+struct HC_REMOTE_EMERGENCY_COMMAND{
+    uint8_t target_system = SCOUT_ID;
+    uint8_t target_component = ATLAS_COMP_ID;
+    uint16_t command = MAV_CMD_DRIVE_MODE;
+    uint8_t confirmation = 0;
+    float param1;   // engaged (2); disengaged (3)
 };
 
 struct HC_DRIVE_MODE_COMMAND{
@@ -75,7 +101,7 @@ struct HC_LIGHT_CONTROL_COMMAND{
     uint8_t confirmation = 0;
     float param1;   // headlight
     float param2;   // fog light
-    float param3;   //
+    float param3;   // brake lights
 };
 
 
@@ -88,9 +114,13 @@ struct ATLAS_HC_HEARTBEAT_BC{
     uint8_t sys_id = SCOUT_ID;
     uint8_t comp_id = ATLAS_COMP_ID;
     uint8_t type = MAV_TYPE_ONBOARD_CONTROLLER;
-    uint8_t autopilot = MAV_AUTOPILOT_GENERIC;
+    uint8_t autopilot = MAV_AUTOPILOT_INVALID;
+    uint8_t base_mode = MAV_MODE_FLAG_CUSTOM_MODE_ENABLED;
+    union cm{
+        struct heartbeat_custom_mode hcm;
+        uint32_t custom_mode;
+    } custom_mode;
     uint8_t sys_status;
-    uint32_t custom_mode = SCOUT_HEARTBEAT_IDENTIFIER;
 };
 
 struct ATLAS_HC_TIMESYNC_RESP{
@@ -110,6 +140,8 @@ struct HC_RADIO_STATUS{
     uint16_t rxerrors,
         fixed;
 };
+
+#ifndef DEPRECATED_REV_1
 
 struct ATLAS_HC_SYS_STAT{
     uint16_t voltage_battery;
@@ -137,3 +169,5 @@ struct COMP_LIGHT_CONTROL_ACK{
     uint8_t target_system = HC_ID;
     uint8_t target_component = HC_COMP_ID;
 };
+
+#endif

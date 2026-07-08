@@ -23,12 +23,29 @@ ugv_status prev_state = unknown;
 speedToggle current_spd;
 driveMode current_mode = speed;
 connectivity_status conn_stat = all_disconnected;
-
+estopMode current_emergency_mode = disengaged;
 
 bool headlight_state = 0;
 
 bool fog_brake_state = 0;
 
+
+void switchEmergencyMode(int mode){
+    mode--;
+    if(mode != current_emergency_mode){
+        if(mode == engaged){
+            displayError("Estop Engaged",ESTOP_ENGAGED);
+        }
+        else if(getErrorCodeDisplayed() == ESTOP_ENGAGED){
+            clearError();
+        }
+    }
+    current_emergency_mode = mode;
+}
+
+estopMode getEmergencyMode(){
+    return current_emergency_mode;
+}
 
 void switch_conn_stat(connectivity_status status){
     conn_stat = status;
@@ -45,8 +62,8 @@ int get_inc_driveMode(){
     return (current_mode + 1) % 3;
 }
 
-void switchDriveMode(){
-    current_mode = (current_mode + 1) % 3;
+void switchDriveMode(int driveMode){
+    current_mode = driveMode - 1;
     displayDriveMode(current_mode);
     
     

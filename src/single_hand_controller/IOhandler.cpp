@@ -27,6 +27,15 @@ extern int required_speed;
 extern bool switchMode;
 extern bool arm_press;
 extern bool disarm_press;
+extern bool estop_toggled;
+
+void toggleEstop(){
+    estop_toggled = true;
+}
+
+void untoggleEstop(){
+    estop_toggled = false;
+}
 
 void enableHeadlight(){
     turnOnHeadlight = true;
@@ -95,7 +104,13 @@ toggle t_arm_disarm = {
     0,
     enableDisarm,
     enableArm
-};
+},
+    t_estop = {
+        TOGGLE_ESTOP,
+        0,
+        toggleEstop,
+        untoggleEstop
+    };
 two_pos_toggle tt_speed_toggle = {
         TOGGLE_HIGH_SPEED,
         TOGGLE_LOW_SPEED,
@@ -160,6 +175,9 @@ void updateButtonValues(struct button *b1, int32_t ms_since_last_check){
         if(b1->press_callback != nullptr)
             b1->press_callback();
 
+        b1->cooldown = BUTTON_PRESS_COOLDOWN;
+    }
+    else if(b1->press_state){
         b1->cooldown = BUTTON_PRESS_COOLDOWN;
     }
     else{
@@ -285,6 +303,7 @@ void checkUserInput()
     updateButtonValues(&b_foglight, ms_since_last_check);
     updateButtonValues(&b_mode_switch, ms_since_last_check);
     updateToggleValues(&t_arm_disarm, ms_since_last_check);
+    updateToggleValues(&t_estop, ms_since_last_check);
     updateTwoPosToggleValues(&tt_speed_toggle, ms_since_last_check);
 
     last_input_checked_at = millis();

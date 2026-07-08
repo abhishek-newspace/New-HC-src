@@ -14,7 +14,10 @@ extern mavlink_status_t* status_chan;
 
 int message_sender::buffer_arm_disarm_cmd(bool state)
 {
-    arm_disarm_cmd.param1 = state;
+    if(state)
+        arm_disarm_cmd.param1 = 1;  // arm
+    else
+        arm_disarm_cmd.param1 = 2;  // disarm
 
     mavlink_msg_command_long_pack(
         HC_ID,
@@ -26,7 +29,8 @@ int message_sender::buffer_arm_disarm_cmd(bool state)
         arm_disarm_cmd.command,
         arm_disarm_cmd.confirmation,
         arm_disarm_cmd.param1,
-        0,0,0,0,0,0);
+        arm_disarm_cmd.param2,
+        0,0,0,0,0);
 
     return mavlink_msg_to_send_buffer(buf,msg);
 }
@@ -56,7 +60,7 @@ int message_sender::buffer_light_control_cmd(bool headlight, bool foglight, bool
 }
 int message_sender::buffer_mode_cmd(int speed)
 {
-    mode_cmd.param4 = speed;
+    mode_cmd.param3 = speed;
     mavlink_msg_command_long_pack(
         HC_ID,
         HC_COMP_ID,
@@ -69,8 +73,7 @@ int message_sender::buffer_mode_cmd(int speed)
         mode_cmd.param1,
         mode_cmd.param2,
         mode_cmd.param3,
-        mode_cmd.param4,
-        0,0,0
+        0, 0,0,0
     );
     return mavlink_msg_to_send_buffer(buf, msg);
 }
@@ -97,12 +100,17 @@ int message_sender::buffer_heartbeat()
 {
     uint8_t prevFlags = mavlink_get_channel_status(MAVLINK_COMM_0)->flags;  
     mavlink_get_channel_status(MAVLINK_COMM_0)->flags = MAVLINK_STATUS_FLAG_OUT_MAVLINK1;  
+    
     mavlink_msg_heartbeat_pack(
         heartbeat.sys_id,
         heartbeat.comp_id,
         msg,
+        heartbeat.type,
+        heartbeat.autopilot,
+        heartbeat.base_mode,
+        heartbeat.custom_mode,
+        heartbeat.system_status);
 
-        0,0,0,0,0);
     mavlink_get_channel_status(MAVLINK_COMM_0)->flags = prevFlags;
     return mavlink_msg_to_send_buffer(buf,msg);
 }
@@ -128,48 +136,12 @@ int message_sender::buffer_timesync()
     return mavlink_msg_to_send_buffer(buf,msg);
 }
 
-int message_sender::buffer_component_version()
-{
 
-    mavlink_msg_ugv_component_version_pack(
-        HC_ID,
-        HC_COMP_ID,
-        msg,
-        
-        component_version.software_version,
-        component_version.checksum,
-        component_version.target_system,
-        component_version.target_component);
-
-    return mavlink_msg_to_send_buffer(buf,msg);
-}
 int message_sender::buffer_manual_control(int x, int y, bool extra_feature_1_press, bool extra_feature_1_long_press, bool extra_feature_2_press, bool extra_feature_2_long_press)
 {
     manual_control.x = x;
     manual_control.y = y;
     manual_control.Push_buttons = extra_feature_1_press | extra_feature_1_long_press << 1 | extra_feature_2_press << 2 | extra_feature_2_long_press << 3;
-    //manual_control.Tristate_Toggle_switches = 0;
-    // switch(dirTog){
-    //     case neutral:
-    //     break;
-    //     case forward:
-    //     manual_control.Tristate_Toggle_switches |= FORWARD_DIRECTION;
-    //     break;
-    //     case reverse:
-    //     manual_control.Tristate_Toggle_switches |= REVERSE_DIRECTION;
-    //     break;
-    // }
-    // switch(spdTog){
-    //     case low:
-    //     break;
-    //     case mid:
-    //     manual_control.Tristate_Toggle_switches |= MEDIUM_SPEED;
-    //     break;
-    //     case high:
-    //     manual_control.Tristate_Toggle_switches |= HIGH_SPEED;
-    //     break;
-    // }
-
 
     mavlink_msg_manual_control_pack(
         HC_ID,
@@ -179,7 +151,8 @@ int message_sender::buffer_manual_control(int x, int y, bool extra_feature_1_pre
         manual_control.target,
         manual_control.x,
         manual_control.y,
-        0,0,
+        manual_control.z,
+        manual_control.r,
         manual_control.Push_buttons,
         //manual_control.Tristate_Toggle_switches
         0,0,0,0,0,0,0,0,0
@@ -187,3 +160,41 @@ int message_sender::buffer_manual_control(int x, int y, bool extra_feature_1_pre
 
     return mavlink_msg_to_send_buffer(buf,msg);
 }
+
+int message_sender::buffer_remote_emergency_cmd(bool engage){
+    if(engage)
+        estop_cmd.param1 = 2;
+    else
+        estop_cmd.param1 = 3;
+    
+    mavlink_msg_command_long_pack(
+        HC_ID,
+        HC_COMP_ID,
+        msg,
+        
+        estop_cmd.target_system,
+        estop_cmd.target_component,
+        estop_cmd.command,
+        estop_cmd.confirmation,
+        estop_cmd.param1,
+        0,0,0,0,0,0
+    );
+    return mavlink_msg_to_send_buffer(buf, msg);
+
+}
+
+#ifndef DEPRECATED_REV_1
+int message_sender::buffer_component_version()
+{
+    mavlink_msg_ugv_component_version_pack(
+        HC_ID,
+        HC_COMP_ID,
+        msg,
+        
+        component_version.software_version,
+        component_version.checksum,
+        component_version.target_system,
+        component_version.target_component);
+        return mavlink_msg_to_send_buffer(buf,msg);
+    }
+#endif

@@ -31,6 +31,7 @@ int required_speed = 0;
 bool switchMode = false;
 bool arm_press = false;
 bool disarm_press = false;
+bool estop_toggled = false;
 
 int hb_count = 0;
 long unsigned int OFP_timer = 0;
@@ -158,6 +159,7 @@ void startOFPTimer(){
 /// @brief waits until time_limit microseconds are completed since beginning of OFP timer
 /// @param time_limit number of microseconds the OFP loop is meant to last for
 void end_OFP_timer(unsigned long int time_limit){
+    IF_DEBUG(Serial.println(millis() - OFP_timer);)
     do{
         checkUserInput();
     }while(millis() - OFP_timer < time_limit);
@@ -189,15 +191,17 @@ void run_wakeup_seq(){
     #endif
     setFoglightState(0);
     setHeadlighState(0);
-    
+
+#ifndef DEPRECATED_REV_1
     sendComponentVersion();
+#endif
     periodic_actions.reset();
     periodic_actions.addPeriodicAction(sendHeartbeat,SECONDS_MS_1);
     periodic_actions.addPeriodicAction(updateDisplay,SECONDS_MS_2);
     //periodic_actions.addPeriodicAction(sendTimesyncRequest,TIMESYNC_MSG_WAIT,isUGVdisconnected);
 
 
-    IF_TESTING(setUGV_state(standby);)
+    IF_TESTING(setUGV_state(active);)
 }
 
 
@@ -215,6 +219,10 @@ void run_OFP_cycle()
 
     if(getUGV_state() == active)
         sendManualControl();
+#ifdef TESTING
+    else
+        delay(5);
+#endif
 
     if(startArmCondition()){
         IF_DEBUG(Serial.println("ARM BUTTON PRESSED"));
@@ -244,6 +252,14 @@ void run_OFP_cycle()
     if(switchModeCondition()){
         sendModeChangeRequest();
         switchMode = false;
+    }
+    if(estop_toggled){
+        if(getEmergencyMode() != engaged)
+            sendEstopRequest(1);
+    }
+    else{
+        if(getEmergencyMode() != disabled)
+            sendEstopRequest(0);
     }
     handlePacketReceived();
     periodic_actions.performPeriodicActions();

@@ -50,21 +50,11 @@ void sendDisarmCommand();
 /// @brief send a heartbeat
 void sendHeartbeat();
 
-/// @brief send component version
-void sendComponentVersion();
-
 /// @brief send a request to turn on headlight
 void sendHeadlight();
 
 /// @brief send a request to turn on brake light and fog light
 void sendFogBrakeLight();
-
-
-// /// @brief send a request to turn off headlight
-// void sendHeadlight_OFF();
-
-// /// @brief send a request to turn off brake light and fog light
-// void sendFogBrakeLight_OFF();
 
 /// @brief send request to set speed to required speed
 void sendSpeedChangeRequest(int speed);
@@ -73,3 +63,12 @@ void sendSpeedChangeRequest(int speed);
 void sendModeChangeRequest();
 
 void getRadioConfigurations();
+
+/// @brief send a request for emergency stop
+/// @param enable whether to engage an emergency stop or to disengage the emergency stop
+void sendEstopRequest(bool enable);
+
+#ifndef DEPRECATED_REV_1
+/// @brief send component version
+void sendComponentVersion();
+#endif
