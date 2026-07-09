@@ -1,0 +1,15 @@
+#line 1 "/home/nikhil/Hand Controller Project/scout-td0-HC/src/single_hand_controller/include/custom_v0.3/ugvcustom/version.h"
+/** @file
+ *  @brief MAVLink comm protocol built from ugvcustom.xml
+ *  @see http://mavlink.org
+ */
+#pragma once
+ 
+#ifndef MAVLINK_VERSION_H
+#define MAVLINK_VERSION_H
+
+#define MAVLINK_BUILD_DATE "Wed Jul 08 2026"
+#define MAVLINK_WIRE_PROTOCOL_VERSION "2.0"
+#define MAVLINK_MAX_DIALECT_PAYLOAD_SIZE 55
+ 
+#endif // MAVLINK_VERSION_H

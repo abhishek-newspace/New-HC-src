@@ -58,7 +58,7 @@ void inc_Speed();
 int get_inc_speed();
 
 /// @brief switch between drive modes
-void switchDriveMode();
+void switchDriveMode(int driveMode);
 
 /// @brief gets the current drive mode, default mode is speed mode, on controller startup
 /// @return current drive mode
@@ -75,3 +75,11 @@ void switch_conn_stat(connectivity_status status);
 /// @brief get the current connectivity status
 /// @return the current connnectivity status
 connectivity_status get_conn_stat();
+
+/// @brief switch to the specified emergency mode and display accordingly
+/// @param mode 
+void switchEmergencyMode(int mode);
+
+/// @brief get the currently set emergency mode
+/// @return current emergency mode that is set
+estopMode getEmergencyMode();

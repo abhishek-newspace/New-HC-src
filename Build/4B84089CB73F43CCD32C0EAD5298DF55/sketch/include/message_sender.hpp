@@ -28,11 +28,12 @@ class message_sender{
     struct HC_MODE_COMMAND mode_cmd;
     struct HC_DRIVE_MODE_COMMAND drive_cmd;
     struct HC_LIGHT_CONTROL_COMMAND light_ctrl_cmd;
+    struct HC_REMOTE_EMERGENCY_COMMAND estop_cmd;
 
     struct HC_ATLAS_HEARTBEAT_BC heartbeat;
     struct HC_ATLAS_MANUAL_CONTROL_BC manual_control;
     struct HC_ATLAS_TIMESYNC_REQ timesync;
-    struct HC_ATLAS_UGV_COMPONENT_VER component_version;
+    // struct HC_ATLAS_UGV_COMPONENT_VER component_version;
 
     uint8_t* buf;
     mavlink_message_t*msg;
@@ -62,7 +63,7 @@ public:
     int buffer_mode_cmd(int speed);
 
     /// @brief switch drive mode between speed mode and torque mode
-    /// @param mode 1 => speed mode ;;; 2 => torque mode
+    /// @param mode 1 => speed mode ;;; 2 => torque mode ;;; 3 => torque_sl mode
     /// @return length of buffer
     int buffer_drive_mode_cmd(int mode);
 
@@ -90,5 +91,12 @@ public:
     );
     int buffer_timesync();
 
+    /// @brief send request to emergency stop 
+    /// @param engage (0) to disengage estop ;;; (1) to engage estop
+    /// @return length of buffer
+    int buffer_remote_emergency_cmd(bool engage);
+
+    #ifndef DEPRECATED_REV_1
     int buffer_component_version();
+    #endif
 };
