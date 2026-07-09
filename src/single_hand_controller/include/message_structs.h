@@ -81,7 +81,7 @@ struct HC_MODE_COMMAND{
 struct HC_REMOTE_EMERGENCY_COMMAND{
     uint8_t target_system = SCOUT_ID;
     uint8_t target_component = ATLAS_COMP_ID;
-    uint16_t command = MAV_CMD_DRIVE_MODE;
+    uint16_t command = 31904;
     uint8_t confirmation = 0;
     float param1;   // engaged (2); disengaged (3)
 };

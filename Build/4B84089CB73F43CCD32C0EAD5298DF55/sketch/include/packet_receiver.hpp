@@ -18,8 +18,11 @@ class packet_receiver{
     static struct ATLAS_HC_HEARTBEAT_BC heartbeat;
     static struct ATLAS_HC_TIMESYNC_RESP timesync;
     static struct HC_RADIO_STATUS radio_status;
+#ifndef DEPRECATED_REV_1
     static struct ATLAS_HC_SYS_STAT sys_status;
     static struct ATLAS_HC_ARM_DISARM_ACK ack;
+#endif
+
 public:
 
     /// @brief process timesync message; allows for accurate time synchronization on sending/receiving further signed packets
@@ -29,7 +32,8 @@ public:
     /// @brief process radio status message to display signal strength on user display 
     /// @param msg received message
     static void receive_radio_status(mavlink_message_t *msg);
-
+    
+#ifndef DEPRECATED_REV_1
     /// @brief process sys_status message to display battery percentage on user display
     /// @param msg received message
     static void receive_sys_status(mavlink_message_t *msg);
@@ -37,6 +41,7 @@ public:
     /// @brief receive acknowledgement for all command long messages sent from device; includes accepted/rejected status using which the hand controller knows whether the packet is accepted or rejected
     /// @param msg received message
     static void receive_ack(mavlink_message_t *msg);
+#endif
 
     /// @brief receives and validates heartbeat messages received from scout, based on which the last_heartbeat_received_at variable is updated
     /// @param msg received message

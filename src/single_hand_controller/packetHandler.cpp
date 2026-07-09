@@ -222,11 +222,13 @@ void sendManualControl(){
 
 void sendEstopRequest(bool enable){
     if(enable){
+        IF_DEBUG(Serial.println("sending e stop request");)
         sendBuffer(
             msgsndr.buffer_remote_emergency_cmd(1)
         );
     }
     else{
+        IF_DEBUG(Serial.println("sending e stop disable request");)
         sendBuffer(
             msgsndr.buffer_remote_emergency_cmd(0)
         );

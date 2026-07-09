@@ -52,3 +52,9 @@ enum driveMode{
     torque = 1,
     torque_sl = 2
 };
+
+enum estopMode{
+    disengaged = 0,
+    engaged = 1,
+    disabled = 2
+};

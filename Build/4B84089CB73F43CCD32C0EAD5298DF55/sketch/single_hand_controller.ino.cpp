@@ -20,7 +20,7 @@
 
 #line 19 "/home/nikhil/Hand Controller Project/scout-td0-HC/src/single_hand_controller/single_hand_controller.ino"
 void setup();
-#line 29 "/home/nikhil/Hand Controller Project/scout-td0-HC/src/single_hand_controller/single_hand_controller.ino"
+#line 34 "/home/nikhil/Hand Controller Project/scout-td0-HC/src/single_hand_controller/single_hand_controller.ino"
 void loop();
 #line 19 "/home/nikhil/Hand Controller Project/scout-td0-HC/src/single_hand_controller/single_hand_controller.ino"
 void setup(){
@@ -29,6 +29,11 @@ void setup(){
     if(!initMAVLink()){
         displayError("continue without packet signing", SIGNING_FAIL);
     }
+
+    // 3 consecutive heartbeats to ensure radio status reception
+    sendHeartbeat();
+    sendHeartbeat();
+    sendHeartbeat();
     //initiateController();
 }
 

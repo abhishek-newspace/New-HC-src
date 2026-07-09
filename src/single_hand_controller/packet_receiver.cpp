@@ -134,7 +134,7 @@ void packet_receiver::receive_radio_status(mavlink_message_t *msg)
 
 void packet_receiver::receive_heartbeat(mavlink_message_t *msg)
 {
-    uint8_t temp = 0;
+    uint32_t temp = 0;
 
     if(msg->sysid != heartbeat.sys_id || msg->compid != heartbeat.comp_id){
         IF_DEBUG(Serial.println("heartbeat system validation failed");)
@@ -148,42 +148,65 @@ void packet_receiver::receive_heartbeat(mavlink_message_t *msg)
     heartbeat.type = mavlink_msg_heartbeat_get_custom_mode(msg);
     heartbeat.autopilot = mavlink_msg_heartbeat_get_autopilot(msg);
     heartbeat.custom_mode.custom_mode = mavlink_msg_heartbeat_get_custom_mode(msg);
+    temp = mavlink_msg_heartbeat_get_custom_mode(msg);
 
-    switch(heartbeat.sys_status){
-        case MAV_STATE_STANDBY:
-            if(setUGV_state(standby)){
-                displayUGV_status(standby);
-            }
-            break;
-        case MAV_STATE_ACTIVE:
-            if(setUGV_state(active)){
-                displayUGV_status(active);
-            }
-        break;
-        default:
-        //IF_DEBUG(Serial.println(mavlink_msg_heartbeat_get_system_status(msg)));
-        if(setUGV_state(unknown)){
-            displayUGV_status(unknown);
-        }
-    }
+    // switch(heartbeat.sys_status){
+    //     case MAV_STATE_STANDBY:
+    //         if(setUGV_state(standby)){
+    //             displayUGV_status(standby);
+    //         }
+    //         break;
+    //     case MAV_STATE_ACTIVE:
+    //         if(setUGV_state(active)){
+    //             displayUGV_status(active);
+    //         }
+    //     break;
+    //     default:
+    //     //IF_DEBUG(Serial.println(mavlink_msg_heartbeat_get_system_status(msg)));
+    //     if(setUGV_state(unknown)){
+    //         displayUGV_status(unknown);
+    //     }
+    // }
     
-    temp =  heartbeat.custom_mode.hcm.driveMode[0] + 
-            heartbeat.custom_mode.hcm.driveMode[1] * 2;
-    switchDriveMode(temp);
+    switchDriveMode(temp & 3);
+    IF_DEBUG(Serial.print("drive mode : "));
+    IF_DEBUG(Serial.println(temp & 3));
     
-    temp =  heartbeat.custom_mode.hcm.arm_mode[0] + 
-            heartbeat.custom_mode.hcm.arm_mode[1] * 2;
+
     // ignoring arm status
 
-    temp =  heartbeat.custom_mode.hcm.driveModeLimit[0] + 
-            heartbeat.custom_mode.hcm.driveModeLimit[1] * 2;
-    setUGV_speed(temp);
+    // temp =  heartbeat.custom_mode.hcm.driveModeLimit[0] + 
+    //         heartbeat.custom_mode.hcm.driveModeLimit[1] * 2;
+    temp = temp >> 2;
 
-    temp =  heartbeat.custom_mode.hcm.emergency[0] + 
-            heartbeat.custom_mode.hcm.emergency[1] * 2;
-    switchEmergencyMode(temp);
+    setUGV_speed(temp & 3);
 
-    setBatterySOC(heartbeat.custom_mode.hcm.battery_soc);
+    IF_DEBUG(Serial.print("speed mode : "));
+    IF_DEBUG(Serial.println(temp & 3));
+
+    temp = temp >> 2;
+
+    IF_DEBUG(Serial.print("arm mode : "));
+    IF_DEBUG(Serial.println(temp & 3));
+
+    if((temp & 3) == 1)
+        setUGV_state(standby);
+    else if((temp & 3) == 2)
+        setUGV_state(active);
+    else
+        setUGV_state(standby);
+
+    
+
+    // temp =  heartbeat.custom_mode.hcm.emergency[0] + 
+    //         heartbeat.custom_mode.hcm.emergency[1] * 2;
+
+    temp = temp >> 2;
+    switchEmergencyMode(temp & 3);
+    IF_DEBUG(Serial.print("drive mode : "));
+    IF_DEBUG(Serial.println(temp & 3));
+
+    setBatterySOC(temp >> 2 & 127);
 
     
 }

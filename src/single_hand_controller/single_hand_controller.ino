@@ -22,6 +22,11 @@ void setup(){
     if(!initMAVLink()){
         displayError("continue without packet signing", SIGNING_FAIL);
     }
+
+    // 3 consecutive heartbeats to ensure radio status reception
+    sendHeartbeat();
+    sendHeartbeat();
+    sendHeartbeat();
     //initiateController();
 }
 

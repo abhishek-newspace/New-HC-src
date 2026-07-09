@@ -171,7 +171,6 @@ void updateButtonValues(struct button *b1, int32_t ms_since_last_check){
     // IF_DEBUG(Serial.println("ARM BUTTON CHECK"));
     b1->press_state = (uint8_t)!digitalRead(b1->pin);
     if(b1->press_state && b1->cooldown <= 0){
-        IF_DEBUG(Serial.println("yes!"));
         if(b1->press_callback != nullptr)
             b1->press_callback();
 

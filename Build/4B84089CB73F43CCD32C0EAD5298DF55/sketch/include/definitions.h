@@ -57,7 +57,7 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 #define _DEBUG_
 //#define GET_RADIO_CONFIG
 
-#define RADIO_SIMULATION_TESTING
+//#define RADIO_SIMULATION_TESTING
 
 // #define TESTING_JOYSTICK
 
@@ -130,4 +130,6 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 #define RADIO_PORT Serial3
 #endif
 
+
+#define DEPRECATED_REV_1    // wrap items that were deprecated in major revision of MAVLink XML into this
 

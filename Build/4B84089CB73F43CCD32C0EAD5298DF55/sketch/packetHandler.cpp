@@ -98,12 +98,13 @@ void sendHeartbeat(){
     sendBuffer(msgsndr.buffer_heartbeat());
 }
 
+#ifndef DEPRECATED_REV_1
 void sendComponentVersion()
 {
     IF_DEBUG(Serial.println("---sending component version!---");)
     sendBuffer(msgsndr.buffer_component_version());
 }
-
+#endif
 
 void sendTimesyncRequest()
 {
@@ -199,7 +200,7 @@ void sendSpeedChangeRequest(int speed){
 void sendModeChangeRequest(){
     IF_DEBUG(Serial.print("sending drive mode change request : ");)
     msgsndr.buffer_drive_mode_cmd(get_inc_driveMode() + 1);
-    switchDriveMode();
+//    switchDriveMode();
     IF_DEBUG(Serial.println(get_inc_driveMode() + 1);)
 }
 
@@ -218,6 +219,21 @@ void sendManualControl(){
             0
         )
     );
+}
+
+void sendEstopRequest(bool enable){
+    if(enable){
+        IF_DEBUG(Serial.println("sending e stop request");)
+        sendBuffer(
+            msgsndr.buffer_remote_emergency_cmd(1)
+        );
+    }
+    else{
+        IF_DEBUG(Serial.println("sending e stop disable request");)
+        sendBuffer(
+            msgsndr.buffer_remote_emergency_cmd(0)
+        );
+    }
 }
 
 void handlePacketReceived()
@@ -252,6 +268,8 @@ void handlePacketReceived()
                 IF_DEBUG(Serial.println("((((((((((((((((((((received heartbeat))))))))))))))))"));
                 packet_receiver::receive_heartbeat(&msg);
             break;
+
+            #ifndef DEPRECATED_REV_1
             case MAVLINK_MSG_ID_SYS_STATUS: 
                 IF_DEBUG(Serial.println("received system status"));
                 packet_receiver::receive_sys_status(&msg);
@@ -260,6 +278,8 @@ void handlePacketReceived()
                 IF_DEBUG(Serial.println("++++++++++++++++++received command ack"));
                 packet_receiver::receive_ack(&msg);
                 break;
+            #endif
+            
             }
         }
         // else if(status.parse_state == 14)

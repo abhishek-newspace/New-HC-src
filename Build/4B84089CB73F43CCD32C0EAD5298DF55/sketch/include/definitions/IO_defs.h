@@ -31,6 +31,7 @@
 #define BUTTON_FOGLIGHTS 2
 #define BUTTON_TORQUE_MODE 7
 #define TOGGLE_ARM 6
+#define TOGGLE_ESTOP 8
 
 
 // used in IOhandler to convert from raw thumbstick control input to normalized value that is sent to atlas

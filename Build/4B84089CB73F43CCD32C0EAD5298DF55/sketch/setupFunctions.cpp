@@ -20,6 +20,7 @@ void setupIO(){
     pinMode(5, INPUT_PULLUP);
     pinMode(6, INPUT_PULLUP);
     pinMode(7, INPUT_PULLUP);
+    pinMode(8, INPUT_PULLUP);
     pinMode(XPIN, INPUT);
     pinMode(YPIN, INPUT);
 }

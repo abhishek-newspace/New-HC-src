@@ -133,6 +133,7 @@ void establish_connectivity()
 void time_synchronize()
 {
 
+    sendTimesyncRequest();
     int tsID = periodic_actions.addPeriodicAction(sendTimesyncRequest,SECONDS_MS_1,receivedFirstTimesync);
     unsigned long long t1 = millis();
     IF_DEBUG(Serial.println("Entered time sync"));
@@ -172,21 +173,15 @@ void end_OFP_timer(unsigned long int time_limit){
 void run_wakeup_seq(){
     
     startup_time = micros();
-
-    sendHeartbeat();
-    sendHeartbeat();
-    sendHeartbeat();
     periodic_actions.reset();
     
     #ifndef TESTING
     periodic_actions.addPeriodicAction(sendHeartbeat,SECONDS_MS_1);   // send a heartbeat every 1 second
     periodic_actions.addPeriodicAction(updateDisplay,SECONDS_MS_2);
    
-    
-   
     establish_connectivity();
 
-    time_synchronize();
+   time_synchronize();
 
     #endif
     setFoglightState(0);
@@ -195,10 +190,11 @@ void run_wakeup_seq(){
 #ifndef DEPRECATED_REV_1
     sendComponentVersion();
 #endif
+
     periodic_actions.reset();
     periodic_actions.addPeriodicAction(sendHeartbeat,SECONDS_MS_1);
     periodic_actions.addPeriodicAction(updateDisplay,SECONDS_MS_2);
-    //periodic_actions.addPeriodicAction(sendTimesyncRequest,TIMESYNC_MSG_WAIT,isUGVdisconnected);
+    periodic_actions.addPeriodicAction(sendTimesyncRequest,TIMESYNC_MSG_WAIT,isUGVdisconnected);
 
 
     IF_TESTING(setUGV_state(active);)
@@ -238,6 +234,15 @@ void run_OFP_cycle()
         arm_press = false;
         disarm_press = false;
     }
+    else if(!estop_toggled){
+        displayInfo("e-stop engaged");
+        if(getEmergencyMode() != engaged)
+            sendEstopRequest(0);
+    }
+    else{
+        if(getEmergencyMode() == engaged)
+            sendEstopRequest(1);
+    }
     if(turnHeadlightCondition()){
         sendHeadlight();
         turnOnHeadlight = false;
@@ -252,14 +257,6 @@ void run_OFP_cycle()
     if(switchModeCondition()){
         sendModeChangeRequest();
         switchMode = false;
-    }
-    if(estop_toggled){
-        if(getEmergencyMode() != engaged)
-            sendEstopRequest(1);
-    }
-    else{
-        if(getEmergencyMode() != disabled)
-            sendEstopRequest(0);
     }
     handlePacketReceived();
     periodic_actions.performPeriodicActions();

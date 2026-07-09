@@ -372,7 +372,7 @@ void displayRSSI(){
 
 void displayBattery(){
     int color;
-    if(ugv_battery_soc > 60)
+    if(ugv_battery_soc > 40)
       color = COLOR_GREEN;
     else if(ugv_battery_soc > 30)
       color = COLOR_YELLOW;
@@ -386,7 +386,7 @@ void displayBattery(){
         battery_topLeftY + BATTERY_HEIGHT, 
         
         color);
-    if(ugv_battery_soc < 10 && ugv_battery_soc > 0){
+    if(ugv_battery_soc < 20 && ugv_battery_soc > 0){
       displayInfo("Scout battery charge below 10%; please charge");
     }
     setFontSmall();
