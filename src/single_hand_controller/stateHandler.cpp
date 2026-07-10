@@ -32,15 +32,15 @@ bool fog_brake_state = 0;
 
 void switchEmergencyMode(int mode){
     mode--;
-    //displayInfo(String("emergency mode :") + String(mode));
-    if(mode != current_emergency_mode){
-        if(mode == engaged){
-            displayError("Estop Engaged",ESTOP_ENGAGED);
-        }
-        else if(getErrorCodeDisplayed() == ESTOP_ENGAGED){
-            clearError();
-        }
+    displayInfo(String("emergency mode :") + String(mode));
+    // if(mode != current_emergency_mode){
+    if(mode == engaged && getErrorCodeDisplayed() == ESTOP_ENGAGED){
+        displayError("Estop Engaged",ESTOP_ENGAGED);
     }
+    else if(getErrorCodeDisplayed() == ESTOP_ENGAGED){
+        clearError();
+    }
+    // }
     current_emergency_mode = mode;
 }
 

@@ -61,8 +61,10 @@ void setupDisplay(){
 
     clear_display();
     setFont1();
+    #ifdef RELEASE
     displayLogo();
     displayInvertedLogo();
+    #endif
     displayDriveMode(speed);
     displayBasic();
 }

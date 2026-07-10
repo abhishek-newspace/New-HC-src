@@ -23,9 +23,7 @@ timer timesync_timer;
 timer update_screen_timer;
 
 bool currentlySendingArm = false;
-extern int arm_send_count;
 bool arm_disarm_error = false;
-
 bool turnOnHeadlight = false;
 bool turnOnFoglight = false;
 int required_speed = 0;
@@ -147,7 +145,8 @@ void time_synchronize()
             return;
         }
         periodic_actions.performPeriodicActions();
-    }while(!receivedFirstTimesync() && millis() - t1 < 10000);
+    }while(!receivedFirstTimesync() IF_DEBUG(&& millis() - t1 < SECONDS_MS_10));
+    clearInfo();
     if(!receivedFirstTimesync()){
         displayError("Failed Time Synchronization",TIME_SYNCHRONIZE_FAILED);
     }
@@ -172,7 +171,7 @@ void end_OFP_timer(unsigned long int time_limit){
  * send 3 consecutive heartbeats (to ensure radio status will be received)
  */
 void run_wakeup_seq(){
-    
+    IF_DEBUG(Serial.println("running wakeup sequence");)
     startup_time = micros();
     periodic_actions.reset();
     
@@ -182,7 +181,7 @@ void run_wakeup_seq(){
    
     establish_connectivity();
 
-   time_synchronize();
+    time_synchronize();
 
     #endif
     setFoglightState(0);
@@ -236,7 +235,7 @@ void run_OFP_cycle()
         disarm_press = false;
     }
     else if(!estop_toggled){
-        displayInfo("e-stop engaged");
+        IF_DEBUG(displayInfo("e-stop engaged");)
         if(getEmergencyMode() != engaged)
             sendEstopRequest(0);
     }
@@ -256,6 +255,7 @@ void run_OFP_cycle()
         sendSpeedChangeRequest(required_speed);
     }
     if(switchModeCondition()){
+        IF_DEBUG(Serial.println("requesting drive mode"));
         sendModeChangeRequest();
         switchMode = false;
     }
