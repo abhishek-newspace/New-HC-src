@@ -46,7 +46,7 @@
 
 
 // all durations to be defined in microseconds
-#define HEARTBEAT_TIMEOUT       SECONDS_MS_10   // left to be in milliseconds due to limitation of micros() function that resets every 70 minutes 
+#define HEARTBEAT_TIMEOUT       SECONDS_MS_3   // left to be in milliseconds due to limitation of micros() function that resets every 70 minutes 
 #define TIMESYNC_MSG_WAIT       SECONDS_MS_10  // left to be in milliseconds due to limitation of micros() function that resets every 70 minutes 
 #define MANUAL_CONTROL_MSG_WAIT MS_10
 #define ARM_DISARM_RESEND_DELAY MS_1500

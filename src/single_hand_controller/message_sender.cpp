@@ -86,11 +86,11 @@ int message_sender::buffer_drive_mode_cmd(int mode)
         HC_COMP_ID,
         msg,
         
-        mode_cmd.target_system,
-        mode_cmd.target_component,
-        mode_cmd.command,
-        mode_cmd.confirmation,
-        mode_cmd.param1,
+        drive_cmd.target_system,
+        drive_cmd.target_component,
+        drive_cmd.command,
+        drive_cmd.confirmation,
+        drive_cmd.param1,
         0,0,0,0,0,0
     );
     return mavlink_msg_to_send_buffer(buf, msg);
@@ -129,9 +129,10 @@ int message_sender::buffer_timesync()
         msg,
         
         timesync.tc1,
-        timesync.ts1
-    ,timesync.target_sys
-    ,timesync.target_comp);
+        timesync.ts1,
+        timesync.target_sys,
+        timesync.target_comp
+    );
 
     return mavlink_msg_to_send_buffer(buf,msg);
 }
@@ -162,10 +163,12 @@ int message_sender::buffer_manual_control(int x, int y, bool extra_feature_1_pre
 }
 
 int message_sender::buffer_remote_emergency_cmd(bool engage){
-    if(engage)
+    if(engage){
+        estop_cmd.param1 = 1;
+    }
+    else{
         estop_cmd.param1 = 2;
-    else
-        estop_cmd.param1 = 3;
+    }
     
     mavlink_msg_command_long_pack(
         HC_ID,

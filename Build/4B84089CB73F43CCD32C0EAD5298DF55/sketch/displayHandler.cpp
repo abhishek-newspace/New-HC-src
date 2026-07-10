@@ -335,7 +335,7 @@ void displaySpeed(int speed){
   int color;
   switch(speed + 1){
     case 0:
-      text = "NEUTRAL   ";
+      text = "RESERVED  ";
       color = DEFAULT_TEXT_COLOR;
     break;
     case 1:
