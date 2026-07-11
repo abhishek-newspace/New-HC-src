@@ -157,7 +157,7 @@ int message_sender::buffer_manual_control(int x, int y, bool extra_feature_1_pre
         manual_control.r,
         manual_control.Push_buttons,
         //manual_control.Tristate_Toggle_switches
-        0,0,0,0,0,0,0,0,0
+        0,0,0,0,0,0,0,0,0, 0
     );
 
     return mavlink_msg_to_send_buffer(buf,msg);
@@ -165,10 +165,10 @@ int message_sender::buffer_manual_control(int x, int y, bool extra_feature_1_pre
 
 int message_sender::buffer_remote_emergency_cmd(bool engage){
     if(engage){
-        estop_cmd.param1 = 1;
+        estop_cmd.param1 = 2;
     }
     else{
-        estop_cmd.param1 = 2;
+        estop_cmd.param1 = 1;
     }
     
     mavlink_msg_command_long_pack(

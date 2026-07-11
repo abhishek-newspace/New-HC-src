@@ -48,6 +48,8 @@ public:
     static void receive_heartbeat(mavlink_message_t *msg);
 };
 
+void resetTimesync();
+
 /// @brief check whether first time synchronization is performed or not.
 bool receivedFirstTimesync();
 

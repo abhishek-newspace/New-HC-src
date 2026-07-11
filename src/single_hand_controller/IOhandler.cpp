@@ -108,8 +108,8 @@ toggle t_arm_disarm = {
     t_estop = {
         TOGGLE_ESTOP,
         0,
-        toggleEstop,
-        untoggleEstop
+        untoggleEstop,
+        toggleEstop
     };
 two_pos_toggle tt_speed_toggle = {
         TOGGLE_HIGH_SPEED,
