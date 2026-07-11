@@ -250,3 +250,7 @@ void packet_receiver::receive_ack(mavlink_message_t *msg)
 unsigned long getHeartbeatDiff(){
     return millis() - last_heartbeat_received_at;
 }
+
+void resetTimesync(){
+    UGVTime = 0;
+}

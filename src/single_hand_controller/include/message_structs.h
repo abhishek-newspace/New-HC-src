@@ -7,13 +7,20 @@
  */
 #pragma once
 #include "definitions.h"
-//#include "mavlink/common/mavlink.h"
-//#include "/home/nikhil/MAVLink/mavlink_standard/common/mavlink.h"
-#include "custom_v0.3/ugvCustom/mavlink.h"
-//#include "custom_v0.3_mav1/ugvCustom/mavlink.h"   // FOR MAVLINK V1.0
+#include "custom_v0.3/ugvcustom/mavlink.h"
 
 // commands sent from hand controller
 // empty fields within structs need to be filled with appropriate values
+
+#define MAV_AUTOPILOT_INVALID 8
+#define MAV_CMD_COMPONENT_ARM_DISARM 400
+#define MAV_CMD_DO_SET_MODE 176
+#define MAV_CMD_DRIVE_MODE 31900
+#define MAV_CMD_LIGHT_CONTROL 31901
+#define MAV_CMD_REMOTE_EMERGENCY 31904
+#define MAV_TYPE_ONBOARD_CONTROLLER 18
+#define MAV_MODE_FLAG_CUSTOM_MODE_ENABLED 1
+
 
 struct heartbeat_custom_mode{
     bool driveMode[2];

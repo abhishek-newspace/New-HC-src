@@ -20,7 +20,7 @@
 
 #line 19 "/home/nikhil/Hand Controller Project/scout-td0-HC/src/single_hand_controller/single_hand_controller.ino"
 void setup();
-#line 34 "/home/nikhil/Hand Controller Project/scout-td0-HC/src/single_hand_controller/single_hand_controller.ino"
+#line 33 "/home/nikhil/Hand Controller Project/scout-td0-HC/src/single_hand_controller/single_hand_controller.ino"
 void loop();
 #line 19 "/home/nikhil/Hand Controller Project/scout-td0-HC/src/single_hand_controller/single_hand_controller.ino"
 void setup(){
@@ -34,7 +34,6 @@ void setup(){
     sendHeartbeat();
     sendHeartbeat();
     sendHeartbeat();
-    //initiateController();
 }
 
 

@@ -115,7 +115,7 @@ void establish_connectivity()
 
         if(!receivedRadioStatus() && micros() - startup_time > SECONDS_MS_5){
            displayError("Radio communication failure", RADIO_COMM_FAILURE);
-    }
+        }
     }
     hb_count = 0;
 }
@@ -131,18 +131,21 @@ void establish_connectivity()
 void time_synchronize()
 {
 
+    resetTimesync();
     sendTimesyncRequest();
-    int tsID = periodic_actions.addPeriodicAction(sendTimesyncRequest,SECONDS_MS_1,receivedFirstTimesync);
+    int tsID = periodic_actions.addPeriodicAction(sendTimesyncRequest,SECONDS_MS_1);
     unsigned long long t1 = millis();
     IF_DEBUG(Serial.println("Entered time sync"));
     displayInfo("syncing ...");
     do{
         handlePacketReceived();
+        #ifndef TESTING_TIMESYNC
         if(heartbeat_timed_out()){
             clearInfo();
             setUGV_state((ugv_status)disconnected);
             return;
         }
+        #endif
         periodic_actions.performPeriodicActions();
     }while(!receivedFirstTimesync() IF_DEBUG(&& millis() - t1 < SECONDS_MS_10));
     clearInfo();
@@ -178,8 +181,9 @@ void run_wakeup_seq(){
     periodic_actions.addPeriodicAction(sendHeartbeat,SECONDS_MS_1);   // send a heartbeat every 1 second
     periodic_actions.addPeriodicAction(updateDisplay,SECONDS_MS_2);
    
+   #ifndef TESTING_TIMESYNC
     establish_connectivity();
-
+#endif
     time_synchronize();
 
     #endif
@@ -233,14 +237,14 @@ void run_OFP_cycle()
         arm_press = false;
         disarm_press = false;
     }
-    else if(!estop_toggled){
+    else if(estop_toggled){
         IF_DEBUG(displayInfo("e-stop engaged");)
         if(getEmergencyMode() != engaged)
-            sendEstopRequest(0);
+            sendEstopRequest(1);
     }
     else{
         if(getEmergencyMode() == engaged)
-            sendEstopRequest(1);
+            sendEstopRequest(0);
     }
     if(turnHeadlightCondition()){
         sendHeadlight();

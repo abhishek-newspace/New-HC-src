@@ -27,7 +27,6 @@ void setup(){
     sendHeartbeat();
     sendHeartbeat();
     sendHeartbeat();
-    //initiateController();
 }
 
 

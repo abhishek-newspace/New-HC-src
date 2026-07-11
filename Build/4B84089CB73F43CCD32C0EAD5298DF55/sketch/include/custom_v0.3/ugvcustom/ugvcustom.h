@@ -11,7 +11,7 @@
     #error Wrong include order: MAVLINK_UGVCUSTOM.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_UGVCUSTOM_XML_HASH -8900407254048203717
+#define MAVLINK_UGVCUSTOM_XML_HASH 8529551792519459557
 
 #ifdef __cplusplus
 extern "C" {
