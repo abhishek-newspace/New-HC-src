@@ -27,6 +27,7 @@
 
 extern bool turnOnHeadlight;
 extern bool turnOnFoglight;
+extern bool turnOffLight;
 extern int required_speed;
 extern bool switchMode;
 extern bool arm_press;
@@ -41,12 +42,16 @@ void untoggleEstop(){
     estop_toggled = false;
 }
 
-void enableHeadlight(){
+void turnOnHeadlights(){
     turnOnHeadlight = true;
+    turnOffLight = false;
 }
-
-void enabledFoglight(){
+void turnOffLights(){
+    turnOffLight = true;
+}
+void turnOnFoglights(){
     turnOnFoglight = true;
+    turnOffLight = false;
 }
 
 void enableSwitchMode(){
@@ -83,19 +88,22 @@ void set_speed_high(){
 
 
 
+long_press_button b_arm_disarm = {
+    BUTTON_ARM,
+    0,
+    nullptr,
+    enableArm,
+    0,
+    0
+};
 
-button  b_headlight = {
-        BUTTON_HEADLIGHTS,     // uint8_t pin;                
+button  b_e_stop = {
+        BUTTON_ESTOP,     // uint8_t pin;                
         0,                  // buttonPress press_state;
-        enableHeadlight,            // void (*press_callback)(void);        
+        toggleEstop,        // void (*press_callback)(void);
         0                   // uint32_t cooldown;
     },
-    b_foglight = {
-        BUTTON_FOGLIGHTS,    // uint8_t pin;
-        0,                   // buttonPress press_state;
-        enabledFoglight,           // void (*press_callback)(void);
-        0                    // uint32_t cooldown;
-    },
+    
     b_mode_switch = {
         BUTTON_TORQUE_MODE,
         0,
@@ -103,18 +111,7 @@ button  b_headlight = {
         0
     };
 
-toggle t_arm_disarm = {
-    TOGGLE_ARM,
-    0,
-    enableDisarm,
-    enableArm
-},
-    t_estop = {
-        TOGGLE_ESTOP,
-        0,
-        untoggleEstop,
-        toggleEstop
-    };
+
 two_pos_toggle tt_speed_toggle = {
         TOGGLE_HIGH_SPEED,
         TOGGLE_LOW_SPEED,
@@ -122,6 +119,14 @@ two_pos_toggle tt_speed_toggle = {
         set_speed_low,
         set_speed_mid,
         set_speed_high
+    },
+    tt_light_toggle = {
+        TOGGLE_FOGLIGHTS,
+        TOGGLE_LIGHTS_OFF,
+        0,
+        turnOffLights,
+        turnOnHeadlights,
+        turnOnFoglights
     };
 
 
@@ -302,12 +307,11 @@ void checkUserInput()
     static unsigned long int last_input_checked_at = millis();
 
     int32_t ms_since_last_check = millis() - last_input_checked_at;
-    updateButtonValues(&b_headlight, ms_since_last_check);
-    updateButtonValues(&b_foglight, ms_since_last_check);
+    updateLongPressButtonValues(&b_arm_disarm, ms_since_last_check);
+    updateButtonValues(&b_e_stop, ms_since_last_check);
     updateButtonValues(&b_mode_switch, ms_since_last_check);
-    updateToggleValues(&t_arm_disarm, ms_since_last_check);
-    updateToggleValues(&t_estop, ms_since_last_check);
     updateTwoPosToggleValues(&tt_speed_toggle, ms_since_last_check);
+    updateTwoPosToggleValues(&tt_light_toggle, ms_since_last_check);
 
     last_input_checked_at = millis();
 }

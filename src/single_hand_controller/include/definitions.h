@@ -108,7 +108,7 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 #endif
 
 
-#define TIME_REQ  // comment out this definition in case of not requiring time to be displayed
+//#define TIME_REQ  // comment out this definition in case of not requiring time to be displayed
 
 /**
  * When defined: MANUAL_CONTROL is sent only while the stick is out of the dead-zone

@@ -32,11 +32,11 @@
 
 #define TOGGLE_HIGH_SPEED 4
 #define TOGGLE_LOW_SPEED 5
-#define BUTTON_HEADLIGHTS 3
-#define BUTTON_FOGLIGHTS 2
+#define TOGGLE_LIGHTS_OFF 6 
+#define TOGGLE_FOGLIGHTS 8
 #define BUTTON_TORQUE_MODE 7
-#define TOGGLE_ARM 6
-#define TOGGLE_ESTOP 8
+#define BUTTON_ARM 2
+#define BUTTON_ESTOP 3
 
 /**
  * Optional tactile / haptic pin for SRS §3.2.4 (UGV low-battery alert).

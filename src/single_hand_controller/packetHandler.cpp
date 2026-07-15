@@ -192,6 +192,13 @@ void sendFogBrakeLight(){
     }   
 }
 
+void sendLightOffRequest(){
+    setHeadlighState(0);
+    setFoglightState(0);
+    IF_DEBUG(Serial.println("sending light off request");)
+    sendBuffer(msgsndr.buffer_light_control_cmd(0,0,0));
+}
+
 /// @brief send a request to turn off headlight
 void sendHeadlight_OFF(){
     setHeadlighState(0);

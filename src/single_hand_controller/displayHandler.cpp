@@ -11,6 +11,7 @@
  * @date 15/07/2026
  * - SRS §3.2.2 connectivity LED priority (Red disconnected, Yellow low RSSI, Blue timesync, Green healthy)
  * - compact top-row UGV/HC battery gauges; fill width = SoC% from right; colour from SoC bands
+ * - battery labels use dim grey + transparent glyphs so fill colour stays visible
  * - displayHcBatteryStatus(), drawBatteryGaugeFill(), triggerTactileAlert() for UGV low-battery (SRS §3.2.4)
  * - setBatterySOC accepts 0–100; HC gauge only redraws when SoC changes
  */
@@ -419,6 +420,44 @@ static void drawBatteryGaugeFill(uint8_t ix, uint8_t iy, uint8_t soc, int fillCo
       tft.fillRectangle(fillStart, iy, ix + BATTERY_LENGTH, iy + BATTERY_HEIGHT, fillColor);
 }
 
+/**
+ * Draw battery label without opaque glyph background so SoC fill stays visible
+ * through letter interiors (TFT_22_ILI9225 drawText always paints _bgColor).
+ */
+static void drawBatteryLabel(uint8_t x, uint8_t y, const char *text){
+    setFontSmall();
+    const _currentFont cf = tft.getFont();
+    uint8_t cursor_x = x;
+
+    for(const char *p = text; *p != '\0'; p++){
+        const uint16_t ch = (uint16_t)(uint8_t)(*p);
+        uint16_t charOffset = (cf.width * cf.nbrows) + 1;
+        charOffset = (charOffset * (ch - cf.offset)) + FONT_HEADER_SIZE;
+
+        uint8_t charWidth;
+        if(cf.monoSp)
+            charWidth = cf.width;
+        else
+            charWidth = pgm_read_byte(&cf.font[charOffset]);
+        charOffset++;
+
+        for(uint8_t i = 0; i < charWidth; i++){
+            uint8_t h = 0;
+            for(uint8_t j = 0; j < cf.nbrows; j++){
+                const uint8_t charData = pgm_read_byte(&cf.font[charOffset++]);
+                for(uint8_t k = 0; k < 8; k++){
+                    if(h >= cf.height)
+                        break;
+                    if(bitRead(charData, k))
+                        tft.drawPixel(cursor_x + i, y + (j * 8) + k, BATTERY_LABEL_COLOR);
+                    h++;
+                }
+            }
+        }
+        cursor_x = (uint8_t)(cursor_x + charWidth + 1);
+    }
+}
+
 void displayBattery(){
     /**
      * SRS §3.2.4 — UGV SoC fill colour (compact top-row gauge):
@@ -427,9 +466,7 @@ void displayBattery(){
      *   Red    : <= 30%
      */
     drawBatteryGaugeFill(ugv_batt_ix, ugv_batt_iy, ugv_battery_soc, ugvBatteryColor(ugv_battery_soc));
-
-    setFontSmall();
-    tft.drawText(ugv_batt_ix + 2, ugv_batt_iy + 1, "UGV", COLOR_WHITE);
+    drawBatteryLabel(ugv_batt_ix + 2, ugv_batt_iy + 1, "UGV");
 
     // Edge-trigger tactile once when SoC enters the red band (SRS §3.2.4).
     static bool was_in_low_band = false;
@@ -701,9 +738,7 @@ void displayHcBatteryStatus(){
     }
 
     drawBatteryGaugeFill(hc_batt_ix, hc_batt_iy, shown, color);
-
-    setFontSmall();
-    tft.drawText(hc_batt_ix + 6, hc_batt_iy + 1, "HC", COLOR_WHITE);
+    drawBatteryLabel(hc_batt_ix + 6, hc_batt_iy + 1, "HC");
 
 #ifdef HC_BATT_STATUS_LED_PIN
     digitalWrite(HC_BATT_STATUS_LED_PIN, led_on ? HIGH : LOW);

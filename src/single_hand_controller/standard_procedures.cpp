@@ -34,10 +34,11 @@ bool currentlySendingArm = false;
 bool arm_disarm_error = false;
 bool turnOnHeadlight = false;
 bool turnOnFoglight = false;
+bool turnOffLight = false;
 int required_speed = 0;
 bool switchMode = false;
 bool arm_press = false;
-bool disarm_press = false;
+//bool disarm_press = false;
 bool estop_toggled = false;
 
 int hb_count = 0;
@@ -149,6 +150,10 @@ inline bool turnFogLightCondition(){
     return turnOnFoglight;
 }
 
+inline bool turnOffLightsCondition(){
+    return turnOffLight;
+}
+
 
 inline bool speedChangeCondition(){
     static unsigned long last_change_at = 0;
@@ -168,7 +173,7 @@ inline bool startArmCondition(){
 }
 
 inline bool startDisarmCondition(){
-    return disarm_press && getUGV_state() == active;
+    return arm_press && getUGV_state() == active;
 }
 
 
@@ -342,7 +347,6 @@ void run_OFP_cycle()
         sendArmCommand();
         startPendingRequest(PENDING_ARM);
         arm_press = false;
-        disarm_press = false;
     }
     else if(startDisarmCondition()){
         IF_DEBUG(Serial.println("DISARM BUTTON PRESSED"));
@@ -350,9 +354,8 @@ void run_OFP_cycle()
         sendDisarmCommand();
         startPendingRequest(PENDING_DISARM);
         arm_press = false;
-        disarm_press = false;
     }
-    else if(estop_toggled){
+    if(estop_toggled){
         // SRS §3.3.1: retransmit engage while HC e-stop is held (1 Hz).
         static unsigned long last_estop_tx_ms = 0;
         if(getEmergencyMode() != engaged
@@ -361,7 +364,6 @@ void run_OFP_cycle()
             sendEstopRequest(true);
             last_estop_tx_ms = millis();
         }
-    }
     else if(getEmergencyMode() == engaged){
         // Toggle left e-stop; clear remote e-stop once (rate-limited).
         static unsigned long last_estop_clear_ms = 0;
@@ -369,6 +371,11 @@ void run_OFP_cycle()
             sendEstopRequest(false);
             last_estop_clear_ms = millis();
         }
+    }
+}
+    if(turnOffLightsCondition()){
+        sendLightOffRequest();
+        turnOffLight = false;
     }
 
     /* Lights — press buttons unchanged; periodic refresh while ON */

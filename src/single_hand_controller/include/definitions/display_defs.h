@@ -43,6 +43,13 @@
 
 #define DM_COLOR COLOR_GREENYELLOW
 
+/**
+ * Battery box labels ("UGV"/"HC"). This TFT has no true alpha blending;
+ * drawText() also paints an opaque black glyph background that hides the fill.
+ * Use a dim grey stroke + transparent (foreground-only) drawing instead.
+ */
+#define BATTERY_LABEL_COLOR COLOR_GRAY
+
 #define SCREEN_HEIGHT 221
 #define SCREEN_WIDTH 176
 

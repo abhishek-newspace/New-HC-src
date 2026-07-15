@@ -58,6 +58,9 @@ void sendHeadlight();
 /// @brief send a request to turn on brake light and fog light
 void sendFogBrakeLight();
 
+/// @brief send a request to turn off all lights
+void sendLightOffRequest();
+
 /// @brief retransmit current head/fog/rear light state without toggling (SRS §3.2.9)
 void sendCurrentLightState();
 
