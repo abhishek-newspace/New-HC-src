@@ -18,7 +18,8 @@
  *
  * @date 15/07/2026
  * - pending-request timeout helpers; arm wait uses Atlas HEARTBEAT arm field
- * - light/e-stop retransmit wiring in OFP cycle
+ * - lights: one LIGHT_CONTROL per toggle edge (pins 6/8); no periodic retransmit
+ * - e-stop pin 3: long-press toggle; continuous engage TX only; one-shot clear
  */
 
 #include "include/standard_procedures.hpp"
@@ -40,6 +41,7 @@ bool switchMode = false;
 bool arm_press = false;
 //bool disarm_press = false;
 bool estop_toggled = false;
+bool estop_clear_request = false;
 
 int hb_count = 0;
 long unsigned int OFP_timer = 0;
@@ -356,52 +358,32 @@ void run_OFP_cycle()
         arm_press = false;
     }
     if(estop_toggled){
-        // SRS §3.3.1: retransmit engage while HC e-stop is held (1 Hz).
+        /* Engaged: retransmit engage at 1 Hz until long-press disengages. */
         static unsigned long last_estop_tx_ms = 0;
-        if(getEmergencyMode() != engaged
-            || (millis() - last_estop_tx_ms >= ESTOP_RETRANSMIT_MS)){
+        if(millis() - last_estop_tx_ms >= ESTOP_RETRANSMIT_MS){
             IF_DEBUG(displayInfo("e-stop engaged");)
             sendEstopRequest(true);
             last_estop_tx_ms = millis();
         }
-    else if(getEmergencyMode() == engaged){
-        // Toggle left e-stop; clear remote e-stop once (rate-limited).
-        static unsigned long last_estop_clear_ms = 0;
-        if(millis() - last_estop_clear_ms >= ESTOP_RETRANSMIT_MS){
-            sendEstopRequest(false);
-            last_estop_clear_ms = millis();
-        }
     }
-}
+    else if(estop_clear_request){
+        /* Disengage: one clear packet only — no continuous clear TX. */
+        sendEstopRequest(false);
+        estop_clear_request = false;
+        IF_DEBUG(displayInfo("e-stop cleared");)
+    }
+
     if(turnOffLightsCondition()){
-        sendLightOffRequest();
+        sendLightToggleState(0);
         turnOffLight = false;
     }
-
-    /* Lights — press buttons unchanged; periodic refresh while ON */
-    {
-        static unsigned long last_light_tx_ms = 0;
-        bool light_edge = false;
-
-        if(turnHeadlightCondition()){
-            sendHeadlight();
-            turnOnHeadlight = false;
-            light_edge = true;
-        }
-        if(turnFogLightCondition()){
-            sendFogBrakeLight();
-            turnOnFoglight = false;
-            light_edge = true;
-        }
-
-        const bool any_light_on = !headlight_off() || !foglight_off();
-        if(light_edge){
-            last_light_tx_ms = millis();
-        }
-        else if(any_light_on && (millis() - last_light_tx_ms >= LIGHT_RETRANSMIT_MS)){
-            sendCurrentLightState();
-            last_light_tx_ms = millis();
-        }
+    else if(turnHeadlightCondition()){
+        sendLightToggleState(1);
+        turnOnHeadlight = false;
+    }
+    else if(turnFogLightCondition()){
+        sendLightToggleState(2);
+        turnOnFoglight = false;
     }
 
     /* Speed limit (HI/MID/LO toggle) */

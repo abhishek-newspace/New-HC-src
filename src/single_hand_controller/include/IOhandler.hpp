@@ -11,6 +11,7 @@
  * - modified struct to include callback functions to increase, decrease and set speed to neutral
  *
  * @date 15/07/2026
+ * - declared updateLightToggleEdge() for pins 6/8 light toggle (edge-triggered only)
  * - declared readHcBatterySoc() for local HC battery SoC (SRS §3.2.3.3)
  */
 #pragma once
@@ -55,6 +56,12 @@ void updateToggleValues(struct toggle *t1, int32_t ms_since_last_check);
 
 
 void updateTwoPosToggleValues(struct two_pos_toggle *t1, int32_t ms_since_last_check);
+
+/**
+ * Light 3-pos toggle (pins 6=OFF, mid=HEAD, 8=FOG): fire callbacks only on position change
+ * so MAVLink LIGHT_CONTROL is not requested every input poll.
+ */
+void updateLightToggleEdge(struct two_pos_toggle *t1, int32_t ms_since_last_check);
 
 /**
  * SRS §3.2.3.3 — read HC pack SoC % from HC_BATTERY_ADC_PIN (0–100).

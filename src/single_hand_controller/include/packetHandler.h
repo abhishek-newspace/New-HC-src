@@ -11,7 +11,7 @@
  * @date 07/05/2026
  * added function to send component version
  * @date 15/07/2026
- * - declared sendCurrentLightState() for periodic light retransmit (SRS §3.2.9)
+ * - declared sendLightToggleState() for edge-triggered light commands (pins 6/8)
  */
 #pragma once
 #include "definitions.h"
@@ -52,6 +52,9 @@ void sendDisarmCommand();
 /// @brief send a heartbeat
 void sendHeartbeat();
 
+/// @brief send LIGHT_CONTROL for 3-pos light toggle (0=OFF pin6, 1=HEAD centre, 2=FOG pin8)
+void sendLightToggleState(uint8_t toggle_pos);
+
 /// @brief send a request to turn on headlight
 void sendHeadlight();
 
@@ -61,7 +64,7 @@ void sendFogBrakeLight();
 /// @brief send a request to turn off all lights
 void sendLightOffRequest();
 
-/// @brief retransmit current head/fog/rear light state without toggling (SRS §3.2.9)
+/// @brief retransmit current head/fog/rear from local state (no toggle change)
 void sendCurrentLightState();
 
 /// @brief send request to set speed to required speed

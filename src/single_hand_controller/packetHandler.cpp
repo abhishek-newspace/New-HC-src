@@ -9,7 +9,7 @@
  *
  * <h2>Changes</h2>
  * @date 15/07/2026
- * - sendCurrentLightState() for periodic light retransmit
+ * - sendLightToggleState(): one MAVLink packet per toggle position (pins 6/8)
  * - MANUAL_CONTROL_ONLY_WHEN_MOVING: send MC only out of deadband + one zero frame on return
 */
 
@@ -126,77 +126,65 @@ void sendDisarmCommand(){
     sendBuffer(msgsndr.buffer_arm_disarm_cmd(0));
 }
 
-void sendHeadlight(){
-    // sendBuffer(msgsndr.buffer_light_control_cmd(0,0,0));
-    // return;
-    IF_DEBUG(Serial.println("+++++++++++++HEADLIGHT");)
-    if(headlight_off()){
-        
-        setHeadlighState(1);
-        if(foglight_off()){
-            sendBuffer(msgsndr.buffer_light_control_cmd(1,0,1));
-        }
-        else{
-            sendBuffer(msgsndr.buffer_light_control_cmd(1,1,1));
-        }
+/**
+ * Send LIGHT_CONTROL from 3-pos toggle:
+ *   pin 6 LOW = OFF (0,0,0), centre = HEAD+REAR (1,0,1), pin 8 LOW = FOG (0,1,0).
+ * ICD: param1=head, param2=fog, param3=rear.
+ * Called once per toggle edge — not while the switch is held.
+ */
+void sendLightToggleState(uint8_t toggle_pos){
+    bool head = false;
+    bool fog  = false;
+    bool rear = false;
+
+    switch(toggle_pos){
+        case 1:   /* HEAD (centre) */
+            head = true;
+            rear = true;
+            break;
+        case 2:   /* FOG (pin 8) */
+            fog = true;
+            break;
+        default:  /* OFF (pin 6) */
+            break;
     }
-    else{
-        setHeadlighState(0);
-        if(foglight_off()){
-            sendBuffer(msgsndr.buffer_light_control_cmd(0,0,0));
-        }
-        else{
-            sendBuffer(msgsndr.buffer_light_control_cmd(0,1,0));
-        }
-    }
+
+    setHeadlighState(head);
+    setFoglightState(fog);
+    IF_DEBUG(Serial.print("LIGHT_CTRL toggle=");)
+    IF_DEBUG(Serial.print(toggle_pos);)
+    IF_DEBUG(Serial.print(" head=");)
+    IF_DEBUG(Serial.print(head);)
+    IF_DEBUG(Serial.print(" fog=");)
+    IF_DEBUG(Serial.print(fog);)
+    IF_DEBUG(Serial.print(" rear=");)
+    IF_DEBUG(Serial.println(rear);)
+    sendBuffer(msgsndr.buffer_light_control_cmd(head, fog, rear));
 }
 
-/**
- * Retransmit the currently commanded light bitfield without toggling local state.
- * SRS §3.2.9.3.2 — light ON/OFF shall be sent periodically.
- * Rear light remains tied to headlight (existing HC light-control encoding).
- */
+void sendHeadlight(){
+    sendLightToggleState(1);
+}
+
 void sendCurrentLightState(){
-    const bool head = !headlight_off();
-    const bool fog  = !foglight_off();
-    const bool rear = head;   // existing wire convention: rear follows headlight
-    sendBuffer(msgsndr.buffer_light_control_cmd(head, fog, rear));
+    if(headlight_off() && foglight_off())
+        sendLightToggleState(0);
+    else if(!headlight_off() && foglight_off())
+        sendLightToggleState(1);
+    else if(headlight_off() && !foglight_off())
+        sendLightToggleState(2);
+    else{
+        sendBuffer(msgsndr.buffer_light_control_cmd(true, true, true));
+    }
 }
 
 /// @brief send a request to turn on brake light and fog light
 void sendFogBrakeLight(){
-    // sendBuffer(msgsndr.buffer_light_control_cmd(1,1,1));
-    // return;
-    IF_DEBUG(Serial.println("---------------FOGLIGHT");)
-    if(headlight_off()){
-        
-        if(foglight_off()){
-            setFoglightState(1);
-            sendBuffer(msgsndr.buffer_light_control_cmd(0,1,0));
-        }
-        else{
-            setFoglightState(0);
-            sendBuffer(msgsndr.buffer_light_control_cmd(0,0,0));
-        }
-    }
-    else{
-        
-        if(foglight_off()){
-            setFoglightState(1);
-            sendBuffer(msgsndr.buffer_light_control_cmd(1,1,1));
-        }
-        else{
-            setFoglightState(0);
-            sendBuffer(msgsndr.buffer_light_control_cmd(1,0,1));
-        }
-    }   
+    sendLightToggleState(2);
 }
 
 void sendLightOffRequest(){
-    setHeadlighState(0);
-    setFoglightState(0);
-    IF_DEBUG(Serial.println("sending light off request");)
-    sendBuffer(msgsndr.buffer_light_control_cmd(0,0,0));
+    sendLightToggleState(0);
 }
 
 /// @brief send a request to turn off headlight

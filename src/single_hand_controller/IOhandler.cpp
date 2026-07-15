@@ -21,6 +21,8 @@
  * @date 15/07/2026
  * - added readHcBatterySoc() for SRS §3.2.3.3 local HC pack ADC SoC (0–100)
  * - optional bench placeholder when sense pin is floating (HC_BATT_NO_SENSE_RAW_MAX)
+ * - updateLightToggleEdge(): light toggle pins 6/8 — send only on position change
+ * - e-stop pin 3: long-press latch (engage continuous / disengage once)
  */
 #include "include/IOhandler.hpp"
 
@@ -33,6 +35,24 @@ extern bool switchMode;
 extern bool arm_press;
 extern bool disarm_press;
 extern bool estop_toggled;
+extern bool estop_clear_request;
+
+/** Long-press pin 3: first engage (continuous TX), second disengage (one-shot clear). */
+void latchEstopToggle(){
+    static unsigned long last_toggle_ms = 0;
+    if(millis() - last_toggle_ms < RESEND_DELAY)
+        return;
+    last_toggle_ms = millis();
+
+    if(estop_toggled){
+        estop_toggled = false;
+        estop_clear_request = true;
+    }
+    else{
+        estop_toggled = true;
+        estop_clear_request = false;
+    }
+}
 
 void toggleEstop(){
     estop_toggled = true;
@@ -45,13 +65,17 @@ void untoggleEstop(){
 void turnOnHeadlights(){
     turnOnHeadlight = true;
     turnOffLight = false;
+    turnOnFoglight = false;
 }
 void turnOffLights(){
     turnOffLight = true;
+    turnOnHeadlight = false;
+    turnOnFoglight = false;
 }
 void turnOnFoglights(){
     turnOnFoglight = true;
     turnOffLight = false;
+    turnOnHeadlight = false;
 }
 
 void enableSwitchMode(){
@@ -97,14 +121,17 @@ long_press_button b_arm_disarm = {
     0
 };
 
-button  b_e_stop = {
-        BUTTON_ESTOP,     // uint8_t pin;                
-        0,                  // buttonPress press_state;
-        toggleEstop,        // void (*press_callback)(void);
-        0                   // uint32_t cooldown;
-    },
-    
-    b_mode_switch = {
+/** Pin 3 e-stop: long-press toggles engage / disengage (short press ignored). */
+long_press_button b_e_stop = {
+    BUTTON_ESTOP,
+    0,
+    nullptr,
+    latchEstopToggle,
+    0,
+    0
+};
+
+button b_mode_switch = {
         BUTTON_TORQUE_MODE,
         0,
         enableSwitchMode,
@@ -292,11 +319,50 @@ void updateTwoPosToggleValues(struct two_pos_toggle *t1, int32_t ms_since_last_c
     }
 }
 
+/** Logical light positions stored in tt_light_toggle.state (not raw pin indices). */
+#define LIGHT_POS_OFF  0
+#define LIGHT_POS_HEAD 1
+#define LIGHT_POS_FOG  2
+
+static uint8_t readLightTogglePosition(const struct two_pos_toggle *t1){
+    if(!digitalRead(t1->pin_pos0))   /* pin 6 active → OFF → 0,0,0 */
+        return LIGHT_POS_OFF;
+    if(!digitalRead(t1->pin_pos2))   /* pin 8 active → FOG */
+        return LIGHT_POS_FOG;
+    return LIGHT_POS_HEAD;           /* centre, both HIGH → HEAD + REAR */
+}
+
+void updateLightToggleEdge(struct two_pos_toggle *t1, int32_t ms_since_last_check){
+    (void)ms_since_last_check;
+
+    const uint8_t new_state = readLightTogglePosition(t1);
+    if(new_state == t1->state)
+        return;
+
+    t1->state = new_state;
+    switch(new_state){
+        case LIGHT_POS_OFF:
+            turnOffLights();
+            break;
+        case LIGHT_POS_HEAD:
+            turnOnHeadlights();
+            break;
+        case LIGHT_POS_FOG:
+            turnOnFoglights();
+            break;
+    }
+}
+
 
 
 void checkUserInput()
 {
-    
+    static bool light_toggle_synced = false;
+    if(!light_toggle_synced){
+        tt_light_toggle.state = readLightTogglePosition(&tt_light_toggle);
+        light_toggle_synced = true;
+    }
+
     // #ifdef TESTING_JOYSTICK
     // for(int i = 2; i < 8; i++){
     //     Serial.print(digitalRead(i));
@@ -308,10 +374,10 @@ void checkUserInput()
 
     int32_t ms_since_last_check = millis() - last_input_checked_at;
     updateLongPressButtonValues(&b_arm_disarm, ms_since_last_check);
-    updateButtonValues(&b_e_stop, ms_since_last_check);
+    updateLongPressButtonValues(&b_e_stop, ms_since_last_check);
     updateButtonValues(&b_mode_switch, ms_since_last_check);
     updateTwoPosToggleValues(&tt_speed_toggle, ms_since_last_check);
-    updateTwoPosToggleValues(&tt_light_toggle, ms_since_last_check);
+    updateLightToggleEdge(&tt_light_toggle, ms_since_last_check);
 
     last_input_checked_at = millis();
 }
