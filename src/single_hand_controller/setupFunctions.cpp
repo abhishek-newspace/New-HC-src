@@ -1,11 +1,15 @@
 /**
  * @file setupFunctions.cpp
- * @version 0.1
- * @author Nikhil Tom Jose
- * @date 22/04/2026
+ * @version 0.2
+ * @author Abhishek
+ * @date 15/07/2026
  * 
  * Part of set up functions library; used within the setup() function of single_hand_controller.ino.
  * Defines variables and functions used in setupFunctions.h.
+ *
+ * <h2>Changes</h2>
+ * @date 15/07/2026
+ * - configure HC_BATTERY_ADC_PIN and optional HC_BATT_STATUS_LED_PIN in setupIO()
 */
 #include "include/setupFunctions.h"
 
@@ -22,6 +26,13 @@ void setupIO(){
     pinMode(8, INPUT_PULLUP);
     pinMode(XPIN, INPUT);
     pinMode(YPIN, INPUT);
+#ifdef HC_BATTERY_ADC_PIN
+    pinMode(HC_BATTERY_ADC_PIN, INPUT);
+#endif
+#ifdef HC_BATT_STATUS_LED_PIN
+    pinMode(HC_BATT_STATUS_LED_PIN, OUTPUT);
+    digitalWrite(HC_BATT_STATUS_LED_PIN, LOW);
+#endif
 }
 
 void initState()
@@ -52,6 +63,11 @@ bool identifyControllerDrift()
 
 bool initMAVLink(){
     initiateSerialComm();
+#ifdef RADIO_SIMULATION_TESTING
+    // No local RFD in USB-rig mode — mark radio path as up so UI/link logic can proceed.
+    connectRadio();
+    IF_DEBUG(Serial.println("RADIO_SIMULATION_TESTING: MAVLink on USB Serial @ 115200");)
+#endif
     return setupSigning();
 }
 

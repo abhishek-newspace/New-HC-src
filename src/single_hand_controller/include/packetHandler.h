@@ -1,8 +1,8 @@
 /**
  * @file packetHandler.h
- * @version 0.1
- * @author Nikhil Tom Jose
- * @date 22/04/2026
+ * @version 0.2
+ * @author Abhishek
+ * @date 15/07/2026
  * Handles all incoming communication over UART, from the hand controller radio
  * 
  * <h2>changes</h2>
@@ -10,6 +10,8 @@
  * added functions for arm, disarm and sending heartbeat
  * @date 07/05/2026
  * added function to send component version
+ * @date 15/07/2026
+ * - declared sendCurrentLightState() for periodic light retransmit (SRS §3.2.9)
  */
 #pragma once
 #include "definitions.h"
@@ -55,6 +57,9 @@ void sendHeadlight();
 
 /// @brief send a request to turn on brake light and fog light
 void sendFogBrakeLight();
+
+/// @brief retransmit current head/fog/rear light state without toggling (SRS §3.2.9)
+void sendCurrentLightState();
 
 /// @brief send request to set speed to required speed
 void sendSpeedChangeRequest(int speed);

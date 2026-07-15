@@ -1,8 +1,8 @@
 /**
  * @file IOhandler.cpp
- * @version 0.1
- * @author Nikhil Tom Jose
- * @date 22/04/2026
+ * @version 0.2
+ * @author Abhishek
+ * @date 15/07/2026
  * 
  * Part of IOhandler library
  * Defines functions and variables used in IOhandler.h
@@ -17,6 +17,10 @@
  * 
  * @date 06/05/2026
  * added function to check for long press
+ *
+ * @date 15/07/2026
+ * - added readHcBatterySoc() for SRS §3.2.3.3 local HC pack ADC SoC (0–100)
+ * - optional bench placeholder when sense pin is floating (HC_BATT_NO_SENSE_RAW_MAX)
  */
 #include "include/IOhandler.hpp"
 
@@ -306,4 +310,40 @@ void checkUserInput()
     updateTwoPosToggleValues(&tt_speed_toggle, ms_since_last_check);
 
     last_input_checked_at = millis();
+}
+
+uint8_t readHcBatterySoc()
+{
+#ifdef HC_BATTERY_ADC_PIN
+    long sum = 0;
+    for(int i = 0; i < FILTER_SAMPLES; i++){
+        sum += analogRead(HC_BATTERY_ADC_PIN);
+    }
+    int raw = (int)(sum / FILTER_SAMPLES);
+
+    IF_DEBUG(Serial.print("HC batt ADC raw=");)
+    IF_DEBUG(Serial.println(raw);)
+
+#if HC_BATT_NO_SENSE_RAW_MAX > 0
+    /* Floating / unwired sense pin while USB-powered — show placeholder SoC for UI bring-up. */
+    if(raw <= HC_BATT_NO_SENSE_RAW_MAX){
+        return (uint8_t)HC_BATT_BENCH_SOC_WHEN_NO_SENSE;
+    }
+#endif
+
+    int empty = HC_BATT_ADC_EMPTY;
+    int full  = HC_BATT_ADC_FULL;
+    if(full <= empty){
+        return 0;
+    }
+    if(raw <= empty){
+        return 0;
+    }
+    if(raw >= full){
+        return 100;
+    }
+    return (uint8_t)(((long)(raw - empty) * 100L) / (full - empty));
+#else
+    return (uint8_t)HC_BATT_BENCH_SOC_WHEN_NO_SENSE;
+#endif
 }

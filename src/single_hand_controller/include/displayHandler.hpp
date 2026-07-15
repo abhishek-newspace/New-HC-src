@@ -1,9 +1,13 @@
 /**
  * @file displayHandler.hpp
- * @version 0.1
- * @author Nikhil Tom Jose
- * @date 22/04/2026
+ * @version 0.2
+ * @author Abhishek
+ * @date 15/07/2026
  * Takes care of all display-related functionality
+ *
+ * <h2>Changes</h2>
+ * @date 15/07/2026
+ * - declared displayHcBatteryStatus() and triggerTactileAlert() (SRS §3.2.3.3 / §3.2.4)
  */
 #pragma once
 #include "definitions.h"
@@ -46,8 +50,13 @@ void displaySpeed(int speed);
 /// @brief update RSSI stat display
 void displayRSSI();
 
-/// update battery stat display
+/// update UGV battery stat display
 void displayBattery();
+
+/**
+ * SRS §3.2.3.3 — HC pack compact battery box on the top row (label "HC" inside).
+ */
+void displayHcBatteryStatus();
 
 /// @brief set the screen with symbols/text that is required to understand the output of the display updates
 void displayBasic();
@@ -96,4 +105,10 @@ void displayDriveMode(driveMode mode);
 
 /// @brief returns the current error code currently dosplsyed
 int getErrorCodeDisplayed();
+
+/**
+ * SRS §3.2.4 tactile alert for low UGV battery.
+ * Pulses TACTILE_PIN when defined in IO_defs.h; no-op on remotes without haptic HW.
+ */
+void triggerTactileAlert();
 

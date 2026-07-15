@@ -1,11 +1,17 @@
 #pragma once
 /**
  * @file display_defs.h
- * @version 0.1
- * @author Nikhil Tom Jose
- * @date 20/05/2026
+ * @version 0.2
+ * @author Abhishek
+ * @date 15/07/2026
  * 
  * definitions required for display
+ *
+ * <h2>Changes</h2>
+ * @date 15/07/2026
+ * - RSSI_WEAK_THRESHOLD_DBM (-120) for Yellow low-link LED
+ * - compact UGV/HC battery layout (BATTERY_LENGTH/HEIGHT, UGV_/HC_BATTERY_POS_*)
+ * - DISCONNECTED_COLOR set to Red per SRS §3.2.2
  */
 
 
@@ -26,24 +32,40 @@
 
 #define CONNECTED_COLOR COLOR_GREEN
 #define RADIO_CONNECTED_COLOR COLOR_CYAN
-#define DISCONNECTED_COLOR COLOR_ORANGE
+/** Status text when UGV is disconnected — SRS Red = not connected to UGV. */
+#define DISCONNECTED_COLOR COLOR_RED
+
+/**
+ * Local/remote RSSI (after RFD scaling `raw/2 - 152`) below this value → Yellow LED
+ * while UGV is connected (SRS §3.2.2 low-link warning).
+ */
+#define RSSI_WEAK_THRESHOLD_DBM (-120)
 
 #define DM_COLOR COLOR_GREENYELLOW
 
 #define SCREEN_HEIGHT 221
 #define SCREEN_WIDTH 176
 
-// display configurations
-#define BATTERY_TIP_WIDTH 3
-#define BATTERY_RECTANGLE_THICKNESS 2
-#define BATTERY_LENGTH 40
-#define BATTERY_HEIGHT 10
+/**
+ * Top row: drive mode (left) + small UGV/HC battery rectangles (right).
+ * Compact size so both fit with mode on one row.
+ */
+#define DM_POS_X 5
+#define DM_POS_Y 5
 
-#define BATTERY_POS_X 100 
-#define BATTERY_POS_Y 5
+#define BATTERY_TIP_WIDTH 2
+#define BATTERY_RECTANGLE_THICKNESS 1
+#define BATTERY_LENGTH 28
+#define BATTERY_HEIGHT 9
+
+#define UGV_BATTERY_POS_X 85
+#define UGV_BATTERY_POS_Y 4
+#define HC_BATTERY_POS_X 128
+#define HC_BATTERY_POS_Y 4
 
 #define Y_OFFSET 5
 
+/* Original status layout below top row */
 #define UGV_STATUS_POS_X 25
 #define UGV_STATUS_TEXT_POS_X 5
 #define UGV_STATUS_TEXT_POS_Y (UGV_STATUS_POS_X + 19)
@@ -79,6 +101,3 @@
 #define CONN_STAT_MSG_POS_Y 25
 #define CONN_STAT_MSG_SZ_X 20
 #define CONN_STAT_MSG_SZ_Y 20
-
-#define DM_POS_X 5
-#define DM_POS_Y 5

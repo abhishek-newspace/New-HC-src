@@ -1,11 +1,16 @@
 /**
  * @file packetHandler.cpp
- * @version 0.1
- * @author Nikhil Tom Jose
- * @date 22/04/2026
+ * @version 0.2
+ * @author Abhishek
+ * @date 15/07/2026
  * 
  * Part of packet handler library.
  * Defines variables and functions used in packetHandler.h
+ *
+ * <h2>Changes</h2>
+ * @date 15/07/2026
+ * - sendCurrentLightState() for periodic light retransmit
+ * - MANUAL_CONTROL_ONLY_WHEN_MOVING: send MC only out of deadband + one zero frame on return
 */
 
 #include "include/packetHandler.h"
@@ -146,6 +151,18 @@ void sendHeadlight(){
     }
 }
 
+/**
+ * Retransmit the currently commanded light bitfield without toggling local state.
+ * SRS §3.2.9.3.2 — light ON/OFF shall be sent periodically.
+ * Rear light remains tied to headlight (existing HC light-control encoding).
+ */
+void sendCurrentLightState(){
+    const bool head = !headlight_off();
+    const bool fog  = !foglight_off();
+    const bool rear = head;   // existing wire convention: rear follows headlight
+    sendBuffer(msgsndr.buffer_light_control_cmd(head, fog, rear));
+}
+
 /// @brief send a request to turn on brake light and fog light
 void sendFogBrakeLight(){
     // sendBuffer(msgsndr.buffer_light_control_cmd(1,1,1));
@@ -205,10 +222,22 @@ void sendModeChangeRequest(){
 }
 
 void sendManualControl(){
-    IF_DEBUG(Serial.println("sending manual control");)
     thumbstickControl thumbstick_input;
     getXY(&thumbstick_input);
-    
+
+#ifdef MANUAL_CONTROL_ONLY_WHEN_MOVING
+    /* Stick already zeroed inside XY dead-band by getXY(). */
+    const bool deflected =
+        (thumbstick_input.X != 0.0f) || (thumbstick_input.Y != 0.0f);
+
+    static bool was_deflected = false;
+    if(!deflected && !was_deflected){
+        return;   /* idle at center — do not spam MANUAL_CONTROL */
+    }
+    /* First return-to-center frame is still sent so Atlas/VCU see zero axes. */
+#endif
+
+    IF_DEBUG(Serial.println("sending manual control");)
     sendBuffer(
         msgsndr.buffer_manual_control(
             thumbstick_input.X,
@@ -219,6 +248,10 @@ void sendManualControl(){
             0
         )
     );
+
+#ifdef MANUAL_CONTROL_ONLY_WHEN_MOVING
+    was_deflected = deflected;
+#endif
 }
 
 void sendEstopRequest(bool enable){
@@ -243,8 +276,13 @@ void handlePacketReceived()
     #endif
 
     byte data;
-    IF_PRINT_BYTES(Serial.print("receiving->");)
+    bool dumped = false;
+
     while(RADIO_PORT.available()){
+        if(!dumped){
+            IF_PRINT_BYTES(Serial.print("receiving->");)
+            dumped = true;
+        }
         data = RADIO_PORT.read();
         IF_PRINT_BYTES(Serial.print("0x");)
         IF_PRINT_BYTES(Serial.print(data,HEX);)
@@ -282,12 +320,7 @@ void handlePacketReceived()
             
             }
         }
-        // else if(status.parse_state == 14)
-        //     IF_DEBUG(Serial.println("failed CRC");)
-
-        
     }
-    
-        
-    IF_PRINT_BYTES(Serial.println(""));
+
+    IF_PRINT_BYTES(if(dumped) Serial.println("");)
 }

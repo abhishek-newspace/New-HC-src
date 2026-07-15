@@ -1,11 +1,16 @@
 /**
  * @file message_sender.cpp
- * @version 0.1
- * @author Nikhil Tom Jose
- * @date 22/04/2026
+ * @version 0.2
+ * @author Abhishek
+ * @date 15/07/2026
  * 
  * Part of message sender library.
  * Defines member functions of message_sender class
+ *
+ * <h2>Changes</h2>
+ * @date 15/07/2026
+ * - arm/disarm param1 uses ICD_ARM_PARAM1 / ICD_DISARM_PARAM1 (1=ARM, 2=DISARM)
+ * - light control param encoding aligned to ICD (0=OFF, 1=ON)
  */
 #include "include/message_sender.hpp"
 
@@ -14,10 +19,8 @@ extern mavlink_status_t* status_chan;
 
 int message_sender::buffer_arm_disarm_cmd(bool state)
 {
-    if(state)
-        arm_disarm_cmd.param1 = 1;  // arm
-    else
-        arm_disarm_cmd.param1 = 2;  // disarm
+    // ICD v1.3: param1 = 1 ARM, 2 DISARM (3 = OVERRIDE — not used by HC)
+    arm_disarm_cmd.param1 = state ? ICD_ARM_PARAM1 : ICD_DISARM_PARAM1;
 
     mavlink_msg_command_long_pack(
         HC_ID,
@@ -37,10 +40,21 @@ int message_sender::buffer_arm_disarm_cmd(bool state)
 
 int message_sender::buffer_light_control_cmd(bool headlight, bool foglight, bool brakelight)
 {
+    // ICD v1.3 §4.2.5.10 HC_LIGHT_CONTROL_COMMAND: 0 = OFF, 1 = ON
+    // (Do not use 2 — that is UGV_SYSTEM_INFO status encoding, not the command.)
+    const float LIGHT_ON  = 1.0f;
+    const float LIGHT_OFF = 0.0f;
 
-    light_ctrl_cmd.param1 = headlight;
-    light_ctrl_cmd.param2 = foglight;
-    light_ctrl_cmd.param3 = brakelight;
+    light_ctrl_cmd.param1 = headlight  ? LIGHT_ON : LIGHT_OFF;
+    light_ctrl_cmd.param2 = foglight   ? LIGHT_ON : LIGHT_OFF;
+    light_ctrl_cmd.param3 = brakelight ? LIGHT_ON : LIGHT_OFF;
+
+    IF_DEBUG(Serial.print("LIGHT_CTRL head=");)
+    IF_DEBUG(Serial.print(light_ctrl_cmd.param1);)
+    IF_DEBUG(Serial.print(" fog=");)
+    IF_DEBUG(Serial.print(light_ctrl_cmd.param2);)
+    IF_DEBUG(Serial.print(" rear=");)
+    IF_DEBUG(Serial.println(light_ctrl_cmd.param3);)
 
     mavlink_msg_command_long_pack(
         HC_ID,

@@ -1,15 +1,24 @@
 /**
  * @file standard_procedures.cpp
- * @version 0.1
- * @author Nikhil Tom Jose
- * @date 28/04/2026
+ * @version 0.3
+ * @author Abhishek
+ * @date 15/07/2026
  * @brief definitions of set of functions to represent phases within the main control loop of the microcontroller in the hand controller.
- * 
+ *
  * <h2>changes</h2>
  * @date 06/05/2026
  * - added included arm/disarm commands, based on reviewed OFP cycle
  * - added heartbeat being sent from hand controller
  * - created an object for timesync timing
+ *
+ * @date 14/07/2026
+ * - SRS production polish (no HW remapping):
+ *   periodic e-stop retransmit (§3.3.1), periodic light retransmit (§3.2.9),
+ *   3 s state-request timeout / fail visibility (§3.2.5–3.2.7) via heartbeat feedback.
+ *
+ * @date 15/07/2026
+ * - pending-request timeout helpers; arm wait uses Atlas HEARTBEAT arm field
+ * - light/e-stop retransmit wiring in OFP cycle
  */
 
 #include "include/standard_procedures.hpp"
@@ -37,6 +46,90 @@ uint32_t startup_time = 0;
 
 uint32_t init_time;
 
+/* -------------------------------------------------------------------------- */
+/* Pending operator requests (fail visibility without COMMAND_ACK dialect)     */
+/* Atlas confirms via HEARTBEAT custom_mode; if not within STATE_REQUEST_TIMEOUT */
+/* we surface ARM_DISARM_FAIL / info for the operator.                         */
+/* -------------------------------------------------------------------------- */
+enum pending_request_t {
+    PENDING_NONE = 0,
+    PENDING_ARM,
+    PENDING_DISARM,
+    PENDING_SPEED,
+    PENDING_DRIVE_MODE
+};
+
+static pending_request_t pending_request = PENDING_NONE;
+static unsigned long pending_since_ms = 0;
+static int pending_expected_speed = 0;      ///< 1..3 when PENDING_SPEED
+static int pending_expected_drive_mode = 0; ///< 0..2 (enum driveMode) when PENDING_DRIVE_MODE
+
+static void clearPendingRequest(){
+    pending_request = PENDING_NONE;
+    pending_since_ms = 0;
+}
+
+static void startPendingRequest(pending_request_t kind){
+    pending_request = kind;
+    pending_since_ms = millis();
+}
+
+/**
+ * Clear pending state when HEARTBEAT confirms the requested transition,
+ * or raise a failure after STATE_REQUEST_TIMEOUT_MS.
+ */
+static void evaluatePendingRequests(){
+    if(pending_request == PENDING_NONE)
+        return;
+
+    bool satisfied = false;
+    switch(pending_request){
+        case PENDING_ARM:
+            satisfied = (getUGV_state() == active);
+            break;
+        case PENDING_DISARM:
+            satisfied = (getUGV_state() == standby);
+            break;
+        case PENDING_SPEED:
+            satisfied = (getUGV_speed() == pending_expected_speed);
+            break;
+        case PENDING_DRIVE_MODE:
+            satisfied = (getDriveMode() == pending_expected_drive_mode);
+            break;
+        default:
+            break;
+    }
+
+    if(satisfied){
+        if(getErrorCodeDisplayed() == ARM_DISARM_FAIL)
+            clearError();
+        clearInfo();
+        clearPendingRequest();
+        return;
+    }
+
+    if(millis() - pending_since_ms < STATE_REQUEST_TIMEOUT_MS)
+        return;
+
+    // Timed out waiting for UGV-reported confirmation.
+    switch(pending_request){
+        case PENDING_ARM:
+        case PENDING_DISARM:
+            displayError("Arm/Disarm request failed", ARM_DISARM_FAIL);
+            break;
+        case PENDING_SPEED:
+            displayInfo("Speed limit request timed out");
+            // Retry once more on next OFP path via speedChangeCondition.
+            break;
+        case PENDING_DRIVE_MODE:
+            displayInfo("Drive mode request timed out");
+            break;
+        default:
+            break;
+    }
+    clearPendingRequest();
+}
+
 
 
 inline bool isUGVdisconnected(){
@@ -59,7 +152,9 @@ inline bool turnFogLightCondition(){
 
 inline bool speedChangeCondition(){
     static unsigned long last_change_at = 0;
-    if(required_speed != getUGV_speed() && millis() - last_change_at > RESEND_DELAY){
+    // SRS §3.2.6 — retry / send cadence for limit request is 3 s.
+    if(required_speed != 0 && required_speed != getUGV_speed()
+        && millis() - last_change_at > STATE_REQUEST_TIMEOUT_MS){
         last_change_at = millis();
         return true;
     }
@@ -113,9 +208,18 @@ void establish_connectivity()
         periodic_actions.performPeriodicActions();
 
 
-        if(!receivedRadioStatus() && micros() - startup_time > SECONDS_MS_5){
+        // Local RFD injects RADIO_STATUS — skip that check in USB simulation (no radio on rig).
+#ifndef RADIO_SIMULATION_TESTING
+        if(!receivedRadioStatus() && millis() - startup_time > SECONDS_MS_5){
+           static bool err5_logged = false;
+           if(!err5_logged){
+               IF_DEBUG(Serial.println("ERROR 5: no RADIO_STATUS on Serial3");)
+               IF_DEBUG(Serial.println("Check: 1) radio POWER  2) Mega14->RadioRX Mega15<-RadioTX GND  3) baud 115200");)
+               err5_logged = true;
+           }
            displayError("Radio communication failure", RADIO_COMM_FAILURE);
         }
+#endif
     }
     hb_count = 0;
 }
@@ -130,7 +234,6 @@ void establish_connectivity()
  */
 void time_synchronize()
 {
-
     resetTimesync();
     sendTimesyncRequest();
     int tsID = periodic_actions.addPeriodicAction(sendTimesyncRequest,SECONDS_MS_1);
@@ -174,8 +277,9 @@ void end_OFP_timer(unsigned long int time_limit){
  */
 void run_wakeup_seq(){
     IF_DEBUG(Serial.println("running wakeup sequence");)
-    startup_time = micros();
+    startup_time = millis();   // paired with SECONDS_MS_5 check in establish_connectivity()
     periodic_actions.reset();
+    clearPendingRequest();
     
     #ifndef TESTING
     periodic_actions.addPeriodicAction(sendHeartbeat,SECONDS_MS_1);   // send a heartbeat every 1 second
@@ -209,9 +313,13 @@ void run_OFP_cycle()
 {
     startOFPTimer();
 
+    // Sample toggles/buttons at the start of the cycle so this OFP sees current positions.
+    checkUserInput();
+
     #ifndef TESTING
     if(heartbeat_timed_out()){
         setUGV_state((ugv_status)disconnected);
+        clearPendingRequest();
         return;
     }
     #endif
@@ -223,10 +331,16 @@ void run_OFP_cycle()
         delay(5);
 #endif
 
+    /*
+     * Operator requests — same priority chain as original OFP:
+     * arm / disarm XOR e-stop (else-if), then lights / speed / drive-mode independently.
+     * Pin mapping unchanged (pins 2–8).
+     */
     if(startArmCondition()){
         IF_DEBUG(Serial.println("ARM BUTTON PRESSED"));
         displayInfo("arming ...");
         sendArmCommand();
+        startPendingRequest(PENDING_ARM);
         arm_press = false;
         disarm_press = false;
     }
@@ -234,35 +348,75 @@ void run_OFP_cycle()
         IF_DEBUG(Serial.println("DISARM BUTTON PRESSED"));
         displayInfo("disarming ...");
         sendDisarmCommand();
+        startPendingRequest(PENDING_DISARM);
         arm_press = false;
         disarm_press = false;
     }
     else if(estop_toggled){
-        IF_DEBUG(displayInfo("e-stop engaged");)
-        if(getEmergencyMode() != engaged)
-            sendEstopRequest(1);
+        // SRS §3.3.1: retransmit engage while HC e-stop is held (1 Hz).
+        static unsigned long last_estop_tx_ms = 0;
+        if(getEmergencyMode() != engaged
+            || (millis() - last_estop_tx_ms >= ESTOP_RETRANSMIT_MS)){
+            IF_DEBUG(displayInfo("e-stop engaged");)
+            sendEstopRequest(true);
+            last_estop_tx_ms = millis();
+        }
     }
-    else{
-        if(getEmergencyMode() == engaged)
-            sendEstopRequest(0);
+    else if(getEmergencyMode() == engaged){
+        // Toggle left e-stop; clear remote e-stop once (rate-limited).
+        static unsigned long last_estop_clear_ms = 0;
+        if(millis() - last_estop_clear_ms >= ESTOP_RETRANSMIT_MS){
+            sendEstopRequest(false);
+            last_estop_clear_ms = millis();
+        }
     }
-    if(turnHeadlightCondition()){
-        sendHeadlight();
-        turnOnHeadlight = false;
+
+    /* Lights — press buttons unchanged; periodic refresh while ON */
+    {
+        static unsigned long last_light_tx_ms = 0;
+        bool light_edge = false;
+
+        if(turnHeadlightCondition()){
+            sendHeadlight();
+            turnOnHeadlight = false;
+            light_edge = true;
+        }
+        if(turnFogLightCondition()){
+            sendFogBrakeLight();
+            turnOnFoglight = false;
+            light_edge = true;
+        }
+
+        const bool any_light_on = !headlight_off() || !foglight_off();
+        if(light_edge){
+            last_light_tx_ms = millis();
+        }
+        else if(any_light_on && (millis() - last_light_tx_ms >= LIGHT_RETRANSMIT_MS)){
+            sendCurrentLightState();
+            last_light_tx_ms = millis();
+        }
     }
-    if(turnFogLightCondition()){
-        sendFogBrakeLight();
-        turnOnFoglight = false;
-    }
+
+    /* Speed limit (HI/MID/LO toggle) */
     if(speedChangeCondition()){
         sendSpeedChangeRequest(required_speed);
+        pending_expected_speed = required_speed;
+        startPendingRequest(PENDING_SPEED);
+        displayInfo("setting speed limit ...");
     }
+
+    /* Drive mode cycle button */
     if(switchModeCondition()){
         IF_DEBUG(Serial.println("requesting drive mode"));
+        pending_expected_drive_mode = get_inc_driveMode();
         sendModeChangeRequest();
+        startPendingRequest(PENDING_DRIVE_MODE);
+        displayInfo("setting drive mode ...");
         switchMode = false;
     }
+
     handlePacketReceived();
+    evaluatePendingRequests();
     periodic_actions.performPeriodicActions();
 
     end_OFP_timer(OFP_LOOP_TIME);

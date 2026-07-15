@@ -1,11 +1,16 @@
 /**
  * @file packet_receiver.cpp
- * @version 0.1
- * @author Nikhil Tom Jose
- * @date 22/04/2026
+ * @version 0.2
+ * @author Abhishek
+ * @date 15/07/2026
  * 
  * Part of packet receiver library; used in Single Hand Controller for Scout
  * Defines member functions of message_sender class
+ *
+ * <h2>Changes</h2>
+ * @date 15/07/2026
+ * - fixed HEARTBEAT custom_mode bit layout: emergency then SoC at bits 8–15
+ * - setBatterySOC from (custom_mode >> 8) & 0xFF
  */
 #include "include/packet_receiver.hpp"
 
@@ -196,17 +201,12 @@ void packet_receiver::receive_heartbeat(mavlink_message_t *msg)
     else
         setUGV_state(standby);
 
-    
-
-    // temp =  heartbeat.custom_mode.hcm.emergency[0] + 
-    //         heartbeat.custom_mode.hcm.emergency[1] * 2;
-
-    temp = temp >> 2;
     switchEmergencyMode(temp & 3);
-    IF_DEBUG(Serial.print("drive mode : "));
+    IF_DEBUG(Serial.print("emergency mode : "));
     IF_DEBUG(Serial.println(temp & 3));
 
-    setBatterySOC(temp >> 2 & 127);
+    temp = temp >> 2;
+    setBatterySOC(temp & 0xFF);
 
     
 }

@@ -1,10 +1,14 @@
 /**
  * @file enum_defs.h
- * @version 0.1
- * @author Nikhil Tom Jose
- * @date 20/05/2026
+ * @version 0.2
+ * @author Abhishek
+ * @date 15/07/2026
  * 
  * list of enums defined
+ *
+ * <h2>Changes</h2>
+ * @date 15/07/2026
+ * - documented connectivity_status LED colour mapping (SRS §3.2.2)
  */
 #pragma once
 
@@ -16,6 +20,14 @@ enum ugv_status{
     standby, 
     unknown};
 
+/**
+ * Connectivity LED status (SRS §3.2.2 Helios HC).
+ *   all_disconnected     -> Red    (UGV not connected — required)
+ *   low_connectivity     -> Yellow (connected but RSSI below threshold)
+ *   connected            -> Green
+ *   comm_fault           -> Blue   (timesync fault)
+ *   only_radio_connected -> treated as Red in UI (not connected to UGV)
+ */
 enum connectivity_status{
     all_disconnected,
     only_radio_connected,
