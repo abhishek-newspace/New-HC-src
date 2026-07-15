@@ -26,6 +26,7 @@
  * - HC_LINK_OVER_USB link-mode switch documentation
  * - MANUAL_CONTROL_ONLY_WHEN_MOVING gate
  * - ICD_ARM_PARAM1 / ICD_DISARM_PARAM1 (ICD: 1=ARM, 2=DISARM)
+ * - ICD_REMOTE_EMERGENCY_* (1=Disable, 2=Engaged, 3=Disengaged)
  */
 #pragma once
 #include "definitions/enum_defs.h"
@@ -120,6 +121,14 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 /** ICD v1.3 §4.2.5.6 HC_ARM_DISARM_COMMAND param1 */
 #define ICD_ARM_PARAM1    1.0f
 #define ICD_DISARM_PARAM1 2.0f
+
+/**
+ * ICD v1.3 §4.2.5.11 HC_REMOTE_EMERGENCY_COMMAND param1
+ * (not the HEARTBEAT status field — that uses different 1/3 meanings)
+ */
+#define ICD_REMOTE_EMERGENCY_DISABLE    1.0f
+#define ICD_REMOTE_EMERGENCY_ENGAGED    2.0f
+#define ICD_REMOTE_EMERGENCY_DISENGAGED 3.0f
 
 #define USE_HEARTBEAT_MAVLINKV1
 

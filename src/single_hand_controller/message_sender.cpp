@@ -9,8 +9,9 @@
  *
  * <h2>Changes</h2>
  * @date 15/07/2026
- * - arm/disarm param1 uses ICD_ARM_PARAM1 / ICD_DISARM_PARAM1 (1=ARM, 2=DISARM)
+ * - arm/disarm param1 uses ICD_ARM_PARAM1 / ICD_DISARM_PARAM1 (2=ARM, 1=DISARM)
  * - light control param encoding aligned to ICD (0=OFF, 1=ON)
+ * - remote emergency param1: 1=Disable, 2=Engaged, 3=Disengaged (ICD §4.2.5.11)
  */
 #include "include/message_sender.hpp"
 
@@ -19,7 +20,7 @@ extern mavlink_status_t* status_chan;
 
 int message_sender::buffer_arm_disarm_cmd(bool state)
 {
-    // ICD v1.3: param1 = 1 ARM, 2 DISARM (3 = OVERRIDE — not used by HC)
+    // ICD §4.2.5.1 arm mode: 2=Armed (arm cmd), 1=Disarmed (disarm cmd)
     arm_disarm_cmd.param1 = state ? ICD_ARM_PARAM1 : ICD_DISARM_PARAM1;
 
     mavlink_msg_command_long_pack(
@@ -176,22 +177,15 @@ int message_sender::buffer_manual_control(int x, int y, bool extra_feature_1_pre
     return mavlink_msg_to_send_buffer(buf,msg);
 }
 
-int message_sender::buffer_remote_emergency_cmd(bool engage){
-    // ICD §4.2.5.11 COMMAND param1 (not the HEARTBEAT status field):
-    //   1 = Disable, 2 = Engaged, 3 = Disengaged
-    // HEARTBEAT §4.2.5.1 status: 1=Disengaged, 2=Engaged, 3=Disabled
-    if(engage){
-        estop_cmd.param1 = 2;   /* Engaged */
-    }
-    else{
-        estop_cmd.param1 = 3;   /* Disengaged */
-    }
-    
+int message_sender::buffer_remote_emergency_cmd(float param1){
+    // ICD §4.2.5.11: 1=Disable, 2=Engaged, 3=Disengaged
+    estop_cmd.param1 = param1;
+
     mavlink_msg_command_long_pack(
         HC_ID,
         HC_COMP_ID,
         msg,
-        
+
         estop_cmd.target_system,
         estop_cmd.target_component,
         estop_cmd.command,
@@ -200,7 +194,6 @@ int message_sender::buffer_remote_emergency_cmd(bool engage){
         0,0,0,0,0,0
     );
     return mavlink_msg_to_send_buffer(buf, msg);
-
 }
 
 #ifndef DEPRECATED_REV_1

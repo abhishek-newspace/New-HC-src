@@ -250,16 +250,17 @@ void sendManualControl(){
 }
 
 void sendEstopRequest(bool enable){
+    /* ICD §4.2.5.11: engage→2, clear→3 (Disengaged). Disable(1) unused by HC toggle. */
     if(enable){
-        IF_DEBUG(Serial.println("sending e stop request");)
+        IF_DEBUG(Serial.println("sending e-stop ENGAGED (param1=2)");)
         sendBuffer(
-            msgsndr.buffer_remote_emergency_cmd(1)
+            msgsndr.buffer_remote_emergency_cmd(ICD_REMOTE_EMERGENCY_ENGAGED)
         );
     }
     else{
-        IF_DEBUG(Serial.println("sending e stop disable request");)
+        IF_DEBUG(Serial.println("sending e-stop DISENGAGED (param1=3)");)
         sendBuffer(
-            msgsndr.buffer_remote_emergency_cmd(0)
+            msgsndr.buffer_remote_emergency_cmd(ICD_REMOTE_EMERGENCY_DISENGAGED)
         );
     }
 }

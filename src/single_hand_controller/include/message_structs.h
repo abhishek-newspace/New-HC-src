@@ -94,7 +94,8 @@ struct HC_REMOTE_EMERGENCY_COMMAND{
     uint8_t target_component = ATLAS_COMP_ID;
     uint16_t command = 31904;
     uint8_t confirmation = 0;
-    float param1;   // engaged (2); disengaged (3)
+    /** ICD §4.2.5.11: 1=Disable, 2=Engaged, 3=Disengaged */
+    float param1;
 };
 
 struct HC_DRIVE_MODE_COMMAND{

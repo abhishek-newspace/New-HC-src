@@ -75,8 +75,8 @@ void sendModeChangeRequest();
 
 void getRadioConfigurations();
 
-/// @brief send a request for emergency stop
-/// @param enable whether to engage an emergency stop or to disengage the emergency stop
+/// @brief send HC_REMOTE_EMERGENCY_COMMAND (ICD §4.2.5.11)
+/// @param enable true → param1=2 Engaged; false → param1=3 Disengaged
 void sendEstopRequest(bool enable);
 
 #ifndef DEPRECATED_REV_1
