@@ -1,11 +1,17 @@
 /**
  * @file message_sender.cpp
- * @version 0.1
- * @author Nikhil Tom Jose
- * @date 22/04/2026
+ * @version 0.2
+ * @author Abhishek
+ * @date 15/07/2026
  * 
  * Part of message sender library.
  * Defines member functions of message_sender class
+ *
+ * <h2>Changes</h2>
+ * @date 15/07/2026
+ * - arm/disarm param1 uses ICD_ARM_PARAM1 / ICD_DISARM_PARAM1 (2=ARM, 1=DISARM)
+ * - light control param encoding aligned to ICD (0=OFF, 1=ON)
+ * - remote emergency param1: 1=Disable, 2=Engaged, 3=Disengaged (ICD §4.2.5.11)
  */
 #include "include/message_sender.hpp"
 
@@ -14,10 +20,8 @@ extern mavlink_status_t* status_chan;
 
 int message_sender::buffer_arm_disarm_cmd(bool state)
 {
-    if(state)
-        arm_disarm_cmd.param1 = 1;  // arm
-    else
-        arm_disarm_cmd.param1 = 2;  // disarm
+    // ICD §4.2.5.1 arm mode: 2=Armed (arm cmd), 1=Disarmed (disarm cmd)
+    arm_disarm_cmd.param1 = state ? ICD_ARM_PARAM1 : ICD_DISARM_PARAM1;
 
     mavlink_msg_command_long_pack(
         HC_ID,
@@ -37,10 +41,21 @@ int message_sender::buffer_arm_disarm_cmd(bool state)
 
 int message_sender::buffer_light_control_cmd(bool headlight, bool foglight, bool brakelight)
 {
+    // ICD v1.3 §4.2.5.10 HC_LIGHT_CONTROL_COMMAND: 0 = OFF, 1 = ON
+    // (Do not use 2 — that is UGV_SYSTEM_INFO status encoding, not the command.)
+    const float LIGHT_ON  = 1.0f;
+    const float LIGHT_OFF = 0.0f;
 
-    light_ctrl_cmd.param1 = headlight;
-    light_ctrl_cmd.param2 = foglight;
-    light_ctrl_cmd.param3 = brakelight;
+    light_ctrl_cmd.param1 = headlight  ? LIGHT_ON : LIGHT_OFF;
+    light_ctrl_cmd.param2 = foglight   ? LIGHT_ON : LIGHT_OFF;
+    light_ctrl_cmd.param3 = brakelight ? LIGHT_ON : LIGHT_OFF;
+
+    IF_DEBUG(Serial.print("LIGHT_CTRL head=");)
+    IF_DEBUG(Serial.print(light_ctrl_cmd.param1);)
+    IF_DEBUG(Serial.print(" fog=");)
+    IF_DEBUG(Serial.print(light_ctrl_cmd.param2);)
+    IF_DEBUG(Serial.print(" rear=");)
+    IF_DEBUG(Serial.println(light_ctrl_cmd.param3);)
 
     mavlink_msg_command_long_pack(
         HC_ID,
@@ -162,19 +177,15 @@ int message_sender::buffer_manual_control(int x, int y, bool extra_feature_1_pre
     return mavlink_msg_to_send_buffer(buf,msg);
 }
 
-int message_sender::buffer_remote_emergency_cmd(bool engage){
-    if(engage){
-        estop_cmd.param1 = 2;
-    }
-    else{
-        estop_cmd.param1 = 1;
-    }
-    
+int message_sender::buffer_remote_emergency_cmd(float param1){
+    // ICD §4.2.5.11: 1=Disable, 2=Engaged, 3=Disengaged
+    estop_cmd.param1 = param1;
+
     mavlink_msg_command_long_pack(
         HC_ID,
         HC_COMP_ID,
         msg,
-        
+
         estop_cmd.target_system,
         estop_cmd.target_component,
         estop_cmd.command,
@@ -183,7 +194,6 @@ int message_sender::buffer_remote_emergency_cmd(bool engage){
         0,0,0,0,0,0
     );
     return mavlink_msg_to_send_buffer(buf, msg);
-
 }
 
 #ifndef DEPRECATED_REV_1

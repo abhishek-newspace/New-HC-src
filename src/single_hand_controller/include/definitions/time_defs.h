@@ -1,10 +1,15 @@
 /**
  * @file time_defs.h
- * @version 0.1
- * @author Nikhil Tom Jose
- * @date 20/05/2026
+ * @version 0.2
+ * @author Abhishek
+ * @date 15/07/2026
  * 
  * definitions related to time conversions, delays, and waits set for various function callbacks
+ *
+ * <h2>Changes</h2>
+ * @date 15/07/2026
+ * - STATE_REQUEST_TIMEOUT_MS (3 s) for arm/speed/drive-mode request visibility
+ * - ESTOP_RETRANSMIT_MS / LIGHT_RETRANSMIT_MS (1 s) periodic retransmit periods
  */
 #pragma once
 
@@ -51,6 +56,15 @@
 #define MANUAL_CONTROL_MSG_WAIT MS_10
 #define ARM_DISARM_RESEND_DELAY MS_1500
 #define RESEND_DELAY MS_1500
+
+/** SRS §3.2.5 / §3.2.6 / §3.2.7: operator state-change requests time out / retry at 3 s. */
+#define STATE_REQUEST_TIMEOUT_MS SECONDS_MS_3
+
+/** SRS §3.3.1.3.2: retransmit remote-emergency engagement periodically while toggle is armed. */
+#define ESTOP_RETRANSMIT_MS SECONDS_MS_1
+
+/** SRS §3.2.9.3.2: retransmit light ON/OFF state periodically while lights are commanded ON. */
+#define LIGHT_RETRANSMIT_MS SECONDS_MS_1
 
 #define OFP_LOOP_TIME           MS_20
 #define SCREEN_UPDATE_DELAY     SECONDS_MS_2    // screen to be updated every 2 second

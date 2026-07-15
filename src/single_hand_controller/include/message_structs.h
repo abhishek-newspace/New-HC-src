@@ -1,9 +1,13 @@
 /**
  * @file message_structs.h
- * @version 0.1
- * @author Nikhil Tom Jose
- * @date 22/04/2026
+ * @version 0.2
+ * @author Abhishek
+ * @date 15/07/2026
  * @brief This header file is part of the Single Hand Controller for Scout project; Defines all message structs being sent and received by the Single Hand Controller.
+ *
+ * <h2>Changes</h2>
+ * @date 15/07/2026
+ * - documented HC_LIGHT_CONTROL_COMMAND params per ICD v1.3 (0=OFF, 1=ON)
  */
 #pragma once
 #include "definitions.h"
@@ -90,7 +94,8 @@ struct HC_REMOTE_EMERGENCY_COMMAND{
     uint8_t target_component = ATLAS_COMP_ID;
     uint16_t command = 31904;
     uint8_t confirmation = 0;
-    float param1;   // engaged (2); disengaged (3)
+    /** ICD §4.2.5.11: 1=Disable, 2=Engaged, 3=Disengaged */
+    float param1;
 };
 
 struct HC_DRIVE_MODE_COMMAND{
@@ -106,9 +111,14 @@ struct HC_LIGHT_CONTROL_COMMAND{
     uint8_t target_component = ATLAS_COMP_ID;
     uint16_t command = MAV_CMD_LIGHT_CONTROL;
     uint8_t confirmation = 0;
-    float param1;   // headlight
-    float param2;   // fog light
-    float param3;   // brake lights
+    /**
+     * ICD v1.3 §4.2.5.10 — command encoding (not telemetry status):
+     *   0 = OFF, 1 = ON
+     * param1 = headlight, param2 = fog, param3 = rear/brake.
+     */
+    float param1;
+    float param2;
+    float param3;
 };
 
 

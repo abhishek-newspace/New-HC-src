@@ -1,13 +1,22 @@
 /**
  * @file displayHandler.cpp
- * @version 0.1
- * @author Nikhil Tom Jose
- * @date 22/04/2026
+ * @version 0.2
+ * @author Abhishek
+ * @date 15/07/2026
  * 
  * Part of displayHandler library.
  * Defines variables and functions used for displayHandler.h
+ *
+ * <h2>Changes</h2>
+ * @date 15/07/2026
+ * - SRS §3.2.2 connectivity LED priority (Red disconnected, Yellow low RSSI, Blue timesync, Green healthy)
+ * - compact top-row UGV/HC battery gauges; fill width = SoC% from right; colour from SoC bands
+ * - battery labels use dim grey + transparent glyphs so fill colour stays visible
+ * - displayHcBatteryStatus(), drawBatteryGaugeFill(), triggerTactileAlert() for UGV low-battery (SRS §3.2.4)
+ * - setBatterySOC accepts 0–100; HC gauge only redraws when SoC changes
  */
 #include "include/displayHandler.hpp"
+#include "include/IOhandler.hpp"
 
 #ifndef RELEASE_ARDUINO_UNO
 
@@ -25,7 +34,8 @@ bool radioConnected;
 
 bool timesync_received = false;
 
-uint8_t battery_topLeftX, battery_topLeftY;
+uint8_t ugv_batt_ix = 0, ugv_batt_iy = 0;
+uint8_t hc_batt_ix = 0, hc_batt_iy = 0;
 
 String current_info_displayed = "";
 String current_err_displayed = "";
@@ -40,6 +50,19 @@ int getErrorCodeDisplayed(){
 
 void connectRadio(){
   radioConnected = true;
+}
+
+void triggerTactileAlert(){
+#ifdef TACTILE_PIN
+  // Brief pulse on dedicated haptic / buzzer pin (optional production HW).
+  pinMode(TACTILE_PIN, OUTPUT);
+  digitalWrite(TACTILE_PIN, HIGH);
+  delay(120);
+  digitalWrite(TACTILE_PIN, LOW);
+#else
+  // This remote revision has no tactile actuator wired — visual INFO band covers the alert.
+  IF_DEBUG(Serial.println("tactile alert (UGV low battery) — no TACTILE_PIN defined");)
+#endif
 }
 
 #ifdef PROTOTYPE
@@ -370,33 +393,92 @@ void displayRSSI(){
 }
 
 
-void displayBattery(){
-    int color;
-    if(ugv_battery_soc > 40)
-      color = COLOR_GREEN;
-    else if(ugv_battery_soc > 30)
-      color = COLOR_YELLOW;
+static int ugvBatteryColor(uint8_t soc){
+    if(soc > 40)
+      return COLOR_GREEN;
+    if(soc > 30)
+      return COLOR_YELLOW;
+    return COLOR_RED;
+}
 
-    else
-      color = COLOR_RED;
-    tft.fillRectangle(battery_topLeftX, battery_topLeftY, battery_topLeftX + BATTERY_LENGTH * (1 - ugv_battery_soc / (float)100), battery_topLeftY + BATTERY_HEIGHT, BATTERY_BG_COLOR);
-    tft.fillRectangle(battery_topLeftX + BATTERY_LENGTH * (1 - ugv_battery_soc / (float)100), 
-        battery_topLeftY, 
-        battery_topLeftX + BATTERY_LENGTH, 
-        battery_topLeftY + BATTERY_HEIGHT, 
-        
-        color);
-    if(ugv_battery_soc < 20 && ugv_battery_soc > 0){
-      displayInfo("Scout battery charge below 10%; please charge");
-    }
+static int hcBatteryColor(uint8_t soc){
+    if(soc > 40)
+      return COLOR_GREEN;
+    if(soc > 20)
+      return COLOR_YELLOW;
+    return COLOR_RED;
+}
+
+/** Fill right-to-left: coloured width = soc% of BATTERY_LENGTH (empty on left). */
+static void drawBatteryGaugeFill(uint8_t ix, uint8_t iy, uint8_t soc, int fillColor){
+    const uint8_t clamped = (soc > 100) ? 100 : soc;
+    const int fillW = (BATTERY_LENGTH * clamped) / 100;
+    const int fillStart = ix + BATTERY_LENGTH - fillW;
+
+    tft.fillRectangle(ix, iy, ix + BATTERY_LENGTH, iy + BATTERY_HEIGHT, BATTERY_BG_COLOR);
+    if(clamped > 0 && fillW > 0)
+      tft.fillRectangle(fillStart, iy, ix + BATTERY_LENGTH, iy + BATTERY_HEIGHT, fillColor);
+}
+
+/**
+ * Draw battery label without opaque glyph background so SoC fill stays visible
+ * through letter interiors (TFT_22_ILI9225 drawText always paints _bgColor).
+ */
+static void drawBatteryLabel(uint8_t x, uint8_t y, const char *text){
     setFontSmall();
-    String soc = String(ugv_battery_soc);
-    if(ugv_battery_soc < 10 && ugv_battery_soc > 0)
-      soc = String("0") + soc;
-    else if(ugv_battery_soc == 0){
-      soc = "__";
+    const _currentFont cf = tft.getFont();
+    uint8_t cursor_x = x;
+
+    for(const char *p = text; *p != '\0'; p++){
+        const uint16_t ch = (uint16_t)(uint8_t)(*p);
+        uint16_t charOffset = (cf.width * cf.nbrows) + 1;
+        charOffset = (charOffset * (ch - cf.offset)) + FONT_HEADER_SIZE;
+
+        uint8_t charWidth;
+        if(cf.monoSp)
+            charWidth = cf.width;
+        else
+            charWidth = pgm_read_byte(&cf.font[charOffset]);
+        charOffset++;
+
+        for(uint8_t i = 0; i < charWidth; i++){
+            uint8_t h = 0;
+            for(uint8_t j = 0; j < cf.nbrows; j++){
+                const uint8_t charData = pgm_read_byte(&cf.font[charOffset++]);
+                for(uint8_t k = 0; k < 8; k++){
+                    if(h >= cf.height)
+                        break;
+                    if(bitRead(charData, k))
+                        tft.drawPixel(cursor_x + i, y + (j * 8) + k, BATTERY_LABEL_COLOR);
+                    h++;
+                }
+            }
+        }
+        cursor_x = (uint8_t)(cursor_x + charWidth + 1);
     }
-    tft.drawText(battery_topLeftX + BATTERY_LENGTH + 10, battery_topLeftY, soc + String("%"));
+}
+
+void displayBattery(){
+    /**
+     * SRS §3.2.4 — UGV SoC fill colour (compact top-row gauge):
+     *   Green  : > 40%
+     *   Yellow : > 30% and <= 40%
+     *   Red    : <= 30%
+     */
+    drawBatteryGaugeFill(ugv_batt_ix, ugv_batt_iy, ugv_battery_soc, ugvBatteryColor(ugv_battery_soc));
+    drawBatteryLabel(ugv_batt_ix + 2, ugv_batt_iy + 1, "UGV");
+
+    // Edge-trigger tactile once when SoC enters the red band (SRS §3.2.4).
+    static bool was_in_low_band = false;
+    bool in_low_band = (ugv_battery_soc > 0 && ugv_battery_soc <= 30);
+    if(in_low_band && !was_in_low_band){
+      triggerTactileAlert();
+      displayInfo("UGV battery low; charge Scout");
+    }
+    else if(!in_low_band && was_in_low_band){
+      clearInfo();
+    }
+    was_in_low_band = in_low_band;
 }
 
 void setRSSI(int16_t curr_RSSI){
@@ -409,49 +491,68 @@ void setRemRSSI(uint16_t curr_remRSSI){
 void setBatterySOC(uint8_t batterySOC){
   IF_DEBUG(Serial.print("current soc : ");)
   IF_DEBUG(Serial.println(batterySOC);)
-  if(batterySOC > 0 && batterySOC <= 100)
+  if(batterySOC <= 100)
     ugv_battery_soc = batterySOC;
 }
 
+/**
+ * SRS §3.2.2 — evaluate connectivity LED with explicit priority:
+ *   Red:    UGV not connected / disconnected (must be Red per SRS + field observation)
+ *   Blue:   timesync fault (while UGV link otherwise up)
+ *   Yellow: RSSI below threshold (while connected)
+ *   Green:  fully healthy link
+ *   Orange: reserved for soft HB lag only (radio up, UGV state not yet marked disconnected)
+ */
 void displayConnectionStatus(){
   setFontSmall();
-  
+
+  // Status text line (informational; LED colour follows priority below).
   if(radioConnected && current_state != disconnected){
     if(prevConnStatus != 2){
       tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y, "ATLAS AND RADIO  ", CONNECTED_COLOR);
       tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y + 8, "CONNECTED  ", CONNECTED_COLOR);
     }
     prevConnStatus = 2;
-    conn_stat = connected;
   }
-  else if(radioConnected){
+  else if(radioConnected && current_state == disconnected){
+    // Radio modem up but UGV/Atlas not connected — still "not connected to UGV" (Red LED).
     if(prevConnStatus != 1){
-      tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y, "RADIO CONNECTED   ", RADIO_CONNECTED_COLOR);
+      tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y, "UGV DISCONNECTED ", DISCONNECTED_COLOR);
       tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y + 8, "                 ", CONNECTED_COLOR);
     }
-    conn_stat = only_radio_connected;
     prevConnStatus = 1;
   }
   else if(prevConnStatus != 0){
     tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y, "ALL DISCONNECTED", DISCONNECTED_COLOR);
     tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y + 8, "                 ", CONNECTED_COLOR);
     prevConnStatus = 0;
-    conn_stat = all_disconnected;
-  }
-  
-  setFont1();
-  
-  if(conn_stat == connected){
-    if(remRSSI < -120 && RSSI  < -120)
-      conn_stat = low_connectivity;
-    if(timesync_received == false )
-      conn_stat = comm_fault;
   }
 
-  int LED_color = 0;
+  setFont1();
+
+  // --- Priority-ordered LED state (SRS §3.2.2) ---
+  // Field observation: UGV disconnected must show Red, not Yellow/Orange.
+  connectivity_status led_stat;
+  if(current_state == disconnected || !radioConnected){
+    led_stat = all_disconnected;                 // Red — not connected to UGV
+  }
+  else if(!timesync_received){
+    led_stat = comm_fault;                       // Blue — timesync error
+  }
+  else if(remRSSI < RSSI_WEAK_THRESHOLD_DBM || RSSI < RSSI_WEAK_THRESHOLD_DBM){
+    // Yellow only when UGV is actually connected but link quality is poor.
+    led_stat = low_connectivity;
+  }
+  else{
+    led_stat = connected;                        // Green
+  }
+
+  conn_stat = led_stat;
 
   if(conn_stat != prev_conn_stat){
-    IF_DEBUG(Serial.println("yipee!"));
+    IF_DEBUG(Serial.print("conn LED -> ");)
+    IF_DEBUG(Serial.println((int)conn_stat);)
+    int LED_color = COLOR_RED;
     switch(conn_stat){
       case connected:
         LED_color = COLOR_GREEN;
@@ -466,7 +567,11 @@ void displayConnectionStatus(){
         LED_color = COLOR_BLUE;
         break;
       case only_radio_connected:
-        LED_color = COLOR_ORANGE;
+        // Soft "radio only" — still treat as not connected to UGV → Red
+        LED_color = COLOR_RED;
+        break;
+      default:
+        LED_color = COLOR_RED;
         break;
     }
     tft.fillRectangle(CONN_STAT_MSG_POS_X, CONN_STAT_MSG_POS_Y, CONN_STAT_MSG_POS_X + CONN_STAT_MSG_SZ_X, CONN_STAT_MSG_POS_Y + CONN_STAT_MSG_SZ_Y, LED_color);
@@ -489,7 +594,7 @@ void displayDriveMode(driveMode mode){
 }
 
 void updateDisplay(){
-    static int prevRSSI = 0, prevBattery = 0;
+    static int prevRSSI = 0, prevBattery = 0, prevHcBattery = -1;
 
     displayConnectionStatus();
     if(RSSI != prevRSSI)
@@ -497,8 +602,13 @@ void updateDisplay(){
     if(ugv_battery_soc != prevBattery)
       displayBattery();
 
+    const uint8_t hcSoc = readHcBatterySoc();
+    if((int)hcSoc != prevHcBattery)
+      displayHcBatteryStatus();
+
     prevRSSI = RSSI;
     prevBattery = ugv_battery_soc;
+    prevHcBattery = hcSoc;
 }
 
 
@@ -570,22 +680,26 @@ void displayDirection(directionToggle direction){
   prevDirection = direction;
 }
 
-void drawBatterySymbol(int topLeftX, int topLeftY){
-    battery_topLeftX = topLeftX + BATTERY_TIP_WIDTH + BATTERY_RECTANGLE_THICKNESS;
-    battery_topLeftY = topLeftY + BATTERY_RECTANGLE_THICKNESS;
+static void drawSmallBatteryOutline(int topLeftX, int topLeftY, uint8_t *innerX, uint8_t *innerY){
+    *innerX = topLeftX + BATTERY_TIP_WIDTH + BATTERY_RECTANGLE_THICKNESS;
+    *innerY = topLeftY + BATTERY_RECTANGLE_THICKNESS;
 
     for(int i = 1; i <= BATTERY_RECTANGLE_THICKNESS; i++)
       tft.drawRectangle(
-        topLeftX + BATTERY_TIP_WIDTH + BATTERY_RECTANGLE_THICKNESS - i, 
-        topLeftY + BATTERY_RECTANGLE_THICKNESS - i, 
-        
-        topLeftX + BATTERY_TIP_WIDTH + BATTERY_LENGTH + BATTERY_RECTANGLE_THICKNESS + i, 
-        topLeftY + BATTERY_HEIGHT + BATTERY_RECTANGLE_THICKNESS + i, 
-        
+        topLeftX + BATTERY_TIP_WIDTH + BATTERY_RECTANGLE_THICKNESS - i,
+        topLeftY + BATTERY_RECTANGLE_THICKNESS - i,
+        topLeftX + BATTERY_TIP_WIDTH + BATTERY_LENGTH + BATTERY_RECTANGLE_THICKNESS + i,
+        topLeftY + BATTERY_HEIGHT + BATTERY_RECTANGLE_THICKNESS + i,
         BATTERY_COLOR);
 
-    tft.fillRectangle(topLeftX, topLeftY + BATTERY_HEIGHT/4 + BATTERY_RECTANGLE_THICKNESS, topLeftX + BATTERY_TIP_WIDTH, topLeftY + (BATTERY_HEIGHT * 3) / 4 + BATTERY_RECTANGLE_THICKNESS, BATTERY_COLOR);
+    tft.fillRectangle(
+        topLeftX,
+        topLeftY + BATTERY_HEIGHT/4 + BATTERY_RECTANGLE_THICKNESS,
+        topLeftX + BATTERY_TIP_WIDTH,
+        topLeftY + (BATTERY_HEIGHT * 3) / 4 + BATTERY_RECTANGLE_THICKNESS,
+        BATTERY_COLOR);
 }
+
 void displayBasic(){
     tft.setBackgroundColor(BACKGROUND_COLOR);
     
@@ -593,8 +707,47 @@ void displayBasic(){
     tft.drawText(Y_OFFSET, SPEED_POS_X, "SPEED:", DEFAULT_TEXT_COLOR);
     tft.drawText(Y_OFFSET, RSSI_POS_X, "RSSI:", DEFAULT_TEXT_COLOR);
     // tft.drawText(Y_OFFSET, DIRN_POS_X, "DIRN:", DEFAULT_TEXT_COLOR);
-    drawBatterySymbol(BATTERY_POS_X, BATTERY_POS_Y);
 
+    /* Top row: mode (via displayDriveMode) + compact UGV/HC battery boxes */
+    drawSmallBatteryOutline(UGV_BATTERY_POS_X, UGV_BATTERY_POS_Y, &ugv_batt_ix, &ugv_batt_iy);
+    drawSmallBatteryOutline(HC_BATTERY_POS_X, HC_BATTERY_POS_Y, &hc_batt_ix, &hc_batt_iy);
+    displayBattery();
+    displayHcBatteryStatus();
+}
+
+/**
+ * SRS §3.2.3.3 — HC pack compact gauge (top row), label "HC" inside:
+ *   Green  : > 40%
+ *   Yellow : > 20% and <= 40%
+ *   Red    : > 10% and <= 20% (also 5–10%)
+ *   Off    : < 5%
+ */
+void displayHcBatteryStatus(){
+    const uint8_t soc = readHcBatterySoc();
+    bool led_on = true;
+    uint8_t shown = soc;
+    int color = BATTERY_BG_COLOR;
+
+    if(soc < 5){
+        led_on = false;
+        shown = 0;
+        color = BATTERY_BG_COLOR;
+    }
+    else{
+        color = hcBatteryColor(soc);
+    }
+
+    drawBatteryGaugeFill(hc_batt_ix, hc_batt_iy, shown, color);
+    drawBatteryLabel(hc_batt_ix + 6, hc_batt_iy + 1, "HC");
+
+#ifdef HC_BATT_STATUS_LED_PIN
+    digitalWrite(HC_BATT_STATUS_LED_PIN, led_on ? HIGH : LOW);
+#else
+    (void)led_on;
+#endif
+
+    IF_DEBUG(Serial.print("HC batt SoC=");)
+    IF_DEBUG(Serial.println(soc);)
 }
 
 #else
@@ -624,6 +777,8 @@ void displayRSSI(){}
 
 /// update battery stat display
 void displayBattery(){}
+
+void displayHcBatteryStatus(){}
 
 /// @brief set the screen with symbols/text that is required to understand the output of the display updates
 void displayBasic(){}

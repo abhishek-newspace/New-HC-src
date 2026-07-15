@@ -1,11 +1,16 @@
 /**
  * @file packetHandler.cpp
- * @version 0.1
- * @author Nikhil Tom Jose
- * @date 22/04/2026
+ * @version 0.2
+ * @author Abhishek
+ * @date 15/07/2026
  * 
  * Part of packet handler library.
  * Defines variables and functions used in packetHandler.h
+ *
+ * <h2>Changes</h2>
+ * @date 15/07/2026
+ * - sendLightToggleState(): one MAVLink packet per toggle position (pins 6/8)
+ * - MANUAL_CONTROL_ONLY_WHEN_MOVING: send MC only out of deadband + one zero frame on return
 */
 
 #include "include/packetHandler.h"
@@ -121,58 +126,65 @@ void sendDisarmCommand(){
     sendBuffer(msgsndr.buffer_arm_disarm_cmd(0));
 }
 
-void sendHeadlight(){
-    // sendBuffer(msgsndr.buffer_light_control_cmd(0,0,0));
-    // return;
-    IF_DEBUG(Serial.println("+++++++++++++HEADLIGHT");)
-    if(headlight_off()){
-        
-        setHeadlighState(1);
-        if(foglight_off()){
-            sendBuffer(msgsndr.buffer_light_control_cmd(1,0,1));
-        }
-        else{
-            sendBuffer(msgsndr.buffer_light_control_cmd(1,1,1));
-        }
+/**
+ * Send LIGHT_CONTROL from 3-pos toggle:
+ *   pin 6 LOW = OFF (0,0,0), centre = HEAD+REAR (1,0,1), pin 8 LOW = FOG (0,1,0).
+ * ICD: param1=head, param2=fog, param3=rear.
+ * Called once per toggle edge — not while the switch is held.
+ */
+void sendLightToggleState(uint8_t toggle_pos){
+    bool head = false;
+    bool fog  = false;
+    bool rear = false;
+
+    switch(toggle_pos){
+        case 1:   /* HEAD (centre) */
+            head = true;
+            rear = true;
+            break;
+        case 2:   /* FOG (pin 8) */
+            fog = true;
+            break;
+        default:  /* OFF (pin 6) */
+            break;
     }
+
+    setHeadlighState(head);
+    setFoglightState(fog);
+    IF_DEBUG(Serial.print("LIGHT_CTRL toggle=");)
+    IF_DEBUG(Serial.print(toggle_pos);)
+    IF_DEBUG(Serial.print(" head=");)
+    IF_DEBUG(Serial.print(head);)
+    IF_DEBUG(Serial.print(" fog=");)
+    IF_DEBUG(Serial.print(fog);)
+    IF_DEBUG(Serial.print(" rear=");)
+    IF_DEBUG(Serial.println(rear);)
+    sendBuffer(msgsndr.buffer_light_control_cmd(head, fog, rear));
+}
+
+void sendHeadlight(){
+    sendLightToggleState(1);
+}
+
+void sendCurrentLightState(){
+    if(headlight_off() && foglight_off())
+        sendLightToggleState(0);
+    else if(!headlight_off() && foglight_off())
+        sendLightToggleState(1);
+    else if(headlight_off() && !foglight_off())
+        sendLightToggleState(2);
     else{
-        setHeadlighState(0);
-        if(foglight_off()){
-            sendBuffer(msgsndr.buffer_light_control_cmd(0,0,0));
-        }
-        else{
-            sendBuffer(msgsndr.buffer_light_control_cmd(0,1,0));
-        }
+        sendBuffer(msgsndr.buffer_light_control_cmd(true, true, true));
     }
 }
 
 /// @brief send a request to turn on brake light and fog light
 void sendFogBrakeLight(){
-    // sendBuffer(msgsndr.buffer_light_control_cmd(1,1,1));
-    // return;
-    IF_DEBUG(Serial.println("---------------FOGLIGHT");)
-    if(headlight_off()){
-        
-        if(foglight_off()){
-            setFoglightState(1);
-            sendBuffer(msgsndr.buffer_light_control_cmd(0,1,0));
-        }
-        else{
-            setFoglightState(0);
-            sendBuffer(msgsndr.buffer_light_control_cmd(0,0,0));
-        }
-    }
-    else{
-        
-        if(foglight_off()){
-            setFoglightState(1);
-            sendBuffer(msgsndr.buffer_light_control_cmd(1,1,1));
-        }
-        else{
-            setFoglightState(0);
-            sendBuffer(msgsndr.buffer_light_control_cmd(1,0,1));
-        }
-    }   
+    sendLightToggleState(2);
+}
+
+void sendLightOffRequest(){
+    sendLightToggleState(0);
 }
 
 /// @brief send a request to turn off headlight
@@ -205,10 +217,22 @@ void sendModeChangeRequest(){
 }
 
 void sendManualControl(){
-    IF_DEBUG(Serial.println("sending manual control");)
     thumbstickControl thumbstick_input;
     getXY(&thumbstick_input);
-    
+
+#ifdef MANUAL_CONTROL_ONLY_WHEN_MOVING
+    /* Stick already zeroed inside XY dead-band by getXY(). */
+    const bool deflected =
+        (thumbstick_input.X != 0.0f) || (thumbstick_input.Y != 0.0f);
+
+    static bool was_deflected = false;
+    if(!deflected && !was_deflected){
+        return;   /* idle at center — do not spam MANUAL_CONTROL */
+    }
+    /* First return-to-center frame is still sent so Atlas/VCU see zero axes. */
+#endif
+
+    IF_DEBUG(Serial.println("sending manual control");)
     sendBuffer(
         msgsndr.buffer_manual_control(
             thumbstick_input.X,
@@ -219,19 +243,24 @@ void sendManualControl(){
             0
         )
     );
+
+#ifdef MANUAL_CONTROL_ONLY_WHEN_MOVING
+    was_deflected = deflected;
+#endif
 }
 
 void sendEstopRequest(bool enable){
+    /* ICD §4.2.5.11: engage→2, clear→3 (Disengaged). Disable(1) unused by HC toggle. */
     if(enable){
-        IF_DEBUG(Serial.println("sending e stop request");)
+        IF_DEBUG(Serial.println("sending e-stop ENGAGED (param1=2)");)
         sendBuffer(
-            msgsndr.buffer_remote_emergency_cmd(1)
+            msgsndr.buffer_remote_emergency_cmd(ICD_REMOTE_EMERGENCY_ENGAGED)
         );
     }
     else{
-        IF_DEBUG(Serial.println("sending e stop disable request");)
+        IF_DEBUG(Serial.println("sending e-stop DISENGAGED (param1=3)");)
         sendBuffer(
-            msgsndr.buffer_remote_emergency_cmd(0)
+            msgsndr.buffer_remote_emergency_cmd(ICD_REMOTE_EMERGENCY_DISENGAGED)
         );
     }
 }
@@ -243,8 +272,13 @@ void handlePacketReceived()
     #endif
 
     byte data;
-    IF_PRINT_BYTES(Serial.print("receiving->");)
+    bool dumped = false;
+
     while(RADIO_PORT.available()){
+        if(!dumped){
+            IF_PRINT_BYTES(Serial.print("receiving->");)
+            dumped = true;
+        }
         data = RADIO_PORT.read();
         IF_PRINT_BYTES(Serial.print("0x");)
         IF_PRINT_BYTES(Serial.print(data,HEX);)
@@ -282,12 +316,7 @@ void handlePacketReceived()
             
             }
         }
-        // else if(status.parse_state == 14)
-        //     IF_DEBUG(Serial.println("failed CRC");)
-
-        
     }
-    
-        
-    IF_PRINT_BYTES(Serial.println(""));
+
+    IF_PRINT_BYTES(if(dumped) Serial.println("");)
 }

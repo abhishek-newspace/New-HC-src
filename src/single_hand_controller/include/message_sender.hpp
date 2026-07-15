@@ -90,10 +90,10 @@ public:
     );
     int buffer_timesync();
 
-    /// @brief send request to emergency stop 
-    /// @param engage (0) to disengage estop ;;; (1) to engage estop
+    /// @brief pack HC_REMOTE_EMERGENCY_COMMAND (ICD §4.2.5.11)
+    /// @param param1 1=Disable, 2=Engaged, 3=Disengaged
     /// @return length of buffer
-    int buffer_remote_emergency_cmd(bool engage);
+    int buffer_remote_emergency_cmd(float param1);
 
     #ifndef DEPRECATED_REV_1
     int buffer_component_version();

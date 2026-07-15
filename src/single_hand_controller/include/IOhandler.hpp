@@ -1,14 +1,18 @@
 /**
  * @file IOhandler.hpp
- * @version 0.1
- * @author Nikhil Tom Jose
- * @date 22/04/2026
+ * @version 0.2
+ * @author Abhishek
+ * @date 15/07/2026
  * Any interfacing with input/output pins of the microcontroller is taken care of, within this header file, except handling display output, which is done by the displayHandler
  * 
  * <h2>Changes</h2>
  * @date 28/04/2026
  * - Modified struct to inclued cooldown period, so that when the button is pressed and released, the next press is only registered after the cooldown period
  * - modified struct to include callback functions to increase, decrease and set speed to neutral
+ *
+ * @date 15/07/2026
+ * - declared updateLightToggleEdge() for pins 6/8 light toggle (edge-triggered only)
+ * - declared readHcBatterySoc() for local HC battery SoC (SRS §3.2.3.3)
  */
 #pragma once
 #include "definitions.h"
@@ -52,6 +56,18 @@ void updateToggleValues(struct toggle *t1, int32_t ms_since_last_check);
 
 
 void updateTwoPosToggleValues(struct two_pos_toggle *t1, int32_t ms_since_last_check);
+
+/**
+ * Light 3-pos toggle (pins 6=OFF, mid=HEAD, 8=FOG): fire callbacks only on position change
+ * so MAVLink LIGHT_CONTROL is not requested every input poll.
+ */
+void updateLightToggleEdge(struct two_pos_toggle *t1, int32_t ms_since_last_check);
+
+/**
+ * SRS §3.2.3.3 — read HC pack SoC % from HC_BATTERY_ADC_PIN (0–100).
+ * Local indication only; never transmitted.
+ */
+uint8_t readHcBatterySoc();
 
 /// @brief normal button for which there is just a single press
 struct button{

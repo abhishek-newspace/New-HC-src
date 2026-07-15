@@ -1,8 +1,8 @@
 /**
  * @file packetHandler.h
- * @version 0.1
- * @author Nikhil Tom Jose
- * @date 22/04/2026
+ * @version 0.2
+ * @author Abhishek
+ * @date 15/07/2026
  * Handles all incoming communication over UART, from the hand controller radio
  * 
  * <h2>changes</h2>
@@ -10,6 +10,8 @@
  * added functions for arm, disarm and sending heartbeat
  * @date 07/05/2026
  * added function to send component version
+ * @date 15/07/2026
+ * - declared sendLightToggleState() for edge-triggered light commands (pins 6/8)
  */
 #pragma once
 #include "definitions.h"
@@ -50,11 +52,20 @@ void sendDisarmCommand();
 /// @brief send a heartbeat
 void sendHeartbeat();
 
+/// @brief send LIGHT_CONTROL for 3-pos light toggle (0=OFF pin6, 1=HEAD centre, 2=FOG pin8)
+void sendLightToggleState(uint8_t toggle_pos);
+
 /// @brief send a request to turn on headlight
 void sendHeadlight();
 
 /// @brief send a request to turn on brake light and fog light
 void sendFogBrakeLight();
+
+/// @brief send a request to turn off all lights
+void sendLightOffRequest();
+
+/// @brief retransmit current head/fog/rear from local state (no toggle change)
+void sendCurrentLightState();
 
 /// @brief send request to set speed to required speed
 void sendSpeedChangeRequest(int speed);
@@ -64,8 +75,8 @@ void sendModeChangeRequest();
 
 void getRadioConfigurations();
 
-/// @brief send a request for emergency stop
-/// @param enable whether to engage an emergency stop or to disengage the emergency stop
+/// @brief send HC_REMOTE_EMERGENCY_COMMAND (ICD §4.2.5.11)
+/// @param enable true → param1=2 Engaged; false → param1=3 Disengaged
 void sendEstopRequest(bool enable);
 
 #ifndef DEPRECATED_REV_1

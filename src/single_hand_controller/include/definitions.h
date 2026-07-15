@@ -1,10 +1,32 @@
 /**
  * @file definitions.h
- * @version 0.1
- * @author Nikhil Tom Jose
- * @date 22/04/2026
- * 
- * All definitions, used within every header file is included here. 
+ * @version 0.3
+ * @author Abhishek
+ * @date 15/07/2026
+ *
+ * All definitions used by the Hand Controller.
+ *
+ * ---------------------------------------------------------------------------
+ * HOW TO SWITCH LINK MODE (only this section — then Verify + Upload)
+ * ---------------------------------------------------------------------------
+ * Development (no UHF radio, Atlas on same USB COM as HC):
+ *   1) Comment out  #define RELEASE
+ *   2) Keep          #define HC_LINK_OVER_USB
+ *
+ * Production (UHF radio on Serial3):
+ *   1) Uncomment     #define RELEASE
+ *   2) Comment out   #define HC_LINK_OVER_USB
+ *
+ * Optional: with RELEASE commented and HC_LINK_OVER_USB commented, you can
+ * enable _DEBUG_ / PRINT_BYTES for Serial Monitor while using real radio.
+ * ---------------------------------------------------------------------------
+ *
+ * <h2>Changes</h2>
+ * @date 15/07/2026
+ * - HC_LINK_OVER_USB link-mode switch documentation
+ * - MANUAL_CONTROL_ONLY_WHEN_MOVING gate
+ * - ICD_ARM_PARAM1 / ICD_DISARM_PARAM1 (ICD: 1=ARM, 2=DISARM)
+ * - ICD_REMOTE_EMERGENCY_* (1=Disable, 2=Engaged, 3=Disengaged)
  */
 #pragma once
 #include "definitions/enum_defs.h"
@@ -41,37 +63,72 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 #define SIGN_PACKETS  // used to send and receive signed packets
 //#define BYPASS_NO_SIGNING   // prevents display of error to show that signing is disabled
 
-// if the code is not meant to operate in debug mode (prints out info on serial communication), comment out this line
-
-
 //#define RELEASE_ARDUINO_UNO
 
+/* ===================== SWITCH THESE TWO FOR DEV vs PRODUCTION ===================== */
+
 #ifndef RELEASE_ARDUINO_UNO
-#define RELEASE
+// PRODUCTION UHF: uncomment RELEASE and comment out HC_LINK_OVER_USB.
+// #define RELEASE
 #endif
+
+/**
+ * CURRENT LAB MODE: USB ↔ Atlas (UHF off, clean MAVLink — no Serial debug).
+ *   - MAVLink on USB Serial (same COM used to flash) @ 115200
+ *   - Close Serial Monitor; Atlas owns the COM
+ *   - Skips Error 5 (local RFD RADIO_STATUS)
+ *
+ * For PRODUCTION UHF: comment out HC_LINK_OVER_USB and uncomment RELEASE above.
+ */
+#define HC_LINK_OVER_USB
+
+/* Alias used by the rest of the codebase (do not rename call sites). */
+#ifdef HC_LINK_OVER_USB
+#define RADIO_SIMULATION_TESTING
+#endif
+
+/* ===================== END SWITCH SECTION ======================================== */
 
 
 #ifndef RELEASE // Turn off all debug features during release
 
-#define _DEBUG_
 // #define GET_RADIO_CONFIG
 
-#define RADIO_SIMULATION_TESTING
+// Keep all of these OFF when linking to Atlas over USB (debug text would corrupt MAVLink).
+// #define _DEBUG_
+// #define PRINT_BYTES
+// #define TESTING
+// #define DEBUG_OFP_TIMING
 
 //#define TESTING_TIMESYNC
 // #define TESTING_JOYSTICK
-
-//#define TESTING // ONLY use this when testing features
-//#define STOP_COMM   // when testing features and no communication is to be sent.
+//#define STOP_COMM
 //#define STOP_RECV
 //#define SPECIAL_TESTING
-
-//#define PRINT_BYTES // used to print raw received bytes
 
 #endif
 
 
-#define TIME_REQ  // comment out this definition in case of not requiring time to be displayed
+//#define TIME_REQ  // comment out this definition in case of not requiring time to be displayed
+
+/**
+ * When defined: MANUAL_CONTROL is sent only while the stick is out of the dead-zone
+ * (plus one final zero frame when it returns to center so the UGV stops).
+ * Comment out to restore SRS §3.2.8 continuous 50 Hz while armed.
+ */
+#define MANUAL_CONTROL_ONLY_WHEN_MOVING
+
+/** ICD v1.3 §4.2.5.6 HC_ARM_DISARM_COMMAND param1 */
+#define ICD_ARM_PARAM1    1.0f
+#define ICD_DISARM_PARAM1 2.0f
+
+/**
+ * ICD v1.3 §4.2.5.11 HC_REMOTE_EMERGENCY_COMMAND param1
+ * (not the HEARTBEAT status field — that uses different 1/3 meanings)
+ */
+#define ICD_REMOTE_EMERGENCY_DISABLE    1.0f
+#define ICD_REMOTE_EMERGENCY_ENGAGED    2.0f
+#define ICD_REMOTE_EMERGENCY_DISENGAGED 3.0f
 
 #define USE_HEARTBEAT_MAVLINKV1
 
@@ -132,4 +189,3 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 
 
 #define DEPRECATED_REV_1    // wrap items that were deprecated in major revision of MAVLink XML into this
-

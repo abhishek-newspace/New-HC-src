@@ -12,10 +12,12 @@
  * 2. speed, since the single hand controller prototype doesn't have a tristate speed toggle that maintains state by itself
  * 
  * <h2>changes</h2>
- * @date 04/05/2026
- * - added function defintitions for functions to change directions, and get current speed, and direction
- * 
-*/
+ * @date 15/07/2026
+ * - added function definitions for functions to change directions, and get current speed, and direction
+ *
+ * @date 15/07/2026
+ * - switchEmergencyMode: ICD 1/2/3 map; update UI only on change (avoid HB spam / OFP lag)
+ */
 #include "include/stateHandler.hpp"
 
 ugv_status current_state = unknown;
@@ -31,17 +33,33 @@ bool fog_brake_state = 0;
 
 
 void switchEmergencyMode(int mode){
-    mode--;
-    displayInfo(String("emergency mode :") + String(mode));
-    // if(mode != current_emergency_mode){
-    if(mode == engaged && getErrorCodeDisplayed() != ESTOP_ENGAGED){
-        displayError("Estop Engaged",ESTOP_ENGAGED);
+    /**
+     * ICD §4.2.5.1 remote emergency (COMP_HEARTBEAT):
+     *   1 = Disengaged → enum 0
+     *   2 = Engaged    → enum 1
+     *   3 = Disabled   → enum 2
+     */
+    if(mode < 1 || mode > 3)
+        return;
+
+    const estopMode next = (estopMode)(mode - 1);
+    if(next == current_emergency_mode)
+        return;
+
+    current_emergency_mode = next;
+
+    if(next == engaged){
+        displayError("Estop Engaged", ESTOP_ENGAGED);
+        displayInfo("emergency: engaged");
     }
-    else if(getErrorCodeDisplayed() == ESTOP_ENGAGED){
-        clearError();
+    else{
+        if(getErrorCodeDisplayed() == ESTOP_ENGAGED)
+            clearError();
+        if(next == disengaged)
+            displayInfo("emergency: disengaged");
+        else
+            displayInfo("emergency: disabled");
     }
-    // }
-    current_emergency_mode = mode;
 }
 
 estopMode getEmergencyMode(){

@@ -1,11 +1,16 @@
 /**
  * @file packet_receiver.cpp
- * @version 0.1
- * @author Nikhil Tom Jose
- * @date 22/04/2026
+ * @version 0.2
+ * @author Abhishek
+ * @date 15/07/2026
  * 
  * Part of packet receiver library; used in Single Hand Controller for Scout
  * Defines member functions of message_sender class
+ *
+ * <h2>Changes</h2>
+ * @date 15/07/2026
+ * - fixed HEARTBEAT custom_mode: shift past arm before emergency (ICD 1/2/3)
+ * - setBatterySOC from bits after emergency field
  */
 #include "include/packet_receiver.hpp"
 
@@ -171,21 +176,13 @@ void packet_receiver::receive_heartbeat(mavlink_message_t *msg)
     switchDriveMode(temp & 3);
     IF_DEBUG(Serial.print("drive mode : "));
     IF_DEBUG(Serial.println(temp & 3));
-    
 
-    // ignoring arm status
-
-    // temp =  heartbeat.custom_mode.hcm.driveModeLimit[0] + 
-    //         heartbeat.custom_mode.hcm.driveModeLimit[1] * 2;
     temp = temp >> 2;
-
     setUGV_speed(temp & 3);
-
     IF_DEBUG(Serial.print("speed mode : "));
     IF_DEBUG(Serial.println(temp & 3));
 
     temp = temp >> 2;
-
     IF_DEBUG(Serial.print("arm mode : "));
     IF_DEBUG(Serial.println(temp & 3));
 
@@ -196,17 +193,21 @@ void packet_receiver::receive_heartbeat(mavlink_message_t *msg)
     else
         setUGV_state(standby);
 
-    
-
-    // temp =  heartbeat.custom_mode.hcm.emergency[0] + 
-    //         heartbeat.custom_mode.hcm.emergency[1] * 2;
+    /*
+     * ICD §4.2.5.1 COMP_HEARTBEAT custom_mode — next 2-bit field after arm:
+     *   1 = Disengaged, 2 = Engaged, 3 = Disabled (0 = Reserved)
+     * Must shift past arm before reading emergency (do not reuse arm bits).
+     */
+    temp = temp >> 2;
+    {
+        const uint8_t emerg = (uint8_t)(temp & 3);
+        IF_DEBUG(Serial.print("emergency mode (ICD): ");)
+        IF_DEBUG(Serial.println(emerg);)
+        switchEmergencyMode(emerg);
+    }
 
     temp = temp >> 2;
-    switchEmergencyMode(temp & 3);
-    IF_DEBUG(Serial.print("drive mode : "));
-    IF_DEBUG(Serial.println(temp & 3));
-
-    setBatterySOC(temp >> 2 & 127);
+    setBatterySOC(temp & 0xFF);
 
     
 }

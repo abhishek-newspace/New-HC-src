@@ -1,0 +1,34 @@
+# Intermediate / IDE debris (Build/ itself is tracked for flashable hex)
+**/compile_commands.json
+*.o
+*.d
+*.elf
+*.eep
+*.bin
+*.map
+
+# Under Build/: keep flashable .hex only; skip object trees / platform copies
+Build/**
+!Build/**/
+!Build/**/*.hex
+
+# Generated Doxygen (regenerate via src/Doxyfile)
+Documentation/html/
+Documentation/latex/
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Secrets / noise
+.env
+.env.*
+__pycache__/
+*.pyc
+*.pdf
+CMakeCache.txt
+CMakeFiles/
