@@ -177,11 +177,14 @@ int message_sender::buffer_manual_control(int x, int y, bool extra_feature_1_pre
 }
 
 int message_sender::buffer_remote_emergency_cmd(bool engage){
+    // ICD §4.2.5.11 COMMAND param1 (not the HEARTBEAT status field):
+    //   1 = Disable, 2 = Engaged, 3 = Disengaged
+    // HEARTBEAT §4.2.5.1 status: 1=Disengaged, 2=Engaged, 3=Disabled
     if(engage){
-        estop_cmd.param1 = 2;
+        estop_cmd.param1 = 2;   /* Engaged */
     }
     else{
-        estop_cmd.param1 = 1;
+        estop_cmd.param1 = 3;   /* Disengaged */
     }
     
     mavlink_msg_command_long_pack(

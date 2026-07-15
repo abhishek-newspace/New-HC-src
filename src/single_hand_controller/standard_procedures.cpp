@@ -19,7 +19,7 @@
  * @date 15/07/2026
  * - pending-request timeout helpers; arm wait uses Atlas HEARTBEAT arm field
  * - lights: one LIGHT_CONTROL per toggle edge (pins 6/8); no periodic retransmit
- * - e-stop pin 3: long-press toggle; continuous engage TX only; one-shot clear
+ * - e-stop pin 3 long-press toggle; TX gated by getEmergencyMode() from HEARTBEAT (ICD §4.2.5.1)
  */
 
 #include "include/standard_procedures.hpp"
@@ -358,19 +358,43 @@ void run_OFP_cycle()
         arm_press = false;
     }
     if(estop_toggled){
-        /* Engaged: retransmit engage at 1 Hz until long-press disengages. */
+        /*
+         * Operator wants engage: retransmit REMOTE_EMERGENCY (param1=2) until
+         * COMP_HEARTBEAT custom_mode reports engaged (ICD §4.2.5.1: 2 → getEmergencyMode()).
+         * Stop TX once engaged — same idea as the old toggle path.
+         */
         static unsigned long last_estop_tx_ms = 0;
-        if(millis() - last_estop_tx_ms >= ESTOP_RETRANSMIT_MS){
-            IF_DEBUG(displayInfo("e-stop engaged");)
-            sendEstopRequest(true);
-            last_estop_tx_ms = millis();
+        if(getEmergencyMode() != engaged){
+            if(last_estop_tx_ms == 0
+                || (millis() - last_estop_tx_ms >= ESTOP_RETRANSMIT_MS)){
+                IF_DEBUG(displayInfo("e-stop engage TX");)
+                sendEstopRequest(true);
+                last_estop_tx_ms = millis();
+            }
+        }
+        else{
+            last_estop_tx_ms = 0;  /* ready for a future engage cycle */
         }
     }
     else if(estop_clear_request){
-        /* Disengage: one clear packet only — no continuous clear TX. */
-        sendEstopRequest(false);
-        estop_clear_request = false;
-        IF_DEBUG(displayInfo("e-stop cleared");)
+        /*
+         * Operator wants clear: retransmit clear until HEARTBEAT reports not engaged
+         * (disengaged/disabled). Then stop — no continuous clear after confirm.
+         */
+        static unsigned long last_estop_clear_ms = 0;
+        if(getEmergencyMode() == engaged){
+            if(last_estop_clear_ms == 0
+                || (millis() - last_estop_clear_ms >= ESTOP_RETRANSMIT_MS)){
+                IF_DEBUG(displayInfo("e-stop clear TX");)
+                sendEstopRequest(false);
+                last_estop_clear_ms = millis();
+            }
+        }
+        else{
+            estop_clear_request = false;
+            last_estop_clear_ms = 0;
+            IF_DEBUG(displayInfo("e-stop cleared");)
+        }
     }
 
     if(turnOffLightsCondition()){
