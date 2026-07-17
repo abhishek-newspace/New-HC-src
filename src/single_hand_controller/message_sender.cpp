@@ -2,16 +2,20 @@
  * @file message_sender.cpp
  * @version 0.2
  * @author Abhishek
- * @date 15/07/2026
+ * @date 17/07/2026
  * 
  * Part of message sender library.
  * Defines member functions of message_sender class
  *
  * <h2>Changes</h2>
  * @date 15/07/2026
- * - arm/disarm param1 uses ICD_ARM_PARAM1 / ICD_DISARM_PARAM1 (2=ARM, 1=DISARM)
+ * - arm/disarm param1 uses ICD_ARM_PARAM1 / ICD_DISARM_PARAM1
  * - light control param encoding aligned to ICD (0=OFF, 1=ON)
  * - remote emergency param1: 1=Disable, 2=Engaged, 3=Disengaged (ICD §4.2.5.11)
+ *
+ * @date 17/07/2026
+ * @author Abhishek
+ * - arm/disarm request uses ICD values: param1 2=ARM, 1=DISARM
  */
 #include "include/message_sender.hpp"
 
@@ -20,7 +24,7 @@ extern mavlink_status_t* status_chan;
 
 int message_sender::buffer_arm_disarm_cmd(bool state)
 {
-    // ICD §4.2.5.1 arm mode: 2=Armed (arm cmd), 1=Disarmed (disarm cmd)
+    // ICD: 2=ARM, 1=DISARM
     arm_disarm_cmd.param1 = state ? ICD_ARM_PARAM1 : ICD_DISARM_PARAM1;
 
     mavlink_msg_command_long_pack(

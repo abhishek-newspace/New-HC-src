@@ -2,7 +2,7 @@
  * @file definitions.h
  * @version 0.3
  * @author Abhishek
- * @date 15/07/2026
+ * @date 17/07/2026
  *
  * All definitions used by the Hand Controller.
  *
@@ -25,8 +25,12 @@
  * @date 15/07/2026
  * - HC_LINK_OVER_USB link-mode switch documentation
  * - MANUAL_CONTROL_ONLY_WHEN_MOVING gate
- * - ICD_ARM_PARAM1 / ICD_DISARM_PARAM1 (ICD: 1=ARM, 2=DISARM)
+ * - ICD_ARM_PARAM1 / ICD_DISARM_PARAM1
  * - ICD_REMOTE_EMERGENCY_* (1=Disable, 2=Engaged, 3=Disengaged)
+ *
+ * @date 17/07/2026
+ * @author Abhishek
+ * - flipped arm/disarm command param1 to ICD: 2=ARM, 1=DISARM
  */
 #pragma once
 #include "definitions/enum_defs.h"
@@ -118,14 +122,9 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
  */
 #define MANUAL_CONTROL_ONLY_WHEN_MOVING
 
-/** ICD v1.3 §4.2.5.6 HC_ARM_DISARM_COMMAND param1 */
-#define ICD_ARM_PARAM1    1.0f
-#define ICD_DISARM_PARAM1 2.0f
+#define ICD_ARM_PARAM1    2.0f
+#define ICD_DISARM_PARAM1 1.0f
 
-/**
- * ICD v1.3 §4.2.5.11 HC_REMOTE_EMERGENCY_COMMAND param1
- * (not the HEARTBEAT status field — that uses different 1/3 meanings)
- */
 #define ICD_REMOTE_EMERGENCY_DISABLE    1.0f
 #define ICD_REMOTE_EMERGENCY_ENGAGED    2.0f
 #define ICD_REMOTE_EMERGENCY_DISENGAGED 3.0f

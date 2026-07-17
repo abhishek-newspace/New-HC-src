@@ -2,7 +2,7 @@
  * @file IOhandler.cpp
  * @version 0.2
  * @author Abhishek
- * @date 15/07/2026
+ * @date 17/07/2026
  * 
  * Part of IOhandler library
  * Defines functions and variables used in IOhandler.h
@@ -23,6 +23,11 @@
  * - optional bench placeholder when sense pin is floating (HC_BATT_NO_SENSE_RAW_MAX)
  * - updateLightToggleEdge(): light toggle pins 6/8 — send only on position change
  * - e-stop pin 3: long-press latch (engage continuous / disengage once)
+ *
+ * @date 17/07/2026
+ * @author Abhishek
+ * - fixed updateLongPressButtonValues(): hold timer no longer gated by cooldown
+ *   (cooldown only after release) so LONG_PRESS_DURATION (~500 ms) is respected
  */
 #include "include/IOhandler.hpp"
 
@@ -229,66 +234,43 @@ void updateButtonValues(struct button *b1, int32_t ms_since_last_check){
 }
 
 /**
- * update the struct values for a long press button
+ * update the struct values for a long press button.
+ * Hold timer uses LONG_PRESS_DURATION (time_defs.h). Cooldown only blocks a
+ * new press after release — it must not gate pressed_for accumulation (that
+ * made holds feel like ~seconds when the OFP loop dt was >= BUTTON_PRESS_COOLDOWN).
  */
 void updateLongPressButtonValues(struct long_press_button *b1, int32_t ms_since_last_check){
     b1->cooldown = max(0, b1->cooldown - ms_since_last_check);
-    if(!(digitalRead(b1->pin)) && b1->cooldown > 0){
-        if(b1->press_state){
+    const bool pressed = !digitalRead(b1->pin);
+
+    if(pressed){
+        if(b1->cooldown > 0 && b1->press_state == not_pressed){
+            return;
+        }
+
+        if(b1->press_state == not_pressed){
+            b1->press_state = short_pressed;
+            b1->pressed_for = 0;
+        }
+        else if(b1->press_state == short_pressed){
             b1->pressed_for += ms_since_last_check;
             if(b1->pressed_for >= LONG_PRESS_DURATION){
                 b1->press_state = long_pressed;
-                b1->cooldown = BUTTON_PRESS_COOLDOWN;
                 if(b1->long_press_callback != nullptr)
                     b1->long_press_callback();
             }
         }
-        else{
-            b1->press_state = short_pressed;
-        }
-    }
-    else if(!digitalRead(b1->pin)){
-        b1->cooldown = BUTTON_PRESS_COOLDOWN;
+        /* long_pressed: hold until release; do not re-fire */
     }
     else{
         if(b1->press_state == short_pressed){
-            b1->cooldown = BUTTON_PRESS_COOLDOWN;
             if(b1->short_press_callback != nullptr)
                 b1->short_press_callback();
         }
+        if(b1->press_state != not_pressed)
+            b1->cooldown = BUTTON_PRESS_COOLDOWN;
         b1->press_state = not_pressed;
         b1->pressed_for = 0;
-        
-    }
-    //IF_DEBUG(Serial.println(b1->press_state));
-    return;
-    
-    buttonPress prevState = b1->press_state;
-
-    b1->press_state = (int)!digitalRead(b1->pin);
-    b1->cooldown = max(0, b1->cooldown - ms_since_last_check);
-
-    if(b1->press_state && b1->cooldown > 0){
-        b1->press_state = 0;
-        return;
-    }
-
-    if(b1->press_state && b1->pressed_for > LONG_PRESS_DURATION){
-        //IF_DEBUG(Serial.println("long pressed!");)
-        b1->press_state = long_pressed;
-    }
-
-    else if(b1->press_state && prevState)
-        b1->pressed_for += ms_since_last_check;
-
-    else if(b1->press_state == not_pressed && prevState){
-        if(prevState == long_pressed && b1->long_press_callback != nullptr){
-            b1->long_press_callback();
-        }
-        else if(prevState == short_pressed && b1->short_press_callback != nullptr){
-            b1->short_press_callback();
-        }
-        b1->cooldown = BUTTON_PRESS_COOLDOWN;
     }
 }
 
