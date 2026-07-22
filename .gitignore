@@ -8,9 +8,9 @@
 *.map
 
 # Under Build/: keep flashable .hex only; skip object trees / platform copies
-Build/**
-!Build/**/
-!Build/**/*.hex
+# Build/**
+# !Build/**/
+# !Build/**/*.hex
 
 # Generated Doxygen (regenerate via src/Doxyfile)
 Documentation/html/
