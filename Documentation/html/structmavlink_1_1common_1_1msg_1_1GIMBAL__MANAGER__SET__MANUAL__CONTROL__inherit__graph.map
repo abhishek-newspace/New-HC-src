@@ -1,4 +1,0 @@
-<map id="mavlink::common::msg::GIMBAL_MANAGER_SET_MANUAL_CONTROL" name="mavlink::common::msg::GIMBAL_MANAGER_SET_MANUAL_CONTROL">
-<area shape="rect" id="node1" title="GIMBAL_MANAGER_SET_MANUAL_CONTROL message." alt="" coords="5,80,192,136"/>
-<area shape="rect" id="node2" href="$structmavlink_1_1Message.html" title="MAVLink Message base class." alt="" coords="28,5,169,32"/>
-</map>

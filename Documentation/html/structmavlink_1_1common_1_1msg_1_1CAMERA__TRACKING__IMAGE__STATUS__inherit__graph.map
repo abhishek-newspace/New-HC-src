@@ -1,4 +1,0 @@
-<map id="mavlink::common::msg::CAMERA_TRACKING_IMAGE_STATUS" name="mavlink::common::msg::CAMERA_TRACKING_IMAGE_STATUS">
-<area shape="rect" id="node1" title="CAMERA_TRACKING_IMAGE_STATUS message." alt="" coords="5,80,216,136"/>
-<area shape="rect" id="node2" href="$structmavlink_1_1Message.html" title="MAVLink Message base class." alt="" coords="40,5,181,32"/>
-</map>

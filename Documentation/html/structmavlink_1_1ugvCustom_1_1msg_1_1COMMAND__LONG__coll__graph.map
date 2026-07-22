@@ -1,4 +1,0 @@
-<map id="mavlink::ugvCustom::msg::COMMAND_LONG" name="mavlink::ugvCustom::msg::COMMAND_LONG">
-<area shape="rect" id="node1" title="COMMAND_LONG message." alt="" coords="5,80,188,121"/>
-<area shape="rect" id="node2" href="$structmavlink_1_1Message.html" title="MAVLink Message base class." alt="" coords="26,5,167,32"/>
-</map>

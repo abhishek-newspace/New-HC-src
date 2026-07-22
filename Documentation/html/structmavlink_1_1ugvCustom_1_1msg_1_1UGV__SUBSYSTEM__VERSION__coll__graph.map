@@ -1,4 +1,0 @@
-<map id="mavlink::ugvCustom::msg::UGV_SUBSYSTEM_VERSION" name="mavlink::ugvCustom::msg::UGV_SUBSYSTEM_VERSION">
-<area shape="rect" id="node1" title="UGV_SUBSYSTEM_VERSION message." alt="" coords="5,80,187,136"/>
-<area shape="rect" id="node2" href="$structmavlink_1_1Message.html" title="MAVLink Message base class." alt="" coords="25,5,167,32"/>
-</map>

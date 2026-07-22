@@ -1,7 +1,0 @@
-<map id="single_hand_controller/include/custom_v0.3_mav1/mavlink_conversions.h" name="single_hand_controller/include/custom_v0.3_mav1/mavlink_conversions.h">
-<area shape="rect" id="node1" title="These conversion functions follow the NASA rotation standards definition file available online." alt="" coords="5,5,209,61"/>
-<area shape="rect" id="node2" href="$custom__v0_83__mav1_2mavlink__helpers_8h_source.html" title=" " alt="" coords="5,109,209,165"/>
-<area shape="rect" id="node3" href="$custom__v0_83__mav1_2protocol_8h_source.html" title=" " alt="" coords="5,213,209,269"/>
-<area shape="rect" id="node4" href="$mav1_2ugvCustom_2ugvCustom_8h.html" title="MAVLink comm protocol generated from ugvCustom.xml." alt="" coords="5,317,209,373"/>
-<area shape="rect" id="node5" href="$mav1_2ugvCustom_2mavlink_8h.html" title="MAVLink comm protocol built from ugvCustom.xml." alt="" coords="5,421,209,477"/>
-</map>

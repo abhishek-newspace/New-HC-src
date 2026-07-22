@@ -12,7 +12,9 @@
 # !Build/**/
 # !Build/**/*.hex
 
-# Generated Doxygen (regenerate via src/Doxyfile)
+# Generated Doxygen (regenerate via src/Doxyfile).
+# Must also be removed from the index if previously committed:
+#   git rm -r --cached Documentation/html Documentation/latex
 Documentation/html/
 Documentation/latex/
 

@@ -1,4 +1,0 @@
-<map id="mavlink::standard::msg::GLOBAL_POSITION_INT" name="mavlink::standard::msg::GLOBAL_POSITION_INT">
-<area shape="rect" id="node1" title="GLOBAL_POSITION_INT message." alt="" coords="5,80,213,121"/>
-<area shape="rect" id="node2" href="$structmavlink_1_1Message.html" title="MAVLink Message base class." alt="" coords="39,5,180,32"/>
-</map>
