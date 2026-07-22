@@ -2,7 +2,7 @@
  * @file displayHandler.cpp
  * @version 0.2
  * @author Abhishek
- * @date 15/07/2026
+ * @date 22/07/2026
  * 
  * Part of displayHandler library.
  * Defines variables and functions used for displayHandler.h
@@ -14,6 +14,11 @@
  * - battery labels use dim grey + transparent glyphs so fill colour stays visible
  * - displayHcBatteryStatus(), drawBatteryGaugeFill(), triggerTactileAlert() for UGV low-battery (SRS §3.2.4)
  * - setBatterySOC accepts 0–100; HC gauge only redraws when SoC changes
+ *
+ * @date 22/07/2026
+ * @author Abhishek
+ * - UHF radio mode: show "CONNECTED TO UHF" when radio link is up but UGV/Atlas HB not yet
+ *   received; replaced by "ATLAS AND RADIO CONNECTED" once UGV is connected
  */
 #include "include/displayHandler.hpp"
 #include "include/IOhandler.hpp"
@@ -508,6 +513,7 @@ void displayConnectionStatus(){
 
   // Status text line (informational; LED colour follows priority below).
   if(radioConnected && current_state != disconnected){
+    /* UGV/Atlas HB accepted — clear any UHF-only debug text. */
     if(prevConnStatus != 2){
       tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y, "ATLAS AND RADIO  ", CONNECTED_COLOR);
       tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y + 8, "CONNECTED  ", CONNECTED_COLOR);
@@ -515,10 +521,18 @@ void displayConnectionStatus(){
     prevConnStatus = 2;
   }
   else if(radioConnected && current_state == disconnected){
-    // Radio modem up but UGV/Atlas not connected — still "not connected to UGV" (Red LED).
+    /*
+     * Local RFD / UHF peer up (RADIO_STATUS remrssi > 0) but no valid COMP_HEARTBEAT yet.
+     * UHF mode: show radio-up for bring-up debug. LED stays Red (not connected to UGV).
+     */
     if(prevConnStatus != 1){
+#ifndef RADIO_SIMULATION_TESTING
+      tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y, "CONNECTED TO UHF ", RADIO_CONNECTED_COLOR);
+      tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y + 8, "                 ", RADIO_CONNECTED_COLOR);
+#else
       tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y, "UGV DISCONNECTED ", DISCONNECTED_COLOR);
       tft.drawText(CONNECTED_MSG_POS_X, CONNECTED_MSG_POS_Y + 8, "                 ", CONNECTED_COLOR);
+#endif
     }
     prevConnStatus = 1;
   }

@@ -73,7 +73,7 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 
 #ifndef RELEASE_ARDUINO_UNO
 // PRODUCTION UHF: uncomment RELEASE and comment out HC_LINK_OVER_USB.
-// #define RELEASE
+#define RELEASE
 #endif
 
 /**
@@ -84,7 +84,7 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
  *
  * For PRODUCTION UHF: comment out HC_LINK_OVER_USB and uncomment RELEASE above.
  */
-#define HC_LINK_OVER_USB
+// #define HC_LINK_OVER_USB
 
 /* Alias used by the rest of the codebase (do not rename call sites). */
 #ifdef HC_LINK_OVER_USB
