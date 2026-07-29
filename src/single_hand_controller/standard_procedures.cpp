@@ -19,7 +19,12 @@
  * @date 15/07/2026
  * - pending-request timeout helpers; arm wait uses Atlas HEARTBEAT arm field
  * - lights: one LIGHT_CONTROL per toggle edge (pins 6/8); no periodic retransmit
- * - e-stop pin 3 long-press toggle; TX gated by getEmergencyMode() from HEARTBEAT (ICD §4.2.5.1)
+ * - e-stop: pins 4/5 toggle (engage / disengage / centre N/A); TX gated by HEARTBEAT
+ * - speed limit: pin 3 momentary cycles Low→Mid→High
+ *
+ * @date 29/07/2026
+ * @author Abhishek
+ * - swapped e-stop ↔ speed-limit physical controls (toggle vs momentary)
  */
 
 #include "include/standard_procedures.hpp"
@@ -341,7 +346,7 @@ void run_OFP_cycle()
     /*
      * Operator requests — same priority chain as original OFP:
      * arm / disarm XOR e-stop (else-if), then lights / speed / drive-mode independently.
-     * Pin mapping unchanged (pins 2–8).
+     * Pin map: arm=2, speed-limit cycle=3, e-stop toggle=4/5, lights=6/8, drive-mode=7.
      */
     if(startArmCondition()){
         IF_DEBUG(Serial.println("ARM BUTTON PRESSED"));
