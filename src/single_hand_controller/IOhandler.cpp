@@ -32,7 +32,11 @@
  * @date 29/07/2026
  * @author Abhishek
  * - swapped controls: pins 4/5 toggle = e-stop (engage / disengage / centre N/A)
- * - pin 3 momentary = drive-limit cycle Low→Mid→High→Low
+ * - pin 3 momentary = drive-limit cycle Low→Mid→High→Low (one-shot TX via speed_limit_press)
+ *
+ * @date 30/07/2026
+ * @author Abhishek
+ * - cycleSpeedLimit() sets speed_limit_press for single OFP send (not continuous)
  */
 #include "include/IOhandler.hpp"
 
@@ -41,6 +45,7 @@ extern bool turnOnHeadlight;
 extern bool turnOnFoglight;
 extern bool turnOffLight;
 extern int required_speed;
+extern bool speed_limit_press;
 extern bool switchMode;
 extern bool arm_press;
 extern bool disarm_press;
@@ -108,12 +113,17 @@ void enableDisarm(){
     }
 }
 
-/** Pin 3 momentary: cycle drive limit 1(Low)→2(Mid)→3(High)→1… */
+/**
+ * Pin 3 momentary: one click → send next limit relative to UGV HEARTBEAT status
+ * (not last TX): Low→Mid, Mid→High, High→Low. Unknown → Low.
+ */
 void cycleSpeedLimit(){
-    if(required_speed < 1 || required_speed > 3)
+    const int current = (int)getUGV_speed();
+    if(current < 1 || current > 3)
         required_speed = 1;
     else
-        required_speed = (required_speed % 3) + 1;
+        required_speed = (current % 3) + 1;
+    speed_limit_press = true;
 }
 
 void set_speed_low(){
