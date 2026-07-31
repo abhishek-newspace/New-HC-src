@@ -79,8 +79,7 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 /**
  * CURRENT LAB MODE: USB ↔ Atlas (UHF off, clean MAVLink — no Serial debug).
  *   - MAVLink on USB Serial (same COM used to flash) @ 115200
- *   - Close Serial Monitor; Atlas owns the COM
- *   - Skips Error 5 (local RFD RADIO_STATUS)
+ *   - Close Serial Monitor while Atlas owns the COM (debug text corrupts MAVLink)
  *
  * For PRODUCTION UHF: comment out HC_LINK_OVER_USB and uncomment RELEASE above.
  */

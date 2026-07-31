@@ -13,6 +13,10 @@
  * @date 15/07/2026
  * - declared updateLightToggleEdge() for pins 6/8 light toggle (edge-triggered only)
  * - declared readHcBatterySoc() for local HC battery SoC (SRS §3.2.3.3)
+ *
+ * @date 29/07/2026
+ * @author Abhishek
+ * - declared updateEstopToggleEdge() for pins 4/5 e-stop toggle
  */
 #pragma once
 #include "definitions.h"
@@ -62,6 +66,12 @@ void updateTwoPosToggleValues(struct two_pos_toggle *t1, int32_t ms_since_last_c
  * so MAVLink LIGHT_CONTROL is not requested every input poll.
  */
 void updateLightToggleEdge(struct two_pos_toggle *t1, int32_t ms_since_last_check);
+
+/**
+ * E-stop 3-pos toggle (pin4=engage, pin5=disengage, centre=N/A):
+ * edge-triggered only — centre does nothing.
+ */
+void updateEstopToggleEdge(struct two_pos_toggle *t1, int32_t ms_since_last_check);
 
 /**
  * SRS §3.2.3.3 — read HC pack SoC % from HC_BATTERY_ADC_PIN (0–100).

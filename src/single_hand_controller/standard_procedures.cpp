@@ -19,7 +19,16 @@
  * @date 15/07/2026
  * - pending-request timeout helpers; arm wait uses Atlas HEARTBEAT arm field
  * - lights: one LIGHT_CONTROL per toggle edge (pins 6/8); no periodic retransmit
- * - e-stop pin 3 long-press toggle; TX gated by getEmergencyMode() from HEARTBEAT (ICD §4.2.5.1)
+ * - e-stop: pins 4/5 toggle (engage / disengage / centre N/A); TX gated by HEARTBEAT
+ * - speed limit: pin 3 momentary — one TX per click (Low→Mid→High); no hold/retransmit
+ *
+ * @date 29/07/2026
+ * @author Abhishek
+ * - swapped e-stop ↔ speed-limit physical controls (toggle vs momentary)
+ *
+ * @date 30/07/2026
+ * @author Abhishek
+ * - speed limit momentary: one-shot send per click (removed toggle-style 3 s retransmit)
  */
 
 #include "include/standard_procedures.hpp"
@@ -37,6 +46,7 @@ bool turnOnHeadlight = false;
 bool turnOnFoglight = false;
 bool turnOffLight = false;
 int required_speed = 0;
+bool speed_limit_press = false;  /* one-shot: momentary pin 3 — send once per click */
 bool switchMode = false;
 bool arm_press = false;
 //bool disarm_press = false;
@@ -122,7 +132,7 @@ static void evaluatePendingRequests(){
             break;
         case PENDING_SPEED:
             displayInfo("Speed limit request timed out");
-            // Retry once more on next OFP path via speedChangeCondition.
+            // Momentary switch: no auto-retry; next click sends the next limit.
             break;
         case PENDING_DRIVE_MODE:
             displayInfo("Drive mode request timed out");
@@ -158,16 +168,8 @@ inline bool turnOffLightsCondition(){
 
 
 inline bool speedChangeCondition(){
-    static unsigned long last_change_at = 0;
-    // SRS §3.2.6 — retry / send cadence for limit request is 3 s.
-    if(required_speed != 0 && required_speed != getUGV_speed()
-        && millis() - last_change_at > STATE_REQUEST_TIMEOUT_MS){
-        last_change_at = millis();
-        return true;
-    }
-    else{
-        return false;
-    }
+    /* Momentary pin 3: one TX per click (not continuous like the old HI/MID/LO toggle). */
+    return speed_limit_press;
 }
 
 inline bool startArmCondition(){
@@ -341,7 +343,7 @@ void run_OFP_cycle()
     /*
      * Operator requests — same priority chain as original OFP:
      * arm / disarm XOR e-stop (else-if), then lights / speed / drive-mode independently.
-     * Pin mapping unchanged (pins 2–8).
+     * Pin map: arm=2, speed-limit cycle=3, e-stop toggle=4/5, lights=6/8, drive-mode=7.
      */
     if(startArmCondition()){
         IF_DEBUG(Serial.println("ARM BUTTON PRESSED"));
@@ -410,12 +412,13 @@ void run_OFP_cycle()
         turnOnFoglight = false;
     }
 
-    /* Speed limit (HI/MID/LO toggle) */
+    /* Speed limit (pin 3 momentary): one COMMAND per click, Low→Mid→High cycle. */
     if(speedChangeCondition()){
         sendSpeedChangeRequest(required_speed);
         pending_expected_speed = required_speed;
         startPendingRequest(PENDING_SPEED);
         displayInfo("setting speed limit ...");
+        speed_limit_press = false;
     }
 
     /* Drive mode cycle button */

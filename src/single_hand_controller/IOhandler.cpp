@@ -1,8 +1,8 @@
 /**
  * @file IOhandler.cpp
- * @version 0.2
+ * @version 0.3
  * @author Abhishek
- * @date 17/07/2026
+ * @date 29/07/2026
  * 
  * Part of IOhandler library
  * Defines functions and variables used in IOhandler.h
@@ -28,6 +28,15 @@
  * @author Abhishek
  * - fixed updateLongPressButtonValues(): hold timer no longer gated by cooldown
  *   (cooldown only after release) so LONG_PRESS_DURATION (~500 ms) is respected
+ *
+ * @date 29/07/2026
+ * @author Abhishek
+ * - swapped controls: pins 4/5 toggle = e-stop (engage / disengage / centre N/A)
+ * - pin 3 momentary = drive-limit cycle Low→Mid→High→Low (one-shot TX via speed_limit_press)
+ *
+ * @date 30/07/2026
+ * @author Abhishek
+ * - cycleSpeedLimit() sets speed_limit_press for single OFP send (not continuous)
  */
 #include "include/IOhandler.hpp"
 
@@ -36,31 +45,32 @@ extern bool turnOnHeadlight;
 extern bool turnOnFoglight;
 extern bool turnOffLight;
 extern int required_speed;
+extern bool speed_limit_press;
 extern bool switchMode;
 extern bool arm_press;
 extern bool disarm_press;
 extern bool estop_toggled;
 extern bool estop_clear_request;
 
-/** Long-press pin 3: first engage (continuous TX), second disengage (one-shot clear). */
-void latchEstopToggle(){
-    static unsigned long last_toggle_ms = 0;
-    if(millis() - last_toggle_ms < RESEND_DELAY)
-        return;
-    last_toggle_ms = millis();
+/** Pin 4 end: engage remote e-stop (OFP retransmits until HB engaged). */
+void engageEstop(){
+    estop_toggled = true;
+    estop_clear_request = false;
+}
 
-    if(estop_toggled){
-        estop_toggled = false;
-        estop_clear_request = true;
-    }
-    else{
-        estop_toggled = true;
-        estop_clear_request = false;
-    }
+/** Pin 5 end: disengage remote e-stop (OFP clears until HB not engaged). */
+void disengageEstop(){
+    estop_toggled = false;
+    estop_clear_request = true;
+}
+
+/** Centre of e-stop toggle: N/A — no change to engage/clear request. */
+void estopToggleNa(){
+    /* intentionally empty */
 }
 
 void toggleEstop(){
-    estop_toggled = true;
+    engageEstop();
 }
 
 void untoggleEstop(){
@@ -103,6 +113,19 @@ void enableDisarm(){
     }
 }
 
+/**
+ * Pin 3 momentary: one click → send next limit relative to UGV HEARTBEAT status
+ * (not last TX): Low→Mid, Mid→High, High→Low. Unknown → Low.
+ */
+void cycleSpeedLimit(){
+    const int current = (int)getUGV_speed();
+    if(current < 1 || current > 3)
+        required_speed = 1;
+    else
+        required_speed = (current % 3) + 1;
+    speed_limit_press = true;
+}
+
 void set_speed_low(){
     required_speed = 1;
 }
@@ -126,13 +149,11 @@ long_press_button b_arm_disarm = {
     0
 };
 
-/** Pin 3 e-stop: long-press toggles engage / disengage (short press ignored). */
-long_press_button b_e_stop = {
-    BUTTON_ESTOP,
+/** Pin 3: short press cycles speed limit Low→Mid→High. */
+button b_speed_limit = {
+    BUTTON_SPEED_LIMIT,
     0,
-    nullptr,
-    latchEstopToggle,
-    0,
+    cycleSpeedLimit,
     0
 };
 
@@ -143,14 +164,17 @@ button b_mode_switch = {
         0
     };
 
-
-two_pos_toggle tt_speed_toggle = {
-        TOGGLE_HIGH_SPEED,
-        TOGGLE_LOW_SPEED,
-        0,
-        set_speed_low,
-        set_speed_mid,
-        set_speed_high
+/**
+ * Pins 4/5 e-stop toggle:
+ *   pin 4 (pos2) = engage, pin 5 (pos0) = disengage, centre (pos1) = N/A
+ */
+two_pos_toggle tt_estop_toggle = {
+        TOGGLE_ESTOP_ENGAGE,
+        TOGGLE_ESTOP_DISENGAGE,
+        0xFF,   /* unsynced until first edge poll */
+        disengageEstop,
+        estopToggleNa,
+        engageEstop
     },
     tt_light_toggle = {
         TOGGLE_FOGLIGHTS,
@@ -301,6 +325,41 @@ void updateTwoPosToggleValues(struct two_pos_toggle *t1, int32_t ms_since_last_c
     }
 }
 
+/** Logical e-stop toggle positions (pins 4/5). */
+#define ESTOP_POS_DISENGAGE 0
+#define ESTOP_POS_NA        1
+#define ESTOP_POS_ENGAGE    2
+
+static uint8_t readEstopTogglePosition(const struct two_pos_toggle *t1){
+    if(!digitalRead(t1->pin_pos0))   /* pin 5 → disengage */
+        return ESTOP_POS_DISENGAGE;
+    if(!digitalRead(t1->pin_pos2))   /* pin 4 → engage */
+        return ESTOP_POS_ENGAGE;
+    return ESTOP_POS_NA;             /* centre → N/A */
+}
+
+void updateEstopToggleEdge(struct two_pos_toggle *t1, int32_t ms_since_last_check){
+    (void)ms_since_last_check;
+
+    const uint8_t new_state = readEstopTogglePosition(t1);
+    if(new_state == t1->state)
+        return;
+
+    t1->state = new_state;
+    switch(new_state){
+        case ESTOP_POS_DISENGAGE:
+            disengageEstop();
+            break;
+        case ESTOP_POS_ENGAGE:
+            engageEstop();
+            break;
+        case ESTOP_POS_NA:
+        default:
+            estopToggleNa();
+            break;
+    }
+}
+
 /** Logical light positions stored in tt_light_toggle.state (not raw pin indices). */
 #define LIGHT_POS_OFF  0
 #define LIGHT_POS_HEAD 1
@@ -345,20 +404,20 @@ void checkUserInput()
         light_toggle_synced = true;
     }
 
-    // #ifdef TESTING_JOYSTICK
-    // for(int i = 2; i < 8; i++){
-    //     Serial.print(digitalRead(i));
-    // }
-    // Serial.println("");
-    // #endif
+    static bool estop_toggle_synced = false;
+    if(!estop_toggle_synced){
+        /* Sync without firing so boot position does not auto-engage/clear. */
+        tt_estop_toggle.state = readEstopTogglePosition(&tt_estop_toggle);
+        estop_toggle_synced = true;
+    }
 
     static unsigned long int last_input_checked_at = millis();
 
     int32_t ms_since_last_check = millis() - last_input_checked_at;
     updateLongPressButtonValues(&b_arm_disarm, ms_since_last_check);
-    updateLongPressButtonValues(&b_e_stop, ms_since_last_check);
+    updateButtonValues(&b_speed_limit, ms_since_last_check);
     updateButtonValues(&b_mode_switch, ms_since_last_check);
-    updateTwoPosToggleValues(&tt_speed_toggle, ms_since_last_check);
+    updateEstopToggleEdge(&tt_estop_toggle, ms_since_last_check);
     updateLightToggleEdge(&tt_light_toggle, ms_since_last_check);
 
     last_input_checked_at = millis();

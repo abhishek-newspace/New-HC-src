@@ -1,8 +1,8 @@
 /**
  * @file IO_defs.h
- * @version 0.2
+ * @version 0.3
  * @author Abhishek
- * @date 15/07/2026
+ * @date 29/07/2026
  * 
  * Input and output pins, and other I/O related definitions
  *
@@ -11,6 +11,11 @@
  * - HC_BATTERY_ADC_PIN (A6) and EMPTY/FULL ADC calibration for SRS §3.2.3.3
  * - optional TACTILE_PIN / HC_BATT_STATUS_LED_PIN hooks
  * - bench no-sense placeholder (HC_BATT_NO_SENSE_RAW_MAX; 0 = disabled)
+ *
+ * @date 29/07/2026
+ * @author Abhishek
+ * - remapped: pins 4/5 = e-stop toggle (engage / disengage; centre = N/A)
+ * - remapped: pin 3 = speed-limit momentary (cycles Low→Mid→High)
  */
 #pragma once
 #include "Arduino.h"
@@ -30,13 +35,14 @@
 #define XPIN A0
 #define YPIN A1
 
-#define TOGGLE_HIGH_SPEED 4
-#define TOGGLE_LOW_SPEED 5
+#define TOGGLE_ESTOP_ENGAGE    4  /* 3-pos toggle end: engage remote e-stop */
+#define TOGGLE_ESTOP_DISENGAGE 5  /* 3-pos toggle other end: disengage e-stop */
+/* Centre of pins 4/5 toggle = N/A (no e-stop action) */
 #define TOGGLE_LIGHTS_OFF 6 
 #define TOGGLE_FOGLIGHTS 8
 #define BUTTON_TORQUE_MODE 7
 #define BUTTON_ARM 2
-#define BUTTON_ESTOP 3
+#define BUTTON_SPEED_LIMIT 3  /* momentary: cycle drive limit Low→Mid→High */
 
 /**
  * Optional tactile / haptic pin for SRS §3.2.4 (UGV low-battery alert).
