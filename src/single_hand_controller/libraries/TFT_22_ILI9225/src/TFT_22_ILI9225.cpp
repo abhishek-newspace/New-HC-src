@@ -387,8 +387,9 @@ void TFT_22_ILI9225::begin()
     _writeRegister(ILI9225_DISP_CTRL1, 0x1017);
     endWrite();
 
-    // Turn on backlight
-    setBacklight(true);
+    // Keep backlight off through the initial clear so soft-SPI paint is not visible.
+    // Application turns backlight on after the first UI/logo frame is ready.
+    setBacklight(false);
     setOrientation(0);
 
     // Initialize variables

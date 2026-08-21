@@ -1,8 +1,8 @@
 /**
  * @file setupFunctions.cpp
- * @version 0.2
+ * @version 0.3
  * @author Abhishek
- * @date 15/07/2026
+ * @date 21/08/2026
  * 
  * Part of set up functions library; used within the setup() function of single_hand_controller.ino.
  * Defines variables and functions used in setupFunctions.h.
@@ -10,7 +10,11 @@
  * <h2>Changes</h2>
  * @date 15/07/2026
  * - configure HC_BATTERY_ADC_PIN and optional HC_BATT_STATUS_LED_PIN in setupIO()
-*/
+ *
+ * @date 21/08/2026
+ * @author Abhishek
+ * - setupDisplay(): backlight-gated startup (optional static NS logo, then main UI; no wipe animation)
+ */
 #include "include/setupFunctions.h"
 
 
@@ -74,12 +78,15 @@ bool initMAVLink(){
 void setupDisplay(){
     initDisplayComm();
 
+    // Paint off-screen (BL off) so soft-SPI wipe is never visible — same for USB or radio builds.
+    setDisplayBacklight(false);
+#ifdef ENABLE_STARTUP_LOGO
+    showStartupLogo();
+#else
     clear_display();
+#endif
     setFont1();
-    #ifdef RELEASE
-    displayLogo();
-    displayInvertedLogo();
-    #endif
     displayDriveMode(speed);
     displayBasic();
+    setDisplayBacklight(true);
 }

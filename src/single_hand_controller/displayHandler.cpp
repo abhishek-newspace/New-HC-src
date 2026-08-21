@@ -1,8 +1,8 @@
 /**
  * @file displayHandler.cpp
- * @version 0.2
+ * @version 0.3
  * @author Abhishek
- * @date 22/07/2026
+ * @date 21/08/2026
  * 
  * Part of displayHandler library.
  * Defines variables and functions used for displayHandler.h
@@ -19,6 +19,11 @@
  * @author Abhishek
  * - UHF radio mode: show "CONNECTED TO UHF" when radio link is up but UGV/Atlas HB not yet
  *   received; replaced by "ATLAS AND RADIO CONNECTED" once UGV is connected
+ *
+ * @date 21/08/2026
+ * @author Abhishek
+ * - setDisplayBacklight() / showStartupLogo(): static NS logo with backlight off during paint
+ * - removed invert/second-frame startup animation; brief STARTUP_LOGO_HOLD_MS hold only
  */
 #include "include/displayHandler.hpp"
 #include "include/IOhandler.hpp"
@@ -304,14 +309,27 @@ void triggerTactileAlert(){
 void displayLogo(){
     tft.drawBitmap(0, 0, ns_logo, SCREEN_WIDTH, SCREEN_HEIGHT, COLOR_WHITE, COLOR_BLUE);
 }
+
 void displayInvertedLogo(){
     #ifdef DISPLAY_NS_LOGO
       tft.drawBitmap(0, 0, ns_logo, SCREEN_WIDTH, SCREEN_HEIGHT, COLOR_GRAY, COLOR_LIGHTBLUE);
     #else
       tft.fillRectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, COLOR_BLACK);
     #endif
-    
+}
 
+void setDisplayBacklight(bool on){
+    tft.setBacklight(on);
+}
+
+void showStartupLogo(){
+    // Soft SPI paints left→right / top→bottom; keep BL off so user only sees the finished frame.
+    tft.setBacklight(false);
+    displayLogo();
+    tft.setBacklight(true);
+    delay(STARTUP_LOGO_HOLD_MS);
+    tft.setBacklight(false);
+    clear_display();
 }
 
 void setFontSmall(){
@@ -803,6 +821,8 @@ void displayLogo(){}
 /// @brief display newspace logo in grey background and light blue foreground (to look like an translucent grey film filter)
 void displayInvertedLogo(){}
 
+void setDisplayBacklight(bool){}
+void showStartupLogo(){}
 
 void setBatterySOC(uint8_t){}
 void setRSSI(int16_t){}
