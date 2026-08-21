@@ -1,13 +1,17 @@
 /**
  * @file displayHandler.hpp
- * @version 0.2
+ * @version 0.3
  * @author Abhishek
- * @date 15/07/2026
+ * @date 21/08/2026
  * Takes care of all display-related functionality
  *
  * <h2>Changes</h2>
  * @date 15/07/2026
  * - declared displayHcBatteryStatus() and triggerTactileAlert() (SRS §3.2.3.3 / §3.2.4)
+ *
+ * @date 21/08/2026
+ * @author Abhishek
+ * - declared setDisplayBacklight() and showStartupLogo() for static backlight-gated splash
  */
 #pragma once
 #include "definitions.h"
@@ -25,6 +29,11 @@ void setupDisplay();
 /// @brief clear LCD display
 void clear_display();
 
+/// @brief TFT backlight on/off (used to hide soft-SPI paint scan)
+void setDisplayBacklight(bool on);
+
+/// @brief static NS logo splash (backlight-gated; no wipe/invert animation)
+void showStartupLogo();
 
 void displayLogo();
 void displayInvertedLogo();

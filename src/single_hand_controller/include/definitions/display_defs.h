@@ -1,9 +1,9 @@
 #pragma once
 /**
  * @file display_defs.h
- * @version 0.2
+ * @version 0.3
  * @author Abhishek
- * @date 15/07/2026
+ * @date 21/08/2026
  * 
  * definitions required for display
  *
@@ -12,6 +12,11 @@
  * - RSSI_WEAK_THRESHOLD_DBM (-120) for Yellow low-link LED
  * - compact UGV/HC battery layout (BATTERY_LENGTH/HEIGHT, UGV_/HC_BATTERY_POS_*)
  * - DISCONNECTED_COLOR set to Red per SRS §3.2.2
+ *
+ * @date 21/08/2026
+ * @author Abhishek
+ * - ENABLE_STARTUP_LOGO / STARTUP_LOGO_HOLD_MS: static NS splash (no invert animation)
+ * - splash/UI painted with backlight gated to hide soft-SPI scan wipe
  */
 
 
@@ -20,6 +25,15 @@
 
 
 //#define DISPLAY_NS_LOGO
+
+/**
+ * Boot splash: NewSpace logo shown as a single frame (backlight off while painting
+ * so soft-SPI scan is not visible), brief hold, then main UI.
+ * Comment out to skip logo and go straight to the status screen.
+ */
+// #define ENABLE_STARTUP_LOGO
+/** How long the completed logo stays visible (ms). Keep short — no fade/animation. */
+#define STARTUP_LOGO_HOLD_MS 200
 
 #define BACKGROUND_COLOR COLOR_BLACK
 #define DEFAULT_TEXT_COLOR  COLOR_WHITE

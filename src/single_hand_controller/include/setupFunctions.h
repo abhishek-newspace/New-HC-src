@@ -1,9 +1,14 @@
 /**
  * @file setupFunctions.h
- * @version 0.1
+ * @version 0.2
  * @author Nikhil Tom Jose
- * @date 22/04/2026
+ * @date 21/08/2026
  * @brief Defines all functions required during setup phase of hand controller
+ *
+ * <h2>Changes</h2>
+ * @date 21/08/2026
+ * @author Abhishek
+ * - setupDisplay() documents backlight-gated static splash / main UI (no wipe animation)
  */
 #pragma once
 #include "definitions.h"
