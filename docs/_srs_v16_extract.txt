@@ -1,0 +1,1385 @@
+--- PAGE 1 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+5  
+ 
+Scout TD0 System & Software Requirements Specification document 2026    Scout_td0_System_&_Sofware_Requirements_Specification_v1.6 
+Confidential information: This document contains confidential information of NewSpace Research & Technologies. The information contained is intended solely for internal purposes only. Unauthorized access, use, disclosure, reproduction, distribution, or transmission of any part of this document is strictly prohibited. Recipients are responsible for maintaining the confidentiality of the information contained in this document 
+--- PAGE 2 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+Change Log  Date Revision Author Comment 
+19th April,2026 V0.1 Kowshika Shri G Initial draft with safe power-on sequence, application wake-up , and time synchronization of all systems with atlas (Sec 2.1.1) 29th April,2026 V1.0 Kowshika Shri G Added Normal shut down : Sequentially bring down the sub system for Nexus VCU (Sec 2.1.2)  4th May,2026 V0.3 Kowshika Shri G Added switching between modes and sub modes for Atlas (Sec 2.1.3) 12th May,2026 V0.4 Kowshika Shri G  Added operator interface : Unified HMI for common header and system tab (Sec 2.2.1 & 2.2.2) 19th May,2026 v0.5 Kowshika Shri G Added Actuation operation for Mode A (Sec3.1.1 ) 5th June,2026 V1.0 Kowshika Shri G Added Actuation operation for Mode B (Sec 4.1.1) 
+12th June,2026 V1.1 Kowshika Shri G 
+Amendments software categorisation (Sec 1.1) Added Iris-Telematics under all feature realisation  Amendments reference document version Scout_td0_User_Requirements_v1.1  
+22th June,2026 V1.2 Kowshika Shri G 
+Added Health monitoring CAN/Telemetry, Safe Charging of UGV (Sec 2.1.2 ,2.1.3,2.1.7).  Replaced mode/sub-mode switching with "Operating mode wakeup defaults" (Sec 2.1.6).  Removed Section 7 (Security Requirements)and Section 8 (Certifications) entirely. 
+24th June,2026 V1.3 Kowshika Shri G 
+Added detailed Motor Controller (Orion-MC) configuration parameters under Power ON sequence (Sec 2.1.1). Enhanced VCU power-on sequence with explicit subsystem power-up order, VCU health monitoring parameters, and 
+--- PAGE 3 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+subsystem power/health verification logic (Sec 2.1.1). Added power state and health state reporting  for VCU, EV subsystems, batteries, PDUs, and compute systems over Aux CAN bus (Sec 2.1.2). Extended Health & Mode Monitoring CAN bus to include operational modes, requested modes, drive modes, arm states, and subsystem health/fault definitions (Sec 2.1.2). Added Motor Controller checksum verification during Telematics startup and extended interface monitoring to include UART communication with motor controllers (Sec 2.1.1.8). Added detailed power state (ON/OFF/Unknown) and fault determination criteria for motor controllers, PDUs, batteries, chargers, and compute subsystems (Sec 2.1.2). Added subsystem wakeup default tables for VCU and Atlas operational modes/sub-modes (Sec 2.1.5). Added detailed operator interface information pages for OBD and GCS (Sec 2.2 and Sec 4.2). Added state transition tables for Drive Mode, Limits (LO/MED/HI), Arm State, Light Control, and Remote Emergency operations (Mode A & B sections). 
+5th July, 2026 v1.4 Kowshika Shri G Added GCS: Set Home location (Sec 4.2.27),GCS Mission planning: Define geofence boundary (Sec 4.2.28), GCS Debrief: Mission replay (Sec 4.2.29 ) 25th July,2026 V1.5 Kowshika Shri G Added OBD & GCS Operator Interface UI designs for Common, system, Power, sensor & communication pages. 30th July,2026 V1.6 Kowshika Shri G Modified Power ON of UGV: Time sync response processing from HC and GCS changed to every 0.1Hz from 10Hz(Sec 2.1.1.4) 
+--- PAGE 4 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+Modified HC: UGV battery status: Atlas Periodically sending SoC of the HV battery , along with other status information changed to every 1Hz  from 10 Hz(Sec 3.2.4.4) Modified HC- Light control of UGV: Atlas: Condition for state transition- Wake up default changed to OFF from ON (Sec 3.2.9.4.1) Modified HC- Remote Emergency stop of UGV: Atlas: Condition for state transition- Wake up default changed to disengaged from engaged (Sec 3.3.1.4.1) Modified Vision subsystem wakeup: Atlas - MC: Main Compute: Presence of the Vision subsystem changed to the logical layer instead of  physical layer. (Sec 4.1.1.4) Modified Wheel towing: Removed 'Ensure EM brakes are released' from the tow mode activation sequence, and removed 'Enable EM brakes' from the tow mode deactivation sequence. (Sec 2.1.7.2.2) Added "Unknown" fault criteria to Secondary Compute in the feature Health & mode monitoring CAN bus (Sec 2.1.2.8) Deleted Tactile alerts from HC Operator interface. (Sec 3.2) Added UI designs for UGV connection flow, Speed switch, Drive switch, camera view switch, camera recording, On vehicle & Remote GCS E-stop, and Map view ,AHI view, Connection fail . UI Design Ref Doc ID: Polaris_Connect_Design .v.1.0.1 Modified HC: Arm state by adding “VCU shall reset the forward and AFT motor controllers whenever it receives the arm request” in VCU section. (Sec 3.2.7.2) Modified GCS: Pose & Path display: In Helios GCS: Removed the operator-command based path reset condition.The traversed path is now reset  on a new mission or when GCS reboots.  
+--- PAGE 5 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+Review Log Review Date Reviewer Name Comments Sign  Abdullah Zahid (Director)   
+ Arjun Das   
+ 
+ 
+--- PAGE 6 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+ Table of Contents 1 Introduction 14 1.1 Scope 14 1.2 Reference 14 2 Common System Requirements for all modes 15 2.1 Core Operations 15 2.1.1 Power ON of UGV 15 2.1.2 Health & Mode monitoring CAN bus 24 2.1.3 Health & Mode monitoring Telemetry 38 2.1.4 Normal Power OFF of UGV 40 2.1.5 Subsystem wakeup defaults for mode/ sub modes 43 2.1.6 Safe charging of UGV 45 2.1.7 Wheel free towing 47 2.1.8 Alert generation *TBD* 49 2.1.9 UGV hold mode 50 2.1.10 Safe path for Regen power  *TBD* 51 2.2 Operator Interface 52 2.2.1 OBD: Common information page 52 2.2.2 OBD: System information page 54 2.2.3 OBD: Drive information page 56 2.2.4 OBD: Power information page 58 2.2.5 OBD: Compute information page 61 2.2.6 OBD: Sensor information page 64 2.2.7 OBD: Communication information page 66 2.2.8 OBD: Alert page  *TBD* 68 2.2.9 OBD: Payload information page *TBD* 69 2.3 Safety & Fallback 70 2.3.1 On vehicle Emergency stop of UGV 70 2.3.2 VCU Drive ON - subsystem failures & fallbacks 72 2.3.3 VCU Key ON - subsystem failures & fallbacks 74 2.3.4 Non-negotiable terrain safety *TBD* 76 2.3.5 Efficiency mode *TBD* 77 2.4 Communication & Sensor Requirements 78 2.4.1 Inclinometer 78 
+--- PAGE 7 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.4.2 Long range telemetry radio 78 3 Mode A: Proximal Remote Operation (≤10m) 79 3.1 Core Teleoperation Operation 79 3.1.1 HC Mode A - Teleoperation (RPM mode) 79 3.1.2 HC Mode A - Teleoperation (Torque mode) 83 3.1.3 HC Mode A - Teleoperation (Torque mode with speed limit) 87 3.2 Operator Interface - Handheld controller 89 3.2.1 Hand controller power ON 89 3.2.2 HC: Connectivity & Time sync status 91 3.2.3 HC: battery status 93 3.2.4 HC: UGV battery status 95 3.2.5 HC: Set Drive mode 97 3.2.6 HC: Set Limit (LO, MED, HI) 101 3.2.7 HC: Set Arm state 105 3.2.8 HC: Send control command 108 3.2.9 HC- Light control of UGV 110 3.3 Safety & Fallback 113 3.3.1 HC- Remote Emergency stop of UGV 113 3.3.2 UHF Radio failure (HC operation) 116 3.4 Communication & Sensor Requirements 117 3.4.1 UHF radio 117 3.4.2 Inclinometer/ IMU 117 3.4.3 Obstacle detection sensor 117 4 Mode B: Video Telemetry Operation (≤2km) 118 4.1 Core Video Teleoperation Operation 118 4.1.1 Vision subsystem wake up 118 4.1.2 GCS Mode A teleoperation 119 4.1.3 Remote driving – camera teleoperation   *TBD* 120 4.1.4 GNSS based UGV localisation   *TBD* 121 4.1.5 RTK based UGV localisation   *TBD* 122 4.1.6 RTH energy reserve alert *TBD* 123 4.1.7 Onboard Traversed Path saving  *TBD* 124 4.1.8 Onboard Video logging 125 4.1.9 Follow me mode.  *TBD* 126 4.1.10 GNSS based Outdoor Mapping.   *TBD* 127 
+--- PAGE 8 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2 Operator Interface - GCS: video telemetry 128 4.2.1 GCS: Wakeup 128 4.2.2 GCS: Common information page 133 4.2.3 GCS: System power ON information page 134 4.2.4 GCS: Drive information page 135 4.2.5 GCS: Compute information page 136 4.2.6 GCS: Sensor information page 137 4.2.7 GCS: Communication information page 138 4.2.8 GCS: Alerts page   *TBD* 139 4.2.9 GCS: Payload information page.  *TBD* 140 4.2.10 GCS: Connectivity & time sync status 141 4.2.11 GCS: battery status 141 4.2.12 GCS: UGV battery alert 141 4.2.13 GCS: Set Autonomy mode 143 4.2.14 GCS: Set drive mode 143 4.2.15 GCS: Set Limit (LO, MED, HI) 143 4.2.16 GCS: Set Arm state 144 4.2.17 GCS: Set Emergency-Disable 144 4.2.18 GCS: Send control command 147 4.2.19 GCS: Light control of UGV 148 4.2.20 GCS: Pose & path display 149 4.2.21 GCS: Artificial horizon display 152 4.2.22 GCS: Camera view selection 153 4.2.23 GCS: Guidance & Data rate, latency overlays 156 4.2.24 GCS: Video telemetry logging 157 4.2.25 GCS: Data telemetry logging. 161 4.2.26 GCS: Set Home location 162 4.2.27 GCS Mission planning: Define geofence boundary 163 4.2.28 GCS Debrief: Mission replay 164 4.2.29 GCS: Remote sync telemetry    *TBD* 165 4.2.30 GCS: Environment Map data overlay     *TBD* 166 4.3 Safety & Fallback 167 4.3.1 GCS - Remote Emergency stop of UGV. 167 4.3.2 Detect Obstacle & stop   *TBD* 168 4.3.3 Return to location (RTL).   *TBD* 169 
+--- PAGE 9 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.3.4 Camera sensor failure fallbacks.  *TBD* 170 4.3.5 Com degradation Alert.   *TBD* 171 4.3.6 L band radio failure (GCS operation) 172 4.3.7 GNSS denial/ failure fallback     *TBD* 173 4.3.8 Geofenced operation    *TBD* 174 4.3.9 Auto Speed limiting - terrain    *TBD* 175 4.3.10 Vision based Non-negotiable terrain safety.   *TBD* 176 4.3.11 Vision based terrain features detection   *TBD* 177 4.3.12 Auto Speed limiting  - video degradation.   *TBD* 178 4.4 Communication & Sensor Requirements 179 4.4.1 L band radio 179 4.4.2 UHF radio 179 4.4.3 Day/ Night camera 179 4.4.4 GNSS + North seeker 179 4.4.5 3 Lidar & RGB-D 179 4.4.6 IMU 179 4.4.7 Ultrasonic, 2D lidar, Radar 179 5 Mode C: Assisted Autonomy (≤5km) 180 5.1 Core Autonomous Operation 180 5.1.1 Auto route navigation 180 5.1.2 Remote manual takeover 181 5.1.3 UGV location tacking (as in Mode B) 182 5.1.4 RTH energy reserve alert (as in Mode B) 182 5.1.5 Mapping (as in Mode B) 182 5.1.6 RTK based localisation (as in Mode B) 182 5.2 Operator Interface 183 5.2.1 Mission planning 183 5.2.2 Guidance overlays 184 5.2.3 Remote sync telemetry (as in Mode B) 185 5.3 Safety & Fallback 186 5.3.1 Detect & avoid obstacle 186 5.3.2 Scene interpretation 187 5.4 Communication & Sensor Requirements 188 6 Mode D: High Autonomy (≤10km) 189 6.1 Core Autonomous Operation 189 
+--- PAGE 10 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+6.1.1 Onboard path planning (Route based planning) 189 6.1.2 Onboard path planning (Geo ref map based planning) 190 6.1.3 Onboard path planning (SLAM map based planning) 191 6.1.4 Onboard alternat path planning (blocade) 192 6.1.5 Continuous telemetry 193 6.1.6 UGV location tacking (as in Mode B) 194 6.1.7 RTH energy reserve alert (as in Mode B) 194 6.1.8 Mapping (as in Mode B) 194 6.2 Operator Interface 195 6.3 Safety & Fallback 195 6.4 Communication & Sensor Requirements 195   
+--- PAGE 11 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+List of figures  Figure 1:Toggle Switch & Rotatory knob position of VCU “Idle” state 16 Figure 2:Rotatory knob position of VCU “Key ON” state 17 Figure 3:Reference for DC-DC power connection 19 Figure 4:Rotatory knob position of VCU “Key ON” state 40 Figure 5:Rotatory Knob position of VCU “Idle” state 41 Figure 6:Toggle Switch & Rotatory Knob position for “Idle” state 42 Figure 7:Reference screen: OBD common header 53 Figure 8: Reference screen- OBD System  information page 55 Figure 9:Reference screen- OBD Drive  information page 57 Figure 10:Reference screen- OBD Power information page 60 Figure 11: Reference screen- OBD Compute information page 62 Figure 12: Reference screen- OBD Sensor information page 65 Figure 13:Reference screen- OBD Communication information page 67 Figure 14: UI design: On vehicle E-stop 71 Figure 14:UI design: GCS-UGV connection flow 129 Figure 15: UI design: Health check of Battery, Motor & Sensor 130 Figure 16: UI design: Error indication for either battery, motor or sensor fault 130 Figure 17:UI design: Landing page after successful connection of GCS with the UGV 131 Figure 18: UI Design for GCS-UGV lost connection 131 Figure 19:UI design: GCS Common header 133 Figure 20: Reference screen- GCS System information page 134 Figure 21: Reference screen- GCS Drive information page 135 Figure 22: Reference screen- GCS Compute information Page 136 Figure 23: Reference screen- GCS Sensor information page 137 Figure 24:Reference screen- GCS Communication information page 138 Figure 25: UI design: Drive switch 142 Figure 26: UI design: Speed switch 143 Figure 27:UI design: Arm/Disarm 144 Figure 28: UI design: UGV pose (location & heading) on a map along with traversed trail 150 Figure 29: UI design: Artificial horizon indicator 152 Figure 30:UI design : Switching between cameras 154 Figure 31: UI design: Horizontal & Vertical gridlines 157 Figure 32: UI design: Frame Reference Grid Lines 157 Figure 33:UI design: Diagonal grid lines 158 Figure 34: UI design: Camera recording flow 159 Figure 35: UI design: Warning indication for camera storage 160 Figure 36: UI design: Remote E-stop 167   
+--- PAGE 12 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+List of Tables  Table 1  Time source & sync 10 Table 2  Motor controller configuration 11 Table 3 VCU health monitoring parameters 12 Table 4: Atlas wake up & Time Synchronization 17 Table 5: IRIS- Telematics wakeup 18 Table 6  VCU Status 19 Table 7 EV subsystem power & health status reported by VCU 24 Table 8 Autonomy compute power & health state reported by VCU 25 Table 9 Autonomy subsystems power state 26 Table 10 Own state 27 Table 11 Sensor Subsystem health 30 Table 12 Info type published by Atlas-vision 31 Table 13 Iris - Telematics: Logging & telemetry 31 Table 14 Health & state information: secondary compute 31 Table 15 VCU: Mode/Sub mode defaults 38 Table 16 Atlas: Mode/sub mode defaults 39 Table 17 OBD: Common Info to be displayed 48 Table 18: Colour codes to represent subsystem health status on OBD 50 Table 19 OBD: System page- Grouping of Subsystems 51 Table 20 OBD: Drive page health info 52 Table 21 OBD: Power page health info 55 Table 22 OBD: Compute page health info 57 Table 23 OBD: Sensor page health info 58 Table 24 OBD: Communication page health info 61 Table 25 On vehicle e-stop: VCU action sequence 64 Table 26 VCU Drive ON: Subsystem failures & fallbacks 66 Table 27 VCU Key ON: Subsystem failures & fallbacks 68 Table 28 Diff drive controller configuration 75 Table 29 Odometry configuration 75 Table 30 Command interface configuration 75 Table 31 Linear motion limits 76 Table 32 Angular motion limits 76 Table 33 Variable definitions 77 Table 34:Hand Controller Wake up Phases 81 Table 35 Drive mode: VCU: Condition for state transition 88 Table 36 Drive Mode: Atlas: Condition for state transition 90 Table 37 Drive mode limit 91 Table 38 Limit(LO,MED,HI): VCU:  Condition for state transition 92 Table 39 Limit(LO,MED,HI): Atlas: Condition for state transition 94 Table 40 Arm state: VCU: Condition for state transition 95 
+--- PAGE 13 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+Table 41  Arm state: Atlas: Condition for state transition 97 Table 42  Light control: VCU: Condition for state transition 100 Table 43 Light control: Atlas: Condition for state transition 102 Table 44  HC: Remote e-stop: VCU: Condition for state transition 103 Table 45 HC: Remote e-stop: Atlas: Condition for state transition 105 Table 46 UHF Radio failure: System & subsystem response 106 Table 47 Vision subsystem wake up phases 108 Table 48:GCS wake up & Time Synchronization 117 Table 49 L band radio failure: State vs System & Subsystem response 155  
+--- PAGE 14 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+1 Introduction  The Scout is a four-wheeled Unmanned Ground Vehicle (UGV) designed to support both teleoperated and autonomous missions. There are different software systems that work together to make scout operational and reliable. This document covers all the software requirements right from powering ON the vehicle to powering OFF, including all the required safety and fall back requirements .  1.1 Scope  The scope of this System & Software Requirement Specification is to tell what different software should do to fulfill the user requirement. This document will act as a reference, and guide the engineers to achieve the goals defined in the User Requirement Specification.  The Scout Platform shall be developed in five incremental modes, each mode having advanced features compared to the prior modes. Refer Scout_td0_User_Requirements, Sec 5.2 to know about the four autonomy modes. The entire scout platform’s requirement are categorized into 3 areas for each of the five modes: a) Core operations b) Operator Interface c) Safety & Fallback There are  7 software as part of 5 subsystems and configuration of 1 subsystem, involved in the development of this platform, which are: a) Orion - MC: Configuration on Motor controller  b) Nexus - VCU: Vehicle control software on VCU c) Helios- HC: UGV remote control software on Hand controller  d) Atlas- MC: Mission computer software on Main Compute  e) Helios- OBD: HMI (Onboard display) software on Secondary compute  f) Helio-GCS: UGV control, monitoring and mission planning software on GCS g) Atlas-Vision: Computer Vision & Machine Learning software on Main compute h) Iris-Telematics: Logging & telemetry software on along with Motor controller configuration Secondary compute  Note:-  Nexus : Embedded application category   Atlas : Mission and Autonomy application category   Helios : Human machine interface category   Iris : Telemetry, Log management, OTA, MC online Configuration category   Orion : Offline Configuration category   1.2 Reference ● Scout User Requirements : Scout_td0_User_Requirements_v1.2_beta  dated 24th June, 2026 
+--- PAGE 15 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2 Common System Requirements for all modes The following requirements apply to the Scout UGV across all Autonomy states (Modes A through E).  2.1 Core Operations  2.1.1 Power ON of UGV   [Ref: Scout User Requirements, Sec 5.3.1.1] The UGV shall execute a sequential Power-ON to ensure safety. This sequence ensures that Low-Voltage (LV) and High-Voltage (HV) systems are sequentially powered ON. Additional subsystems shall maintain their respective time and use following time sources for time synchronisation.       Subsystem System SW  Time source  Time sync source  Secondary compute  Telematics, OBD  Internal RTC  Atlas (Aux CAN)  10 sec VCU VCU SW  Application   Telematics (Aux CAN) 10sec Main compute Atlas & Vision   Internal RTC UGV GNSS 10 sec Hand controller  Controller SW  Application   Atlas (Radio)  GCS GCS SW  GCS  GNSS Atlas (Radio) Table 1  Time source & sync 2.1.1.1 Orion - MC: Motor Controller Configuration The motor controllers shall be onetime configured with following values  Category Parameter Description Current Limits & Protection MaxCur_bus Maximum DC bus current limit MaxCur_P Maximum motor phase current limit OverCur_I Over-current protection threshold OverCur_Time Over-current detection time Tim_max1 Protection timing parameter SF_Tim_max1 Safety timing factor Voltage Limits MaxVol Maximum operating voltage MinVol Minimum operating voltage Current Control Loop Kp_Idq Current loop proportional gain Ki_Idq Current loop integral gain Speed Control Loop Kp_Spd Speed loop proportional gain Ki_Spd Speed loop integral gain Motion Limits Accel Acceleration ramp Deceleration Deceleration ramp LimitMaxSCw Clockwise rotation limit LimitMaxSCCw Counter-clockwise rotation limit Brake Control Brake Enable Motor brake enable/disable Pick_up_vol Brake release voltage Keep_vol Brake hold voltage volBRes Brake release voltage threshold Delay Brake action delay Motor Configuration Encoder Pair Motor pole pairs Motor1 Mode Motor 1 control mode 
+--- PAGE 16 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+Category Parameter Description Motor1 Direction Motor 1 rotation direction Motor1 Sensor Motor 1 feedback sensor Motor2 Mode Motor 2 control mode Motor2 Direction Motor 2 rotation direction Motor2 Sensor Motor 2 feedback sensor CAN Communication Driver_Send_ID CAN transmit identifier Driver_Receive_ID CAN receive identifier CAN Baud CAN communication baud rate Send Interval CAN message transmission interval Drive Downtime Communication timeout before drive shutdown Motor Identification Rs_Current Resistance identification current Ls_Current Inductance identification current R/L(Hz) Identification test frequency Motor Electrical Parameters Flux_VpHz Motor flux constant Rs_Ohm Motor phase resistance Lsd_H D-axis inductance Lsq_H Q-axis inductance Operating References Ref_A Current reference SpeedRef_krpm Speed reference Table 2  Motor controller configuration 2.1.1.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) The VCU shall safely power up the 12V and 48V systems and time synchronize with the Secondary compute. The power up sequence shall be divided into three phases as follows: 2.1.1.2.1 Phase 1: Idle State Operator Action: The operator flips the Guarded Toggle Switch to the ON position with the rotary knob switch in Idle position.  
+ Figure 1:Toggle Switch & Rotatory knob position of VCU “Idle” state System Response: The VCU is powered up and remain in sleep with wake monitoring mode. Set VCU requested state to Idle and current VCU state to Idle.  
+
+--- PAGE 17 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.1.1.2.2 Phase 2: Key ON Operator Action: The operator turns the Rotary Knob to Position 2 (KEY ON). 
+ Figure 2:Rotatory knob position of VCU “Key ON” state System Response: VCU shall follow below sequence of operation for LV system wakeup (idle to Key ON transition): a) VCU wakes up from sleep mode (configured to wake up using Key ON only) and set requested VCU state to Key ON  b) VCU shall start monitoring it’s own health  Parameter  Value  VCU overall health  Fault / Healthy/ Unknown  Discrete interface fault  yes/ no MCU watchdog fault  yes/ no CPU overload  yes/ no Supply voltage fault  yes/ no RAM fault  yes/ no Flash CRC failure  yes/ no FCC active  yes/ no Safety SBC fault  yes/ no CAN A bus-off  yes/ no CAN B Bus -off  yes/ no CAN C Bus -off  yes/ no Internal temperature fault  yes/ no Output driver fault   yes/ no Boot failure yes/ no Analog interface fault yes/ no Table 3 VCU health monitoring parameters 
+
+--- PAGE 18 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+c) VCU shall initialise CAN, Analog, Discrete, Driver (LSO/HSO) d) VCU shall time synchronise with time reported by Telematics (running on secondary compute)  e) VCU shall ensure all the contactors are in open state f) VCU shall start reporting power status (ON/ OFF / Unknown) of following subsystems - VCU  - Forward MC - Rear MC  - HV PDU  - DC-DC (48-12v) - LV PDU  - Secondary compute  - Main compute  - UHF radio -UGV  - L band radio -UGV  - Ethernet switch  - GNSS  - IMU & 2D Lidar  - 3D Lidar  - RGBD camera  g) VCU shall start reporting health status (Healthy/ Fault/ Unknown) of following subsystems - VCU  - Forward MC & (left & right motors) - Rear MC & (left & right motors) - HV PDU - DC-DC (48-12v) - LV PDU  - HV battery   - LV battery   - Main compute  The power ON sequence shall stop in case any of above subsystem is in fault state.  h) VCU shall adopt following sequence of power ON here onwards.   Step 1: VCU shall trigger the power ON of the secondary compute (along with display) from LV battery Step 2: Power ON the input of 48-12 V DC-DC  Step 3: Power ON the output of 48-12 V DC-DC, thereby extending power to LV battery charger and LV PDU (refer recommended control) Step 4: Power ON the Main compute (VCU shall exercise an additional control for booting the system powering up and System boot shall remain independently controlled) 
+--- PAGE 19 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+Step 5: Power ON the UHF radio   Step 6: Power ON the Ethernet switch    Step 7: Power ON the L band radio  Step 8: Power ON GNSS  Step 9: Power ON IMU & 2D lidar Step 10: Power ON 3D lidar           Step 11: Power ON RGBD camera  Step 12: Verify power ON state of all the above subsystem, is as commanded then Set VCU state to Key ON  
+ Figure 3:Reference for DC-DC power connection              
+
+--- PAGE 20 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.1.1.2.3 Phase 3: Transition to Drive on Operator Action: The operator turns the Rotary Knob to Position 3 (DRIVE ON). 
+ Figure 4: Rotatory knob position of "Drive ON" state System Response: The VCU executes the sequential power ON of the high-voltage systems as below (Key ON to Drive ON transition): a) VCU shall set the requested VCU state to Drive ON  b) The HV power ON sequence shall stop in case any of the following subsystem fault - VCU  - Forward MC & (left & right motors) - Rear MC & (left & right motors) - HV PDU - DC-DC (48-12v) - LV PDU  - HV battery   - LV battery   - Main compute  c) VCU shall adopt following sequence to power ON HV subsystems Step 1: VCU shall power ON both the motor controllers (ensure pre-charge method is followed)  Step 2: Verify power ON state of the motor controllers, is as commanded then Set VCU state to Drive ON  
+
+--- PAGE 21 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.1.1.3 Helios - HC: Hand Controller Not Applicable 2.1.1.4 Atlas - MC: Main Compute (High-Level Control) Once main compute power’s up, Atlas a Docker container application is launched. Atlas acts as time source to Telematics (Secondary compute) and synchronises itself with GNSS for time. The Atlas shall follow below mentioned phases during wake up: 
+S.no Phase System action Success (Yes) Failure (No) 
+1 OS wake up with power ON 
+OS wakes up when being powered ON enable launching of the Atlas application  
+Proceed to application wake up Main compute state remains unknown 
+2 Application wakeup    
+Scheduler, Atlas health monitor (Main compute usage info, Interface health info and application node states) ,telemetry and life cycle managers wake up. All other subsystem remain in unconfigured state.   
+Proceed to communication layer wake up (inactive) 
+Maintain state & Main compute state remains unknown 
+Communication wake up (inactive state – initialisation of communication interfaces) 
+Proceed to communication layer wake up (active)  
+Maintain state & Main compute state remains unknown Communication wake up (active state –communication interfaces) starts sending health information on Aux CAN bus at 1Hz. It also starts processing time sync request from Secondary compute  
+Proceed to physical layer wake up  
+Maintain state & Main compute state is available over aux CAN bus 
+Physical layer wakeup (configured, inactive and active). Starts sending heartbeat messages over all radio communication at 1Hz. And processes time sync response from HC and GCS every 0.1Hz. 
+Proceed to logical layer wakeup 
+Maintain state & Main compute state is available over aux CAN bus 
+--- PAGE 22 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+S.no Phase System action Success (Yes) Failure (No) 
+Logical layer wakeup (configured, inactive and active)  Proceed to ROS2 subsystem wakeup  
+Maintain state & Main compute state is available over aux CAN bus & radio telemetry Table 4: Atlas wake up & Time Synchronization  2.1.1.5 Helios - OBD: Onboard Display [Ref: Scout User  Requirements, Sec 5.4.1.1] Helios – OBD is docker container application and shall be spawned when the Secondary Compute is powered up. Operator Action: The operator flips the Guarded Toggle Switch to the ON position and turns Knob to Key ON.  System Response: The VCU then powers ON the  display (secondary compute and display) from the LV battery. The OBD application is deployed on secondary compute and shall wakeup via a Docker container. It shall communicate over local socket with Telematics and use Aux CAN Bus data for UI composition. On wakeup OBD shall display  "Common Page" & System page information (Refer 2.2.1) Note: OBD shall be switched ON optionally before mission operation. The display shall be optionally switched OFF before starting mission (only the display not the secondary compute)  2.1.1.6 Helios - GCS: Ground Control Station (GCS) Not Applicable 2.1.1.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not Applicable 2.1.1.8 Iris - Telematics:  Logging & telemetry  [Ref: Scout Requirements, Sec 5.3.1.6] Iris – Telematics is docker container application and shall be spawned when the Secondary Compute is powered up. Operator Action: The operator flips the Guarded Toggle Switch to the ON position. System Response: The Secondary compute is powered ON by VCU. Telematics shall also do a check sum verification on the Motor controller parameter file on start-up report check sum failure error. 
+--- PAGE 23 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+ 
+S.no Phase System action Success (Yes) Failure (No) 
+1 OS wake up with power ON 
+OS wakes up when being powered ON enable launching of the IRIS-Telematics & OBD containerised application  
+Proceed to application wake up Secondary compute state remains unknown 
+2 Health monitor  
+Interface initialisation (Aux, Control & Actuator CAN bus, Ethernet & LTE, serial UART  with two motor controllers) and ascertain health  
+Proceed to connectivity Remain in fault state with unknown state 
+3 Connectivity Establish connectivity with OBD application  & connectivity with two motor controllers  Proceed to OFP Remain in fault state with unknown state Table 5: IRIS- Telematics wakeup 
+--- PAGE 24 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.1.2 Health & Mode monitoring CAN bus The health of all subsystems shall be reported on the Aux CAN bus.  Additionally VCU and Main compute (Atlas & Vision) shall also report its mode state.  2.1.2.1 Orion – MC: Motor Controller Configuration Not Applicable 2.1.2.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) VCU shall report following two category of health information (only those information which are required for OBD or GCS) 2.1.2.2.1 VCU own state VCU shall compose and report following information about itself on Aux CAN bus every 50Hz with every message being time stamped.  S.no Mode/ Sub mode States 1 VCU operational mode Idle/ Key ON/ Drive 2 Requested VCU operational mode Idle/ Key ON/ Drive 
+3 Charging mode  Connected : True/ False/ Unknown  Charging in progress : True/ False / Unknown  4 VCU drive mode Drive mode: Torque/ Speed/ Torque with speed limit   5 VCU drive mode limit Limit: LO/ MED / HI 6 VCU arm mode  Arm : Armed/ Disarmed/ Override   7 VCU Tow mode Engaged/ Disengage 8 VCU on vehicle emergency Engaged/ Disengage/ Disabled 9 VCU Remote emergency Engaged/Disengaged  10 VCU autonomy mode  A/ B/ C/ D/ E Table 6  VCU Status 2.1.2.2.2 EV Subsystem power & health state  VCU shall compose and report health of all subsystems (those which interface primarily with VCU) with time stamp.  Wake up default for the Power should be OFF & Over all fault to be Unknown.           
+--- PAGE 25 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+S.no Subsystem Power & health info  
+1 Forward  Motor controller 
+Power status (ON/OFF/Unknown) Unknown = true if                          VCU discrete interface or                         VCU driver (HSO/LSO) interface or                         Pre-charge or Motor controller contactor has failed  ON = if Unknown is false & Pre-charge or Motor controller contactor closed else  OFF = if unknown is false & ON is false  Over all fault: Faulty/ Healthy/ Unknown Unknown = true if                         VCU CAN interface fail or                         VCU driver (HSO/LSO) interface failed or                         No CAN response on actuator bus  Faulty = unknown is false & any of the following faults Healthy = unknown is false &  not faulty  Over-current  = yes/ no  Over-voltage  = yes/ no Under-voltage  = yes/ no Controller Over-temperature  = yes/ no UART communication failure  = yes/ no DC Bus voltage  = yes/ no CAN communication status  = yes/ no 
+2 Forward right motor 
+Over all fault: Faulty/ Healthy/ Unknown Unknown = true if                         VCU CAN interface fail or                         VCU driver (HSO/LSO) interface failed or                         No CAN response on actuator bus  Faulty = unknown is false & any of the following faults Healthy = unknown is false &  not faulty Overspeed – fault = yes/ no Overload – fault = yes/ no Phase loss – fault = yes/ no Brake – fault = yes/ no Encoder – fault = yes/ no Hall sensor – fault  = yes/ no Over-temperature fault = yes/ no Stall – fault = yes/ no 3 Forward left motor  Same as forward right motor  4 Rear Motor controller Same as Forward drive 5 Rear right Motor  6 Rear left Motor  
+--- PAGE 26 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+S.no Subsystem Power & health info  
+7 HV PDU  
+Power status (ON/OFF/Unknown) Unknown = true if                         VCU discrete interface fail                          VCU driver (HSO/LSO) interface or  ON = Unknown is false & 48 volt available at input of HV PDU  OFF = Unknown is false & ON is false  Over all fault: Faulty/ Healthy/ Unknown Unknown = true if                        VCU Discrete interface failure or                         VCU driver (HSO/LSO) interface failed or   Faulty = unknown is false  & if any contactor is faulty  Healthy = unknown is false &  not faulty Contactor faults  Yes = If contactor state is not equal to command else No  Pre-charge contactor = yes/ no  Motor controller contactor = yes/ no I/P DC-DC contactor = yes/ no  HV Charging contactor = yes/ no LV Charging contactor = yes/ no  O/P DC-DC contactor = yes/ no 
+8 DC-DC (48-12 V) 
+Power status (ON/OFF/Unknown) Unknown = true if                         VCU discrete interface is failed or                         VCU driver (HSO/LSO) interface or                         I/P DC-DC contactor is failed  ON = Unknown is false & If I/P DC-DC contactor is closed  OFF = Unknown is false & ON is false  Over all fault: Faulty/ Healthy/ Unknown Unknown = true if                        VCU Analog interface failure or                         VCU driver (HSO/LSO) interface failed or                        I/P DC-DC contactor is failed  Faulty = Unknown is false &  I/P DC-DC contactor is closed & DC-DC output is zero Healthy = unknown is false &  not faulty 
+--- PAGE 27 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+S.no Subsystem Power & health info  
+9 LV PDU 
+Power status (ON/OFF/Unknown) Unknown = true if                         DC-DC power ON state is unknown or                        O/P DC-DC contactor is failed or                         VCU discrete interface failed or                        VCU driver (HSO/LSO) interface failed ON = Unknown is false &           (If DC-DC (48-12 V) is powered ON  & O/P DC-DC contactor is closed) or            (If LV battery is powering the LV PDU) OFF = Unknown is false & ON is false  Over all fault: Faulty/ Healthy/ Unknown Unknown = true if                        VCU CAN (Aux) interface failure or                        No CAN messages from LV PDU   Faulty = Unknown is false &  any channel fault  Healthy = unknown is false &  not faulty Channel wise fault CH1  fault – yes/ no   CH2  fault – yes/ no   CH3  fault – yes/ no   CH4  fault – yes/ no   CH5  fault – yes/ no   CH6  fault – yes/ no   CH7  fault – yes/ no   CH8  fault – yes/ no   
+10 HV Battery 
+Over all fault: Faulty/ Healthy/ Unknown Unknown = true if                        VCU CAN (Aux) interface failure or                        No CAN messages from BMS   Faulty = Unknown is false &  any of the following faults   Healthy = unknown is false &  not faulty 
+--- PAGE 28 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+S.no Subsystem Power & health info  Voltage Faults Cell Over-voltage – yes/ no  Cell Under-voltage– yes/ no  Pack Over-voltage– yes/ no Pack Under-voltage – yes/ no Temperature Faults  Charge Over-temperature– yes/ no Charge Low-temperature– yes/ no  Discharge Over-temperature– yes/ no  Discharge Low-temperature– yes/ no Current Faults  Charge Over-current– yes/ no  Discharge Over-current– yes/ no  Short Circuit– yes/ no BMS hardware faults  Front-End IC Error– yes/ no  Software MOS Lock– yes/ no Aging faults  Cycle life fault – yes/ no (calendar life > 5 years) Capacity fault – yes / no (capacity less than 80%) 
+11 LV Battery 
+Over all fault: Faulty/ Healthy/ Unknown Unknown = true if                        VCU is OFF Faulty = Unknown is false &  any of the following faults   Healthy = unknown is false &  not faulty Battery Deeply Discharged – yes/ no (Voltage < 10.5 V for >5 s) Under-voltage – yes/ no (Voltage < 11.0 V for >3 s) Over-voltage - yes/ no (Voltage > 15.0 V for >1 s) Load-fault – yes/no (load/no load voltage > 90%) 
+12 LV Battery charger  
+Power status (ON/OFF/Unknown) Unknown = true if                         VCU driver (HSO/LSO) interface failed or                         VCU discrete interface failed or                        O/P DC-DC contactor failed   ON = Unknown is false & O/P DC-DC contactor is closed         OFF = Unknown is false & ON is false Over all fault: Faulty/ Healthy/ Unknown Unknown = true if                        VCU discrete interface failed or                       VCU analog interface failed  Faulty = Unknown is false &  any  Healthy = unknown is false &  not faulty 
+13 Secondary compute 
+Power status (ON/OFF/Unknown) Unknown = true if                         VCU driver (HSO/LSO) interface failed or                         VCU discrete interface failed or                        I/P compute power ON relay failed   ON = Unknown is false & I/P compute power ON is closed         OFF = Unknown is false & ON is false  
+--- PAGE 29 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+S.no Subsystem Power & health info  
+14 Head lights 
+Power status (ON/OFF/Unknown) Unknown = true if                         VCU CAN (Aux) interface or                        LV PDU is faulty  ON = LV output channel is not open circuit         OFF = Unknown is false & ON is false 
+15 Rear lights  
+Power status (ON/OFF/Unknown) Unknown = true if                         VCU CAN (Aux) interface or                        LV PDU is faulty  ON = LV output channel is not open circuit         OFF = Unknown is false & ON is false 
+16 Fog lights 
+Power status (ON/OFF/Unknown) Unknown = true if                         VCU CAN (Aux) interface or                        LV PDU is faulty  ON = LV output channel is not open circuit         OFF = Unknown is false & ON is false 
+17 VCU 
+Over all fault: Faulty/ Healthy/ Unknown  Faulty = any of the following faults    Supply voltage fault = yes/ no  MCU watchdog fault = yes/no  CPU overload = yes/no  RAM fault = yes / no  Flash CRC failure = yes / no  FCC active = yes/ no  Safety SBC fault = yes / no  CAN A bus-off = yes / no CAN B Bus -off = yes / no CAN C Bus -off = yes / no Internal temperature fault = yes / no Output driver fault  = yes / no Boot failure = yes / no Analog interface fault = yes /no  Discrete interface fault = yes /no  Healthy = not faulty Table 7 EV subsystem power & health status reported by VCU   
+--- PAGE 30 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.1.2.2.3 Autonomy Compute power & health state  S.no Subsystem Power & Health  
+1 Main compute  
+Power status (ON/OFF/Unknown) Unknown = true if                         VCU CAN (Aux) interface or                        LV PDU is faulty  ON = LV output channel is not open circuit         OFF = Unknown is false & ON is false Over all fault: Faulty/ Healthy/ Unknown Unknown = true if                        VCU CAN (Aux) interface or Faulty = Unknown is false &  any of the following faults   Healthy = unknown is false &  not faulty Jetson Heartbeat – yes/ no Temperature Fault – yes/ no Voltage Fault – yes/ no CPU Load Fault – yes/ no GPU Load Fault – yes/ no Memory Fault – yes/ no Storage Fault– yes/ no Table 8 Autonomy compute power & health state reported by VCU 2.1.2.2.4 Autonomy subsystems power state   S.no Subsystem Power & Health  
+1 UHF radio – UGV 
+Power status (ON/OFF/Unknown) Unknown = true if                         VCU CAN (Aux) interface or                        LV PDU is faulty  ON = LV output channel is not open circuit         OFF = Unknown is false & ON is false 
+2 L band radio - UGV 
+Power status (ON/OFF/Unknown) Unknown = true if                         VCU CAN (Aux) interface or                        LV PDU is faulty  ON = LV output channel is not open circuit         OFF = Unknown is false & ON is false 
+3 Ethernet switch  
+Power status (ON/OFF/Unknown) Unknown = true if                         VCU CAN (Aux) interface or                        LV PDU is faulty  ON = LV output channel is not open circuit         OFF = Unknown is false & ON is false 
+4 GNSS  
+Power status (ON/OFF/Unknown) Unknown = true if                         VCU CAN (Aux) interface or                        LV PDU is faulty  ON = LV output channel is not open circuit         OFF = Unknown is false & ON is false 
+--- PAGE 31 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+S.no Subsystem Power & Health  
+5 IMU, 2D Lidar 
+Power status (ON/OFF/Unknown) Unknown = true if                         VCU CAN (Aux) interface or                        LV PDU is faulty  ON = LV output channel is not open circuit         OFF = Unknown is false & ON is false 
+6 3D Lidar 
+Power status (ON/OFF/Unknown) Unknown = true if                         VCU CAN (Aux) interface or                        LV PDU is faulty  ON = LV output channel is not open circuit         OFF = Unknown is false & ON is false 
+7 RGBD Camera  
+Power status (ON/OFF/Unknown) Unknown = true if                         VCU CAN (Aux) interface or                        LV PDU is faulty  ON = LV output channel is not open circuit         OFF = Unknown is false & ON is false Table 9 Autonomy subsystems power state  2.1.2.3 Helios - HC: Hand Controller Not Applicable 2.1.2.4 Atlas - MC: Main Compute (High-Level Control) Atlas shall report following two category of health information to be logged by Telematics.  2.1.2.4.1 Altas own state Atlas shall compose and report following information about itself on Aux CAN bus every 1Hz with every message being time stamped.  S.no Mode/ Sub mode  State 1 Atlas -Autonomy mode A/ B/ C/ D/ E 2 Atlas - drive mode Torque/ Speed/ Torque with speed limit   3 Atlas - drive mode limit LO/ MED / HI 4 Atlas - arm mode  Armed/ Disarmed/ Override   5 Atlas – on vehicle emergency stop  Engaged/ Disengage/ Disabled 6 Atlas – remote emergency stop  Engaged/ Disengage/ Disabled 7 Hold mode  Engaged/ Disengaged 8 Speed limits Max & Min Linear Velocity  Max & Min Angular Velocity 9 Acceleration limits Max & Min Linear Acceleration  Max & Min Angular Acceleration  10 Main compute health data  Compute, Memory & storage info 11 Main compute interface health  CAN interfaces,  RS485, USB and ethernet interfaces   12 Atlas Application health data  Node status  
+--- PAGE 32 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+S.no Mode/ Sub mode  State 13 Vision Application health data  Node status Table 10 Own state 2.1.2.4.2 Sensor Subsystem health   compose and report health of all subsystem (those which interface primarily with Atlas-MC) health information with time stamp.   S.no Subsystem Power & Health  
+1 UHF radio – UGV 
+Over all fault: Faulty/ Healthy/ Unknown Unknown = true if                        Main compute serial interface fail or                       No response from UHF radio on serial  Faulty = Unknown is false &  any of the following faults   Healthy = unknown is false &  not faulty Radio faults  UART communication fault – yes / no (no response on UART)  Firmware fault – yes/ no (No version response)  Local RSSI/noise fault – yes / no (no or abnormal noise report) Temperature fault – yes / no (overheating)  
+2 UHF link Connection 
+Over all fault: Unknown / Connected/ Disconnected Unknown = true if                        UHF radio – UGV health state is Unknown  
+Connected = Unknown is false &  any of the following faults   Heartbeat fault = yes / no (absence of remote heart beat from HC)  Remote RSSI = yes / no (no data received for remote RSSI)  Disconnected = if Connected is false  
+--- PAGE 33 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+S.no Subsystem Power & Health  
+3 UHF link health 
+Over all fault: Unknown/ Healthy/ Degraded/ Faulty Unknown = UHF link Connection is unknown  Healthy = Unknown is false & any following faults Local RSSI fault – yes / no (< -90dBm) Remote RSSI fault – yes/ no (< -90dBm) Local noise fault – yes / no (>-110dBm) Remote noise fault – yes / no (>-110dBm) SNR fault – yes/ no (<20dB)  Packet loss fault – yes / no (>2%)  Heart beat timeout fault – yes/ no (>1s)  Degraded = Healthy is false &  any of following faults Local RSSI fault – yes / no ( -90 to -105dBm) Remote RSSI fault – yes/ no ( -90 to -105dBm) Local noise fault – yes / no (-110 to 100dBm) Remote noise fault – yes / no (-110 to 100dBm) SNR fault – yes/ no (10  to 20dB)  Packet loss fault – yes / no (2 to 10%)  Heart beat timeout fault – yes/ no (1 to 3s)  Faulty =  If Healthy is false  & degraded is false  4 L band radio – UGV Same as UHF radio -UGV 
+5 L band link Connection Same as UHF link connection  
+6 L band link health Same as UHF band link health 
+7 Ethernet switch  
+Over all fault: Unknown/ Healthy/ Faulty Unknown = true if                        Ethernet interface of main compute is failed  Faulty = Unknown is false &  any of the following faults  GNSS ping fault – yes / no (ping not available the system)  L band radio ping fault - yes / no (ping not available the system)  2D lidar ping fault - yes / no (ping not available the system)  3D lidar ping fault - yes / no (ping not available the system)  Secondary compute ping fault - yes / no (ping not available the system)  Healthy = unknown is false &  not faulty 
+--- PAGE 34 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+S.no Subsystem Power & Health  
+8 GNSS 
+Over all fault: Unknown/ Healthy/ Degraded/ Faulty Unknown = true if                        Ethernet interface of main compute is failed   Healthy = Unknown is false and any of following faults  Position validity error fault – yes/ no (continuous 3 invalid position)  Fix quality fault – yes / no (RTK Fixed/ RTK Float/ DGPS/ SBAS)  Fix dimension fault – yes / no (3D Fix) Satellite fault  - yes / no (count less than 12)  HDOP fault – yes / no (> 1.5)  Heading validity error fault – yes/ no (continuous 3 invalid position)  Degraded = Unknown is false and any of following faults  Position validity error fault – yes/ no (continuous 7 invalid position)  Fix quality fault – yes / no (GPS Fix)  Fix dimension fault – yes / no (2D Fix) Satellite fault  - yes / no (count 6-11)  HDOP fault – yes / no ( 1.5-3)  Heading validity error fault – yes/ no (continuous 7 invalid position)  Faulty = Unknown is false and not healthy or degraded   
+9 IMU 
+Over all fault: Unknown/ Healthy/ Faulty Unknown = true if                        RS485 interface of main compute is failed   Faulty = Unknown is false &  any of the following faults  Communication fault – yes/ no  Data integrity fault – yes / no (> 5 consecutive CRC errors)   Healthy = Unknown is false & Faulty is false  
+10 2D Lidar  
+Over all fault: Unknown/ Healthy/ Faulty Unknown = true if                        Ethernet interface of main compute is failed   Faulty = Unknown is false &  any of the following faults  Communication fault – yes/ no  Data integrity fault – yes / no (> 5 consecutive CRC errors)   Healthy = Unknown is false & Faulty is false  
+11 3D Lidar  
+Over all fault: Unknown/ Healthy/ Faulty Unknown = true if                        Ethernet interface of main compute is failed   Faulty = Unknown is false &  any of the following faults  Communication fault – yes/ no  Data integrity fault – yes / no (> 5 consecutive CRC errors)   Healthy = Unknown is false & Faulty is false  
+--- PAGE 35 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+S.no Subsystem Power & Health  
+12 Camera Front-centre 
+Over all fault: Unknown/ Healthy/ Faulty Unknown = true if                        GMSL interface of main compute is failed   Faulty = Unknown is false & video stream Is not available  Healthy = Unknown is false & Faulty is false 13 Camera Front-Left Same as Front-centre  
+14 Camera Front-Right Same as Front-centre  
+15 Camera Side-Left Same as Front-centre  
+16 Camera Side-right Same as Front-centre  
+17 Camera Rear Same as Front-centre  Table 11 Sensor Subsystem health 2.1.2.5 Helios - OBD: Onboard Display Not Applicable 2.1.2.6 Helios - GCS: Ground Control Station (GCS) Not Applicable 2.1.2.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Atlas – Vision shall publish following information as ROS topic for Atlas – MC.  S.no Info type Detail 
+1 
+Application health  Node status Interface (ethernet, GMSL) health Ethernet, GMSL 1-8 Camera sensor status  Camera  : Fault (True/ False), Type (Day / Night), Selected Camera (Front-centre, Front-Left, Front- Right, Side-Left, Side-Right, Rear-centre, Rear-Left, Rear-Right)  Camera  : Resolution  Camera  : Data rate raw Camera  : Data rate encoded  Camera  : Delay vision pipeline 
+2 Front-centre Over all fault: Unknown/ Healthy/ Faulty Unknown = true if                        GMSL interface of main compute is failed  Faulty = Unknown is false & video stream Is not available  Healthy = Unknown is false & Faulty is false 3 Front-Left Same as Front-centre  4 Front-Right Same as Front-centre  
+--- PAGE 36 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+S.no Info type Detail 5 Side-Left Same as Front-centre  6 Side-right Same as Front-centre  7 Rear Same as Front-centre  Table 12 Info type published by Atlas-vision 2.1.2.8 Iris - Telematics:  Logging & telemetry  The telematic application shall Log all three CAN bus data in separate log file with time stamp ensuring following.   S.no Functionality    1 The telematics application shall log data from all three CAN buses of the UGV. 2 The telematics application shall create a separate log file for each CAN bus. 3 Each CAN log entry shall include a timestamp. 4 The timestamp shall have sufficient resolution to support post-event analysis. 5 The log files shall be generated for every UGV power cycle. 6 A new set of log files shall be created at the start of each power cycle. 7 Each log file shall include header information before CAN data logging begins. 8 The header shall include the UGV unique identification number. 9 The header shall include the date and time of log file creation. 10 The header shall include the CAN bus identifier/name. 11 The log file shall record CAN ID, DLC, data bytes, and timestamp for each received CAN frame. 12 The logging application shall maintain chronological ordering of CAN messages within each log file. 13 The log files shall be stored in non-volatile memory. 14 The system shall ensure logs are not overwritten within the same power cycle. 15 The system shall provide a mechanism to retrieve the log files for offline analysis. 16 The log file format shall be compatible with the peak CAN analyser Table 13 Iris - Telematics: Logging & telemetry Telematics shall report following health & state information about secondary compute  S.no Subsystem Power & Health  
+1 Secondary compute  Over all fault: Faulty/ Healthy/Unknown Faulty = any of the following faults   Healthy = not faulty Unknown = Powered on but system metrics is not valid (can’t read CPU, memory info, or storage) 
+--- PAGE 37 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+S.no Subsystem Power & Health  CPU Load Fault – yes/ no Memory Fault – yes/ no Storage Fault– yes/ no  Table 14 Health & state information: secondary compute  
+--- PAGE 38 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.1.3 Health & Mode monitoring Telemetry  The health & mode (VCU & Atlas) of all subsystems shall be collated and reported over radio as telemetry information by Atlas-MC. The telemetry data shall also be persisted for a power cycle. 2.1.3.1 Orion – MC: Motor Controller Configuration Not Applicable 2.1.3.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) Not Applicable 2.1.3.3 Helios - HC: Hand Controller Not Applicable 2.1.3.4 Atlas - MC: Main Compute (High-Level Control) Atlas shall compose all subsystems health information and report to GCS as MavLink2 message. The health message shall comprise of following category of information: 2.1.3.4.1 VCU own state information (From Aux CAN bus) Refer Sec 2.1.2.2.1 VCU own state  2.1.3.4.2 EV subsystem power & health (From Aux CAN bus) Refer Sec 2.1.2.2.2 EV Subsystem state  2.1.3.4.3 Autonomy Compute power & health (From Aux CAN bus) Refer Sec 2.1.2.2.3 Autonomy compute state  2.1.3.4.4 Autonomy subsystem power state (From Aux CAN bus) Refer Sec 2.1.2.2.4 Autonomy compute state  2.1.3.4.5 Atlas own state  Refer Sec 2.1.2.4.1  2.1.3.4.6 Sensor subsystem state  Refer Sec 2.1.2.4.2  2.1.3.4.7 Vision information  Refer Sec 2.1.2.7 Atlas shall also persist the telemetry data on the file system for every power cycle. Shall maintain one log file for every power cycle. 2.1.3.5 Helios - OBD: Onboard Display Not Applicable 2.1.3.6 Helios - GCS: Ground Control Station (GCS) Not Applicable 2.1.3.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not Applicable 
+--- PAGE 39 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.1.3.8 Iris - Telematics:  Logging & telemetry  Not Applicable    
+--- PAGE 40 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.1.4 Normal Power OFF of UGV  [Ref: Scout User Requirements, Sec 5.3.1.2] The system shall have a standard, graceful shutdown sequence (like turning off a computer properly). 2.1.4.1   Orion - MC: Motor Controller Configuration Not Applicable 2.1.4.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) The VCU shall use a sequential powering down of the 48V & 12V systems. The power off sequence shall be divided into three phases as follows: Phase 1: Transition to Key ON Operator Action: The operator turns the Rotary Knob from Position 3 (DRIVE ON) to Position 2 (KEY ON).  
+ Figure 4:Rotatory knob position of VCU “Key ON” state   System Response:  Set the requested VCU state to Key ON (Drive ON to Key ON transition). The VCU commands the motor controller contactor to open, cutting off high-voltage power to the motors. Confirm power OFF status of the Motor controller and set VCU state to Key ON.   Phase 2: Transition to IDLE Operator Action: The operator turns the Rotary Knob from Position 2 (KEY ON) to Position 1 (IDLE). 
+
+--- PAGE 41 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+ Figure 5:Rotatory Knob position of VCU “Idle” state System Response:  Set the requested VCU state to Idle (Key ON to Idle transition) a) Compute Handshake: The VCU sends a shutdown command to the Atlas and waits for an acknowledgment signal from the MCU over CAN before cutting the 12V power.  After confirmation (with a timeout of 30 sec, beyond which VCU shall initiate power shutdown of the compute),  b) Sequential Power-Off subsystems powered from LV PDU: Once the Main compute OS has been shut down, the VCU sequentially power off the 12V subsystems from the LV PDU in the following order:   Step 1:  Power OFF RGBD camera Step 2:  Power OFF 3D lidar  Step 3:  Power OFF IMU & 2D lidar Step 4:  Power OFF GNSS  Step 5:  Power OFF L band radio  Step 6:  Power OFF Ethernet switch   Step 7:  Power OFF UHF radio   Step 8:  Power OFF Main    c) Power-Off LV PDU: Power OFF the LV PDU (Turn OFF output of 48-12 DC-DC).  Then power OFF 48-12 DC-DC (Turn OFF output from the HV PDU) d) Power-off secondary compute: Handshake with secondary compute for safe power OFF (time out of 30 s).After OS shut down of the secondary compute, turn OFF power supply to Secondary compute and Display e) Ensure all contactors are opened and state of all LV subsystems are OFF. Update VCU state to Idle   
+
+--- PAGE 42 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+Phase 3: Transition to OFF State Operator Action: The operator flips the Guarded Toggle Switch from the UP (ON) position to the DOWN (OFF) position. 
+ Figure 6:Toggle Switch & Rotatory Knob position for “Idle” state System Response: Power from the 12V battery is cut to the Vehicle Control Unit (VCU), and the VCU powers off completely.  2.1.4.3 Helios - HC: Hand Controller Not Applicable 2.1.4.4 Atlas - MC: Main Compute (High-Level Control) Atlas shall process the request for shut down from VCU.  - Send shut down request to Vision  - Save telemetry logs  - Receive acknowledgment from Vision for shut down  - Send confirmation to VCU for shut down 2.1.4.5 Helios - OBD: Onboard Display Not Applicable 2.1.4.6 Helios - GCS: Ground Control Station (GCS) Not Applicable 2.1.4.7 Atlas – Vision: Computer Vision & Machine Learning (CV & ML) Vision shall process the request for shut down from Atlas.  - Save vision logs  - Send confirmation to VCU for shut down 2.1.4.8 Iris - Telematics:  Logging & telemetry  Telematics shall process the request for shut down from VCU.  - Save all logs  - Send confirmation to VCU for shut down  
+
+--- PAGE 43 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.1.5 Subsystem wakeup defaults for mode/ sub modes [Ref: Scout td0 User Requirements, Sec 5.3.1.3] On power ON of UGV the subsystem shall have wake up defaults for modes/ sub modes. The UGV wake up default is selected to be a safe state.  2.1.5.1 Orion – MC: Motor Controller Configuration Not Applicable 2.1.5.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) VCU shall maintain following mode and sub mode information and use undermentioned power ON default. S.no Mode/ Sub mode States Default 1 VCU operational mode Idle/ Key ON/ Drive Idle 2 Requested VCU operational mode Idle/ Key ON/ Drive Idle 
+3 Charging mode  Connected : True/ False/ Unknown  True Charging in progress : True/ False / Unknown  True 
+4 VCU drive mode Drive mode: Torque/ Speed/ Torque with speed limit   Speed 5 VCU drive mode limit Limit: LO/ MED / HI LO 6 VCU arm mode  Arm : Armed/ Disarmed/ Override   Disarmed 7 VCU Tow mode Engaged/ Disengage Engaged 8 VCU on vehicle emergency Engaged/ Disengage/ Disabled Engaged 9 VCU Remote emergency Engaged/Disengaged  Disengaged 10 VCU autonomy mode  A/ B/ C/ D/ E A Table 15 VCU: Mode/Sub mode defaults 2.1.5.3 Helios - HC: Hand Controller Not Applicable 2.1.5.4 Atlas - MC: Main Compute (High-Level Control) Atlas shall maintain following mode and sub mode information and use undermentioned power ON default. 
+S.no Mode/ Sub mode  State Defaults  1 Atlas -Autonomy mode A/ B/ C/ D/ E A 2 Atlas - drive mode Torque/ Speed/ Torque with speed limit   Speed 3 Atlas - drive mode limit LO/ MED / HI LO 4 Atlas - arm mode  Armed/ Disarmed/ Override   Disarmed 
+--- PAGE 44 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+S.no Mode/ Sub mode  State Defaults  5 Atlas – on vehicle emergency stop  Engaged/ Disengage/ Disabled Disengage 
+6 Atlas – remote emergency stop  Engaged/ Disengage/ Disabled Disengage 7 Hold mode  Engaged/ Disengaged Disengaged Table 16 Atlas: Mode/sub mode defaults 2.1.5.5 Helios - OBD: Onboard Display Not applicable 2.1.5.6 Helios - GCS: Ground Control Station (GCS) Not applicable 2.1.5.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML)  
+--- PAGE 45 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.1.6 Safe charging of UGV The UGV shall enable safe charging using an external charger  2.1.6.1 Orion – MC: Motor Controller Configuration Not Applicable 2.1.6.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) VCU shall allow safe charging through following two phases: 2.1.6.2.1 Operator action - connect charger The operator shall connect the UGV to external charger with VCU in Key ON mode. Detection of charger    2.1.6.2.2 Subsystem response - connect charger VCU shall detect the charger being connected. Update the charger connection to connected. 2.1.6.2.3 Operator action – charging The operator shall initiate charging process by turning ON the charger  2.1.6.2.4 Subsystem response - charging VCU shall enable & monitor the charging process, which include following phases:  2.1.6.2.4.1 Pre charge checks  Following shall be ensure before VCU commences charging  ● All contactors in the PDU should be in open state  ● BMS communication is healthy  ● Ensure HVIL is closed for the battery ● Battery voltage is between Min and Max cut off voltage  ● SoC is less than 98% ● If Cell voltage (parallel combination) of all cells is less than max cell voltage ● None of the cell voltage should be below min cell voltage  ●  Battery temperature is within charging temperature range  ● No active fault reported by BMS ● VCU is in Key ON state and Tow is not engaged  ● HV battery is Healthy (not in fault or unknown state) 2.1.6.2.4.2 Charging process  All pre charge checks have to be met before charging is commenced and any unfulfillment of the condition even during charging shall terminate the charging process. Following shall be the sequence of charging  ● Close the contactor to enable the HV battery to be charged  ● Check the state of the LV battery, charge if its below 80% SoC  ● Ensure 12 V PDU is not powered up  2.1.6.3 Helios - HC: Hand Controller Not Applicable 
+--- PAGE 46 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.1.6.4 Atlas - MC: Main Compute (High-Level Control) Not Applicable 2.1.6.5 Helios - OBD: Onboard Display Not Applicable (refer Operator Interface section) 2.1.6.6 Helios - GCS: Ground Control Station (GCS) Not Applicable 2.1.6.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not Applicable 2.1.6.8 Iris - Telematics:  Logging & telemetry  Not Applicable (refer 2.1.2.8)  
+--- PAGE 47 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.1.7 Wheel free towing The UGV shall have provision to be towed manually (max recommended speed for manual towing is 0.5 m/s) 2.1.7.1 Orion – MC: Motor Controller Configuration Not Applicable 2.1.7.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) The emergency switches shall be used by operator to engage the towing mode. The towing mode shall be engaged only when VCU is in Key ON state.   2.1.7.2.1 Enable Tow mode  Operator Action: The operator flips the Guarded Toggle Switch to the ON position. The operator then ensures that rotary knob is in Key ON state. The operator shall now use any of the emergency switch to engage the towing mode.                   System response:  The VCU shall follow below sequence of operation.  ● Power up the motor controller following the required pre-charge process.  ● Enable glide mode   2.1.7.2.2 Disable tow mode  Operator Action:  The operator shall release the emergency switch to disengage the towing mode. System response:   ● Disable glide mode  ● Power down the motor controller   * The EM brakes will be powered from the LV battery and operated by the VCU only in tow mode. 
+
+--- PAGE 48 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.1.7.3 Helios - HC: Hand Controller Not Applicable 2.1.7.4 Atlas - MC: Main Compute (High-Level Control) Not Applicable 2.1.7.5 Helios - OBD: Onboard Display Not Applicable 2.1.7.6 Helios - GCS: Ground Control Station (GCS) Not Applicable 2.1.7.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not Applicable 2.1.7.8 Iris - Telematics:  Logging & telemetry  Not Applicable    
+--- PAGE 49 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.1.8 Alert generation *TBD* UGV shall generate alert to be displayed on OBD and GCS (for example low HV and Low LV) . Alerts with priority and level of fatality (Caution, Warning, Fatal) 2.1.8.1 Orion – MC: Motor Controller Configuration 2.1.8.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 2.1.8.3 Helios - HC: Hand Controller 2.1.8.4 Atlas - MC: Main Compute (High-Level Control) 2.1.8.5 Helios - OBD: Onboard Display 2.1.8.6 Helios - GCS: Ground Control Station (GCS) 2.1.8.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 2.1.8.8 Iris - Telematics:  Logging & telemetry   
+--- PAGE 50 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.1.9 UGV hold mode  The UGV shall be in hold mode when not on the move but in Armed state after a predefined timeout. The mode shall be a system triggered and not operator selectable. 2.1.9.1 Orion – MC: Motor Controller Configuration Not applicable 2.1.9.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) The EM brake shall be engaged only when Hold mode is Enabled or Remote emergency stop or on vehicle emergency stop is triggered.   2.1.9.3 Helios - HC: Hand Controller Not applicable 2.1.9.4 Atlas - MC: Main Compute (High-Level Control) Atlas shall enable the hold mode when armed and no control commands have been received from the Hand controller or GCS or Autonomy subsystem or non-zero RPM feedback for a timeout period of 5 sec.  2.1.9.5 Helios - OBD: Onboard Display Not applicable 2.1.9.6 Helios - GCS: Ground Control Station (GCS) Not applicable 2.1.9.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 2.1.9.8 Iris - Telematics:  Logging & telemetry  Not applicable             
+--- PAGE 51 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.1.10 Safe path for Regen power  *TBD* UGV shall ensure safe path for the regen power when the UGV deaccelerates. 2.1.10.1 Orion – MC: Motor Controller Configuration 2.1.10.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 2.1.10.3 Helios - HC: Hand Controller 2.1.10.4 Atlas - MC: Main Compute (High-Level Control) 2.1.10.5 Helios - OBD: Onboard Display 2.1.10.6 Helios - GCS: Ground Control Station (GCS) 2.1.10.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 2.1.10.8 Iris - Telematics:  Logging & telemetry                    
+--- PAGE 52 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.2 Operator Interface On board display (OBD) an unified HMI with a 5 inch display shall strictly be utilized for monitoring safety and system status which would be used prior to mission operation and after mission completion. The display software shall not be intended or used for driving, navigation, or mission control. 2.2.1 OBD: Common information page [Ref: Scout_User_Requirements Sec 5.4.1.1] The common page information shall be available across all pages. OBD shall use the Aux bus information for composition and display of all information. 2.2.1.1 Orion – MC: Motor Controller Configuration Not Applicable 2.2.1.2  Nexus - VCU: Vehicle Control Unit (Low-Level Control) Refer section 2.1.2 2.2.1.3 Helios - HC: Hand Controller Not Applicable 2.2.1.4 Atlas - MC: Main Compute (High-Level Control) Refer section 2.1.2 2.2.1.5  Helios - OBD: Onboard Display OBD shall display following information on all pages 
+Table 17 OBD: Common Info to be displayed  
+S.no Info to be displayed Reference 1 VCU operational state (from VCU) 
+Sec 2.1.2 
+2 Charging status (from VCU) 3 Arm status ( from VCU ) 4 Drive mode ( from VCU ) 5 Drive limit ( from VCU ) 6 Tow state (from VCU) 7 Emergency state ( from VCU ) 8 Remote emergency state ( from VCU ) 9 Secondary compute date & time (system time) Sec 2.1.1 10 LV battery SoC (from VCU) 
+Sec 2.1.2 11 HV battery SoC (from VCU) 12 Autonomy mode ( from VCU ) 13 Hold state ( from VCU ) 14 UHF radio connectivity status (from Main compute) 15 L band radio connectivity status (from Main compute) 
+--- PAGE 53 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+Below is the design for the common header 
+  Figure 7:Reference screen: OBD common header  2.2.1.6 Helios - GCS: Ground Control Station (GCS) Not Applicable 2.2.1.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not Applicable  
+
+--- PAGE 54 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.2.2 OBD: System information page      [Ref: Scout_td0_User_Requirements, Sec 5.4.1.2] The System page shall display the subsystems health status.  2.2.2.1 Orion – MC: Motor Controller Configuration Not applicable 2.2.2.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) Not applicable 2.2.2.3 Helios - HC: Hand Controller Not Applicable 2.2.2.4 Atlas - MC: Main Compute (High-Level Control) Not applicable 2.2.2.5 Helios - OBD: Onboard Display The OBD shall display the health status published by VCU and atlas. Following colour convention shall be used to indicate the health of the sub system. System Status Colour Unknown White Healthy Green Not Healthy Red Degraded Orange Table 18: Colour codes to represent subsystem health status on OBD List of subsystems whose Health status shall be displayed include: Sno. Group Subsystem 1 Cluster I  
+VCU  2 Secondary compute 3 HV Battery 4 LV Battery  5 
+Cluster II (LV subsystem) 
+DC-DC (48-12 V) 7 HV PDU 8 LV PDU 9 Main Compute 10 UHF Radio  11 L band Radio 12 Ethernet switch  13 GNSS 14 IMU 15 2D Lidar  16 3D Lidar 
+--- PAGE 55 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+17 
+Cluster III (HV subsystem) 
+Forward motor controller  18 Forward right motor  19 Forward left motor  20 Rear motor controller 21 Rear right motor  22 Rear left motor  Table 19 OBD: System page- Grouping of Subsystems Below is the reference screen for the system  information page 
+ Figure 8: Reference screen- OBD System  information page  2.2.2.6 Helios - GCS: Ground Control Station (GCS) Not applicable  2.2.2.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable  
+
+--- PAGE 56 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.2.3 OBD: Drive information page OBD shall display the detailed drive information about motor controllers and motors. 2.2.3.1 Orion – MC: Motor Controller Configuration Not applicable 2.2.3.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) Not applicable 2.2.3.3 Helios - HC: Hand Controller Not applicable 2.2.3.4 Atlas - MC: Main Compute (High-Level Control) Not applicable 2.2.3.5 Helios - OBD: Onboard Display Display power and detailed health status for the forward motor controller with respective motors (left & right) and rear motor controller with respective motors (left & right).  S.no Subsystem Power & health info  
+1 Forward  Motor controller 
+Power status (ON/OFF/Unknown) Over all fault: Faulty/ Healthy/ Unknown  Over-current  = yes/ no  Over-voltage  = yes/ no Under-voltage  = yes/ no Controller Over-temperature  = yes/ no UART communication failure  = yes/ no Controller temperature  = yes/ no DC Bus voltage  = yes/ no CAN communication status  = yes/ no 
+2 Forward right motor 
+Over all fault: Faulty/ Healthy/ Unknown Overspeed – fault = yes/ no Overload – fault = yes/ no Phase loss – fault = yes/ no Brake – fault = yes/ no Encoder – fault = yes/ no Hall sensor – fault  = yes/ no Over-temperature fault = yes/ no Stall – fault = yes/ no 3 Forward left motor  Same as forward right motor  4 Rear Motor controller Same as Forward drive Table 20 OBD: Drive page health info Below is the reference screen for the Drive  information page 
+--- PAGE 57 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+ Figure 9:Reference screen- OBD Drive  information page  2.2.3.6 Helios - GCS: Ground Control Station (GCS) Not applicable 2.2.3.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 2.2.3.8 Iris - Telematics:  Logging & telemetry  Not applicable   
+
+--- PAGE 58 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.2.4 OBD: Power information page OBD shall display information related to HV battery pack & PDU along with LV battery pack & PDU. It shall also include information about the DC-DC.  2.2.4.1 Orion – MC: Motor Controller Configuration Not applicable 2.2.4.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) Not applicable 2.2.4.3 Helios - HC: Hand Controller Not applicable 2.2.4.4 Atlas - MC: Main Compute (High-Level Control) Not applicable 2.2.4.5 Helios - OBD: Onboard Display The Power page shall comprise of following category of information   S.no Subsystem Power & health info  
+1 HV PDU  
+Power status (ON/OFF/Unknown) Over all fault: Faulty/ Healthy/ Unknown Contactor faults  Pre-charge contactor = yes/ no  Motor controller contactor = yes/ no I/P DC-DC contactor = yes/ no  HV Charging contactor = yes/ no LV Charging contactor = yes/ no  O/P DC-DC contactor = yes/ no 2 DC-DC (48-12 V) Power status (ON/OFF/Unknown) Over all fault: Faulty/ Healthy/ Unknown 
+3 LV PDU 
+Power status (ON/OFF/Unknown) Over all fault: Faulty/ Healthy/ Unknown Channel wise fault CH1  fault – yes/ no   CH2  fault – yes/ no   CH3  fault – yes/ no   CH4  fault – yes/ no   CH5  fault – yes/ no   CH6  fault – yes/ no   CH7  fault – yes/ no   CH8  fault – yes/ no   
+--- PAGE 59 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4 HV Battery 
+Over all fault: Faulty/ Healthy/ Unknown Voltage Faults Cell Over-voltage – yes/ no  Cell Under-voltage– yes/ no  Pack Over-voltage– yes/ no Pack Under-voltage – yes/ no Temperature Faults  Charge Over-temperature– yes/ no Charge Low-temperature– yes/ no  Discharge Over-temperature– yes/ no  Discharge Low-temperature– yes/ no Current Faults  Charge Over-current– yes/ no  Discharge Over-current– yes/ no  Short Circuit– yes/ no BMS hardware faults  Front-End IC Error– yes/ no  Software MOS Lock– yes/ no Aging faults  Cycle life fault – yes/ no (calendar life > 5 years) Capacity fault – yes / no (capacity less than 80%) 
+5 LV Battery 
+Over all fault: Faulty/ Healthy/ Unknown Battery Deeply Discharged – yes/ no  Under-voltage – yes/ no  Over-voltage - yes/ no  Load-fault – yes/no  6 Head lights Power status (ON/OFF/Unknown) 
+7 Rear lights  Power status (ON/OFF/Unknown) 
+8 Fog lights Power status (ON/OFF/Unknown) Table 21 OBD: Power page health info       
+--- PAGE 60 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+Below is the reference screen for the Power information page 
+ Figure 10:Reference screen- OBD Power information page  2.2.4.6 Helios - GCS: Ground Control Station (GCS) Not applicable 2.2.4.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 2.2.4.8 Iris - Telematics:  Logging & telemetry  Not applicable  
+
+--- PAGE 61 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.2.5 OBD: Compute information page The OBD shall display information about computes ( Main compute, Secondary compute & VCU).  2.2.5.1 Orion – MC: Motor Controller Configuration Not applicable 2.2.5.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) Not applicable 2.2.5.3 Helios - HC: Hand Controller Not applicable 2.2.5.4 Atlas - MC: Main Compute (High-Level Control) Not applicable 2.2.5.5 Helios - OBD: Onboard Display The OBD shall include following category of information on the Compute page information.   S.no Subsystem Power & Health  
+1 Main compute  
+Power status (ON/OFF/Unknown) Over all fault: Faulty/ Healthy/ Unknown Jetson Heartbeat – yes/ no Temperature Fault – yes/ no Voltage Fault – yes/ no CPU Load Fault – yes/ no GPU Load Fault – yes/ no Memory Fault – yes/ no Storage Fault– yes/ no 
+2 Secondary compute  
+Over all fault: Faulty/ Healthy CPU Load Fault – yes/ no Memory Fault – yes/ no Storage Fault– yes/ no 
+--- PAGE 62 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+S.no Subsystem Power & Health  
+3 VCU 
+Over all fault: Faulty/ Healthy Faulty = any of the following faults    Supply voltage fault = yes/ no  MCU watchdog fault = yes/no  CPU overload = yes/no  RAM fault = yes / no  Flash CRC failure = yes / no  FCC active = yes/ no  Safety SBC fault = yes / no  CAN A bus-off = yes / no CAN B Bus -off = yes / no CAN C Bus -off = yes / no Internal temperature fault = yes / no Output driver fault  = yes / no Boot failure = yes / no Analog interface fault = yes /no  Discrete interface fault = yes /no  Healthy = not faulty Table 22 OBD: Compute page health info Below is the reference screen for the compute information page 
+ Figure 11: Reference screen- OBD Compute information page  2.2.5.6 Helios - GCS: Ground Control Station (GCS) Not applicable 
+
+--- PAGE 63 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.2.5.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 2.2.5.8 Iris - Telematics:  Logging & telemetry  Not applicable  
+--- PAGE 64 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.2.6 OBD: Sensor information page OBD shall display information about the sensors like (GNSS, IMU, Lidar, Camera etc)  2.2.6.1 Orion – MC: Motor Controller Configuration Not applicable 2.2.6.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) Not applicable 2.2.6.3 Helios - HC: Hand Controller Not applicable 2.2.6.4 Atlas - MC: Main Compute (High-Level Control) Not applicable 2.2.6.5 Helios - OBD: Onboard Display OBD shall display following sensor information  S.no Subsystem Power & Health  
+1 Ethernet switch  
+Power status (ON/OFF/Unknown) Over all fault: Unknown/ Healthy/ Faulty GNSS ping fault – yes / no (ping not available the system)  L band radio ping fault - yes / no (ping not available the system)  2D lidar ping fault - yes / no (ping not available the system)  3D lidar ping fault - yes / no (ping not available the system)  Secondary compute ping fault - yes / no (ping not available the system) 
+2 GNSS  
+Power status (ON/OFF/Unknown) Over all fault: Unknown/ Healthy/ Degraded/ Faulty Position validity error fault – yes/ no  Fix quality fault – yes / no  Fix dimension fault – yes / no  Satellite fault  - yes / no  HDOP fault – yes / no  Heading validity error fault – yes/ no  
+3 IMU, 2D Lidar Power status (ON/OFF/Unknown) Over all fault: Unknown/ Healthy/ Faulty Communication fault – yes/ no  Data integrity fault – yes / no  
+4 3D Lidar Power status (ON/OFF/Unknown) Over all fault: Unknown/ Healthy/ Faulty Communication fault – yes/ no  Data integrity fault – yes / no  5 Camera Front -centre   Over all fault: Unknown/ Healthy/ Faulty 6 Camera Front-Left Over all fault: Unknown/ Healthy/ Faulty 7 Camera Front-Right Over all fault: Unknown/ Healthy/ Faulty 8 Camera Side-Left Over all fault: Unknown/ Healthy/ Faulty 9 Camera Side-right Over all fault: Unknown/ Healthy/ Faulty 10 Camera Rear Over all fault: Unknown/ Healthy/ Faulty Table 23 OBD: Sensor page health info 
+--- PAGE 65 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+Below is the reference screen for the sensor information page 
+ Figure 12: Reference screen- OBD Sensor information page  2.2.6.6 Helios - GCS: Ground Control Station (GCS) Not applicable 2.2.6.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 2.2.6.8 Iris - Telematics:  Logging & telemetry  Not applicable                
+
+--- PAGE 66 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.2.7 OBD: Communication information page OBD shall display radio related communication data both for the onboard and remote radios ( refer sec 2.1.2) 2.2.7.1 Orion – MC: Motor Controller Configuration 2.2.7.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 2.2.7.3 Helios - HC: Hand Controller 2.2.7.4 Atlas - MC: Main Compute (High-Level Control) 2.2.7.5 Helios - OBD: Onboard Display The OBD shall display following category of information on the COM page   S.no Subsystem Power & Health  
+1 UHF radio – UGV 
+Power status (ON/OFF/Unknown) Over all fault: Faulty/ Healthy/ Unknown UART communication fault – yes / no Firmware fault – yes/ no  Local RSSI/noise fault – yes / no  Temperature fault – yes / no  
+2 L band radio - UGV 
+Power status (ON/OFF/Unknown) Over all fault: Faulty/ Healthy/ Unknown Ethernet communication fault – yes / no Firmware fault – yes/ no  Local RSSI/noise fault – yes / no  Temperature fault – yes / no 
+3 UHF link Connection 
+Over all fault: Unknown / Connected/ Disconnected Connected = Unknown is false &  any of the following faults   Heartbeat fault = yes / no  Remote RSSI = yes / no  
+4 UHF link health 
+Over all fault: Unknown/ Healthy/ Degraded/ Faulty Local RSSI fault – yes / no  Remote RSSI fault – yes/ no  Local noise fault – yes / no  Remote noise fault – yes / no  SNR fault – yes/ no  Packet loss fault – yes / no Heart beat timeout fault – yes/ no  
+5 L band link Connection 
+Over all fault: Unknown / Connected/ Disconnected Connected = Unknown is false &  any of the following faults   Heartbeat fault = yes / no  Remote RSSI = yes / no 
+--- PAGE 67 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+S.no Subsystem Power & Health  
+6 L band link health 
+Over all fault: Unknown/ Healthy/ Degraded/ Faulty Local RSSI fault – yes / no  Remote RSSI fault – yes/ no  Local noise fault – yes / no  Remote noise fault – yes / no  SNR fault – yes/ no  Packet loss fault – yes / no Heart beat timeout fault – yes/ no   Table 24 OBD: Communication page health info  Below is the reference screen for the communication information page 
+ Figure 13:Reference screen- OBD Communication information page  2.2.7.6 Helios - GCS: Ground Control Station (GCS) Not applicable 2.2.7.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 2.2.7.8 Iris - Telematics:  Logging & telemetry  Not applicable  
+
+--- PAGE 68 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.2.8 OBD: Alert page  *TBD* 2.2.8.1 Orion – MC: Motor Controller Configuration 2.2.8.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 2.2.8.3 Helios - HC: Hand Controller 2.2.8.4 Atlas - MC: Main Compute (High-Level Control) 2.2.8.5 Helios - OBD: Onboard Display 2.2.8.6 Helios - GCS: Ground Control Station (GCS) 2.2.8.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 2.2.8.8 Iris - Telematics:  Logging & telemetry                      
+--- PAGE 69 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.2.9 OBD: Payload information page *TBD* 2.2.9.1 Orion – MC: Motor Controller Configuration 2.2.9.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 2.2.9.3 Helios - HC: Hand Controller 2.2.9.4 Atlas - MC: Main Compute (High-Level Control) 2.2.9.5 Helios - OBD: Onboard Display 2.2.9.6 Helios - GCS: Ground Control Station (GCS) 2.2.9.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 2.2.9.8 Iris - Telematics:  Logging & telemetry                     
+--- PAGE 70 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.3 Safety & Fallback 2.3.1 On vehicle Emergency stop of UGV The operator shall engage safety stop on the vehicle to bring UGV to halt during operation.  2.3.1.1 Orion – MC: Motor Controller Configuration Not applicable 2.3.1.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 2.3.1.2.1 Operator action   The operator shall be able to engage emergency stop of vehicle by operating any of the three switches available around the UGV. This shall be applicable only when VCU is in Drive-ON mode.  2.3.1.2.2 Subsystem  response   VCU shall adopt following sequence of action   Sno. Mode/ Sub mode/ State requested  Entry criteria   Exit Success  Failure 1 VCU emergency Operator engagement of emergency switch & current VCU state is Drive  mode 
+- Set rpm/ torque command to zero  - Confirm, if, RPM status from motor controller is zero - Set VCU emergency    state to engaged  
+- VCU emergency power 
+2 VCU emergency power  Failure of VCU emergency & VCU state is Drive mode - Read status from Telematics over CAN for EM brake & RPM  - If not engaged trigger stop by cutting of power to motor controllers  - Set VCU emergency state to engaged  
+- Maintain state  
+Table 25 On vehicle e-stop: VCU action sequence  2.3.1.3 Helios - HC: Hand Controller Not applicable  2.3.1.4 Atlas - MC: Main Compute (High-Level Control) Atlas shall receive the e-stop status from VCU and shall send it to OBD & GCS.  
+--- PAGE 71 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.3.1.5 Helios - OBD: Onboard Display Not applicable  2.3.1.6 Helios - GCS: Ground Control Station (GCS) Operator shall be given an alert when e-stop is engaged from the vehicle.  
+ Figure 14: UI design: On vehicle E-stop 2.3.1.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 2.3.1.8 Iris - Telematics:  Logging & telemetry  Not applicable   
+ 
+
+--- PAGE 72 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.3.2 VCU Drive ON - subsystem failures & fallbacks  The UGV shall implement transition to safe state in case of any subsystem failure during Drive mode (Communication & sensor failure are not in scope). 2.3.2.1 Orion – MC: Motor Controller Configuration Not applicable 2.3.2.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) The system (UGV) response shall be implemented by following subsystem response.   Subsystem  State  System Response  Subsystem Response 
+VCU Fault  Halted & Brakes engaged  - Switch to key ON state  Unknown  LV battery  Fault Continue operation  - No automatic power ON of LV PDU using LV battery    Unknown Secondary Compute  Fault Continue operation - NIL  Unknown HV Battery Fault Halted & Brakes engaged - Switch to key ON state with LV battery as power source Unknown HV PDU  Fault Halted & Brakes engaged - Switch to key ON state  Unknown LV Charger  Fault Continue operation - NIL  Unknown LV PDU Fault Continue operation - NIL  Unknown Main compute  Fault Halted & Brakes engaged - Switch to key ON state Unknown Forward motor controller Fault Halted & Brakes engaged - Switch to key ON state  Unknown Forward port motor Fault Halted & Brakes engaged - Switch to key ON state  Unknown Forward starboard motor Fault Halted & Brakes engaged - Switch to key ON state  Unknown Table 26 VCU Drive ON: Subsystem failures & fallbacks  2.3.2.3 Helios - HC: Hand Controller Not applicable 2.3.2.4 Atlas - MC: Main Compute (High-Level Control) Not applicable 
+--- PAGE 73 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.3.2.5 Helios - OBD: Onboard Display Not applicable 2.3.2.6 Helios - GCS: Ground Control Station (GCS) Not applicable 2.3.2.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 2.3.2.8 Iris - Telematics:  Logging & telemetry  Not applicable 
+--- PAGE 74 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.3.3 VCU Key ON - subsystem failures & fallbacks The UGV shall implement transition to safe state in case of any subsystem failure during Key ON mode (Communication & sensor failure are not in scope). 2.3.3.1 Orion – MC: Motor Controller Configuration Not applicable 2.3.3.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) The system (UGV) response shall be implemented by following subsystem response.  Subsystem  State  System Response  Subsystem Response 
+VCU Fault  - Display faults  - Transition to Drive ON not permitted  - Remain in Key ON state   Unknown  
+LV battery  Fault - Turns OFF  - Transition to Idle Unknown Secondary Compute  Fault - Display faults  - Transition to Drive ON not permitted  - Remain in Key ON state Unknown 
+HV Battery Fault - Display faults  - Transition to Drive ON not permitted  - Remain in Key ON state Unknown 
+HV PDU  Fault - Display faults  - Transition to Drive ON not permitted  - Remain in Key ON state Unknown 
+LV Charger  Fault - Display faults  - Transition to Drive ON not permitted  - Remain in Key ON state  Unknown 
+LV PDU Fault - Display faults  - Transition to Drive ON not permitted  - Remain in Key ON state Unknown 
+Main compute  Fault - Display faults  - Transition to Drive ON not permitted - Remain in Key ON state Unknown Table 27 VCU Key ON: Subsystem failures & fallbacks 2.3.3.3 Helios - HC: Hand Controller Not applicable 2.3.3.4 Atlas - MC: Main Compute (High-Level Control) Not applicable 2.3.3.5 Helios - OBD: Onboard Display Not applicable 
+--- PAGE 75 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.3.3.6 Helios - GCS: Ground Control Station (GCS) Not applicable 2.3.3.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 2.3.3.8 Iris - Telematics:  Logging & telemetry  Not applicable 
+--- PAGE 76 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.3.4 Non-negotiable terrain safety *TBD* In case of non-negotiable terrain stop & alert the user using IMU   2.3.4.1 Orion – MC: Motor Controller Configuration 2.3.4.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 2.3.4.3 Helios - HC: Hand Controller 2.3.4.4 Atlas - MC: Main Compute (High-Level Control) 2.3.4.5 Helios - OBD: Onboard Display 2.3.4.6 Helios - GCS: Ground Control Station (GCS) 2.3.4.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 2.3.4.8 Iris - Telematics:  Logging & telemetry   
+--- PAGE 77 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.3.5 Efficiency mode *TBD* Derate performance based on battery SoC   2.3.5.1 Orion – MC: Motor Controller Configuration 2.3.5.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 2.3.5.3 Helios - HC: Hand Controller 2.3.5.4 Atlas - MC: Main Compute (High-Level Control) 2.3.5.5 Helios - OBD: Onboard Display 2.3.5.6 Helios - GCS: Ground Control Station (GCS) 2.3.5.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 2.3.5.8 Iris - Telematics:  Logging & telemetry   
+--- PAGE 78 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+2.4 Communication & Sensor Requirements  2.4.1 Inclinometer  Detection of vehicle performance envelop violation  2.4.2 Long range telemetry radio   
+--- PAGE 79 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+3 Mode A: Proximal Remote Operation (≤10m)  3.1 Core Teleoperation Operation  3.1.1 HC Mode A - Teleoperation (RPM mode) [Ref: Scout_td0_User_Requirements, Sec 5.3.2.1] In this mode the system shall support direct close-range teleoperation at ranges up to at least 10 m in speed control mode. Following convention shall be adopted for actuation starting from the operator action until final system response of the Wheel rotation.   Figure 9 Joystick & Wheel convention Control from HC & GCS Actuation command to VCU Desired UGV movement Port side actuation 𝑝!=𝑋+𝑌	Starboard side actuation 𝑝!=𝑋−𝑌	 X +ve   forward  +ve    cw  +ve   cw  Forward  -ve    backward  -ve    ccw  -ve   ccw  Backward Y +ve   right   +ve    cw  -ve   ccw  Right spot turn -ve    left  -ve    ccw  +ve   cw  Left spot turn Y +ve   right   +ve    ccw  +ve   ccw  Right turn  𝑝!>𝑝" -ve    left  +ve    ccw  +ve   ccw  Left turn 𝑝!<𝑝"  3.1.1.1 Orion – MC: Motor Controller Configuration Motor controllers shall be configured for CAN message timeout of 1.5 sec 3.1.1.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) VCU shall always send zero as default actuation command at 50Hz once in Drive ON mode on Actuator CAN bus. The actuation command shall result in following response if the prerequisites are met. 3.1.1.2.1 Prerequisite ● VCU is in Drive On mode  ● VCU Drive mode is RPM  ● VCU Arm state is Armed  3.1.1.2.2 Response  ● VCU shall receive the port side and starboard side RPM command from Atlas on control CAN bus. 
+--- PAGE 80 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+● VCU shall use the port side RPM command for actuating forward & aft motors on port side at 50 Hz. ● VCU shall use the starboard side RPM command for actuating forward & aft motors on starboard side at 50 Hz. ● VCU shall limit the commanded RPM to max set Drive limit  ● VCU shall have a time out of 1.5 sec for CAN command from atlas on actuator bus beyond which it shall reset all input command to zero.  ● VCU shall read the current RPM of all four motors. ● VCU shall send average value of forward and aft motor RPM for port and starboard motor on Aux CAN bus every 50 Hz (Averaging should not done in case wheel skid) 3.1.1.3 Helios - HC: Hand Controller Not applicable 3.1.1.4 Atlas - MC: Main Compute (High-Level Control) Atlas shall always send zero as default actuation command at 50Hz on Control CAN bus. The actuation command shall result in following response if the prerequisites are met. 3.1.1.4.1 Prerequisite ● Atlas Drive mode is RPM  ● Atlas Arm state is Armed  ● VCU state is healthy   3.1.1.4.2 Response  ● Atlas shall process normalised control command from hand controller.  ● The X control shall be mapped to linear velocity using current Drive limit. ● The Y control shall be mapped to angular velocity using max permissible angular velocity.   ● Atlas shall process control inputs through a multiplexer with pre-defined priorities.  ● Atlas shall implement an inverse diff drive kinematic model to convert control command into port and starboard RPM. ● Atlas shall send the RPM command to VCU on Control bus at 50 HZ ● Atlas shall receive the port and starboard RPM command for estimating UGV velocity and position 3.1.1.4.3 Controller configuration   Atlas shall enable following configuration of the controller. 3.1.1.4.3.1 Control input priority configuration  3.1.1.4.3.2 Diff drive controller configuration  
+--- PAGE 81 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+Category Parameter Description  Virtual wheel joints left_wheel_names Single virtual Port wheel Virtual wheel joints right_wheel_names Single virtual Starboard wheel Vehicle geometry wheel_separation Effective Port–Starboard track width Vehicle geometry wheel_radius Wheel radius Calibration wheel_separation_multiplier Tune for skid-steer turning error Calibration left_wheel_radius_multiplier Port-side radius correction Calibration right_wheel_radius_multiplier Starboard-side radius correction Table 28 Diff drive controller configuration  3.1.1.4.3.3 Odometry configuration   Category Parameter Description Feedback source position_feedback Use encoder position feedback Feedback source open_loop Odometry from measured wheel feedback Publishing publish_rate Odometry publish rate Frame odom_frame_id Odometry frame Frame base_frame_id Robot base frame TF enable_odom_tf Publish odom → base_link TF Table 29 Odometry configuration  3.1.1.4.3.4 Command interface configuration   Category Description Command topic Use geometry_msgs/Twist on /cmd_vel Safety timeout Stop if command missing Command limiter Publish limited cmd if limits active Table 30 Command interface configuration 3.1.1.4.3.5 Linear motion limits   Category Parameter Linear velocity linear.x.has_velocity_limits Linear velocity linear.x.max_velocity Linear velocity linear.x.min_velocity Linear acceleration linear.x.has_acceleration_limits Linear acceleration linear.x.max_acceleration Linear deceleration linear.x.max_deceleration Linear jerk linear.x.has_jerk_limits 
+--- PAGE 82 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+Category Parameter Linear jerk linear.x.max_jerk Table 31 Linear motion limits The values related to reverse operation shall be specifically set to achieve safety.   3.1.1.4.3.6 Angular motion limits   Category Parameter Angular velocity angular.z.has_velocity_limits Angular velocity angular.z.max_velocity Angular velocity angular.z.min_velocity Angular acceleration angular.z.has_acceleration_limits Angular acceleration angular.z.max_acceleration Angular deceleration angular.z.max_deceleration Angular jerk angular.z.has_jerk_limits Angular jerk angular.z.max_jerk Table 32 Angular motion limits 3.1.1.5 Helios - OBD: Onboard Display Not applicable 3.1.1.6  Helios - GCS: Ground Control Station (GCS) Not applicable 3.1.1.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable  
+--- PAGE 83 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+3.1.2 HC Mode A - Teleoperation (Torque mode)  In Mode A the operator shall be allowed to use Torque mode limited by max Drive limit selection. 3.1.2.1 Orion – MC: Motor Controller Configuration Motor controllers shall be configured for CAN message timeout of 1.5 sec Motor controllers shall be configured for PI Gain tuning for Speed mode operation  3.1.2.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) VCU shall always send zero as default actuation command at 50Hz once in Drive ON mode on Actuator CAN bus. The actuation command shall result in following response if the prerequisites are met. 3.1.2.2.1 Prerequisite ● VCU is in Drive On mode  ● VCU Drive mode is RPM  ● VCU Arm state is Armed   3.1.2.2.2 Response  ● VCU shall receive the port side and starboard side normalised torque command from Atlas on control CAN bus. ● VCU shall preprocess the demanded Torque. A suggested approach and expected output is illustrated below: ● Both the forward & aft torque command from Atlas shall be processed as follows   Step 1:  Receive normalized input Torque command   𝑝(𝑘)∈[−1,+1]  Step 2: Apply deadband & rescale   𝑝#(𝑘)=	{0								∀	|𝑝(𝑘)|<𝑑	𝑠𝑖𝑔𝑛	:𝑝(𝑘);|!(&)|(#)(#												  Where 𝑑 is dead band       Say 𝑑=1    Step 3: Apply exponential mapping   𝑝*(𝑘)=	𝑠𝑖𝑔𝑛	:𝑝#(𝑘);		|𝑝#(𝑘)|+   Where 𝛾 is exponential parameter   Say 𝛾=1.5  Step 4: Convert normalized to actual torque value (Current in Ampere)   𝑇,*#(𝑘)=	𝑇*-.		𝑝*(𝑘)  Where 𝑇*-. is max torque limit set as per Drive limit (LO, MED, HI)   Step 5: Calculate low-pass filter coefficient   𝛼=	∆012∆0	   Where ∆𝑡	is loop timing say ∆𝑡=0.02	𝑠  
+--- PAGE 84 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+  𝜏 is filter time constant say 𝜏=0.05	𝑠  Step 6: Apply low - pass filter   𝑇4(𝑘)=	𝑇4(𝑘−1)+	𝛼[𝑇,*#(𝑘)−	𝑇4(𝑘−1)]    Where 𝑇4(𝑘) is filtered torque   Step 7: Calculate torque error   𝑒5(𝑘)=	𝑇4(𝑘)−	𝑇670(𝑘−1)  Where 𝑇670(𝑘−1) torque command sent to motor controller in previous cycle   Step 8: Calculate allowed torque rise   ∆𝑇89":=	𝑇89":	∆𝑡	  Where 𝑅89": is maximum torque increase rate   Say 𝑅89":=5	;*!""  Step 9: Calculate allowed  torque fall   ∆𝑇4-<<=	𝑅4-<<	∆𝑡	  Where 𝑅 is maximum torque decrease rate   Say 𝑅4-<<=10	;*!""  Step 10: Apply slew-rate limiter    ∆𝑇(𝑘)=𝑐𝑙𝑖𝑝	(𝑒5(𝑘),−∆𝑇4-<<	,+∆𝑇89":	   ≡−∆𝑇4-<<	≤	∆𝑇(𝑘)	≤	+∆𝑇89":  Step 10: Calculate final torque   𝑇670(𝑘) =  𝑇670(𝑘−1)+	∆𝑇(𝑘)	  Step 11: Apply final torque saturation   𝑇670(𝑘)=𝑐𝑙𝑖𝑝	(𝑇670(𝑘),−𝑇*-.,+𝑇*9=)   ≡	𝑇670(𝑘)	∈[−𝑇*-.,+𝑇*-.]			  Desired representative output  Deadband, 𝑑=0.03   Exponential parameter, 𝛾=2 Max torque limit in Amps, 𝑇*-.=24 Low pass filter constant, 𝜏=40	𝑚𝑠 Loop period, ∆𝑡=10	𝑚𝑠 Rise rate, 𝑅89":=48	𝐴/𝑠(0.48 A per sample)  
+--- PAGE 85 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+ ● VCU shall use the port side torque command for actuating forward & aft motors on port side at 50 Hz. ● VCU shall use the starboard side torque command for actuating forward & aft motors on starboard side at 50 Hz. ● VCU shall have a time out of 1.5 sec for CAN command from atlas on actuator bus beyond which it shall reset all input command to zero.  ● VCU shall read the current RPM of all four motors. ● VCU shall send average value of forward and aft motor RPM for port and starboard motor on Aux CAN bus every 50 Hz (Averaging should not done in case wheel skid). 3.1.2.3 Helios - HC: Hand Controller Not applicable 3.1.2.4 Atlas - MC: Main Compute (High-Level Control) Atlas shall always send zero as default actuation command at 50Hz on Control CAN bus. The actuation command shall result in following response if the prerequisites are met. 3.1.2.4.1 Prerequisite ● Atlas Drive mode is RPM  ● Atlas Arm state is Armed  ● VCU state is healthy   3.1.2.4.2 Response  ● Atlas shall receive and process normalised control command from hand controller/ GCS.  ● Torque command for port and starboard from X and Y controls shall be generated as follows 𝑝!(𝑘)=𝑋+𝑌       Port side torque command  𝑝"(𝑘)=𝑋−𝑌       Starboard torque command  
+
+--- PAGE 86 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+● Atlas shall process control inputs through a multiplexer with pre-defined priorities.  ● Atlas shall send the Torque command to VCU on Control bus at 50 HZ ● Atlas shall receive the port and starboard RPM command for estimating UGV velocity and position 3.1.2.4.3 Controller configuration  Not applicable 3.1.2.4.4 Control input priority configuration  Control inputs from hand controller shall have the highest priority, followed by GCS and then the autonomy subsystem.    3.1.2.5 Helios - OBD: Onboard Display Not applicable 3.1.2.6 Helios - GCS: Ground Control Station (GCS) Not applicable 3.1.2.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 3.1.2.8 Iris - Telematics:  Logging & telemetry  Not applicable    
+--- PAGE 87 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+3.1.3 HC Mode A - Teleoperation (Torque mode with speed limit)  In Mode A the operator shall use torque control with speed limitation (three   selectable max speed LO, MED & HI)  3.1.3.1 Orion – MC: Motor Controller Configuration Motor controllers shall be configured for CAN message timeout of 1.5 sec 3.1.3.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) VCU shall always send zero as default actuation command at 50Hz once in Drive ON mode on Actuator CAN bus. The actuation command shall result in following response if the prerequisites are met. 3.1.3.2.1 Prerequisite ● VCU is in Drive On mode  ● VCU Drive mode is RPM  ● VCU Arm state is Armed   3.1.3.2.2 Response  ● VCU shall receive the port side and starboard side normalised torque command from Atlas on control CAN bus. ● VCU shall preprocess the demanded Torque as in Torque mode, however with following max speed limit defined by Drive limit  (LO, MED, HI) 𝑇6702"!::#	<9*90(𝑘)=𝑚𝑖𝑛	(𝑇670(𝑘),𝑇<9*90	(|𝑁(𝑘)|))	 Where:  𝑇670(𝑘) is torque command as in torque mode    𝑁(𝑘) is measure RPM    𝑇<9*90	(|𝑁(𝑘)|) is the maximum allowable torque at the current speed such that           																	current RPM does not go beyond Drive limit RPM       VCU shall use the port side torque command for actuating forward & aft motors on port side at 50 Hz. ● VCU shall use the starboard side torque command for actuating forward & aft motors on starboard side at 50 Hz. ● VCU shall have a time out of 1.5 sec for CAN command from atlas on actuator bus beyond which it shall reset all input command to zero.  ● VCU shall read the current RPM of all four motors. ● VCU shall send average value of forward and aft motor RPM for port and starboard motor on Aux CAN bus every 50 Hz (Averaging should not be done in case wheel skid).   3.1.3.3 Helios - HC: Hand Controller Not applicable 
+--- PAGE 88 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+3.1.3.4 Atlas - MC: Main Compute (High-Level Control) Same as in Torque mode  3.1.3.5 Helios - OBD: Onboard Display Not applicable  3.1.3.6 Helios - GCS: Ground Control Station (GCS) Not applicable  3.1.3.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable  3.1.3.8 Iris - Telematics:  Logging & telemetry  Not applicable   
+--- PAGE 89 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+3.2 Operator Interface - Handheld controller  3.2.1 Hand controller power ON [Ref: Scout User Requirements, Sec 5.4.2.1] The Hand controller on wakeup shall synchronise for time from the UGV and communicate over Mavlink2 using a secure mode. 3.2.1.1 Orion – MC: Motor Controller Configuration Not applicable 3.2.1.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) Not applicable 3.2.1.3 Helios - HC: Hand Controller 3.2.1.3.1 Operator action   The Hand control shall be turned ON by the operator                             
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Power ON 
+--- PAGE 90 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+3.2.1.3.2 System response The Hand controller application shall wakeup, connect with UGV, time synchronize from Main compute on UGV  & communicate over Mavlink2 using a secure mode. This table explains HC wake up sequence: S.no Phase System action Success (Yes) Failure (No) 1 H/W & display initialization Initialize display, input pins, and  Initialize MAVLink2 signing. 
+Proceed to check joystick neutral position. 
+Displays "Error 0x001" (System fault).  
+2 Joystick neutral position check  
+Measure resting joystick drift to ensure it is perfectly centred. 
+Proceed to Connectivity wait state. 
+Displays warning: "Please leave joystick at centre." Retries after 3 seconds.  3 Connectivity Start sending heartbeat every 1 Hz and wait for heartbeat signal from UGV 
+Proceed to Time Synchronization. HC  remains disconnected in wait state until a heartbeat is detected.  4 Time Sync Send a time synchronization request every 10 Hz and wait for acknowledgment from UGV. 
+Controller enters the main Operational Flight Program (OFP). 
+HC remains in connected state but does not enter OFP.  
+Table 34:Hand Controller Wake up Phases  3.2.1.4 Atlas - MC: Main Compute (High-Level Control) Not applicable 3.2.1.5 Helios - OBD: Onboard Display Not applicable 3.2.1.6 Helios - GCS: Ground Control Station (GCS) Not applicable 3.2.1.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 3.2.1.8 Iris - Telematics:  Logging & telemetry  Not applicable   
+--- PAGE 91 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+3.2.2 HC: Connectivity & Time sync status The interface shall monitor connectivity status (with internal radio and with remote radio) using exchange of heartbeat messages with UGV and using both radio’s status. The interface shall also indicate time sync status. 3.2.2.1 Orion – MC: Motor Controller Configuration Not applicable 3.2.2.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) Not applicable 3.2.2.3 Helios - HC: Hand Controller The hand controller shall display the connectivity status as follows  ● Red – not connected to UGV  ● Green – connected to the UGV  ● Yellow – Remote or own RSSI below set threshold (Priority 3) ● Orange – Missing heartbeat of UGV for last 3 sec (Priority 1) ● Blue – Time sync error (Priority 2)                                
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 92 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+3.2.2.4 Atlas - MC: Main Compute (High-Level Control) Atlas shall send periodic heartbeat message to hand controller every 1 sec. 3.2.2.5 Helios - OBD: Onboard Display Not applicable 3.2.2.6 Helios - GCS: Ground Control Station (GCS) Not applicable 3.2.2.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 3.2.2.8 Iris - Telematics:  Logging & telemetry  Not applicable   
+--- PAGE 93 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+3.2.3 HC: battery status  The interface shall display the controller's battery status. 3.2.3.1 Orion – MC: Motor Controller Configuration Not applicable 3.2.3.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) Not applicable 3.2.3.3 Helios - HC: Hand Controller The hand controller shall indicate it’s battery status under following category using a LED  ● Green – more than 40%  ● Yellow – More than 20 % and less than or equal to 40%  ● Red – More than 10% and less than or equal to 20%   It shall switch off when less than 5%.                                 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 94 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+3.2.3.4 Atlas - MC: Main Compute (High-Level Control) Not applicable 3.2.3.5 Helios - OBD: Onboard Display Not applicable 3.2.3.6 Helios - GCS: Ground Control Station (GCS) Not applicable 3.2.3.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 3.2.3.8 Iris - Telematics:  Logging & telemetry  Not applicable 
+--- PAGE 95 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+3.2.4 HC: UGV battery status  The interface shall provide alert for  low battery on the UGV. 3.2.4.1 Orion – MC: Motor Controller Configuration Not applicable 3.2.4.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) Not applicable 3.2.4.3 Helios - HC: Hand Controller The hand controller shall indicate UGV’s battery status under following category using a LED  ● Green – more than 40%  ● Yellow – More than 30 % and less than or equal to 40%  ● Red – More than 20% and less than or equal to 30%                              
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 96 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+3.2.4.4 Atlas - MC: Main Compute (High-Level Control) Atlas shall periodically send SoC of the HV battery of the UGV every 1Hz along with other status information. 3.2.4.5 Helios - OBD: Onboard Display Not applicable 3.2.4.6 Helios - GCS: Ground Control Station (GCS) Not applicable 3.2.4.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 3.2.4.8 Iris - Telematics:  Logging & telemetry  Not applicable   
+--- PAGE 97 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+3.2.5 HC: Set Drive mode The interface shall allow operator to set drive modes.  3.2.5.1 Orion – MC: Motor Controller Configuration Not applicable 3.2.5.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) VCU shall process the drive mode request from Atlas as follows  ● Receive the Drive mode request from Atlas over Aux CAN bus ● Change the current Drive mode status of the VCU to the requested mode  ● Send the VCU drive mode status periodically (1 Hz) over Aux CAN bus  3.2.5.2.1 Condition for state transition  Wake up default : Speed  Sno. Mode/ Sub mode/ State requested  Entry criteria   Exit Success  Failure 1 Speed Request from Atlas & UGV arm status is Unarmed  - Set Limit -> LO - Set motor controller to rpm mode  - Read motor controller drive mode status from Aux CAN - Update VCU drive status (publish on Aux bus) 
+- Maintain state  
+2 Torque Request from Atlas & UGV arm status is Unarmed - Set Limit -> LO - Set motor controller to torque mode  - Read motor controller drive mode status from Aux CAN - Update VCU drive status (publish on Aux bus) 
+- Maintain state  
+3 Torque + speed limit Request from Atlas & UGV arm status is Unarmed - Set Limit -> LO - Set motor controller to torque mode  - Request limit change of the motor controller to Telematics  - Read motor controller limit status from Aux Bus - Update VCU drive status (publish on Aux bus) 
+- Maintain state  
+4 Any other request  Not applicable Not applicable  - Maintain state 
+--- PAGE 98 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+Table 35 Drive mode: VCU: Condition for state transition 3.2.5.3 Helios - HC: Hand Controller 3.2.5.3.1 Operator action   Drive mode request  Operator shall request drive modes using a momentary switch. Following options can be switched in a round robin order. ● Speed  ● Torque  ● Torque with speed limit                                   3.2.5.3.2 System response  Send requested drive mode  After a fixed timeout of 3 sec a request shall be send and mode selection shall again start from first mode. Only a single request shall be send after the timeout. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 99 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+Drive mode status  Hand controller shall always display the current drive mode of the UGV and not the requested mode. The current drive mode shall be indicated using three distinct colour of an LED.  3.2.5.4 Atlas - MC: Main Compute (High-Level Control) Atlas shall process the drive mode request as follows  ● Atlas shall receive the Drive mode request change over UHF radio over serial communication ● The physical layer UHF radio subsystem shall process the requested drive mode  ● The mode manager in the logical layer shall send the requested drive mode to VCU over Aux Bus using VCU subsystem in physical layer ● The Drive mode status of the UGV maintained by the mode manager shall be always the one reported by VCU (received through VCU subsystem in physical layer on Aux Bus)  ● Atlas shall periodically send (at 1Hz) the current UGV Drive mode over telemetry, Aux CAN bus and over UHF radio to hand controller. 3.2.5.4.1 Condition for state transition   Wake up default : Speed  Sno. Mode/ Sub mode/ State requested  Entry criteria   Exit Success  Failure 1 Speed Request from HC & UGV arm status is Unarmed - Request VCU for drive mode change  - Maintain state 2 Torque Request from HC & Current autonomy mode is Mode A & UGV arm status is Unarmed 
+- Request VCU for drive mode change - Maintain state 
+3 Torque + speed limit Request from HC & Current autonomy mode is Mode A & UGV arm status is Unarmed 
+- Request VCU for drive mode change - Maintain state 
+4 Any other request  Not applicable Not applicable - Maintain state Table 36 Drive Mode: Atlas: Condition for state transition 3.2.5.5 Helios - OBD: Onboard Display Not applicable 3.2.5.6 Helios - GCS: Ground Control Station (GCS) Not applicable 3.2.5.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 
+--- PAGE 100 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+3.2.5.8 Iris - Telematics:  Logging & telemetry  The telematics application shall read the front and rear motor controller status and report current drive mode and set limits on Aux CAN bus.  Telematics shall also set the requested limit from VCU in case of Torque + Speed limit drive mode.  * Any parameter update to motor controller should be done only when UGV Arm state is unarmed.  
+--- PAGE 101 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+3.2.6 HC: Set Limit (LO, MED, HI) The interface shall allow operator to set limits (LO/ MED / HI) applicable for drive. The limits shall be understood based on the current Drive mode of the UGV as give below:  Sno. Drive mode  Limit interpretation  1 Speed Shall define max operable speed  2 Torque  Shall define max torque limit  3 Torque with speed limit  Shall define max operable speed  Table 37 Drive mode limit 3.2.6.1 Orion – MC: Motor Controller Configuration Not applicable 3.2.6.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) VCU shall process the drive limit request from Atlas as follows  ● Receive the Drive limit request from Atlas over Aux CAN bus ● Change the current Drive limit status of the VCU to the requested limit  ● Send the VCU drive limit status periodically (1 Hz) over Aux CAN bus  3.2.6.2.1 Condition for state transition   Wake up default : LO  Sno. Mode/ Sub mode/ State requested  Entry criteria   Exit Success  Failure 1 LO (Speed) Request from Atlas & UGV arm status is Unarmed 
+- Set internal (application level) rpm limit  - Update VCU limit status (publish on Aux bus) 
+- Maintain state  LO (Torque) Request from Atlas & UGV arm status is Unarmed 
+- Set internal (application level) torque limit  - Update VCU limit status (publish on Aux bus) 
+- Maintain state 
+LO (Torque + Speed) Request from Atlas & UGV arm status is Unarmed 
+- Request limit change of the motor controller to Telematics  - Read motor controller limit status from Aux Bus - Update VCU limit status (publish on Aux bus) 
+- Maintain state 
+2 MED Same as above - Same as above Same as above  3 HI Same as above - Same as above Same as above  
+--- PAGE 102 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+Sno. Mode/ Sub mode/ State requested  Entry criteria   Exit Success  Failure 4 Any other request  Not applicable - Not applicable  - Maintain state Table 38 Limit(LO,MED,HI): VCU:  Condition for state transition 3.2.6.3 Helios - HC: Hand Controller 3.2.6.3.1 Operator action   Drive limit request  Operator shall request limits for drive using a momentary switch. Following options can be switched in a round robin order. ● LO ● MED ● HI                                
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 103 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+3.2.6.3.2 System response  Send requested limit  After a fixed timeout of 3 sec a request shall be send and mode selection shall again start from first mode. Only a single request shall be send after the timeout.  Drive limit status  Hand controller shall always display the current limit for the drive of the UGV and not the requested imit. The current drive limit shall be indicated using three distinct colour of an LED.   3.2.6.4 Atlas - MC: Main Compute (High-Level Control) Atlas shall process the drive mode request as follows  ● Atlas shall receive the Drive limit request change over UHF radio over serial communication ● The physical layer UHF radio subsystem shall process the requested drive limit  ● The mode manager in the logical layer shall send the requested drive limit to VCU over Aux Bus using VCU subsystem in physical layer ● The Drive limit status of the UGV maintained by the mode manager shall be always the one reported by VCU (received through VCU subsystem in physical layer on Aux Bus)  ● Atlas shall periodically send (at 1Hz) the current UGV Drive mode over telemetry, Aux CAN bus and over UHF radio to hand controller. 3.2.6.4.1 Condition for state transition   Wake up default : LO  Sno. Mode/ Sub mode/ State requested  Entry criteria   Exit Success  Failure 1 LO (Speed) Request from HC & UGV arm status is Unarmed - Request VCU for drive limit change - Maintain state  LO (Torque) Request from HC & UGV arm status is Unarmed - Request VCU for drive limit change - Maintain state LO (Torque + Speed) Request from HC & UGV arm status is Unarmed - Request VCU for drive limit change - Maintain state 2 MED Same as above - Same as above Same as above  3 HI Same as above - Same as above Same as above  4 Any other request  Not applicable - Not applicable  - Maintain state Table 39 Limit(LO,MED,HI): Atlas: Condition for state transition 
+--- PAGE 104 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+3.2.6.5 Helios - OBD: Onboard Display Not applicable 3.2.6.6 Helios - GCS: Ground Control Station (GCS) Not applicable 3.2.6.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 3.2.6.8 Iris - Telematics:  Logging & telemetry  Not applicable  
+--- PAGE 105 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+3.2.7 HC: Set Arm state The interface shall allow operator to set the Arm states (Armed/ Disarmed). The Arm request from Hand controller shall also change the Autonomy mode to Mode A. 3.2.7.1 Orion – MC: Motor Controller Configuration Not applicable 3.2.7.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) VCU shall process the Arm/ Disarm request from Atlas as follows  ● Receive the Arm/ Disarm request from Atlas over Aux CAN bus and Autonomy Mode to Mode A ● Change the current Arm status of the VCU to as requested  ● Send the VCU Arm status periodically (1 Hz) over Aux CAN bus ● VCU shall reset the forward and AFT motor controllers whenever it receives the arm request.	 3.2.7.2.1 Condition for state transition   Wake up default : Disarmed  Sno. Mode/ Sub mode/ State requested  Entry criteria   Exit Success  Failure 1 Arm Request from Atlas & VCU is in drive state & No subsystem is in fault state  
+- Enable motors  - Read enable status from Aux bus  - Update VCU Arm to Armed state  - Update VCU autonomy mode to Mode A 
+- Maintain state  
+2 Disarm Request from Atlas - Disable motors  - Read enable status from Aux bus  - Update VCU Arm to Disarmed state  
+- Maintain state  
+3 Any other request  Not applicable  Not applicable - Maintain state  Table 40 Arm state: VCU: Condition for state transition  3.2.7.3 Helios - HC: Hand Controller 3.2.7.3.1 Operator action   Arm/ Disarm request  The operator shall request to Arm/ Disarm by a long press (3s) of a momentary switch. The operator action shall be understood as request to change the current Arm state.   
+--- PAGE 106 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+                               3.2.7.3.2 System response  Send requested Arm state   After a fixed timeout of 3 s for a long press a request shall be send. Only a single request shall be send after the timeout.  Arm status  Hand controller shall always display the current Arm state of the UGV and not the requested Arm state. The current drive limit shall be indicated using two distinct colour of an LED.   3.2.7.4 Atlas - MC: Main Compute (High-Level Control) Atlas shall process the Arm request as follows  ● Atlas shall receive the Arm request change over UHF radio over serial communication ● The physical layer UHF radio subsystem shall process the requested Arm state  ● The mode manager in the logical layer shall send the requested Arm state to VCU over Aux Bus using VCU subsystem in physical layer 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 107 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+● The Arm status of the UGV maintained by the mode manager shall be always the one reported by VCU (received through VCU subsystem in physical layer on Aux Bus)  ● Atlas shall periodically send (at 1Hz) the current UGV Arm state over telemetry, Aux CAN bus and over UHF radio to hand controller.  3.2.7.4.1 Condition for state transition   Wake up default : Disarm  Sno. Mode/ Sub mode/ State requested  Entry criteria   Exit Success  Failure 1 Arm Request from Operator & VCU is in drive state & No subsystem is in fault state  
+- Request VCU to Arm  - Request Autonomy Mode to Mode A - Maintain state  2 Disarm Request from Operator - Request VCU to Disarm - Maintain state  3 Any other request  Not applicable  - Not applicable - Maintain state  Table 41  Arm state: Atlas: Condition for state transition 3.2.7.5 Helios - OBD: Onboard Display Not applicable  3.2.7.6 Helios - GCS: Ground Control Station (GCS) Not applicable  3.2.7.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable  3.2.7.8 Iris - Telematics:  Logging & telemetry  Not applicable   
+--- PAGE 108 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+3.2.8 HC: Send control command The interface shall be a handheld controller used as a joystick for actuation of the UGV (linear and angular movement). Following conventions shall be adopted across all subsystems for realisation of the feature (scope here is limited to be able to accept operator inputs and send it to GCS).                 3.2.8.1 Orion – MC: Motor Controller Configuration Not applicable 3.2.8.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) Not applicable 3.2.8.3 Helios - HC: Hand Controller 3.2.8.3.1 Operator action   Send control command  The operator shall send control command for forward/ backward movement along with right/ left turn using a control stick. The control shall be a spring return stick.               
+
+--- PAGE 109 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+                              3.2.8.3.2 System response  Send control command   The control command in terms of X and Y deflections (normalised) shall be send every 20ms (50Hz). 3.2.8.4 Atlas - MC: Main Compute (High-Level Control) Not applicable 3.2.8.5 Helios - OBD: Onboard Display Not applicable 3.2.8.6 Helios - GCS: Ground Control Station (GCS) Not applicable 3.2.8.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 3.2.8.8 Iris - Telematics:  Logging & telemetry  Not applicable  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 110 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+3.2.9 HC- Light control of UGV The operator shall control the front, rear & fog lights through the hand controller   3.2.9.1 Orion – MC: Motor Controller Configuration Not applicable 3.2.9.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) VCU shall process the Light switch ON/ OFF (front/ fog/ rear) from Atlas as follows  ● Receive the request from Atlas over Aux CAN bus ● Change the current status of the VCU to as requested  ● Send the VCU Arm status periodically (1 Hz) over Aux CAN bus  3.2.9.2.1 Condition for state transition   Wake up default : ON  Sno. Mode/ Sub mode/ State requested  Entry criteria   Exit Success  Failure 1 ON Request from Atlas & LV PDU is ON  - Switch ON channel - Read channel status from Aux bus  - Update state  
+- Maintain state  2 OFF Request from Atlas & LV PDU is ON - Switch OFF channel - Read channel status from Aux bus  - Update state 
+- Maintain state  3 Any other request  Not applicable  Not applicable - Maintain state  Table 42  Light control: VCU: Condition for state transition 3.2.9.3 Helios - HC: Hand Controller 3.2.9.3.1 Operator action   Send control command  The operator shall switch the front, rear & fog light using a toggle switch.          
+--- PAGE 111 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+                          3.2.9.3.2 System response  Send control command   The control send light switch ON/ OFF command periodically.   3.2.9.4 Atlas - MC: Main Compute (High-Level Control) Atlas shall process the Light switch ON/ OFF (front/ fog/ rear) request as follows  ● Atlas shall receive the request change over UHF radio over serial communication ● The physical layer UHF radio subsystem shall process the request ● The mode manager in the logical layer shall send the request to VCU over Aux Bus using VCU subsystem in physical layer ● The Light status of the UGV maintained by the mode manager shall be always the one reported by VCU (received through VCU subsystem in physical layer on Aux Bus)  ● Atlas shall periodically send (at 1Hz) the current UGV state over telemetry, Aux CAN bus and over UHF radio to hand controller.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 112 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+3.2.9.4.1 Condition for state transition   Wake up default : OFF  Sno. Mode/ Sub mode/ State requested  Entry criteria   Exit Success  Failure 1 OFF Request from Operator - Request VCU  - Maintain state 2 ON Request from Operator  - Request VCU  - Maintain state 3 Any other request  Not applicable  - Not applicable - Maintain state Table 43 Light control: Atlas: Condition for state transition 3.2.9.5 Helios - OBD: Onboard Display Not applicable 3.2.9.6 Helios - GCS: Ground Control Station (GCS) Not applicable 3.2.9.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 3.2.9.8 Iris - Telematics:  Logging & telemetry  Not applicable    
+--- PAGE 113 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+3.3 Safety & Fallback 3.3.1 HC- Remote Emergency stop of UGV The system shall be stopped while in operation triggered by the operator from the. Hand controller. 3.3.1.1 Orion – MC: Motor Controller Configuration Not applicable 3.3.1.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) VCU shall process the remote emergency mode request from Atlas as follows  3.3.1.2.1 Condition for state transition   Wake up default : Engaged   Sno. Mode/ Sub mode/ State requested  Entry criteria   Exit Success  Failure 
+1 Engaged  Atlas request  Transition to VCU Emergency  engaged - Maintain state 
+2 Disengaged  Atlas request Transition to VCU Emergency  disengaged - Maintain state 
+3 Any other request  Not applicable Not applicable - Maintain state Table 44  HC: Remote e-stop: VCU: Condition for state transition 3.3.1.3 Helios - HC: Hand Controller 3.3.1.3.1 Operator action   The operator shall be able to engage emergency stop of vehicle by operating emergency from the hand controller.                 
+--- PAGE 114 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+                               3.3.1.3.2 Subsystem  response   Send Remote emergency stop   HC shall periodically send engagement of emergency.   3.3.1.4 Atlas - MC: Main Compute (High-Level Control) Atlas shall process the remote emergency stop request as follows  ● Atlas shall receive the remote emergency request change over UHF radio over serial communication ● The physical layer UHF radio subsystem shall process the requested remote emergency ● The mode manager in the logical layer shall send the requested remote emergency to VCU over Aux Bus using VCU subsystem in physical layer ● The remote emergency status of the UGV maintained by the mode manager shall be always the one reported by VCU (received through VCU subsystem in physical layer on Aux Bus)  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Emergency stop engagement  UGV response same as for  On vehicle emergency stop (LED indicator for engage/ disengage) 
+--- PAGE 115 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+● Atlas shall periodically send (at 1Hz) the current remote emergency state over telemetry, Aux CAN bus and over UHF radio to hand controller. 3.3.1.4.1 Condition for state transition   Wake up default : Disengaged   Sno. Mode/ Sub mode/ State requested  Entry criteria   Exit Success  Failure 
+1 Disengaged  Atlas request - Transition to VCU Emergency  disengaged - Maintain state 
+2 Engaged  Atlas request  - Transition to VCU Emergency  engaged - Maintain state 3 Any other request  Not applicable Not applicable - Maintain state Table 45 HC: Remote e-stop: Atlas: Condition for state transition 3.3.1.5 Helios - OBD: Onboard Display Not applicable 3.3.1.6 Helios - GCS: Ground Control Station (GCS) Not applicable 3.3.1.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 3.3.1.8 Iris - Telematics:  Logging & telemetry  Not applicable            
+--- PAGE 116 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+3.3.2 UHF Radio failure (HC operation) UGV shall transition to safe state in case of UHF radio failure or UHF link failure when operated using Hand controller. 3.3.2.1 Orion – MC: Motor Controller Configuration Not applicable 3.3.2.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) Not applicable 3.3.2.3 Helios - HC: Hand Controller Not applicable 3.3.2.4 Atlas - MC: Main Compute (High-Level Control)  The system (UGV) response shall be implemented by following subsystem response.  Subsystem  State  System Response  Subsystem Response UHF radio -UGV  Fault Halted & Brake - Switch Hold mode   Unknown UHF radio connection Not connected  Halted & Brake  - Switch Hold mode    Unknown  
+UHF radio link   Fault Halted & Brake - Switch Hold mode   Degraded Table 46 UHF Radio failure: System & subsystem response 3.3.2.5 Helios - OBD: Onboard Display Not applicable 3.3.2.6 Helios - GCS: Ground Control Station (GCS) Not applicable 3.3.2.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 3.3.2.8 Iris - Telematics:  Logging & telemetry  Not applicable  
+--- PAGE 117 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+3.4 Communication & Sensor Requirements  3.4.1 UHF radio  Communication for control shall be executed via UHF radio along with omni antenna on both the UGV and the hand controller. 3.4.2 Inclinometer/ IMU Terrain awareness sensors shall utilize an IMU. 3.4.3 Obstacle detection sensor shall rely on the operator’s vision                        
+--- PAGE 118 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4 Mode B: Video Telemetry Operation (≤2km)  4.1 Core Video Teleoperation Operation  4.1.1 Vision subsystem wake up   The vision application shall wake up when the Main compute powers up (While it is linked with the UGV safe power on, however as vision application is not mandatory for Mode A operation, it’s not included with UGV safe power ON.)   4.1.1.1 Orion – MC: Motor Controller Configuration Not applicable 4.1.1.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) Not applicable 4.1.1.3 Helios - HC: Hand Controller Not applicable 4.1.1.4 Atlas - MC: Main Compute (High-Level Control) Atlas shall establish communication with the vision application using DDS (RoS topics, services, actions).  There shall be a vision subsystem in the logical layer responsible for all communication with vision application.     4.1.1.5 Helios - OBD: Onboard Display Not applicable 4.1.1.6 Helios - GCS: Ground Control Station (GCS) Not applicable 4.1.1.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML)  Vision (Docker container deployment) application shall follow undermentioned sequence of wake up.  S.no Phase System action Success (Yes) Failure (No) 1 H/W initialization Initialize sensors (camera) interface & radio interface (different from Atlas) 
+Proceed to vision pipe line initialisation  
+Send fault to Atlas   
+2 Vision pipeline Initialise vision pipeline  Proceed to streaming (using Main compute system time)  
+Send fault to Atlas   
+Table 47 Vision subsystem wake up phases 4.1.1.8 Iris - Telematics:  Logging & telemetry  Not applicable  
+--- PAGE 119 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.1.2 GCS Mode A teleoperation  The GCS shall also support Mode A in Speed, Torque & Torque with speed limit teleoperation as in Mode A operation from hand controller. (refer  section 3.1.1, 3.1.2, 3.1.3)  
+--- PAGE 120 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.1.3 Remote driving – camera teleoperation   *TBD*  [Ref: Scout_td0_User_Requirements_v1.0, Sec 5.3.3.1] The system shall support remote driving using camera (day and night) video telemetry at ranges up to 2 km. 4.1.3.1 Orion – MC: Motor Controller Configuration  Not Applicable 4.1.3.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control)  Not Applicable 4.1.3.3 Helios - HC: Hand Controller  Not Applicable 4.1.3.4  Atlas - MC: Main Compute (High-Level Control) ● Atlas shall send the actuation commands (transmitting in RPM for speed mode, or Torque for torque mode) to the VCU. ● Atlas shall ensure the vehicle is armed  before passing actuation commands. 4.1.3.5 Helios - OBD: Onboard Display  [Ref: Scout_td0_User_Requirements_v1.0,Sec 5.4.1.2, Sec 5.4.1.3]  Same as sec 3.1.1.5  4.1.3.6 Helios - GCS: Ground Control Station (GCS) ● The GCS shall continuously read the operator inputs from the GCS hardware, transmit them as actuation commands over the radio to the main compute unit: Atlas. ● The GCS shall follow the pre-requisites mentioned below before actuating: a) GCS must have an active connection with the vehicle. b) The vehicle must be armed  4.1.3.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) ● The Vision software shall  take the video from the cameras and send it to the  L-Band Radio.  ● The L-Band Radio shall further send that live video to the Ground Control Station (GCS) 
+--- PAGE 121 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.1.4 GNSS based UGV localisation   *TBD* The system shall relay real-time pose information (position and orientation) to the operator. 4.1.4.1 Orion – MC: Motor Controller Configuration 4.1.4.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 4.1.4.3 Helios - HC: Hand Controller 4.1.4.4 Atlas - MC: Main Compute (High-Level Control) 4.1.4.5 Helios - OBD: Onboard Display 4.1.4.6 Helios - GCS: Ground Control Station (GCS) 4.1.4.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 4.1.4.8 Iris - Telematics:  Logging & telemetry                        
+--- PAGE 122 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.1.5 RTK based UGV localisation   *TBD* The system shall use RTK based correction from GCS for accurate localisation. 4.1.5.1 Orion – MC: Motor Controller Configuration 4.1.5.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 4.1.5.3 Helios - HC: Hand Controller 4.1.5.4 Atlas - MC: Main Compute (High-Level Control) 4.1.5.5 Helios - OBD: Onboard Display 4.1.5.6 Helios - GCS: Ground Control Station (GCS) 4.1.5.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 4.1.5.8 Iris - Telematics:  Logging & telemetry                          
+--- PAGE 123 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.1.6 RTH energy reserve alert *TBD* The system shall continuously estimate the energy needed for the return trip and alert the operator. 4.1.6.1 Orion – MC: Motor Controller Configuration 4.1.6.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 4.1.6.3 Helios - HC: Hand Controller 4.1.6.4 Atlas - MC: Main Compute (High-Level Control) 4.1.6.5 Helios - OBD: Onboard Display 4.1.6.6 Helios - GCS: Ground Control Station (GCS) 4.1.6.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 4.1.6.8 Iris - Telematics:  Logging & telemetry                         
+--- PAGE 124 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.1.7 Onboard Traversed Path saving  *TBD* UGV shall save the traversed path when being manually teleoperated for the current power cycle 4.1.7.1 Orion – MC: Motor Controller Configuration 4.1.7.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 4.1.7.3 Helios - HC: Hand Controller 4.1.7.4 Atlas - MC: Main Compute (High-Level Control) 4.1.7.5 Helios - OBD: Onboard Display 4.1.7.6 Helios - GCS: Ground Control Station (GCS) 4.1.7.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 4.1.7.8 Iris - Telematics:  Logging & telemetry    
+--- PAGE 125 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.1.8 Onboard Video logging   UGV shall save the video from operational camera at predefined resolution, FPS and bit rate along with meta data (time and location)  4.1.8.1 Orion – MC: Motor Controller Configuration Not applicable 4.1.8.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) Not applicable 4.1.8.3 Helios - HC: Hand Controller Not applicable 4.1.8.4 Atlas - MC: Main Compute (High-Level Control) Not applicable 4.1.8.5 Helios - OBD: Onboard Display Not applicable 4.1.8.6 Helios - GCS: Ground Control Station (GCS) Not applicable 4.1.8.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) The vision pipeline save selected camera for Mode B operation, for predefined resolution, FPS and bit rate along with meta data (time and location). Th video file shall be encoded and limited to a max size of 300 Mb.  Each power cycle video log along with the meta file shall be in predefined directory. On reaching the max storage size older video logs may be deleted. 4.1.8.8 Iris - Telematics:  Logging & telemetry  Not applicable   
+--- PAGE 126 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.1.9 Follow me mode.  *TBD* The system shall support follow-me operation using camera-based tracking. 4.1.9.1 Orion – MC: Motor Controller Configuration 4.1.9.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 4.1.9.3 Helios - HC: Hand Controller 4.1.9.4 Atlas - MC: Main Compute (High-Level Control) 4.1.9.5 Helios - OBD: Onboard Display 4.1.9.6 Helios - GCS: Ground Control Station (GCS) 4.1.9.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 4.1.9.8 Iris - Telematics:  Logging & telemetry   
+--- PAGE 127 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.1.10 GNSS based Outdoor Mapping.   *TBD* The system shall carry out mapping (environment and terrain) in the background while the UGV is teleoperated (Coordinate trail, 3D environment map, topological and semantic maps). 4.1.10.1 Orion – MC: Motor Controller Configuration 4.1.10.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 4.1.10.3 Helios - HC: Hand Controller 4.1.10.4 Atlas - MC: Main Compute (High-Level Control) 4.1.10.5 Helios - OBD: Onboard Display 4.1.10.6 Helios - GCS: Ground Control Station (GCS) 4.1.10.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 4.1.10.8 Iris - Telematics:  Logging & telemetry    
+--- PAGE 128 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2 Operator Interface - GCS: video telemetry  [Ref: Scout User_Requirements, Sec 5.4.3.1] The interface shall be a handheld controller with video and telemetry feedback for alerts, fault feedback. 4.2.1 GCS: Wakeup  4.2.1.1 Orion – MC: Motor Controller Configuration Not applicable 4.2.1.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) Not applicable 4.2.1.3 Helios - HC: Hand Controller Not applicable 4.2.1.4 Atlas - MC: Main Compute (High-Level Control) Not applicable 4.2.1.5 Helios - OBD: Onboard Display Not applicable 4.2.1.6 Helios - GCS: Ground Control Station (GCS) The GCS shall wakeup, time synchronize with Atlas, communicate over Mavlink2 and display the "Common Page" info (refer 4.2.2). The GCS shall follow the below mentioned phases  to wake up : Phase System Action 
+System Bootup Launches the core application (via Docker) and immediately display the GCS battery SoC, Date and Time in the common header (IST) and request a Mode B operation to atlas. Connectivity Atlas broadcasts a Heartbeat signal to confirm connection with GCS every 1 second. GCS acknowledges the signal. Time Sync Request GCS sends a time-sync request message to the Atlas every 10 seconds Table 48:GCS wake up & Time Synchronization GCS shall include save the Mavlink2 security key in a file and shall periodically  try for connection with UGV until connected. GCS shall use all signed messages for command to UGV.         
+--- PAGE 129 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+ The UGV-GCS connection flow shall be shown as below : Figure 15:UI design: GCS-UGV connection flow 
+  
+  
+   
+
+--- PAGE 130 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+ The connection shall be successful only after the verification of the battery, motor & sensor health status by GCS. Figure 16: UI design: Health check of Battery, Motor & Sensor  
+  
+  Error indication for either battery, motor or sensor fault: Figure 17: UI design: Error indication for either battery, motor or sensor fault 
+ 
+
+--- PAGE 131 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+Error indication if battery, motor and sensor fails: 
+  Landing page after successful connection of GCS with the UGV: This page shall  display the default wake up mode for drive & speed modes based on the sec 2.1.5.4 :Subsystem wakeup defaults for mode/ sub modes. Figure 18:UI design: Landing page after successful connection of GCS with the UGV 
+                                                                                          Figure 19: UI Design for GCS-UGV lost connection 
+ 
+If the connection is lost between the UGV & GCS, then the GCS shall notify the operator as per this design 
+--- PAGE 132 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.1.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 4.2.1.8 Iris - Telematics:  Logging & telemetry  Not applicable   
+--- PAGE 133 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.2 GCS: Common information page [Ref: Scout_td0_User_Requirements, Sec 5.4.3.3, Sec 5.4.3.4, Sec 5.4.3.5, Sec 5.4.3.6] The common page information shall be available across all pages. The source for the information shall be the telemetry data (refer section 2.2.1 & 2.1.3).  The following information shall be displayed in the common header :  • Date • Time (IST) • Drive mode • Speed mode  • User role • GCS-UGV connectivity uptime • Radio connection (ON/FF) • Satellite connection (ON/OFF) • GCS SoC • UGV HV battery SoC  Below is the design for the common header  
+ Figure 20:UI design: GCS Common header  
+
+--- PAGE 134 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.3 GCS: System power ON information page      [Ref: Scout_td0_User_Requirements, Sec 5.4.3] This requirement shall be the same as for OBD. The source for the information shall be the telemetry data (refer section 2.2.2 & 2.1.3)  Below is a reference screen for the system information page. 
+ Figure 21: Reference screen- GCS System information page                    
+
+--- PAGE 135 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.4 GCS: Drive information page      [Ref: Scout_td0_User_Requirements, Sec 5.4.3] This requirement shall be the same as for OBD. The source for the information shall be the telemetry data (refer section 2.2.3 & 2.1.3)  Below is a reference screen for the Drive information page. 
+ Figure 22: Reference screen- GCS Drive information page                  
+
+--- PAGE 136 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.5 GCS: Compute information page      [Ref: Scout_td0_User_Requirements, Sec 5.4.3] This requirement shall be the same as for OBD. The source for the information shall be the telemetry data (refer section 2.2.5 & 2.1.3)  Below is a reference screen for the compute information page. 
+ Figure 23: Reference screen- GCS Compute information Page  
+
+--- PAGE 137 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.6 GCS: Sensor information page      [Ref: Scout_td0_User_Requirements, Sec 5.4.3] This requirement shall be the same as for OBD. The source for the information shall be the telemetry data (refer section 2.2.5 & 2.1.3)  Below is a reference screen for the sensor information page. 
+ Figure 24: Reference screen- GCS Sensor information page  
+
+--- PAGE 138 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.7 GCS: Communication information page      [Ref: Scout_td0_User_Requirements, Sec 5.4.3] This requirement shall be the same as for OBD. The source for the information shall be the telemetry data (refer section 2.2.7 & 2.1.3)  Below is a reference screen for the communication information page. 
+ Figure 25:Reference screen- GCS Communication information page  
+
+--- PAGE 139 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.8 GCS: Alerts page   *TBD*      [Ref: Scout_td0_User_Requirements, Sec 5.4.3] This requirement shall be the same as for OBD. The source for the information shall be the telemetry data (refer section 2.2.8 & 2.1.3)   
+--- PAGE 140 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.9 GCS: Payload information page.  *TBD*      [Ref: Scout_td0_User_Requirements, Sec 5.4.3] This requirement shall be the same as for OBD. The source for the information shall be the telemetry data (refer section 2.2.9 & 2.1.3)   
+--- PAGE 141 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.10 GCS: Connectivity & time sync status [Ref: Scout _User_Requirements, Sec 5.4.3.2] Shall be same implementation as in case of Hand controller (refer sec 3.2.2).   
+--- PAGE 142 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.11 GCS: Set drive mode  [Ref: Scout _User_Requirements, Sec 5.4.3.6] Shall be same implementation as in case of Hand controller (refer sec 3.2.5). The communication shall happen over an L-band radio. Operator shall be given the option to Switch the drive modes of  the UGV from the GCS. The GCS Screens shall be developed as per the below shown UI designs: Figure 26: UI design: Drive switch  
+ 
+ 
+ 
+
+--- PAGE 143 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.12 GCS: Set Limit (LO, MED, HI)  4.2.12 
+[Ref: Scout _User_Requirements, Sec 5.4.3.5] Shall be same implementation as in case of Hand controller (refer sec 3.2.6). The communication shall happen over an L-band radio.  Operator shall be given the option to Switch the speeds of  the UGV from the GCS. The GCS Screens shall be developed as per the below shown UI designs: Figure 27: UI design: Speed switch 
+ 
+ 
+ 
+
+--- PAGE 144 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.13 GCS: Set Arm state  [Ref: Scout _User_Requirements, Sec 5.4.3.5] Shall be same implementation as in case of Hand controller (refer sec 3.3.1). The communication shall happen over an L-band radio.  Operator shall be given the option to Arm/Disarm (Long press) the UGV from the GCS. The GCS Screens shall be developed as per the below shown UI designs:  
+  
+ Figure 28:UI design: Arm/Disarm  
+Default Speed mode also shall be displayed 
+--- PAGE 145 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.15    GCS: Set Emergency-Disable    [Ref: Scout _User_Requirements, Sec 5.4.3.5] The operator shall optionally disable the on vehicle emergency stop from GCS. 4.2.13.1 Orion – MC: Motor Controller Configuration Not applicable 4.2.13.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) VCU shall process the Disable on vehicle emergency stop request from Atlas as follows  ● Receive the Disable on vehicle emergency stop request from Atlas over Aux CAN bus  ● Change the on vehicle emergency stop status of the VCU to as requested  ● Send the on vehicle emergency stop status periodically (1 Hz) over Aux CAN bus  4.2.13.2.1 Condition for state transition   Wake up default : Engaged  Sno. Mode/ Sub mode/ State requested  Entry criteria   Exit Success  Failure 1 Disable Request from Atlas & VCU is in drive state  - Disable on vehicle emergency stop (ignore on vehicle emergency stop request) - Update VCU on vehicle emergency On status to disabled state 
+- Maintain state  
+2 Any other request  Not applicable  Not applicable - Maintain state   4.2.13.3 Helios - HC: Hand Controller Not applicable 4.2.13.4 Atlas - MC: Main Compute (High-Level Control) Atlas shall send the disable request to VCU and update its state with the VCU state  4.2.13.5 Helios - OBD: Onboard Display Not applicable 4.2.13.6 Helios - GCS: Ground Control Station (GCS) 4.2.13.6.1 Operator action   The operator shall be able to disable On vehocle emergency stop of UGV using a MFB.    
+--- PAGE 146 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.13.6.2 Subsystem  response   Send Disable On vehicle emergency stop   GCS shall disable request to UGV.   4.2.13.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable  4.2.13.8 Iris - Telematics:  Logging & telemetry  Not applicable    
+--- PAGE 147 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.16 GCS: Send control command  [Ref: Scout _User_Requirements, Sec 5.4.3.4] Shall be same implementation as in case of Hand controller (refer sec 3.2.8). The communication shall happen over an L-band radio.                     
+--- PAGE 148 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.17 GCS: Light control of UGV  [Ref: Scout _User_Requirements, Sec 5.4.3.4] Shall be same implementation as in case of Hand controller (refer sec 3.2.9). The communication shall happen over an L-band radio.                       
+--- PAGE 149 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.18 GCS: Pose & path display GCS shall depict the current UGV pose (location & heading) on a map along with traversed trail. 4.2.18.1 Orion – MC: Motor Controller Configuration Not applicable 4.2.18.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) Not applicable 4.2.18.3 Helios - HC: Hand Controller Not applicable 4.2.18.4 Atlas - MC: Main Compute (High-Level Control) Atlas shall read GNSS data and compose following information for telemetry over Mavlink2. The GCS shall use this information for the pose and path generation.  Field Description time_usec Timestamp of the GPS measurement in microseconds. fix_type GPS fix quality/type (No Fix, 2D, 3D, DGPS, RTK, etc.). lat Latitude in degrees × 10⁷. lon Longitude in degrees × 10⁷. alt Altitude above mean sea level in millimetres. eph Horizontal dilution of precision (HDOP × 100), indicating horizontal position accuracy. epv Vertical dilution of precision (VDOP × 100), indicating altitude accuracy. vel Ground speed over the earth in centimetres per second. cog Course over ground (direction of travel) in centi-degrees. satellites_visible Number of GNSS satellites currently visible/tracked.  4.2.18.5 Helios - OBD: Onboard Display Not applicable 4.2.18.6 Helios - GCS: Ground Control Station (GCS) GCS shall implement following   Category Features to be Implemented MAVLink2 Data Reception Receive MAVLink2 telemetry from UGV; parse GPS_RAW_INT, GLOBAL_POSITION_INT, ATTITUDE/heading-related message; validate message timestamp  Position Display Decode latitude and longitude; show UGV marker on map; update marker position in real time. 
+--- PAGE 150 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+Category Features to be Implemented Heading Display Decode vehicle heading/yaw; rotate UGV icon according to heading; show numeric heading in degrees; distinguish vehicle heading from course over ground if required. Traversed Path Display Store position history; draw traversed path/polyline on map; update path continuously as UGV moves; clear/reset path on new mission. Offline Map Support Load offline map tiles/layers; allow operator to select available offline map layer; support operation without internet connectivity. Map Navigation Controls 
+Provide zoom-in/zoom-out; mouse/touch pan; centre-on-UGV option; auto-follow UGV mode. 
+Data Validation & Filtering Ignore invalid/no-fix GPS data 
+User Interface Display current latitude, longitude, altitude, heading, speed, and fix status; provide map scale and coordinate readout. Map Orientation Modes 
+Provide North-Up mode where map north remains fixed at top; provide Heading-Up mode where the map rotates/moves with UGV heading, similar to Google Maps navigation view. Orientation Control Allow operator to switch between North-Up and Heading-Up modes; show current mode on GCS UI. Vehicle-Centred View In Heading-Up mode, keep UGV centred or near-bottom-centred on the map; rotate map based on vehicle heading/yaw. Manual Map View Allow operator to disable auto-follow and manually zoom/pan the map without automatic re-cantering. The GCS screen shall show the current UGV pose (location & heading) on a map along with traversed trail. 
+ Figure 29: UI design: UGV pose (location & heading) on a map along with traversed trail 
+ 
+
+--- PAGE 151 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.18.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 4.2.18.8 Iris - Telematics:  Logging & telemetry  Telematics shall log the raw GNSS data available over ethernet interface.     
+--- PAGE 152 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.19 GCS: Artificial horizon display  The GCS shall display heading, pitch and roll information using a artificial horizon  4.2.19.1 Orion – MC: Motor Controller Configuration Not applicable 4.2.19.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) Not applicable 4.2.19.3 Helios - HC: Hand Controller Not applicable 4.2.19.4 Atlas - MC: Main Compute (High-Level Control) Atlas shall send the pitch , roll and heading information as part UGV status at 1Hz 4.2.19.5 Helios - OBD: Onboard Display Not applicable 4.2.19.6 Helios - GCS: Ground Control Station (GCS) Operator shall be given an option to select artificial horizon from GCS which shall display the pitch, roll and heading information. 
+  
+ Figure 30: UI design: Artificial horizon indicator 
+
+--- PAGE 153 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+ 4.2.19.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 4.2.19.8 Iris - Telematics:  Logging & telemetry  Not applicable  4.2.20 GCS: Camera view selection  The interface shall support camera selection, allowing for composite, individual, and day/night views. 4.2.20.1 Orion – MC: Motor Controller Configuration Not applicable 4.2.20.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) Not applicable 4.2.20.3 Helios - HC: Hand Controller Not applicable 4.2.20.4 Atlas - MC: Main Compute (High-Level Control) Atlas shall receive request for camera view and update requested state.   4.2.20.5 Helios - OBD: Onboard Display Not applicable 4.2.20.6 Helios - GCS: Ground Control Station (GCS) GCS shall have interface for operator to request following and transmit as Mavlink2 message over radio.  Sno. Selection  1 Day / Night camera  2 Single / Composite view  3 Front-centre Front-Left Front-Right Left, Right Rear-centre Rear-Left Rear-Right       
+--- PAGE 154 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+ Operator shall be given the option to switch between camera views  from the GCS. The GCS Screens shall be developed as per the below shown UI designs:  Figure 31:UI design : Switching between cameras 
+  
+  
+
+--- PAGE 155 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+  
+  4.2.20.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) The application shall switch vision pipeline based on the requested view along with the meta data. 4.2.20.8 Iris - Telematics:  Logging & telemetry  Not applicable 
+
+--- PAGE 156 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.21 GCS: Guidance & Data rate, latency overlays  The interface shall display range markers and turn guidance-line overlays on the video telemetry stream for remote driving. 4.2.21.1 Orion – MC: Motor Controller Configuration Not applicable 4.2.21.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) Not applicable 4.2.21.3 Helios - HC: Hand Controller Not applicable 4.2.21.4 Atlas - MC: Main Compute (High-Level Control) Atlas shall receive the request for over lay of guidance information and publish it for Vision CV pipeline 4.2.21.5 Helios - OBD: Onboard Display Not applicable 4.2.21.6 Helios - GCS: Ground Control Station (GCS) 4.2.21.6.1 Guidance overlay  The operator shall request for guidance overlay information. The information shall be included at source of vision sensor.  4.2.21.6.2 Video information  The operator shall optionally enable video stream information like Data rate (base band and encoded), end to end latency and network latency. The GCS shall estimate these locally and display based on the operator selection.    4.2.21.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) The vision shall overlay following guidance lines when requested from the GCS  ● Range markers for distance estimation  ● Path guidance lines during straight driving  ● Path guidance lines while turning   The vision pipe line shall include time stamp along with the video stream  Vision shall also send delays between baseband to encoded data  4.2.21.8 Iris - Telematics:  Logging & telemetry  Not applicable  
+--- PAGE 157 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.22 GCS: Camera View Alignment Grid Overlay The interface shall display grid lines on the live video stream to assist the operator in vehicle centering while driving. 4.2.22.1 Orion – MC: Motor Controller Configuration Not applicable 4.2.22.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) Not applicable 4.2.22.3 Helios - HC: Hand Controller Not applicable 4.2.22.4 Atlas - MC: Main Compute (High-Level Control) Atlas shall receive the request for over lay of gridlines and publish it for Vision CV pipeline 4.2.22.5 Helios - OBD: Onboard Display Not applicable 4.2.22.6 Helios - GCS: Ground Control Station (GCS) The operator shall optionally enable grid line overlays on the live video stream from the menu option. The GCS shall display the selected grid line pattern as follows: 
+ Figure 32: UI design: Horizontal & Vertical gridlines 
+ Figure 33: UI design: Frame Reference Grid Lines  
+
+--- PAGE 158 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+ 
+ Figure 34:UI design: Diagonal grid lines 4.2.22.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) The vision shall overlay the selected grid line pattern on the video stream when requested from the GCS.  4.2.22.8 Iris - Telematics:  Logging & telemetry  Not applicable  
+
+--- PAGE 159 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.23 GCS: Video telemetry logging GCS shall enable logging of video similar to onboard video logging with provision to configure type data recording (resolution, FPS, Compression)  Operator shall be given the option to record the live video feed from the GCS. The GCS Screens shall be developed as per the below shown UI design flow for camera recording : Figure 35: UI design: Camera recording flow 
+  
+ 
+
+--- PAGE 160 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+  • Display a warning when storage reaches 70% capacity, indicating that recording will stop if storage becomes full, as shown in the UI design below. Figure 36: UI design: Warning indication for camera storage 
+  
+ 
+
+--- PAGE 161 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+ 4.2.24 GCS: Data telemetry logging.    The GCS shall log the command and telemetry data with time stamp and own location information 4.2.24.1 Orion – MC: Motor Controller Configuration Not applicable 4.2.24.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) Not applicable 4.2.24.3 Helios - HC: Hand Controller Not applicable 4.2.24.4 Atlas - MC: Main Compute (High-Level Control) Not applicable 4.2.24.5 Helios - OBD: Onboard Display Not applicable 4.2.24.6 Helios - GCS: Ground Control Station (GCS) The GCS shall log the received telemetry data and command send to UGV along with received time stamp GCS shall also log its location information along with time stamp  The log shall be saved for a power cycle in a format which can be replayed later for mission analysis 4.2.24.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 4.2.24.8 Iris - Telematics:  Logging & telemetry  Not applicable               
+--- PAGE 162 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.25 GCS: Set Home location  [Ref: Scout _User_Requirements, Sec 5.4.3.5] The Operator shall set the home location from the GCS and it shall be prerequisite for some fall backs like return to home 4.2.25.1 Orion – MC: Motor Controller Configuration Not applicable 4.2.25.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) Not applicable 4.2.25.3 Helios - HC: Hand Controller Not applicable 4.2.25.4 Atlas - MC: Main Compute (High-Level Control) Atlas shall receive request for setting the current location. Atlas shall save home location in global coordinate for valid GNSS data and set the Odom frame work. Atlas shall send set home location to GCS as part of UGV status information. 4.2.25.5 Helios - OBD: Onboard Display Not applicable 4.2.25.6 Helios - GCS: Ground Control Station (GCS) Operator shall request setting the home location. GCS shall send the request for home location.  GCS shall display the home location on the map. 4.2.25.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 4.2.25.8 Iris - Telematics:  Logging & telemetry  Not applicable   
+--- PAGE 163 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.26 GCS Mission planning: Define geofence boundary      [Ref: Scout _User_Requirements, Sec 5.4.3.5] The operator shall be able to define geofence boundary (polygon, circle) and offline uploaded  UGV as a mission file. 4.2.26.1 Orion – MC: Motor Controller Configuration Not applicable 4.2.26.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) Not applicable 4.2.26.3 Helios - HC: Hand Controller Not applicable 4.2.26.4 Atlas - MC: Main Compute (High-Level Control) Not applicable 4.2.26.5 Helios - OBD: Onboard Display Not applicable 4.2.26.6 Helios - GCS: Ground Control Station (GCS) The operator shall define geofenced area on the map in circular or polygon shape. A valid shape shall be defined around the home location. The information shall be offline uploaded offline to Atlas as a mission file. 4.2.26.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 4.2.26.8 Iris - Telematics:  Logging & telemetry  Not applicable   
+--- PAGE 164 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.27 GCS Debrief: Mission replay   [Ref: Scout _User_Requirements, Sec 5.4.3.5] The operator shall replay the telemetry and the video log information  4.2.27.1 Orion – MC: Motor Controller Configuration Not applicable 4.2.27.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) Not applicable 4.2.27.3 Helios - HC: Hand Controller Not applicable 4.2.27.4 Atlas - MC: Main Compute (High-Level Control) Not applicable 4.2.27.5 Helios - OBD: Onboard Display Not applicable 4.2.27.6 Helios - GCS: Ground Control Station (GCS) GCS shall play back the telemetry and the video log on time line and georeferenced data  4.2.27.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 4.2.27.8 Iris - Telematics:  Logging & telemetry  Not applicable    
+--- PAGE 165 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.28 GCS: Remote sync telemetry    *TBD* The system shall relay telemetry to a remote cloud server over LTE.  4.2.28.1 Orion – MC: Motor Controller Configuration 4.2.28.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 4.2.28.3 Helios - HC: Hand Controller 4.2.28.4 Atlas - MC: Main Compute (High-Level Control) 4.2.28.5 Helios - OBD: Onboard Display 4.2.28.6 Helios - GCS: Ground Control Station (GCS) 4.2.28.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 4.2.28.8 Iris - Telematics:  Logging & telemetry                          
+--- PAGE 166 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.2.29 GCS: Environment Map data overlay     *TBD* The interface shall provide a provision to view the environment map, including 2D occupancy, geo-referenced raster and terrain map.  4.2.29.1 Orion – MC: Motor Controller Configuration 4.2.29.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 4.2.29.3 Helios - HC: Hand Controller 4.2.29.4 Atlas - MC: Main Compute (High-Level Control) 4.2.29.5 Helios - OBD: Onboard Display 4.2.29.6 Helios - GCS: Ground Control Station (GCS) 4.2.29.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 4.2.29.8 Iris - Telematics:  Logging & telemetry                   
+--- PAGE 167 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.3 Safety & Fallback  4.3.16 GCS - Remote Emergency stop of UGV.    Shall be same implementation as in case of Hand controller (refer sec 3.3.1). The communication shall happen over an L-band radio. Operator shall be given the option to select emergency e-stop from the GCS. The GCS Screens shall be developed as per the below shown UI designs: Figure 37: UI design: Remote E-stop  
+ 
+ 
+ 
+
+--- PAGE 168 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.3.17 Detect Obstacle & stop   *TBD* Objects on the way  4.3.17.1 Orion – MC: Motor Controller Configuration 4.3.17.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 4.3.17.3 Helios - HC: Hand Controller 4.3.17.4 Atlas - MC: Main Compute (High-Level Control) 4.3.17.5 Helios - OBD: Onboard Display 4.3.17.6 Helios - GCS: Ground Control Station (GCS) 4.3.17.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 4.3.17.8 Iris - Telematics:  Logging & telemetry                            
+--- PAGE 169 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.3.18 Return to location (RTL).   *TBD* UGV retraces traversed path for return to home   4.3.18.1 Orion – MC: Motor Controller Configuration 4.3.18.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 4.3.18.3 Helios - HC: Hand Controller 4.3.18.4 Atlas - MC: Main Compute (High-Level Control) 4.3.18.5 Helios - OBD: Onboard Display 4.3.18.6 Helios - GCS: Ground Control Station (GCS) 4.3.18.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 4.3.18.8 Iris - Telematics:  Logging & telemetry   
+--- PAGE 170 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.3.19 Camera sensor failure fallbacks.  *TBD* 4.3.19.1 Orion – MC: Motor Controller Configuration 4.3.19.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 4.3.19.3 Helios - HC: Hand Controller 4.3.19.4 Atlas - MC: Main Compute (High-Level Control) 4.3.19.5 Helios - OBD: Onboard Display 4.3.19.6 Helios - GCS: Ground Control Station (GCS) 4.3.19.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 4.3.19.8 Iris - Telematics:  Logging & telemetry    
+--- PAGE 171 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.3.20 Com degradation Alert.   *TBD* 4.3.20.1 Orion – MC: Motor Controller Configuration 4.3.20.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 4.3.20.3 Helios - HC: Hand Controller 4.3.20.4 Atlas - MC: Main Compute (High-Level Control) 4.3.20.5 Helios - OBD: Onboard Display 4.3.20.6 Helios - GCS: Ground Control Station (GCS) 4.3.20.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 4.3.20.8 Iris - Telematics:  Logging & telemetry    
+--- PAGE 172 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.3.21 L band radio failure (GCS operation) UGV shall transition to safe state in case of L band radio failure or L band link failure when operated using Hand controller. 4.3.21.1 Orion – MC: Motor Controller Configuration Not applicable 4.3.21.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) Not applicable 4.3.21.3 Helios - HC: Hand Controller Not applicable 4.3.21.4 Atlas - MC: Main Compute (High-Level Control)  The system (UGV) response shall be implemented by following subsystem response.   
+Subsystem  State  System Response  Subsystem Response L band radio -UGV  Fault Halted & Brake - Switch Hold mode   Unknown L band radio connection Not connected  Halted & Brake  - Switch Hold mode    Unknown  L band radio link   Fault Halted & Brake - Switch Hold mode   Degraded Table 49 L band radio failure: State vs System & Subsystem response  4.3.21.5 Helios - OBD: Onboard Display Not applicable 4.3.21.6 Helios - GCS: Ground Control Station (GCS) Not applicable 4.3.21.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) Not applicable 4.3.21.8 Iris - Telematics:  Logging & telemetry  Not applicable    
+--- PAGE 173 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.3.22 GNSS denial/ failure fallback     *TBD* The system shall continue to localise during GNSS denial using alternate sensors like vision based, radar based or INS  4.3.22.1 Orion – MC: Motor Controller Configuration 4.3.22.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 4.3.22.3 Helios - HC: Hand Controller 4.3.22.4 Atlas - MC: Main Compute (High-Level Control) 4.3.22.5 Helios - OBD: Onboard Display 4.3.22.6 Helios - GCS: Ground Control Station (GCS) 4.3.22.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 4.3.22.8 Iris - Telematics:  Logging & telemetry                   
+--- PAGE 174 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.3.23 Geofenced operation    *TBD* The system shall enforce geofencing and corridor-restricted navigation  4.3.23.1 Orion – MC: Motor Controller Configuration 4.3.23.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 4.3.23.3 Helios - HC: Hand Controller 4.3.23.4 Atlas - MC: Main Compute (High-Level Control) 4.3.23.5 Helios - OBD: Onboard Display 4.3.23.6 Helios - GCS: Ground Control Station (GCS) 4.3.23.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 4.3.23.8 Iris - Telematics:  Logging & telemetry                          
+--- PAGE 175 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.3.24 Auto Speed limiting - terrain    *TBD* Estimate terrain slope, roughness, and rollover risk and limit speed  4.3.24.1 Orion – MC: Motor Controller Configuration 4.3.24.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 4.3.24.3 Helios - HC: Hand Controller 4.3.24.4 Atlas - MC: Main Compute (High-Level Control) 4.3.24.5 Helios - OBD: Onboard Display 4.3.24.6 Helios - GCS: Ground Control Station (GCS) 4.3.24.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 4.3.24.8 Iris - Telematics:  Logging & telemetry                          
+--- PAGE 176 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.3.25 Vision based Non-negotiable terrain safety.   *TBD* The system shall classify terrain (traversable / semi-traversable / non-traversable) for alerts  4.3.25.1 Orion – MC: Motor Controller Configuration 4.3.25.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 4.3.25.3 Helios - HC: Hand Controller 4.3.25.4 Atlas - MC: Main Compute (High-Level Control) 4.3.25.5 Helios - OBD: Onboard Display 4.3.25.6 Helios - GCS: Ground Control Station (GCS) 4.3.25.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 4.3.25.8 Iris - Telematics:  Logging & telemetry                         
+--- PAGE 177 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.3.26 Vision based terrain features detection   *TBD* Classify terrain edges, ditches, drop-offs, and negative obstacles for alerts  4.3.26.1 Orion – MC: Motor Controller Configuration 4.3.26.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 4.3.26.3 Helios - HC: Hand Controller 4.3.26.4 Atlas - MC: Main Compute (High-Level Control) 4.3.26.5 Helios - OBD: Onboard Display 4.3.26.6 Helios - GCS: Ground Control Station (GCS) 4.3.26.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 4.3.26.8 Iris - Telematics:  Logging & telemetry                          
+--- PAGE 178 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.3.27 Auto Speed limiting  - video degradation.   *TBD* Speed limitation in case of video telemetry latency >100 ms   4.3.27.1 Orion – MC: Motor Controller Configuration 4.3.27.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 4.3.27.3 Helios - HC: Hand Controller 4.3.27.4 Atlas - MC: Main Compute (High-Level Control) 4.3.27.5 Helios - OBD: Onboard Display 4.3.27.6 Helios - GCS: Ground Control Station (GCS) 4.3.27.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 4.3.27.8 Iris - Telematics:  Logging & telemetry                   
+--- PAGE 179 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+4.4 Communication & Sensor Requirements  4.4.16 L band radio Communication for control shall utilize an L band radio and omni antenna on the UGV and a similar radio with omni + directional antenna on the GCS. 4.4.17 UHF radio Communication for standby telemetry shall utilize a UHF radio and omni antenna on the UGV, and an omni + directional antenna on the GCS.  4.4.18 Day/ Night camera Day and Night (LWIR) camera for video telemetry   4.4.19 GNSS + North seeker Localization sensors shall include 1 GNSS + North seeker (with RTK), INS, and Visual-inertial systems (RGB-D, 3D Lidar). 4.4.20 3 Lidar & RGB-D Mapping sensors shall utilize 3D Lidar slam and RGB-D visual slam. 4.4.21 IMU Terrain awareness sensors shall utilize an IMU, 3D Lidar, and RGB-D. 4.4.22 Ultrasonic, 2D lidar, Radar Obstacle detection sensors shall utilize Ultrasonic sensors, 2D lidar, Radar.    
+--- PAGE 180 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+5 Mode C: Assisted Autonomy (≤5km)  5.2 Core Autonomous Operation 5.2.16 Auto route navigation The system shall perform pre-planned route-based autonomous navigation up to 5 km for pre-planned paths (GNSS trail), tracking, and goal management.  5.2.16.1 Orion – MC: Motor Controller Configuration 5.2.16.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 5.2.16.3 Helios - HC: Hand Controller 5.2.16.4 Atlas - MC: Main Compute (High-Level Control) 5.2.16.5 Helios - OBD: Onboard Display 5.2.16.6 Helios - GCS: Ground Control Station (GCS) 5.2.16.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 5.2.16.8 Iris - Telematics:  Logging & telemetry                      
+--- PAGE 181 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+5.2.17 Remote manual takeover The system shall allow operator override at any time with bounded response time.  5.2.17.1 Orion – MC: Motor Controller Configuration 5.2.17.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 5.2.17.3 Helios - HC: Hand Controller 5.2.17.4 Atlas - MC: Main Compute (High-Level Control) 5.2.17.5 Helios - OBD: Onboard Display 5.2.17.6 Helios - GCS: Ground Control Station (GCS) 5.2.17.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 5.2.17.8 Iris - Telematics:  Logging & telemetry                          
+--- PAGE 182 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+5.2.18 UGV location tacking (as in Mode B) The system shall relay real-time pose information (position and orientation) to the operator as in Mode B. 5.2.19 RTH energy reserve alert (as in Mode B) The system shall continuously estimate SoC to execute the return trip as in Mode B. 5.2.20 Mapping (as in Mode B) The system shall carry out mapping (environment and terrain) in the background during mission execution as in Mode B. 5.2.21 RTK based localisation (as in Mode B) The system shall use RTK based correction from GCS for accurate localisation as in Mode B.   
+--- PAGE 183 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+5.3 Operator Interface  The interface (Mobile GCS) shall be capable of all operations as by the hand held GCS used for Mode A/ B operations with additional under mentioned features. 5.3.16 Mission planning The interface shall support mission planning using DEM, DSM and previous acquired mapping data   5.3.16.1 Orion – MC: Motor Controller Configuration 5.3.16.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 5.3.16.3 Helios - HC: Hand Controller 5.3.16.4 Atlas - MC: Main Compute (High-Level Control) 5.3.16.5 Helios - OBD: Onboard Display 5.3.16.6 Helios - GCS: Ground Control Station (GCS) 5.3.16.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 5.3.16.8 Iris - Telematics:  Logging & telemetry                     
+--- PAGE 184 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+5.3.17 Guidance overlays The interface shall display guidance overlays and annotations, including planned paths, waypoint markers, safe corridors, and stop zones.  5.3.17.1 Orion – MC: Motor Controller Configuration 5.3.17.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 5.3.17.3 Helios - HC: Hand Controller 5.3.17.4 Atlas - MC: Main Compute (High-Level Control) 5.3.17.5 Helios - OBD: Onboard Display 5.3.17.6 Helios - GCS: Ground Control Station (GCS) 5.3.17.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 5.3.17.8 Iris - Telematics:  Logging & telemetry                         
+--- PAGE 185 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+5.3.18 Remote sync telemetry (as in Mode B) The system shall relay telemetry to a remote cloud server over LTE as in Mode B.  
+--- PAGE 186 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+5.4 Safety & Fallback  Same as Mode B with following addition for obstacle handling. 5.4.16 Detect & avoid obstacle The system shall perform obstacle detection and avoidance for static and dynamic objects  5.4.16.1 Orion – MC: Motor Controller Configuration 5.4.16.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 5.4.16.3 Helios - HC: Hand Controller 5.4.16.4 Atlas - MC: Main Compute (High-Level Control) 5.4.16.5 Helios - OBD: Onboard Display 5.4.16.6 Helios - GCS: Ground Control Station (GCS) 5.4.16.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 5.4.16.8 Iris - Telematics:  Logging & telemetry                        
+--- PAGE 187 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+5.4.17 Scene interpretation  The system shall generate a scene interpretation to be used in case of degraded communication   5.4.17.1 Orion – MC: Motor Controller Configuration 5.4.17.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 5.4.17.3 Helios - HC: Hand Controller 5.4.17.4 Atlas - MC: Main Compute (High-Level Control) 5.4.17.5 Helios - OBD: Onboard Display 5.4.17.6 Helios - GCS: Ground Control Station (GCS) 5.4.17.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 5.4.17.8 Iris - Telematics:  Logging & telemetry     
+--- PAGE 188 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+5.5 Communication & Sensor Requirements  Same as Mode B   
+--- PAGE 189 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+6 Mode D: High Autonomy (≤10km)  6.2 Core Autonomous Operation 6.2.16 Onboard path planning (Route based planning) The system shall navigate to any destination up to 10km with provision for onboard planner using saved topological/ traversed trail.  6.2.16.1 Orion – MC: Motor Controller Configuration 6.2.16.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 6.2.16.3 Helios - HC: Hand Controller 6.2.16.4 Atlas - MC: Main Compute (High-Level Control) 6.2.16.5 Helios - OBD: Onboard Display 6.2.16.6 Helios - GCS: Ground Control Station (GCS) 6.2.16.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 6.2.16.8 Iris - Telematics:  Logging & telemetry   
+--- PAGE 190 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+6.2.17 Onboard path planning (Geo ref map based planning) The system shall navigate to any destination up to 10km with provision for onboard planner using imagery and DEM data.  6.2.17.1 Orion – MC: Motor Controller Configuration 6.2.17.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 6.2.17.3 Helios - HC: Hand Controller 6.2.17.4 Atlas - MC: Main Compute (High-Level Control) 6.2.17.5 Helios - OBD: Onboard Display 6.2.17.6 Helios - GCS: Ground Control Station (GCS) 6.2.17.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 6.2.17.8 Iris - Telematics:  Logging & telemetry                         
+--- PAGE 191 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+6.2.18 Onboard path planning (SLAM map based planning) The system shall navigate to any destination up to 10km with provision for onboard planner using Map estimated using SLAM.  6.2.18.1 Orion – MC: Motor Controller Configuration 6.2.18.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 6.2.18.3 Helios - HC: Hand Controller 6.2.18.4 Atlas - MC: Main Compute (High-Level Control) 6.2.18.5 Helios - OBD: Onboard Display 6.2.18.6 Helios - GCS: Ground Control Station (GCS) 6.2.18.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 6.2.18.8 Iris - Telematics:  Logging & telemetry                         
+--- PAGE 192 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+6.2.19 Onboard alternat path planning (blocade) The system shall autonomously select alternate paths when the planned route is blocked  6.2.19.1 Orion – MC: Motor Controller Configuration 6.2.19.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 6.2.19.3 Helios - HC: Hand Controller 6.2.19.4 Atlas - MC: Main Compute (High-Level Control) 6.2.19.5 Helios - OBD: Onboard Display 6.2.19.6 Helios - GCS: Ground Control Station (GCS) 6.2.19.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 6.2.19.8 Iris - Telematics:  Logging & telemetry                          
+--- PAGE 193 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+6.2.20 Continuous telemetry The system shall automatically reconnect and synchronize telemetry when communication is restored.  6.2.20.1 Orion – MC: Motor Controller Configuration 6.2.20.2 Nexus - VCU: Vehicle Control Unit (Low-Level Control) 6.2.20.3 Helios - HC: Hand Controller 6.2.20.4 Atlas - MC: Main Compute (High-Level Control) 6.2.20.5 Helios - OBD: Onboard Display 6.2.20.6 Helios - GCS: Ground Control Station (GCS) 6.2.20.7 Atlas - Vision: Computer Vision & Machine Learning (CV & ML) 6.2.20.8 Iris - Telematics:  Logging & telemetry   
+--- PAGE 194 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+6.2.21 UGV location tacking (as in Mode B) The system shall relay real-time pose information (position and orientation) to the operator as in Mode B. 6.2.22 RTH energy reserve alert (as in Mode B) The system shall continuously estimate SoC to execute the return trip as in Mode B. 6.2.23 Mapping (as in Mode B) The system shall carry out mapping (environment and terrain) in the background during mission execution as in Mode B.     
+--- PAGE 195 ---
+ 
+NewSpace Research & Technologies | UGV Division | Confidential | Internal Use Only 
+ 
+6.3 Operator Interface  The interface shall be capable of all operations as by the GCS used for Mode C operations with additional static setup to enable long range communication formonitoring. 6.4 Safety & Fallback  Same as in Mode C. 6.5 Communication & Sensor Requirements  Same as in Mode C  

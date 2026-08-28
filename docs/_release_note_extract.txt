@@ -1,0 +1,1732 @@
+Release Note
+release_note_sprint2_v1.1
+Sprint 2
+5:dffd00a386ffbca95f3d809efebe8e0c1f7594d643fbed73cc5c13a2dfe3a823
+Change Log
+Confidential information:
+ This document contains confidential information of NewSpace Research & Technologies. The information contained is intended solely for internal purposes only. Unauthorized access, use, disclosure, reproduction, distribution, or transmission of any part of this document is strictly prohibited. Recipients are responsible for maintaining the confidentiality of the information contained in this document
+Release note version
+Sprint 
+Release Date
+Branch
+Change summary
+Released by
+V1.0
+1
+22/07/26
+staging
+Sprint 1 1st staging release
+Siddharth
+V1.1
+2
+1/08/2026
+staging
+Added 
+Nexus-VCU
+ feature: Normal Power Off of UGV
+Added 
+Atlas-MC f
+eatures: Onboard traversed path saving, GNSS based localization, Normal power off of UGV
+Added 
+Helios-GCS
+ features: GCS Debrief Mission Replay, GCS Video Telemetry Logging, GCS Set Home Location, and GCS Tablet Location; 
+Added modified features/TIR fixes for 
+Nexus-VCU
+, 
+Atlas-MC, Helios-HC, Helios-GCS, and Iris-Telematics
+; 
+Updated 
+Helios-GCS
+ dependencies (
+scout_mavlink_dart 1.4.0
+, 
+flutter_libserialport 0.5.0
+) Added dependencies for 
+Atlas-MC
+; 
+Updated software versions (
+Nexus-VCU v1.0.1-rc-1, Atlas-MC v1.1.0-rc-4,
+ 
+Helios-HC v1.0.1-rc-1, Helios-GCS v1.1.0-rc-2, Iris-Telematics v1.0.1-rc-1
+); 
+Revised reference documents: 
+SCT-TD0-USR-001, SCT-TD0-SSR-002, SCT-TD0-PD-005, SCT-TD0-PD-006.
+Abhishek
+Table of Contents
+1
+Release Summary
+5
+2
+Software Included in this Release
+5
+3
+New Features
+5
+3.1
+Nexus- VCU
+5
+3.2      Atlas-MC
+6
+3.3     Helios-HC
+8
+3.4    Helios-OBD
+8
+3.5    Helios-GCS
+9
+3.6    Atlas-Vision
+10
+3.7    Iris- Telematics
+10
+4 Modified Features
+11
+4.1
+Nexus- VCU
+11
+4.2
+Atlas-MC
+11
+4.3
+Helios-HC
+11
+4.4
+Helios-OBD
+12
+4.5
+Helios-GCS
+12
+4.6
+Atlas-Vision
+14
+4.7
+Iris- Telematics
+14
+5    Dependencies
+15
+5.1
+Nexus-VCU
+15
+5.2
+Atlas-MC
+15
+5.3
+Helios-HC
+17
+5.4
+Helios-OBD
+17
+5.5
+Helio-GCS
+18
+5.6
+Atlas-Vision
+19
+5.7
+Iris-Telematics
+21
+6
+Assets Included in the Release
+22
+6.1
+Nexus-VCU
+22
+6.2
+Atlas-MC
+22
+6.3
+Helios-HC
+23
+6.4
+Helios-OBD
+23
+6.5
+Helio-GCS
+23
+6.6
+Atlas-Vision
+24
+6.7
+Iris-Telematics
+24
+7
+Reference Documents Released:
+25
+Release Summary
+This release contains newly developed features, feature enhancements and TIR fixes for all software stacks released from the staging branch for 
+Sprint 2.
+Software Included in this Release
+Repository
+S/w version (Sprint 1)
+S/w version (Sprint 2)
+Nexus-VCU
+v1.0.0-rc-1
+v1.0.1-rc-1
+Atlas-MC
+v1.0.0-rc-1
+v1.1.0-rc-4
+Helios-HC
+v1.0.0-rc-1
+v1.0.1-rc-1
+Helios-OBD
+v1.0.0-rc-1
+v1.0.0-rc-1
+Helio-GCS
+v1.0.0-rc-1
+v1.1.0-rc-2
+Atlas-Vision
+v1.0.0-rc-1
+v1.0.0-rc-1
+Iris-Telematics
+v1.0.0-rc-1
+v1.0.1-rc-1
+Release Versioning Rules
+The release version shall follow the format:
+vMajor.Minor.Patch (e.g., v1.0.0)
+Version Component
+When to Increment
+Major
+Increment when a new operational mode is introduced (e.g., transition from Mode B to Mode C).
+Minor
+Increment when the release includes one or more new features 
+Patch
+Increment when the release contains modifications to existing features and TIR fixes.
+Previous Version
+Release Content
+New Version
+v1.0.0
+Added autonomous obstacle avoidance feature
+v1.1.0
+v1.0.0
+Fixed TIR-021 
+v1.0.1
+v1.0.0
+Software updated from 
+Mode B
+ to 
+Mode C
+v2.0.0
+Version Increment Priority
+When a release contains multiple types of changes, the version shall be updated based on the following priority:
+Major
+ – Highest priority 
+Minor
+ – Medium priority 
+Patch
+ – Lowest priority 
+Release Content
+Version Increment
+Example
+New features + Patch fixes
+Minor
+v1.2.3 
+→
+ v1.3.0
+Mode C + New features
+Major
+v1.5.4 
+→
+ v2.0.0
+Mode C + New features + Patch fixes
+Major
+v1.5.4 
+→
+ v2.0.0
+New Features 
+Nexus- VCU
+SSR Reference
+Sprint
+Feature
+Developer
+Peer Reviewer
+Sec-2.1.1.2
+1
+Power ON of UGV
+Varshini
+Varshini
+Sec-2.1.2.2
+1
+Health Monitoring on CAN bus
+Varshini
+Varshini
+Sec-2.1.5.2
+1
+Subsystem wakeup defaults for mode/ sub modes
+Varshini
+Varshini
+Sec-2.1.6.2
+1
+Safe charging of UGV
+Varshini
+Varshini
+Sec-2.1.7.2
+1
+Wheel free towing
+Varshini
+Varshini
+Sec-2.3.1.2
+1
+On vehicle Emergency stop of UGV
+Varshini
+Varshini
+Sec-2.3.2.2
+1
+VCU Drive ON - subsystem failures & fallbacks
+Varshini
+Varshini
+Sec-2.3.3.2
+1
+VCU Key ON - subsystem failures & fallbacks
+Varshini
+Varshini
+Sec-3.3.1.2
+1
+Remote Emergency stop of UGV
+Varshini
+Varshini
+Sec-3.2.7.2
+1
+Set Arm state
+Varshini
+Varshini
+Sec-3.2.5.2
+1
+Set Drive mode
+Varshini
+Varshini
+Sec-3.2.6.2
+1
+Set Drive limit
+Varshini
+Varshini
+Sec-3.2.9.2
+1
+Light control of UGV
+Varshini
+Varshini
+Sec-2.1.4.2
+2
+Normal Power OFF of UGV
+Varshini
+Varshini
+Sec-3.1.2.2
+4
+Torque Mode Actuation
+Varshini
+Varshini
+3.2 Atlas-MC
+SSR Reference
+Sprint
+Feature
+Developer
+Peer Reviewer
+Sec-2.1.1 to 2.1.3
+1
+Power ON of UGV, Health & Mode monitoring CAN Bus, Health & Mode monitoring Telemetry
+Archana
+Nikitha
+Sec-2.1.5
+1
+Subsystem wakeup defaults for mode/sub modes
+Archana
+Nikitha
+Sec-3.1.1
+1
+HC Mode A - Teleoperation (RPM Mode)
+Archana
+Nikitha
+Sec-3.2.2
+1
+HC: Connectivity & Time sync status
+Archana
+Nikitha
+Sec-3.2.4 to 3.2.7
+1
+HC: UGV battery status,
+HC: Set Drive mode,
+HC: Set Limit (LO, MED, HI),
+HC: Set Arm state
+Archana
+Nikitha
+Sec-3.2.9
+1
+HC- Light control of UGV
+Archana
+Nikitha
+Sec-3.3.1
+1
+HC- Remote Emergency Stop of UGV
+Archana
+Nikitha
+Sec-4.1.2 to 4.1.4
+1
+GCS Mode A teleoperation,  Remote driving - camera teleoperation, GNSS based UGV localisation
+Archana
+Nikitha
+Sec-4.2.11
+1
+GCS: Connectivity & Time sync status
+Archana
+Nikitha
+Sec-4.2.13 to 4.2.17
+1
+GCS: UGV battery alert,
+GCS: Set Autonomy mode, GCS: Set Drive mode, GCS:Set Limit (LO, MED, HI),GCS: Set Arm state
+Archana
+Nikitha
+Sec-4.2.20 to 4.2.21
+1
+GCS: Light control of UGV, GCS: Pose & path display
+Archana
+Nikitha
+Sec-4.2.23
+1
+GCS: camera view selection
+Archana
+Nikitha
+Sec-4.3.1
+1
+GCS- Remote Emergency stop of UGV
+Archana
+Nikitha
+Sec-2.1.2.4.2
+​
+2
+UHF Radio Health monitoring on CAN
+Aishwarya
+Archana
+Nikitha
+Sec 4.1.7
+2
+Onboard traversed path saving
+Nikitha
+Archana
+Archana
+Nikitha
+Sec 4.1.4
+2
+GNSS based UGV localization
+Anees
+Nikitha
+Sec-2.1.4.2
+2
+Normal Power OFF of UGV
+Archana
+Nikitha
+Sec 4.3.2
+4
+Detect obstacle & stop
+Nikitha
+Archana
+Sec 4.3.3
+4
+Return to location
+Nikitha
+Archana
+Sec 4.2.26 
+4
+GCS: Set Home location
+Archana
+Nikitha
+Sec
+3.3     Helios-HC
+SSR Reference
+Sprint
+Feature
+Developer
+Peer Reviewer
+Sec-3.2.1
+1
+Hand controller power ON
+Abhishek
+Abhishek
+Sec-3.2.2
+1
+Connectivity & time sync status
+Abhishek
+Abhishek
+Sec-3.2.4
+1
+UGV battery status
+Abhishek
+Abhishek
+Sec-3.2.5
+1
+Set drive mode
+Abhishek
+Abhishek
+Sec-3.2.6
+1
+Set drive limit
+Abhishek
+Abhishek
+Sec-3.2.7
+1
+Set arm state
+Abhishek
+Abhishek
+Sec-3.2.8
+1
+Send control command
+Abhishek
+Abhishek
+Sec-3.2.9
+1
+Light control of UGV
+Abhishek
+Abhishek
+Sec-3.3.1
+1
+Remote emergency stop of UGV
+Abhishek
+Abhishek
+Sec-3.3.1 / 3.3.2
+1
+Joystick / manual teleop (X–Y control)
+Abhishek
+Abhishek
+3.4 Helios-OBD
+SSR Reference
+Sprint
+Feature
+Developer
+Peer Reviewer
+Sec-2.1.1
+1
+Power ON of UGV
+Kartikeya
+Satheesh
+Sec - 2.2.1 to 2.2.7
+1
+OBD Pages: Common, System, Drive, Power, Compute, Sensor, Communication
+Kartikeya
+Satheesh
+3.5 Helios-GCS
+SSR Reference
+Sprint
+Feature
+Developer
+Peer Reviewer
+SSR Reference
+1
+GCS Wakeup, Common, System, Drive, Power, Compute, Sensor, Comms
+Satheesh & Kartikeya
+Satheesh
+Sec-4.2.1 to 4.2.8
+1
+GCS time sync, battery status, Autonomy mode, drive mode, drive limits, arm states
+Satheesh
+Satheesh
+Sec - 4.2.11 to 4.2.17
+1
+GCS manual control, light control, pose & path display, Artificial Horizon display, Camera view selection
+Satheesh & Amrita
+Satheesh
+Sec - 4.2.19 to 4.2.23
+1
+GCS - Remote Emergency stop of UGV
+Satheesh
+Satheesh
+Sec - 4.3.1
+1
+GCS: Camera view selection
+Amrita
+Satheesh
+Sec - 4.2.23
+1
+GCS: Data telemetry logging
+Kartikeya
+Satheesh
+Sec - 4.2.26
+1
+GCS: Data telemetry logging
+Kartikeya
+Satheesh
+Sec 4.2.29
+2
+GCS Debrief Mission replay
+Satheesh 
+Satheesh
+Sec 4.2.25
+2
+GCS Video Telemetry Logging
+Satheesh
+Satheesh
+Sec 4.2.27
+2
+GCS Set Home Location
+Satheesh
+Satheesh
+Nil
+2
+GCS Tablet Location
+Amrita
+Satheesh
+3.6 Atlas-Vision
+SSR Reference
+Sprint
+Feature
+Developer
+Peer Reviewer
+Sec 2.1.2
+1
+Health & Mode Monitoring CAN
+Trijal R
+Trijal R
+Sec 4.2.24
+1
+Guidance, data rate, and latency overlays
+Trijal R
+Trijal R
+Sec 4.2.23
+1
+Camera View Selection 
+Trijal R
+Trijal R
+Sec 4.2.14
+1
+Set Autonomy Mode
+Trijal R
+Trijal R
+Sec 2.1.2.7.1
+4
+Software Version and checksum info
+Trijal R
+Trijal R
+3.7 Iris- Telematics
+SSR Reference
+Sprint
+Feature
+Developer
+Peer Reviewer
+Sec 2.1.1.8
+1
+Power ON of UGV — Iris-Telematics: Logging & telemetry
+Abhishek
+Abhishek
+Sec 2.1.2.8
+1
+Health & Mode monitoring CAN bus — Iris-Telematics: Logging & telemetry
+Abhishek
+Abhishek
+Sec 2.1.4.8
+1
+Normal Power OFF of UGV
+Abhishek
+ 
+ 
+Abhishek
+Sec 4.2.21.8
+1
+GCS: Pose & path display  (Raw GNSS data)
+ 
+Abhishek
+Abhishek
+4 Modified Features
+4.1
+Nexus- VCU
+SSR Ref
+Spr
+TIR Ref
+Issue/Improvements
+Dev
+Peer Reviewer
+2.1.1.2.1
+2
+dev-f1-v1
+ 
+The health statuses of the LVPDU and HV battery continuously flicker between "healthy" and "unknown".
+Varshini
+Varshini
+2.1.1.2.1
+2
+dev-f1-v1
+The HVPDU power status displays as "unknown," but its health status reports as "healthy."
+Varshini
+Varshini
+2.1.1.2.3
+2
+dev-f1-v1
+When the knob switch is turned from Key_ON to Drive_ON, the health of the motors and motor controllers initially shows as "unknown" (even though the motor controller contactor turns on and no faults are present). The status eventually updates to "healthy" after approximately 15 minutes.
+Varshini
+Varshini
+3.3.1
+2
+dev-f1-v1
+In the drive state, engaging the remote emergency stop correctly opens the motor controller contactor; however, disengaging it does not close the contactor again. This issue does not occur with the on-vehicle emergency stop.
+Varshini
+Varshini
+2.2.4.5
+2
+dev-f1-v1
+ 
+Light commands for the headlights and brake lights are sent by the GCS to the compute, and the compute light status updates, but the VCU does not turn on the PDU channels for the lights.
+Varshini
+Varshini
+2.2.4.5
+2
+dev-f1-v1
+Channels 2, 6, 7, and 8 display as "faulty" on the OBD even when they have not been opened by the VCU.
+Varshini
+Varshini
+-
+2
+dev-f1-v1
+Motor actuation does not happen after the on-vehicle or remote emergency stop is engaged and subsequently disengaged.
+Varshini
+Varshini
+2.1.6
+2
+dev-f1-v1
+OBD restarts after charger is disconnected
+Varshini
+Varshini
+3.2.5.2.1
+2
+dev-f1-v1
+Drive mode change is not working: the HC request reaches Atlas, and the primary and secondary compute drive modes change, but the VCU drive mode does not update.
+Varshini
+Varshini
+3.1.1.2.2
+2
+dev-f1-v1
+The VCU sends control commands to the motors at 1000 Hz instead of 50 Hz on the actuator bus.
+Varshini
+Varshini
+3.1.1.2.2
+4
+The RPM Status on control CAN bus was having a difference of 1 RPM with respect to the commanded
+Varshini
+Varshini
+4.2
+Atlas-MC
+SSR Reference
+Sprint
+TIR Reference
+Issue/Improvements
+Developer
+Peer Reviewer
+Sec-4.2.14
+2
+stg-v1.0.0-rc-1(6)
+    
+Drive mode is not changing in when triggered using GCS
+Archana
+Nikitha
+Sec-2.3.4
+2
+stg-v1.0.0-rc-1(7)    
+  
+Drive mode is not changing in when triggered using HC
+  
+Archana
+Nikitha
+Sec-2.2.7.5
+2
+Dev-f2-v2
+The UHF radio link connection, radio health, and link health statuses display as "unknown" in the OBD.
+Aishwarya
+Archana
+4.3
+Helios-HC
+SSR Reference
+Sprint
+TIR Reference
+Issue/improvements
+Developer
+Peer Reviewer
+Sec-3.2.6
+2
+Dev-f2-v2
+There is no momentary switch provided in the HC for setting limits.
+Abhishek
+Abhishek
+Sec-3.3.1
+2
+-
+Moved to toggle pins 4/5: engage / disengage / centre = N/A; edge-triggered
+Abhishek
+Abhishek
+Sec-3.2.7
+2
+-
+ICD arm/disarm param corrected (2=ARM, 1=DISARM); long-press timing fix
+Abhishek
+Abhishek
+4.4
+Helios-OBD
+SSR Reference
+Sprint
+TIR Reference
+Issue
+Developer
+Peer Reviewer
+Nil
+1
+Nil
+Nil
+Nil
+Nil
+4.5
+Helios-GCS
+SSR Reference
+Sprt
+TIR Reference
+Issue
+/Improvements
+Developer
+Peer Reviewer
+Sec-4.2.20
+2
+dev-f3-v3-8
+GCS Light Commands: Fog light button triggers brake lights and vice-versa
+Satheesh
+Satheesh
+Nil
+2
+dev-f3-v3-9
+GCS controller buttons quality is not up to the mark, many buttons have to be pressed multiple times to trigger an action
+Satheesh
+Satheesh
+Sec-4.2.15
+2
+stg-v1.0.0-rc-1-5
+The camera feed in the GCS rotates only 180 degrees and not 90 degrees
+Satheesh
+Satheesh
+Sec-4.2.21
+2
+stg-v1.0.0-rc-1-19
+Touch pan function is inconsistent: instances were observed when tried moving the map, it comes back to UGV current position even when center-on-UGV option is not selected. No option is given to disable auto-follow UGV
+Satheesh
+Satheesh
+Sec-4.2.21
+2
+stg-v1.0.0-rc-1-15
+GCS displays incorrect heading: The heading displayed is 90 degrees lesser than the actual heading
+Satheesh
+Satheesh
+Sec-4.2.21
+2
+stg-v1.0.0-rc-1-18
+Zoom function is inconsistent and zoom out and in and the map gets blurred sometimes
+Satheesh
+Satheesh
+Sec-4.2.3
+2
+stg-v1.0.0-rc-1-14
+The secondary compute health displays as unknown in both OBD and GCS
+Satheesh
+Satheesh
+Sec-4.2.11
+2
+stg-v1.0.0-rc-1-3
+GCS connectivity status shows red color even when the connection with the UGV is established
+Satheesh
+Satheesh
+Sec-4.2.23
+Sec-4.2.24
+2
+Nil
+Video pipeline — native RTP metrics, auto-reconnect, quality presets, camera-switch UX
+Satheesh
+Satheesh
+Sec-4.2.14
+Sec-4.2.15
+Sec-4.2.16
+Sec-4.2.17
+Sec-4.2.18
+Sec-4.2.19
+Sec4.2.20
+Sec-4.2.23
+Sec4.2.24
+2
+Nil
+Unified CommandService + shared MavlinkCmd constants
+Satheesh
+Satheesh
+Sec-4.2.1
+2
+Nil
+MAVLink dialect dependency switched to scout_mavlink_dart
+Satheesh
+Satheesh
+Sec-4.2.19
+2
+Nil
+Logitech gamepad axis mapping (forward/reverse on left stick)
+Satheesh
+Satheesh
+Sec-4.2.21
+2
+Nil
+GPS fix status mapping (2D / 3D)
+Satheesh
+Satheesh
+4.6
+Atlas-Vision
+SSR Reference
+Sprint
+TIR Reference
+Issue
+Developer
+Peer Reviewer
+Sec-2.1.2.4.2
+4
+-
+Fixed camera unknown state as per its interface
+Trijal R 
+Trijal R
+Sec-4.1.8.7
+4
+-
+Added Video Logging with Location metadata also
+Trijal R
+Trijal R
+4.7
+Iris- Telematics
+SSR Reference
+Sprint
+TIR Reference
+Issue/Improvements
+Developer
+Peer Reviewer
+Sec 4.2.21.8
+2
+NIL
+GNSS raw NMEA logging + TCP timeout / session manifest
+Abhishek
+Abhishek
+5    Dependencies
+5.1
+Nexus-VCU
+Dependency type
+Sprint
+Dependency Name
+Version
+Build Tool
+1
+Matlab
+R2024b
+License
+1
+Ecotron
+NA
+5.2
+Atlas-MC
+Dependency type
+Sprint
+Dependency Name
+Version
+Base Image
+1
+ros:humble-ros-base-jammy
+ROS2 Humble(Ubuntu 22.04 Jammy)
+Ubuntu package
+1
+tzdata
+2024a-0ubuntu0.22.04.1
+Python Tool
+1
+python3-colcon-common-extensions
+0.3.0-1
+Python Tool
+1
+python3-rosdep
+0.21.0-1
+ROS 2 Package
+1
+ros-humble-rosbridge-server
+1.3.2-1
+ROS 2 Package
+1
+ros-humble-xarco
+1.3.2-1
+ROS 2 Package
+1
+ros-humble-ros2-control
+2.15.0-1
+ROS 2 Package
+1
+ros-humble-ros2-controllers
+2.15.0-1
+ROS 2 Package
+1
+ros-humble-joy
+3.3.0-1
+ROS 2 Package
+1
+ros-humble-joy-teleop
+1.6.0-1
+ROS 2 Package
+1
+ros-humble-tf-transformations
+1.0.1-1
+ROS 2 Package
+1
+ros-humble-twist-mux
+4.0.0-1
+Ros2 Package
+2
+ros-humble-angles
+1.15.0-1
+Ros2 Package
+2
+ros-humble-diagnostic-msgs
+4.9.1-1
+Ros2 Package
+2
+ros-humble-diagnostic-updater
+4.0.7-1
+Ros2 Package
+2
+ros-humble-geographic-msgs
+1.0.6-1
+Ros2 Package
+2
+ros-humble-geometry-msgs
+4.9.1-1
+Ros2 Package
+2
+ros-humble-message-filters
+4.3.18-1
+Ros2 Package
+2
+ros-humble-nav-msgs
+4.9.1-1
+Ros2 Package
+2
+ros-humble-std-srvs
+4.9.1-1
+Ros2 Package
+2
+ros-humble-tf2
+0.25.20-2
+Ros2 Package
+2
+ros-humble-tf2-eigen
+0.25.20-2
+Ros2 Package
+2
+ros-humble-tf2-geometry-msgs
+0.25.20-2
+Ros2 Package
+2
+ros-humble-tf2-ros
+0.25.20.-2
+Ros2 Package
+2
+ros-humble-yaml-cpp-vendor
+8.0.2-1
+Ros2 Package
+2
+robot_localization
+3.5.4 (humble-devel source) - offline package
+5.3
+Helios-HC
+Dependency type
+Sprint
+Dependency Name
+Version
+Package
+1
+Arduino AVR core / Mega 2560 board package
+1.8.7
+External Library
+1
+TFT_22_ILI9225 (ILI9225 176×220)
+1.4.5
+External Library
+1
+Arduino SPI (used by TFT)
+AVR core 1.8.7
+External Library
+1
+MAVLink dialect ugvCustom (vendored)
+custom_v0.3
+Driver
+1
+AVR UART (Serial3 
+↔
+ RFD UHF @ 115200)
+115200 baud
+Driver
+1
+RFD900x / compatible UHF modem
+Hardware: HC + Scout pair
+Build Tool
+1
+Arduino IDE or arduino-cli
+latest
+Build Tool
+1
+avrdude (flash)
+8.0.0-arduino1
+Compiler
+1
+avr-gcc / avr-g++
+7.3.0-atmel3.6.1-arduino7
+5.4
+Helios-OBD
+Dependency type
+Sprint
+Dependency Name
+Version
+External Library
+1
+Flutter SDK
+≥3.41.0
+External Library
+1
+Dart SDK
+≥3.11.0
+External Library
+1
+comm_module
+git main (unpinned)
+External Library
+1
+flutter_riverpod
+^3.3.1
+External Library
+1
+flutter_screenutil
+^5.9.3
+External Library
+1
+flutter_libserialport
+^0.6.0
+External Library
+1
+collection
+^1.18.0
+External Library
+1
+flutter_lints (dev)
+^6.0.0
+External Library
+1
+GTK 3 (libgtk-3)
+-
+Driver
+1
+NVIDIA GPU/display driver
+-
+Driver
+1
+Serial / libserialport (via flutter_libserialport)
+^0.6.0
+Build Tool
+1
+CMake
+≥ 3.13
+Build Tool
+1
+Ninja (ninja-build)
+-
+Build Tool
+1
+pkg-config
+-
+Compiler
+1
+Clang
+-
+Compiler
+1
+Dart AOT
+^3.11.4
+Compiler
+1
+C++ standard
+C++14
+5.5
+Helio-GCS
+Dependency type
+Sprint
+Dependency Name
+Version
+Package
+1
+Flutter SDK
+≥3.41.0
+Package
+1
+Dart SDK
+≥3.11.0
+External Library
+1
+flutter_riverpod
+2.6.1
+External Library
+1
+go_router
+14.8.1
+External Library
+1
+intl
+0.20.3
+External Library
+1
+flutter_screenutil
+5.9.3
+External Library
+1
+gamepads
+0.1.10+5
+External Library
+1
+equatable
+2.1.0
+External Library
+1
+flutter_map
+8.3.1
+External Library
+1
+mbtiles
+0.4.2
+External Library
+1
+latlong2
+0.9.1
+External Library
+1
+flutter_map_location_marker
+10.2.0
+External Library
+1
+flutter_map_animations
+0.10.0
+External Library
+1
+path_provider
+2.1.6
+External Library
+1
+path
+1.9.1
+External Library
+1
+battery_plus
+6.2.3
+External Library
+1
+http
+1.6.0
+External Library
+1
+graphx
+1.0.14
+External Library
+1
+sqlite3
+2.9.4
+External Library
+1
+flutter_svg
+2.3.0
+External Library
+1
+datalink
+0.0.1
+External Library
+1
+flutter_gstreamer_player
+0.0.4
+External Library
+1
+data_logger
+1.0.0
+External Library
+1
+flutter_lints
+4.0.0
+Driver
+1
+GStreamer
+1.0
+Driver
+1
+SQLite
+3
+Driver
+1
+gamepads
+0.1.10+5
+Build Tool
+1
+Flutter CLI
+≥3.41.0
+Build Tool
+1
+CMake
+≥3.13
+Build Tool
+1
+Ninja
+—
+Build Tool
+1
+Docker / Ubuntu
+22.04
+Compiler
+1
+Dart AOT
+≥3.11.0
+Compiler
+1
+C++ standard
+C++14
+External Library
+2
+scout_mavlink_dart
+1.4.0
+External Library
+2
+flutter_libserialport
+0.5.0
+5.6
+Atlas-Vision
+Dependency Type
+Sprint
+Dependency Name
+Version
+Operating System
+1
+Ubuntu
+22.04 LTS (Jammy Jellyfish)
+Container Base Image
+1
+ROS Base Image
+ros:humble-ros-base-jammy
+Container Base Image
+1
+NVIDIA L4T JetPack Image
+r36.4.0
+Robotics Framework
+1
+ROS 2
+Humble Hawksbill
+ROS Package
+1
+ros-humble-ros-base
+Humble
+Build Tool
+1
+Colcon
+0.12.x
+Dependency Manager
+1
+rosdep
+0.22.x
+Programming Language
+1
+Python
+3.10.4
+Compiler
+1
+GCC
+11.4.0
+Compiler
+1
+G++
+11.4.0
+Build System
+1
+CMake
+3.22.1
+Version Control
+1
+Git
+2.34.1
+Build Utility
+1
+pkg-config
+0.29.2
+Cryptography Library
+1
+OpenSSL
+3.0.2
+Computer Vision Library
+1
+OpenCV (CPU)
+4.5.4
+Computer Vision Library
+1
+OpenCV (CUDA Enabled)
+4.10.0
+Multimedia Framework
+1
+GStreamer
+1.20.3
+Multimedia Development Library
+1
+libgstreamer1.0-dev
+1.20.3
+Multimedia Development Library
+1
+libgstreamer-plugins-base1.0-dev
+1.20.3
+Multimedia Plugin
+1
+gstreamer1.0-plugins-base
+1.20.3
+Multimedia Plugin
+1
+gstreamer1.0-plugins-good
+1.20.3
+Multimedia Plugin
+1
+gstreamer1.0-plugins-bad
+1.20.3
+Multimedia Plugin
+1
+gstreamer1.0-plugins-ugly
+1.20.3
+GPU Computing Platform
+1
+CUDA Toolkit
+12.6
+Deep Learning Library
+1
+cuDNN
+9.3.0
+AI Inference Engine
+1
+TensorRT
+10.3.0
+NVIDIA SDK
+1
+JetPack
+6.2
+NVIDIA BSP
+1
+Linux for Tegra (L4T)
+R36.4.0
+System Utility
+1
+sudo
+1.9.9
+Text Editor
+1
+nano
+6.2
+Network Utility
+1
+curl
+7.81.0
+Security Utility
+1
+gnupg
+2.2.27
+System Utility
+1
+lsb-release
+11.1.0
+Kernel Utility
+1
+kmod
+29
+USB Utility
+1
+usbutils
+014
+PCI Utility
+1
+pciutils
+3.7.0
+Networking Utility
+1
+iproute2
+5.15.0
+Networking Utility
+1
+net-tools
+2.10
+Networking Utility
+1
+iputils-ping
+3:20211215
+Camera Utility
+1
+v4l-utils
+1.22.1
+GPIO Utility
+1
+gpiod
+1.6.3
+I²C Utility
+1
+i2c-tools
+4.3
+Development Package
+1
+build-essential
+12.9ubuntu3
+5.7
+Iris-Telematics
+Dependency type
+Sprint
+Dependency Name
+Version
+Package (base)
+1
+Ubuntu
+24.04 (app runtime base)
+Package
+1
+util-linux
+2.39 (provides nsenter used for VCU power-off 
+→
+ host shutdown)
+External library
+1
+glibc (libc)
+2.39 (libc6)
+External library
+1
+libgcc_s
+GCC 14 (libgcc-s1)
+External library
+1
+libstdc++
+GCC 14 / Ubuntu 24.04 (libstdc++6)
+External library
+1
+libpthread
+via glibc (linked as -lpthread)
+External library
+1
+libfmt
+9.1 (libfmt9)
+External library
+1
+libspdlog
+1.12 (libspdlog1.12)
+6
+Assets Included in the Release
+6.1
+Nexus-VCU
+File Name
+Sprint no
+Checksum value
+Version
+VCU_Model_File.slx
+1
+Checksum:
+f9cca9c1ea651eef55449c5a04ecc93b168d6cff78feb9c201d19817bc7695f8
+V1.0.0-rc-1
+VCU_Model_File.slx
+2
+Checksum:
+8D05D584C2F4B9B79CDE91470269232690977B41155C2840B7694FB5EE652515
+v1.0.1-rc-1
+6.2
+Atlas-MC
+File Name
+Sprint no
+Checksum value
+Version
+scout-atlas-arm64:v1.0.0-rc-1
+1
+Docker-content-digest:
+sha256:cb0339137afab05dd6a70110e5729d59eace90d393665132393ea3e7b831a48b
+v1.0.0-rc-1
+scout-atlas-x86:v1.0.0-rc-1
+1
+Docker-content-digest:
+sha256:c6cc5cdea3e415a2a2c2c2cd9795f50d2fa68585410d9c1468fb2fd11e870dee
+v1.0.0-rc-1
+scout-atlas-arm64:v1.0.0-rc-4
+2
+4Docker-content-digest:
+sha256:c743bacf6f63ba5b91eedf691780e66d9cb23fbe791af412bdc43dcd6bad7729
+ 
+v1.1.0-rc-4
+scout-atlas-x86:v1.0.0-rc-4
+2
+Docker-content-digest:
+sha256:a815ff86b2317745bf8cda4b4fcab4ec0364463b7af88b9d9dc436e94fc7f0d7
+v1.1.0-rc-4
+6.3
+Helios-HC
+File Name
+Sprint no
+Checksum value
+Version
+single_hand_controller.ino.hex
+1
+Checksum:
+b02ee33505e8493afbb5a0333741e9cc91aee829d419166f7f1db36fb4f4bd57
+v1.0.0-rc-1
+single_hand_controller.ino.with_bootloader.hex
+1
+Checksum:
+86554076d311fba1da5f91fcf93d59ea01d85a875b65506431bc022a84066e29
+v1.0.0-rc-1
+single_hand_controller.ino.hex
+2
+Checksum:
+54140E08E470C570D060AA937FE2D5E50605F7466798A7CF851C27C06324D53B
+v1.0.1-rc-1
+single_hand_controller.ino.with_bootloader.hex
+2
+Checksum:
+CE47AC46BA65C0E038B49A0B16C695E40C785265300E5A60E2610DCBCDC7EC0D
+v1.0.1-rc-1
+6.4
+Helios-OBD
+File Name
+Sprint no
+Checksum value
+Version
+scout-obd:v1.0.0-rc-1
+1
+Docker-content-digest:
+sha256:a9bcde1bb0b314c82b785bfabed07e4852d4ec75993f73dac31a0879569b54a6
+v1.0.0-rc-1
+6.5
+Helio-GCS
+File Name
+Sprint no
+Checksum value
+Version
+scout-gcs:v1.0.0-rc-1
+1
+Docker-content-digest:
+ sha256:638bfdbcb9966cfdb5c10cc7775bf2245a42e73a4430ad242c62d87e6f480d60
+v1.0.0-rc-1
+scout-gcs:v1.1.0-rc-2
+2
+Docker-content-digest:
+bef83ca8b9ea5c66538c2b6a946556a7c46baf5d2f6495102f7a4a5b072581e9
+ 
+v1.1.0-rc-2
+6.6
+Atlas-Vision
+File Name
+Sprint no
+Checksum value
+Version
+scout-vision-arm64:v1.0.0-rc-1
+1
+Docker-content-digest:
+sha256:60fa14cf8cafed786e7cfb536548aa896f61436eafc629fede6cf41bb28dbbff
+v1.0.0-rc-1
+scout-vision-x84:v1.0.0-rc-1
+2
+Docker-content-digest:
+sha256:524cba07bd6e12abde1968788933e08c053c31003e82a0dff7f2958dfb088285
+v1.0.0-rc-1
+6.7
+Iris-Telematics
+File Name
+Sprint no
+Checksum value
+Version
+telematics_server:v1.0.0-rc-1
+1
+Docker-content-digest:
+sha256:2bade233ad846d0d47980d049fc2aff54fc064967ef375c8d591830cf93b4d29
+V1.0.0-rc-1
+telematics_server:v1.0.1-rc-1
+2
+Docker-content-digest:
+sha256:dffd00a386ffbca95f3d809efebe8e0c1f7594d643fbed73cc5c13a2dfe3a823
+v1.0.1-rc-1
+ 7
+Reference Documents Released:
+Doc ID
+Doc Name
+Spr
+Version
+Change
+SCT-TD0-USR-001
+Scout TD0 User Requirements
+1
+V1.3
+Rephrased requirement
+descriptions without changing
+technical intent to improve
+traceability between USRD and SSRD
+SCT-TD0-SSR-002
+Scout TD0 System & Software Requirements Specification
+1
+V1.5
+Added OBD & GCS Operator Interface UI
+screens for system, power, sensor & communication info.
+SCT-TD0-ICD-003
+Scout TD0 System Interface Control Document
+1
+V1.3
+Added 
+1. VCU_PWR_OFF_REQ1
+and VCU_PWR_OFF_REQ2
+2. Added main compute MCU
+messages (3.5.7)
+3. Added
+COMP_SENSOR_SUBSYSTEM_HE
+ALTH1 and
+COMP_SENSOR_SUBSYSTEM_HE
+ALTH2
+4. Split the VCU_DRIVE_HEALTH
+message into
+VCU_DRIVE_MOTOR_HEALTH
+and
+VCU_DRIVE_MOTOR_CONTROLL
+ER_HEALTH.
+5. Naming conventions were
+changed from front to forward,
+rear to aft, left to port and right
+to starboard.
+6. Auxiliary CAN sections were
+reorganized
+7. Added SEC_COMP_MOT_DRIVE_STATU
+S
+38. Added COMP_CAM_INFO and
+COMP_IMU_ATTITUDE
+9. Removed timestamp
+references from
+COMP_UGV_STATUS
+10. Added
+GCS_SET_HOME_LOCATION_COMMAND
+SCT-TD0-SID-004
+Scout Sub-system Interconnection Document
+1
+V1.0
+No changes
+SCT-TD0-USR-001
+Scout TD0 User Requirements
+2
+V1.4
+Removed the additional Information about the UGV such as Wheel size, Wheel base, Wheel track (Section 2)
+Added Mechanical and structural requirements (Section 5)
+ 
+SCT-TD0-SSR-002
+Scout TD0 System & Software Requirements Specification
+2
+V1.6
+Modified Power ON of UGV: Time sync response processing from HC and GCS changed to every 0.1Hz from 10Hz(Sec 2.1.1.4)
+Modified HC: UGV battery status: Atlas Periodically sending SoC of the HV battery , along with other status information changed to every 1Hz  from 10 Hz(Sec 3.2.4.4)
+Modified HC- Light control of UGV: Atlas: Condition for state transition- Wake up default changed to OFF from ON (Sec 3.2.9.4.1)
+Modified HC- Remote Emergency stop of UGV: Atlas: Condition for state transition- Wake up default changed to disengaged from engaged (Sec 3.3.1.4.1)
+Modified Vision subsystem wakeup: Atlas - MC: Main Compute: Presence of the Vision subsystem changed to the logical layer instead of  physical layer.
+ 
+(Sec 4.1.1.4)
+Modified Wheel towing: Removed 'Ensure EM brakes are released' from the tow mode activation sequence, and removed 'Enable EM brakes' from the tow mode deactivation sequence. (Sec 2.1.7.2.2)
+Added "Unknown" fault criteria to Secondary Compute in the feature Health & mode monitoring CAN bus (Sec 2.1.2.8)
+Deleted Tactile alerts from HC Operator interface. (Sec 3.2)
+Added UI designs for UGV connection flow, Speed switch, Drive switch, camera view switch, camera recording, On vehicle & Remote GCS E-stop, and Map view ,AHI view, Connection fail
+UI Design Ref Doc ID: 
+Polaris_Connect_Design .v.1.0.1 
+Modified HC: Arm state by adding “VCU shall reset the forward and AFT motor controllers whenever it receives the arm request” in VCU section. (Sec 3.2.7.2)
+Modified GCS: Pose & Path display: In Helios GCS: Removed the operator-command based path reset condition.The traversed path is now reset  on a new mission or when GCS reboots.
+SCT-TD0-PD-005
+Scout TD0 Drive & Power specification 
+2
+V1.0
+First Release
+SCT-TD0-PD-006
+Scout TD0 Drive & Power specification verification 
+2
+V1.0
+First Release
