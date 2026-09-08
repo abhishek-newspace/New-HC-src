@@ -20,7 +20,7 @@
  * - pending-request timeout helpers; arm wait uses Atlas HEARTBEAT arm field
  * - lights: one LIGHT_CONTROL per toggle edge (pins 6/8); no periodic retransmit
  * - e-stop: pins 4/5 toggle (engage / disengage / centre N/A); TX gated by HEARTBEAT
- * - speed limit: pin 3 momentary — one TX per click (Low→Mid→High); no hold/retransmit
+ * - speed limit: pin 3 — hold SPEED_LIMIT_HOLD_MS (3 s) then one TX (Low→Mid→High)
  *
  * @date 29/07/2026
  * @author Abhishek
@@ -29,6 +29,9 @@
  * @date 30/07/2026
  * @author Abhishek
  * - speed limit momentary: one-shot send per click (removed toggle-style 3 s retransmit)
+ *
+ * @date 08/09/2026
+ * - speed limit: require continuous 3 s hold before cycle (not immediate press)
  */
 
 #include "include/standard_procedures.hpp"
@@ -46,7 +49,7 @@ bool turnOnHeadlight = false;
 bool turnOnFoglight = false;
 bool turnOffLight = false;
 int required_speed = 0;
-bool speed_limit_press = false;  /* one-shot: momentary pin 3 — send once per click */
+bool speed_limit_press = false;  /* one-shot after 3 s hold on pin 3 */
 bool switchMode = false;
 bool arm_press = false;
 //bool disarm_press = false;
@@ -168,7 +171,7 @@ inline bool turnOffLightsCondition(){
 
 
 inline bool speedChangeCondition(){
-    /* Momentary pin 3: one TX per click (not continuous like the old HI/MID/LO toggle). */
+    /* Pin 3: one TX after SPEED_LIMIT_HOLD_MS continuous hold (see IOhandler). */
     return speed_limit_press;
 }
 
@@ -412,7 +415,7 @@ void run_OFP_cycle()
         turnOnFoglight = false;
     }
 
-    /* Speed limit (pin 3 momentary): one COMMAND per click, Low→Mid→High cycle. */
+    /* Speed limit (pin 3): one COMMAND after 3 s hold, Low→Mid→High cycle. */
     if(speedChangeCondition()){
         sendSpeedChangeRequest(required_speed);
         pending_expected_speed = required_speed;

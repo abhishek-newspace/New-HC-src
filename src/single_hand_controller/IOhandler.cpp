@@ -37,6 +37,9 @@
  * @date 30/07/2026
  * @author Abhishek
  * - cycleSpeedLimit() sets speed_limit_press for single OFP send (not continuous)
+ *
+ * @date 08/09/2026
+ * - pin 3 speed-limit: 3 s continuous hold (SPEED_LIMIT_HOLD_MS) before cycle fires
  */
 #include "include/IOhandler.hpp"
 
@@ -114,8 +117,9 @@ void enableDisarm(){
 }
 
 /**
- * Pin 3 momentary: one click → send next limit relative to UGV HEARTBEAT status
- * (not last TX): Low→Mid, Mid→High, High→Low. Unknown → Low.
+ * Pin 3 momentary: after SPEED_LIMIT_HOLD_MS continuous hold → send next limit
+ * relative to UGV HEARTBEAT status (not last TX): Low→Mid, Mid→High, High→Low.
+ * Unknown → Low. Release before hold completes: no TX.
  */
 void cycleSpeedLimit(){
     const int current = (int)getUGV_speed();
@@ -146,15 +150,19 @@ long_press_button b_arm_disarm = {
     nullptr,
     enableArm,
     0,
-    0
+    0,
+    LONG_PRESS_DURATION
 };
 
-/** Pin 3: short press cycles speed limit Low→Mid→High. */
-button b_speed_limit = {
+/** Pin 3: hold SPEED_LIMIT_HOLD_MS (3 s) to cycle speed limit Low→Mid→High. */
+long_press_button b_speed_limit = {
     BUTTON_SPEED_LIMIT,
     0,
-    cycleSpeedLimit,
-    0
+    nullptr,           /* short press: ignore */
+    cycleSpeedLimit,   /* long press only */
+    0,
+    0,
+    SPEED_LIMIT_HOLD_MS
 };
 
 button b_mode_switch = {
@@ -259,13 +267,15 @@ void updateButtonValues(struct button *b1, int32_t ms_since_last_check){
 
 /**
  * update the struct values for a long press button.
- * Hold timer uses LONG_PRESS_DURATION (time_defs.h). Cooldown only blocks a
- * new press after release — it must not gate pressed_for accumulation (that
- * made holds feel like ~seconds when the OFP loop dt was >= BUTTON_PRESS_COOLDOWN).
+ * Hold timer uses b1->long_press_ms (e.g. LONG_PRESS_DURATION / SPEED_LIMIT_HOLD_MS).
+ * Cooldown only blocks a new press after release — it must not gate pressed_for
+ * accumulation.
  */
 void updateLongPressButtonValues(struct long_press_button *b1, int32_t ms_since_last_check){
     b1->cooldown = max(0, b1->cooldown - ms_since_last_check);
     const bool pressed = !digitalRead(b1->pin);
+    const uint32_t hold_ms =
+        (b1->long_press_ms != 0) ? b1->long_press_ms : (uint32_t)LONG_PRESS_DURATION;
 
     if(pressed){
         if(b1->cooldown > 0 && b1->press_state == not_pressed){
@@ -278,7 +288,7 @@ void updateLongPressButtonValues(struct long_press_button *b1, int32_t ms_since_
         }
         else if(b1->press_state == short_pressed){
             b1->pressed_for += ms_since_last_check;
-            if(b1->pressed_for >= LONG_PRESS_DURATION){
+            if(b1->pressed_for >= hold_ms){
                 b1->press_state = long_pressed;
                 if(b1->long_press_callback != nullptr)
                     b1->long_press_callback();
@@ -415,7 +425,7 @@ void checkUserInput()
 
     int32_t ms_since_last_check = millis() - last_input_checked_at;
     updateLongPressButtonValues(&b_arm_disarm, ms_since_last_check);
-    updateButtonValues(&b_speed_limit, ms_since_last_check);
+    updateLongPressButtonValues(&b_speed_limit, ms_since_last_check);
     updateButtonValues(&b_mode_switch, ms_since_last_check);
     updateEstopToggleEdge(&tt_estop_toggle, ms_since_last_check);
     updateLightToggleEdge(&tt_light_toggle, ms_since_last_check);

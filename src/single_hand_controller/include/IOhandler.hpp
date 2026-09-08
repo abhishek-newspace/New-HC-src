@@ -96,6 +96,8 @@ struct long_press_button{
     void (*long_press_callback)(void);
     int32_t cooldown;
     uint32_t pressed_for;
+    /** Hold time (ms) before long_press_callback fires. */
+    uint32_t long_press_ms;
 };
 
 /// @brief 2-state direction toggle switch on prototype; requires jitter correction due to fault

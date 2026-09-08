@@ -15,7 +15,7 @@
  * @date 29/07/2026
  * @author Abhishek
  * - remapped: pins 4/5 = e-stop toggle (engage / disengage; centre = N/A)
- * - remapped: pin 3 = speed-limit momentary (cycles Low→Mid→High)
+ * - remapped: pin 3 = speed-limit momentary (hold 3 s to cycle Low→Mid→High)
  */
 #pragma once
 #include "Arduino.h"
@@ -42,7 +42,7 @@
 #define TOGGLE_FOGLIGHTS 8
 #define BUTTON_TORQUE_MODE 7
 #define BUTTON_ARM 2
-#define BUTTON_SPEED_LIMIT 3  /* momentary: cycle drive limit Low→Mid→High */
+#define BUTTON_SPEED_LIMIT 3  /* hold SPEED_LIMIT_HOLD_MS (3 s) to cycle Low→Mid→High */
 
 /**
  * Optional tactile / haptic pin for SRS §3.2.4 (UGV low-battery alert).

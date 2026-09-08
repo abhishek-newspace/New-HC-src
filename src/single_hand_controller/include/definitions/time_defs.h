@@ -70,5 +70,7 @@
 #define SCREEN_UPDATE_DELAY     SECONDS_MS_2    // screen to be updated every 2 second
 
 #define LONG_PRESS_DURATION     MS_500
+/** Pin 3 speed-limit: hold continuously this long before cycling Low→Mid→High. */
+#define SPEED_LIMIT_HOLD_MS     SECONDS_MS_3
 #define BUTTON_PRESS_COOLDOWN   MS_40
 #define TOGGLE_DEBOUNCE_DURATION SECONDS_US_2
