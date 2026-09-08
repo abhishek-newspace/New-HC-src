@@ -16,14 +16,41 @@
  * @date 17/07/2026
  * @author Abhishek
  * - arm/disarm request uses ICD values: param1 2=ARM, 1=DISARM
+ *
+ * @date 03/09/2026
+ * - DEBUG warn if MANUAL_CONTROL packed without MAVLINK_IFLAG_SIGNED
  */
 #include "include/message_sender.hpp"
 
 extern uint64_t UGVTime,RecvTime, RecvTimeRef;
 extern mavlink_status_t* status_chan;
+#ifdef SIGN_PACKETS
+extern mavlink_signing_t signing;
+extern mavlink_signing_streams_t signing_streams;
+#endif
+
+/**
+ * Attach signing on the channel status used by finalize() in THIS TU.
+ * If signing is missing, mavlink leaves incompat_flags=0 on the wire (unsigned).
+ */
+static void ensure_outgoing_signing()
+{
+#ifdef SIGN_PACKETS
+    mavlink_status_t *st = mavlink_get_channel_status(MAVLINK_COMM_0);
+    if (st == nullptr) {
+        return;
+    }
+    /* Re-bind every pack: protects against per-TU status mismatch / cleared ptr. */
+    st->signing = &signing;
+    st->signing_streams = &signing_streams;
+    signing.flags |= MAVLINK_SIGNING_FLAG_SIGN_OUTGOING;
+    st->flags &= ~MAVLINK_STATUS_FLAG_OUT_MAVLINK1; /* signing requires MAVLink2 */
+#endif
+}
 
 int message_sender::buffer_arm_disarm_cmd(bool state)
 {
+    ensure_outgoing_signing();
     // ICD: 2=ARM, 1=DISARM
     arm_disarm_cmd.param1 = state ? ICD_ARM_PARAM1 : ICD_DISARM_PARAM1;
 
@@ -45,6 +72,7 @@ int message_sender::buffer_arm_disarm_cmd(bool state)
 
 int message_sender::buffer_light_control_cmd(bool headlight, bool foglight, bool brakelight)
 {
+    ensure_outgoing_signing();
     // ICD v1.3 §4.2.5.10 HC_LIGHT_CONTROL_COMMAND: 0 = OFF, 1 = ON
     // (Do not use 2 — that is UGV_SYSTEM_INFO status encoding, not the command.)
     const float LIGHT_ON  = 1.0f;
@@ -79,6 +107,7 @@ int message_sender::buffer_light_control_cmd(bool headlight, bool foglight, bool
 }
 int message_sender::buffer_mode_cmd(int speed)
 {
+    ensure_outgoing_signing();
     mode_cmd.param3 = speed;
     mavlink_msg_command_long_pack(
         HC_ID,
@@ -99,6 +128,7 @@ int message_sender::buffer_mode_cmd(int speed)
 
 int message_sender::buffer_drive_mode_cmd(int mode)
 {
+    ensure_outgoing_signing();
     drive_cmd.param1 = mode;
     mavlink_msg_command_long_pack(
         HC_ID,
@@ -117,8 +147,9 @@ int message_sender::buffer_drive_mode_cmd(int mode)
 
 int message_sender::buffer_heartbeat()
 {
-    uint8_t prevFlags = mavlink_get_channel_status(MAVLINK_COMM_0)->flags;  
-    mavlink_get_channel_status(MAVLINK_COMM_0)->flags = MAVLINK_STATUS_FLAG_OUT_MAVLINK1;  
+    /* Force MAVLink1 for heartbeat only; do not wipe other status flags. */
+    mavlink_status_t *st = mavlink_get_channel_status(MAVLINK_COMM_0);
+    st->flags |= MAVLINK_STATUS_FLAG_OUT_MAVLINK1;
     
     mavlink_msg_heartbeat_pack(
         heartbeat.sys_id,
@@ -130,13 +161,15 @@ int message_sender::buffer_heartbeat()
         heartbeat.custom_mode,
         heartbeat.system_status);
 
-    mavlink_get_channel_status(MAVLINK_COMM_0)->flags = prevFlags;
+    st->flags &= ~MAVLINK_STATUS_FLAG_OUT_MAVLINK1;
     return mavlink_msg_to_send_buffer(buf,msg);
 }
 
 
 int message_sender::buffer_timesync()
 {
+    /* Timesync is allow-listed unsigned; still use MAVLink2 framing. */
+    ensure_outgoing_signing();
     if(RecvTimeRef == 0)    // during first timesync
         RecvTimeRef = micros();
     
@@ -159,6 +192,7 @@ int message_sender::buffer_timesync()
 
 int message_sender::buffer_manual_control(int x, int y, bool extra_feature_1_press, bool extra_feature_1_long_press, bool extra_feature_2_press, bool extra_feature_2_long_press)
 {
+    ensure_outgoing_signing();
     manual_control.x = x;
     manual_control.y = y;
     manual_control.Push_buttons = extra_feature_1_press | extra_feature_1_long_press << 1 | extra_feature_2_press << 2 | extra_feature_2_long_press << 3;
@@ -178,10 +212,19 @@ int message_sender::buffer_manual_control(int x, int y, bool extra_feature_1_pre
         0,0,0,0,0,0,0,0,0, 0
     );
 
+#ifdef SIGN_PACKETS
+    IF_DEBUG(
+        if ((msg->incompat_flags & MAVLINK_IFLAG_SIGNED) == 0) {
+            Serial.println(F("WARN: MANUAL_CONTROL not signed"));
+        }
+    )
+#endif
+
     return mavlink_msg_to_send_buffer(buf,msg);
 }
 
 int message_sender::buffer_remote_emergency_cmd(float param1){
+    ensure_outgoing_signing();
     // ICD §4.2.5.11: 1=Disable, 2=Engaged, 3=Disengaged
     estop_cmd.param1 = param1;
 

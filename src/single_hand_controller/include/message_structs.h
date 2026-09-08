@@ -11,6 +11,8 @@
  */
 #pragma once
 #include "definitions.h"
+
+/* MAVLINK_EXTERNAL_RX_* are set in definitions.h (included above). */
 #include "custom_v0.3/ugvcustom/mavlink.h"
 
 // commands sent from hand controller

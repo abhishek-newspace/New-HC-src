@@ -67,13 +67,18 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 #define SIGN_PACKETS  // used to send and receive signed packets
 //#define BYPASS_NO_SIGNING   // prevents display of error to show that signing is disabled
 
+/* Must be defined before any mavlink.h include in every TU — shared channel
+ * status so setupSigning() reaches message_sender finalize (else incompat=0). */
+#define MAVLINK_EXTERNAL_RX_STATUS
+#define MAVLINK_EXTERNAL_RX_BUFFER
+
 //#define RELEASE_ARDUINO_UNO
 
 /* ===================== SWITCH THESE TWO FOR DEV vs PRODUCTION ===================== */
 
 #ifndef RELEASE_ARDUINO_UNO
 // PRODUCTION UHF: uncomment RELEASE and comment out HC_LINK_OVER_USB.
-#define RELEASE
+// #define RELEASE
 #endif
 
 /**
@@ -83,7 +88,7 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
  *
  * For PRODUCTION UHF: comment out HC_LINK_OVER_USB and uncomment RELEASE above.
  */
-// #define HC_LINK_OVER_USB
+#define HC_LINK_OVER_USB
 
 /* Alias used by the rest of the codebase (do not rename call sites). */
 #ifdef HC_LINK_OVER_USB
@@ -97,8 +102,15 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 
 // #define GET_RADIO_CONFIG
 
-// Keep all of these OFF when linking to Atlas over USB (debug text would corrupt MAVLink).
-// #define _DEBUG_
+/*
+ * Keep Serial debug OFF when HC_LINK_OVER_USB is set: RADIO_PORT is Serial, so
+ * IF_DEBUG prints would interleave with MAVLink and corrupt Atlas decode
+ * (including incompat_flags / signing). Enable _DEBUG_ only with real UHF
+ * (Serial3) and a separate USB Serial Monitor.
+ */
+#ifndef HC_LINK_OVER_USB
+#define _DEBUG_
+#endif
 // #define PRINT_BYTES
 // #define TESTING
 // #define DEBUG_OFP_TIMING
