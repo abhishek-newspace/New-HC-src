@@ -17,6 +17,9 @@
  * @author Abhishek
  * - ENABLE_STARTUP_LOGO / STARTUP_LOGO_HOLD_MS: static NS splash (no invert animation)
  * - splash/UI painted with backlight gated to hide soft-SPI scan wipe
+ *
+ * @date 09/09/2026
+ * - drive-mode text colours: Speed=green, Torque=blue, Torque+SL=orange
  */
 
 
@@ -55,7 +58,16 @@
  */
 #define RSSI_WEAK_THRESHOLD_DBM (-120)
 
-#define DM_COLOR COLOR_GREENYELLOW
+/**
+ * Drive-mode text colours (stand-in for HC drive-mode LED — SRS / test matrix):
+ *   Speed                    -> Green
+ *   Torque                   -> Blue
+ *   Torque with speed limit  -> Orange
+ */
+#define DM_COLOR_SPEED   COLOR_GREEN
+#define DM_COLOR_TORQUE  COLOR_BLUE
+#define DM_COLOR_TORQUE_SL COLOR_ORANGE
+#define DM_COLOR DM_COLOR_SPEED
 
 /**
  * Battery box labels ("UGV"/"HC"). This TFT has no true alpha blending;

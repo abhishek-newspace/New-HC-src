@@ -616,12 +616,13 @@ void displayConnectionStatus(){
 
 void displayDriveMode(driveMode mode){
   setFontSmall();
+  /* Text colour mirrors drive-mode LED: Speed=Green, Torque=Blue, Torque+SL=Orange */
   if(mode == speed)
-    tft.drawText(DM_POS_X, DM_POS_Y, "SPEED  MODE", DM_COLOR);   
+    tft.drawText(DM_POS_X, DM_POS_Y, "SPEED  MODE", DM_COLOR_SPEED);
   else if(mode == torque)
-    tft.drawText(DM_POS_X, DM_POS_Y, "TORQUE MODE", DM_COLOR);   
+    tft.drawText(DM_POS_X, DM_POS_Y, "TORQUE MODE", DM_COLOR_TORQUE);
   else
-    tft.drawText(DM_POS_X, DM_POS_Y, "TRQ SL MODE", DM_COLOR);   
+    tft.drawText(DM_POS_X, DM_POS_Y, "TRQ SL MODE", DM_COLOR_TORQUE_SL);
   setFont1();
 }
 
