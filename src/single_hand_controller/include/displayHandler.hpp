@@ -1,8 +1,8 @@
 /**
  * @file displayHandler.hpp
- * @version 0.3
+ * @version 0.4
  * @author Abhishek
- * @date 21/08/2026
+ * @date 21/09/2026
  * Takes care of all display-related functionality
  *
  * <h2>Changes</h2>
@@ -12,6 +12,10 @@
  * @date 21/08/2026
  * @author Abhishek
  * - declared setDisplayBacklight() and showStartupLogo() for static backlight-gated splash
+ *
+ * @date 21/09/2026
+ * @author Abhishek
+ * - declared displayEstopStatus() for remote e-stop LED indicator
  */
 #pragma once
 #include "definitions.h"
@@ -66,6 +70,12 @@ void displayBattery();
  * SRS §3.2.3.3 — HC pack compact battery box on the top row (label "HC" inside).
  */
 void displayHcBatteryStatus();
+
+/**
+ * SRS §3.3.1 — remote e-stop LED (Engaged=Red, Disengaged=Green, Disabled=Gray).
+ * Reflects current UGV emergency state from HEARTBEAT (not the requested state).
+ */
+void displayEstopStatus(estopMode mode);
 
 /// @brief set the screen with symbols/text that is required to understand the output of the display updates
 void displayBasic();

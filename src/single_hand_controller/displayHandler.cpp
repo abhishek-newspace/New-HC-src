@@ -1,8 +1,8 @@
 /**
  * @file displayHandler.cpp
- * @version 0.3
+ * @version 0.4
  * @author Abhishek
- * @date 21/08/2026
+ * @date 21/09/2026
  * 
  * Part of displayHandler library.
  * Defines variables and functions used for displayHandler.h
@@ -24,6 +24,11 @@
  * @author Abhishek
  * - setDisplayBacklight() / showStartupLogo(): static NS logo with backlight off during paint
  * - removed invert/second-frame startup animation; brief STARTUP_LOGO_HOLD_MS hold only
+ *
+ * @date 21/09/2026
+ * @author Abhishek
+ * - Arm status colours: Disarmed = Solid Red, Armed = Solid Green (was Blue when disarmed)
+ * - displayEstopStatus(): remote e-stop LED below connectivity LED (Engaged=Red / Disengaged=Green)
  */
 #include "include/displayHandler.hpp"
 #include "include/IOhandler.hpp"
@@ -360,12 +365,14 @@ void displayUGV_status(ugv_status s){
       IF_DEBUG (Serial.println("disconnected");)
     break;
     case active:
+      /* Arm status LED / text: Armed = Solid Green */
       text = "ARMED           ";
       color = COLOR_GREEN;
     break;
     case standby:
+      /* Arm status LED / text: Disarmed = Solid Red (was Blue) */
       text = "DISARMED        ";
-      color = COLOR_BLUE;
+      color = COLOR_RED;
     break;
     default:
       text = "UNKOWN          ";
@@ -374,6 +381,39 @@ void displayUGV_status(ugv_status s){
   tft.drawText(UGV_STATUS_TEXT_POS_X,UGV_STATUS_TEXT_POS_Y,text,color);
 }
 
+/**
+ * Remote e-stop LED — mirrors UGV remote emergency from HEARTBEAT (SRS §3.3.1).
+ * Engaged = Solid Red; Disengaged = Solid Green; Disabled = Gray.
+ */
+void displayEstopStatus(estopMode mode){
+  static int prev = -1;
+  if((int)mode == prev)
+    return;
+  prev = (int)mode;
+
+  int color = ESTOP_COLOR_DISENGAGED;
+  switch(mode){
+    case engaged:
+      color = ESTOP_COLOR_ENGAGED;
+      break;
+    case disengaged:
+      color = ESTOP_COLOR_DISENGAGED;
+      break;
+    case disabled:
+      color = ESTOP_COLOR_DISABLED;
+      break;
+    default:
+      color = ESTOP_COLOR_DISABLED;
+      break;
+  }
+
+  tft.fillRectangle(
+      ESTOP_STAT_MSG_POS_X,
+      ESTOP_STAT_MSG_POS_Y,
+      ESTOP_STAT_MSG_POS_X + ESTOP_STAT_MSG_SZ_X,
+      ESTOP_STAT_MSG_POS_Y + ESTOP_STAT_MSG_SZ_Y,
+      color);
+}
 
 void displaySpeed(int speed){
   String text;
@@ -746,6 +786,12 @@ void displayBasic(){
     drawSmallBatteryOutline(HC_BATTERY_POS_X, HC_BATTERY_POS_Y, &hc_batt_ix, &hc_batt_iy);
     displayBattery();
     displayHcBatteryStatus();
+
+    /* E-stop LED under connectivity LED; small "E" marker (does not overlap status text). */
+    setFontSmall();
+    tft.drawText(ESTOP_LABEL_POS_X, ESTOP_LABEL_POS_Y, "E", DEFAULT_TEXT_COLOR);
+    setFont1();
+    displayEstopStatus(disengaged);
 }
 
 /**
@@ -812,6 +858,8 @@ void displayRSSI(){}
 void displayBattery(){}
 
 void displayHcBatteryStatus(){}
+
+void displayEstopStatus(estopMode){}
 
 /// @brief set the screen with symbols/text that is required to understand the output of the display updates
 void displayBasic(){}

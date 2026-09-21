@@ -1,9 +1,9 @@
 #pragma once
 /**
  * @file display_defs.h
- * @version 0.3
+ * @version 0.4
  * @author Abhishek
- * @date 21/08/2026
+ * @date 21/09/2026
  * 
  * definitions required for display
  *
@@ -20,6 +20,11 @@
  *
  * @date 09/09/2026
  * - drive-mode text colours: Speed=green, Torque=blue, Torque+SL=orange
+ *
+ * @date 21/09/2026
+ * @author Abhishek
+ * - remote e-stop LED indicator (Engaged=Red, Disengaged=Green, Disabled=Gray)
+ *   placed below connectivity LED so it does not overlap status text
  */
 
 
@@ -134,3 +139,22 @@
 #define CONN_STAT_MSG_POS_Y 25
 #define CONN_STAT_MSG_SZ_X 20
 #define CONN_STAT_MSG_SZ_Y 20
+
+/**
+ * Remote e-stop LED (SRS §3.3.1) — same size as conn LED, stacked below it
+ * on the right margin so it clears UGV STATUS / SPEED / RSSI text columns.
+ *   Engaged    -> Red
+ *   Disengaged -> Green
+ *   Disabled   -> Gray
+ */
+#define ESTOP_STAT_MSG_POS_X 150
+#define ESTOP_STAT_MSG_POS_Y 50
+#define ESTOP_STAT_MSG_SZ_X  20
+#define ESTOP_STAT_MSG_SZ_Y  20
+/** Tiny "E" label just left of the e-stop LED (Terminal6x8). */
+#define ESTOP_LABEL_POS_X 138
+#define ESTOP_LABEL_POS_Y 55
+
+#define ESTOP_COLOR_ENGAGED    COLOR_RED
+#define ESTOP_COLOR_DISENGAGED COLOR_GREEN
+#define ESTOP_COLOR_DISABLED   COLOR_GRAY
