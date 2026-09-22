@@ -14,6 +14,9 @@
  * @date 21/08/2026
  * @author Abhishek
  * - setupDisplay(): backlight-gated startup (optional static NS logo, then main UI; no wipe animation)
+ *
+ * @date 22/09/2026
+ * - setupDisplay() early-returns when HC_NO_DISPLAY (headless HC)
  */
 #include "include/setupFunctions.h"
 
@@ -76,6 +79,10 @@ bool initMAVLink(){
 }
 
 void setupDisplay(){
+#ifdef HC_NO_DISPLAY
+    /* Headless HC: no TFT present — skip init so display pins are never driven. */
+    return;
+#endif
     initDisplayComm();
 
     // Paint off-screen (BL off) so soft-SPI wipe is never visible — same for USB or radio builds.

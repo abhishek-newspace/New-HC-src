@@ -25,8 +25,14 @@
  * @author Abhishek
  * - remote e-stop LED indicator (Engaged=Red, Disengaged=Green, Disabled=Gray)
  *   placed below connectivity LED so it does not overlap status text
+ *
+ * @date 22/09/2026
+ * - HC_NO_DISPLAY: skip TFT header and layout macros (headless HC builds)
+ *
+ * Requires HC_NO_DISPLAY (optional) from definitions.h — include that first.
  */
 
+#ifndef HC_NO_DISPLAY
 
 // LCD Device-specific header file
 #include "TFT_22_ILI9225.h"
@@ -158,3 +164,5 @@
 #define ESTOP_COLOR_ENGAGED    COLOR_RED
 #define ESTOP_COLOR_DISENGAGED COLOR_GREEN
 #define ESTOP_COLOR_DISABLED   COLOR_GRAY
+
+#endif /* !HC_NO_DISPLAY */

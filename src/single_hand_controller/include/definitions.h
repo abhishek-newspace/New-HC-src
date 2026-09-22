@@ -64,6 +64,16 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 // if the code is not meant to be deployed on the prototype hand controller, then comment out this line
 #define PROTOTYPE
 
+/**
+ * HC hardware without TFT: uncomment to disable ALL display init/draw.
+ * Teleop, MAVLink, buttons, and state logic keep working; TFT pins are never touched.
+ * Comment out again for Helios remotes that still have the ILI9225 screen.
+ *
+ *   Headless (no screen):  #define HC_NO_DISPLAY
+ *   With TFT:              // #define HC_NO_DISPLAY
+ */
+#define HC_NO_DISPLAY
+
 #define SIGN_PACKETS  // used to send and receive signed packets
 //#define BYPASS_NO_SIGNING   // prevents display of error to show that signing is disabled
 

@@ -295,7 +295,9 @@ void run_wakeup_seq(){
     
     #ifndef TESTING
     periodic_actions.addPeriodicAction(sendHeartbeat,SECONDS_MS_1);   // send a heartbeat every 1 second
+#ifndef HC_NO_DISPLAY
     periodic_actions.addPeriodicAction(updateDisplay,SECONDS_MS_2);
+#endif
    
    #ifndef TESTING_TIMESYNC
     establish_connectivity();
@@ -312,7 +314,9 @@ void run_wakeup_seq(){
 
     periodic_actions.reset();
     periodic_actions.addPeriodicAction(sendHeartbeat,SECONDS_MS_1);
+#ifndef HC_NO_DISPLAY
     periodic_actions.addPeriodicAction(updateDisplay,SECONDS_MS_2);
+#endif
     periodic_actions.addPeriodicAction(sendTimesyncRequest,TIMESYNC_MSG_WAIT,isUGVdisconnected);
 
 
