@@ -49,9 +49,8 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 #define ATLAS_COMP_ID 191
 
 // MAVLink system ID, and Component ID for single hand controller
-#define HC_ID 2
-#define HC_COMP_ID 1
-
+#define HC_ID 1
+#define HC_COMP_ID 2
 
 // can be used when invoking an arm_disarm command long message
 #define STATE_DISARM 0
