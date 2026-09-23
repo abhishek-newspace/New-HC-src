@@ -11,9 +11,17 @@
  * @date 15/07/2026
  * - sendLightToggleState(): one MAVLink packet per toggle position (pins 6/8)
  * - MANUAL_CONTROL_ONLY_WHEN_MOVING: send MC only out of deadband + one zero frame on return
+ *
+ * @date 03/09/2026
+ * - setupSigning(): attach signing_streams, force MAVLink2 for signed TX
+ * - shared m_mavlink_status/buffer so signing applies across TUs
 */
 
 #include "include/packetHandler.h"
+
+/* Shared MAVLink parse/TX channel state (see MAVLINK_EXTERNAL_RX_* in message_structs.h). */
+mavlink_status_t m_mavlink_status[MAVLINK_COMM_NUM_BUFFERS];
+mavlink_message_t m_mavlink_buffer[MAVLINK_COMM_NUM_BUFFERS];
 
 mavlink_status_t* status_chan;
 mavlink_signing_t signing; 
@@ -45,16 +53,19 @@ bool setupSigning(){
 
 #ifdef SIGN_PACKETS
     memset(&signing, 0, sizeof(signing)); // ensure no garbage values
+    memset(&signing_streams, 0, sizeof(signing_streams));
     signing.flags = MAVLINK_SIGNING_FLAG_SIGN_OUTGOING; 
     memcpy(signing.secret_key, signing_key, 32);  // set signing key
 
     signing_streams.num_signing_streams = 0;
 
     signing.link_id = 0;           // setting unique ID
-    signing.timestamp = 0;         // Current time in 10us units
+    signing.timestamp = 0;         // seeded from timesync (10 us since 2015-01-01 UTC)
     signing.accept_unsigned_callback = is_unsigned_message; // list of functions which don't require signing
     status_chan = mavlink_get_channel_status(MAVLINK_COMM_0);
     status_chan->signing = &signing;
+    status_chan->signing_streams = &signing_streams;
+    status_chan->flags &= ~MAVLINK_STATUS_FLAG_OUT_MAVLINK1; // signed packets require MAVLink2
 
     IF_DEBUG(Serial.print("set up signing, current flags ->");)
 #endif
@@ -127,10 +138,9 @@ void sendDisarmCommand(){
 }
 
 /**
- * Send LIGHT_CONTROL from 3-pos toggle:
- *   pin 6 LOW = OFF (0,0,0), centre = HEAD+REAR (1,0,1), pin 8 LOW = FOG (0,1,0).
+ * Send LIGHT_CONTROL from 3-pos toggle (legacy Helios remotes):
+ *   0 = OFF (0,0,0), 1 = HEAD+REAR (1,0,1), 2 = FOG (0,1,0).
  * ICD: param1=head, param2=fog, param3=rear.
- * Called once per toggle edge — not while the switch is held.
  */
 void sendLightToggleState(uint8_t toggle_pos){
     bool head = false;
@@ -142,18 +152,21 @@ void sendLightToggleState(uint8_t toggle_pos){
             head = true;
             rear = true;
             break;
-        case 2:   /* FOG (pin 8) */
+        case 2:   /* FOG */
             fog = true;
             break;
-        default:  /* OFF (pin 6) */
+        default:  /* OFF */
             break;
     }
 
+    sendLightControlState(head, fog, rear);
+}
+
+/** Independent head/fog/rear latch (Teensy momentary toggles). */
+void sendLightControlState(bool head, bool fog, bool rear){
     setHeadlighState(head);
     setFoglightState(fog);
-    IF_DEBUG(Serial.print("LIGHT_CTRL toggle=");)
-    IF_DEBUG(Serial.print(toggle_pos);)
-    IF_DEBUG(Serial.print(" head=");)
+    IF_DEBUG(Serial.print("LIGHT_CTRL head=");)
     IF_DEBUG(Serial.print(head);)
     IF_DEBUG(Serial.print(" fog=");)
     IF_DEBUG(Serial.print(fog);)

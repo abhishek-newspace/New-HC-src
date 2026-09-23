@@ -17,6 +17,10 @@
  *
  * @date 15/07/2026
  * - switchEmergencyMode: ICD 1/2/3 map; update UI only on change (avoid HB spam / OFP lag)
+ *
+ * @date 21/09/2026
+ * @author Abhishek
+ * - switchEmergencyMode updates remote e-stop LED via displayEstopStatus()
  */
 #include "include/stateHandler.hpp"
 
@@ -47,6 +51,8 @@ void switchEmergencyMode(int mode){
         return;
 
     current_emergency_mode = next;
+
+    displayEstopStatus(next);
 
     if(next == engaged){
         displayError("Estop Engaged", ESTOP_ENGAGED);

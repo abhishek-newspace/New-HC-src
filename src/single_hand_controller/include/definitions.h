@@ -64,8 +64,23 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 // if the code is not meant to be deployed on the prototype hand controller, then comment out this line
 #define PROTOTYPE
 
+/**
+ * HC hardware without TFT: uncomment to disable ALL display init/draw.
+ * Teleop, MAVLink, buttons, and state logic keep working; TFT pins are never touched.
+ * Comment out again for Helios remotes that still have the ILI9225 screen.
+ *
+ *   Headless (no screen):  #define HC_NO_DISPLAY
+ *   With TFT:              // #define HC_NO_DISPLAY
+ */
+#define HC_NO_DISPLAY
+
 #define SIGN_PACKETS  // used to send and receive signed packets
 //#define BYPASS_NO_SIGNING   // prevents display of error to show that signing is disabled
+
+/* Must be defined before any mavlink.h include in every TU — shared channel
+ * status so setupSigning() reaches message_sender finalize (else incompat=0). */
+#define MAVLINK_EXTERNAL_RX_STATUS
+#define MAVLINK_EXTERNAL_RX_BUFFER
 
 //#define RELEASE_ARDUINO_UNO
 
@@ -93,12 +108,26 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 /* ===================== END SWITCH SECTION ======================================== */
 
 
+/*
+ * Button / digital-input bring-up logs on USB Serial Monitor (does not require
+ * _DEBUG_). Safe with RELEASE + UHF (RADIO_PORT = Serial3). Comment out when
+ * done verifying the Teensy pin map.
+ */
+#define DEBUG_BUTTONS
+
 #ifndef RELEASE // Turn off all debug features during release
 
 // #define GET_RADIO_CONFIG
 
-// Keep all of these OFF when linking to Atlas over USB (debug text would corrupt MAVLink).
+/*
+ * Keep Serial debug OFF when HC_LINK_OVER_USB is set: RADIO_PORT is Serial, so
+ * IF_DEBUG prints would interleave with MAVLink and corrupt Atlas decode
+ * (including incompat_flags / signing). Enable _DEBUG_ only with real UHF
+ * (Serial3) and a separate USB Serial Monitor.
+ */
+#ifndef HC_LINK_OVER_USB
 // #define _DEBUG_
+#endif
 // #define PRINT_BYTES
 // #define TESTING
 // #define DEBUG_OFP_TIMING
@@ -109,6 +138,12 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 //#define STOP_RECV
 //#define SPECIAL_TESTING
 
+#endif
+
+#ifdef DEBUG_BUTTONS
+#define IF_DEBUG_BUTTONS(CODE) CODE
+#else
+#define IF_DEBUG_BUTTONS(CODE)
 #endif
 
 

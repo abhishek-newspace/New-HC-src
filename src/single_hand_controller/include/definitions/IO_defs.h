@@ -1,94 +1,158 @@
 /**
  * @file IO_defs.h
- * @version 0.3
+ * @version 0.5
  * @author Abhishek
- * @date 29/07/2026
- * 
- * Input and output pins, and other I/O related definitions
+ * @date 23/09/2026
+ *
+ * Teensy 4.1 HC pin map — matched to physical bring-up (“MASTER CONTROLLER TEST”).
  *
  * <h2>Changes</h2>
- * @date 15/07/2026
- * - HC_BATTERY_ADC_PIN (A6) and EMPTY/FULL ADC calibration for SRS §3.2.3.3
- * - optional TACTILE_PIN / HC_BATT_STATUS_LED_PIN hooks
- * - bench no-sense placeholder (HC_BATT_NO_SENSE_RAW_MAX; 0 = disabled)
- *
- * @date 29/07/2026
- * @author Abhishek
- * - remapped: pins 4/5 = e-stop toggle (engage / disengage; centre = N/A)
- * - remapped: pin 3 = speed-limit momentary (cycles Low→Mid→High)
+ * @date 23/09/2026
+ * - Teensy pin map from verified hardware test sketch
+ * - E-Stop: maintained latch (stays until moved up); NC logic HIGH = triggered
+ * - RGB LEDs: common-anode (HIGH=off); Arm LED: active-HIGH
+ * - Joystick 12-bit ADC on pins 14/15 (A0/A1)
  */
 #pragma once
 #include "Arduino.h"
 
 
-// LCD Pin configurations
+/* LCD (unused when HC_NO_DISPLAY) */
 #define TFT_RST A4
 #define TFT_RS  A3
-#define TFT_CS  A5  // SS
-#define TFT_SDI A2  // MOSI
-#define TFT_CLK A7  // SCK
-#define TFT_LED A9   // 0 if wired to +5V directly
-#define TFT_BRIGHTNESS 200 // Initial brightness of TFT backlight (optional)
+#define TFT_CS  A5
+#define TFT_SDI A2
+#define TFT_CLK A7
+#define TFT_LED A9
+#define TFT_BRIGHTNESS 200
 
 
-// Thumbstick control
-#define XPIN A0
-#define YPIN A1
+/* ========================================================================== */
+/* Analog — joystick (12-bit via analogReadResolution(12))                    */
+/* ========================================================================== */
+#define JOY_X_PIN  14   /* A0 — Steering / Roll */
+#define JOY_Y_PIN  15   /* A1 — Throttle / Pitch */
+#define XPIN       JOY_X_PIN
+#define YPIN       JOY_Y_PIN
 
-#define TOGGLE_ESTOP_ENGAGE    4  /* 3-pos toggle end: engage remote e-stop */
-#define TOGGLE_ESTOP_DISENGAGE 5  /* 3-pos toggle other end: disengage e-stop */
-/* Centre of pins 4/5 toggle = N/A (no e-stop action) */
-#define TOGGLE_LIGHTS_OFF 6 
-#define TOGGLE_FOGLIGHTS 8
-#define BUTTON_TORQUE_MODE 7
-#define BUTTON_ARM 2
-#define BUTTON_SPEED_LIMIT 3  /* momentary: cycle drive limit Low→Mid→High */
+
+/* ========================================================================== */
+/* Digital inputs (INPUT_PULLUP)                                              */
+/* ========================================================================== */
+/**
+ * E-Stop (pin 2) — maintained / latching switch (stays until operator moves it up).
+ * NC wiring (verified on hardware): HIGH = open / TRIGGERED, LOW = closed / OK.
+ */
+#define ESTOP_PIN             2
+#define BUTTON_ESTOP          ESTOP_PIN
+#define ESTOP_TRIGGERED_LEVEL HIGH
+
+#define ARM_BUTTON_PIN       28
+#define BUTTON_ARM           ARM_BUTTON_PIN
 
 /**
- * Optional tactile / haptic pin for SRS §3.2.4 (UGV low-battery alert).
- * This remote revision does not wire a buzzer/vibrator — leave undefined.
- * When hardware is available, define e.g. `#define TACTILE_PIN 9` and wire OUTPUT.
+ * Momentary buttons (pressed = LOW). Same order as LED groups 1..5 in the
+ * hardware test sketch.
+ *   12 → LED1 (connectivity)   — headlights toggle
+ *   24 → LED2 (HC battery)     — foglights toggle
+ *   25 → LED3 (UGV status)     — rearlights toggle
+ *   26 → LED4 (drive mode)     — drive mode switch
+ *   27 → LED5 (speed limit)    — speed-limit cycle (hold 3 s)
  */
+#define NUM_LED_BUTTONS       5
+#define BUTTON_HEADLIGHTS    12
+#define BUTTON_FOGLIGHTS     24
+#define BUTTON_REARLIGHTS    25
+#define BUTTON_DRIVE_MODE    26
+#define BUTTON_SPEED_LIMIT   27
+#define BUTTON_TORQUE_MODE   BUTTON_DRIVE_MODE
+
+
+/* ========================================================================== */
+/* Digital outputs — Arm LED + 5× RGB (common anode)                          */
+/* ========================================================================== */
+#define ARM_LED_PIN          18   /* active-HIGH: HIGH=ON, LOW=OFF */
+
+#define NUM_RGB_LEDS          5
+
+/* LED 1 — Connectivity link status */
+#define RGB1_R_PIN            3
+#define RGB1_G_PIN            4
+#define RGB1_B_PIN            5
+
+/* LED 2 — Local HC battery status */
+#define RGB2_R_PIN            6
+#define RGB2_G_PIN            7
+#define RGB2_B_PIN            8
+
+/* LED 3 — Vehicle (UGV) status */
+#define RGB3_R_PIN            9
+#define RGB3_G_PIN           10
+#define RGB3_B_PIN           29
+
+/* LED 4 — Drive mode indicator */
+#define RGB4_R_PIN           21
+#define RGB4_G_PIN           22
+#define RGB4_B_PIN           23
+
+/* LED 5 — Speed limit level indicator */
+#define RGB5_R_PIN           36
+#define RGB5_G_PIN           37
+#define RGB5_B_PIN           38
+
+/** Common-anode RGB: HIGH = Off, LOW = On */
+#define RGB_LED_OFF  HIGH
+#define RGB_LED_ON   LOW
+
+/** Arm status LED levels */
+#define ARM_LED_ON   HIGH
+#define ARM_LED_OFF  LOW
+
+/**
+ * Button pin list (index 0..4) — matches ledPins[][] below / hardware test.
+ */
+static const int HC_BUTTON_PINS[NUM_LED_BUTTONS] = {
+    BUTTON_HEADLIGHTS,   /* 12 → LED1 */
+    BUTTON_FOGLIGHTS,    /* 24 → LED2 */
+    BUTTON_REARLIGHTS,   /* 25 → LED3 */
+    BUTTON_DRIVE_MODE,   /* 26 → LED4 */
+    BUTTON_SPEED_LIMIT   /* 27 → LED5 */
+};
+
+/**
+ * RGB pin groups {R, G, B} for LEDs 1..5 — matches hardware test.
+ */
+static const int HC_LED_PINS[NUM_RGB_LEDS][3] = {
+    {RGB1_R_PIN, RGB1_G_PIN, RGB1_B_PIN},
+    {RGB2_R_PIN, RGB2_G_PIN, RGB2_B_PIN},
+    {RGB3_R_PIN, RGB3_G_PIN, RGB3_B_PIN},
+    {RGB4_R_PIN, RGB4_G_PIN, RGB4_B_PIN},
+    {RGB5_R_PIN, RGB5_G_PIN, RGB5_B_PIN}
+};
+
+/** RGB colour indices for setRgbLedColour() */
+enum rgbLedColour {
+    RGB_COLOUR_OFF   = 0,
+    RGB_COLOUR_RED   = 1,
+    RGB_COLOUR_GREEN = 2,
+    RGB_COLOUR_BLUE  = 3
+};
+
+
+/* Optional tactile / HC battery ADC — not on this Teensy revision */
 // #define TACTILE_PIN <pin>
-
-/**
- * SRS §3.2.3.3 — HC pack voltage sense (local UI only; never sent on MAVLink).
- * Wire pack (via divider) to this ADC. Calibrate EMPTY/FULL raw counts for 0%/100%.
- * A6 is free of joystick (A0/A1) and TFT (A2–A5, A7, A9) on the current board map.
- *
- * USB power alone does NOT feed A6 — without a divider the pin floats near 0 and
- * SoC would read empty. Bench mode below shows ~full when no sense voltage is present.
- */
-#define HC_BATTERY_ADC_PIN A6
-/** Raw ADC (~0–1023 @ 5 V AREF) at empty / full after the divider. Tune on hardware. */
+// #define HC_BATTERY_ADC_PIN A6
 #define HC_BATT_ADC_EMPTY  0
-#define HC_BATT_ADC_FULL   1023
-/**
- * If average ADC is below this, treat as “no sense HW / floating pin” and show a
- * bench placeholder SoC so the HC gauge is visible while powered from USB only.
- * When a real divider is wired, raise EMPTY/FULL and set this to 0 to disable.
- */
-/** Set to 0 to always use ADC mapping (no USB bench placeholder). */
+#define HC_BATT_ADC_FULL   4095
 #define HC_BATT_NO_SENSE_RAW_MAX  0
 #define HC_BATT_BENCH_SOC_WHEN_NO_SENSE  85
-
-/**
- * Optional discrete status LED pin (HIGH=on). If undefined, status is drawn on the TFT
- * as a coloured block (same approach as the connectivity LED).
- */
 // #define HC_BATT_STATUS_LED_PIN <pin>
 
 
-// used in IOhandler to convert from raw thumbstick control input to normalized value that is sent to atlas
+/* Joystick: Teensy 12-bit samples scaled to 10-bit control math in getXY_raw() */
 #define XY_NORMALIZED_MAX 4800
 #define ANALOG_OUTPUT_MAX 1023
-
-/**
- * 512 is the midpoint of 0 to 1023 hence, 50 units towards either side is allowed
- */
-#define XY_UPPER_LIMIT 544 // 512 + 32 = 544
-#define XY_LOWER_LIMIT 480 // 512 - 32 = 480
-
-
-// number of samples to be considered for filtering any analog signal taken from analog input
+#define ANALOG_RAW_MAX_12BIT 4095
+#define XY_UPPER_LIMIT 544
+#define XY_LOWER_LIMIT 480
 #define FILTER_SAMPLES 10

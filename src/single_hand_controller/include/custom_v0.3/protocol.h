@@ -3,6 +3,14 @@
 #include "string.h"
 #include "mavlink_types.h"
 
+/* Shared channel status/buffer when MAVLINK_EXTERNAL_RX_* is set (one per process). */
+#ifdef MAVLINK_EXTERNAL_RX_STATUS
+extern mavlink_status_t m_mavlink_status[];
+#endif
+#ifdef MAVLINK_EXTERNAL_RX_BUFFER
+extern mavlink_message_t m_mavlink_buffer[];
+#endif
+
 /* 
    If you want MAVLink on a system that is native big-endian,
    you need to define NATIVE_BIG_ENDIAN

@@ -1,10 +1,10 @@
 /**
  * @file IOhandler.hpp
- * @version 0.2
+ * @version 0.4
  * @author Abhishek
- * @date 15/07/2026
+ * @date 23/09/2026
  * Any interfacing with input/output pins of the microcontroller is taken care of, within this header file, except handling display output, which is done by the displayHandler
- * 
+ *
  * <h2>Changes</h2>
  * @date 28/04/2026
  * - Modified struct to inclued cooldown period, so that when the button is pressed and released, the next press is only registered after the cooldown period
@@ -17,6 +17,9 @@
  * @date 29/07/2026
  * @author Abhishek
  * - declared updateEstopToggleEdge() for pins 4/5 e-stop toggle
+ *
+ * @date 23/09/2026
+ * - Teensy: updateEstopSwitchEdge(); independent light toggle buttons
  */
 #pragma once
 #include "definitions.h"
@@ -62,16 +65,19 @@ void updateToggleValues(struct toggle *t1, int32_t ms_since_last_check);
 void updateTwoPosToggleValues(struct two_pos_toggle *t1, int32_t ms_since_last_check);
 
 /**
- * Light 3-pos toggle (pins 6=OFF, mid=HEAD, 8=FOG): fire callbacks only on position change
- * so MAVLink LIGHT_CONTROL is not requested every input poll.
+ * Legacy 3-pos light toggle helper (no-op on Teensy HC — lights are momentary buttons).
  */
 void updateLightToggleEdge(struct two_pos_toggle *t1, int32_t ms_since_last_check);
 
 /**
- * E-stop 3-pos toggle (pin4=engage, pin5=disengage, centre=N/A):
- * edge-triggered only — centre does nothing.
+ * Legacy wrapper — forwards to updateEstopSwitchEdge() on Teensy HC.
  */
 void updateEstopToggleEdge(struct two_pos_toggle *t1, int32_t ms_since_last_check);
+
+/**
+ * Single E-Stop latch (ESTOP_PIN): NC HIGH=triggered, LOW=OK; edge-triggered TX.
+ */
+void updateEstopSwitchEdge(int32_t ms_since_last_check);
 
 /**
  * SRS §3.2.3.3 — read HC pack SoC % from HC_BATTERY_ADC_PIN (0–100).
@@ -96,6 +102,8 @@ struct long_press_button{
     void (*long_press_callback)(void);
     int32_t cooldown;
     uint32_t pressed_for;
+    /** Hold time (ms) before long_press_callback fires. */
+    uint32_t long_press_ms;
 };
 
 /// @brief 2-state direction toggle switch on prototype; requires jitter correction due to fault

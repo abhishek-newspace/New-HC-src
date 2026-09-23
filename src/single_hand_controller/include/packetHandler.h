@@ -52,8 +52,11 @@ void sendDisarmCommand();
 /// @brief send a heartbeat
 void sendHeartbeat();
 
-/// @brief send LIGHT_CONTROL for 3-pos light toggle (0=OFF pin6, 1=HEAD centre, 2=FOG pin8)
+/// @brief send LIGHT_CONTROL for 3-pos light toggle (0=OFF, 1=HEAD+REAR, 2=FOG) — legacy
 void sendLightToggleState(uint8_t toggle_pos);
+
+/// @brief send LIGHT_CONTROL with independent head / fog / rear states (Teensy HC)
+void sendLightControlState(bool head, bool fog, bool rear);
 
 /// @brief send a request to turn on headlight
 void sendHeadlight();

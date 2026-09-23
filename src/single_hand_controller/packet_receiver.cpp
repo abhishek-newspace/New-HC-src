@@ -11,6 +11,9 @@
  * @date 15/07/2026
  * - fixed HEARTBEAT custom_mode: shift past arm before emergency (ICD 1/2/3)
  * - setBatterySOC from bits after emergency field
+ *
+ * @date 03/09/2026
+ * - timesync: seed signing timestamp as 10 us since 2015-01-01 (null-safe)
  */
 #include "include/packet_receiver.hpp"
 
@@ -93,7 +96,20 @@ void packet_receiver::receive_timesync(mavlink_message_t *msg)
     clearInfo();
     displayInfo(time);
 #endif
-    mavlink_get_channel_status(MAVLINK_COMM_0)->signing->timestamp = UGVTime / 10;
+#ifdef SIGN_PACKETS
+    // Seed global signing clock: 10 us units since 2015-01-01 UTC (same basis as Atlas)
+    extern mavlink_signing_t signing;
+    const uint64_t MAV_SIGN_EPOCH_US = 1420070400000000ULL; // 2015-01-01 00:00:00 UTC
+    if (UGVTime >= MAV_SIGN_EPOCH_US) {
+        signing.timestamp = (UGVTime - MAV_SIGN_EPOCH_US) / 10ULL;
+    } else {
+        signing.timestamp = UGVTime / 10ULL;
+    }
+    mavlink_status_t *st = mavlink_get_channel_status(MAVLINK_COMM_0);
+    if (st != nullptr && st->signing != nullptr) {
+        st->signing->timestamp = signing.timestamp;
+    }
+#endif
 }
 
 

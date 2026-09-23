@@ -34,6 +34,13 @@ Target board: **Arduino Mega 2560** (ATmega2560), flashed over USB with the stoc
 
 **Before flashing:** close Serial Monitor, Atlas, or any app using that port.
 
+If Linux reports permission denied on `/dev/ttyACM*`:
+
+```bash
+sudo usermod -aG dialout $USER
+# log out and back in, then retry
+```
+
 ---
 
 ### Windows — install once
@@ -70,7 +77,7 @@ Find yours if needed:
 Get-ChildItem "$env:LOCALAPPDATA\Arduino15\packages\arduino\tools" -Recurse -Filter avrdude.exe
 ```
 
-**Windows helper scripts:** `import_build.sh`, `flash_code.sh`, and `check_version_change.sh` are shell scripts for **Linux**. On Windows use the PowerShell commands in this README (or Git Bash).
+**Windows helper scripts:** `import_build.sh`, `flash_code.sh`, and `check_version_change.sh` are shell scripts. On Windows, run them from **Git Bash** or **WSL**, or use the PowerShell `avrdude` commands in this README.
 
 ---
 
@@ -100,8 +107,8 @@ After Arduino IDE compile, build cache is usually:
 | Script | Purpose |
 |--------|---------|
 | `sh import_build.sh` | Copy latest IDE build cache into `Build/` |
-| `sh flash_code.sh` | Flash hex from `Build/` (default port `/dev/ttyACM0`) |
-| `sh check_version_change.sh` | Compare on-board flash vs `Build/` hex |
+| `sh flash_code.sh [PORT] [HEX]` | Flash hex from `Build/` (default port `/dev/ttyACM0`) |
+| `sh check_version_change.sh [PORT] [HEX]` | Compare on-board flash vs `Build/` hex |
 
 ---
 
@@ -213,12 +220,12 @@ avrdude -v -p m2560 -c wiring -P /dev/ttyACM0 -b 115200 -D \
   -U flash:w:"Build/cli-build/single_hand_controller.ino.hex":i
 ```
 
-Or use the repo script (default port `/dev/ttyACM0`, path under `Build/4B84089…`):
+Or use the repo script (finds `single_hand_controller.ino.hex` under `Build/`; default port `/dev/ttyACM0`):
 
 ```bash
 sh flash_code.sh
-# Custom port (if script args match your version):
-# sh flash_code.sh /dev/ttyUSB0
+sh flash_code.sh /dev/ttyUSB0
+sh flash_code.sh /dev/ttyACM0 Build/current/single_hand_controller.ino.hex
 ```
 
 ### Windows (PowerShell)
@@ -238,6 +245,13 @@ Prebuilt hex in the repo instead:
 
 ```powershell
 $hex = "Build\4B84089CB73F43CCD32C0EAD5298DF55\single_hand_controller.ino.hex"
+```
+
+From **Git Bash** / WSL you can also run the helper script:
+
+```bash
+sh flash_code.sh COM5
+sh flash_code.sh COM5 Build/current/single_hand_controller.ino.hex
 ```
 
 List port:
@@ -401,10 +415,11 @@ avrdude -v -p m2560 -c wiring -P /dev/ttyACM0 -b 115200 -D \
   -U flash:v:"$REF":i
 ```
 
-Or use the repo script (legacy path under `Build/4B84089…`):
+Or use the repo script (finds hex under `Build/` unless you pass a path):
 
 ```bash
 sh check_version_change.sh /dev/ttyACM0
+sh check_version_change.sh /dev/ttyACM0 Build/current/single_hand_controller.ino.hex
 ```
 
 ---
@@ -426,6 +441,13 @@ $conf    = "$env:LOCALAPPDATA\Arduino15\packages\arduino\tools\avrdude\8.0.0-ard
 
 cd $tmp
 & $avrdude -C $conf -p m2560 -c wiring -P COM4 -b 115200 -D -U "flash:v:hc_ref.hex:i"
+```
+
+From **Git Bash** / WSL:
+
+```bash
+sh check_version_change.sh COM5
+sh check_version_change.sh COM5 Build/current/single_hand_controller.ino.hex
 ```
 
 #### Linux
@@ -478,9 +500,9 @@ Same SHA256 → same build artifact. Then use **flash verify** (`flash:v`) above
 |------|---------|-------|
 | **GUI: build + flash** | Arduino IDE → Upload | Arduino IDE → Upload |
 | **CLI: build** | `arduino-cli compile … --output-dir Build\cli-build` | Same with `/` paths |
-| **CLI: flash** | PowerShell + `avrdude.exe` from Arduino15 | `avrdude` or `sh flash_code.sh` |
+| **CLI: flash** | PowerShell + `avrdude.exe` from Arduino15, or `sh flash_code.sh COM5` in Git Bash | `avrdude` or `sh flash_code.sh` |
 | **Copy IDE build to `Build/`** | Export → `Build\current\` | Export → `Build/current/` |
-| **Validate on HC** | `avrdude flash:v` via `%TEMP%\hc_verify` | `avrdude flash:v` or `check_version_change.sh` |
+| **Validate on HC** | `avrdude flash:v` via `%TEMP%\hc_verify`, or `sh check_version_change.sh COM5` | `avrdude flash:v` or `check_version_change.sh` |
 
 ---
 
@@ -488,7 +510,7 @@ Same SHA256 → same build artifact. Then use **flash verify** (`flash:v`) above
 
 | Problem | What to check |
 |---------|----------------|
-| `can't open device` / `ser_open()` | Wrong port; close Serial Monitor / Atlas |
+| `can't open device` / `ser_open()` | Wrong port; close Serial Monitor / Atlas; on Linux add user to `dialout` |
 | `programmer is not responding` | USB cable, port, or try another USB socket |
 | `avrdude` not found (Windows) | Install Arduino CLI + `arduino-cli core install arduino:avr` |
 | `avrdude` not found (Linux) | `sudo apt install avrdude` or use Arduino CLI tools |

@@ -1,8 +1,8 @@
 /**
  * @file displayHandler.cpp
- * @version 0.3
+ * @version 0.4
  * @author Abhishek
- * @date 21/08/2026
+ * @date 21/09/2026
  * 
  * Part of displayHandler library.
  * Defines variables and functions used for displayHandler.h
@@ -24,11 +24,19 @@
  * @author Abhishek
  * - setDisplayBacklight() / showStartupLogo(): static NS logo with backlight off during paint
  * - removed invert/second-frame startup animation; brief STARTUP_LOGO_HOLD_MS hold only
+ *
+ * @date 21/09/2026
+ * @author Abhishek
+ * - Arm status colours: Disarmed = Solid Red, Armed = Solid Green (was Blue when disarmed)
+ * - displayEstopStatus(): remote e-stop LED below connectivity LED (Engaged=Red / Disengaged=Green)
+ *
+ * @date 22/09/2026
+ * - HC_NO_DISPLAY: headless stubs (no TFT init/draw); radio/error/SoC helpers retained
  */
 #include "include/displayHandler.hpp"
 #include "include/IOhandler.hpp"
 
-#ifndef RELEASE_ARDUINO_UNO
+#if !defined(RELEASE_ARDUINO_UNO) && !defined(HC_NO_DISPLAY)
 
 extern struct buttons user_input;
 extern ugv_status current_state;
@@ -360,12 +368,14 @@ void displayUGV_status(ugv_status s){
       IF_DEBUG (Serial.println("disconnected");)
     break;
     case active:
+      /* Arm status LED / text: Armed = Solid Green */
       text = "ARMED           ";
       color = COLOR_GREEN;
     break;
     case standby:
+      /* Arm status LED / text: Disarmed = Solid Red (was Blue) */
       text = "DISARMED        ";
-      color = COLOR_BLUE;
+      color = COLOR_RED;
     break;
     default:
       text = "UNKOWN          ";
@@ -374,6 +384,39 @@ void displayUGV_status(ugv_status s){
   tft.drawText(UGV_STATUS_TEXT_POS_X,UGV_STATUS_TEXT_POS_Y,text,color);
 }
 
+/**
+ * Remote e-stop LED — mirrors UGV remote emergency from HEARTBEAT (SRS §3.3.1).
+ * Engaged = Solid Red; Disengaged = Solid Green; Disabled = Gray.
+ */
+void displayEstopStatus(estopMode mode){
+  static int prev = -1;
+  if((int)mode == prev)
+    return;
+  prev = (int)mode;
+
+  int color = ESTOP_COLOR_DISENGAGED;
+  switch(mode){
+    case engaged:
+      color = ESTOP_COLOR_ENGAGED;
+      break;
+    case disengaged:
+      color = ESTOP_COLOR_DISENGAGED;
+      break;
+    case disabled:
+      color = ESTOP_COLOR_DISABLED;
+      break;
+    default:
+      color = ESTOP_COLOR_DISABLED;
+      break;
+  }
+
+  tft.fillRectangle(
+      ESTOP_STAT_MSG_POS_X,
+      ESTOP_STAT_MSG_POS_Y,
+      ESTOP_STAT_MSG_POS_X + ESTOP_STAT_MSG_SZ_X,
+      ESTOP_STAT_MSG_POS_Y + ESTOP_STAT_MSG_SZ_Y,
+      color);
+}
 
 void displaySpeed(int speed){
   String text;
@@ -616,12 +659,13 @@ void displayConnectionStatus(){
 
 void displayDriveMode(driveMode mode){
   setFontSmall();
+  /* Text colour mirrors drive-mode LED: Speed=Green, Torque=Blue, Torque+SL=Orange */
   if(mode == speed)
-    tft.drawText(DM_POS_X, DM_POS_Y, "SPEED  MODE", DM_COLOR);   
+    tft.drawText(DM_POS_X, DM_POS_Y, "SPEED  MODE", DM_COLOR_SPEED);
   else if(mode == torque)
-    tft.drawText(DM_POS_X, DM_POS_Y, "TORQUE MODE", DM_COLOR);   
+    tft.drawText(DM_POS_X, DM_POS_Y, "TORQUE MODE", DM_COLOR_TORQUE);
   else
-    tft.drawText(DM_POS_X, DM_POS_Y, "TRQ SL MODE", DM_COLOR);   
+    tft.drawText(DM_POS_X, DM_POS_Y, "TRQ SL MODE", DM_COLOR_TORQUE_SL);
   setFont1();
 }
 
@@ -745,6 +789,12 @@ void displayBasic(){
     drawSmallBatteryOutline(HC_BATTERY_POS_X, HC_BATTERY_POS_Y, &hc_batt_ix, &hc_batt_iy);
     displayBattery();
     displayHcBatteryStatus();
+
+    /* E-stop LED under connectivity LED; small "E" marker (does not overlap status text). */
+    setFontSmall();
+    tft.drawText(ESTOP_LABEL_POS_X, ESTOP_LABEL_POS_Y, "E", DEFAULT_TEXT_COLOR);
+    setFont1();
+    displayEstopStatus(disengaged);
 }
 
 /**
@@ -783,79 +833,90 @@ void displayHcBatteryStatus(){
 }
 
 #else
+/* -------------------------------------------------------------------------- */
+/* Headless / no-TFT build (HC_NO_DISPLAY or RELEASE_ARDUINO_UNO)               */
+/* Keep radio / error / SoC helpers alive — only drawing and TFT init are cut. */
+/* -------------------------------------------------------------------------- */
 
+int currentErrorCodeDisplayed = -1;
+int16_t RSSI = 0, remRSSI = 0;
+uint8_t ugv_battery_soc = 0;
+bool radioConnected = false;
+bool timesync_received = false;
 
-/// @brief clear LCD display
+void disconnectRadio(){
+  radioConnected = false;
+}
+
+void connectRadio(){
+  radioConnected = true;
+}
+
+int getErrorCodeDisplayed(){
+  return currentErrorCodeDisplayed;
+}
+
+void triggerTactileAlert(){
+#ifdef TACTILE_PIN
+  pinMode(TACTILE_PIN, OUTPUT);
+  digitalWrite(TACTILE_PIN, HIGH);
+  delay(120);
+  digitalWrite(TACTILE_PIN, LOW);
+#else
+  IF_DEBUG(Serial.println("tactile alert (UGV low battery) — no TACTILE_PIN defined");)
+#endif
+}
+
 void clear_display(){}
-
-
-/// @brief display error message and confirm with user whether to proceed or wait
-void displayError(String message, int error_code){}
-
-/// @brief display info message and wait for any user input to continue execution
-void displayInfo(String message){}
-
-/// initialize display communications (serial baud rate)
 void initDisplayComm(){}
-
-/// @brief update UGV status dislay
-void displayUGV_status(ugv_status){}
-
-/// @brief update speed display
-void displaySpeed(int speed){}
-
-/// @brief update RSSI stat display
-void displayRSSI(){}
-
-/// update battery stat display
-void displayBattery(){}
-
-void displayHcBatteryStatus(){}
-
-/// @brief set the screen with symbols/text that is required to understand the output of the display updates
-void displayBasic(){}
-
-/// @brief display newspace logo in white background and blue foreground colors
-void displayLogo(){}
-
-/// @brief display newspace logo in grey background and light blue foreground (to look like an translucent grey film filter)
-void displayInvertedLogo(){}
-
 void setDisplayBacklight(bool){}
 void showStartupLogo(){}
-
-void setBatterySOC(uint8_t){}
-void setRSSI(int16_t){}
-
-/**
- * this function is meant to be called once every 1 second, and only updates RSSI, and battery stats.
- * call displaySpeed() and displayUGV_status() separately when the values are updated (must be event based, and not periodic)
- */
+void displayLogo(){}
+void displayInvertedLogo(){}
+void displayBasic(){}
+void displayUGV_status(ugv_status){}
+void displaySpeed(int){}
+void displayRSSI(){}
+void displayBattery(){}
+void displayHcBatteryStatus(){}
+void displayEstopStatus(estopMode){}
+void displayConnectionStatus(){}
+void displayDriveMode(driveMode){}
+void displayDirection(directionToggle){}
 void updateDisplay(){}
-
-/// @brief set font style to 1
 void setFont1(){}
-
-/// @brief clear all info that is displayed
 void clearInfo(){}
 
+void clearError(){
+  currentErrorCodeDisplayed = -1;
+}
 
-/// @brief clear displayed error
-void clearError(){}
+void displayInfo(String message){
+  (void)message;
+  IF_DEBUG(Serial.print("INFO: ");)
+  IF_DEBUG(Serial.println(message);)
+}
 
+void displayError(String message, int error_code){
+  currentErrorCodeDisplayed = error_code;
+  (void)message;
+  IF_DEBUG(Serial.print("ERROR ");)
+  IF_DEBUG(Serial.print(error_code);)
+  IF_DEBUG(Serial.print(": ");)
+  IF_DEBUG(Serial.println(message);)
+}
 
-/// @brief writes direction onto screen
-/// @param direction current direction
-void displayDirection(directionToggle direction){}
+void setBatterySOC(uint8_t batterySOC){
+  if(batterySOC <= 100)
+    ugv_battery_soc = batterySOC;
+}
 
-/// @brief set radio status to disconnected
-void disconnectRadio(){}
+void setRSSI(int16_t curr_RSSI){
+  RSSI = curr_RSSI;
+}
 
-/// @brief set radio status to connected
-void connectRadio(){}
+void setRemRSSI(uint16_t curr_remRSSI){
+  remRSSI = curr_remRSSI;
+}
 
-/// @brief update the display for drive mode
-/// @param mode speed / torque
-void displayDriveMode(driveMode mode){}
-
-#endif
+#endif /* !RELEASE_ARDUINO_UNO && !HC_NO_DISPLAY */
