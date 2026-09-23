@@ -8,6 +8,7 @@
  */
 #include "definitions.h"
 #include "includes.h"
+#include "ledhandler.hpp"
 
 /// @brief identify controller drift and calibrate controller for further use
 void initiateController();

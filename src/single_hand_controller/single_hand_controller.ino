@@ -15,10 +15,10 @@
 */
 #include "include/standard_procedures.hpp"
 
-
 void setup(){
     setupIO();
-    setupDisplay();
+    // setupDisplay();
+    setupLEDs();
     if(!initMAVLink()){
         displayError("continue without packet signing", SIGNING_FAIL);
     }
@@ -52,6 +52,7 @@ void loop(){
 #ifdef DEBUG_BUTTONS
     /* Poll inputs even before UGV link so Serial Monitor shows button edges. */
     checkUserInput();
+    updateLEDs();
 #endif
 
     if(heartbeat_timed_out()){

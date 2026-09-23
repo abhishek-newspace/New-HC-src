@@ -27,19 +27,6 @@
 
 extern int drift_x, drift_y;
 
-static void setupStatusLeds()
-{
-    pinMode(ARM_LED_PIN, OUTPUT);
-    digitalWrite(ARM_LED_PIN, ARM_LED_OFF);
-
-    for(int i = 0; i < NUM_RGB_LEDS; i++){
-        for(int j = 0; j < 3; j++){
-            pinMode(HC_LED_PINS[i][j], OUTPUT);
-            digitalWrite(HC_LED_PINS[i][j], RGB_LED_OFF);  /* common anode */
-        }
-    }
-}
-
 void setupIO(){
 #ifdef DEBUG_BUTTONS
     Serial.begin(BAUD_RATE);
@@ -61,7 +48,7 @@ void setupIO(){
     pinMode(JOY_X_PIN, INPUT);
     pinMode(JOY_Y_PIN, INPUT);
 
-    setupStatusLeds();
+    setupLEDs();
 
 #ifdef HC_BATTERY_ADC_PIN
     pinMode(HC_BATTERY_ADC_PIN, INPUT);

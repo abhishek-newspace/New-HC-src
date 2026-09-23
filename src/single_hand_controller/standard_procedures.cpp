@@ -317,7 +317,8 @@ void run_wakeup_seq(){
     #endif
     setFoglightState(0);
     setHeadlighState(0);
-
+    updateLEDs();
+    
 #ifndef DEPRECATED_REV_1
     sendComponentVersion();
 #endif
@@ -341,7 +342,7 @@ void run_OFP_cycle()
 
     // Sample toggles/buttons at the start of the cycle so this OFP sees current positions.
     checkUserInput();
-
+    updateLEDs();
     #ifndef TESTING
     if(heartbeat_timed_out()){
         setUGV_state((ugv_status)disconnected);

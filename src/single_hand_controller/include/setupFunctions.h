@@ -16,7 +16,7 @@
 #include "IOhandler.hpp"
 #include "stateHandler.hpp"
 #include "packetHandler.h"
-
+#include "ledHandler.hpp"
 
 
 /// @brief set up microcontroller for all input and output
@@ -27,7 +27,10 @@ void initState();
 
 
 /// @brief set up the LCD display (clearing the screen, and displaying necessary startup items)
-void setupDisplay();
+// void setupDisplay();
+
+/// @brief set up the 5 RGB LEDs and Arm status LED outputs
+void setupLEDs();
 
 /// @brief obtain the deviation of the thumbstick's neutral position from its expected central position
 /// @return true when the deviation is within permissible limits.

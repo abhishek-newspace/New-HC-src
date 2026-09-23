@@ -172,8 +172,12 @@ void cycleSpeedLimit(){
     else
         required_speed = (current % 3) + 1;
     speed_limit_press = true;
-    IF_DEBUG_BUTTONS(Serial.print(F("[BTN] Speed limit HOLD -> level "));)
-    IF_DEBUG_BUTTONS(Serial.println(required_speed);)
+    IF_DEBUG_BUTTONS(
+        Serial.print(F("[BTN] Speed limit HOLD (3s) triggered! Current UGV speed: "));
+        Serial.print(current);
+        Serial.print(F(" -> New required_speed: "));
+        Serial.println(required_speed);
+    )
 }
 
 void set_speed_low(){
@@ -285,6 +289,23 @@ void getXY(struct thumbstickControl *control){
     IF_TESTING_JOYSTICK(Serial.print(",");)
     IF_TESTING_JOYSTICK(Serial.print(*y);)
     IF_TESTING_JOYSTICK(Serial.print("\t");)
+    IF_DEBUG_BUTTONS(
+    static float prev_x = 0.0f;
+    static float prev_y = 0.0f;
+
+    // Print instantly if position changed by more than 5.0 units
+    if (abs(*x - prev_x) > 5.0f || abs(*y - prev_y) > 5.0f) {
+        prev_x = *x;
+        prev_y = *y;
+
+        Serial.print(F("[JOY] X: "));
+        Serial.print(*x, 1);
+        Serial.print(F("\tY: "));
+        Serial.println(*y, 1);
+        }
+    )
+
+    
 }
  /**
    * update the struct values for a normal button
@@ -430,20 +451,29 @@ static void debugPrintAllButtonStates(){
         return;
     last_print_ms = millis();
 
-    Serial.print(F("[IO] ESTOP(2)="));
+    Serial.print(F("[IO] ESTOP(")); Serial.print(ESTOP_PIN); Serial.print(F(")="));
     Serial.print(digitalRead(ESTOP_PIN) ? F("HIGH") : F("LOW"));
-    Serial.print(F(" ARM(28)="));
-    Serial.print(digitalRead(ARM_BUTTON_PIN) ? F("HIGH") : F("LOW"));
-    Serial.print(F(" HEAD(12)="));
+
+    Serial.print(F(" | ARM(")); Serial.print(BUTTON_ARM); Serial.print(F(")="));
+    Serial.print(digitalRead(BUTTON_ARM) ? F("HIGH") : F("LOW"));
+
+    Serial.print(F(" | HEAD(")); Serial.print(BUTTON_HEADLIGHTS); Serial.print(F(")="));
     Serial.print(digitalRead(BUTTON_HEADLIGHTS) ? F("HIGH") : F("LOW"));
-    Serial.print(F(" FOG(24)="));
+
+    Serial.print(F(" | FOG(")); Serial.print(BUTTON_FOGLIGHTS); Serial.print(F(")="));
     Serial.print(digitalRead(BUTTON_FOGLIGHTS) ? F("HIGH") : F("LOW"));
-    Serial.print(F(" REAR(25)="));
+
+    Serial.print(F(" | REAR(")); Serial.print(BUTTON_REARLIGHTS); Serial.print(F(")="));
     Serial.print(digitalRead(BUTTON_REARLIGHTS) ? F("HIGH") : F("LOW"));
-    Serial.print(F(" DRIVE(26)="));
+
+    Serial.print(F(" | DRIVE(")); Serial.print(BUTTON_DRIVE_MODE); Serial.print(F(")="));
     Serial.print(digitalRead(BUTTON_DRIVE_MODE) ? F("HIGH") : F("LOW"));
-    Serial.print(F(" SPEED(27)="));
+
+    Serial.print(F(" | SPEED(")); Serial.print(BUTTON_SPEED_LIMIT); Serial.print(F(")="));
     Serial.println(digitalRead(BUTTON_SPEED_LIMIT) ? F("HIGH") : F("LOW"));
+    Serial.print(F(" | BATT SoC: "));
+    Serial.print(readHcBatterySoc());
+    Serial.println(F("%"));
 }
 
 /** Raw pin edge dump so you can confirm wiring even if callbacks do not fire. */
@@ -504,6 +534,9 @@ void checkUserInput()
     IF_DEBUG_BUTTONS(debugPrintAllButtonStates();)
     IF_DEBUG_BUTTONS(debugLogRawInputEdges();)
 
+    static struct thumbstickControl debug_stick;
+    getXY(&debug_stick);
+
     updateLongPressButtonValues(&b_arm_disarm, ms_since_last_check);
     updateLongPressButtonValues(&b_speed_limit, ms_since_last_check);
     updateButtonValues(&b_mode_switch, ms_since_last_check);
@@ -527,12 +560,12 @@ uint8_t readHcBatterySoc()
     IF_DEBUG(Serial.print("HC batt ADC raw=");)
     IF_DEBUG(Serial.println(raw);)
 
-#if HC_BATT_NO_SENSE_RAW_MAX > 0
-    /* Floating / unwired sense pin while USB-powered — show placeholder SoC for UI bring-up. */
-    if(raw <= HC_BATT_NO_SENSE_RAW_MAX){
-        return (uint8_t)HC_BATT_BENCH_SOC_WHEN_NO_SENSE;
-    }
-#endif
+// #if HC_BATT_NO_SENSE_RAW_MAX > 0
+//     /* Floating / unwired sense pin while USB-powered — show placeholder SoC for UI bring-up. */
+//     if(raw <= HC_BATT_NO_SENSE_RAW_MAX){
+//         return (uint8_t)HC_BATT_BENCH_SOC_WHEN_NO_SENSE;
+//     }
+// #endif
 
     int empty = HC_BATT_ADC_EMPTY;
     int full  = HC_BATT_ADC_FULL;

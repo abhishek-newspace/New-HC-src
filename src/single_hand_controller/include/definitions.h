@@ -18,7 +18,7 @@
  *   2) Comment out   #define HC_LINK_OVER_USB
  *
  * Optional: with RELEASE commented and HC_LINK_OVER_USB commented, you can
- * enable _DEBUG_ / PRINT_BYTES for Serial Monitor while using real radio.
+ * enable DEBUG / PRINT_BYTES for Serial Monitor while using real radio.
  * ---------------------------------------------------------------------------
  *
  * <h2>Changes</h2>
@@ -88,7 +88,7 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 
 #ifndef RELEASE_ARDUINO_UNO
 // PRODUCTION UHF: uncomment RELEASE and comment out HC_LINK_OVER_USB.
-#define RELEASE
+// #define RELEASE
 #endif
 
 /**
@@ -98,7 +98,7 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
  *
  * For PRODUCTION UHF: comment out HC_LINK_OVER_USB and uncomment RELEASE above.
  */
-// #define HC_LINK_OVER_USB
+#define HC_LINK_OVER_USB
 
 /* Alias used by the rest of the codebase (do not rename call sites). */
 #ifdef HC_LINK_OVER_USB
@@ -110,10 +110,19 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 
 /*
  * Button / digital-input bring-up logs on USB Serial Monitor (does not require
- * _DEBUG_). Safe with RELEASE + UHF (RADIO_PORT = Serial3). Comment out when
+ * DEBUG). Safe with RELEASE + UHF (RADIO_PORT = Serial3). Comment out when
  * done verifying the Teensy pin map.
  */
-#define DEBUG_BUTTONS
+// #define DEBUG_BUTTONS
+
+/**
+ * Lightweight link status on USB Serial (works in RELEASE).
+ * Safe only when MAVLink is NOT on USB — i.e. UHF / Serial3.
+ * Disabled automatically when HC_LINK_OVER_USB is set.
+ */
+#ifndef HC_LINK_OVER_USB
+#define HC_LINK_STATUS_LOG
+#endif
 
 #ifndef RELEASE // Turn off all debug features during release
 
@@ -122,11 +131,11 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 /*
  * Keep Serial debug OFF when HC_LINK_OVER_USB is set: RADIO_PORT is Serial, so
  * IF_DEBUG prints would interleave with MAVLink and corrupt Atlas decode
- * (including incompat_flags / signing). Enable _DEBUG_ only with real UHF
+ * (including incompat_flags / signing). Enable DEBUG only with real UHF
  * (Serial3) and a separate USB Serial Monitor.
  */
 #ifndef HC_LINK_OVER_USB
-// #define _DEBUG_
+#define DEBUG
 #endif
 // #define PRINT_BYTES
 // #define TESTING
@@ -144,6 +153,12 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 #define IF_DEBUG_BUTTONS(CODE) CODE
 #else
 #define IF_DEBUG_BUTTONS(CODE)
+#endif
+
+#ifdef HC_LINK_STATUS_LOG
+#define IF_LINK_LOG(CODE) CODE
+#else
+#define IF_LINK_LOG(CODE)
 #endif
 
 
@@ -206,7 +221,7 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 #endif
 
 
-#ifdef _DEBUG_
+#ifdef DEBUG
 #define DEBUG(CODE) CODE
 #define IF_DEBUG(CODE) CODE
 #else
