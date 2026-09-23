@@ -1,8 +1,8 @@
 /**
  * @file setupFunctions.cpp
- * @version 0.3
+ * @version 0.4
  * @author Abhishek
- * @date 21/08/2026
+ * @date 23/09/2026
  * 
  * Part of set up functions library; used within the setup() function of single_hand_controller.ino.
  * Defines variables and functions used in setupFunctions.h.
@@ -17,22 +17,52 @@
  *
  * @date 22/09/2026
  * - setupDisplay() early-returns when HC_NO_DISPLAY (headless HC)
+ *
+ * @date 23/09/2026
+ * - Teensy pin map: INPUT_PULLUP buttons, 12-bit ADC, Arm/RGB LED init (off)
+ * - DEBUG_BUTTONS: USB Serial.begin for button bring-up logs
  */
 #include "include/setupFunctions.h"
 
 
 extern int drift_x, drift_y;
 
+static void setupStatusLeds()
+{
+    pinMode(ARM_LED_PIN, OUTPUT);
+    digitalWrite(ARM_LED_PIN, ARM_LED_OFF);
+
+    for(int i = 0; i < NUM_RGB_LEDS; i++){
+        for(int j = 0; j < 3; j++){
+            pinMode(HC_LED_PINS[i][j], OUTPUT);
+            digitalWrite(HC_LED_PINS[i][j], RGB_LED_OFF);  /* common anode */
+        }
+    }
+}
+
 void setupIO(){
-    pinMode(2, INPUT_PULLUP);
-    pinMode(3, INPUT_PULLUP);
-    pinMode(4, INPUT_PULLUP);
-    pinMode(5, INPUT_PULLUP);
-    pinMode(6, INPUT_PULLUP);
-    pinMode(7, INPUT_PULLUP);
-    pinMode(8, INPUT_PULLUP);
-    pinMode(XPIN, INPUT);
-    pinMode(YPIN, INPUT);
+#ifdef DEBUG_BUTTONS
+    Serial.begin(BAUD_RATE);
+    delay(200);
+    Serial.println(F("HC Teensy IO — pin map from HW test (E-Stop NC: HIGH=triggered)"));
+#endif
+
+#if defined(__IMXRT1062__) || defined(__MK64FX512__) || defined(__MK66FX1M0__) || defined(__MK20DX256__)
+    analogReadResolution(12);
+#endif
+
+    pinMode(ESTOP_PIN, INPUT_PULLUP);
+    pinMode(ARM_BUTTON_PIN, INPUT_PULLUP);
+
+    for(int i = 0; i < NUM_LED_BUTTONS; i++){
+        pinMode(HC_BUTTON_PINS[i], INPUT_PULLUP);
+    }
+
+    pinMode(JOY_X_PIN, INPUT);
+    pinMode(JOY_Y_PIN, INPUT);
+
+    setupStatusLeds();
+
 #ifdef HC_BATTERY_ADC_PIN
     pinMode(HC_BATTERY_ADC_PIN, INPUT);
 #endif

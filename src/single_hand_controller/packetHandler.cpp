@@ -138,10 +138,9 @@ void sendDisarmCommand(){
 }
 
 /**
- * Send LIGHT_CONTROL from 3-pos toggle:
- *   pin 6 LOW = OFF (0,0,0), centre = HEAD+REAR (1,0,1), pin 8 LOW = FOG (0,1,0).
+ * Send LIGHT_CONTROL from 3-pos toggle (legacy Helios remotes):
+ *   0 = OFF (0,0,0), 1 = HEAD+REAR (1,0,1), 2 = FOG (0,1,0).
  * ICD: param1=head, param2=fog, param3=rear.
- * Called once per toggle edge — not while the switch is held.
  */
 void sendLightToggleState(uint8_t toggle_pos){
     bool head = false;
@@ -153,18 +152,21 @@ void sendLightToggleState(uint8_t toggle_pos){
             head = true;
             rear = true;
             break;
-        case 2:   /* FOG (pin 8) */
+        case 2:   /* FOG */
             fog = true;
             break;
-        default:  /* OFF (pin 6) */
+        default:  /* OFF */
             break;
     }
 
+    sendLightControlState(head, fog, rear);
+}
+
+/** Independent head/fog/rear latch (Teensy momentary toggles). */
+void sendLightControlState(bool head, bool fog, bool rear){
     setHeadlighState(head);
     setFoglightState(fog);
-    IF_DEBUG(Serial.print("LIGHT_CTRL toggle=");)
-    IF_DEBUG(Serial.print(toggle_pos);)
-    IF_DEBUG(Serial.print(" head=");)
+    IF_DEBUG(Serial.print("LIGHT_CTRL head=");)
     IF_DEBUG(Serial.print(head);)
     IF_DEBUG(Serial.print(" fog=");)
     IF_DEBUG(Serial.print(fog);)

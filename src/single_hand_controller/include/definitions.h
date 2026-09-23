@@ -108,6 +108,13 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 /* ===================== END SWITCH SECTION ======================================== */
 
 
+/*
+ * Button / digital-input bring-up logs on USB Serial Monitor (does not require
+ * _DEBUG_). Safe with RELEASE + UHF (RADIO_PORT = Serial3). Comment out when
+ * done verifying the Teensy pin map.
+ */
+#define DEBUG_BUTTONS
+
 #ifndef RELEASE // Turn off all debug features during release
 
 // #define GET_RADIO_CONFIG
@@ -131,6 +138,12 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 //#define STOP_RECV
 //#define SPECIAL_TESTING
 
+#endif
+
+#ifdef DEBUG_BUTTONS
+#define IF_DEBUG_BUTTONS(CODE) CODE
+#else
+#define IF_DEBUG_BUTTONS(CODE)
 #endif
 
 

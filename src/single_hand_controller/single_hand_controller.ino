@@ -49,6 +49,10 @@ void loop(){
     }
     #endif
 
+#ifdef DEBUG_BUTTONS
+    /* Poll inputs even before UGV link so Serial Monitor shows button edges. */
+    checkUserInput();
+#endif
 
     if(heartbeat_timed_out()){
         run_wakeup_seq();

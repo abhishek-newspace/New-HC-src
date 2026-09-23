@@ -32,6 +32,9 @@
  *
  * @date 08/09/2026
  * - speed limit: require continuous 3 s hold before cycle (not immediate press)
+ *
+ * @date 23/09/2026
+ * - Teensy: independent head/fog/rear light toggles; tap=disarm / hold=arm; single e-stop
  */
 
 #include "include/standard_procedures.hpp"
@@ -47,12 +50,14 @@ bool currentlySendingArm = false;
 bool arm_disarm_error = false;
 bool turnOnHeadlight = false;
 bool turnOnFoglight = false;
+bool turnOnRearlight = false;
 bool turnOffLight = false;
+bool light_cmd_pending = false;  /* send combined LIGHT_CONTROL once per toggle edge */
 int required_speed = 0;
-bool speed_limit_press = false;  /* one-shot after 3 s hold on pin 3 */
+bool speed_limit_press = false;  /* one-shot after SPEED_LIMIT_HOLD_MS on pin 27 */
 bool switchMode = false;
 bool arm_press = false;
-//bool disarm_press = false;
+bool disarm_press = false;
 bool estop_toggled = false;
 bool estop_clear_request = false;
 
@@ -169,9 +174,13 @@ inline bool turnOffLightsCondition(){
     return turnOffLight;
 }
 
+inline bool lightCmdPendingCondition(){
+    return light_cmd_pending;
+}
+
 
 inline bool speedChangeCondition(){
-    /* Pin 3: one TX after SPEED_LIMIT_HOLD_MS continuous hold (see IOhandler). */
+    /* Pin 27: one TX after SPEED_LIMIT_HOLD_MS continuous hold (see IOhandler). */
     return speed_limit_press;
 }
 
@@ -180,7 +189,8 @@ inline bool startArmCondition(){
 }
 
 inline bool startDisarmCondition(){
-    return arm_press && getUGV_state() == active;
+    /* Tap to disarm (preferred) or legacy long-press while armed. */
+    return (disarm_press || arm_press) && getUGV_state() == active;
 }
 
 
@@ -350,21 +360,25 @@ void run_OFP_cycle()
     /*
      * Operator requests — same priority chain as original OFP:
      * arm / disarm XOR e-stop (else-if), then lights / speed / drive-mode independently.
-     * Pin map: arm=2, speed-limit cycle=3, e-stop toggle=4/5, lights=6/8, drive-mode=7.
+     * Teensy pin map: e-stop=2, lights=12/24/25, drive=26, speed=27, arm=28.
      */
     if(startArmCondition()){
         IF_DEBUG(Serial.println("ARM BUTTON PRESSED"));
+        IF_DEBUG_BUTTONS(Serial.println(F("[OFP] sending ARM"));)
         displayInfo("arming ...");
         sendArmCommand();
         startPendingRequest(PENDING_ARM);
         arm_press = false;
+        disarm_press = false;
     }
     else if(startDisarmCondition()){
         IF_DEBUG(Serial.println("DISARM BUTTON PRESSED"));
+        IF_DEBUG_BUTTONS(Serial.println(F("[OFP] sending DISARM"));)
         displayInfo("disarming ...");
         sendDisarmCommand();
         startPendingRequest(PENDING_DISARM);
         arm_press = false;
+        disarm_press = false;
     }
     if(estop_toggled){
         /*
@@ -406,21 +420,24 @@ void run_OFP_cycle()
         }
     }
 
-    if(turnOffLightsCondition()){
-        sendLightToggleState(0);
+    /* Independent head/fog/rear toggles — one LIGHT_CONTROL with current latch state. */
+    if(lightCmdPendingCondition()){
+        IF_DEBUG_BUTTONS(
+            Serial.print(F("[OFP] LIGHT_CTRL head="));
+            Serial.print(turnOnHeadlight);
+            Serial.print(F(" fog="));
+            Serial.print(turnOnFoglight);
+            Serial.print(F(" rear="));
+            Serial.println(turnOnRearlight);
+        )
+        sendLightControlState(turnOnHeadlight, turnOnFoglight, turnOnRearlight);
+        light_cmd_pending = false;
         turnOffLight = false;
     }
-    else if(turnHeadlightCondition()){
-        sendLightToggleState(1);
-        turnOnHeadlight = false;
-    }
-    else if(turnFogLightCondition()){
-        sendLightToggleState(2);
-        turnOnFoglight = false;
-    }
 
-    /* Speed limit (pin 3): one COMMAND after 3 s hold, Low→Mid→High cycle. */
+    /* Speed limit (pin 27): one COMMAND after 3 s hold, Low→Mid→High cycle. */
     if(speedChangeCondition()){
+        IF_DEBUG_BUTTONS(Serial.println(F("[OFP] speed limit TX"));)
         sendSpeedChangeRequest(required_speed);
         pending_expected_speed = required_speed;
         startPendingRequest(PENDING_SPEED);
@@ -428,9 +445,10 @@ void run_OFP_cycle()
         speed_limit_press = false;
     }
 
-    /* Drive mode cycle button */
+    /* Drive mode cycle button (pin 26) */
     if(switchModeCondition()){
         IF_DEBUG(Serial.println("requesting drive mode"));
+        IF_DEBUG_BUTTONS(Serial.println(F("[OFP] drive mode TX"));)
         pending_expected_drive_mode = get_inc_driveMode();
         sendModeChangeRequest();
         startPendingRequest(PENDING_DRIVE_MODE);
