@@ -88,7 +88,7 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 
 #ifndef RELEASE_ARDUINO_UNO
 // PRODUCTION UHF: uncomment RELEASE and comment out HC_LINK_OVER_USB.
-#define RELEASE
+// #define RELEASE
 #endif
 
 /**
@@ -98,7 +98,7 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
  *
  * For PRODUCTION UHF: comment out HC_LINK_OVER_USB and uncomment RELEASE above.
  */
-// #define HC_LINK_OVER_USB
+#define HC_LINK_OVER_USB
 
 /* Alias used by the rest of the codebase (do not rename call sites). */
 #ifdef HC_LINK_OVER_USB
@@ -113,7 +113,16 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
  * _DEBUG_). Safe with RELEASE + UHF (RADIO_PORT = Serial3). Comment out when
  * done verifying the Teensy pin map.
  */
-#define DEBUG_BUTTONS
+// #define DEBUG_BUTTONS
+
+/**
+ * Lightweight link status on USB Serial (works in RELEASE).
+ * Safe only when MAVLink is NOT on USB — i.e. UHF / Serial3.
+ * Disabled automatically when HC_LINK_OVER_USB is set.
+ */
+#ifndef HC_LINK_OVER_USB
+#define HC_LINK_STATUS_LOG
+#endif
 
 #ifndef RELEASE // Turn off all debug features during release
 
@@ -126,7 +135,7 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
  * (Serial3) and a separate USB Serial Monitor.
  */
 #ifndef HC_LINK_OVER_USB
-// #define _DEBUG_
+#define _DEBUG_
 #endif
 // #define PRINT_BYTES
 // #define TESTING
@@ -144,6 +153,12 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 #define IF_DEBUG_BUTTONS(CODE) CODE
 #else
 #define IF_DEBUG_BUTTONS(CODE)
+#endif
+
+#ifdef HC_LINK_STATUS_LOG
+#define IF_LINK_LOG(CODE) CODE
+#else
+#define IF_LINK_LOG(CODE)
 #endif
 
 
