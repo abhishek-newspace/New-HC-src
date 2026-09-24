@@ -139,9 +139,12 @@ void packet_receiver::receive_radio_status(mavlink_message_t *msg)
     else if(getErrorCodeDisplayed() == RADIO_BUFFER_OVERLOAD){
         clearError();
     }
-    if(radio_status.remrssi > 0)
+    if(radio_status.remrssi > 0){
+        IF_LINK_LOG(Serial.println(F("[HC] radio link UP (remrssi>0)"));)
         connectRadio();
-    else{    
+    }
+    else{
+        IF_LINK_LOG(Serial.println(F("[HC] radio link DOWN (remrssi==0)"));)
         disconnectRadio();
         if(setUGV_state(disconnected)){
             displayUGV_status(disconnected);
@@ -159,10 +162,12 @@ void packet_receiver::receive_heartbeat(mavlink_message_t *msg)
 
     if(msg->sysid != heartbeat.sys_id || msg->compid != heartbeat.comp_id){
         IF_DEBUG(Serial.println("heartbeat system validation failed");)
+        IF_LINK_LOG(Serial.println(F("[HC] Atlas HB rejected (sys/comp id)"));)
         return;
     }
     
     IF_DEBUG(Serial.println("heartbeat verified!");)
+    IF_LINK_LOG(Serial.println(F("[HC] Atlas heartbeat OK"));)
     last_heartbeat_received_at = millis();
     
     heartbeat.sys_status = mavlink_msg_heartbeat_get_system_status(msg);

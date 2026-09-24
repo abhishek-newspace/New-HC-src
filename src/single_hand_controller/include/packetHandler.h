@@ -34,6 +34,12 @@ bool heartbeat_timed_out();
 /// @brief handle any packet that is received and send to packet_receiver
 void handlePacketReceived();
 
+#ifdef HC_LINK_STATUS_LOG
+uint32_t getLinkRxBytes();
+uint32_t getLinkRxMsgs();
+uint32_t getLinkHbTx();
+#endif
+
 /// @brief send a timesync request
 void sendTimesyncRequest();
 

@@ -36,12 +36,14 @@ struct stopActionQueue{
  * When functions need to be called periodically, it can be added to an instance of periodicActions
  */
 class periodicActions{
-    action* actionsHead;
-    action* actionsTail;
-    stopActionQueue* stopQueueHead;
-    stopActionQueue* stopQueueTail;
+    action* actionsHead = nullptr;
+    action* actionsTail = nullptr;
+    stopActionQueue* stopQueueHead = nullptr;
+    stopActionQueue* stopQueueTail = nullptr;
     
 public:
+    periodicActions() = default;
+
     /// @brief make a function to be executed periodically
     /// @param action function to be periodically executed
     /// @param action_sleep_time time interval for the periodic function to execute

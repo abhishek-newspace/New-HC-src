@@ -4,10 +4,10 @@
 
 void waitForResponse(){
    delay(1000);           
-   while(!Serial3.available());
+   while(!RADIO_PORT.available());
    Serial.print("Response: ");
-   while(Serial3.available()) {
-      Serial.write(Serial3.read()); 
+   while(RADIO_PORT.available()) {
+      Serial.write(RADIO_PORT.read()); 
       delay(20); // Crucial: prevents outrunning the buffer
    }
    Serial.println(); // Add a newline for readability
@@ -17,7 +17,7 @@ void initRadioConnection(){
    delay(1000); 
    Serial.println("Trying to obtain radio configurations...");
    delay(1000);             
-   Serial3.print("+++"); 
+   RADIO_PORT.print("+++"); 
    waitForResponse();   
    
 }
@@ -25,28 +25,28 @@ void initRadioConnection(){
 void setParameter(String param, String val){
    delay(1000);
    Serial.println(String("setting value for ") + param + String(" to ") + val);
-   Serial3.println(param + String('=') + val);
+   RADIO_PORT.println(param + String('=') + val);
    waitForResponse();  
    delay(1000);
 }
 
 void writeParameters(){
    delay(1000);
-   Serial3.println("RT&W"); 
-   Serial3.println("AT&W"); 
+   RADIO_PORT.println("RT&W"); 
+   RADIO_PORT.println("AT&W"); 
    waitForResponse();  
 }
 
 void rebootRadio(){
    delay(1000);
-   Serial3.println("RTZ"); 
-   Serial3.println("ATZ");
+   RADIO_PORT.println("RTZ"); 
+   RADIO_PORT.println("ATZ");
 }
 
 void exitConfig(){
    Serial.println("\nExiting command mode...");
-   Serial3.println("RTO"); 
-   Serial3.println("ATO"); 
+   RADIO_PORT.println("RTO"); 
+   RADIO_PORT.println("ATO"); 
 }
 
 void performConfig(){
@@ -107,13 +107,13 @@ void performConfig(){
 void requestParam(String param){
    delay(1000);
    Serial.println(String("Requesting ") + param + String("..."));
-   Serial3.flush();
-   Serial3.println(param); 
-   while(!Serial3.available());
+   RADIO_PORT.flush();
+   RADIO_PORT.println(param); 
+   while(!RADIO_PORT.available());
    unsigned long lastDataTime = millis();
    while (millis() - lastDataTime < 1000) { 
-      while (Serial3.available()) {
-            Serial.write(Serial3.read()); // Print it instantly to clear the buffer
+      while (RADIO_PORT.available()) {
+            Serial.write(RADIO_PORT.read()); // Print it instantly to clear the buffer
             lastDataTime = millis();      // Reset the timeout clock
       }
    }

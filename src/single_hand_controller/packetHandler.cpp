@@ -32,6 +32,16 @@ byte buf[300];  //!< buffer to store serialized mavlink data
 mavlink_status_t  status;    //!< used to check parsing status
 mavlink_message_t msg;
 
+#ifdef HC_LINK_STATUS_LOG
+static uint32_t link_rx_bytes = 0;
+static uint32_t link_rx_msgs = 0;
+static uint32_t link_hb_tx = 0;
+
+uint32_t getLinkRxBytes() { return link_rx_bytes; }
+uint32_t getLinkRxMsgs() { return link_rx_msgs; }
+uint32_t getLinkHbTx() { return link_hb_tx; }
+#endif
+
 extern speedToggle requested_spd;
 
 message_sender msgsndr(buf, &msg);
@@ -110,6 +120,9 @@ void sendBuffer(int len){
 
 void sendHeartbeat(){
     IF_DEBUG(Serial.println("---sending heartbeat!---");)
+#ifdef HC_LINK_STATUS_LOG
+    link_hb_tx++;
+#endif
     sendBuffer(msgsndr.buffer_heartbeat());
 }
 
@@ -293,10 +306,24 @@ void handlePacketReceived()
             dumped = true;
         }
         data = RADIO_PORT.read();
+#ifdef HC_LINK_STATUS_LOG
+        link_rx_bytes++;
+#endif
         IF_PRINT_BYTES(Serial.print("0x");)
         IF_PRINT_BYTES(Serial.print(data,HEX);)
         IF_PRINT_BYTES(Serial.print(",");)
         if (mavlink_parse_char(MAVLINK_COMM_0, data, &msg, &status)) {
+#ifdef HC_LINK_STATUS_LOG
+            link_rx_msgs++;
+            IF_LINK_LOG(
+                Serial.print(F("[HC] RX msgid="));
+                Serial.print(msg.msgid);
+                Serial.print(F(" sys="));
+                Serial.print(msg.sysid);
+                Serial.print(F(" comp="));
+                Serial.println(msg.compid);
+            )
+#endif
             IF_DEBUG(Serial.print("received message ID : ");)
             IF_DEBUG(Serial.println(msg.msgid);)
             switch(msg.msgid){

@@ -41,10 +41,16 @@ static void setupStatusLeds()
 }
 
 void setupIO(){
-#ifdef DEBUG_BUTTONS
+#if defined(DEBUG_BUTTONS) || defined(_DEBUG_) || defined(HC_LINK_STATUS_LOG)
+    /* USB Serial for Monitor logs — safe while MAVLink stays on Serial1 (UHF). */
     Serial.begin(BAUD_RATE);
     delay(200);
+#endif
+#ifdef DEBUG_BUTTONS
     Serial.println(F("HC Teensy IO — pin map from HW test (E-Stop NC: HIGH=triggered)"));
+#endif
+#ifdef HC_LINK_STATUS_LOG
+    Serial.println(F("[HC] link log USB@115200 MAVLink=Serial1 (pins 0/1)"));
 #endif
 
 #if defined(__IMXRT1062__) || defined(__MK64FX512__) || defined(__MK66FX1M0__) || defined(__MK20DX256__)

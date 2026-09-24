@@ -13,7 +13,7 @@
  *   1) Comment out  #define RELEASE
  *   2) Keep          #define HC_LINK_OVER_USB
  *
- * Production (UHF radio on Serial3):
+ * Production (UHF radio on Serial1 / Teensy pins 0 RX, 1 TX):
  *   1) Uncomment     #define RELEASE
  *   2) Comment out   #define HC_LINK_OVER_USB
  *
@@ -88,7 +88,7 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 
 #ifndef RELEASE_ARDUINO_UNO
 // PRODUCTION UHF: uncomment RELEASE and comment out HC_LINK_OVER_USB.
-// #define RELEASE
+#define RELEASE
 #endif
 
 /**
@@ -98,7 +98,7 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
  *
  * For PRODUCTION UHF: comment out HC_LINK_OVER_USB and uncomment RELEASE above.
  */
-#define HC_LINK_OVER_USB
+// #define HC_LINK_OVER_USB
 
 /* Alias used by the rest of the codebase (do not rename call sites). */
 #ifdef HC_LINK_OVER_USB
@@ -110,14 +110,14 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 
 /*
  * Button / digital-input bring-up logs on USB Serial Monitor (does not require
- * _DEBUG_). Safe with RELEASE + UHF (RADIO_PORT = Serial3). Comment out when
+ * _DEBUG_). Safe with RELEASE + UHF (RADIO_PORT = Serial1). Comment out when
  * done verifying the Teensy pin map.
  */
 // #define DEBUG_BUTTONS
 
 /**
  * Lightweight link status on USB Serial (works in RELEASE).
- * Safe only when MAVLink is NOT on USB — i.e. UHF / Serial3.
+ * Safe only when MAVLink is NOT on USB — i.e. UHF / Serial1.
  * Disabled automatically when HC_LINK_OVER_USB is set.
  */
 #ifndef HC_LINK_OVER_USB
@@ -132,7 +132,7 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
  * Keep Serial debug OFF when HC_LINK_OVER_USB is set: RADIO_PORT is Serial, so
  * IF_DEBUG prints would interleave with MAVLink and corrupt Atlas decode
  * (including incompat_flags / signing). Enable _DEBUG_ only with real UHF
- * (Serial3) and a separate USB Serial Monitor.
+ * (Serial1) and a separate USB Serial Monitor.
  */
 #ifndef HC_LINK_OVER_USB
 #define _DEBUG_
@@ -232,7 +232,8 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
 #ifdef RADIO_SIMULATION_TESTING
 #define RADIO_PORT Serial
 #else
-#define RADIO_PORT Serial3
+/* Teensy 4.1: Serial1 = pins 0(RX)/1(TX). Do NOT use Serial3 — pins 14/15 are joystick. */
+#define RADIO_PORT Serial1
 #endif
 
 

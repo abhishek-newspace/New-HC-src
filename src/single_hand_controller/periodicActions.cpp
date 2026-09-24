@@ -1,10 +1,10 @@
 #include"include/PeriodicActions.hpp"
 
 int periodicActions::addPeriodicAction(void (*function)(void), uint32_t action_sleep_time){
-    addPeriodicAction(function, action_sleep_time,nullptr,nullptr);
+    return addPeriodicAction(function, action_sleep_time, nullptr, nullptr);
 }
 int periodicActions::addPeriodicAction(void (*function)(void), uint32_t action_sleep_time, bool (*stopCondition)(void)){
-    addPeriodicAction(function, action_sleep_time,stopCondition,nullptr);
+    return addPeriodicAction(function, action_sleep_time, stopCondition, nullptr);
 }
 
 int periodicActions::addPeriodicAction(void (*function)(void), uint32_t action_sleep_time, bool (*stopCondition)(void), void (*stopAction)(void)){
@@ -21,29 +21,26 @@ int periodicActions::addPeriodicAction(void (*function)(void), uint32_t action_s
     }
     actionsTail->performAction = function;
     actionsTail->intervalDuration = timer(action_sleep_time);
-
+    actionsTail->intervalDuration.resetTimer();
     actionsTail->stopCondition = stopCondition;
     actionsTail->stopAction = stopAction;
+    return actionsTail->actionID;
 }
 
 void periodicActions::performPeriodicActions(){
     deleteStoppedPeriodicActions();
-    int activeActions = 0;
-    action* curr_action = actionsHead;  
+    action* curr_action = actionsHead;
     while(curr_action != nullptr){
-        activeActions++;
         if(curr_action->intervalDuration.timeup()){
             if(curr_action->stopCondition != nullptr && curr_action->stopCondition()){
-            //IF_DEBUG(Serial.println("STOPPING action!");)
                 stopPeriodicAction(curr_action);
             }
-            //IF_DEBUG(Serial.println("performing action!");)
-            curr_action->performAction();
+            else if(curr_action->performAction != nullptr){
+                curr_action->performAction();
+            }
         }
         curr_action = curr_action->nextAction;
     }
-    // IF_DEBUG(Serial.print("currently active actions : "));
-    // IF_DEBUG(Serial.println(activeActions);)
 }
 
 void periodicActions::stopPeriodicAction(int ID){
@@ -69,10 +66,10 @@ void periodicActions::reset()
     stopQueueHead = nullptr;
     stopQueueTail = nullptr;
 }
+
 action *periodicActions::getActionWithID(int ID)
 {
-    action* curr_action;
-    curr_action = actionsHead;
+    action* curr_action = actionsHead;
     while(curr_action != nullptr && curr_action->actionID != ID){
         curr_action = curr_action->nextAction;
     }
@@ -80,10 +77,8 @@ action *periodicActions::getActionWithID(int ID)
 }
 
 void periodicActions::stopPeriodicAction(action* stopAction){
-    //IF_DEBUG(Serial.println("+=+= STOP ACTION ADDING ... ");)
     if(stopAction == nullptr)
         return;
-    // update tail of the queue
     if(stopQueueTail == nullptr){
         stopQueueTail = new stopActionQueue;
         stopQueueHead = stopQueueTail;
@@ -95,30 +90,32 @@ void periodicActions::stopPeriodicAction(action* stopAction){
         stopQueueTail->actionID = stopAction->actionID;
     }
 
-    // execute stop action
     if(stopAction->stopAction != nullptr){
         stopAction->stopAction();
     }
-    //IF_DEBUG(Serial.println("+=+= STOP ACTION ADDED ");)
 }
 
 void periodicActions::deleteStoppedPeriodicActions(){
 
-    if(stopQueueHead == nullptr)
+    if(stopQueueHead == nullptr || actionsHead == nullptr)
         return;
 
     stopActionQueue* curr_stop = stopQueueHead;
     action* curr_action, *prev_action, *temp;
-    curr_action = actionsHead;
-    prev_action = nullptr;
 
-
-    // if head needs to be deleted is a special case
-    if(curr_stop->actionID == actionsHead->actionID){
+    while(curr_stop != nullptr && actionsHead != nullptr &&
+          curr_stop->actionID == actionsHead->actionID){
         temp = actionsHead;
         actionsHead = actionsHead->nextAction;
-        delete actionsHead;
+        delete temp;
         curr_stop = curr_stop->next;
+    }
+
+    if(actionsHead == nullptr){
+        actionsTail = nullptr;
+        stopQueueHead = nullptr;
+        stopQueueTail = nullptr;
+        return;
     }
 
     prev_action = actionsHead;
@@ -126,11 +123,12 @@ void periodicActions::deleteStoppedPeriodicActions(){
 
     while(curr_stop != nullptr && curr_action != nullptr){
         if(curr_stop->actionID == curr_action->actionID){
-            // delete the action
             prev_action->nextAction = curr_action->nextAction;
             temp = curr_action;
             curr_action = curr_action->nextAction;
-            delete curr_action;
+            if(temp == actionsTail)
+                actionsTail = prev_action;
+            delete temp;
             curr_stop = curr_stop->next;
         }
         else{

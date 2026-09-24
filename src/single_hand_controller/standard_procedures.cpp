@@ -224,25 +224,47 @@ void establish_connectivity()
 {
 
     setUGV_state((ugv_status)disconnected);
+
+#ifdef HC_LINK_STATUS_LOG
+    Serial.println(F("[HC] establish_connectivity (MAVLink on Serial1)"));
+#endif
     
     while(heartbeat_timed_out()){
         handlePacketReceived();
         periodic_actions.performPeriodicActions();
 
+#ifdef HC_LINK_STATUS_LOG
+        {
+            static uint32_t last_wait_log = 0;
+            if (last_wait_log == 0 || millis() - last_wait_log >= 2000) {
+                last_wait_log = millis();
+                Serial.print(F("[HC] waiting Atlas HB… Serial1 rx_bytes="));
+                Serial.print(getLinkRxBytes());
+                Serial.print(F(" mav_msgs="));
+                Serial.print(getLinkRxMsgs());
+                Serial.print(F(" hb_tx="));
+                Serial.println(getLinkHbTx());
+            }
+        }
+#endif
 
         // Local RFD injects RADIO_STATUS — skip that check in USB simulation (no radio on rig).
 #ifndef RADIO_SIMULATION_TESTING
         if(!receivedRadioStatus() && millis() - startup_time > SECONDS_MS_5){
            static bool err5_logged = false;
            if(!err5_logged){
-               IF_DEBUG(Serial.println("ERROR 5: no RADIO_STATUS on Serial3");)
-               IF_DEBUG(Serial.println("Check: 1) radio POWER  2) Mega14->RadioRX Mega15<-RadioTX GND  3) baud 115200");)
+               IF_DEBUG(Serial.println("ERROR 5: no RADIO_STATUS on Serial1");)
+               IF_DEBUG(Serial.println("Check: 1) radio POWER  2) RadioTX→Teensy0 RadioRX→Teensy1 GND  3) baud 115200");)
+               IF_LINK_LOG(Serial.println(F("[HC] ERROR: no RADIO_STATUS on Serial1"));)
                err5_logged = true;
            }
            displayError("Radio communication failure", RADIO_COMM_FAILURE);
         }
 #endif
     }
+#ifdef HC_LINK_STATUS_LOG
+    Serial.println(F("[HC] Atlas heartbeat received — link up"));
+#endif
     hb_count = 0;
 }
 
@@ -299,6 +321,7 @@ void end_OFP_timer(unsigned long int time_limit){
  */
 void run_wakeup_seq(){
     IF_DEBUG(Serial.println("running wakeup sequence");)
+    IF_LINK_LOG(Serial.println(F("[HC] wakeup: waiting for Atlas heartbeat"));)
     startup_time = millis();   // paired with SECONDS_MS_5 check in establish_connectivity()
     periodic_actions.reset();
     clearPendingRequest();

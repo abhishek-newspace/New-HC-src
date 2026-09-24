@@ -60,11 +60,11 @@
  *   27 → LED5 (speed limit)    — speed-limit cycle (hold 3 s)
  */
 #define NUM_LED_BUTTONS       5
-#define BUTTON_HEADLIGHTS    12
-#define BUTTON_FOGLIGHTS     24
+#define BUTTON_HEADLIGHTS    24
+#define BUTTON_FOGLIGHTS     12
 #define BUTTON_REARLIGHTS    25
-#define BUTTON_DRIVE_MODE    26
-#define BUTTON_SPEED_LIMIT   27
+#define BUTTON_DRIVE_MODE    27
+#define BUTTON_SPEED_LIMIT   26
 #define BUTTON_TORQUE_MODE   BUTTON_DRIVE_MODE
 
 
@@ -109,14 +109,14 @@
 #define ARM_LED_OFF  LOW
 
 /**
- * Button pin list (index 0..4) — matches ledPins[][] below / hardware test.
+ * Button pin list (index 0..4) — matches ledPins[][] / current button defines.
  */
 static const int HC_BUTTON_PINS[NUM_LED_BUTTONS] = {
-    BUTTON_HEADLIGHTS,   /* 12 → LED1 */
-    BUTTON_FOGLIGHTS,    /* 24 → LED2 */
-    BUTTON_REARLIGHTS,   /* 25 → LED3 */
-    BUTTON_DRIVE_MODE,   /* 26 → LED4 */
-    BUTTON_SPEED_LIMIT   /* 27 → LED5 */
+    BUTTON_HEADLIGHTS,   /* pin → LED1 */
+    BUTTON_FOGLIGHTS,    /* pin → LED2 */
+    BUTTON_REARLIGHTS,   /* pin → LED3 */
+    BUTTON_DRIVE_MODE,   /* pin → LED4 */
+    BUTTON_SPEED_LIMIT   /* pin → LED5 */
 };
 
 /**
