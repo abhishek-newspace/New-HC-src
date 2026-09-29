@@ -125,8 +125,8 @@ static const int HC_BUTTON_PINS[NUM_LED_BUTTONS] = {
 /* Optional tactile / HC battery ADC — not on this Teensy revision */
 // #define TACTILE_PIN <pin>
 #define HC_BATTERY_ADC_PIN A6
-#define HC_BATT_ADC_EMPTY  1205
-#define HC_BATT_ADC_FULL   1783
+#define HC_BATT_ADC_EMPTY  1227 //adc value at 4.95V
+#define HC_BATT_ADC_FULL   2090 //adc value at 8.41V
 #define HC_BATT_NO_SENSE_RAW_MAX  0
 #define HC_BATT_BENCH_SOC_WHEN_NO_SENSE  85
 // #define HC_BATT_STATUS_LED_PIN <pin>

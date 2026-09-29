@@ -46,7 +46,11 @@
  * - Teensy pin map: single e-stop, independent light toggles, drive/speed/arm buttons
  * - DEBUG_BUTTONS: Serial edge logs for all digital inputs
  * - joystick: 12-bit ADC samples downscaled >>2 for existing 10-bit control math
- */
+ *
+ * @date 29/09/2026
+ * @author Ashil
+ * - changed inversion of the x axis joystick value to simply scale original value
+ * /
 #include "include/IOhandler.hpp"
 
 
@@ -281,7 +285,7 @@ void getXY(struct thumbstickControl *control){
     float* y = &control->Y;
 
     *x = (*x < XY_LOWER_LIMIT) ? (*x - XY_LOWER_LIMIT) : ((*x > XY_UPPER_LIMIT) ? (*x - XY_UPPER_LIMIT) : 0);
-    *x *= -10;
+    *x *= 10;
     *y = (*y < XY_LOWER_LIMIT) ? (*y - XY_LOWER_LIMIT) : ((*y > XY_UPPER_LIMIT) ? (*y - XY_UPPER_LIMIT) : 0);
     *y *= 10;
 

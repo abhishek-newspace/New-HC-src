@@ -112,6 +112,7 @@ unsigned char const signing_key[32] = {0x2d,0x3d,0x67,0xb6,0xa9,0x92,0x1b,0x1a,0
  * DEBUG). Safe with RELEASE + UHF (RADIO_PORT = Serial3). Comment out when
  * done verifying the Teensy pin map.
  */
+
 // #define DEBUG_BUTTONS
 
 /**
