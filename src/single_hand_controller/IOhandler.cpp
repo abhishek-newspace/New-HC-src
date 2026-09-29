@@ -51,6 +51,13 @@
  * @author Ashil
  * - changed inversion of the x axis joystick value to simply scale original value
  * /
+
+
+
+/** Local light latch state (independent toggles on Teensy HC). */
+
+
+
 #include "include/IOhandler.hpp"
 
 
@@ -66,8 +73,6 @@ extern bool arm_press;
 extern bool disarm_press;
 extern bool estop_toggled;
 extern bool estop_clear_request;
-
-/** Local light latch state (independent toggles on Teensy HC). */
 static bool light_head_on = false;
 static bool light_fog_on  = false;
 static bool light_rear_on = false;
@@ -93,10 +98,10 @@ void untoggleEstop(){
 }
 
 static void requestLightSend(){
-    turnOnHeadlight = light_head_on;
-    turnOnFoglight  = light_fog_on;
-    turnOnRearlight = light_rear_on;
-    turnOffLight = !(light_head_on || light_fog_on || light_rear_on);
+    turnOnHeadlights = light_head_on;
+    turnOnFoglights  = light_fog_on;
+    turnOnRearlights = light_rear_on;
+    turnOffLights = !(light_head_on || light_fog_on || light_rear_on);
     light_cmd_pending = true;
 }
 
@@ -138,6 +143,12 @@ void turnOnFoglights(){
     light_fog_on = true;
     light_head_on = false;
     light_rear_on = false;
+    requestLightSend();
+}
+void turnOnRearlights(){
+    light_fog_on = false;
+    light_head_on = false;
+    light_rear_on = true;
     requestLightSend();
 }
 
