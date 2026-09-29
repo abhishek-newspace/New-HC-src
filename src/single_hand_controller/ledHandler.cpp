@@ -6,6 +6,7 @@ extern bool timesync_received;
 extern uint8_t ugv_battery_soc;
 extern int16_t RSSI;
 extern uint16_t remRSSI;
+#define RSSI_WEAK_THRESHOLD_DBM (-120)
 
 // Pin Mapping Array {RED, GREEN, BLUE} for each LED
 static const uint8_t rgbPins[NUM_RGB_LEDS][3] = {
@@ -61,6 +62,11 @@ void setRGBColor(uint8_t ledIndex, RGBColor color) {
             digitalWrite(rgbPins[ledIndex][0], HIGH);
             digitalWrite(rgbPins[ledIndex][1], LOW);
             digitalWrite(rgbPins[ledIndex][2], LOW);
+            break;
+        case COLOR_YELLOW:
+            digitalWrite(rgbPins[ledIndex][0], LOW);  // Red ON
+            digitalWrite(rgbPins[ledIndex][1], LOW);  // Green ON
+            digitalWrite(rgbPins[ledIndex][2], HIGH); // Blue OFF
             break;
         case COLOR_OFF:
         default:
@@ -133,24 +139,29 @@ void updateLEDs() {
     setArmLED(ugv_state == active);
 
     // 1. Connectivity LED (LED 1)
-    if (get_conn_stat() == all_disconnected || !radioConnected) {
+    connectivity_status conn_stat = get_conn_stat();
+
+    if (getUGV_state() == disconnected || !radioConnected || conn_stat == all_disconnected) {
         setRGBColor(0, COLOR_RED);
+    } else if (!timesync_received) {
+        setRGBColor(0, COLOR_BLUE);
+    } else if (remRSSI < RSSI_WEAK_THRESHOLD_DBM || RSSI < RSSI_WEAK_THRESHOLD_DBM || conn_stat == low_connectivity) {
+        setRGBColor(0, COLOR_YELLOW);
     } else {
         setRGBColor(0, COLOR_GREEN);
     }
 
     // 2. Hand Controller Battery LED (LED 2)
     uint8_t hc_soc = readHcBatterySoc();
-    if (hc_soc > 50) setRGBColor(1, COLOR_GREEN);
-    else if (hc_soc > 20) setRGBColor(1, COLOR_CYAN);
-    else setRGBColor(1, COLOR_RED);
+    if (hc_soc < 5)        setRGBColor(1, COLOR_OFF);
+    else if (hc_soc > 40)  setRGBColor(1, COLOR_GREEN);
+    else if (hc_soc > 20)  setRGBColor(1, COLOR_YELLOW);
+    else                   setRGBColor(1, COLOR_RED);
 
     // 3. UGV Status LED (LED 3)
-    switch (ugv_state) {
-        case active: setRGBColor(2, COLOR_GREEN); break;
-        case standby: setRGBColor(2, COLOR_CYAN); break;
-        default: setRGBColor(2, COLOR_RED); break;
-    }
+    if (ugv_battery_soc > 40)       setRGBColor(2, COLOR_GREEN);
+    else if (ugv_battery_soc > 30)  setRGBColor(2, COLOR_YELLOW);
+    else                           setRGBColor(2, COLOR_RED);
 
     // 4. Drive Mode LED (LED 4 - Green, Blue, Cyan)
     int mode = getDriveMode();

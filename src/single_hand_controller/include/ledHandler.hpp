@@ -10,6 +10,7 @@ enum RGBColor {
     COLOR_RED,
     COLOR_GREEN,
     COLOR_BLUE,
+    COLOR_YELLOW,
     COLOR_CYAN
 };
 
