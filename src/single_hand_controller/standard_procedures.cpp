@@ -316,6 +316,7 @@ void run_wakeup_seq(){
     #endif
     setFoglightState(0);
     setHeadlightState(0);
+    setRearlightState(0);
 
     updateLEDs();
     
