@@ -83,6 +83,9 @@ void updateEstopToggleEdge(struct two_pos_toggle *t1, int32_t ms_since_last_chec
  */
 void updateEstopSwitchEdge(int32_t ms_since_last_check);
 
+/// @brief clear local head/fog/rear latch state and any pending LIGHT_CONTROL (on reconnect)
+void resetLightLatches();
+
 /**
  * SRS §3.2.3.3 — read HC pack SoC % from HC_BATTERY_ADC_PIN (0–100).
  * Local indication only; never transmitted.

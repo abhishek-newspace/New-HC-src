@@ -3,6 +3,7 @@
 
 extern bool radioConnected;
 extern bool timesync_received;
+bool receivedFirstTimesync();
 extern uint8_t ugv_battery_soc;
 extern int16_t RSSI;
 extern uint16_t remRSSI;
@@ -138,18 +139,19 @@ void updateLEDs() {
     ugv_status ugv_state = getUGV_state();
     setArmLED(ugv_state == active);
 
-    // 1. Connectivity LED (LED 1)
-    connectivity_status conn_stat = get_conn_stat();
-
-    if (getUGV_state() == disconnected || !radioConnected || conn_stat == all_disconnected) {
+    // 1. Connectivity LED (LED 1) — Red: no UGV link, Blue: timesync fault, Green: healthy
+    connectivity_status link;
+    if (ugv_state == disconnected || !radioConnected) {
+        link = all_disconnected;
         setRGBColor(0, COLOR_RED);
-    } else if (!timesync_received) {
+    } else if (!receivedFirstTimesync()) {
+        link = comm_fault;
         setRGBColor(0, COLOR_BLUE);
-    } else if (remRSSI < RSSI_WEAK_THRESHOLD_DBM || RSSI < RSSI_WEAK_THRESHOLD_DBM || conn_stat == low_connectivity) {
-        setRGBColor(0, COLOR_YELLOW);
     } else {
+        link = connected;
         setRGBColor(0, COLOR_GREEN);
     }
+    switch_conn_stat(link);
 
     // 2. Hand Controller Battery LED (LED 2)
     uint8_t hc_soc = readHcBatterySoc();
