@@ -228,6 +228,7 @@ void establish_connectivity()
     while(heartbeat_timed_out()){
         handlePacketReceived();
         periodic_actions.performPeriodicActions();
+        updateLEDs();
 
 
         // Local RFD injects RADIO_STATUS — skip that check in USB simulation (no radio on rig).
@@ -272,6 +273,7 @@ void time_synchronize()
         }
         #endif
         periodic_actions.performPeriodicActions();
+        updateLEDs();
     }while(!receivedFirstTimesync() IF_DEBUG(&& millis() - t1 < SECONDS_MS_10));
     clearInfo();
     if(!receivedFirstTimesync()){
@@ -317,6 +319,7 @@ void run_wakeup_seq(){
     #endif
     setFoglightState(0);
     setHeadlighState(0);
+    resetLightLatches();
     updateLEDs();
     
 #ifndef DEPRECATED_REV_1

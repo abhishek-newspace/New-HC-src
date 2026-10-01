@@ -88,6 +88,17 @@ void untoggleEstop(){
     estop_toggled = false;
 }
 
+void resetLightLatches(){
+    light_head_on = false;
+    light_fog_on  = false;
+    light_rear_on = false;
+    turnOnHeadlight = false;
+    turnOnFoglight  = false;
+    turnOnRearlight = false;
+    turnOffLight = false;
+    light_cmd_pending = false;
+}
+
 static void requestLightSend(){
     turnOnHeadlight = light_head_on;
     turnOnFoglight  = light_fog_on;
