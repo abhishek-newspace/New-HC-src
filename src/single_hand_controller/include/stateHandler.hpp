@@ -22,9 +22,10 @@
 // gettr functions
 bool headlight_off();
 bool foglight_off();
-void setHeadlighState(bool state);
+bool rearlight_off();
+void setHeadlightState(bool state);
 void setFoglightState(bool state);
-
+void setRearlightState(bool state);
 /**
  * set the current UGV state. 
  * \returns true when current UGV state is updated to a new value.

@@ -52,7 +52,6 @@ bool turnOnHeadlight = false;
 bool turnOnFoglight = false;
 bool turnOnRearlight = false;
 bool turnOffLight = false;
-bool light_cmd_pending = false;  /* send combined LIGHT_CONTROL once per toggle edge */
 int required_speed = 0;
 bool speed_limit_press = false;  /* one-shot after SPEED_LIMIT_HOLD_MS on pin 27 */
 bool switchMode = false;
@@ -162,6 +161,7 @@ inline bool switchModeCondition(){
     return switchMode;
 }
 
+
 inline bool turnHeadlightCondition(){
     return turnOnHeadlight;
 }
@@ -177,7 +177,6 @@ inline bool turnOffLightsCondition(){
 inline bool lightCmdPendingCondition(){
     return light_cmd_pending;
 }
-
 
 inline bool speedChangeCondition(){
     /* Pin 27: one TX after SPEED_LIMIT_HOLD_MS continuous hold (see IOhandler). */
@@ -316,7 +315,8 @@ void run_wakeup_seq(){
 
     #endif
     setFoglightState(0);
-    setHeadlighState(0);
+    setHeadlightState(0);
+
     updateLEDs();
     
 #ifndef DEPRECATED_REV_1
@@ -420,6 +420,8 @@ void run_OFP_cycle()
             IF_DEBUG(displayInfo("e-stop cleared");)
         }
     }
+
+
 
     /* Independent head/fog/rear toggles — one LIGHT_CONTROL with current latch state. */
     if(lightCmdPendingCondition()){

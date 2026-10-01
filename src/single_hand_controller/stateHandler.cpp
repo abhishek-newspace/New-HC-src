@@ -33,7 +33,8 @@ estopMode current_emergency_mode = disengaged;
 
 bool headlight_state = 0;
 
-bool fog_brake_state = 0;
+bool foglight_state = 0;
+bool rearlight_state = 0;
 
 
 void switchEmergencyMode(int mode){
@@ -99,17 +100,23 @@ bool headlight_off(){
     return headlight_state == 0;
 }
 bool foglight_off(){
-    return fog_brake_state == 0;
+    return foglight_state == 0;
+}
+bool rearlight_off(){
+    return rearlight_state == 0;
 }
 
 // setter functions
-void setHeadlighState(bool state){
+void setHeadlightState(bool state){
     headlight_state = state;
 }
 
 void setFoglightState(bool state){
-    
-    fog_brake_state = state;
+    foglight_state = state;
+}
+void setRearlightState(bool state){
+    // rear light state is same as fog light state
+    rearlight_state = state;
 }
 
 // setter functions

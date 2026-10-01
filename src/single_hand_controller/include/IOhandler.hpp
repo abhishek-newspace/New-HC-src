@@ -25,6 +25,10 @@
 #include "definitions.h"
 #include "stateHandler.hpp"
 
+extern bool turnOnHeadlight;
+extern bool turnOnFoglight;
+extern bool turnOnRearlight;
+extern bool light_cmd_pending;
 
 /// @brief thumbstick control is used within this library
 struct thumbstickControl{

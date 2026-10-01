@@ -35,7 +35,10 @@ mavlink_message_t msg;
 extern speedToggle requested_spd;
 
 message_sender msgsndr(buf, &msg);
-
+  // Persistent internal states (replaces local variables in sendLightToggleState)
+static bool head = false;
+static bool fog  = false;
+static bool rear = false;
 
 bool arm_request_sent = false,  //!< whether an arm request was sent (COMMAND_LONG)
     disarm_request_sent = false;  //!< whether a disarm request was sent (COMMAND_LONG)
@@ -142,30 +145,31 @@ void sendDisarmCommand(){
  *   0 = OFF (0,0,0), 1 = HEAD+REAR (1,0,1), 2 = FOG (0,1,0).
  * ICD: param1=head, param2=fog, param3=rear.
  */
-void sendLightToggleState(uint8_t toggle_pos){
-    bool head = false;
-    bool fog  = false;
-    bool rear = false;
+// void sendLightToggleState(uint8_t toggle_pos){
+//     bool head = false;
+//     bool fog  = false;
+//     bool rear = false;
 
-    switch(toggle_pos){
-        case 1:   /* HEAD (centre) */
-            head = true;
-            rear = true;
-            break;
-        case 2:   /* FOG */
-            fog = true;
-            break;
-        default:  /* OFF */
-            break;
-    }
+//     switch(toggle_pos){
+//         case 1:   /* HEAD (centre) */
+//             head = true;
+//             rear = true;
+//             break;
+//         case 2:   /* FOG */
+//             fog = true;
+//             break;
+//         default:  /* OFF */
+//             break;
+//     }
 
-    sendLightControlState(head, fog, rear);
-}
+//     sendLightControlState(head, fog, rear);
+// }
 
-/** Independent head/fog/rear latch (Teensy momentary toggles). */
+
 void sendLightControlState(bool head, bool fog, bool rear){
-    setHeadlighState(head);
+    setHeadlightState(head);
     setFoglightState(fog);
+    setRearlightState(rear);
     IF_DEBUG(Serial.print("LIGHT_CTRL head=");)
     IF_DEBUG(Serial.print(head);)
     IF_DEBUG(Serial.print(" fog=");)
@@ -179,17 +183,16 @@ void sendHeadlight(){
     sendLightToggleState(1);
 }
 
-void sendCurrentLightState(){
-    if(headlight_off() && foglight_off())
-        sendLightToggleState(0);
-    else if(!headlight_off() && foglight_off())
-        sendLightToggleState(1);
-    else if(headlight_off() && !foglight_off())
-        sendLightToggleState(2);
-    else{
-        sendBuffer(msgsndr.buffer_light_control_cmd(true, true, true));
-    }
+
+  
+
+/// @brief Helper to send current global light states over buffer
+void sendCurrentLightState(void){
+    sendLightControlState(turnOnHeadlight, turnOnFoglight, turnOnRearlight);
 }
+
+
+
 
 /// @brief send a request to turn on brake light and fog light
 void sendFogBrakeLight(){
@@ -202,7 +205,7 @@ void sendLightOffRequest(){
 
 /// @brief send a request to turn off headlight
 void sendHeadlight_OFF(){
-    setHeadlighState(0);
+    setHeadlightState(0);
     IF_DEBUG(Serial.println("sending headlight turn off request");)
         sendBuffer(msgsndr.buffer_light_control_cmd(0,0,0));
 }

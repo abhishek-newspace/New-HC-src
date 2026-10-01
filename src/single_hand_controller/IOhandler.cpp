@@ -65,7 +65,7 @@ extern bool turnOnHeadlight;
 extern bool turnOnFoglight;
 extern bool turnOnRearlight;
 extern bool turnOffLight;
-extern bool light_cmd_pending;
+bool light_cmd_pending=false;
 extern int required_speed;
 extern bool speed_limit_press;
 extern bool switchMode;
@@ -76,6 +76,7 @@ extern bool estop_clear_request;
 static bool light_head_on = false;
 static bool light_fog_on  = false;
 static bool light_rear_on = false;
+
 
 void engageEstop(){
     estop_toggled = true;
@@ -97,60 +98,59 @@ void untoggleEstop(){
     estop_toggled = false;
 }
 
-static void requestLightSend(){
-    turnOnHeadlights = light_head_on;
-    turnOnFoglights  = light_fog_on;
-    turnOnRearlights = light_rear_on;
-    turnOffLights = !(light_head_on || light_fog_on || light_rear_on);
+
+
+
+
+void toggleHeadlights(void) {
+    turnOnHeadlight = !turnOnHeadlight;
     light_cmd_pending = true;
 }
 
-void toggleHeadlights(){
-    light_head_on = !light_head_on;
-    requestLightSend();
-    IF_DEBUG_BUTTONS(Serial.print(F("[BTN] Headlights -> "));)
-    IF_DEBUG_BUTTONS(Serial.println(light_head_on ? F("ON") : F("OFF"));)
+void toggleFoglights(void) {
+    turnOnFoglight = !turnOnFoglight;
+    light_cmd_pending = true;
 }
 
-void toggleFoglights(){
-    light_fog_on = !light_fog_on;
-    requestLightSend();
-    IF_DEBUG_BUTTONS(Serial.print(F("[BTN] Foglights -> "));)
-    IF_DEBUG_BUTTONS(Serial.println(light_fog_on ? F("ON") : F("OFF"));)
+void toggleRearlights(void) {
+    turnOnRearlight = !turnOnRearlight;
+    light_cmd_pending = true;
 }
 
-void toggleRearlights(){
-    light_rear_on = !light_rear_on;
-    requestLightSend();
-    IF_DEBUG_BUTTONS(Serial.print(F("[BTN] Rearlights -> "));)
-    IF_DEBUG_BUTTONS(Serial.println(light_rear_on ? F("ON") : F("OFF"));)
+void turnOffAllLights(void) {
+    turnOnHeadlight = false;
+    turnOnFoglight  = false;
+    turnOnRearlight = false;
+    light_cmd_pending = true;
 }
 
-/* Legacy helpers (kept for older packet paths). */
-void turnOnHeadlights(){
-    light_head_on = true;
-    light_fog_on = false;
-    light_rear_on = true;
-    requestLightSend();
-}
-void turnOffLights(){
-    light_head_on = false;
-    light_fog_on = false;
-    light_rear_on = false;
-    requestLightSend();
-}
-void turnOnFoglights(){
-    light_fog_on = true;
-    light_head_on = false;
-    light_rear_on = false;
-    requestLightSend();
-}
-void turnOnRearlights(){
-    light_fog_on = false;
-    light_head_on = false;
-    light_rear_on = true;
-    requestLightSend();
-}
+
+
+// /* Legacy helpers (kept for older packet paths). */
+// void turnOnHeadlights(){
+//     light_head_on = true;
+//     light_fog_on = false;
+//     light_rear_on = true;
+//     requestLightSend();
+// }
+// void turnOffLights(){
+//     light_head_on = false;
+//     light_fog_on = false;
+//     light_rear_on = false;
+//     requestLightSend();
+// }
+// void turnOnFoglights(){
+//     light_fog_on = true;
+//     light_head_on = false;
+//     light_rear_on = false;
+//     requestLightSend();
+// }
+// void turnOnRearlights(){
+//     light_fog_on = false;
+//     light_head_on = false;
+//     light_rear_on = true;
+//     requestLightSend();
+// }
 
 void enableSwitchMode(){
     switchMode = true;
